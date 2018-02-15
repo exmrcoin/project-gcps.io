@@ -23,13 +23,7 @@ section{
     float: left;
     width: 100%;
 }
-footer{
-    float: left;
-    width: 100%;
-    background-color: #000;
-    padding: 5% 0 5% 0;
-    color: #fff;
-}
+
 
 a {
     color: #fff;
@@ -170,8 +164,65 @@ margin-top: -90px;
 
 
 /*7 section */
+footer{
+    float: left;
+    width: 100%;
+    background-color: #000;
+    padding: 5% 0 5% 0;
+    color: #fff;
+}
 
 /*7 section/ */
+
+/* popup login */
+.cl_close{
+    position: absolute;
+    top: -18px;
+    right: -20px;
+    background-color: #fff !important;
+    opacity: 1;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+    box-shadow: 0 0 3px #000000a6;
+}
+.cl_close:hover{
+    background-color: #fff !important;
+    opacity: 1;
+}
+.login_btn{
+    background-color: #f08919;
+    border: #f6b011;
+    color: white;
+    font-weight: normal;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 8px 0px;
+    cursor: pointer;
+    width: 100%;
+}
+.text_orange{
+    color: #f08919;
+}
+.login_btn a,h5{
+    color: #000;
+}
+
+
+/* popup login/ */
+
+/* popup sign */
+.left_margin{
+    margin-left: 60px;
+}
+.left_margin_r{
+    margin-left: 75px;
+}
+/* popup sign/ */
 
 
 /*==========  Mobile First Method  ==========*/
@@ -220,6 +271,12 @@ margin-top: -90px;
 }
 .navbar-toggle .icon-bar{
     border: 1px solid #fff;
+}
+.left_margin{
+    margin-left: 16px;
+}
+.left_margin_r{
+    margin-left:16px;
 }
 
 }

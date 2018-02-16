@@ -1,4 +1,4 @@
-EXMR MONERO<sup>℠</sup>
+# EXMR MONERO<sup>℠</sup>
 # project-getcryptopayments
 ➥A project based on Merchants tools: payment gateway, multi-coins wallet and point of sales, will make EXMR increase its value.<br> 
 ➥A large number of stores and online businesses, will be able to receive payments in our EXMR and other cryptocurrencies.<br>

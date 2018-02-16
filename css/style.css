@@ -225,6 +225,79 @@ footer{
 /* popup sign/ */
 
 
+/*Supported Coins*/
+
+.nav-pills_or{
+    margin: 10px 0 40px 0;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    float: left;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    color: #fff;
+    background-color: #f08919 !important;
+    box-shadow: 0 0 20px #000000a6;
+}
+
+.nav-pills_or li a{
+    width: 200px;
+    margin-left: 40px;
+    color: #000;
+    background-color: #fff;
+}
+.table-responsive {
+    min-height: .01%;
+    overflow-x: auto;
+    width: 100%;
+    float: left;
+    display: inline-block;
+}
+
+.wells {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #e3e3e3;
+    border-radius: 2px;
+    box-shadow: 0 0 20px #000000a6;
+    margin: 40px 0 0px 0;
+}
+
+.tab-content{
+    background-color: #fff;
+    float: left;
+    width: 100%;
+    box-shadow: 0 0 20px #000000a6;
+}
+.w_100_img{
+    width: 100%;
+    float: left;
+}
+.w_100_img .w_50_l{
+    width: 25%;
+    float: left;
+}
+.w_100_img .w_50_l img{
+    width: 35px;
+}
+
+.w_100_img .w_50_r{
+    width: 75%;
+    float: left;
+    line-height: 30px;
+}
+/*Supported Coins/ */
+
+
+/*Public Coin */
+
+/*Public Coin */
+
+
+
 /*==========  Mobile First Method  ==========*/
 /* Large Devices, Wide Screens */
 @media only screen and (max-width:1200px){
@@ -277,6 +350,12 @@ footer{
 }
 .left_margin_r{
     margin-left:16px;
+}
+.nav-pills_or li a {
+    background-color: #f08919 !important;
+    width: 65px;
+    margin-left: 5px;
+    color: #fff;
 }
 
 }

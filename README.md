@@ -4,7 +4,7 @@ EXMR MONERO<sup>℠</sup>
 ➥A large number of stores and online businesses, will be able to receive payments in our EXMR and other cryptocurrencies.<br>
 ➥EXMR GetCryptoPayments.net Will support more than 130 Cryptocurrencies on your platform and will be added by our voting system.<br>
 
-# ANDROID APP & iOS APP<br>
+# ANDROID & iOS APP<br>
 ➥Here you can send and receive your virtual coins.<br>
 ➥You can receive instant payments in any Cryptocurrency you choose, using your wallet or a qr code. <br>
 ➥Synchronization of your account to see the payments or deposits received.<br>

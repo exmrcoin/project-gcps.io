@@ -9,5 +9,11 @@
 ➥Here you can send and receive your virtual coins.<br>
 ➥You can receive instant payments in any Cryptocurrency you choose, using your wallet or a qr code. <br>
 ➥Synchronization of your account to see the payments or deposits received.<br>
-# <br>
+# Team<br>
+➥naveen-parangat<br>
+➥akshay-par<br>
+➥Mobistudioz<br>
+➥albertnanita<br>
+➥JulianIsrael<br>
+➥kuldeepparangat<br>
 

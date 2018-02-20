@@ -83,6 +83,12 @@ ul,li{
     text-align: center;
 }
 
+.dashboard li a{
+    color: #2d2d2d;
+}
+.dashboard li a:hover{
+    color: #f08919;
+}
 
 /*2 section/*/
 .bg_2{
@@ -299,7 +305,6 @@ footer{
     border-radius: 4px;
     padding: 8px 0 8px 30px;
     margin-bottom: 1px;
-
 }
 .well_white ul li a{
    color: #000;
@@ -307,7 +312,6 @@ footer{
 .well_white ul li a:hover{
    color: #f08919;
 }
-
 
 .well_white2 {
     padding: 19px;

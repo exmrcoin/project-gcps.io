@@ -81,7 +81,7 @@
       </div>
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <h2>Shopping Cart Plugins</h2>
-        <p>Offering plugins for all the popular webcarts used today. Register and install a plugin to set up CoinPayments with your new or pre-existing checkout.</p><br/><br/>
+        <p>Offering plugins for all the popular webcarts used today. Register and install a plugin to set up GetCryptoPaymentss with your new or pre-existing checkout.</p><br/><br/>
         <img src="img/about_icon.png" class="img-responsive"><br/>
         <button type="button" class="btn button-nav1">Get Started</button>
       </div>
@@ -120,7 +120,7 @@
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading">Secured with BitGo</h4>
-                  <p>CoinPayments supports BitGo Instant making Bitcoin payments faster than ever before.</p>
+                  <p>GetCryptoPaymentss supports BitGo Instant making Bitcoin payments faster than ever before.</p>
                 </div>
               </div>
             </div>
@@ -187,7 +187,7 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <h2 class="text-center">Over 710,000 vendors across 182 different countries</h2>
-      <p class="text-center">CoinPayments is the first and largest payment processor of over 130 cryptocurrencies</p>
+      <p class="text-center">GetCryptoPaymentss is the first and largest payment processor of over 130 cryptocurrencies</p>
         <br/>
         <img src="img/product_icon.png" class="img-responsive"><br/><br/><br/>
         <button type="button" class="btn btn-default btn-lg  center-block">GET STARTED</button>
@@ -203,7 +203,7 @@
     <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <h2 class="text-center">What Investors Say</h2>
-      <p class="text-center">CoinPayments is the first and largest payment processor of over 130 cryptocurrencies</p>
+      <p class="text-center">GetCryptoPaymentss is the first and largest payment processor of over 130 cryptocurrencies</p>
         <br/><br/>
 
        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-sm-offset-3 col-md-offset-3"> 
@@ -219,21 +219,21 @@
             <div class="carousel-inner">
               <div class="item active">
                 <img src="img/user.png" class="img-responsive img-circle center-block" alt="#"><br>
-                <p>We wanted to accept StartCOIN payments so we starting developing. We wanted to accept Ether payments so we starting developing. Then we realised CoinPayments could do the hard work for us and we could accept all payments and receive the money in Bitcoin. Thanks CoinPayments, we only need to develop with one API now.</p>
+                <p>We wanted to accept StartCOIN payments so we starting developing. We wanted to accept Ether payments so we starting developing. Then we realised GetCryptoPaymentss could do the hard work for us and we could accept all payments and receive the money in Bitcoin. Thanks GetCryptoPaymentss, we only need to develop with one API now.</p>
                 <h4 class="text-center">Director, ShibeMint.com</h4>
                 <h5 class="text-center">CEO Company Name</h5>
               </div>
 
               <div class="item">
                  <img src="img/user.png" class="img-responsive img-circle center-block" alt="#"><br>
-                <p>We have switched from several payment processing systems to CoinPayments because we simply couldn't find any other services that can top the features CoinPayments offers.</p>
+                <p>We have switched from several payment processing systems to GetCryptoPaymentss because we simply couldn't find any other services that can top the features GetCryptoPaymentss offers.</p>
                 <h4 class="text-center">Director, ShibeMint.com</h4>
                 <h5 class="text-center">CEO Company Name</h5>
               </div>
 
               <div class="item">
                  <img src="img/user.png" class="img-responsive img-circle center-block" alt="#"><br>
-                <p>I have to tip my hat to the people at CoinPayments.net. They've released a stable, robust service to accept cryptocurrency for your online business. I couldn't be happier with the success of the business, and I couldn't have done it without CoinPayments.net</p>
+                <p>I have to tip my hat to the people at GetCryptoPaymentss.net. They've released a stable, robust service to accept cryptocurrency for your online business. I couldn't be happier with the success of the business, and I couldn't have done it without GetCryptoPaymentss.net</p>
                 <h4 class="text-center">Director, ShibeMint.com</h4>
                 <h5 class="text-center">CEO Company Name</h5>
               </div>

@@ -46,7 +46,7 @@
   
    <div class="row">
       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <p>75% of proceeds will go to Electronic Frontier Foundation, a 501(c)(3) non-profit organization, the remaing 25% will go to feed the faucets at the CoinPayments Block Explorers. For full rules and information click here.</p><br/>
+          <p>75% of proceeds will go to Electronic Frontier Foundation, a 501(c)(3) non-profit organization, the remaing 25% will go to feed the faucets at the GetCryptoPaymentss Block Explorers. For full rules and information click here.</p><br/>
       </div>
     </div>
    

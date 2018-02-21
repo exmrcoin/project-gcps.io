@@ -30,7 +30,7 @@ a {
     text-decoration: none;
 }
 a:hover {
-    color: #f08919;
+    color: #e65d14;
     text-decoration: none;
 }
 p{
@@ -64,8 +64,8 @@ ul,li{
     font-size: 50px;
 }
 .button-nav1{
-    background-color: #f08919;
-    border: #f6b011;
+    background-color: #e65d14;
+    border: #e65d14;
     color: white;
     font-weight: normal;
     padding: 10px 30px;
@@ -87,7 +87,7 @@ ul,li{
     color: #2d2d2d;
 }
 .dashboard li a:hover{
-    color: #f08919;
+    color: #e65d14;
 }
 
 /*2 section/*/
@@ -310,7 +310,7 @@ footer{
    color: #000;
 }
 .well_white ul li a:hover{
-   color: #f08919;
+   color: #e65d14;
 }
 
 .well_white2 {
@@ -320,6 +320,69 @@ footer{
     border-radius: 4px;
 }
 
+
+
+/*search box*/
+.bg_box{
+    background-color: #fff1e0;
+    padding: 20px 0 45px 0;
+    margin: 10px;
+        color: #000;
+}
+.bg_box h3{
+        color: #000;
+}
+/* Glow */
+.hvr-glow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: box-shadow;
+  transition-property: box-shadow;
+    width: 100%;
+}
+.hvr-glow:hover, .hvr-glow:focus, .hvr-glow:active {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
+
+.center_form{
+    margin: auto;
+    display: inline-block;
+}
+.btn-search {
+    color: #fff;
+    background-color: #e65d14;
+    border-color: #e65d14;
+
+    display: inline-block;
+    padding: 15px 15px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 2px;
+}
+
+.myflexgroup{display: flex;box-shadow: 0 0 20px #000000a6;border-top-left-radius: 8px;border-bottom-left-radius: 8px;}
+.basis1{ width: 500px;padding: 0 0 0 25px;border-top-left-radius: 8px;border-bottom-left-radius: 8px;}
+.basis2{width: 150px;}
+/*search box/*/
 
 
 /*==========  Mobile First Method  ==========*/
@@ -380,6 +443,15 @@ footer{
     width: 65px;
     margin-left: 5px;
     color: #fff;
+}
+.basis1 {
+    width: 220px;
+    padding: 0 0 0 25px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+.basis2 {
+     width: 70px; 
 }
 
 }

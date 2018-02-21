@@ -1,0 +1,26 @@
+[
+    {
+        "outputFile": "/home/parangat/Projects/GetCryptoCurrency/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldltr-v21/values-ldltr-v21.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 112,
+                    "endOffset": 163
+                },
+                "from": {
+                    "file": "/home/parangat/.gradle/caches/transforms-1/files-1.1/appcompat-v7-26.0.2.aar/a60d0829ff342c384b32e2272c62968c/res/values-ldltr-v21/values-ldltr-v21.xml",
+                    "position": {
+                        "startLine": 2,
+                        "startColumn": 4,
+                        "startOffset": 55,
+                        "endColumn": 112,
+                        "endOffset": 163
+                    }
+                }
+            }
+        ]
+    }
+]

@@ -1,0 +1,6 @@
+framework module Pods_CryptoPayment {
+  umbrella header "Pods-CryptoPayment-umbrella.h"
+
+  export *
+  module * { export * }
+}

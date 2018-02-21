@@ -1,0 +1,1001 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4B12BD7D6B4A20796500D422 /* Pods_CryptoPaymentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B175E3A4A78A82940A95E2 /* Pods_CryptoPaymentUITests.framework */; };
+		5D994F21E70A7333AC6A424E /* Pods_CryptoPaymentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A473337F50F1C64FF9D705C /* Pods_CryptoPaymentTests.framework */; };
+		A24536F4203C40BA00CDA2D4 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24536F3203C40BA00CDA2D4 /* Alert.swift */; };
+		A2AA727D203BC4C40021C592 /* TaxAmtVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA727C203BC4C40021C592 /* TaxAmtVC.swift */; };
+		A2AA727F203BC4D20021C592 /* POSVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA727E203BC4D20021C592 /* POSVC.swift */; };
+		A2AA7281203BC4E00021C592 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA7280203BC4E00021C592 /* SettingVC.swift */; };
+		A2AA7284203BC50C0021C592 /* TblSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA7283203BC50C0021C592 /* TblSettingCell.swift */; };
+		A2AA7286203BC5220021C592 /* SendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA7285203BC5220021C592 /* SendVC.swift */; };
+		A2AA7288203BC5310021C592 /* ConvertVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA7287203BC5310021C592 /* ConvertVC.swift */; };
+		A2AA728A203BC53C0021C592 /* RecieveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA7289203BC53C0021C592 /* RecieveVC.swift */; };
+		A2AA728C203BC5490021C592 /* WalletVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA728B203BC5490021C592 /* WalletVC.swift */; };
+		A2AA728E203BF6050021C592 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA728D203BF6050021C592 /* WalletCell.swift */; };
+		A2AA7294203BFA5C0021C592 /* SetPasscodeFirst.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA7293203BFA5C0021C592 /* SetPasscodeFirst.swift */; };
+		A2AA7296203BFAC80021C592 /* ConfirmPasscode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA7295203BFAC80021C592 /* ConfirmPasscode.swift */; };
+		A2AA729A203C24E30021C592 /* QRScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA7299203C24E20021C592 /* QRScannerVC.swift */; };
+		A2AA729D203C35E00021C592 /* EnterPasscodeAgainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2AA729C203C35E00021C592 /* EnterPasscodeAgainVC.swift */; };
+		A2DF8EF0203B1E1000D8153C /* TblCurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF8EEF203B1E1000D8153C /* TblCurrencyCell.swift */; };
+		A2DF8EF3203B27CA00D8153C /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2DF8EF2203B27CA00D8153C /* HomeVC.swift */; };
+		A2F07962203AD7E700B55E5D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F07961203AD7E700B55E5D /* AppDelegate.swift */; };
+		A2F07964203AD7E700B55E5D /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F07963203AD7E700B55E5D /* LoginVC.swift */; };
+		A2F07967203AD7E700B55E5D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F07965203AD7E700B55E5D /* Main.storyboard */; };
+		A2F07969203AD7E700B55E5D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2F07968203AD7E700B55E5D /* Assets.xcassets */; };
+		A2F0796C203AD7E700B55E5D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2F0796A203AD7E700B55E5D /* LaunchScreen.storyboard */; };
+		A2F07977203AD7E700B55E5D /* CryptoPaymentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F07976203AD7E700B55E5D /* CryptoPaymentTests.swift */; };
+		A2F07982203AD7E700B55E5D /* CryptoPaymentUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F07981203AD7E700B55E5D /* CryptoPaymentUITests.swift */; };
+		A2F07990203AF21900B55E5D /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F0798F203AF21900B55E5D /* AboutVC.swift */; };
+		A2F07993203AF24700B55E5D /* CurrencyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F07992203AF24700B55E5D /* CurrencyVC.swift */; };
+		A2F07995203AF25900B55E5D /* InviteFriendsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F07994203AF25900B55E5D /* InviteFriendsVC.swift */; };
+		A2F07997203AF26D00B55E5D /* SetPassCodeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F07996203AF26D00B55E5D /* SetPassCodeVC.swift */; };
+		A2F0799F203AF36700B55E5D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2F0799E203AF36700B55E5D /* Constant.swift */; };
+		E51359D1085F3F81F93F3222 /* Pods_CryptoPayment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DCA740FBBFC49AE30BCBB1E /* Pods_CryptoPayment.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A2F07973203AD7E700B55E5D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A2F07956203AD7E600B55E5D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A2F0795D203AD7E700B55E5D;
+			remoteInfo = CryptoPayment;
+		};
+		A2F0797E203AD7E700B55E5D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A2F07956203AD7E600B55E5D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A2F0795D203AD7E700B55E5D;
+			remoteInfo = CryptoPayment;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		15EF5775CD320BDB15DCC494 /* Pods-CryptoPaymentTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPaymentTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoPaymentTests/Pods-CryptoPaymentTests.release.xcconfig"; sourceTree = "<group>"; };
+		1DCA740FBBFC49AE30BCBB1E /* Pods_CryptoPayment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoPayment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		36B70FB049BAF567560A34B1 /* Pods-CryptoPayment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPayment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoPayment/Pods-CryptoPayment.debug.xcconfig"; sourceTree = "<group>"; };
+		40843EE9175EA9362F221342 /* Pods-CryptoPaymentUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPaymentUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoPaymentUITests/Pods-CryptoPaymentUITests.release.xcconfig"; sourceTree = "<group>"; };
+		42AEF8B8545C9A65DADE98CE /* Pods-CryptoPaymentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPaymentTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoPaymentTests/Pods-CryptoPaymentTests.debug.xcconfig"; sourceTree = "<group>"; };
+		5E4F8342D8D0C0DD4256BD8C /* Pods-CryptoPaymentUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPaymentUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoPaymentUITests/Pods-CryptoPaymentUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8A473337F50F1C64FF9D705C /* Pods_CryptoPaymentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoPaymentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99B175E3A4A78A82940A95E2 /* Pods_CryptoPaymentUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CryptoPaymentUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A24536F3203C40BA00CDA2D4 /* Alert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		A2AA727C203BC4C40021C592 /* TaxAmtVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaxAmtVC.swift; sourceTree = "<group>"; };
+		A2AA727E203BC4D20021C592 /* POSVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = POSVC.swift; sourceTree = "<group>"; };
+		A2AA7280203BC4E00021C592 /* SettingVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
+		A2AA7283203BC50C0021C592 /* TblSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TblSettingCell.swift; sourceTree = "<group>"; };
+		A2AA7285203BC5220021C592 /* SendVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendVC.swift; sourceTree = "<group>"; };
+		A2AA7287203BC5310021C592 /* ConvertVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConvertVC.swift; sourceTree = "<group>"; };
+		A2AA7289203BC53C0021C592 /* RecieveVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecieveVC.swift; sourceTree = "<group>"; };
+		A2AA728B203BC5490021C592 /* WalletVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletVC.swift; sourceTree = "<group>"; };
+		A2AA728D203BF6050021C592 /* WalletCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
+		A2AA7293203BFA5C0021C592 /* SetPasscodeFirst.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPasscodeFirst.swift; sourceTree = "<group>"; };
+		A2AA7295203BFAC80021C592 /* ConfirmPasscode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfirmPasscode.swift; sourceTree = "<group>"; };
+		A2AA7299203C24E20021C592 /* QRScannerVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRScannerVC.swift; sourceTree = "<group>"; };
+		A2AA729C203C35E00021C592 /* EnterPasscodeAgainVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnterPasscodeAgainVC.swift; sourceTree = "<group>"; };
+		A2DF8EEF203B1E1000D8153C /* TblCurrencyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TblCurrencyCell.swift; sourceTree = "<group>"; };
+		A2DF8EF2203B27CA00D8153C /* HomeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
+		A2F0795E203AD7E700B55E5D /* CryptoPayment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CryptoPayment.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2F07961203AD7E700B55E5D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A2F07963203AD7E700B55E5D /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		A2F07966203AD7E700B55E5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A2F07968203AD7E700B55E5D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A2F0796B203AD7E700B55E5D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A2F0796D203AD7E700B55E5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2F07972203AD7E700B55E5D /* CryptoPaymentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoPaymentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2F07976203AD7E700B55E5D /* CryptoPaymentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoPaymentTests.swift; sourceTree = "<group>"; };
+		A2F07978203AD7E700B55E5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2F0797D203AD7E700B55E5D /* CryptoPaymentUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CryptoPaymentUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2F07981203AD7E700B55E5D /* CryptoPaymentUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoPaymentUITests.swift; sourceTree = "<group>"; };
+		A2F07983203AD7E700B55E5D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2F0798F203AF21900B55E5D /* AboutVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		A2F07992203AF24700B55E5D /* CurrencyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrencyVC.swift; sourceTree = "<group>"; };
+		A2F07994203AF25900B55E5D /* InviteFriendsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsVC.swift; sourceTree = "<group>"; };
+		A2F07996203AF26D00B55E5D /* SetPassCodeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPassCodeVC.swift; sourceTree = "<group>"; };
+		A2F0799E203AF36700B55E5D /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		A83D5AF446A252EF7810C3D1 /* Pods-CryptoPayment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CryptoPayment.release.xcconfig"; path = "Pods/Target Support Files/Pods-CryptoPayment/Pods-CryptoPayment.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A2F0795B203AD7E700B55E5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E51359D1085F3F81F93F3222 /* Pods_CryptoPayment.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2F0796F203AD7E700B55E5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D994F21E70A7333AC6A424E /* Pods_CryptoPaymentTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2F0797A203AD7E700B55E5D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4B12BD7D6B4A20796500D422 /* Pods_CryptoPaymentUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6CE853BB9FA807DE8352E140 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				36B70FB049BAF567560A34B1 /* Pods-CryptoPayment.debug.xcconfig */,
+				A83D5AF446A252EF7810C3D1 /* Pods-CryptoPayment.release.xcconfig */,
+				42AEF8B8545C9A65DADE98CE /* Pods-CryptoPaymentTests.debug.xcconfig */,
+				15EF5775CD320BDB15DCC494 /* Pods-CryptoPaymentTests.release.xcconfig */,
+				5E4F8342D8D0C0DD4256BD8C /* Pods-CryptoPaymentUITests.debug.xcconfig */,
+				40843EE9175EA9362F221342 /* Pods-CryptoPaymentUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A2AA7274203BC4310021C592 /* TaxAmtVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA727C203BC4C40021C592 /* TaxAmtVC.swift */,
+			);
+			name = TaxAmtVC;
+			sourceTree = "<group>";
+		};
+		A2AA7275203BC4350021C592 /* POSVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA727E203BC4D20021C592 /* POSVC.swift */,
+			);
+			name = POSVC;
+			sourceTree = "<group>";
+		};
+		A2AA7276203BC4380021C592 /* SettingVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA7282203BC4E40021C592 /* TblSettingCell */,
+				A2AA7280203BC4E00021C592 /* SettingVC.swift */,
+			);
+			name = SettingVC;
+			sourceTree = "<group>";
+		};
+		A2AA7277203BC43C0021C592 /* SendVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA7285203BC5220021C592 /* SendVC.swift */,
+			);
+			name = SendVC;
+			sourceTree = "<group>";
+		};
+		A2AA7278203BC4710021C592 /* ConvertVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA7287203BC5310021C592 /* ConvertVC.swift */,
+			);
+			name = ConvertVC;
+			sourceTree = "<group>";
+		};
+		A2AA727A203BC47E0021C592 /* RecieveVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA7289203BC53C0021C592 /* RecieveVC.swift */,
+			);
+			name = RecieveVC;
+			sourceTree = "<group>";
+		};
+		A2AA727B203BC48C0021C592 /* WalletVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA728F203BF60F0021C592 /* TBlWalletCell */,
+				A2AA728B203BC5490021C592 /* WalletVC.swift */,
+			);
+			name = WalletVC;
+			sourceTree = "<group>";
+		};
+		A2AA7282203BC4E40021C592 /* TblSettingCell */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA7283203BC50C0021C592 /* TblSettingCell.swift */,
+			);
+			name = TblSettingCell;
+			sourceTree = "<group>";
+		};
+		A2AA728F203BF60F0021C592 /* TBlWalletCell */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA728D203BF6050021C592 /* WalletCell.swift */,
+			);
+			name = TBlWalletCell;
+			sourceTree = "<group>";
+		};
+		A2AA7290203BF9860021C592 /* PassCodeVals */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA729B203C35B80021C592 /* EnterPasscodeAgnVC */,
+				A2AA7292203BF9BC0021C592 /* ConfirmPassCode */,
+				A2AA7291203BF9AD0021C592 /* SetFirstPasscode */,
+			);
+			name = PassCodeVals;
+			sourceTree = "<group>";
+		};
+		A2AA7291203BF9AD0021C592 /* SetFirstPasscode */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA7293203BFA5C0021C592 /* SetPasscodeFirst.swift */,
+			);
+			name = SetFirstPasscode;
+			sourceTree = "<group>";
+		};
+		A2AA7292203BF9BC0021C592 /* ConfirmPassCode */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA7295203BFAC80021C592 /* ConfirmPasscode.swift */,
+			);
+			name = ConfirmPassCode;
+			sourceTree = "<group>";
+		};
+		A2AA729B203C35B80021C592 /* EnterPasscodeAgnVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA729C203C35E00021C592 /* EnterPasscodeAgainVC.swift */,
+			);
+			name = EnterPasscodeAgnVC;
+			sourceTree = "<group>";
+		};
+		A2DF8EEE203B1DDE00D8153C /* TblCurrencyVal */ = {
+			isa = PBXGroup;
+			children = (
+				A2DF8EEF203B1E1000D8153C /* TblCurrencyCell.swift */,
+			);
+			name = TblCurrencyVal;
+			sourceTree = "<group>";
+		};
+		A2DF8EF1203B27B000D8153C /* HomeVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2DF8EF2203B27CA00D8153C /* HomeVC.swift */,
+			);
+			name = HomeVC;
+			sourceTree = "<group>";
+		};
+		A2F07955203AD7E600B55E5D = {
+			isa = PBXGroup;
+			children = (
+				A2F07960203AD7E700B55E5D /* CryptoPayment */,
+				A2F07975203AD7E700B55E5D /* CryptoPaymentTests */,
+				A2F07980203AD7E700B55E5D /* CryptoPaymentUITests */,
+				A2F0795F203AD7E700B55E5D /* Products */,
+				6CE853BB9FA807DE8352E140 /* Pods */,
+				DFA699ABAE9DD8B3CB3CD942 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A2F0795F203AD7E700B55E5D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A2F0795E203AD7E700B55E5D /* CryptoPayment.app */,
+				A2F07972203AD7E700B55E5D /* CryptoPaymentTests.xctest */,
+				A2F0797D203AD7E700B55E5D /* CryptoPaymentUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A2F07960203AD7E700B55E5D /* CryptoPayment */ = {
+			isa = PBXGroup;
+			children = (
+				A2F0799D203AF35500B55E5D /* Resources */,
+				A2F07991203AF21F00B55E5D /* Controller */,
+				A2F07961203AD7E700B55E5D /* AppDelegate.swift */,
+				A2F07965203AD7E700B55E5D /* Main.storyboard */,
+				A2F07968203AD7E700B55E5D /* Assets.xcassets */,
+				A2F0796A203AD7E700B55E5D /* LaunchScreen.storyboard */,
+				A2F0796D203AD7E700B55E5D /* Info.plist */,
+			);
+			path = CryptoPayment;
+			sourceTree = "<group>";
+		};
+		A2F07975203AD7E700B55E5D /* CryptoPaymentTests */ = {
+			isa = PBXGroup;
+			children = (
+				A2F07976203AD7E700B55E5D /* CryptoPaymentTests.swift */,
+				A2F07978203AD7E700B55E5D /* Info.plist */,
+			);
+			path = CryptoPaymentTests;
+			sourceTree = "<group>";
+		};
+		A2F07980203AD7E700B55E5D /* CryptoPaymentUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A2F07981203AD7E700B55E5D /* CryptoPaymentUITests.swift */,
+				A2F07983203AD7E700B55E5D /* Info.plist */,
+			);
+			path = CryptoPaymentUITests;
+			sourceTree = "<group>";
+		};
+		A2F07991203AF21F00B55E5D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A2AA727B203BC48C0021C592 /* WalletVC */,
+				A2AA727A203BC47E0021C592 /* RecieveVC */,
+				A2AA7278203BC4710021C592 /* ConvertVC */,
+				A2AA7277203BC43C0021C592 /* SendVC */,
+				A2AA7276203BC4380021C592 /* SettingVC */,
+				A2AA7275203BC4350021C592 /* POSVC */,
+				A2AA7274203BC4310021C592 /* TaxAmtVC */,
+				A2DF8EF1203B27B000D8153C /* HomeVC */,
+				A2F0799C203AF29700B55E5D /* SetPasscodeVC */,
+				A2F0799B203AF28E00B55E5D /* InviteFriendsVC */,
+				A2F0799A203AF28600B55E5D /* CurrencyVC */,
+				A2F07999203AF27F00B55E5D /* AboutVC */,
+				A2AA7290203BF9860021C592 /* PassCodeVals */,
+				A2F07998203AF27400B55E5D /* LoginVC */,
+				A2AA7299203C24E20021C592 /* QRScannerVC.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		A2F07998203AF27400B55E5D /* LoginVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2F07963203AD7E700B55E5D /* LoginVC.swift */,
+			);
+			name = LoginVC;
+			sourceTree = "<group>";
+		};
+		A2F07999203AF27F00B55E5D /* AboutVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2F0798F203AF21900B55E5D /* AboutVC.swift */,
+			);
+			name = AboutVC;
+			sourceTree = "<group>";
+		};
+		A2F0799A203AF28600B55E5D /* CurrencyVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2DF8EEE203B1DDE00D8153C /* TblCurrencyVal */,
+				A2F07992203AF24700B55E5D /* CurrencyVC.swift */,
+			);
+			name = CurrencyVC;
+			sourceTree = "<group>";
+		};
+		A2F0799B203AF28E00B55E5D /* InviteFriendsVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2F07994203AF25900B55E5D /* InviteFriendsVC.swift */,
+			);
+			name = InviteFriendsVC;
+			sourceTree = "<group>";
+		};
+		A2F0799C203AF29700B55E5D /* SetPasscodeVC */ = {
+			isa = PBXGroup;
+			children = (
+				A2F07996203AF26D00B55E5D /* SetPassCodeVC.swift */,
+			);
+			name = SetPasscodeVC;
+			sourceTree = "<group>";
+		};
+		A2F0799D203AF35500B55E5D /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A2F0799E203AF36700B55E5D /* Constant.swift */,
+				A24536F3203C40BA00CDA2D4 /* Alert.swift */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		DFA699ABAE9DD8B3CB3CD942 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DCA740FBBFC49AE30BCBB1E /* Pods_CryptoPayment.framework */,
+				8A473337F50F1C64FF9D705C /* Pods_CryptoPaymentTests.framework */,
+				99B175E3A4A78A82940A95E2 /* Pods_CryptoPaymentUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A2F0795D203AD7E700B55E5D /* CryptoPayment */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2F07986203AD7E700B55E5D /* Build configuration list for PBXNativeTarget "CryptoPayment" */;
+			buildPhases = (
+				D3D0DFE39A2236FB80F6026C /* [CP] Check Pods Manifest.lock */,
+				A2F0795A203AD7E700B55E5D /* Sources */,
+				A2F0795B203AD7E700B55E5D /* Frameworks */,
+				A2F0795C203AD7E700B55E5D /* Resources */,
+				39B08E72B27D903621BA6784 /* [CP] Embed Pods Frameworks */,
+				9286E9130533BCA78F9290D9 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CryptoPayment;
+			productName = CryptoPayment;
+			productReference = A2F0795E203AD7E700B55E5D /* CryptoPayment.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A2F07971203AD7E700B55E5D /* CryptoPaymentTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2F07989203AD7E700B55E5D /* Build configuration list for PBXNativeTarget "CryptoPaymentTests" */;
+			buildPhases = (
+				13FEEF1AB8F2181B2DA50D79 /* [CP] Check Pods Manifest.lock */,
+				A2F0796E203AD7E700B55E5D /* Sources */,
+				A2F0796F203AD7E700B55E5D /* Frameworks */,
+				A2F07970203AD7E700B55E5D /* Resources */,
+				0DEF369152F72EDD6D0C9623 /* [CP] Embed Pods Frameworks */,
+				00B706CE221A58773D29B3E3 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A2F07974203AD7E700B55E5D /* PBXTargetDependency */,
+			);
+			name = CryptoPaymentTests;
+			productName = CryptoPaymentTests;
+			productReference = A2F07972203AD7E700B55E5D /* CryptoPaymentTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A2F0797C203AD7E700B55E5D /* CryptoPaymentUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A2F0798C203AD7E700B55E5D /* Build configuration list for PBXNativeTarget "CryptoPaymentUITests" */;
+			buildPhases = (
+				C7FA4D77868155350E0B8C04 /* [CP] Check Pods Manifest.lock */,
+				A2F07979203AD7E700B55E5D /* Sources */,
+				A2F0797A203AD7E700B55E5D /* Frameworks */,
+				A2F0797B203AD7E700B55E5D /* Resources */,
+				B4C8CB054F2993F4DA353EC0 /* [CP] Embed Pods Frameworks */,
+				48C3DC3828D1794924B24060 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A2F0797F203AD7E700B55E5D /* PBXTargetDependency */,
+			);
+			name = CryptoPaymentUITests;
+			productName = CryptoPaymentUITests;
+			productReference = A2F0797D203AD7E700B55E5D /* CryptoPaymentUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A2F07956203AD7E600B55E5D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "Apple Inc.";
+				TargetAttributes = {
+					A2F0795D203AD7E700B55E5D = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = JMQHT6GZHL;
+						ProvisioningStyle = Automatic;
+					};
+					A2F07971203AD7E700B55E5D = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A2F0795D203AD7E700B55E5D;
+					};
+					A2F0797C203AD7E700B55E5D = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A2F0795D203AD7E700B55E5D;
+					};
+				};
+			};
+			buildConfigurationList = A2F07959203AD7E600B55E5D /* Build configuration list for PBXProject "CryptoPayment" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A2F07955203AD7E600B55E5D;
+			productRefGroup = A2F0795F203AD7E700B55E5D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A2F0795D203AD7E700B55E5D /* CryptoPayment */,
+				A2F07971203AD7E700B55E5D /* CryptoPaymentTests */,
+				A2F0797C203AD7E700B55E5D /* CryptoPaymentUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A2F0795C203AD7E700B55E5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2F0796C203AD7E700B55E5D /* LaunchScreen.storyboard in Resources */,
+				A2F07969203AD7E700B55E5D /* Assets.xcassets in Resources */,
+				A2F07967203AD7E700B55E5D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2F07970203AD7E700B55E5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2F0797B203AD7E700B55E5D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00B706CE221A58773D29B3E3 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CryptoPaymentTests/Pods-CryptoPaymentTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0DEF369152F72EDD6D0C9623 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CryptoPaymentTests/Pods-CryptoPaymentTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		13FEEF1AB8F2181B2DA50D79 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CryptoPaymentTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		39B08E72B27D903621BA6784 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CryptoPayment/Pods-CryptoPayment-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CryptoPayment/Pods-CryptoPayment-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		48C3DC3828D1794924B24060 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CryptoPaymentUITests/Pods-CryptoPaymentUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9286E9130533BCA78F9290D9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CryptoPayment/Pods-CryptoPayment-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B4C8CB054F2993F4DA353EC0 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CryptoPaymentUITests/Pods-CryptoPaymentUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C7FA4D77868155350E0B8C04 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CryptoPaymentUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D3D0DFE39A2236FB80F6026C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CryptoPayment-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A2F0795A203AD7E700B55E5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2AA7296203BFAC80021C592 /* ConfirmPasscode.swift in Sources */,
+				A2F0799F203AF36700B55E5D /* Constant.swift in Sources */,
+				A2AA729A203C24E30021C592 /* QRScannerVC.swift in Sources */,
+				A24536F4203C40BA00CDA2D4 /* Alert.swift in Sources */,
+				A2AA7281203BC4E00021C592 /* SettingVC.swift in Sources */,
+				A2AA7288203BC5310021C592 /* ConvertVC.swift in Sources */,
+				A2F07964203AD7E700B55E5D /* LoginVC.swift in Sources */,
+				A2F07962203AD7E700B55E5D /* AppDelegate.swift in Sources */,
+				A2DF8EF3203B27CA00D8153C /* HomeVC.swift in Sources */,
+				A2AA728C203BC5490021C592 /* WalletVC.swift in Sources */,
+				A2AA728A203BC53C0021C592 /* RecieveVC.swift in Sources */,
+				A2AA727F203BC4D20021C592 /* POSVC.swift in Sources */,
+				A2F07990203AF21900B55E5D /* AboutVC.swift in Sources */,
+				A2AA7284203BC50C0021C592 /* TblSettingCell.swift in Sources */,
+				A2AA7286203BC5220021C592 /* SendVC.swift in Sources */,
+				A2AA727D203BC4C40021C592 /* TaxAmtVC.swift in Sources */,
+				A2AA7294203BFA5C0021C592 /* SetPasscodeFirst.swift in Sources */,
+				A2F07993203AF24700B55E5D /* CurrencyVC.swift in Sources */,
+				A2AA728E203BF6050021C592 /* WalletCell.swift in Sources */,
+				A2DF8EF0203B1E1000D8153C /* TblCurrencyCell.swift in Sources */,
+				A2F07995203AF25900B55E5D /* InviteFriendsVC.swift in Sources */,
+				A2AA729D203C35E00021C592 /* EnterPasscodeAgainVC.swift in Sources */,
+				A2F07997203AF26D00B55E5D /* SetPassCodeVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2F0796E203AD7E700B55E5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2F07977203AD7E700B55E5D /* CryptoPaymentTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A2F07979203AD7E700B55E5D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A2F07982203AD7E700B55E5D /* CryptoPaymentUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A2F07974203AD7E700B55E5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A2F0795D203AD7E700B55E5D /* CryptoPayment */;
+			targetProxy = A2F07973203AD7E700B55E5D /* PBXContainerItemProxy */;
+		};
+		A2F0797F203AD7E700B55E5D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A2F0795D203AD7E700B55E5D /* CryptoPayment */;
+			targetProxy = A2F0797E203AD7E700B55E5D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A2F07965203AD7E700B55E5D /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A2F07966203AD7E700B55E5D /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A2F0796A203AD7E700B55E5D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A2F0796B203AD7E700B55E5D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A2F07984203AD7E700B55E5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A2F07985203AD7E700B55E5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A2F07987203AD7E700B55E5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36B70FB049BAF567560A34B1 /* Pods-CryptoPayment.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JMQHT6GZHL;
+				INFOPLIST_FILE = CryptoPayment/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.CryptoPayment;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A2F07988203AD7E700B55E5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A83D5AF446A252EF7810C3D1 /* Pods-CryptoPayment.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = JMQHT6GZHL;
+				INFOPLIST_FILE = CryptoPayment/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.CryptoPayment;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		A2F0798A203AD7E700B55E5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 42AEF8B8545C9A65DADE98CE /* Pods-CryptoPaymentTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CryptoPaymentTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CryptoPaymentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoPayment.app/CryptoPayment";
+			};
+			name = Debug;
+		};
+		A2F0798B203AD7E700B55E5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 15EF5775CD320BDB15DCC494 /* Pods-CryptoPaymentTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = CryptoPaymentTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CryptoPaymentTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CryptoPayment.app/CryptoPayment";
+			};
+			name = Release;
+		};
+		A2F0798D203AD7E700B55E5D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E4F8342D8D0C0DD4256BD8C /* Pods-CryptoPaymentUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = CryptoPaymentUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CryptoPaymentUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = CryptoPayment;
+			};
+			name = Debug;
+		};
+		A2F0798E203AD7E700B55E5D /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40843EE9175EA9362F221342 /* Pods-CryptoPaymentUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = CryptoPaymentUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.CryptoPaymentUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = CryptoPayment;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A2F07959203AD7E600B55E5D /* Build configuration list for PBXProject "CryptoPayment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2F07984203AD7E700B55E5D /* Debug */,
+				A2F07985203AD7E700B55E5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2F07986203AD7E700B55E5D /* Build configuration list for PBXNativeTarget "CryptoPayment" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2F07987203AD7E700B55E5D /* Debug */,
+				A2F07988203AD7E700B55E5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2F07989203AD7E700B55E5D /* Build configuration list for PBXNativeTarget "CryptoPaymentTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2F0798A203AD7E700B55E5D /* Debug */,
+				A2F0798B203AD7E700B55E5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A2F0798C203AD7E700B55E5D /* Build configuration list for PBXNativeTarget "CryptoPaymentUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A2F0798D203AD7E700B55E5D /* Debug */,
+				A2F0798E203AD7E700B55E5D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A2F07956203AD7E600B55E5D /* Project object */;
+}

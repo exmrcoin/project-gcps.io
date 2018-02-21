@@ -1,0 +1,6 @@
+framework module Pods_CryptoPaymentUITests {
+  umbrella header "Pods-CryptoPaymentUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

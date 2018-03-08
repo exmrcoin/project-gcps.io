@@ -25,10 +25,10 @@ from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name="index.html")),
-    path('login/', TemplateView.as_view(template_name='login.html'),
+    path('', TemplateView.as_view(template_name="common/index.html")),
+    path('login/', TemplateView.as_view(template_name='accounts/login.html'),
          name='login'),
-    path('sign-up/', TemplateView.as_view(template_name='signup.html'),
+    path('sign-up/', TemplateView.as_view(template_name='accounts/signup.html'),
          name='signup'),
     url('accounts/', include('apps.accounts.urls')),
 

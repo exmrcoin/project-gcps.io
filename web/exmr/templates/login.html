@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>GetCryptoPayments</title>
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'  %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css '%}">
+    </head>
+    <body>
+    <section>
+        <div class="login-bg">
+            <div class="container">
+                <div class="row">
+                    <div class=" offset-md-4 col-sm-5 login-sec">
+                        <div class="col-md-12">
+                            <img class="log-top-icon" src="{% static 'images/login-top-icon.png' %}" alt="">
+                        </div>
+                        <div class="col-md-12">
+                            <img class="logo-log" src="{% static 'images/log-log.png'%}" alt="">
+                        </div>
+                        <div class="col-sm-12 welcome">Welcome!</div>
+                        <h3 class="log-subline">Sign in by entering the information below</h3>
+
+                        <div class="col-sm-12">
+                            <form>
+                                <input class="usernmae-log" type="text" name="user" placeholder="Your Email">
+                                <input class="usernmae-log" type="password" name="pass" placeholder="Password">
+                            </form>
+                            <button type="submit" class="btn- btn-default btn-log">Login</button>
+                            <button type="submit" class="btn- btn-default btn-log signup-btn">Signup</button>
+                        </div>
+                        <div class="col-sm-12 ">
+                            <div class="col-sm-6">
+                                <h4>Forgot Password?</h4>
+                            </div>
+                            <div class="col-sm-6">
+                                <h4>Don't have an account?</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </body>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+{% endblock %}

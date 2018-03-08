@@ -1,0 +1,188 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GetCryptoPayments | {% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'  %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'  %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css'  %}">
+    {% block page_css %} {% endblock %}
+
+</head>
+
+<body>
+<nav class="navbar navbar-default nave-menu">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed menu-btn" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                    aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <img src="{% static 'images/logo.png' %}">
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav menu-nav ">
+                <li>
+                    <a href="#">Public Coin Vote </a>
+                </li>
+                <li>
+                    <a href="#">Supported Coins</a>
+                </li>
+                <li>
+                    <a href="#">Store Directory</a>
+                </li>
+                <li>
+                    <a href="#">Merchant Tools</a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact Us
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu drop-down-box">
+                        <li>
+                            <a href="#">Action</a>
+                        </li>
+                        <li>
+                            <a href="#">Another action</a>
+                        </li>
+                        <li>
+                            <a href="#">Something else here</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="#">Separated link</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="#">One more separated link</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <img class="language-icon" src="{% static 'images/language.png' %}"> Language
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu drop-down-box">
+                        <li>
+                            <a href="#">Action</a>
+                        </li>
+                        <li>
+                            <a href="#">Another action</a>
+                        </li>
+                        <li>
+                            <a href="#">Something else here</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="#">Separated link</a>
+                        </li>
+                        <li role="separator" class="divider"></li>
+                        <li>
+                            <a href="#">One more separated link</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+            <a href="{% url 'login' %}" type="submit" class="btn btn-default btn-log1">Login</a>
+            <a href="{% url 'signup' %}" type="submit" class="btn btn-default btn-sign">Signup</a>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+{% block content %}
+{% endblock %}
+<footer>
+    <div class="footer-bg">
+        <div class="container ">
+            <div class="row ">
+                <div class="col-sm-2">
+                    <div class="footer-head-menu">COINPAYMENTS
+                        <span>
+                <img class="footer-head-line" src="{% static 'images/footer-line.png' %}">
+              </span>
+                    </div>
+                    <ul>
+                        <li>Supported Coins </li>
+                        <li>Merchant Tools</li>
+                        <li>Public Coin Vote </li>
+                        <li>Store Directory </li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <div class="footer-head-menu">COINPAYMENTS
+                        <span>
+                <img class="footer-head-line" src="{% static 'images/footer-line.png'  %}">
+              </span>
+                    </div>
+                    <ul>
+                        <li>Get Mobile App </li>
+                        <li>Affiliate Information</li>
+                        <li>Official TOR URL </li>
+                        <li>PGP Key</li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <div class="footer-head-menu">COINPAYMENTS
+                        <span>
+                <img class="footer-head-line" src="{% static 'images/footer-line.png' %}">
+              </span>
+                    </div>
+                    <ul>
+                        <li>Fees/Pricing </li>
+                        <li>Help </li>
+                        <li>Add Your Store</li>
+                        <li>Coin Request </li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <div class="footer-head-menu">COINPAYMENTS
+                        <span>
+                <img class="footer-head-line" src="{% static 'images/footer-line.png' %}">
+              </span>
+                    </div>
+                    <ul>
+                        <li>Twitter</li>
+                        <li>Facebook</li>
+                        <li>Blog</li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <div class="footer-head-menu">COINPAYMENTS
+                        <span>
+                <img class="footer-head-line" src="{% static 'images/footer-line.png'%}">
+              </span>
+                    </div>
+                    <ul>
+                        <li>Privacy Policy</li>
+                        <li>Terms of Service</li>
+                    </ul>
+                </div>
+                <div class="col-sm-2 footer-head-menu">
+                    <button type="submit" class="btn- btn-default btn-footer">Add Your Store</button>
+                    <button type="submit" class="btn- btn-default btn-footer coin-payment">Coin Requst</button>
+                    <img class="apple-icon" src="{% static 'images/apple-icon.png' %}">
+                    <img class="apple-icon" src="{% static 'images/play-store.png' %}">
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+{% block extra_js %} {% endblock %}
+</html>

@@ -1,6 +1,6 @@
 ![Logo](https://github.com/eXMRcoin/e-XMR/blob/master/eXMR-master/eXMR_200X200.png?raw=true)
 # EXMR MONERO<sup>℠</sup>
-# Project-getcryptopayments.net
+# Project-GetCryptoPayments.net
 ➥A project based on Merchants tools: payment gateway, multi-coins wallet and point of sales, will make EXMR increase its value.<br> 
 ➥A large number of stores and online businesses, will be able to receive payments in our EXMR and other cryptocurrencies.<br>
 ➥EXMR GetCryptoPayments.net Will support more than 130 Cryptocurrencies on your platform and will be added by our voting system.<br>

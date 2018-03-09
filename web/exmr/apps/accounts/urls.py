@@ -1,7 +1,9 @@
+from django.conf.urls import url
+from django.contrib.auth import views as auth_views
 from django.urls import path
-
-from Website.exmr.apps.accounts import views
+from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('register/', views.SignUp.as_view(), name='register'),
+    path('profile/', TemplateView.as_view(template_name="accounts/profile.html")),
+
 ]

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Django packages
     'timezone_field',
     'django_countries',
+    'widget_tweaks',
 
     # Project apps
     'apps.accounts',

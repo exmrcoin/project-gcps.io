@@ -56,9 +56,11 @@ body{
 .banner-log{
 	  background-image: url("../images/banner-bg.png");
 	  width: 100%;
-     height: 848px;
+     height: 907px;
      background-size: contain;
 	 background-repeat: no-repeat;
+	 width: 100%;
+	 background-size: 100% 100%;
 }
 .navbar-default .navbar-nav>li>a{
 	color: #000 !important;
@@ -84,7 +86,7 @@ body{
 	font-size: 26px;
 	font-weight: 600;
 	color: black;
-	padding: 48% 7px 11px 6px;
+	padding: 48% 7px 11px 0px;
 }
 .banner-content p{
 	font-size: 20px;
@@ -261,7 +263,7 @@ body{
     border-radius: 4px;
     color: #fff;
     font-size: 18px;
-    padding: 7px 0px 13px 13px;
+    padding: 5px 0px 13px 13px;
     display: inline-block;
   }
   .input-coin{
@@ -311,6 +313,8 @@ body{
 	filter: grayscale(1);
 	transition: all 50ms ease-in-out;
 	cursor: pointer;
+	width: 100%;
+    background-size: 100% 100%;
   }
   .cart-name:hover{
 	padding: 35px 0px 9px 35px;
@@ -556,7 +560,7 @@ body{
 		cursor:pointer;
 	}
 	.btn-footer{
-	    width: 165px;
+	    width: 100%;
         height: 38px;
         border: none;
         background-color: #e75d14 !important;
@@ -575,8 +579,9 @@ body{
    	background-color: #ff6600 !important;
    }
    .apple-icon{
-   	padding: 6px 0px 0px 33px;
-   	cursor: pointer;
+   	 padding: 6px 0px 0px 33px;
+	   cursor: pointer;
+	   width: 100%;
    }
  /*========== signup========*/
  .signup-form{
@@ -596,7 +601,9 @@ body{
     height: 465px;
     background-image: url(../images/getstart-last.png);
     background-repeat: no-repeat;
-    margin-bottom: 30px;
+	margin-bottom: 30px;
+	width: 100%;
+    background-size: 100% 100%;
  }
  .grtstrat-last h4{
 	 text-align: center;
@@ -638,7 +645,8 @@ body{
 	border: solid 1px #d7d7d7 !important;
 	border-radius: 4px;
 	margin: 0 auto;
-    display: block;
+	display: block;
+	padding-left: 14px;
 }
 .signup-ceckbox{
 	padding: 0px 0px 2px 23px;
@@ -935,7 +943,7 @@ fieldset {
   border-radius: 5px;
 }
 
-section { padding: 0 15px; }
+
 
 .CaptchaWrap { position: relative; }
 .CaptchaTxtField { 
@@ -985,7 +993,7 @@ section { padding: 0 15px; }
   bottom: 30px;
   left : 310px;
   outline: none;
-  cursor: pointer; /**/
+  cursor: pointer; 
 }
 .btnSubmit {
   margin-top: 15px;
@@ -1023,8 +1031,7 @@ section { padding: 0 15px; }
 .forgot-pw{
 	margin-bottom: 15px;
 }
-.time-cone{
-	font-size: 18px;
-	color: #e75d14;
-	font-weight: 600;
+.sub-img{
+	width: 100%;
+    background-size: 100% 100%;
 }

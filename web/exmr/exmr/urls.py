@@ -39,7 +39,7 @@ urlpatterns = [
     path('sign-up/', TemplateView.as_view(template_name='accounts/signup.html'),
          name='signup'),
     path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'), name='forgot-password'),
-    url('accounts/', include('apps.accounts.urls')),
+    path('accounts/', include('apps.accounts.urls')),
 
 
 ]

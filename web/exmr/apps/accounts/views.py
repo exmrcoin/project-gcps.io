@@ -1,3 +1,6 @@
+from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
+from django.forms import forms
 from django.views.generic import CreateView, TemplateView
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
@@ -6,6 +9,8 @@ from django.urls import reverse_lazy
 from apps.accounts.forms import SignUpForm
 from apps.accounts.models import Profile, ProfileActivation
 from apps.common.utils import generate_key
+
+
 
 
 class SignUpView(CreateView):
@@ -18,6 +23,7 @@ class SignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
+        email = form.cleaned_data.get('email')
         raw_password = form.cleaned_data.get('password1')
         user.set_password(raw_password)  # This line will hash the password
         user.is_active = False

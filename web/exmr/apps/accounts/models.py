@@ -5,9 +5,10 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.crypto import get_random_string
 
-
 from timezone_field import TimeZoneField
 from django_countries.fields import CountryField
+
+from apps.common.utils import send_email
 
 
 MALE = 0
@@ -62,7 +63,6 @@ class Profile(models.Model):
     email_confirmation_transaction = models.BooleanField(_('email confirmation send/withdrawal'), default=True)
     is_subscribed = models.BooleanField(_('is subscribed'), default=False)
 
-
     class Meta:
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')
@@ -72,7 +72,7 @@ class Profile(models.Model):
 
 
 @receiver(post_save, sender=Profile, dispatch_uid="update_merchant_id")
-def update_stock(sender, instance, **kwargs):
+def update_merchant_id(sender, instance, **kwargs):
     """
     Signal to create merchant id for profiles
     :param sender:
@@ -83,6 +83,41 @@ def update_stock(sender, instance, **kwargs):
     if not instance.merchant_id:
         instance.merchant_id = get_random_string(length=32)
         instance.save()
+
+
+class ProfileActivation(models.Model):
+    """
+    Model to save the profile activation link details
+    """
+    user = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.CASCADE)
+    activation_key = models.CharField(max_length=64)
+    expired = models.BooleanField(default=False)
+
+    def send_activation_email(self, site, request=None):
+        """
+        Send an activation email to the user associated with this
+        ``ProfileActivation``.
+        """
+
+        activation_email_subject = _('Account Activation Link')
+        activation_email_body = 'accounts/activation_email.txt'
+        activation_email_html = 'accounts/activation_email.html'
+
+        ctx_dict = {
+            'user': self.user,
+            'activation_key': self.activation_key,
+            'site': site,
+        }
+
+        send_email(activation_email_subject, ctx_dict, self.user.email, email_template_txt=activation_email_body,
+                   email_template_html=activation_email_html)
+
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name = _('Profile Activation')
+        verbose_name_plural = _('Profile Activations')
 
 
 class Address(models.Model):

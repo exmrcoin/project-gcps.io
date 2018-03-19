@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load staticfiles widget_tweaks %}
 {% block title %}Signup{% endblock %}
 {% block content %}
     <section>
@@ -13,34 +13,184 @@
                         <div class="col-md-12">
                             <img class="logo-log" src="{% static 'images/log-log.png' %}" alt="">
                         </div>
-                        <div class="col-sm-12 welcome">Welcome!</div>
+                        <div class="form-group welcome">Welcome!</div>
                         <h3 class="log-subline">Sign in by entering the information below</h3>
 
-                        <div class="col-sm-12">
-                            <form method="post" action="{% url 'register' %}">
-                                {% csrf_token %}
-                                <input class="usernmae-log" type="text" name="user" placeholder="Your Email">
-                                <div class="col-sm-6">
-                                    <input class="usernmae-log " type="password" name="pass" placeholder="Password">
+                        <div class="form-group">
+                            <form id="signupForm" action="." method="post" novalidate>{% csrf_token %}
+                                <div class=" form-group">
+                                    {% render_field form.username class="form-control usernmae-log" placeholder="Username" %}
+                                    {{ form.username.errors }}
                                 </div>
-                                <div class="col-sm-6">
-                                    <input class="usernmae-log " type="password" name="pass" placeholder="Password">
+
+
+                                <div class="row">
+                                    <div class="col-md-6 form-group">
+                                        {% render_field form.email class="form-control usernmae-log" placeholder="Email" %}
+                                        {{ form.email.errors }}
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        {% render_field form.confirm_email class="form-control usernmae-log" placeholder="Confirm Email" %}
+                                        {{ form.confirm_email.errors }}
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        {% render_field form.password1 class="form-control usernmae-log" placeholder="Password" %}
+                                        {{ form.password1.errors }}
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        {% render_field form.password2 class="form-control usernmae-log" placeholder="Confirm Password" %}
+                                        {{ form.password2.errors }}
+                                    </div>
                                 </div>
-                                <button type="submit" class="btn- btn-default btn-log">Login</button>
-                                <button type="submit" class="btn- btn-default btn-log signup-btn">Signup</button>
+                                <p>Please make it at least 10 characters long and include letters, numbers, and special
+                                    characters.</p>
+                                <h4 class="time-cone">Timezone</h4>
+                                <div class=" form-group">
+
+                                    {% render_field form.timezone class="selectpicker picker-signup" placeholder="Confirm Password" %}
+                                    {{ form.timezone.errors }}
+                                </div>
+                                <div class=" form-group">
+                                    <div class="checkbox signup-ceckbox">
+                                        {{ form.need_newsletter }}
+                                        <label for="checkbox1  " class="label-sign">
+                                            Newsletters and other relevant information from Getcryptopayments.net to my
+                                            provided
+                                            e-mail.
+                                        </label>
+                                    </div>
+                                    {{ form.need_newsletter.errors }}
+                                </div>
+                                <div class="form-group">
+                                    <div class="checkbox signup-ceckbox">
+                                        {{ form.accept_terms_and_conditions }}
+                                        <label for="checkbox1  " class="label-sign">
+                                            Have read and agree to the <span class="terms">Terms of Service.</span>
+                                        </label>
+                                    </div>
+                                    {{ form.accept_terms_and_conditions.errors }}
+                                </div>
+                                <section class="entr-box">
+                                    <fieldset>
+
+                                        <span id="WrongCaptchaError" class="error"></span>
+                                        <div class='CaptchaWrap'>
+
+                                            <div id="CaptchaImageCode" class="CaptchaTxtField">
+                                                <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
+
+                                            </div>
+                                            <button class="btn" onclick='CreateCaptcha();'>
+                                                <i class="fas fa-sync-alt"></i>
+                                            </button>
+                                            <p>Type the characters you see in the image above:</p>
+                                            <input type="text" class="capticha-enter1 form-control"
+                                                   id="UserCaptchaCode"
+                                                   class="CaptchaTxtField"
+                                                   placeholder='Enter Captcha - Case Sensitive'>
+
+                                        </div>
+
+                                    </fieldset>
+                                </section>
+                                <button type="submit" class="btn- btn-default btn-log sign-button">Signup</button>
                             </form>
                         </div>
-                        <div class="col-sm-12 ">
-                            <div class="col-sm-6">
-                                <h4>Forgot Password?</h4>
-                            </div>
-                            <div class="col-sm-6">
-                                <h4>Don't have an account?</h4>
-                            </div>
-                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        var cd;
+
+        $(function () {
+            CreateCaptcha();
+            $('#signupForm').submit(function() {
+              var captchaResult = CheckCaptcha();
+              if(!captchaResult)
+                  return false;
+            });
+        });
+
+        // Create Captcha
+        function CreateCaptcha() {
+            //$('#InvalidCapthcaError').hide();
+            var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+
+            var i;
+            for (i = 0; i < 6; i++) {
+                var a = alpha[Math.floor(Math.random() * alpha.length)];
+                var b = alpha[Math.floor(Math.random() * alpha.length)];
+                var c = alpha[Math.floor(Math.random() * alpha.length)];
+                var d = alpha[Math.floor(Math.random() * alpha.length)];
+                var e = alpha[Math.floor(Math.random() * alpha.length)];
+                var f = alpha[Math.floor(Math.random() * alpha.length)];
+            }
+            cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
+            $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas>')
+
+            var c = document.getElementById("CapCode"),
+                ctx = c.getContext("2d"),
+                x = c.width / 2,
+                img = new Image();
+
+            img.src = "https://pixelsharing.files.wordpress.com/2010/11/salvage-tileable-and-seamless-pattern.jpg";
+            img.onload = function () {
+                var pattern = ctx.createPattern(img, "repeat");
+                ctx.fillStyle = pattern;
+                ctx.fillRect(0, 0, c.width, c.height);
+                ctx.font = "46px Roboto Slab";
+                ctx.fillStyle = '#ccc';
+                ctx.textAlign = 'center';
+                ctx.setTransform(1, -0.12, 0, 1, 0, 15);
+                ctx.fillText(cd, x, 55);
+            };
+
+
+        }
+
+        // Validate Captcha
+        function ValidateCaptcha() {
+            var string1 = removeSpaces(cd);
+            var string2 = removeSpaces($('#UserCaptchaCode').val());
+            if (string1 == string2) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+
+        // Remove Spaces
+        function removeSpaces(string) {
+            return string.split(' ').join('');
+        }
+
+        // Check Captcha
+        function CheckCaptcha() {
+            var result = ValidateCaptcha();
+            if ($("#UserCaptchaCode").val() == "" || $("#UserCaptchaCode").val() == null || $("#UserCaptchaCode").val() == "undefined") {
+                $('#WrongCaptchaError').text('Please enter code given below in a picture.').show();
+                $('#UserCaptchaCode').focus();
+            } else {
+                if (result == false) {
+                    $('#WrongCaptchaError').text('Invalid Captcha! Please try again.').show();
+                    CreateCaptcha();
+                    $('#UserCaptchaCode').focus().select();
+                }
+                else {
+                    $('#UserCaptchaCode').val('').attr('place-holder', 'Enter Captcha - Case Sensitive');
+                    CreateCaptcha();
+                    $('#WrongCaptchaError').fadeOut(100);
+                    $('#SuccessMessage').fadeIn(500).css('display', 'block').delay(5000).fadeOut(250);
+                }
+            }
+        return result;
+        }
+    </script>
 {% endblock %}

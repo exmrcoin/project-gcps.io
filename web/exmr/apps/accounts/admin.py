@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.utils.translation import ugettext_lazy as _
 
-from apps.accounts.models import Profile, Address, Feedback
+from apps.accounts.models import Profile, Address, Feedback, ProfileActivation
 
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -47,3 +47,5 @@ class FeedbackAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Feedback, FeedbackAdmin)
+
+admin.site.register(ProfileActivation)

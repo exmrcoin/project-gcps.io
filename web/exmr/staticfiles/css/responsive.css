@@ -1,0 +1,203 @@
+@media print {
+    /* print style sheets go here */
+  }
+  
+
+  
+  @media only screen and (max-width: 1200px) {
+    .btn-footer{
+      width: 80%;
+    }
+  
+  }
+  
+  @media only screen and (max-width: 1080px) {
+
+  }
+  
+  @media only screen and (max-width: 1024px) {
+    .menu-nav {
+        margin: 21px 8px 3px 1px !important;
+        font-size: 11px !important;
+    
+    }
+  
+  }
+  
+  @media only screen and (max-width: 960px) {
+    .ios-box p{
+      line-height: 20px;
+    }
+    .form-coin{
+      width: 206px !important;
+    }
+    .btn-footer {
+      width: 120px;
+  }
+  .apple-icon{
+    width: 153px;
+  }
+  
+  }
+  
+  @media only screen and (max-width: 800px) {
+   
+  
+  }
+  
+  @media only screen and (max-width: 768px) {
+    .sub-img{
+      width: inherit; 
+      background-size:inherit; 
+    }
+    .grtstrat-last{
+      height: auto;
+    }
+    .footer-bg ul{
+      text-align: center;
+    }
+    .btn-footer{
+      margin: inherit;
+    }
+  }
+  @media only screen and (max-width: 680px) {
+    .second-sec{
+      height: auto;
+    }
+    .footer-bg ul{
+      text-align: center;
+    }
+    .btn-footer{
+      margin: inherit;
+    }
+    .footer-bg ul{
+      text-align: center;
+    }
+    .btn-footer{
+      margin: inherit;
+    }
+    .footer-head-menu{
+      text-align: center
+    }
+    .sub-company{
+      padding-left: inherit !important;
+    }
+    .banner-img-circle{
+      margin-top: inherit !important;
+    }
+    .banner-head-line{
+      padding: inherit !important;
+
+    }
+    .scroll-btn .mouse{
+      margin: 39px auto 20px;
+    }
+    .box{
+      width: 49%;
+
+    }
+    .apple-icon{
+      padding: inherit !important;
+    }
+}
+  
+  @media only screen and (max-width: 640px) {
+    .sub-company{
+     padding-left: inherit !important;
+    }
+    .second-sec{
+      height: auto;
+    }
+    .footer-bg ul{
+      text-align: center;
+    }
+    .btn-footer{
+      margin: inherit;
+    }
+  
+  }
+  
+  @media only screen and (max-width: 520px) {
+    .second-sec{
+      height: auto;
+    }
+    .box{
+      margin-top: inherit !important;
+    }
+    .sub-img{
+      width:inherit;
+      background-size:inherit;
+    }
+    .grtstrat-last{
+      height: auto;
+    }
+    .banner-head-line{
+      padding: inherit;
+    }
+    .banner-img-circle{
+      margin-top: inherit;
+    }
+    .scroll-btn .mouse{
+      margin: 2px auto 20px !important;
+
+    }
+    .footer-bg ul{
+      text-align: center;
+    }
+    .btn-footer{
+      margin: inherit;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    .sub-company{
+      text-align: center !important;
+      display: block;
+    }
+  
+  }
+  
+  @media only screen and (max-width: 420px) {
+    .sub-company{
+      text-align: center !important;
+      display: block;
+    }
+  
+  }
+  
+  @media only screen and (max-width: 375px) {
+  
+  }
+  
+  @media only screen and (max-width: 360px) {
+  
+  }
+  
+  @media only screen and (max-width: 320px) {
+    .sub-company{
+      padding-left: inherit !important;
+    }
+    .footer-head-menu{
+      text-align: center;
+    }
+    .footer-bg ul{
+      text-align: center;
+    }
+    .btn-footer{
+      margin: inherit;
+    }
+    .apple-icon {
+      padding: 7px 0px 0px 5px;
+      cursor: pointer;
+      width: 100%;
+  }
+  .scroll-btn{
+    margin-top: 55px !important;
+  }
+  .box{
+    width: 100%;
+  }
+  .cart-name{
+    padding: inherit;
+  }
+  }

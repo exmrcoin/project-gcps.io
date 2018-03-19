@@ -1,0 +1,12 @@
+.errorlist{
+    color: red;
+    list-style: none;
+    padding-left: 0px;
+}
+.min-height-content {
+    min-height: 100vh;
+    text-align: center;
+}
+.min-height-content :first-child {
+    padding-top: 25vh;
+}

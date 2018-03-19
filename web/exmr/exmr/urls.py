@@ -20,13 +20,17 @@ from django.conf.urls.static import static
 from django.urls import path, include
 from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView
-
-
-
+from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfirmView, \
+    PasswordResetCompleteView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('password-reset-done', PasswordResetDoneView.as_view(template_name='accounts/forgot_password_done.html'),
+         name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/done/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('', include('apps.accounts.urls')),
     path('', TemplateView.as_view(template_name="common/index.html")),
     # path('login/', TemplateView.as_view(template_name='accounts/login.html'),
     #      name='login'),
@@ -36,6 +40,7 @@ urlpatterns = [
          name='signup'),
     path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'), name='forgot-password'),
     url('accounts/', include('apps.accounts.urls')),
+
 
 ]
 

@@ -28,7 +28,7 @@ class SignUpForm(UserCreationForm):
         email = self.cleaned_data.get('email')
         if self and User.objects.filter(email=email).exists():
             raise forms.ValidationError(u'Please use a different email address.')
-            return email
+        return email
 
     def clean_confirm_email(self):
         if self.cleaned_data.get('email') != self.cleaned_data.get('confirm_email'):

@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.decorators import login_required
 from django.urls import path
 from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView, PasswordResetDoneView
@@ -10,7 +11,7 @@ from apps.accounts.forms import CustomPasswordResetForm
 app_name = 'accounts'
 
 urlpatterns = [
-    path('profile/', TemplateView.as_view(template_name="accounts/profile.html")),
+    path('profile/', login_required(TemplateView.as_view(template_name="accounts/profile.html"))),
     path('login/', LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('sign-up/', views.SignUpView.as_view(), name='signup'),

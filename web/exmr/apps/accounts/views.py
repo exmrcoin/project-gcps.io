@@ -23,7 +23,6 @@ class SignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        email = form.cleaned_data.get('email')
         raw_password = form.cleaned_data.get('password1')
         user.set_password(raw_password)  # This line will hash the password
         user.is_active = False

@@ -12,6 +12,14 @@
   }
   
   @media only screen and (max-width: 1080px) {
+    .container{
+      width: 100%;
+    }
+    .menu-nav {
+      margin: 21px 8px 3px 6px !important;
+      font-size: 14px;
+      color: black;
+  }
 
   }
   
@@ -37,7 +45,20 @@
   .apple-icon{
     width: 153px;
   }
-  
+  .btn-footer{
+    margin: 5px 0px 0px 8px;
+
+  }
+  .apple-icon{
+    padding: 4px 0px 0px 7px;
+  }
+  .apple-icon{
+    width: 129px;
+  }
+  .navbar-default .navbar-collapse, .navbar-default .navbar-form{
+    background-color: #fff;
+  }
+
   }
   
   @media only screen and (max-width: 800px) {
@@ -58,6 +79,23 @@
     }
     .btn-footer{
       margin: inherit;
+    }
+    .footer-head-menu{
+      text-align: center;
+    }
+    .second-sec{
+      height: auto;
+
+    }
+    .box{
+      margin-top: 0px;
+      width: 49%;
+    }
+    .banner-img-circle{
+      margin-top: inherit;
+    }
+    .banner-head-line{
+      padding: inherit;
     }
   }
   @media only screen and (max-width: 680px) {

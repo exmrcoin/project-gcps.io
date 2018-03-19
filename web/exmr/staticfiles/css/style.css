@@ -898,8 +898,7 @@ body{
 	 color: #e75d14;
  }
  .drop-down{
-	 background-color: #e75d14 !important;
-	 border-color: #e75d14 !important;
+
 	 color: #fff !important;
 	 font-size:14px ;
  }
@@ -1034,4 +1033,8 @@ fieldset {
 .sub-img{
 	width: 100%;
     background-size: 100% 100%;
+}
+.nave-menu{
+	z-index: 99999;
+
 }

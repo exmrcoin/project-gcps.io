@@ -17,7 +17,7 @@ body{
     border-radius: inherit !important;
 }
 .menu-nav{
-	margin: 21px 8px 3px 40px !important;
+	margin: 21px 8px 3px 38px !important;
 	font-size: 16px;
 	color: black;
 }
@@ -937,7 +937,7 @@ h4 > * { display: inline-block; vertical-align: top; }
 fieldset { 
   border: 1px solid #ccc; 
   padding: 15px; 
-  max-width: 345px;
+  max-width: 92%;
   background-color: #fff;
   border-radius: 5px;
 }
@@ -1037,4 +1037,365 @@ fieldset {
 .nave-menu{
 	z-index: 99999;
 
+}
+
+/*=========== Dashboard css =================*/
+
+.dashboard-bg{
+	background-color: #f5f5f5;
+	width: 100%;
+	height: auto;
+	background-size:cover;
+	background-repeat: no-repeat;
+	background-position: center;
+  }
+  .dashboard-wrapper{
+	  background-color: #fff;
+	  height: auto;
+	  width: 100%;
+	  float: left;
+  }
+  .dasboard-head{
+	  width: 99%;
+	
+	  background-color: #e8ebef;
+	  margin: 8px auto !important;
+  }
+  .img-dashboard{
+	  width: 30px;
+	  height: 30px;
+	  padding: 10px 0px 0px 6px;
+	  float: left;
+  }
+  .dashboard-wrapper h3{
+    margin: 4px 8px 7px 45px;
+    line-height: 50px;
+	font-size: 16px;
+	font-weight: 600;
+	color: #858ea4;
+  }
+  .dasboard-sec{
+	width: 99%;
+
+	margin: -16px auto !important;
+}
+.dashboard-componatns{
+	padding: 0px !important;
+	height: 100px;
+	background-color: #e8ebef;
+	margin-top: 15px;
+	cursor: pointer;
+}
+.home-icon{
+	width: 40%;
+	height: 100px;
+	background-color: #2996e3;
+	cursor: pointer;
+	float: left;
+}
+.img-d-icon{
+	padding: 27px 0px 0px 41px;;
+
+}
+.box-1{
+	background-color: #00b5cf;
+}
+.box-2{
+	background-color: #00ccb0;
+}
+.box-3{
+	background-color: #849288;
+}
+.box-4{
+	background-color: #ef5362;
+}
+.box-5{
+	background-color: #ff7e34;
+}
+.dashboard-span{
+	padding: 56px 1px 0px 62px;
+    line-height: 105px;
+    font-size: 14px;
+    font-weight: 600;
+	
+}
+.dashboard-table{
+	background-color: #fff;
+	height: auto;
+	width: 100%;
+}
+.table-fixed {
+    table-layout: fixed;
+    overflow: hidden;
+}
+.table-style{
+	background-color: #fff;
+	border: 1px solid #efefef;
+	text-align: center;
+	height: 300px;
+}
+.table-top{
+	background-color: #fff;
+	
+
+}
+.trans{
+	margin-top: 20px;
+}
+.top-sec{
+	margin-top: 12px;
+}
+/**
+ * Responsive Bootstrap Tabs by @hayatbiralem
+ * 15 May 2015
+ */
+
+ @mixin ellipsis(){
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    width: 100%;
+}
+
+@mixin icon-styles(){
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin transform($transform){
+  -webkit-transform: $transform;
+  -moz-transform: $transform;
+  -ms-transform: $transform;
+  -o-transform: $transform;
+  transform: $transform;
+}
+
+@media screen and (max-width: 479px) {
+  .nav-tabs-responsive {
+    > li {
+      display: none;
+      width: 23%;
+      > a {
+        @include ellipsis();
+        width: 100%;
+        text-align: center;
+        vertical-align: top;
+      }
+      &.active {
+        width: 54%;
+        &:first-child {
+          margin-left: 23%;
+        }
+      }
+      &.active,
+      &.prev,
+      &.next {
+        display: block;
+      }
+      &.prev,
+      &.next {
+        -webkit-transform: scale(0.9);
+        transform: scale(0.9);
+      }
+      &.next > a,
+      &.prev > a {
+        -webkit-transition: none;
+        transition: none;
+        .text {
+          display: none;
+        }
+        &:after,
+        &:after {
+          @include icon-styles();
+        }
+      }
+      &.prev > a:after {
+        content: "\e079";
+      }
+      &.next > a:after {
+        content: "\e080";
+      }
+      &.dropdown {
+        > a > .caret {
+          display: none;
+        }
+        > a:after {
+          content: "\e114";
+        }
+        &.active > a {
+          &:after {
+            display: none;
+          }
+          > .caret {
+            display: inline-block;
+          }
+        }
+
+        .dropdown-menu {
+          &.pull-xs-left {
+            left: 0;
+            right: auto;
+          }
+          &.pull-xs-center {
+            right: auto;
+            left: 50%;
+            @include transform(translateX(-50%));
+          }
+          &.pull-xs-right {
+            left: auto;
+            right: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+/**
+ * Demo Styles
+ */
+
+.wrapper {
+  padding: 15px 0;
+}
+
+.bs-example-tabs .nav-tabs {
+  margin-bottom: 15px;
+}
+
+@media (max-width: 479px) {
+  #narrow-browser-alert {
+    display: none;
+  }
+}
+.top-sec1{
+	margin-top: 30px;
+}
+.multiple-tab{
+	background-color: #e8ebef;
+}
+.examble-tab{
+	width: 99%;
+    margin: 0 auto;
+}
+.setting-head{
+	width: 100%;
+    height: 45px;
+    background-color: #f1f1f1;
+    margin-top: -15px;
+    padding: 8px 0px 0px 15px;
+    line-height: 29px;
+    font-size: 17px;
+    font-weight: 600;
+    color: #858ea4;
+
+}
+.comming-soon{
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    color: #ff6600;
+	line-height: 379px;
+}
+.emoji{
+	width: 100px;
+}
+.account-setting-wrap{
+    width: 50%;
+    height: auto;
+    background-color: #fff;
+	margin: 19px auto;
+	box-shadow: 0 1px 16px 2px #dedede;
+}
+.your-merchant{
+    width: 95%;
+    height: auto;
+    margin: 0px auto;
+   
+}
+.merchant-id{
+	padding: 14px 0px 0px 29px;
+    font-size: 16px;
+}
+.social-media{
+	width: 90%;
+	height: auto;
+	margin: 0 auto;
+}
+.social-media li{
+	display: inline-block;
+	cursor: pointer;
+}
+.social-media ul{
+    padding: 0px;
+}
+.share{
+	width: 20%;
+	height: 50px;
+
+}
+.form-settings{
+	margin-left: 23px;
+	margin-top: 40px;
+}
+.text-view{
+	border: solid 1px #d7d7d7 !important;
+    box-shadow: inset 4px 0px 0px #e75d14 !important;
+	padding-left: 14px;
+	height: 49px !important;
+}
+.select-view{
+	height: 49px !important;
+
+}
+.date-pick{
+	padding: 0px !important;
+}
+.date-box{
+	width: 110px !important;
+	background-image: url(image/down-arrow.png);
+	ba
+}
+.second-date{
+	margin-top: 24px;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+	color: #fff !important;
+    background-color: #e75d14  !important;
+}
+
+.dashboard-componatns:hover{
+	box-shadow: 0 1px 16px 2px #dedede;
+
+}
+.share{
+    width: 163px;
+    height: 44px;
+	background-color: #e75d14;
+	color: #fff;
+    float: left;
+    float: right;
+    margin-left: -55px;
+    border-radius: 4px;
+	box-shadow: 0 1px 16px 2px #dedede;
+    padding: 9px 0px 0px 25px;
+    font-size: 18px;
+	cursor: pointer;
+	
+    margin-top: 5px;
+}
+.share:hover{
+	background-color: #16b101
 }

@@ -1,0 +1,265 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    {% load widget_tweaks %}
+    <section>
+        <div class="dashboard-bg">
+            <div class="container">
+                <div class="dashboard-wrapper top-sec">
+                    <div class="dasboard-head">
+                        <div class="img-dashboard">
+                            <img src="{% static 'images/settings.png'%}">
+                        </div>
+                        <h3>Settings</h3>
+                    </div>
+                    <div class="dasboard-sec">
+
+                        <div class="col-sm-4 dashboard-componatns">
+                            <div class="home-icon">
+                                <img class="img-d-icon" src="{% static 'images/dash-icon1.png'%}">
+                            </div>
+                            <span class="dashboard-span">Home</span>
+                        </div>
+                        <div class="col-sm-4 dashboard-componatns">
+                            <div class="home-icon box-1">
+                                <img class="img-d-icon" src="{% static 'images/wallet.png'%}">
+                            </div>
+                            <span class="dashboard-span">Your Wallet</span>
+                        </div>
+                        <div class="col-sm-4 dashboard-componatns">
+                            <div class="home-icon box-2">
+                                <img class="img-d-icon" src="{% static 'images/coin01.png' %} ">
+                            </div>
+                            <span class="dashboard-span">Coin Settings</span>
+                        </div>
+                        <div class="col-sm-4 dashboard-componatns">
+
+                            <div class="home-icon box-3">
+                                <img class="img-d-icon" src="{% static 'images/bill-not.png' %}">
+                            </div>
+                            <span class="dashboard-span">Transaction History</span>
+                        </div>
+                        <div class="col-sm-4 dashboard-componatns">
+                            <div class="home-icon box-4">
+                                <img class="img-d-icon" src="{% static 'images/pos.png'%}">
+                            </div>
+                            <span class="dashboard-span">Quick POS</span>
+                        </div>
+                        <div class="col-sm-4 dashboard-componatns">
+                            <div class="home-icon box-5">
+                                <img class="img-d-icon" src="{% static 'images/pay.png' %}">
+                            </div>
+                            <span class="dashboard-span">$PayByName</span>
+                        </div>
+                    </div>
+                    <div class="dashboard-wrapper top-sec1">
+
+                        <div class="bs-example bs-example-tabs examble-tab" role="tabpanel" data-example-id="togglable-tabs">
+                            <ul id="myTab" class="nav nav-tabs nav-tabs-responsive multiple-tab" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+                                        <span class="text">Basic Settings</span>
+                                    </a>
+                                </li>
+                                <li role="presentation" class="next">
+                                    <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">
+                                        <span class="text">Public Info</span>
+                                    </a>
+                                </li>
+
+                                <li role="presentation">
+                                    <a href="#samsa" role="tab" id="samsa-tab" data-toggle="tab" aria-controls="samsa">
+                                        <span class="text">Login $ Security</span>
+                                    </a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#samsa" role="tab" id="samsa-tab" data-toggle="tab" aria-controls="samsa">
+                                        <span class="text">Merchant Settings</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                                    <div class="setting-head">Account Settings</div>
+                                    <div class="account-setting-wrap">
+                                        <div class="your-merchant">
+                                            <form class="form-inline" role="form">
+                                                <div class="form-group merchant-id">
+                                                    <label for="name">Your Merchant ID:</label>
+                                                    <label for="name">{{ merchant_id }}</label>
+
+                                                </div>
+                                        </div>
+                                        <div class="your-merchant">
+                                            <form class="form-inline" role="form">
+                                                <div class="form-group merchant-id">
+                                                    <label for="name">Affilated URL:</label>
+                                                    <label for="name"></label>
+
+                                                </div>
+                                        </div>
+                                        <div class="social-media">
+                                            <ul>
+                                                <li>
+                                                    <img src="{% static 'images/facebook.png' %}" alt="">
+                                                </li>
+                                                <li>
+                                                    <img src="{% static 'images/twitter.png' %}" alt="">
+                                                </li>
+                                                <li>
+                                                    <img src="{% static 'images/linkedin.png'%}" alt="">
+                                                </li>
+                                                <li>
+                                                    <img src="{% static 'images/google.png' %}" alt="">
+                                                </li>
+                                                <div class="share">Share/Save <img src="{% static 'images/share.png' %}"></div>
+                                            </ul>
+
+                                        </div>
+                                        <form role="form" method="POST" action="#">
+
+
+
+                                            <fieldset class="setting-form form-settings">
+
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="first_name">Account Email</label>
+                                                    <input type="text" class="form-control text-view" name="" id="first_name" placeholder="Account Email" value="{{ email }}">
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="last_name">Confirm Email</label>
+                                                    <input type="text" class="form-control text-view" name="last_name" id="" placeholder="Confirm Email" value="{{ email }}">
+                                                </div>
+
+
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="password">Gender</label>
+                                                    <select class="form-control select-view " name="" id="country">
+                                                        <option>Male</option>
+                                                        <option>Female</option>
+
+                                                    </select>
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="confirm_password">Time Zone</label>
+                                                    <select class="form-control select-view" name="" id="country">
+                                                        <option value={{ timezone }}>{{ timezone}}</option>
+                                                    </select>
+                                                </div>
+                                                <div class="form-group col-md-6">
+                                                    <div class="col-sm-6 date-pick">
+                                                        <label for="password">Date Format</label>
+                                                        <input  class="datepicker form-control select-view date-box" placeholder="03/05/2018" type="text" alt=""></input>
+                                                        <button type="submit" class="btn- btn-default btn-log">Update Account</button>
+                                                    </div>
+                                                    <div class="col-sm-6 date-pick">
+
+                                                        <input  class="datepicker form-control select-view date-box second-date" placeholder="03/05/2018" type="text"></input>
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group col-md-6">
+                                                    <label for="confirm_password">Time Format</label>
+                                                    <input data-format="hh:mm:ss" class="timepicker form-control select-view" type="text"></input>
+
+                                                </div>
+
+
+                                            </fieldset>
+
+
+
+
+
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                                    <div class="comming-soon">content coming soon.......!
+                                        <img class="emoji" src="{% static '/images/emoji.jpg'%}">
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
+                                    <div class="comming-soon">content coming soon.......!
+                                        <img class="emoji" src="{% static '/images/emoji.jpg'%}">
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab">
+                                    <div class="comming-soon">content coming soon.......!
+                                        <img class="emoji" src="{% static '/images/emoji.jpg'%}">
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="samsa" aria-labelledby="samsa-tab">
+                                    <div class="comming-soon">content coming soon.......!
+                                        <img class="emoji" src="{% static '/images/emoji.jpg'%}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+</body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script
+        src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/datepicker.min.js"></script>
+<script>
+    (function ($) {
+
+        'use strict';
+
+        $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
+            var $target = $(e.target);
+            var $tabs = $target.closest('.nav-tabs-responsive');
+            var $current = $target.closest('li');
+            var $parent = $current.closest('li.dropdown');
+            $current = $parent.length > 0 ? $parent : $current;
+            var $next = $current.next();
+            var $prev = $current.prev();
+            var updateDropdownMenu = function ($el, position) {
+                $el
+                    .find('.dropdown-menu')
+                    .removeClass('pull-xs-left pull-xs-center pull-xs-right')
+                    .addClass('pull-xs-' + position);
+            };
+
+            $tabs.find('>li').removeClass('next prev');
+            $prev.addClass('prev');
+            $next.addClass('next');
+
+            updateDropdownMenu($prev, 'left');
+            updateDropdownMenu($current, 'center');
+            updateDropdownMenu($next, 'right');
+        });
+
+    })(jQuery);
+    $('.datepicker').datepicker();
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 60,
+        minTime: '10',
+        maxTime: '6:00pm',
+        defaultTime: '11',
+        startTime: '10:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+</script>
+
+</html>

@@ -1,6 +1,8 @@
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import forms
+from django.shortcuts import get_object_or_404, render
+from django.template.context_processors import request
 from django.views.generic import CreateView, TemplateView
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
@@ -9,6 +11,7 @@ from django.urls import reverse_lazy
 from apps.accounts.forms import SignUpForm
 from apps.accounts.models import Profile, ProfileActivation
 from apps.common.utils import generate_key
+from .forms import CHOICES
 
 
 
@@ -53,6 +56,19 @@ class SignUpCompleteView(TemplateView):
 
     template_name = 'accounts/signup_complete.html'
 
+
+# class AccountSettings(TemplateView):
+#     template_name = 'accounts/settings.html'
+
+
+def account_settings(request):
+    user = get_object_or_404(User, username= request.user)
+    try:
+        user_profile = Profile.objects.get(user_id=user.id)
+    except user_profile.DoesNotExist:
+        user_profile = None
+    return render(request, 'accounts/settings.html', {'merchant_id': user_profile.merchant_id,
+                                                      'email':user.email, 'timezone':user_profile.timezone})
 
 class ProfileActivationView(TemplateView):
 

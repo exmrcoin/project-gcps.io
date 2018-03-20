@@ -108,7 +108,8 @@
                 <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-default btn-log1">Login</a>
                 <a href="{% url 'accounts:signup' %}" type="submit" class="btn btn-default btn-sign">Signup</a>
             {% else %}
-                <a href="{% url 'accounts:logout' %}?next=/" type="submit" class="btn btn-default btn-sign">Logout</a>
+                <a href="{% url 'accounts:logout' %}?next=/" type="submit" class="btn btn-default btn-log1">Logout</a>
+                <a href="{% url 'accounts:settings' %}?next=/" type="submit" class="btn btn-default btn-sign">Settings</a>
             {% endif %}
         </div>
         <!-- /.navbar-collapse -->

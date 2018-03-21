@@ -1,14 +1,16 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import forms
-from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404, render, render_to_response
 from django.template.context_processors import request
-from django.views.generic import CreateView, TemplateView
+from django.views.generic import CreateView, TemplateView, FormView
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
 
-from apps.accounts.forms import SignUpForm
+from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm
 from apps.accounts.models import Profile, ProfileActivation
 from apps.common.utils import generate_key
 from .forms import CHOICES
@@ -53,22 +55,56 @@ class SignUpView(CreateView):
 
 
 class SignUpCompleteView(TemplateView):
-
     template_name = 'accounts/signup_complete.html'
 
 
-# class AccountSettings(TemplateView):
-#     template_name = 'accounts/settings.html'
+class AccountSettings(FormView):
+    form_class = UpdateBasicProfileForm
+    template_name = 'accounts/settings.html'
+    success_url = reverse_lazy('accounts:settings')
 
+    def get_initial(self):
+        initial = super(AccountSettings, self).get_initial()
+        user = get_object_or_404(User, username=self.request.user)
+        try:
+            user_profile = Profile.objects.get(user_id=user.id)
+        except user_profile.DoesNotExist:
+            user_profile = None
+        initial['email'] = self.request.user.email
+        initial['confirm_email'] = self.request.user.email
+        initial['timezone'] = user_profile.timezone
+        initial['date_format'] = user_profile.date_format
+        initial['time_format'] = user_profile.time_format
+        initial['merchant_id'] = user_profile.merchant_id
+        initial['gender'] = user_profile.gender
+        return initial
 
-def account_settings(request):
-    user = get_object_or_404(User, username= request.user)
-    try:
-        user_profile = Profile.objects.get(user_id=user.id)
-    except user_profile.DoesNotExist:
-        user_profile = None
-    return render(request, 'accounts/settings.html', {'merchant_id': user_profile.merchant_id,
-                                                      'email':user.email, 'timezone':user_profile.timezone})
+    def get_context_data(self, **kwargs):
+        obj = self.get_initial()
+        print('gjnfjgh',obj)
+        context = super(AccountSettings, self).get_context_data(**kwargs)
+        context['merchant_id'] = obj['merchant_id']
+        return context
+
+    def form_valid(self, form):
+        user = self.request.user
+        email = form.cleaned_data['email']
+        user.email = email
+        user.save()
+        try:
+            user_profile = Profile.objects.get(user_id=user.id)
+        except user_profile.DoesNotExist:
+            user_profile = None
+        user_profile.date_format = form.cleaned_data['date_format']
+        user_profile.time_format = form.cleaned_data['time_format']
+        user_profile.gender = form.cleaned_data['gender']
+        user_profile.timezone = form.cleaned_data['timezone']
+        user_profile.save()
+        return super(AccountSettings, self).form_valid(form)
+
+    def form_invalid(self, form):
+        return super(AccountSettings, self).form_invalid(form)
+
 
 class ProfileActivationView(TemplateView):
 

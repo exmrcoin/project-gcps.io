@@ -9,7 +9,18 @@ from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
 
+from apps.accounts.models import Profile
+
 CHOICES = [(pytz.timezone(tz), tz) for tz in pytz.common_timezones]
+
+
+MALE = 0
+FEMALE = 1
+OTHER = 2
+
+GENDER_CHOICES = [(MALE, _('Male')),
+    (FEMALE, _('Female')),
+    (OTHER, _('Other/Prefer Not to say')),]
 
 
 class SignUpForm(UserCreationForm):
@@ -46,6 +57,43 @@ class SignUpForm(UserCreationForm):
             raise forms.ValidationError(_('Please accept the terms and conditions'))
         return self.cleaned_data.get('accept_terms_and_conditions')
 
+
+
+class UpdateBasicProfileForm(forms.ModelForm):
+    email = forms.EmailField(required=False)
+    confirm_email = forms.EmailField(required=False)
+    gender = forms.ChoiceField(choices=GENDER_CHOICES)
+    timezone = forms.ChoiceField(choices=CHOICES)
+    date_format = forms.CharField(required=False)
+    date_format_second = forms.CharField(required=False)
+    time_format = forms.CharField(required=False)
+
+    class Meta:
+        model = Profile
+        fields = ['gender', 'timezone', 'date_format', 'time_format', 'email', 'confirm_email']
+
+    def __init__(self, *args, **kwargs):
+        super(UpdateBasicProfileForm, self).__init__(*args, **kwargs)
+        self.fields['timezone'].widget.attrs['class'] = 'form-control select-view'
+        self.fields['email'].widget.attrs['class'] = 'form-control text-view'
+        self.fields['confirm_email'].widget.attrs['class'] = 'form-control text-view'
+        self.fields['gender'].widget.attrs['class'] = 'form-control select-view'
+        self.fields['date_format'].widget.attrs['class'] = 'datepicker form-control select-view date-box'
+        self.fields['date_format'].widget.attrs['placeholder'] = '03/10/2018'
+        self.fields['date_format_second'].widget.attrs['class'] = 'datepicker form-control select-view date-box second-date'
+        self.fields['date_format_second'].widget.attrs['placeholder'] = '03/10/2018'
+        self.fields['time_format'].widget.attrs['data-format'] = "hh:mm:ss"
+        self.fields['time_format'].widget.attrs['class'] = 'timepicker form-control select-view'
+        self.fields['time_format'].widget.attrs['placeholder'] = '05:30'
+
+    def clean_confirm_email(self):
+        cleaned_data = super(UpdateBasicProfileForm, self).clean()
+        email = cleaned_data.get("email")
+        confirm_email = cleaned_data.get("confirm_email")
+        if email and confirm_email:
+            if email != confirm_email:
+                raise forms.ValidationError("Emails do not match.")
+        return cleaned_data
 
 class CustomPasswordResetForm(PasswordResetForm):
 

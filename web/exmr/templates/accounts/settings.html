@@ -78,6 +78,7 @@
                                     </a>
                                 </li>
                             </ul>
+
                             <div id="myTabContent" class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                                     <div class="setting-head">Account Settings</div>
@@ -89,6 +90,7 @@
                                                     <label for="name">{{ merchant_id }}</label>
 
                                                 </div>
+                                            </form>
                                         </div>
                                         <div class="your-merchant">
                                             <form class="form-inline" role="form">
@@ -97,6 +99,7 @@
                                                     <label for="name"></label>
 
                                                 </div>
+                                            </form>
                                         </div>
                                         <div class="social-media">
                                             <ul>
@@ -116,56 +119,56 @@
                                             </ul>
 
                                         </div>
-                                        <form role="form" method="POST" action="#">
-
-
-
+                                        <form role="form" method="post" action="{% url 'accounts:settings' %}">
+                                            {% csrf_token %}
                                             <fieldset class="setting-form form-settings">
-
 
                                                 <div class="form-group col-md-6">
                                                     <label for="first_name">Account Email</label>
-                                                    <input type="text" class="form-control text-view" name="" id="first_name" placeholder="Account Email" value="{{ email }}">
+                                                    {{ form.email }}
+                                                    {{ form.email.errors }}
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <label for="last_name">Confirm Email</label>
-                                                    <input type="text" class="form-control text-view" name="last_name" id="" placeholder="Confirm Email" value="{{ email }}">
+                                                    {{ form.confirm_email }}
+                                                    {{ form.confirm_email.errors }}
                                                 </div>
-
 
 
                                                 <div class="form-group col-md-6">
                                                     <label for="password">Gender</label>
-                                                    <select class="form-control select-view " name="" id="country">
-                                                        <option>Male</option>
-                                                        <option>Female</option>
-
-                                                    </select>
+                                                    {{ form.gender }}
+{#                                                    <select class="form-control select-view " name="" id="country">#}
+{#                                                        <option>Male</option>#}
+{#                                                        <option>Female</option>#}
+{#                                                    </select>#}
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <label for="confirm_password">Time Zone</label>
-                                                    <select class="form-control select-view" name="" id="country">
-                                                        <option value={{ timezone }}>{{ timezone}}</option>
-                                                    </select>
+                                                    {{ form.timezone }}
+
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <div class="col-sm-6 date-pick">
                                                         <label for="password">Date Format</label>
-                                                        <input  class="datepicker form-control select-view date-box" placeholder="03/05/2018" type="text" alt=""></input>
+                                                        {{ form.date_format }}
+                                                        {#                                                        <input  class="datepicker form-control select-view date-box" placeholder="03/05/2018" type="text" alt=""></input>#}
                                                         <button type="submit" class="btn- btn-default btn-log">Update Account</button>
                                                     </div>
                                                     <div class="col-sm-6 date-pick">
+                                                        {{ form.date_format_second }}
 
-                                                        <input  class="datepicker form-control select-view date-box second-date" placeholder="03/05/2018" type="text"></input>
+{#                                                        <input  class="datepicker form-control select-view date-box second-date" placeholder="03/05/2018" type="text"></input>#}
 
                                                     </div>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <label for="confirm_password">Time Format</label>
-                                                    <input data-format="hh:mm:ss" class="timepicker form-control select-view" type="text"></input>
+                                                    {{ form.time_format }}
+{#                                                                                                        <input data-format="hh:mm:ss" class="timepicker form-control select-view" type="text"></input>#}
 
                                                 </div>
 

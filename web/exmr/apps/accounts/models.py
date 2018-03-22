@@ -54,8 +54,9 @@ class Profile(models.Model):
     public_email = models.EmailField(_('public email'), null=True, blank=True)
     public_url = models.URLField(_('public URL'), null=True, blank=True)
     merchant_id = models.CharField(_('merchant id'), max_length=32, null=True, blank=True, unique=True, editable=False)
-    date_format = models.CharField(_('date format'), max_length=255, null=True, blank=True)
-    time_format = models.CharField(_('time format'), max_length=255, null=True, blank=True)
+    # date_format = models.CharField(_('date format'), max_length=255, null=True, blank=True)
+    # time_format = models.CharField(_('time format'), max_length=255, null=True, blank=True)
+    date_time = models.DateTimeField(_('date time'), null=True, blank=True)
     use_gravatar = models.BooleanField(_('use gravatar'), default=False)
     pgp_gpg_public_key = models.TextField(_('PGP/GPG public key'), null=True, blank=True)
     two_factor_auth = models.PositiveSmallIntegerField(_('2FA authentication'),
@@ -69,6 +70,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+    def __unicode__(self):
+        return u'%s' % self.since.strftime('%Y-%m-%d %H:%M')
 
 
 @receiver(post_save, sender=Profile, dispatch_uid="update_merchant_id")

@@ -14,6 +14,8 @@ from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm
 from apps.accounts.models import Profile, ProfileActivation
 from apps.common.utils import generate_key
 from .forms import CHOICES
+import datetime as dt
+
 
 
 
@@ -66,22 +68,24 @@ class AccountSettings(FormView):
     def get_initial(self):
         initial = super(AccountSettings, self).get_initial()
         user = get_object_or_404(User, username=self.request.user)
-        try:
-            user_profile = Profile.objects.get(user_id=user.id)
-        except user_profile.DoesNotExist:
-            user_profile = None
+        # try:
+        user_profile = Profile.objects.get(user_id=user.id)
+        # except user_profile.DoesNotExist:
+        #     user_profile = None
         initial['email'] = self.request.user.email
         initial['confirm_email'] = self.request.user.email
         initial['timezone'] = user_profile.timezone
-        initial['date_format'] = user_profile.date_format
-        initial['time_format'] = user_profile.time_format
+        date_time = user_profile.date_time
+        date = date_time.strftime('%m/%d/%Y')
+        time = date_time.strftime('%H:%M')
+        initial['date_format'] = date
+        initial['time_format'] = time
         initial['merchant_id'] = user_profile.merchant_id
         initial['gender'] = user_profile.gender
         return initial
 
     def get_context_data(self, **kwargs):
         obj = self.get_initial()
-        print('gjnfjgh',obj)
         context = super(AccountSettings, self).get_context_data(**kwargs)
         context['merchant_id'] = obj['merchant_id']
         return context
@@ -95,15 +99,19 @@ class AccountSettings(FormView):
             user_profile = Profile.objects.get(user_id=user.id)
         except user_profile.DoesNotExist:
             user_profile = None
-        user_profile.date_format = form.cleaned_data['date_format']
-        user_profile.time_format = form.cleaned_data['time_format']
+        date = form.cleaned_data['date_format']
+        time = form.cleaned_data['time_format']
+        new_date = dt.datetime.strptime(date, '%m/%d/%Y').strftime('%Y-%m-%d')
+        format_time = new_date + ' ' + time
+        my_date = dt.datetime.strptime(format_time, '%Y-%m-%d %H:%M %p')
+        user_profile.date_time = my_date
         user_profile.gender = form.cleaned_data['gender']
         user_profile.timezone = form.cleaned_data['timezone']
         user_profile.save()
         return super(AccountSettings, self).form_valid(form)
 
-    def form_invalid(self, form):
-        return super(AccountSettings, self).form_invalid(form)
+def form_invalid(self, form):
+    return super(AccountSettings, self).form_invalid(form)
 
 
 class ProfileActivationView(TemplateView):

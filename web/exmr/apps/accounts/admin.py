@@ -12,7 +12,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (_('Basic Details'), {
-            'fields': ('user', 'gender', 'timezone', 'date_format', 'time_format', 'is_subscribed')
+            'fields': ('user', 'gender', 'timezone', 'date_time', 'is_subscribed')
         }),
         (_('Public Info'), {
             'fields': ('public_name', 'public_email', 'public_url', 'use_gravatar'),

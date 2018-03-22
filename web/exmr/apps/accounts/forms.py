@@ -65,7 +65,7 @@ class UpdateBasicProfileForm(forms.ModelForm):
     gender = forms.ChoiceField(choices=GENDER_CHOICES)
     timezone = forms.ChoiceField(choices=CHOICES)
     date_format = forms.CharField(required=False)
-    date_format_second = forms.CharField(required=False)
+    # date_format_second = forms.CharField(required=False)
     time_format = forms.CharField(required=False)
 
     class Meta:
@@ -80,11 +80,13 @@ class UpdateBasicProfileForm(forms.ModelForm):
         self.fields['gender'].widget.attrs['class'] = 'form-control select-view'
         self.fields['date_format'].widget.attrs['class'] = 'datepicker form-control select-view date-box'
         self.fields['date_format'].widget.attrs['placeholder'] = '03/10/2018'
-        self.fields['date_format_second'].widget.attrs['class'] = 'datepicker form-control select-view date-box second-date'
-        self.fields['date_format_second'].widget.attrs['placeholder'] = '03/10/2018'
+        self.fields['date_format'].widget.attrs['id'] = "datepicker"
+        # self.fields['date_format_second'].widget.attrs['class'] = 'datepicker form-control select-view date-box second-date'
+        # self.fields['date_format_second'].widget.attrs['placeholder'] = '03/10/2018'
         self.fields['time_format'].widget.attrs['data-format'] = "hh:mm:ss"
         self.fields['time_format'].widget.attrs['class'] = 'timepicker form-control select-view'
         self.fields['time_format'].widget.attrs['placeholder'] = '05:30'
+        self.fields['time_format'].widget.attrs['id'] = 'datetimepicker3'
 
     def clean_confirm_email(self):
         cleaned_data = super(UpdateBasicProfileForm, self).clean()

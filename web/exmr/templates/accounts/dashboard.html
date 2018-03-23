@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
-        {% load widget_tweaks %}
+    {% load widget_tweaks %}
     <section>
         <div class="dashboard-bg">
             <div class="container">
@@ -17,9 +17,13 @@
 
                         <div class="col-sm-4 dashboard-componatns">
                             <div class="home-icon">
-                                <img class="img-d-icon" src="{% static '/images/dash-icon1.png' %}">
+                                <a href= "{% url 'accounts:profile' %}">
+                                    <img class="img-d-icon" src="{% static '/images/dash-icon1.png' %}">
+                                </a>
                             </div>
-                            <span class="dashboard-span">Home</span>
+                            <a href= "{% url 'accounts:profile' %}">
+                                <span class="dashboard-span">Home</span>
+                            </a>
                         </div>
                         <div class="col-sm-4 dashboard-componatns">
                             <div class="home-icon box-1">

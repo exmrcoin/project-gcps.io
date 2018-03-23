@@ -2,6 +2,7 @@
     color: red;
     list-style: none;
     padding-left: 0px;
+    position: absolute;
 }
 .min-height-content {
     min-height: 100vh;

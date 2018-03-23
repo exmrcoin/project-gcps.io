@@ -13,14 +13,24 @@ from apps.accounts.models import Profile
 
 CHOICES = [(pytz.timezone(tz), tz) for tz in pytz.common_timezones]
 
-
 MALE = 0
 FEMALE = 1
 OTHER = 2
 
-GENDER_CHOICES = [(MALE, _('Male')),
+GENDER_CHOICES = [
+    ('', '---Please select ---'),
+    (MALE, _('Male')),
     (FEMALE, _('Female')),
-    (OTHER, _('Other/Prefer Not to say')),]
+    (OTHER, _('Other/Prefer Not to say')),
+]
+
+
+DATE_FORMAT_CHOICES = [('02-10-2018', _('02-10-2018')),
+                       ('02/10/2018', _('02/10/2018'))]
+
+
+TIME_FORMAT_CHOICES = [('02:00', _('02:00')),
+                       ('02:00:00', _('02:00:00'))]
 
 
 class SignUpForm(UserCreationForm):
@@ -62,11 +72,11 @@ class SignUpForm(UserCreationForm):
 class UpdateBasicProfileForm(forms.ModelForm):
     email = forms.EmailField(required=False)
     confirm_email = forms.EmailField(required=False)
-    gender = forms.ChoiceField(choices=GENDER_CHOICES)
+    gender = forms.ChoiceField(choices=GENDER_CHOICES, required=True)
     timezone = forms.ChoiceField(choices=CHOICES)
-    date_format = forms.CharField(required=False)
+    date_format = forms.ChoiceField(choices=DATE_FORMAT_CHOICES)
     # date_format_second = forms.CharField(required=False)
-    time_format = forms.CharField(required=False)
+    time_format = forms.ChoiceField(choices=TIME_FORMAT_CHOICES)
 
     class Meta:
         model = Profile
@@ -78,15 +88,15 @@ class UpdateBasicProfileForm(forms.ModelForm):
         self.fields['email'].widget.attrs['class'] = 'form-control text-view'
         self.fields['confirm_email'].widget.attrs['class'] = 'form-control text-view'
         self.fields['gender'].widget.attrs['class'] = 'form-control select-view'
-        self.fields['date_format'].widget.attrs['class'] = 'datepicker form-control select-view date-box'
-        self.fields['date_format'].widget.attrs['placeholder'] = '03/10/2018'
-        self.fields['date_format'].widget.attrs['id'] = "datepicker"
+        self.fields['date_format'].widget.attrs['class'] = 'datepicker form-control select-view date-box w100'
+        # self.fields['date_format'].widget.attrs['placeholder'] = '03/10/2018'
+        # self.fields['date_format'].widget.attrs['id'] = "datepicker"
         # self.fields['date_format_second'].widget.attrs['class'] = 'datepicker form-control select-view date-box second-date'
         # self.fields['date_format_second'].widget.attrs['placeholder'] = '03/10/2018'
-        self.fields['time_format'].widget.attrs['data-format'] = "hh:mm:ss"
+        # self.fields['time_format'].widget.attrs['data-format'] = "hh:mm:ss"
         self.fields['time_format'].widget.attrs['class'] = 'timepicker form-control select-view'
-        self.fields['time_format'].widget.attrs['placeholder'] = '05:30'
-        self.fields['time_format'].widget.attrs['id'] = 'datetimepicker3'
+        # self.fields['time_format'].widget.attrs['placeholder'] = '05:30'
+        # self.fields['time_format'].widget.attrs['id'] = 'datetimepicker3'
 
     def clean_confirm_email(self):
         cleaned_data = super(UpdateBasicProfileForm, self).clean()

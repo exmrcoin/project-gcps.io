@@ -8,4 +8,4 @@ elif name == 'production':
 elif name == 'local':
     from .local import *
 else:
-    from .base import *
+    from .local import *

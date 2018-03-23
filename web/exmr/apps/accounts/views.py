@@ -75,11 +75,11 @@ class AccountSettings(FormView):
         initial['email'] = self.request.user.email
         initial['confirm_email'] = self.request.user.email
         initial['timezone'] = user_profile.timezone
-        date_time = user_profile.date_time
-        date = date_time.strftime('%m/%d/%Y')
-        time = date_time.strftime('%H:%M')
-        initial['date_format'] = date
-        initial['time_format'] = time
+        # date_time = user_profile.date_time
+        # date = date_time.strftime('%m/%d/%Y')
+        # time = date_time.strftime('%H:%M')
+        initial['date_format'] = user_profile.date_format
+        initial['time_format'] = user_profile.time_format
         initial['merchant_id'] = user_profile.merchant_id
         initial['gender'] = user_profile.gender
         return initial
@@ -101,10 +101,12 @@ class AccountSettings(FormView):
             user_profile = None
         date = form.cleaned_data['date_format']
         time = form.cleaned_data['time_format']
-        new_date = dt.datetime.strptime(date, '%m/%d/%Y').strftime('%Y-%m-%d')
-        format_time = new_date + ' ' + time
-        my_date = dt.datetime.strptime(format_time, '%Y-%m-%d %H:%M %p')
-        user_profile.date_time = my_date
+        # new_date = dt.datetime.strptime(date, '%m/%d/%Y').strftime('%Y-%m-%d')
+        # format_time = new_date + ' ' + time
+        # my_date = dt.datetime.strptime(format_time, '%Y-%m-%d %H:%M %p')
+        # user_profile.date_time = my_date
+        user_profile.date_format = date
+        user_profile.time_format = time
         user_profile.gender = form.cleaned_data['gender']
         user_profile.timezone = form.cleaned_data['timezone']
         user_profile.save()

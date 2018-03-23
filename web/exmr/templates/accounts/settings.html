@@ -16,9 +16,13 @@
 
                         <div class="col-sm-4 dashboard-componatns">
                             <div class="home-icon">
-                                <img class="img-d-icon" src="{% static 'images/dash-icon1.png'%}">
+                                <a href= "{% url 'accounts:profile' %}">
+                                    <img class="img-d-icon" src="{% static 'images/dash-icon1.png'%}">
+                                    <a>
                             </div>
-                            <span class="dashboard-span">Home</span>
+                            <a href= "{% url 'accounts:profile' %}">
+                                <span class="dashboard-span">Home</span>
+                            </a>
                         </div>
                         <div class="col-sm-4 dashboard-componatns">
                             <div class="home-icon box-1">
@@ -69,7 +73,7 @@
 
                                 <li role="presentation">
                                     <a href="#samsa" role="tab" id="samsa-tab" data-toggle="tab" aria-controls="samsa">
-                                        <span class="text">Login $ Security</span>
+                                        <span class="text">Login & Security</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
@@ -95,9 +99,8 @@
                                         <div class="your-merchant">
                                             <form class="form-inline" role="form">
                                                 <div class="form-group merchant-id">
-                                                    <label for="name">Affilated URL:</label>
-                                                    <label for="name"></label>
-
+                                                    <label for="name">Affiliate URL:</label>
+                                                    <p for="name">  Want to earn some crypto? Give this URL to new users and when they sign up you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees: </p>
                                                 </div>
                                             </form>
                                         </div>
@@ -119,7 +122,7 @@
                                             </ul>
 
                                         </div>
-                                        <form role="form" method="post" action="{% url 'accounts:settings' %}">
+                                        <form role="form" method="post" action="{% url 'accounts:settings' %}" novalidate>
                                             {% csrf_token %}
                                             <fieldset class="setting-form form-settings">
 
@@ -139,10 +142,12 @@
                                                 <div class="form-group col-md-6">
                                                     <label for="password">Gender</label>
                                                     {{ form.gender }}
-{#                                                    <select class="form-control select-view " name="" id="country">#}
-{#                                                        <option>Male</option>#}
-{#                                                        <option>Female</option>#}
-{#                                                    </select>#}
+                                                    {{ form.gender.errors }}
+
+                                                    {#                                                    <select class="form-control select-view " name="" id="country">#}
+                                                    {#                                                        <option>Please Select</option>#}
+                                                    {#                                                        <option>Female</option>#}
+                                                    {#                                                    </select>#}
                                                 </div>
 
                                                 <div class="form-group col-md-6">
@@ -151,24 +156,24 @@
 
                                                 </div>
                                                 <div class="form-group col-md-6">
-                                                    <div class="col-sm-6 date-pick">
-                                                        <label for="password">Date</label>
+                                                    <div class=" date-pick">
+                                                        <label for="password">Date Format</label>
                                                         {{ form.date_format}}
                                                         {#                                                        <input  class="datepicker form-control select-view date-box" placeholder="03/05/2018" type="text" alt=""></input>#}
                                                         <button type="submit" class="btn- btn-default btn-log">Update Account</button>
                                                     </div>
-                                                    <div class="col-sm-6 date-pick">
-{#                                                        {{ form.date_format_second }}#}
-
-{#                                                        <input  class="datepicker form-control select-view date-box second-date" placeholder="03/05/2018" type="text"></input>#}
-
-                                                    </div>
+                                                    {#                                                    <div class="col-sm-6 date-pick">#}
+                                                    {#                                                        {{ form.date_format_second }}#}
+                                                    {##}
+                                                    {#                                                        <input  class="datepicker form-control select-view date-box second-date" placeholder="03/05/2018" type="text"></input>#}
+                                                    {##}
+                                                    {#                                                    </div>#}
                                                 </div>
 
                                                 <div class="form-group col-md-6">
-                                                    <label for="confirm_password">Time</label>
+                                                    <label for="confirm_password">Time Format</label>
                                                     {{ form.time_format }}
-{#                                                                                                        <input data-format="hh:mm:ss" class="timepicker form-control select-view" type="text"></input>#}
+                                                    {#                                                                                                        <input data-format="hh:mm:ss" class="timepicker form-control select-view" type="text"></input>#}
 
                                                 </div>
 

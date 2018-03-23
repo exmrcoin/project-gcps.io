@@ -1399,3 +1399,5 @@ fieldset {
 .share:hover{
 	background-color: #16b101
 }
+
+.w100 {     width: 100% !important;}

@@ -47,16 +47,16 @@ class Profile(models.Model):
     Model to save user profile details
     """
     user = models.OneToOneField(User, verbose_name=_('user'), related_name='get_profile', on_delete=models.CASCADE)
-    gender = models.PositiveSmallIntegerField(_('gender'), choices=GENDER_CHOICES, default=OTHER)
+    gender = models.PositiveSmallIntegerField(_('gender'), choices=GENDER_CHOICES, null=True, blank=True)
     user_type = models.PositiveSmallIntegerField(_('user type'), choices=USER_TYPE, default=BUYER)
     timezone = TimeZoneField(verbose_name=_('timezone'), default='UTC')
     public_name = models.CharField(_('public name'), max_length=255, null=True, blank=True)
     public_email = models.EmailField(_('public email'), null=True, blank=True)
     public_url = models.URLField(_('public URL'), null=True, blank=True)
     merchant_id = models.CharField(_('merchant id'), max_length=32, null=True, blank=True, unique=True, editable=False)
-    # date_format = models.CharField(_('date format'), max_length=255, null=True, blank=True)
-    # time_format = models.CharField(_('time format'), max_length=255, null=True, blank=True)
-    date_time = models.DateTimeField(_('date time'), null=True, blank=True)
+    date_format = models.CharField(_('date format'), max_length=255, null=True, blank=True)
+    time_format = models.CharField(_('time format'), max_length=255, null=True, blank=True)
+    # date_time = models.DateTimeField(_('date time'), null=True, blank=True)
     use_gravatar = models.BooleanField(_('use gravatar'), default=False)
     pgp_gpg_public_key = models.TextField(_('PGP/GPG public key'), null=True, blank=True)
     two_factor_auth = models.PositiveSmallIntegerField(_('2FA authentication'),

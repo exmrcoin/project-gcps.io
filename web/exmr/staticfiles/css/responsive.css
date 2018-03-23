@@ -97,6 +97,31 @@
     .banner-head-line{
       padding: inherit;
     }
+    .navbar-nav .open .dropdown-menu {
+      position: relative;
+      float: left;
+      width: auto;
+      margin-top: 0;
+      background-color: transparent;
+      border: 0;
+      width: 100%;
+       top: initial;
+      -webkit-box-shadow: none;
+      box-shadow: none;
+  }
+  .menu-nav{
+    font-size: 16px !important;
+  }
+   . drop-down:hover{
+     background-color: indianred ;
+   }
+   .btn-log1{
+    margin-bottom: 26px !important;
+   }
+   .btn-sign{
+    margin-bottom: 26px !important;
+
+   }
   }
   @media only screen and (max-width: 680px) {
     .second-sec{
@@ -137,6 +162,9 @@
     .apple-icon{
       padding: inherit !important;
     }
+    .menu-nav{
+      font-size: 16px !important;
+    }
 }
   
   @media only screen and (max-width: 640px) {
@@ -152,7 +180,12 @@
     .btn-footer{
       margin: inherit;
     }
-  
+    .doller{
+      padding: 7px 0px 13px 13px;
+    }
+    .menu-nav{
+      font-size: 16px !important;
+    }
   }
   
   @media only screen and (max-width: 520px) {
@@ -185,6 +218,15 @@
     .btn-footer{
       margin: inherit;
     }
+    .check-availabe{
+      margin-bottom: 41px;
+    }
+    .doller{
+      padding: 7px 0px 13px 13px;
+    }
+    .menu-nav{
+      font-size: 16px !important;
+    }
   }
   
   @media only screen and (max-width: 480px) {
@@ -192,6 +234,16 @@
       text-align: center !important;
       display: block;
     }
+    .check-availabe{
+      margin-bottom: 41px;
+    }
+    .doller{
+      padding: 7px 0px 13px 13px;
+    }
+    .menu-nav{
+      font-size: 16px !important;
+    }
+  
   
   }
   
@@ -200,14 +252,52 @@
       text-align: center !important;
       display: block;
     }
+    .check-availabe{
+      margin-bottom: 41px;
+    }
+    .doller{
+      padding: 7px 0px 13px 13px;
+    }
+    .menu-nav{
+      font-size: 16px !important;
+    }
   
   }
   
   @media only screen and (max-width: 375px) {
+    .check-availabe{
+      margin-bottom: 41px;
+    }
+    .doller{
+      margin-bottom: 8px;
+    }
+    .scroll-btn{
+      margin-top: 55px !important;
+    }
+    .menu-nav{
+      font-size: 16px !important;
+    }
   
   }
   
   @media only screen and (max-width: 360px) {
+    .scroll-btn .mouse {
+      margin: 94px auto 20px !important;
+    }
+
+    .menu-nav{
+      font-size: 16px !important;
+    }
+    .check-availabe{
+      margin-bottom: 41px;
+    }
+    .doller{
+      margin-bottom: 8px;
+    }
+    .menu-nav{
+      font-size: 16px !important;
+    }
+  
   
   }
   
@@ -238,4 +328,19 @@
   .cart-name{
     padding: inherit;
   }
+  .check-availabe{
+    margin-bottom: 41px;
+  }
+  .doller{
+    margin-bottom: 8px;
+  }
+  .apple-icon{
+    width: 46%;
+    margin-top: 10px;
+  }
+
+  .menu-nav{
+    font-size: 16px !important;
+  }
+
   }

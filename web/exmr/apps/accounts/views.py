@@ -1,10 +1,12 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import forms
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404, render, render_to_response
 from django.template.context_processors import request
+from django.utils.decorators import method_decorator
 from django.views.generic import CreateView, TemplateView, FormView
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
@@ -13,6 +15,7 @@ from django.urls import reverse_lazy
 from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm
 from apps.accounts.models import Profile, ProfileActivation
 from apps.common.utils import generate_key
+
 from .forms import CHOICES
 import datetime as dt
 
@@ -59,6 +62,8 @@ class SignUpView(CreateView):
 class SignUpCompleteView(TemplateView):
     template_name = 'accounts/signup_complete.html'
 
+class DashboardView(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/dashboard.html'
 
 class AccountSettings(FormView):
     form_class = UpdateBasicProfileForm
@@ -75,6 +80,8 @@ class AccountSettings(FormView):
         initial['email'] = self.request.user.email
         initial['confirm_email'] = self.request.user.email
         if created and user_profile.timezone:
+            initial['timezone'] = user_profile.timezone
+        elif user_profile.timezone:
             initial['timezone'] = user_profile.timezone
         # date_time = user_profile.date_time
         # date = date_time.strftime('%m/%d/%Y')

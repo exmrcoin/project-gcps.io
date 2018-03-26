@@ -69,12 +69,13 @@ class AccountSettings(FormView):
         initial = super(AccountSettings, self).get_initial()
         user = get_object_or_404(User, username=self.request.user)
         # try:
-        user_profile = Profile.objects.get(user_id=user.id)
+        user_profile, created = Profile.objects.get_or_create(user_id=user.id)
         # except user_profile.DoesNotExist:
         #     user_profile = None
         initial['email'] = self.request.user.email
         initial['confirm_email'] = self.request.user.email
-        initial['timezone'] = user_profile.timezone
+        if created and user_profile.timezone:
+            initial['timezone'] = user_profile.timezone
         # date_time = user_profile.date_time
         # date = date_time.strftime('%m/%d/%Y')
         # time = date_time.strftime('%H:%M')

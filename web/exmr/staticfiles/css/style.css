@@ -1400,4 +1400,263 @@ fieldset {
 	background-color: #16b101
 }
 
-.w100 {     width: 100% !important;}
+/*================ merchant tools ===========*/
+.merchant-tools{
+	width: 100%;
+	height: auto;
+	background-color: #3c576e;
+}
+.merchant-one{
+	height: 200px;
+}
+
+
+.merchant-tools h2{
+	text-align: center;
+	font-size: 24px;
+	color: #fff;
+
+}
+.merchant-box{
+	line-height: 135px;
+	height: auto;
+	text-align: center;
+	font-size: 24px;
+	font-weight: 600;
+	color: #fff;
+	padding: 10px 6px 12px 76px;
+}
+.merchant-tools p{
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+	
+
+}
+.merchant-toolp{
+	margin-bottom: 52px;
+}
+.subline-p{
+	margin-top: -47px;	
+}
+.dashboard-wrapper  p{
+    padding: 13px 0px 0px 23px;
+    font-size: 16px;
+}
+.click{
+	color:#e75d14; 
+	cursor: pointer;
+
+}
+.merchant-box01{
+	border: solid 1px #f1eded;
+	height: 250px;
+	width: 23.5% !important;
+	margin-left: 13px;
+	width: 23.5% !important;
+	margin-left: 13px;
+	margin-top: 10px;
+	margin-bottom: 30px;1441
+	
+}
+.icon-merchant{
+    height: 100px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+	margin: 15px auto;
+	box-shadow: 0 1px 16px 2px #dedede;
+}
+.cart-icon{
+	padding: 20px 0px 0px 18px;
+}
+.shopping-headline{
+	text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+.merchant-box01 ul{
+	padding-left: 55px !important;
+	color: #e75d14;
+	cursor: pointer;
+}
+.merchant-box01 li:hover{
+	color: #000;
+
+}
+
+/*============ story directory ===========*/
+.search-div{
+	padding: 22px 25px 36px 17px;
+    margin-left: 290px;
+}
+.search-area{
+	height: 50px !important;
+}
+.search-button{
+	height: 50px;
+	width: 60px;
+	background-color: yellow !important;
+	height: 50px;
+    width: 70px;
+    background-color:#e75d14!important;
+    font-size: 15px !important;
+	font-weight: 600 !important;
+	color: #fff !important;
+	border-color: inherit !important;
+	border: none !important;
+}
+
+.dashboard-wrapper ul{
+	padding: 0px;
+
+}
+.directoru-menu{
+    width: 100%;
+    height: 40px;
+	background-color: #f7f7f7;
+    margin-top: 10px;
+	border: solid 1px #e2dfdf;
+	padding: 9px 0px 0px 12px;
+	font-size: 15px;
+	cursor: pointer;
+}
+.right-arow{
+	color: #fff;
+	float: right;
+	font-size: 14px;
+}
+.down-box{
+	margin-top: -1px !important;
+}
+.directoru-menu:hover{
+	background-color: #3c576e;
+	color: #fff;
+}
+.right-arow:hover{
+	color: #fff;
+}
+
+.charity{
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #e8ebef;
+    height: 42px;
+    padding-left: 15px;
+    line-height: 41px;
+    color: #858ea4;}
+.coins-sort{
+	width: 100%;
+	height: auto;
+}
+.setings-charity{
+	margin-top: 30px !important;
+}
+.head-feedback{
+    font-size: 16px;
+    background-color: #e8ebef;
+    height: 42px;
+    padding-left: 15px;
+    line-height: 44px;
+	color: #858ea4;
+    text-align: center;
+    margin-bottom: 15px;
+
+}
+.feedback{
+	padding: 0px !important;
+}
+.content-box-charity{
+    width: 100%;
+	height: 314px;
+	border: solid 1px #f1eded;
+	margin-top: 20px
+}
+.feedback-content{
+	padding: 0px !important;
+	margin-top: 19px;;
+	
+
+}
+.checked {
+    color: #e75d14;
+}
+.percentage{
+    color: #e75d14;
+    font-size: 14px;
+    font-weight: 6 
+}
+.ratting{
+	color: #e75d14;
+    font-size: 14px;
+    font-weight: 6 
+}
+.logo-charity{
+    width: 60%;
+	height: 141px;
+	margin: 0 auto;
+
+}
+.donation{
+	font-size: 16px;
+	padding-bottom: 6px;
+	text-align: center;
+}
+.donation-link{
+	font-size: 16px;
+	padding-bottom: 10px;
+	color:#1cb8e8;
+	cursor: pointer;
+	margin-top: 8px;
+	text-align: center;
+}
+.inbox-wrap{
+	border: solid 1px #f3f0f0;
+    height: 272px;
+	margin-left: 21px;
+	width: 30% !important;
+}
+.star-rate{
+	padding: 0px 0px 0px 9px;
+}
+.menu-story{
+	list-style: none;
+}
+
+/*============ story directory =====*/
+.story-menu-box{
+  width: 10%;
+  height: 30px;
+  background-color: indianred;
+
+}
+.icon-circle{
+	width: 94px;
+	height: 94px;
+
+	background-image: url(../images/image-cricle.png);
+}
+.svg-icon{
+	width: 44px !important;
+	margin: 24px 25px 9px -34px !important;
+}
+.svg-icon1{
+    width: 44px !important;
+    margin: 25px 22px 17px 25px !important;
+}
+.last-pay-box{
+	margin-top: -11px !important;
+}
+.last-pay-box2{
+	margin-top: -22px;
+    margin-bottom: 27px;	
+}
+.last-pay-box3{
+	margin-top: -11px;
+    margin-bottom: 16px;
+}
+.update-settings{
+	margin-left: 39px;
+    margin-bottom: 26px;
+}

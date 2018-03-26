@@ -88,7 +88,7 @@ class UpdateBasicProfileForm(forms.ModelForm):
         self.fields['email'].widget.attrs['class'] = 'form-control text-view'
         self.fields['confirm_email'].widget.attrs['class'] = 'form-control text-view'
         self.fields['gender'].widget.attrs['class'] = 'form-control select-view'
-        self.fields['date_format'].widget.attrs['class'] = 'datepicker form-control select-view date-box w100'
+        self.fields['date_format'].widget.attrs['class'] = 'datepicker form-control select-view  w100'
         # self.fields['date_format'].widget.attrs['placeholder'] = '03/10/2018'
         # self.fields['date_format'].widget.attrs['id'] = "datepicker"
         # self.fields['date_format_second'].widget.attrs['class'] = 'datepicker form-control select-view date-box second-date'

@@ -11,7 +11,9 @@
                             <img class="log-top-icon" src="{% static 'images/login-top-icon.png' %}" alt="">
                         </div>
                         <div class="col-md-12">
-                            <img class="logo-log" src="{% static 'images/log-log.png' %}" alt="">
+                            <a href= "{% url 'home' %}">
+                                <img class="logo-log" src="{% static 'images/log-log.png' %}" alt="">
+                            </a>
                         </div>
                         <div class="form-group welcome">Welcome!</div>
                         <h3 class="log-subline">Sign in by entering the information below</h3>
@@ -110,9 +112,9 @@
         $(function () {
             CreateCaptcha();
             $('#signupForm').submit(function() {
-              var captchaResult = CheckCaptcha();
-              if(!captchaResult)
-                  return false;
+                var captchaResult = CheckCaptcha();
+                if(!captchaResult)
+                    return false;
             });
         });
 
@@ -189,7 +191,7 @@
                     $('#SuccessMessage').fadeIn(500).css('display', 'block').delay(5000).fadeOut(250);
                 }
             }
-        return result;
+            return result;
         }
     </script>
 {% endblock %}

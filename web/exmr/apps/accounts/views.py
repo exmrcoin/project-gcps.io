@@ -94,6 +94,7 @@ class AccountSettings(FormView):
         obj = self.get_initial()
         context = super(AccountSettings, self).get_context_data(**kwargs)
         context['merchant_id'] = obj['merchant_id']
+        context['ref_url'] = obj['ref_url']
         return context
 
     def form_valid(self, form):

@@ -1,6 +1,22 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
+    {% block meta %}
+        <!-- Schema.org markup for Google+ -->
+        <meta itemprop="name" content="GETCRYPTOPAYMENTS">
+        <meta itemprop="description" content="GETCRYPTOPAYMENTS">
+        <meta itemprop="image" content={% static 'images/logo.png' %}>
+
+        <!-- Twitter Card data -->
+        <meta name="twitter:title" content="GETCRYPTOPAYMENTS">
+        <meta name="twitter:description" content="GETCRYPTOPAYMENTS">
+        <meta name="twitter:image" content={% static 'images/logo.png' %}>
+
+        <!-- Open Graph data -->
+        <meta property="og:title" content="GETCRYPTOPAYMENTS" />
+        <meta property="og:image" content={% static 'images/logo.png' %} />
+        <meta property="og:description" content="GETCRYPTOPAYMENTS" />
+    {% endblock %}
     <section>
         <div class="banner-log">
             <div class="container">

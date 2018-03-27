@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block content %}
     {% load widget_tweaks %}
+    {% load social_share %}
     <section>
         <div class="dashboard-bg">
             <div class="container">
@@ -100,23 +101,35 @@
                                             <form class="form-inline" role="form">
                                                 <div class="form-group merchant-id">
                                                     <label for="name">Affiliate URL:</label>
-                                                    <p for="name">  Want to earn some crypto? Give this URL to new users and when they sign up you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees: {{ ref_url }} </p>
+                                                    <p for="name">  Want to earn some crypto? Give this URL to new users and when they sign up you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:  <b>{{ ref_url }}</b> </p>
                                                 </div>
                                             </form>
                                         </div>
                                         <div class="social-media">
                                             <ul>
                                                 <li>
-                                                    <img src="{% static 'images/facebook.png' %}" alt="">
+                                                    {% post_to_facebook_url "facebook.com"  as p  %}
+                                                    <a href="{{ facebook_url }}">
+                                                        <img src="{% static 'images/facebook.png' %}"  alt="">
+                                                    </a>
                                                 </li>
                                                 <li>
-                                                    <img src="{% static 'images/twitter.png' %}" alt="">
+                                                    {% post_to_twitter_url "twitter.com"  as p  %}
+                                                    <a href="{{ tweet_url }}">
+                                                        <img src="{% static 'images/twitter.png' %}" alt="">
+                                                    </a>
                                                 </li>
                                                 <li>
-                                                    <img src="{% static 'images/linkedin.png'%}" alt="">
+                                                    {% post_to_linkedin_url "test" "linkedin.com"  as p  %}
+                                                    <a href="{{ linkedin_url }}">
+                                                        <img src="{% static 'images/linkedin.png'%}" alt="">
+                                                    </a>
                                                 </li>
                                                 <li>
-                                                    <img src="{% static 'images/google.png' %}" alt="">
+                                                    {% post_to_gplus_url "gplus.com"  as p  %}
+                                                    <a href="{{ gplus_url }}">
+                                                        <img src="{% static 'images/google.png' %}" alt="">
+                                                    </a>
                                                 </li>
                                                 <div class="share">Share/Save <img src="{% static 'images/share.png' %}"></div>
                                             </ul>
@@ -177,7 +190,7 @@
 
                                                 </div>
 
-                                                  <button type="submit" class="btn- btn-default btn-log update-settings">Update Account</button>
+                                                <button type="submit" class="btn- btn-default btn-log update-settings">Update Account</button>
 
 
                                             </fieldset>

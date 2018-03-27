@@ -56,13 +56,13 @@ class Profile(models.Model):
     merchant_id = models.CharField(_('merchant id'), max_length=32, null=True, blank=True, unique=True, editable=False)
     date_format = models.CharField(_('date format'), max_length=255, null=True, blank=True)
     time_format = models.CharField(_('time format'), max_length=255, null=True, blank=True)
-    # date_time = models.DateTimeField(_('date time'), null=True, blank=True)
     use_gravatar = models.BooleanField(_('use gravatar'), default=False)
     pgp_gpg_public_key = models.TextField(_('PGP/GPG public key'), null=True, blank=True)
     two_factor_auth = models.PositiveSmallIntegerField(_('2FA authentication'),
                                                        choices=TWO_FACTOR_AUTH_CHOICES, default=EMAIL)
     email_confirmation_transaction = models.BooleanField(_('email confirmation send/withdrawal'), default=True)
     is_subscribed = models.BooleanField(_('is subscribed'), default=False)
+    referance_count = models.IntegerField(_('referance count'), null=True, default=0)
 
     class Meta:
         verbose_name = _('Profile')

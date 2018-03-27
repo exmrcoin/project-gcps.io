@@ -115,7 +115,7 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    {% post_to_twitter_url host as p  %}
+                                                    {% post_to_twitter_url request.get_host as p  %}
                                                     <a href="{{ tweet_url }}">
                                                         <img src="{% static 'images/twitter.png' %}" alt="">
                                                     </a>

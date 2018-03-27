@@ -58,6 +58,12 @@
   .navbar-default .navbar-collapse, .navbar-default .navbar-form{
     background-color: #fff;
   }
+  .footer-head-menu{
+    font-size: 12px;
+  }
+  .login-sec{
+    width:50% !important;
+  }
 
   }
   
@@ -297,6 +303,10 @@
     .menu-nav{
       font-size: 16px !important;
     }
+    .merchant-id {
+      
+      font-size: 12px;
+  }
   
   }
   
@@ -316,6 +326,14 @@
     }
     .menu-nav{
       font-size: 16px !important;
+    }
+    .login-bg h4{
+      font-size: 14px;
+      padding-left: 18px;
+    }
+    .login-bg h1{
+      font-size: 13px !important;
+      padding: 0px 0px 0px 82px;
     }
   
   
@@ -365,5 +383,18 @@
   .merchant-id{
     font-size: 14px;
   }
+  .btn-log{
+    width: 138px !important;
 
+  }
+  .login-sec{
+    width: 100% !important;
+  }
+  .login-bg h1{
+    font-size: 12px !important;
+    padding: 0px 0px 0px 60px;
+  }
+  .login-bg h4{
+    font-size: 12px;
+  }
   }

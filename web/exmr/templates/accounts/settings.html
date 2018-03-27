@@ -115,13 +115,13 @@
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    {% post_to_twitter_url ref_url as p  %}
+                                                    {% post_to_twitter_url 'GETCRYPTOPAYMENTS' ref_url as p  %}
                                                     <a href="{{ tweet_url }}">
                                                         <img src="{% static 'images/twitter.png' %}" alt="">
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    {% post_to_linkedin_url ref_url   as p  %}
+                                                    {% post_to_linkedin_url 'GETCRYPTOPAYMENTS' ref_url as p  %}
                                                     <a href="{{ linkedin_url }}">
                                                         <img src="{% static 'images/linkedin.png'%}" alt="">
                                                     </a>

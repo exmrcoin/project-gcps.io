@@ -5,16 +5,16 @@
         <!-- Schema.org markup for Google+ -->
         <meta itemprop="name" content="GETCRYPTOPAYMENTS">
         <meta itemprop="description" content="GETCRYPTOPAYMENTS">
-        <meta itemprop="image" content={{ request.get_host }}{% static 'images/logo.png' %}>
+        <meta itemprop="image" content={{ request.get_host }}://{% static 'images/logo.png' %}>
 
         <!-- Twitter Card data -->
         <meta name="twitter:title" content="GETCRYPTOPAYMENTS">
         <meta name="twitter:description" content="GETCRYPTOPAYMENTS">
-        <meta name="twitter:image" content={{ request.get_host }}{% static 'images/logo.png' %}>
+        <meta name="twitter:image" content={{ request.get_host }}://{% static 'images/logo.png' %}>
 
         <!-- Open Graph data -->
         <meta property="og:title" content="GETCRYPTOPAYMENTS" />
-        <meta property="og:image" content={{ request.get_host }}{% static 'images/logo.png' %} />
+        <meta property="og:image" content={{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.png' %} />
         <meta property="og:description" content="GETCRYPTOPAYMENTS" />
     {% endblock %}
     <section>

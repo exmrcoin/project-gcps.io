@@ -162,6 +162,26 @@
   float: right;
 }
   }
+  @media only screen and (max-width: 750px) {
+    .btn-more{
+      width: 183px;
+    }
+    .btn-footer {
+      width: 122px;
+  }
+  .apple-icon {
+    width: 138px;
+    margin-top: 8px;
+}
+.dashboard-wrapper  p{
+  font-size: 11px;
+}
+.btn-log {
+  width: 90%;
+}
+  }
+
+
   @media only screen and (max-width: 680px) {
     .second-sec{
       height: auto;
@@ -500,4 +520,17 @@
   .banner-img-circle{
     width: 100%;
   }
+  .dashboard-wrapper p {
+    padding: 13px 0px 0px 3px;
+    font-size: 9px;
+}
+.btn-log {
+  width: 87% !important;
+}
+.merchant-id {
+  font-size: 10px;
+}
+.fa-stack testimonial-right-handle fa-lg slick-arrow{
+  display: none;
+}
   }

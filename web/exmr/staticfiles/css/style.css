@@ -522,12 +522,16 @@ body{
 		font-size: 15px !important;
 		padding-left: 18px;	
 		cursor: pointer;
-		padding: 0px 0px 0px 49px;
+		float: right;
 		margin-top: 2px;
 		border: none;	
 	}
 	.login-bg h1:hover{
 		color: #e75d14;
+	}
+	.signup-btn:hover{
+		background-color:#e75d14 !important; 
+		color: #fff !important;
 	}
 	
 	/*============== login end========*/
@@ -1697,4 +1701,7 @@ fieldset {
 .menu-box:hover{
 	background-color:#5c8ab1;
 	color: #fff;
+}
+.icon-bar{
+	background-color: #fff !important;
 }

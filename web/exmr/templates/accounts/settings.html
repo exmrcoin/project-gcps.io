@@ -3,6 +3,7 @@
 {% block content %}
     {% load widget_tweaks %}
     {% load social_share %}
+    {% url 'home' as host %}
     <section>
         <div class="dashboard-bg">
             <div class="container">
@@ -108,25 +109,25 @@
                                         <div class="social-media">
                                             <ul>
                                                 <li>
-                                                    {% post_to_facebook_url "facebook.com"  as p  %}
+                                                    {% post_to_facebook_url host  as p  %}
                                                     <a href="{{ facebook_url }}">
                                                         <img src="{% static 'images/facebook.png' %}"  alt="">
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    {% post_to_twitter_url "twitter.com"  as p  %}
+                                                    {% post_to_twitter_url host  as p  %}
                                                     <a href="{{ tweet_url }}">
                                                         <img src="{% static 'images/twitter.png' %}" alt="">
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    {% post_to_linkedin_url "test" "linkedin.com"  as p  %}
+                                                    {% post_to_linkedin_url host   as p  %}
                                                     <a href="{{ linkedin_url }}">
                                                         <img src="{% static 'images/linkedin.png'%}" alt="">
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    {% post_to_gplus_url "gplus.com"  as p  %}
+                                                    {% post_to_gplus_url host as p  %}
                                                     <a href="{{ gplus_url }}">
                                                         <img src="{% static 'images/google.png' %}" alt="">
                                                     </a>

@@ -86,7 +86,7 @@ class AccountSettings(FormView):
         initial['time_format'] = user_profile.time_format
         initial['merchant_id'] = user_profile.merchant_id
         initial['ref_url'] = self.request.scheme +"://"+ self.request.META['HTTP_HOST'] + "?ref="  + user_profile.merchant_id
-        print(initial)
+
         initial['gender'] = user_profile.gender
         return initial
 

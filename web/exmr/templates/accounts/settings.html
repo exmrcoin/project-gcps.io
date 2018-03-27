@@ -109,25 +109,25 @@
                                         <div class="social-media">
                                             <ul>
                                                 <li>
-                                                    {% post_to_facebook_url host as p  %}
+                                                    {% post_to_facebook_url ref_url as p  %}
                                                     <a href="{{ facebook_url }}">
                                                         <img src="{% static 'images/facebook.png' %}"  alt="">
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    {% post_to_twitter_url request.get_host as p  %}
+                                                    {% post_to_twitter_url ref_url as p  %}
                                                     <a href="{{ tweet_url }}">
                                                         <img src="{% static 'images/twitter.png' %}" alt="">
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    {% post_to_linkedin_url host   as p  %}
+                                                    {% post_to_linkedin_url ref_url   as p  %}
                                                     <a href="{{ linkedin_url }}">
                                                         <img src="{% static 'images/linkedin.png'%}" alt="">
                                                     </a>
                                                 </li>
                                                 <li>
-                                                    {% post_to_gplus_url host as p  %}
+                                                    {% post_to_gplus_url ref_url as p  %}
                                                     <a href="{{ gplus_url }}">
                                                         <img src="{% static 'images/google.png' %}" alt="">
                                                     </a>

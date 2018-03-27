@@ -1,6 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.core.exceptions import ObjectDoesNotExist
 from django.forms import forms
 from django.http import HttpResponse
@@ -15,6 +16,7 @@ from django.urls import reverse_lazy
 from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm
 from apps.accounts.models import Profile, ProfileActivation
 from apps.common.utils import generate_key
+from exmr import settings
 
 from .forms import CHOICES
 import datetime as dt
@@ -73,22 +75,18 @@ class AccountSettings(FormView):
     def get_initial(self):
         initial = super(AccountSettings, self).get_initial()
         user = get_object_or_404(User, username=self.request.user)
-        # try:
         user_profile, created = Profile.objects.get_or_create(user_id=user.id)
-        # except user_profile.DoesNotExist:
-        #     user_profile = None
         initial['email'] = self.request.user.email
         initial['confirm_email'] = self.request.user.email
         if created and user_profile.timezone:
             initial['timezone'] = user_profile.timezone
         elif user_profile.timezone:
             initial['timezone'] = user_profile.timezone
-        # date_time = user_profile.date_time
-        # date = date_time.strftime('%m/%d/%Y')
-        # time = date_time.strftime('%H:%M')
         initial['date_format'] = user_profile.date_format
         initial['time_format'] = user_profile.time_format
         initial['merchant_id'] = user_profile.merchant_id
+        initial['ref_url'] = self.request.scheme +"://"+ self.request.META['HTTP_HOST'] + "?ref="  + user_profile.merchant_id
+        print(initial)
         initial['gender'] = user_profile.gender
         return initial
 

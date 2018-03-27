@@ -23,6 +23,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfirmView, \
     PasswordResetCompleteView
 
+from apps.common.views import ReferanceView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -30,10 +31,9 @@ urlpatterns = [
          name='password_reset_done'),
     path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('?P<ref>\w+|', ReferanceView.as_view(), name='home'),
     path('', include('apps.accounts.urls')),
     path('', TemplateView.as_view(template_name="common/index.html"), name='home'),
-    # path('login/', TemplateView.as_view(template_name='accounts/login.html'),
-    #      name='login'),
     path('login/', LoginView.as_view(template_name="accounts/login.html"), name='signin'),
 
     path('sign-up/', TemplateView.as_view(template_name='accounts/signup.html'),

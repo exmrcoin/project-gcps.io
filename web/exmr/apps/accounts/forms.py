@@ -8,6 +8,7 @@ from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
 from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
+from django.db.models import Q
 
 from apps.accounts.models import Profile
 
@@ -75,7 +76,6 @@ class UpdateBasicProfileForm(forms.ModelForm):
     gender = forms.ChoiceField(choices=GENDER_CHOICES, required=True)
     timezone = forms.ChoiceField(choices=CHOICES)
     date_format = forms.ChoiceField(choices=DATE_FORMAT_CHOICES)
-    # date_format_second = forms.CharField(required=False)
     time_format = forms.ChoiceField(choices=TIME_FORMAT_CHOICES)
 
     class Meta:
@@ -89,14 +89,8 @@ class UpdateBasicProfileForm(forms.ModelForm):
         self.fields['confirm_email'].widget.attrs['class'] = 'form-control text-view'
         self.fields['gender'].widget.attrs['class'] = 'form-control select-view'
         self.fields['date_format'].widget.attrs['class'] = 'datepicker form-control select-view  w100'
-        # self.fields['date_format'].widget.attrs['placeholder'] = '03/10/2018'
-        # self.fields['date_format'].widget.attrs['id'] = "datepicker"
-        # self.fields['date_format_second'].widget.attrs['class'] = 'datepicker form-control select-view date-box second-date'
-        # self.fields['date_format_second'].widget.attrs['placeholder'] = '03/10/2018'
-        # self.fields['time_format'].widget.attrs['data-format'] = "hh:mm:ss"
         self.fields['time_format'].widget.attrs['class'] = 'timepicker form-control select-view'
-        # self.fields['time_format'].widget.attrs['placeholder'] = '05:30'
-        # self.fields['time_format'].widget.attrs['id'] = 'datetimepicker3'
+
 
     def clean_confirm_email(self):
         cleaned_data = super(UpdateBasicProfileForm, self).clean()
@@ -112,11 +106,14 @@ class CustomPasswordResetForm(PasswordResetForm):
     username = forms.CharField(required=False)
     email = forms.EmailField(required=False)
 
-    fields = ('username', 'email', )
-
     def clean(self):
-        if not self.cleaned_data.get('username') and not self.cleaned_data.get('email'):
+        if not self.cleaned_data.get('username'):
             raise forms.ValidationError(_('Either username or email needs to be provided'))
+        else:
+            username = self.cleaned_data.get('username')
+            user = User.objects.filter(Q(username=username, is_active=True) | Q(email=username, is_active=True)).first()
+        if not user:
+            raise forms.ValidationError(_('User not found'))
 
     def get_users(self, email):
         """Given an email, return matching user(s) who should receive a reset.
@@ -142,33 +139,29 @@ class CustomPasswordResetForm(PasswordResetForm):
         Generate a one-use only link for resetting password and send it to the
         user.
         """
-        email = self.cleaned_data.get("email")
         username = self.cleaned_data.get('username')
-        if email:
-            users = self.get_users(email)
-        else:
-            users = User.objects.filter(username=username, is_active=True)
-            email = users[0].email
-        for user in self.get_users(email):
-            if not domain_override:
-                current_site = get_current_site(request)
-                site_name = current_site.name
-                domain = current_site.domain
-            else:
-                site_name = domain = domain_override
-            context = {
-                'email': email,
-                'domain': domain,
-                'site_name': site_name,
-                'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
-                'user': user,
-                'token': token_generator.make_token(user),
-                'protocol': 'https' if use_https else 'http',
-            }
-            if extra_email_context is not None:
-                context.update(extra_email_context)
-            self.send_mail(
-                subject_template_name, email_template_name, context, from_email,
-                email, html_email_template_name=html_email_template_name,
-            )
-
+        user = User.objects.filter(Q(username=username, is_active=True) | Q(email=username, is_active=True)).first()
+        if user:
+            email = user.email
+            for user in self.get_users(email):
+                if not domain_override:
+                    current_site = get_current_site(request)
+                    site_name = current_site.name
+                    domain = current_site.domain
+                else:
+                    site_name = domain = domain_override
+                context = {
+                    'email': email,
+                    'domain': domain,
+                    'site_name': site_name,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)).decode(),
+                    'user': user,
+                    'token': token_generator.make_token(user),
+                    'protocol': 'https' if use_https else 'http',
+                }
+                if extra_email_context is not None:
+                    context.update(extra_email_context)
+                self.send_mail(
+                    subject_template_name, email_template_name, context, from_email,
+                    email, html_email_template_name=html_email_template_name,
+                )

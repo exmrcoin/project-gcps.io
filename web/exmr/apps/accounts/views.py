@@ -108,10 +108,6 @@ class AccountSettings(FormView):
             user_profile = None
         date = form.cleaned_data['date_format']
         time = form.cleaned_data['time_format']
-        # new_date = dt.datetime.strptime(date, '%m/%d/%Y').strftime('%Y-%m-%d')
-        # format_time = new_date + ' ' + time
-        # my_date = dt.datetime.strptime(format_time, '%Y-%m-%d %H:%M %p')
-        # user_profile.date_time = my_date
         user_profile.date_format = date
         user_profile.time_format = time
         user_profile.gender = form.cleaned_data['gender']

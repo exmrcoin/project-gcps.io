@@ -482,17 +482,15 @@ body{
 	}
 	.btn-log{
 		width: 165px;
-		height: 49px;
+		min-height: 49px;
 		border: none;
 		background-color: #e75d14 !important;
 		color: #fff !important;
 		font-size: 20px;
 		border-radius: 4px;
 		box-shadow: 0 4px 12px -1px #cecccc;
-	
 		font-size: 20px;
 		margin-top: 13px;
-	
 	}
 	.signup-btn{
 		background-color: #fff !important;
@@ -508,9 +506,9 @@ body{
 	.login-bg h4{
 		float: left;
 		font-size: 15px;
-		padding-left: 18px;	
+		padding-left: 18px;
 		cursor: pointer;
-		padding: 0px 0px 0px 0px;	
+		padding: 0px 0px 0px 0px;
 		margin-top: 2px;
 		margin-bottom: 8px;
 	}
@@ -520,20 +518,20 @@ body{
 	.login-bg h1{
 		float: left;
 		font-size: 15px !important;
-		padding-left: 18px;	
+		padding-left: 18px;
 		cursor: pointer;
 		float: right;
 		margin-top: 2px;
-		border: none;	
+		border: none;
 	}
 	.login-bg h1:hover{
 		color: #e75d14;
 	}
 	.signup-btn:hover{
-		background-color:#e75d14 !important; 
+		background-color:#e75d14 !important;
 		color: #fff !important;
 	}
-	
+
 	/*============== login end========*/
 	/*============== footer start ========*/
 	.footer-bg{
@@ -577,7 +575,7 @@ body{
 }
    .coin-payment{
    	background-color:inherit !important;
-   	border: solid 1px #ff6600; 
+   	border: solid 1px #ff6600;
    }
    .coin-payment:hover{
    	background-color: #ff6600 !important;
@@ -593,7 +591,7 @@ body{
     padding: 0px 0px 0px 13px;
     margin-right: 28px;
     display: inline-block;
- }  
+ }
  .pay-setbx h3{
 	 font-size: 26px;
  }
@@ -625,7 +623,7 @@ body{
  }
  .sub-company{
 	padding-left:108px !important;
-	margin-top: 20px; 
+	margin-top: 20px;
 	margin-bottom: 40px;
  }
  .coin-sale{
@@ -664,31 +662,31 @@ body{
  .slick-slider
  {
 	 position: relative;
- 
+
 	 display: block;
- 
+
 	 -moz-box-sizing: border-box;
 	 box-sizing: border-box;
- 
+
 	 -webkit-user-select: none;
 	 -moz-user-select: none;
 	 -ms-user-select: none;
 	 user-select: none;
- 
+
 	 -webkit-touch-callout: none;
 	 -khtml-user-select: none;
 	 -ms-touch-action: pan-y;
 	 touch-action: pan-y;
 	 -webkit-tap-highlight-color: transparent;
  }
- 
+
  .slick-list
  {
 	 position: relative;
- 
+
 	 display: block;
 	 overflow: hidden;
- 
+
 	 margin: 0;
 	 padding: 0;
  }
@@ -701,7 +699,7 @@ body{
 	 cursor: pointer;
 	 cursor: hand;
  }
- 
+
  .slick-slider .slick-track,
  .slick-slider .slick-list
  {
@@ -711,20 +709,20 @@ body{
 	 -o-transform: translate3d(0, 0, 0);
 	 transform: translate3d(0, 0, 0);
  }
- 
+
  .slick-track
  {
 	 position: relative;
 	 top: 0;
 	 left: 0;
- 
+
 	 display: block;
  }
  .slick-track:before,
  .slick-track:after
  {
 	 display: table;
- 
+
 	 content: '';
  }
  .slick-track:after
@@ -735,12 +733,12 @@ body{
  {
 	 visibility: hidden;
  }
- 
+
  .slick-slide
  {
 	 display: none;
 	 float: left;
- 
+
 	 height: 100%;
 	 min-height: 1px;
  }
@@ -771,18 +769,18 @@ body{
  .slick-vertical .slick-slide
  {
 	 display: block;
- 
+
 	 height: auto;
- 
+
 	 border: 1px solid transparent;
  }
  .slick-arrow.slick-hidden {
 	 display: none;
  }
- 
- 
- 
- 
+
+
+
+
  #testimonials {
 	 background-color: #f1f1f1;
  }
@@ -914,33 +912,33 @@ body{
  @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700);
 @import url(https://fonts.googleapis.com/css?family=Roboto+Slab:400,100);
 
-body { 
+body {
   font-family: 'Open Sans', sans-serif;
   background-color: #f4f4f4;
   margin: 0;
   padding: 0;
 }
 
-header { 
-  background-color: #fff; 
+header {
+  background-color: #fff;
   padding: 5px 15px 0px;
   border-bottom: 1px solid #ccc;
   margin-bottom: 25px;
 }
 
 h1 {
-  font-size: 28px; 
-  font-weight: 700; 
-  margin: 0px; 
-  padding: 0px 0px 10px 0; 
+  font-size: 28px;
+  font-weight: 700;
+  margin: 0px;
+  padding: 0px 0px 10px 0;
   border-bottom : 1px solid #ccc;
 }
 h4 { font-size : 16px; font-weight: 300; margin-top: 5px; line-height: 22px; }
 h4 > * { display: inline-block; vertical-align: top; }
 
-fieldset { 
-  border: 1px solid #ccc; 
-  padding: 15px; 
+fieldset {
+  border: 1px solid #ccc;
+  padding: 15px;
   max-width: 92%;
   background-color: #fff;
   border-radius: 5px;
@@ -949,22 +947,22 @@ fieldset {
 
 
 .CaptchaWrap { position: relative; }
-.CaptchaTxtField { 
-  border-radius: 5px; 
-  border: 1px solid #ccc; 
-  display: block;  
+.CaptchaTxtField {
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  display: block;
   box-sizing: border-box;
 }
 
-#UserCaptchaCode { 
-  padding: 15px 10px; 
-  outline: none; 
-  font-size: 18px; 
-  font-weight: normal; 
+#UserCaptchaCode {
+  padding: 15px 10px;
+  outline: none;
+  font-size: 18px;
+  font-weight: normal;
   font-family: 'Open Sans', sans-serif;
   width: 343px;
 }
-#CaptchaImageCode { 
+#CaptchaImageCode {
   text-align:center;
   margin-top: 15px;
   padding: 0px 0;
@@ -972,12 +970,12 @@ fieldset {
   overflow: hidden;
 }
 
-.capcode { 
-  font-size: 46px; 
-  display: block; 
+.capcode {
+  font-size: 46px;
+  display: block;
   -moz-user-select: none;
   -webkit-user-select: none;
-  user-select: none; 
+  user-select: none;
   cursor: default;
   letter-spacing: 1px;
   color: #ccc;
@@ -986,22 +984,22 @@ fieldset {
   font-style: italic;
 }
 
-.ReloadBtn { 
-  background:url('https://cdn3.iconfinder.com/data/icons/basic-interface/100/update-64.png') left top no-repeat;   
+.ReloadBtn {
+  background:url('https://cdn3.iconfinder.com/data/icons/basic-interface/100/update-64.png') left top no-repeat;
   background-size : 100%;
-  width: 32px; 
+  width: 32px;
   height: 32px;
   border: 0px; outline none;
-  position: absolute; 
+  position: absolute;
   bottom: 30px;
   left : 310px;
   outline: none;
-  cursor: pointer; 
+  cursor: pointer;
 }
 .btnSubmit {
   margin-top: 15px;
   border: 0px;
-  padding: 10px 20px; 
+  padding: 10px 20px;
   border-radius: 5px;
   font-size: 18px;
   background-color: #1285c4;
@@ -1009,10 +1007,10 @@ fieldset {
   cursor: pointer;
 }
 
-.error { 
-  color: red; 
-  font-size: 12px; 
-  display: none; 
+.error {
+  color: red;
+  font-size: 12px;
+  display: none;
 }
 .success {
   color: green;
@@ -1061,7 +1059,7 @@ fieldset {
   }
   .dasboard-head{
 	  width: 99%;
-	
+
 	  background-color: #e8ebef;
 	  margin: 8px auto !important;
   }
@@ -1121,7 +1119,7 @@ fieldset {
     line-height: 105px;
     font-size: 14px;
     font-weight: 600;
-	
+
 }
 .dashboard-table{
 	background-color: #fff;
@@ -1140,7 +1138,7 @@ fieldset {
 }
 .table-top{
 	background-color: #fff;
-	
+
 
 }
 .trans{
@@ -1327,7 +1325,7 @@ fieldset {
     width: 95%;
     height: auto;
     margin: 0px auto;
-   
+
 }
 .merchant-id{
 	padding: 14px 0px 0px 21px;
@@ -1353,6 +1351,7 @@ fieldset {
 .form-settings{
 	margin-left: 23px;
 	margin-top: 40px;
+	width: 100%;
 }
 .text-view{
 	border: solid 1px #d7d7d7 !important;

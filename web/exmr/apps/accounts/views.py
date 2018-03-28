@@ -47,7 +47,6 @@ class SignUpView(CreateView):
         return super(SignUpView, self).form_valid(form)
 
     def send_activation_mail(self, profile):
-
         """
         send activation mail
         :param profile:
@@ -86,7 +85,6 @@ class AccountSettings(FormView):
         initial['time_format'] = user_profile.time_format
         initial['merchant_id'] = user_profile.merchant_id
         initial['ref_url'] = self.request.scheme +"://"+ self.request.META['HTTP_HOST'] + "?ref="  + user_profile.merchant_id
-
         initial['gender'] = user_profile.gender
         return initial
 
@@ -120,9 +118,7 @@ def form_invalid(self, form):
 
 
 class ProfileActivationView(TemplateView):
-
     template_name = 'accounts/account_activated.html'
-
     def get_context_data(self, **kwargs):
         context = super(ProfileActivationView, self).get_context_data(**kwargs)
         key = kwargs.get('key')

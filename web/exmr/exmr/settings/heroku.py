@@ -16,9 +16,9 @@ EMAIL_USE_TLS = True
 
 EMAIL_HOST = 'smtp.gmail.com'
 
-EMAIL_HOST_USER = 'joblejose1@gmail.com'
+EMAIL_HOST_USER = 'noreplay@getcryptopayments.net'
 
-EMAIL_HOST_PASSWORD = 'techversant'
+EMAIL_HOST_PASSWORD = 'Gcp1234!!'
 
 EMAIL_PORT = 587
 

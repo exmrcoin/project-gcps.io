@@ -168,3 +168,16 @@ class Feedback(models.Model):
     def __str__(self):
         return '%s\'s feedback about %s' % (self.left_by.username, self.user.username)
 
+
+
+# class NewsLetter(models.Model):
+#     """
+#         Model to send newsletter to users
+#     """
+
+    # subject = models.CharField(_('subject'))
+    # is_active = models.BooleanField(default=False)
+    # content =
+
+
+

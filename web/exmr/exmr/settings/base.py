@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_social_share',
+    'ckeditor',
 
     # Django packages
     'timezone_field',
@@ -142,6 +143,9 @@ STATICFILES_DIRS = (os.path.join(PROJECT_PATH, 'staticfiles'),)
 
 MEDIA_URL = '/media/'
 LOGIN_URL= '/login/'
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor"
+
 
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')

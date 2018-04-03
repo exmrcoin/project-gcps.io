@@ -32,7 +32,6 @@ urlpatterns = [
     path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('', include('apps.accounts.urls')),
-    # path('', TemplateView.as_view(template_name="common/index.html"), name='home'),
     path('', HomeView.as_view(), name='home'),
     path('login/', LoginView.as_view(template_name="accounts/login.html"), name='signin'),
 

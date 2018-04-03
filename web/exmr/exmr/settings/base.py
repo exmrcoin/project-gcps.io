@@ -154,8 +154,6 @@ LOGIN_URL= '/login/'
 LOGIN_REDIRECT_URL = '/profile/'
 
 
-CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor"
-
 SITE_ID = 1
 
 try:

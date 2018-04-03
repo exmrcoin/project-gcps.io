@@ -1,7 +1,10 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
+from django.core.mail import EmailMultiAlternatives
 from django.utils.translation import ugettext_lazy as _
 
-from apps.accounts.models import Profile, Address, Feedback, ProfileActivation
+from apps.accounts.models import Profile, Address, Feedback, ProfileActivation, NewsLetter
+from exmr import settings
 
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -49,3 +52,26 @@ class FeedbackAdmin(admin.ModelAdmin):
 admin.site.register(Feedback, FeedbackAdmin)
 
 admin.site.register(ProfileActivation)
+
+
+def send_newsletter(self, request, queryset):
+    profiles = Profile.objects.filter(is_subscribed=True)
+    for q in queryset:
+        subject = q.subject
+        content = q.content
+        from_email = settings.EMAIL_HOST_USER
+    if profiles:
+        for profile in profiles:
+            email = profile.user.email
+            msg = EmailMultiAlternatives(subject, '', from_email, [email])
+            msg.attach_alternative(content, "text/html")
+            msg.send()
+
+send_newsletter.short_description = 'Send newsletters'
+
+class NewsletterAdmin(admin.ModelAdmin):
+    actions = [send_newsletter, ]
+
+admin.site.register(NewsLetter, NewsletterAdmin)
+
+

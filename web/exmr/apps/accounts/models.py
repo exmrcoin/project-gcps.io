@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -170,14 +171,16 @@ class Feedback(models.Model):
 
 
 
-# class NewsLetter(models.Model):
-#     """
-#         Model to send newsletter to users
-#     """
+class NewsLetter(models.Model):
+    """
+        Model to send newsletter to users
+    """
+    subject = models.CharField(_('subject'), max_length=200)
+    is_active = models.BooleanField(default=False)
+    content = RichTextField(verbose_name=_('content'),null=True,blank=True)
 
-    # subject = models.CharField(_('subject'))
-    # is_active = models.BooleanField(default=False)
-    # content =
-
-
-
+    def __str__(self):
+        return self.subject
+    #
+    # @property
+    # def newsletter_id(self):

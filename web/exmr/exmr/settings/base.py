@@ -142,11 +142,6 @@ STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 STATICFILES_DIRS = (os.path.join(PROJECT_PATH, 'staticfiles'),)
 
 MEDIA_URL = '/media/'
-LOGIN_URL= '/login/'
-
-CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor"
-
-
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
 
@@ -154,6 +149,12 @@ ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
+
+LOGIN_URL= '/login/'
+LOGIN_REDIRECT_URL = '/profile/'
+
+
+CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor"
 
 SITE_ID = 1
 

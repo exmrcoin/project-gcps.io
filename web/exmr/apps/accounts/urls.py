@@ -12,7 +12,6 @@ from apps.accounts.views import  AccountSettings
 app_name = 'accounts'
 
 urlpatterns = [
-    # path('profile/', login_required(TemplateView.as_view(template_name="accounts/dashboard.html")), name='profile'),
     path('profile/', views.DashboardView.as_view(), name='profile'),
     path('login/', LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),

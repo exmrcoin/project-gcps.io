@@ -4,6 +4,7 @@
     {% load widget_tweaks %}
     {% load social_share %}
     {% url 'home' as host %}
+    {% with user.get_profile as profile %}
     <section>
         <div class="dashboard-bg">
             <div class="container">
@@ -20,7 +21,7 @@
                             <div class="home-icon">
                                 <a href= "{% url 'accounts:profile' %}">
                                     <img class="img-d-icon" src="{% static 'images/dash-icon1.png'%}">
-                                    <a>
+                                </a>
                             </div>
                             <a href= "{% url 'accounts:profile' %}">
                                 <span class="dashboard-span">Home</span>
@@ -93,7 +94,7 @@
                                             <form class="form-inline" role="form">
                                                 <div class="form-group merchant-id">
                                                     <label for="name">Your Merchant ID:</label>
-                                                    <label for="name">{{ merchant_id }}</label>
+                                                    <label for="name">{{ profile.merchant_id }}</label>
 
                                                 </div>
                                             </form>
@@ -102,7 +103,7 @@
                                             <form class="form-inline" role="form">
                                                 <div class="form-group merchant-id">
                                                     <label for="name">Affiliate URL:</label>
-                                                    <p for="name">  Want to earn some crypto? Give this URL to new users and when they sign up you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:  <b>{{ ref_url }}</b> </p>
+                                                    <p for="name">  Want to earn some crypto? Give this URL to new users and when they sign up you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:  <b><span id="refUrl">{{ ref_url }}</span></b> </p>
                                                 </div>
                                             </form>
                                         </div>
@@ -138,60 +139,100 @@
                                             </ul>
 
                                         </div>
-                                        <form role="form" method="post" action="{% url 'accounts:settings' %}" novalidate>
+                                        <div class="alert">
+
+                                        </div>
+                                        <form role="form" method="post" id="accountForm" action="{% url 'accounts:settings' %}" novalidate>
                                             {% csrf_token %}
                                             <fieldset class="setting-form form-settings">
 
                                                 <div class="form-group col-md-6">
                                                     <label for="first_name">Account Email</label>
                                                     {{ form.email }}
-                                                    {{ form.email.errors }}
+                                                    <span class="error"></span>
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <label for="last_name">Confirm Email</label>
                                                     {{ form.confirm_email }}
-                                                    {{ form.confirm_email.errors }}
+                                                    <span class="error"></span>
                                                 </div>
 
 
                                                 <div class="form-group col-md-6">
                                                     <label for="password">Gender</label>
                                                     {{ form.gender }}
-                                                    {{ form.gender.errors }}
+                                                    <span class="error"></span>
 
-                                                    {#                                                    <select class="form-control select-view " name="" id="country">#}
-                                                    {#                                                        <option>Please Select</option>#}
-                                                    {#                                                        <option>Female</option>#}
-                                                    {#                                                    </select>#}
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <label for="confirm_password">Time Zone</label>
                                                     {{ form.timezone }}
-
+                                                    <span class="error"></span>
                                                 </div>
                                                 <div class="form-group col-md-6">
                                                     <div class=" date-pick">
                                                         <label for="password">Date Format</label>
                                                         {{ form.date_format}}
-                                                        {#                                                        <input  class="datepicker form-control select-view date-box" placeholder="03/05/2018" type="text" alt=""></input>#}
-
+                                                        <span class="error"></span>
                                                     </div>
-                                                    {#                                                    <div class="col-sm-6 date-pick">#}
-                                                    {#                                                        {{ form.date_format_second }}#}
-                                                    {##}
-                                                    {#                                                        <input  class="datepicker form-control select-view date-box second-date" placeholder="03/05/2018" type="text"></input>#}
-                                                    {##}
-                                                    {#                                                    </div>#}
+
                                                 </div>
 
                                                 <div class="form-group col-md-6">
                                                     <label for="confirm_password">Time Format</label>
                                                     {{ form.time_format }}
-                                                    {#                                                                                                        <input data-format="hh:mm:ss" class="timepicker form-control select-view" type="text"></input>#}
+                                                     <span class="error"></span>
+                                                </div>
+
+                                                   <div class="form-group col-md-6">
+
+                                                    <button type="submit" class="btn- btn-default btn-log ">Update Account</button>
+
+                                                   </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+
+                                    <div class="setting-head">Public Info</div>
+                                    <div class="account-setting-wrap">
+                                        <div class="alert">
+
+                                        </div>
+
+                                        <form role="form" method="post" id="publicInfo" action="{% url 'accounts:save_public_info' %}" novalidate>
+                                            {% csrf_token %}
+                                            <fieldset class="setting-form form-settings">
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name">Public Name</label>
+                                                    {{ public_info_form.public_name|add_class:'form-control text-view' }}
+                                                    <span class="error"></span>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name">Public Email</label>
+                                                    {{ public_info_form.public_email|add_class:'form-control text-view' }}
+                                                    <span class="error"></span>
+                                                </div>
+
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name">Public URL</label>
+                                                    {{ public_info_form.public_url|add_class:'form-control text-view' }}
+                                                    <span class="error"></span>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="confirm_password">Use <a href="https://en.gravatar.com/" target="_blank">Gravatar</a></label>
+                                                    {{ public_info_form.use_gravatar }}
+                                                    <span class="error"></span>
 
                                                 </div>
+
 
                                                    <div class="form-group col-md-6">
 
@@ -201,11 +242,7 @@
 
 
                                             </fieldset>
-                                    </div>
-                                </div>
-                                <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-                                    <div class="comming-soon">content coming soon.......!
-                                        <img class="emoji" src="{% static '/images/emoji.jpg'%}">
+                                        </form>
                                     </div>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
@@ -232,59 +269,12 @@
             </div>
         </div>
     </section>
+    {% endwith %}
 {% endblock %}
 
-</body>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script
-        src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<script src="js/jquery.timepicker.min.js"></script>
-<script src="js/datepicker.min.js"></script>
-<script>
-    (function ($) {
+{% block extra_js %}
+    <script src="{% static 'js/clipboard.min.js' %}"></script>
+    <script src="{% static 'js/account_settings.js' %}"></script>
 
-        'use strict';
 
-        $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
-            var $target = $(e.target);
-            var $tabs = $target.closest('.nav-tabs-responsive');
-            var $current = $target.closest('li');
-            var $parent = $current.closest('li.dropdown');
-            $current = $parent.length > 0 ? $parent : $current;
-            var $next = $current.next();
-            var $prev = $current.prev();
-            var updateDropdownMenu = function ($el, position) {
-                $el
-                    .find('.dropdown-menu')
-                    .removeClass('pull-xs-left pull-xs-center pull-xs-right')
-                    .addClass('pull-xs-' + position);
-            };
-
-            $tabs.find('>li').removeClass('next prev');
-            $prev.addClass('prev');
-            $next.addClass('next');
-
-            updateDropdownMenu($prev, 'left');
-            updateDropdownMenu($current, 'center');
-            updateDropdownMenu($next, 'right');
-        });
-
-    })(jQuery);
-    $('.datepicker').datepicker();
-    $('.timepicker').timepicker({
-        timeFormat: 'h:mm p',
-        interval: 60,
-        minTime: '10',
-        maxTime: '6:00pm',
-        defaultTime: '11',
-        startTime: '10:00',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true
-    });
-</script>
-
-</html>
+{% endblock %}

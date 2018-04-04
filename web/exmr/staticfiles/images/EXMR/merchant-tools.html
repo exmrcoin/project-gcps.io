@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GetCryptoPayments</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/responsive.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.min.css">
+  <link rel="stylesheet" href="css/datepicker.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-default nave-menu">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed menu-btn" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src="images/logo.png">
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav menu-nav ">
+          <li>
+            <a href="#">Public Coin Vote </a>
+          </li>
+          <li>
+            <a href="#">Supported Coins</a>
+          </li>
+          <li>
+            <a href="#">Store Directory</a>
+          </li>
+          <li>
+            <a href="#">Merchant Tools</a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact Us
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu drop-down-box">
+              <li>
+                <a href="#">Action</a>
+              </li>
+              <li>
+                <a href="#">Another action</a>
+              </li>
+              <li>
+                <a href="#">Something else here</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="#">Separated link</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="#">One more separated link</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <img class="language-icon" src="images/language.png"> Language
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu drop-down-box">
+              <li>
+                <a href="#">Action</a>
+              </li>
+              <li>
+                <a href="#">Another action</a>
+              </li>
+              <li>
+                <a href="#">Something else here</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="#">Separated link</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="#">One more separated link</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+        <button type="submit" class="btn btn-default btn-log1">Login</button>
+        <button type="submit" class="btn btn-default btn-sign">Signup</button>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
+  <section>
+    <div class="dashboard-bg"> 
+            <div class="merchant-tools merchant-one">
+             <div class=" container merchant-box">MERCHANT TOOLS
+             </div>
+             <div class="container subline-p merchant-toolp">
+                    <p>Instant ceyto checkout with easy to use cart plugin,advanced,invoice buillder,and API for custom intagration
+             </div>
+             
+            </div>      
+      <div class="container">
+         
+        <div class="dashboard-wrapper top-sec">
+           <div class="cotainer">
+                <p>If you would like to be updated about new API or changes to exisiting Apis <span class="click">click here</span></p>
+           </div>
+           <div class="col-sm-3 merchant-box01">
+               <div class="icon-merchant">
+                   <img class="cart-icon" src="images/cart.png">
+               </div>
+               <h5 class=" shopping-headline">SHOPPING CART PLUGIN</h5> 
+               <ul  >
+                   <li>Plugin Downloads</li>
+               </ul>   
+           </div>
+           <div class="col-sm-3 merchant-box01">
+                <div class="icon-merchant">
+                        <img class="cart-icon" src="images/api.png">
+                    </div>
+                    <h5 class=" shopping-headline">API & IPNs</h5> 
+                    <ul  >
+                        <li>Instant Payment Notification</li>
+                        <li>CointpaymentAPI</li>
+                    </ul> 
+           </div>
+           <div class="col-sm-3 merchant-box01">
+                <div class="icon-merchant">
+                  <img class="cart-icon" src="images/invoice.png">  
+                    </div>
+                    <h5 class=" shopping-headline">INVOICE BUILDER</h5> 
+                    <ul  >
+                        <li>Payment Request invoice maker</li>
+                    </ul> 
+           </div>
+           <div class="col-sm-3 merchant-box01">
+                <div class="icon-merchant">
+                        <img class="cart-icon" src="images/point.png">
+                    </div>
+                    <h5 class=" shopping-headline">POINT OF SALE(POS) INTERFACE</h5> 
+                    <ul  >
+                        <li>HTML URL/ POSTF ields</li>
+                        <li>Post link QR Code Generatore</li>
+                        <li>POS Examle</li>
+                    </ul> 
+           </div>
+           <div class="col-sm-3 merchant-box01">
+                <div class="icon-merchant">
+                        <img class="cart-icon" src="images/simle-button.png">
+                    </div>
+                    <h5 class=" shopping-headline">SIMPLE BUTTONS</h5> 
+                    <ul  >
+                        <li>Button Maker</li>
+                        <li>HTML Post Field</li>
+                        <li>Button Examles</li>
+                    </ul> 
+           </div>
+           <div class="col-sm-3 merchant-box01">
+                <div class="icon-merchant">
+                        <img class="cart-icon" src="images/advance.png">
+                    </div>
+                    <h5 class=" shopping-headline">ADVANCE BUTTONS</h5> 
+                    <ul  >
+                            <li>Button Maker</li>
+                            <li>HTML Post Field</li>
+                            <li>Button Examles</li>
+                    </ul> 
+           </div>
+           <div class="col-sm-3 merchant-box01">
+                <div class="icon-merchant">
+                        <img class="cart-icon" src="images/shopping-cart.png">
+                    </div>
+                    <h5 class=" shopping-headline">SHOPPING CART BUTTONS</h5> 
+                    <ul  >
+                        <li>HTML Post Field</li>
+                        <li>Button Examles</li>
+                        <li>Button Images</li>
+                    </ul> 
+           </div>
+           <div class="col-sm-3 merchant-box01">
+                <div class="icon-merchant">
+                        <img class="cart-icon" src="images/donation.png">
+                    </div>
+                    <h5 class=" shopping-headline">DONATION BUTTONS</h5> 
+                    <ul  >
+                        <li>Button Maker</li>
+                        <li>HTML Post Field</li>
+                        <li>Button Examles</li>
+                    </ul> 
+           </div>
+        </div>
+  </section>
+  <footer>
+    <div class="footer-bg">
+      <div class="container ">
+        <div class="row ">
+          <div class="col-sm-2">
+            <div class="footer-head-menu">COINPAYMENTS
+              <span>
+                <img class="footer-head-line" src="images/footer-line.png">
+              </span>
+            </div>
+            <ul>
+              <li>Supported Coins </li>
+              <li>Merchant Tools</li>
+              <li>Public Coin Vote </li>
+              <li>Store Directory </li>
+            </ul>
+          </div>
+          <div class="col-sm-2">
+            <div class="footer-head-menu">COINPAYMENTS
+              <span>
+                <img class="footer-head-line" src="images/footer-line.png">
+              </span>
+            </div>
+            <ul>
+              <li>Get Mobile App </li>
+              <li>Affiliate Information</li>
+              <li>Official TOR URL </li>
+              <li>PGP Key</li>
+            </ul>
+          </div>
+          <div class="col-sm-2">
+            <div class="footer-head-menu">COINPAYMENTS
+              <span>
+                <img class="footer-head-line" src="images/footer-line.png">
+              </span>
+            </div>
+            <ul>
+              <li>Fees/Pricing </li>
+              <li>Help </li>
+              <li>Add Your Store</li>
+              <li>Coin Request </li>
+            </ul>
+          </div>
+          <div class="col-sm-2">
+            <div class="footer-head-menu">COINPAYMENTS
+              <span>
+                <img class="footer-head-line" src="images/footer-line.png">
+              </span>
+            </div>
+            <ul>
+              <li>Twitter</li>
+              <li>Facebook</li>
+              <li>Blog</li>
+            </ul>
+          </div>
+          <div class="col-sm-2">
+            <div class="footer-head-menu">COINPAYMENTS
+              <span>
+                <img class="footer-head-line" src="images/footer-line.png">
+              </span>
+            </div>
+            <ul>
+              <li>Privacy Policy</li>
+              <li>Terms of Service</li>
+            </ul>
+          </div>
+          <div class="col-sm-2 footer-head-menu">
+            <button type="submit" class="btn- btn-default btn-footer">Add Your Store</button>
+            <button type="submit" class="btn- btn-default btn-footer coin-payment">Coin Requst</button>
+            <img class="apple-icon" src="images/apple-icon.png">
+            <img class="apple-icon" src="images/play-store.png">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+</body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/datepicker.min.js"></script>
+<script>
+  (function ($) {
+
+    'use strict';
+
+    $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
+      var $target = $(e.target);
+      var $tabs = $target.closest('.nav-tabs-responsive');
+      var $current = $target.closest('li');
+      var $parent = $current.closest('li.dropdown');
+      $current = $parent.length > 0 ? $parent : $current;
+      var $next = $current.next();
+      var $prev = $current.prev();
+      var updateDropdownMenu = function ($el, position) {
+        $el
+          .find('.dropdown-menu')
+          .removeClass('pull-xs-left pull-xs-center pull-xs-right')
+          .addClass('pull-xs-' + position);
+      };
+
+      $tabs.find('>li').removeClass('next prev');
+      $prev.addClass('prev');
+      $next.addClass('next');
+
+      updateDropdownMenu($prev, 'left');
+      updateDropdownMenu($current, 'center');
+      updateDropdownMenu($next, 'right');
+    });
+
+  })(jQuery);
+  $('.datepicker').datepicker();
+  $('.timepicker').timepicker({
+    timeFormat: 'h:mm p',
+    interval: 60,
+    minTime: '10',
+    maxTime: '6:00pm',
+    defaultTime: '11',
+    startTime: '10:00',
+    dynamic: false,
+    dropdown: true,
+    scrollbar: true
+});
+</script>
+
+</html>

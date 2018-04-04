@@ -107,8 +107,10 @@
                                                 </div>
                                             </form>
                                         </div>
+
+                                        <div class="share">Share/Save <img src="{% static 'images/share.png' %}"></div>
                                         <div class="social-media">
-                                            <ul>
+                                            <ul class="pull-right">
                                                 <li>
                                                     {% post_to_facebook_url ref_url as p  %}
                                                     <a href="{{ facebook_url }}" target="_blank">
@@ -133,7 +135,7 @@
                                                         <img src="{% static 'images/google.png' %}" alt="">
                                                     </a>
                                                 </li>
-                                                <div class="share" data-clipboard-action="copy" data-clipboard-target="#refUrl">Save URL <img src="{% static 'images/share.png' %}"></div>
+
                                             </ul>
 
                                         </div>

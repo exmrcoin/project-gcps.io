@@ -96,7 +96,7 @@
     #CaptchaImageCode { width: 100%;}
 
     .share {
-    width: 163px;
+    width: 165px;
     height: 44px;
     background-color: #e75d14;
     color: #fff;
@@ -120,8 +120,8 @@
 }
 
     .sub-img{
-      width: inherit; 
-      background-size:inherit; 
+      width: inherit;
+      background-size:inherit;
     }
     .grtstrat-last{
       height: auto;
@@ -390,7 +390,13 @@
       color: #fff;
       float: inherit;
       float: inherit;
-      margin-left: 11px;
+      margin-left: 28px;
+      font-size: 13px;
+      width: 124px;
+      height: 39px;
+      padding-left: 18px;
+      line-height: 18px;
+      padding-top: 7px;
     }
     .form-settings{
       width: 100% !important;

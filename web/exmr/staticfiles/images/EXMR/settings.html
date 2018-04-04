@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GetCryptoPayments</title>
+  <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/responsive.css">
+  <link rel="stylesheet" href="css/jquery.timepicker.min.css">
+  <link rel="stylesheet" href="css/datepicker.min.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-default nave-menu">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed menu-btn" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <img src="images/logo.png">
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav menu-nav ">
+          <li>
+            <a href="#">Public Coin Vote </a>
+          </li>
+          <li>
+            <a href="#">Supported Coins</a>
+          </li>
+          <li>
+            <a href="#">Store Directory</a>
+          </li>
+          <li>
+            <a href="#">Merchant Tools</a>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact Us
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu drop-down-box">
+              <li>
+                <a href="#">Action</a>
+              </li>
+              <li>
+                <a href="#">Another action</a>
+              </li>
+              <li>
+                <a href="#">Something else here</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="#">Separated link</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="#">One more separated link</a>
+              </li>
+            </ul>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <img class="language-icon" src="images/language.png"> Language
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu drop-down-box">
+              <li>
+                <a href="#">Action</a>
+              </li>
+              <li>
+                <a href="#">Another action</a>
+              </li>
+              <li>
+                <a href="#">Something else here</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="#">Separated link</a>
+              </li>
+              <li role="separator" class="divider"></li>
+              <li>
+                <a href="#">One more separated link</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+        <button type="submit" class="btn btn-default btn-log1">Login</button>
+        <button type="submit" class="btn btn-default btn-sign">Signup</button>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
+  <section>
+    <div class="dashboard-bg">
+      <div class="container">
+        <div class="dashboard-wrapper top-sec">
+          <div class="dasboard-head">
+            <div class="img-dashboard">
+              <img src="images/settings.png">
+
+            </div>
+            <h3>Settings</h3>
+          </div>
+          <div class="dasboard-sec">
+
+            <div class="col-sm-4 dashboard-componatns">
+              <div class="home-icon">
+                <img class="img-d-icon" src="images/dash-icon1.png">
+              </div>
+              <span class="dashboard-span">Home</span>
+            </div>
+            <div class="col-sm-4 dashboard-componatns">
+              <div class="home-icon box-1">
+                <img class="img-d-icon" src="images/wallet.png">
+              </div>
+              <span class="dashboard-span">Your Wallet</span>
+            </div>
+            <div class="col-sm-4 dashboard-componatns">
+              <div class="home-icon box-2">
+                <img class="img-d-icon" src="images/coin01.png">
+              </div>
+              <span class="dashboard-span">Coin Settings</span>
+            </div>
+            <div class="col-sm-4 dashboard-componatns">
+
+              <div class="home-icon box-3">
+                <img class="img-d-icon" src="images/bill-not.png">
+              </div>
+              <span class="dashboard-span">Transaction History</span>
+            </div>
+            <div class="col-sm-4 dashboard-componatns">
+              <div class="home-icon box-4">
+                <img class="img-d-icon" src="images/pos.png">
+              </div>
+              <span class="dashboard-span">Quick POS</span>
+            </div>
+            <div class="col-sm-4 dashboard-componatns">
+              <div class="home-icon box-5">
+                <img class="img-d-icon" src="images/pay.png">
+              </div>
+              <span class="dashboard-span">$PayByName</span>
+            </div>
+          </div>
+          <div class="dashboard-wrapper top-sec1">
+
+            <div class="bs-example bs-example-tabs examble-tab" role="tabpanel" data-example-id="togglable-tabs">
+              <ul id="myTab" class="nav nav-tabs nav-tabs-responsive multiple-tab" role="tablist">
+                <li role="presentation" class="active">
+                  <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">
+                    <span class="text">Basic Settings</span>
+                  </a>
+                </li>
+                <li role="presentation" class="next">
+                  <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">
+                    <span class="text">Public Info</span>
+                  </a>
+                </li>
+
+                <li role="presentation">
+                  <a href="#samsa" role="tab" id="samsa-tab" data-toggle="tab" aria-controls="samsa">
+                    <span class="text">Login $ Security</span>
+                  </a>
+                </li>
+                <li role="presentation">
+                  <a href="#samsa" role="tab" id="samsa-tab" data-toggle="tab" aria-controls="samsa">
+                    <span class="text">Merchant Settings</span>
+                  </a>
+                </li>
+              </ul>
+              <div id="myTabContent" class="tab-content">
+                <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                  <div class="setting-head">Account Settings</div>
+                  <div class="account-setting-wrap">
+                    <div class="your-merchant">
+                      <form class="form-inline" role="form">
+                        <div class="form-group merchant-id">
+                          <label for="name">Your Merchant ID:</label>
+                          <label for="name">d1646gsgsgsdf454fdadadad</label>
+
+                        </div>
+                    </div>
+                    <div class="your-merchant">
+                      <form class="form-inline" role="form">
+                        <div class="form-group merchant-id">
+                          <label for="name">Affilated URL:</label>
+                          <label for="name"></label>
+
+                        </div>
+                    </div>
+                    <div class="social-media">
+                      <ul>
+                        <li>
+                          <img src="images/facebook.png" alt="">
+                        </li>
+                        <li>
+                          <img src="images/twitter.png" alt="">
+                        </li>
+                        <li>
+                          <img src="images/linkedin.png" alt="">
+                        </li>
+                        <li>
+                          <img src="images/google.png" alt="">
+                        </li>
+                       <div class="share">Share/Save <img src="images/share.png"></div>
+                      </ul>
+               
+                    </div>
+                    <form role="form" method="POST" action="#">
+                      <fieldset class="setting-form form-settings">
+                        <div class="form-group col-md-6">
+                          <label for="first_name">Account Email</label>
+                          <input type="text" class="form-control text-view" name="" id="first_name" placeholder="Account Email">
+                        </div>
+
+                        <div class="form-group col-md-6">
+                          <label for="last_name">Confirm Email</label>
+                          <input type="text" class="form-control text-view" name="last_name" id="" placeholder="Confirm Email">
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="password">Gender</label>
+                          <select class="form-control select-view " name="" id="country">
+                            <option>Male</option>
+                            <option>Female</option>                           
+                          </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <label for="confirm_password">Time Zone</label>
+                          <select class="form-control select-view" name="" id="country">
+                            <option>Country 1</option>
+                            <option>Country 2</option>
+                            <option>Country 3</option>
+                          </select>
+                        </div>
+                        <div class="form-group col-md-6">
+                          <div class="col-sm-6 date-pick">
+                          <label for="password">Date Format</label>
+                          <input  class="datepicker form-control select-view date-box" placeholder="03/05/2018" type="text" alt=""></input>
+                        </div>
+                        <div class="col-sm-6 date-pick">                         
+                            <input  class="datepicker form-control select-view date-box second-date" placeholder="03/05/2018" type="text"></input>                          
+                          </div>
+                      </div>
+                        <div class="form-group col-md-6">
+                          <label for="confirm_password">Time Format</label>
+                          <input data-format="hh:mm:ss" class="timepicker form-control select-view" type="text"></input>
+                        </div>
+                      </fieldset>
+                      <button type="submit" class="btn- btn-default btn-log update-settings">Update Account</button>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                  <div class="comming-soon">content coming soon.......!
+                    <img class="emoji" src="images/emoji.jpg">
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
+                  <div class="comming-soon">content coming soon.......!
+                    <img class="emoji" src="images/emoji.jpg">
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab">
+                  <div class="comming-soon">content coming soon.......!
+                    <img class="emoji" src="images/emoji.jpg">
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="samsa" aria-labelledby="samsa-tab">
+                  <div class="comming-soon">content coming soon.......!
+                    <img class="emoji" src="images/emoji.jpg">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+  </section>
+  <footer>
+    <div class="footer-bg">
+      <div class="container ">
+        <div class="row ">
+          <div class="col-sm-2">
+            <div class="footer-head-menu">COINPAYMENTS
+              <span>
+                <img class="footer-head-line" src="images/footer-line.png">
+              </span>
+            </div>
+            <ul>
+              <li>Supported Coins </li>
+              <li>Merchant Tools</li>
+              <li>Public Coin Vote </li>
+              <li>Store Directory </li>
+            </ul>
+          </div>
+          <div class="col-sm-2">
+            <div class="footer-head-menu">COINPAYMENTS
+              <span>
+                <img class="footer-head-line" src="images/footer-line.png">
+              </span>
+            </div>
+            <ul>
+              <li>Get Mobile App </li>
+              <li>Affiliate Information</li>
+              <li>Official TOR URL </li>
+              <li>PGP Key</li>
+            </ul>
+          </div>
+          <div class="col-sm-2">
+            <div class="footer-head-menu">COINPAYMENTS
+              <span>
+                <img class="footer-head-line" src="images/footer-line.png">
+              </span>
+            </div>
+            <ul>
+              <li>Fees/Pricing </li>
+              <li>Help </li>
+              <li>Add Your Store</li>
+              <li>Coin Request </li>
+            </ul>
+          </div>
+          <div class="col-sm-2">
+            <div class="footer-head-menu">COINPAYMENTS
+              <span>
+                <img class="footer-head-line" src="images/footer-line.png">
+              </span>
+            </div>
+            <ul>
+              <li>Twitter</li>
+              <li>Facebook</li>
+              <li>Blog</li>
+            </ul>
+          </div>
+          <div class="col-sm-2">
+            <div class="footer-head-menu">COINPAYMENTS
+              <span>
+                <img class="footer-head-line" src="images/footer-line.png">
+              </span>
+            </div>
+            <ul>
+              <li>Privacy Policy</li>
+              <li>Terms of Service</li>
+            </ul>
+          </div>
+          <div class="col-sm-2 footer-head-menu">
+            <button type="submit" class="btn- btn-default btn-footer">Add Your Store</button>
+            <button type="submit" class="btn- btn-default btn-footer coin-payment">Coin Requst</button>
+            <img class="apple-icon" src="images/apple-icon.png">
+            <img class="apple-icon" src="images/play-store.png">
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+</body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+  crossorigin="anonymous"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/datepicker.min.js"></script>
+<script>
+  (function ($) {
+
+    'use strict';
+
+    $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
+      var $target = $(e.target);
+      var $tabs = $target.closest('.nav-tabs-responsive');
+      var $current = $target.closest('li');
+      var $parent = $current.closest('li.dropdown');
+      $current = $parent.length > 0 ? $parent : $current;
+      var $next = $current.next();
+      var $prev = $current.prev();
+      var updateDropdownMenu = function ($el, position) {
+        $el
+          .find('.dropdown-menu')
+          .removeClass('pull-xs-left pull-xs-center pull-xs-right')
+          .addClass('pull-xs-' + position);
+      };
+
+      $tabs.find('>li').removeClass('next prev');
+      $prev.addClass('prev');
+      $next.addClass('next');
+
+      updateDropdownMenu($prev, 'left');
+      updateDropdownMenu($current, 'center');
+      updateDropdownMenu($next, 'right');
+    });
+
+  })(jQuery);
+  $('.datepicker').datepicker();
+  $('.timepicker').timepicker({
+    timeFormat: 'h:mm p',
+    interval: 60,
+    minTime: '10',
+    maxTime: '6:00pm',
+    defaultTime: '11',
+    startTime: '10:00',
+    dynamic: false,
+    dropdown: true,
+    scrollbar: true
+});
+</script>
+
+</html>

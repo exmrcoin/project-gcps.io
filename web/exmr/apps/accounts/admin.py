@@ -75,3 +75,5 @@ class NewsletterAdmin(admin.ModelAdmin):
 admin.site.register(NewsLetter, NewsletterAdmin)
 
 
+
+

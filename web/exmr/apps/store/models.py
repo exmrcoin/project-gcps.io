@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -9,7 +10,7 @@ class StoreCategory(models.Model):
     """
     name = models.CharField(_('name'), max_length=255)
     publish = models.BooleanField(_('publish'), default=True)
-    image = models.ImageField(verbose_name=_('image'), upload_to='store/category')
+    image = models.FileField(verbose_name=_('image'), upload_to='store/category', help_text='Add svg image of size 2137x2138 ')
 
     class Meta:
         verbose_name = _('Category')
@@ -17,6 +18,9 @@ class StoreCategory(models.Model):
 
     def __str__(self):
         return self.name
+
+    def name_slug(self):
+        return slugify(self.name)
 
 
 class Store(models.Model):

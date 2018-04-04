@@ -1,28 +1,14 @@
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.contrib.sites.models import Site
-from django.core.exceptions import ObjectDoesNotExist
-from django.forms import forms
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404, render, render_to_response
-from django.template.context_processors import request
-from django.utils.decorators import method_decorator
-from django.views.generic import CreateView, TemplateView, FormView
+from django.shortcuts import get_object_or_404
+from django.views.generic import CreateView, TemplateView, FormView, UpdateView
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
 
-from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm
+from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm
 from apps.accounts.models import Profile, ProfileActivation
-from apps.common.utils import generate_key
-from exmr import settings
-
-from .forms import CHOICES
-import datetime as dt
-
-
-
+from apps.common.utils import generate_key, JSONResponseMixin
 
 
 class SignUpView(CreateView):
@@ -63,18 +49,25 @@ class SignUpView(CreateView):
 class SignUpCompleteView(TemplateView):
     template_name = 'accounts/signup_complete.html'
 
+
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/dashboard.html'
 
-class AccountSettings(FormView):
+
+class AccountSettings(JSONResponseMixin, UpdateView):
     form_class = UpdateBasicProfileForm
     template_name = 'accounts/settings.html'
     success_url = reverse_lazy('accounts:settings')
+
+    def get_object(self, queryset=None):
+        user_profile, created = Profile.objects.get_or_create(user=self.request.user)
+        return user_profile
 
     def get_initial(self):
         initial = super(AccountSettings, self).get_initial()
         user = get_object_or_404(User, username=self.request.user)
         user_profile, created = Profile.objects.get_or_create(user_id=user.id)
+        self.object = user_profile
         initial['email'] = self.request.user.email
         initial['confirm_email'] = self.request.user.email
         if created and user_profile.timezone:
@@ -89,11 +82,13 @@ class AccountSettings(FormView):
         return initial
 
     def get_context_data(self, **kwargs):
-        obj = self.get_initial()
         context = super(AccountSettings, self).get_context_data(**kwargs)
-        context['merchant_id'] = obj['merchant_id']
-        context['ref_url'] = obj['ref_url']
+        context['public_info_form'] = PublicInfoForm(instance=self.object)
+        context['ref_url'] = self.request.scheme + "://" + self.request.META['HTTP_HOST'] + "?ref=" + self.object.merchant_id
         return context
+
+    def form_invalid(self, form):
+        return self.render_to_json_response(form.errors)
 
     def form_valid(self, form):
         user = self.request.user
@@ -111,14 +106,28 @@ class AccountSettings(FormView):
         user_profile.gender = form.cleaned_data['gender']
         user_profile.timezone = form.cleaned_data['timezone']
         user_profile.save()
-        return super(AccountSettings, self).form_valid(form)
+        super(AccountSettings, self).form_valid(form)
+        return self.render_to_json_response({'msg': _('Account details updated successfully')})
 
-def form_invalid(self, form):
-    return super(AccountSettings, self).form_invalid(form)
+
+class PublicInfoSave(JSONResponseMixin, UpdateView):
+
+    form_class = PublicInfoForm
+
+    def get_object(self, queryset=None):
+        return self.request.user.get_profile
+
+    def form_valid(self, form):
+        form.save()
+        return self.render_to_json_response({'msg': _('Information updated successfully')})
+
+    def form_invalid(self, form):
+        return self.render_to_json_response(form.errors)
 
 
 class ProfileActivationView(TemplateView):
     template_name = 'accounts/account_activated.html'
+
     def get_context_data(self, **kwargs):
         context = super(ProfileActivationView, self).get_context_data(**kwargs)
         key = kwargs.get('key')

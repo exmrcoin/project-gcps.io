@@ -69,7 +69,6 @@ class SignUpForm(UserCreationForm):
         return self.cleaned_data.get('accept_terms_and_conditions')
 
 
-
 class UpdateBasicProfileForm(forms.ModelForm):
     email = forms.EmailField(required=False)
     confirm_email = forms.EmailField(required=False)
@@ -91,7 +90,6 @@ class UpdateBasicProfileForm(forms.ModelForm):
         self.fields['date_format'].widget.attrs['class'] = 'datepicker form-control select-view  w100'
         self.fields['time_format'].widget.attrs['class'] = 'timepicker form-control select-view'
 
-
     def clean_confirm_email(self):
         cleaned_data = super(UpdateBasicProfileForm, self).clean()
         email = cleaned_data.get("email")
@@ -100,6 +98,14 @@ class UpdateBasicProfileForm(forms.ModelForm):
             if email != confirm_email:
                 raise forms.ValidationError("Emails do not match.")
         return cleaned_data
+
+
+class PublicInfoForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = ['public_name', 'public_email', 'public_url', 'use_gravatar']
+
 
 class CustomPasswordResetForm(PasswordResetForm):
 
@@ -127,7 +133,6 @@ class CustomPasswordResetForm(PasswordResetForm):
             'is_active': True,
         })
         return (u for u in active_users if u.has_usable_password())
-
 
     def save(self, domain_override=None,
              subject_template_name='registration/password_reset_subject.txt',

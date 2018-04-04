@@ -2,7 +2,7 @@
     color: red;
     list-style: none;
     padding-left: 0px;
-    /*position: absolute;*/
+    position: absolute;
 }
 .min-height-content {
     min-height: 100vh;
@@ -10,4 +10,20 @@
 }
 .min-height-content :first-child {
     padding-top: 25vh;
+}
+
+label {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: 700;
+    margin-top: 15px;
+}
+
+.login-sec .errorlist {
+    position: relative;
+}
+.footer-bg ul a {
+    color: white;
+    text-decoration: none;
 }

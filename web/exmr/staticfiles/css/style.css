@@ -1442,7 +1442,7 @@ fieldset {
 	margin-top: -47px;	
 }
 .dashboard-wrapper  p{
-	padding: 13px 0px 0px 3px;
+	padding: 13px 0px 0px 14px;
     font-size: 16px;
 }
 .click{
@@ -1687,8 +1687,6 @@ fieldset {
  
 	margin-top: 5px;
 	text-align: center;
-
-
 }
 .img-icons{
 	width: 20%;
@@ -1702,4 +1700,16 @@ fieldset {
 }
 .icon-bar{
 	background-color: #fff !important;
+}
+
+/*============ coinpayment ========*/
+.head-box{
+	background-color: #3c576e;
+    border-radius: 2px;
+}
+.head-charity-line{
+	font-size: 18px;
+    font-weight: 600;
+    color: #fff;
+    padding-top: 5px
 }

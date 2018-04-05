@@ -28,10 +28,12 @@
                     <ul>
                         {% for category in categories %}
                             <li class="menu-box">
-                                <div class="menu-icon-wrap">
-                                    <img class="img-icons" src="{{ category.image.url }}">
-                                </div>
-                                <div class="name-icons-menu">{{ category.name }}   </div>
+                                <a href="{% url 'store-item' category.slug %}">
+                                    <div class="menu-icon-wrap">
+                                        <img class="img-icons" src="{{ category.image.url }}">
+                                    </div>
+                                    <div class="name-icons-menu">{{ category.name }}   </div>
+                                </a>
                             </li>
                         {% endfor %}
                     </ul>

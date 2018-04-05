@@ -24,7 +24,7 @@ from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfir
     PasswordResetCompleteView
 
 from apps.common.views import HomeView
-from apps.store.views import StoreCategoryListView
+from apps.store.views import StoreCategoryListView, StoreCategoryDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -39,8 +39,10 @@ urlpatterns = [
     path('sign-up/', TemplateView.as_view(template_name='accounts/signup.html'),
          name='signup'),
     path('merchant-tools/', TemplateView.as_view(template_name='merchant-tools.html'), name='merchant-tools'),
-    path('store-directory/', StoreCategoryListView.as_view(template_name='store-directory-menu.html'), name='store-directory'),
-    # path('store-directory/<slug:key>', TemplateView.as_view(template_name='store-directory.html'), name='store-directory-item'),
+    path('store-directory/', StoreCategoryListView.as_view(template_name='store-directory-menu.html'),
+         name='store-directory'),
+    path('store-directory/<slug:slug>', StoreCategoryDetailView.as_view(template_name='store-directory.html'), name='store-item'),
+
     path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'), name='forgot-password'),
 
 

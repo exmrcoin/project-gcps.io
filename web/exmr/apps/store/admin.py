@@ -11,6 +11,7 @@ class StoreCategoryAdmin(admin.ModelAdmin):
     list_display = ['name', 'publish']
     list_editable = ['publish']
     list_filter = ['publish']
+    prepopulated_fields = {"slug": ("name",)}
 
 
 admin.site.register(StoreCategory, StoreCategoryAdmin)

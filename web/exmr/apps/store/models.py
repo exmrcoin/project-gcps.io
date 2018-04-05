@@ -10,6 +10,7 @@ class StoreCategory(models.Model):
     """
     name = models.CharField(_('name'), max_length=255)
     publish = models.BooleanField(_('publish'), default=True)
+    slug = models.SlugField(_('slug'), auto_created=True)
     image = models.FileField(verbose_name=_('image'), upload_to='store/category', help_text='Add svg image of size 2137x2138 ')
 
     class Meta:
@@ -19,8 +20,10 @@ class StoreCategory(models.Model):
     def __str__(self):
         return self.name
 
-    def name_slug(self):
-        return slugify(self.name)
+    def save(self, *args, **kwargs):
+        if not self.slug and self.name:
+            self.slug = slugify(self.name)
+        super(StoreCategory, self).save(*args, **kwargs)
 
 
 class Store(models.Model):

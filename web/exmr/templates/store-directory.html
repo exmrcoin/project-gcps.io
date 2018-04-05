@@ -5,9 +5,9 @@
         <div class="dashboard-bg">
             <div class="merchant-tools">
                 <div class=" container merchant-box">
-                    STOR DIRECTORY</div>
+                    STORE DIRECTORY</div>
                 <div class="container subline-p">
-                    <p>Largest directory of merchants accepting multtiple cryptocurrencies
+                    <p>Largest directory of merchants accepting multiple cryptocurrencies
                 </div>
                 <div class="container">
                     <div class="col-sm-6 search-div">
@@ -28,25 +28,15 @@
                 <div class="dashboard-wrapper top-sec">
                     <div class="col-sm-3">
                         <ul>
-                            <li class="directoru-menu menu-story">Art & Collectibles<span class="glyphicon glyphicon-chevron-right right-arow" aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">Charities<span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">Gift Card / Prepaid<span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">Healt & Beauty<span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">Hosting/ VPS & VPN<span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">Inverstment / Metals<span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">Misc Products<span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">Music / Movies & TV<span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">Shoes & Clothing<span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">Social / SEO / Marketing<span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">Tickets & Travel <span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">Tobacco / e-cigs <span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">Ddult 18+ <span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
-                            <li class="directoru-menu down-box menu-story">All Stores  <span class="glyphicon glyphicon-chevron-right right-arow " aria-hidden="true"></span></li>
+                            {% for category in categories %}
+                                <li class="directoru-menu menu-story">{{ category.name }}<span class="glyphicon glyphicon-chevron-right right-arow" aria-hidden="true"></span></li>
+                            {% endfor %}
+
                         </ul>
                     </div>
 
                     <div class="col-sm-9">
-                        <div class="charity">Charities</div>
+                        <div class="charity">{{ category.name }}</div>
                         <div class="coins-sort">
                             <fieldset class="setting-form form-settings setings-charity">
                                 <div class="form-group col-md-6">

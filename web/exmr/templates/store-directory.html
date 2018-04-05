@@ -28,10 +28,11 @@
                 <div class="dashboard-wrapper top-sec">
                     <div class="col-sm-3">
                         <ul>
-                            {% for category in categories %}
-                                <li class="directoru-menu menu-story">{{ category.name }}<span class="glyphicon glyphicon-chevron-right right-arow" aria-hidden="true"></span></li>
+                            {% for each_category in categories %}
+                                <a href="{% url 'store-item' each_category.slug %}">
+                                    <li {% if each_category.name == category.name %} class="active-tab directoru-menu menu-story" {% else %} class="directoru-menu menu-story" {% endif %} >{{ each_category.name }}<span class="glyphicon glyphicon-chevron-right right-arow" aria-hidden="true"></span></li>
+                                </a>
                             {% endfor %}
-
                         </ul>
                     </div>
 

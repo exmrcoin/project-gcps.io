@@ -18,12 +18,14 @@ $(function() {
             dataType: 'json',
             success: function (data) {
                 if (data.msg) {
-                    $(formId).siblings('.alert').text(data.msg)
-                    $(formId).siblings('.alert').addClass('alert-success')
+                    $.toaster(data.msg, 'Success', 'success');
+
+                    // $(formId).siblings('.alert').text(data.msg)
+                    // $(formId).siblings('.alert').addClass('alert-success')
                 }
                 else {
                     $.each(data, function (key, value) {
-                        var $input = $(formId).find("input[name='" + key + "']");
+                        var $input = $(formId).find(":input[name='" + key + "']");
                         $input.siblings(".error").html(value[0]).show();
                     });
                 }
@@ -46,6 +48,15 @@ $(function() {
     });
 
     $('#accountForm').on('input',function(e){
+        $(this).find('.error').text('')
+    });
+
+    $('#securityForm').on('submit', function(e) {
+        e.preventDefault();
+        formSubmit('#securityForm', '/save-security-info/');
+    });
+
+    $('#securityForm').on('input',function(e){
         $(this).find('.error').text('')
     });
 

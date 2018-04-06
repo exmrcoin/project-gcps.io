@@ -12,6 +12,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(), name='logout'),
     path('settings/', views.AccountSettings.as_view(), name='settings'),
     path('save-public-info/', views.PublicInfoSave.as_view(), name='save_public_info'),
+    path('save-security-info/', views.SecurityInfoSave.as_view(), name='save_security_info'),
     path('sign-up/', views.SignUpView.as_view(), name='signup'),
     path('sign-up-complete/', views.SignUpCompleteView.as_view(), name='signup_complete'),
     path('activate/<slug:key>', views.ProfileActivationView.as_view(), name='registration_activate'),

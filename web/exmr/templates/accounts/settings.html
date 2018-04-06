@@ -75,12 +75,12 @@
                                 </li>
 
                                 <li role="presentation">
-                                    <a href="#samsa" role="tab" id="samsa-tab" data-toggle="tab" aria-controls="samsa">
+                                    <a href="#security" role="tab" id="security-tab" data-toggle="tab" aria-controls="samsa">
                                         <span class="text">Login & Security</span>
                                     </a>
                                 </li>
                                 <li role="presentation">
-                                    <a href="#samsa" role="tab" id="samsa-tab" data-toggle="tab" aria-controls="samsa">
+                                    <a href="#merchant" role="tab" id="merchant-tab" data-toggle="tab" aria-controls="samsa">
                                         <span class="text">Merchant Settings</span>
                                     </a>
                                 </li>
@@ -245,12 +245,69 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade" id="dropdown1" aria-labelledby="dropdown1-tab">
-                                    <div class="comming-soon">content coming soon.......!
-                                        <img class="emoji" src="{% static '/images/emoji.jpg'%}">
+                                <div role="tabpanel" class="tab-pane fade" id="security" aria-labelledby="security-tab">
+                                    <div class="setting-head">Login & Security</div>
+                                    <div class="account-setting-wrap">
+                                        <div class="alert">
+
+                                        </div>
+
+                                        <form role="form" method="post" id="securityForm" action="{% url 'accounts:save_security_info' %}" novalidate>
+                                            {% csrf_token %}
+                                            <fieldset class="setting-form form-settings">
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="current_password">Current Password</label>
+                                                    {{ security_form.current_password|add_class:'form-control text-view' }}
+                                                    <span class="error"></span>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="password">New Password</label>
+                                                    {{ security_form.password|add_class:'form-control text-view' }}
+                                                    <span class="error"></span>
+                                                </div>
+
+
+                                                <div class="form-group col-md-12">
+                                                    <label for="confirm_password">Confirm Password</label>
+                                                    {{ security_form.confirm_password|add_class:'form-control text-view' }}
+                                                    <span class="error"></span>
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                   <label for="two_factor_auth">2 Factor Authentication</label>
+                                                    {{ security_form.two_factor_auth|add_class:'form-control text-view' }}
+                                                    <span class="error"></span>
+
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                   <label for="two_factor_auth">Email Confirmations for Sends/Withdrawals</label>
+                                                    {{ security_form.email_confirmation_transaction }}
+                                                    <span class="error"></span>
+
+                                                </div>
+
+                                                <div class="form-group col-md-12">
+                                                   <label for="pgp_gpg_public_key">PGP/GPG Public Key</label>
+                                                    {{ security_form.pgp_gpg_public_key|add_class:'form-control text-view' }}
+                                                    <span class="error"></span>
+
+                                                </div>
+
+                                                   <div class="form-group col-md-6">
+
+                                                    <button type="submit" class="btn- btn-default btn-log ">Update</button>
+
+                                                   </div>
+
+
+                                            </fieldset>
+                                        </form>
                                     </div>
                                 </div>
-                                <div role="tabpanel" class="tab-pane fade" id="dropdown2" aria-labelledby="dropdown2-tab">
+                                <div role="tabpanel" class="tab-pane fade" id="merchant" aria-labelledby="merchant-tab">
                                     <div class="comming-soon">content coming soon.......!
                                         <img class="emoji" src="{% static '/images/emoji.jpg'%}">
                                     </div>
@@ -274,6 +331,7 @@
 
 {% block extra_js %}
     <script src="{% static 'js/clipboard.min.js' %}"></script>
+    <script src="{% static 'js/jquery.toaster.js' %}"></script>
     <script src="{% static 'js/account_settings.js' %}"></script>
 
 

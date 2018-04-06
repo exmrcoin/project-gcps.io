@@ -63,7 +63,7 @@ class Profile(models.Model):
                                                        choices=TWO_FACTOR_AUTH_CHOICES, default=EMAIL)
     email_confirmation_transaction = models.BooleanField(_('email confirmation send/withdrawal'), default=True)
     is_subscribed = models.BooleanField(_('is subscribed'), default=False)
-    referance_count = models.IntegerField(_('referance count'), null=True, default=0)
+    referance_count = models.IntegerField(_('reference count'), null=True, default=0)
 
     class Meta:
         verbose_name = _('Profile')

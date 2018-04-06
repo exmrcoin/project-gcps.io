@@ -107,6 +107,18 @@ class PublicInfoForm(forms.ModelForm):
         fields = ['public_name', 'public_email', 'public_url', 'use_gravatar']
 
 
+class LoginSecurityForm(forms.ModelForm):
+
+    current_password = forms.CharField(widget=forms.PasswordInput, required=False)
+    password = forms.CharField(widget=forms.PasswordInput, required=False)
+    confirm_password = forms.CharField(widget=forms.PasswordInput, required=False)
+
+    class Meta:
+        model = Profile
+        fields = ['password', 'pgp_gpg_public_key', 'current_password', 'confirm_password',
+                  'two_factor_auth', 'email_confirmation_transaction']
+
+
 class CustomPasswordResetForm(PasswordResetForm):
 
     username = forms.CharField(required=False)

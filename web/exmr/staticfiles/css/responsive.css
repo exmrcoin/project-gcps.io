@@ -209,7 +209,6 @@
 
     #UserCaptchaCode { width: 100% !important;}
 
-
     fieldset {
     border: 1px solid #ccc;
     padding: 15px;
@@ -260,12 +259,26 @@
 .search-div{
   margin-left:inherit;
 }
+.inbox-wrap{
+  width: 84% !important;
+}
+.inbox-wrap{
+  width: 89% !important;
+  margin-bottom: 19px;
+}
+.content-box-charity{
+  height: auto;
+}
+
   }
 
 
   @media only screen and (max-width: 680px) {
     .second-sec{
       height: auto;
+    }
+    .logo-charity {
+      width: 26%;
     }
     .footer-bg ul{
       text-align: center;
@@ -333,11 +346,25 @@
   .search-div{
     margin-left:inherit;
   }
+  .inbox-wrap{
+    width: 84% !important;
+  }
+  .inbox-wrap{
+    width: 89% !important;
+    margin-bottom: 19px;
+  }
+  .content-box-charity{
+    height: auto;
+  }
+  
 }
 
   @media only screen and (max-width: 640px) {
     .sub-company{
      padding-left: inherit !important;
+    }
+    .logo-charity {
+      width: 28%;
     }
     .second-sec{
       height: auto;
@@ -381,11 +408,25 @@
     .search-div{
       margin-left:inherit;
     }
+    .inbox-wrap{
+      width: 84% !important;
+    }
+    .inbox-wrap{
+      width: 89% !important;
+      margin-bottom: 19px;
+    }
+    .content-box-charity{
+      height: auto;
+    }
+    
   }
 
   @media only screen and (max-width: 520px) {
     .second-sec{
       height: auto;
+    }
+    .logo-charity {
+      width: 33%;
     }
     .box{
       margin-top: inherit !important;
@@ -446,12 +487,26 @@
   .search-div{
     margin-left:inherit;
   }
+  .inbox-wrap{
+    width: 84% !important;
+  }
+  .inbox-wrap{
+    width: 89% !important;
+    margin-bottom: 19px;
+  }
+  .content-box-charity{
+    height: auto;
+  }
+  
   }
 
   @media only screen and (max-width: 480px) {
     .sub-company{
       text-align: center !important;
       display: block;
+    }
+    .logo-charity {
+      width: 39%;
     }
     .check-availabe{
       margin-bottom: 41px;
@@ -490,6 +545,17 @@
   .search-div{
     margin-left:inherit;
   }
+  .inbox-wrap{
+    width: 84% !important;
+  }
+  .inbox-wrap{
+    width: 89% !important;
+    margin-bottom: 19px;
+  }
+  .content-box-charity{
+    height: auto;
+  }
+  
 
   }
 
@@ -497,6 +563,9 @@
     .sub-company{
       text-align: center !important;
       display: block;
+    }
+    .logo-charity{
+      width: 48%;
     }
     .check-availabe{
       margin-bottom: 41px;
@@ -555,6 +624,19 @@
 .search-div{
   margin-left:inherit;
 }
+.search-div{
+  margin-left:inherit;
+}
+.inbox-wrap{
+  width: 84% !important;
+}
+.inbox-wrap{
+  width: 89% !important;
+  margin-bottom: 19px;
+}
+.content-box-charity{
+  height: auto;
+}
 
 
   }
@@ -605,6 +687,19 @@
 }
 .search-div{
   margin-left:inherit;
+}
+.search-div{
+  margin-left:inherit;
+}
+.inbox-wrap{
+  width: 84% !important;
+}
+.inbox-wrap{
+  width: 84% !important;
+  margin-bottom: 19px;
+}
+.content-box-charity{
+  height: auto;
 }
 
 
@@ -681,6 +776,19 @@
   }
   .search-div{
     margin-left:inherit;
+  }
+  .search-div{
+    margin-left:inherit;
+  }
+  .inbox-wrap{
+    width: 84% !important;
+  }
+  .inbox-wrap{
+    width: 84% !important;
+    margin-bottom: 19px;
+  }
+  .content-box-charity{
+    height: auto;
   }
   
   
@@ -777,5 +885,14 @@
 .search-div{
   margin-left:inherit;
 }
-
+.inbox-wrap{
+  width: 84% !important;
+}
+.inbox-wrap{
+  width: 84% !important;
+  margin-bottom: 19px;
+}
+.content-box-charity{
+  height: auto;
+}
   }

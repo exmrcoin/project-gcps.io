@@ -1386,17 +1386,17 @@ fieldset {
 .share{
     width: 163px;
     height: 44px;
-    background-color: #e75d14;
-    color: #fff;
+	background-color: #e75d14;
+	color: #fff;
+    float: left;
+    float: right;
+    margin-left: -55px;
     border-radius: 4px;
-    box-shadow: 0 1px 16px 2px #dedede;
+	box-shadow: 0 1px 16px 2px #dedede;
     padding: 9px 0px 0px 25px;
     font-size: 18px;
-    cursor: pointer;
+	cursor: pointer;
     margin-top: 5px;
-    float: left;
-    margin-left: 45px;
-    margin-bottom: 20px;
 }
 .share:hover{
 	background-color: #16b101
@@ -1711,5 +1711,75 @@ fieldset {
 	font-size: 18px;
     font-weight: 600;
     color: #fff;
-    padding-top: 5px
+	padding-top: 5px;
+	padding-left: 0px !important;
+}
+.feed-back{
+	font-size: 14px;
+	font-weight: normal;
+	margin-bottom: 12px;
+
+}
+.rating > span:hover:before {
+	content: "\2605";
+	position: absolute;
+ }
+ .starfeddback{
+	 padding-left: 5px;
+ }
+ .payment-btn{
+	 float: right;
+	 height: 36px;
+	 margin-top: 13px;
+	 margin-left: 14px;
+	 background-color: inherit !important;
+	 border: solid 1px #fff !important;
+  
+ }
+ .payment-btn:hover{
+	 background-color:#e75d14 !important;
+ }
+ .view-icon{
+	width: 16px;
+	margin-top: -3px;
+	margin-right: 6px;
+ }
+.payment-item-box{
+	border: solid 1px #ddd;
+	margin-top: 13px;
+    box-shadow:0 0px 0px 0 rgba(255, 231, 231, 0.2), 0 1px 7px 0 rgba(0, 0, 0, 0.19);
+  
+}
+.box-col{
+	background-color: #f1f1f1;
+	font-size: 16px;
+}
+.shipping-info{
+    width: 100%;
+    font-size: 18px;
+    margin-bottom: 5px;
+    /* margin-top: 8px; */
+    background-color: #f1f1f1;
+    line-height: 45px;
+}
+.payment-item-box p{
+	margin-top: -15px !important;
+	font-size: 14px;
+}
+.user-icon{
+	margin-left: 11px;
+}
+.click-h{
+	color: blue;
+	cursor: pointer;
+}
+.payment-text{
+	width: 95% !important;
+}
+.quantity-pay{
+	width: 50% !important;
+}
+.refresh-box{
+	width: 100%;
+	
 }

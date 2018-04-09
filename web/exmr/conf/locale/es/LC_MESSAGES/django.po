@@ -1,0 +1,620 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-09 17:43+0530\n"
+"PO-Revision-Date: 2018-04-09 13:41+0000\n"
+"Last-Translator: b'  <ibin@mail.com>'\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.8.1\n"
+
+#: apps/accounts/admin.py:17
+msgid "Basic Details"
+msgstr "hsgdfhsgd"
+
+#: apps/accounts/admin.py:20
+msgid "Public Info"
+msgstr "sdfsdf"
+
+#: apps/accounts/admin.py:23
+msgid "Login Security"
+msgstr "sdfsdf"
+
+#: apps/accounts/forms.py:23 apps/accounts/models.py:20
+msgid "Male"
+msgstr "sdfsdfsd"
+
+#: apps/accounts/forms.py:24 apps/accounts/models.py:21
+msgid "Female"
+msgstr ""
+
+#: apps/accounts/forms.py:25 apps/accounts/models.py:22
+msgid "Other/Prefer Not to say"
+msgstr ""
+
+#: apps/accounts/forms.py:29
+msgid "02-10-2018"
+msgstr ""
+
+#: apps/accounts/forms.py:30
+msgid "02/10/2018"
+msgstr ""
+
+#: apps/accounts/forms.py:33
+msgid "02:00"
+msgstr ""
+
+#: apps/accounts/forms.py:34
+msgid "02:00:00"
+msgstr ""
+
+#: apps/accounts/forms.py:57
+msgid "Emails doesn't match"
+msgstr "sdfsdf"
+
+#: apps/accounts/forms.py:68
+msgid "Please accept the terms and conditions"
+msgstr "fsdf"
+
+#: apps/accounts/forms.py:129
+msgid "Either username or email needs to be provided"
+msgstr "sdfsd"
+
+#: apps/accounts/forms.py:134
+msgid "User not found"
+msgstr ""
+
+#: apps/accounts/models.py:34
+msgid "Buyer"
+msgstr ""
+
+#: apps/accounts/models.py:35
+msgid "Seller"
+msgstr ""
+
+#: apps/accounts/models.py:39
+msgid "Email"
+msgstr ""
+
+#: apps/accounts/models.py:40
+msgid "Trezor Login"
+msgstr ""
+
+#: apps/accounts/models.py:41
+msgid "2FA Account"
+msgstr ""
+
+#: apps/accounts/models.py:42
+msgid "None"
+msgstr ""
+
+#: apps/accounts/models.py:50 apps/accounts/models.py:97
+#: apps/accounts/models.py:132 apps/accounts/models.py:157
+#: apps/coins/models.py:71 apps/store/models.py:33
+msgid "user"
+msgstr "aASdad"
+
+#: apps/accounts/models.py:51
+msgid "gender"
+msgstr ""
+
+#: apps/accounts/models.py:52
+msgid "user type"
+msgstr ""
+
+#: apps/accounts/models.py:53
+msgid "timezone"
+msgstr ""
+
+#: apps/accounts/models.py:54
+msgid "public name"
+msgstr ""
+
+#: apps/accounts/models.py:55
+msgid "public email"
+msgstr ""
+
+#: apps/accounts/models.py:56
+msgid "public URL"
+msgstr ""
+
+#: apps/accounts/models.py:57
+msgid "merchant id"
+msgstr ""
+
+#: apps/accounts/models.py:58
+msgid "date format"
+msgstr ""
+
+#: apps/accounts/models.py:59
+msgid "time format"
+msgstr ""
+
+#: apps/accounts/models.py:60
+msgid "use gravatar"
+msgstr ""
+
+#: apps/accounts/models.py:61
+msgid "PGP/GPG public key"
+msgstr ""
+
+#: apps/accounts/models.py:62
+msgid "2FA authentication"
+msgstr ""
+
+#: apps/accounts/models.py:64
+msgid "email confirmation send/withdrawal"
+msgstr ""
+
+#: apps/accounts/models.py:65
+msgid "is subscribed"
+msgstr ""
+
+#: apps/accounts/models.py:66
+msgid "reference count"
+msgstr ""
+
+#: apps/accounts/models.py:69
+msgid "Profile"
+msgstr ""
+
+#: apps/accounts/models.py:70
+msgid "Profiles"
+msgstr ""
+
+#: apps/accounts/models.py:107
+msgid "Account Activation Link"
+msgstr ""
+
+#: apps/accounts/models.py:124
+msgid "Profile Activation"
+msgstr ""
+
+#: apps/accounts/models.py:125
+msgid "Profile Activations"
+msgstr ""
+
+#: apps/accounts/models.py:133
+msgid "saved address name"
+msgstr ""
+
+#: apps/accounts/models.py:134
+msgid "is default"
+msgstr ""
+
+#: apps/accounts/models.py:135
+msgid "first name"
+msgstr ""
+
+#: apps/accounts/models.py:136
+msgid "last name"
+msgstr ""
+
+#: apps/accounts/models.py:137
+msgid "address line 1"
+msgstr ""
+
+#: apps/accounts/models.py:138
+msgid "address line 2"
+msgstr ""
+
+#: apps/accounts/models.py:139
+msgid "country"
+msgstr ""
+
+#: apps/accounts/models.py:140
+msgid "city"
+msgstr ""
+
+#: apps/accounts/models.py:141
+msgid "state"
+msgstr ""
+
+#: apps/accounts/models.py:142
+msgid "postal code"
+msgstr ""
+
+#: apps/accounts/models.py:143
+msgid "phone_number"
+msgstr ""
+
+#: apps/accounts/models.py:146
+msgid "Address"
+msgstr ""
+
+#: apps/accounts/models.py:147
+msgid "Addresses"
+msgstr ""
+
+#: apps/accounts/models.py:158
+msgid "rating"
+msgstr ""
+
+#: apps/accounts/models.py:159
+msgid "comment"
+msgstr ""
+
+#: apps/accounts/models.py:161
+msgid "left by"
+msgstr ""
+
+#: apps/accounts/models.py:163
+msgid "buyer or seller"
+msgstr ""
+
+#: apps/accounts/models.py:166 apps/accounts/models.py:167
+msgid "Feedback"
+msgstr ""
+
+#: apps/accounts/models.py:178
+msgid "subject"
+msgstr ""
+
+#: apps/accounts/models.py:180
+msgid "content"
+msgstr ""
+
+#: apps/accounts/views.py:111
+msgid "Account details updated successfully"
+msgstr ""
+
+#: apps/accounts/views.py:123 apps/accounts/views.py:152
+msgid "Information updated successfully"
+msgstr ""
+
+#: apps/accounts/views.py:144
+msgid "Current password is incorrect"
+msgstr ""
+
+#: apps/accounts/views.py:146
+msgid "Passwords doesn't match"
+msgstr ""
+
+#: apps/accounts/views.py:169
+msgid "Invalid account activation link"
+msgstr ""
+
+#: apps/accounts/views.py:172
+msgid "Account activation link expired"
+msgstr ""
+
+#: apps/accounts/views.py:178
+msgid "Account activated <br><p>Please <a href=/login>login</a><p>"
+msgstr ""
+
+#: apps/coins/models.py:13
+msgid "Crypto"
+msgstr ""
+
+#: apps/coins/models.py:14
+msgid "Ripple"
+msgstr ""
+
+#: apps/coins/models.py:15
+msgid "Ether tokens"
+msgstr ""
+
+#: apps/coins/models.py:16
+msgid "Fiat"
+msgstr ""
+
+#: apps/coins/models.py:26
+msgid "To Balance"
+msgstr ""
+
+#: apps/coins/models.py:27
+msgid "ASAP"
+msgstr ""
+
+#: apps/coins/models.py:28
+msgid "Nightly"
+msgstr ""
+
+#: apps/coins/models.py:29
+msgid "To Balance + Convert"
+msgstr ""
+
+#: apps/coins/models.py:30
+msgid "ASAP + Convert"
+msgstr ""
+
+#: apps/coins/models.py:38
+msgid "coin name"
+msgstr ""
+
+#: apps/coins/models.py:39
+msgid "code"
+msgstr ""
+
+#: apps/coins/models.py:40
+msgid "confirms"
+msgstr ""
+
+#: apps/coins/models.py:41 apps/store/models.py:14
+msgid "image"
+msgstr ""
+
+#: apps/coins/models.py:42
+msgid "type"
+msgstr ""
+
+#: apps/coins/models.py:45
+msgid "Coin"
+msgstr ""
+
+#: apps/coins/models.py:46
+msgid "Coins"
+msgstr ""
+
+#: apps/coins/models.py:56 apps/coins/models.py:72
+msgid "coin"
+msgstr ""
+
+#: apps/coins/models.py:57
+msgid "vote count"
+msgstr ""
+
+#: apps/coins/models.py:60
+msgid "Coin Vote"
+msgstr ""
+
+#: apps/coins/models.py:61
+msgid "Coin Votes"
+msgstr ""
+
+#: apps/coins/models.py:73
+msgid "enabled"
+msgstr ""
+
+#: apps/coins/models.py:74
+msgid "payment address"
+msgstr ""
+
+#: apps/coins/models.py:75
+msgid "payment mode"
+msgstr ""
+
+#: apps/coins/models.py:76
+msgid "discount field"
+msgstr ""
+
+#: apps/coins/models.py:77
+msgid "maximum per transaction"
+msgstr ""
+
+#: apps/coins/models.py:78
+msgid "currency"
+msgstr ""
+
+#: apps/common/models.py:9 apps/store/models.py:11
+msgid "name"
+msgstr ""
+
+#: apps/common/models.py:15
+msgid "Currency"
+msgstr ""
+
+#: apps/common/models.py:16
+msgid "Currencies"
+msgstr ""
+
+#: apps/common/models.py:23
+msgid "provider"
+msgstr ""
+
+#: apps/common/models.py:24
+msgid "link"
+msgstr ""
+
+#: apps/common/models.py:28
+msgid "Social Link"
+msgstr ""
+
+#: apps/common/models.py:29
+msgid "Social Links"
+msgstr ""
+
+#: apps/store/models.py:12
+msgid "publish"
+msgstr ""
+
+#: apps/store/models.py:13
+msgid "slug"
+msgstr ""
+
+#: apps/store/models.py:17
+msgid "Category"
+msgstr ""
+
+#: apps/store/models.py:18
+msgid "Categories"
+msgstr ""
+
+#: apps/store/models.py:34
+msgid "store name"
+msgstr ""
+
+#: apps/store/models.py:35
+msgid "store url"
+msgstr ""
+
+#: apps/store/models.py:36
+msgid "category"
+msgstr ""
+
+#: apps/store/models.py:37
+msgid "crypto processor"
+msgstr ""
+
+#: apps/store/models.py:38
+msgid "store email"
+msgstr ""
+
+#: apps/store/models.py:39
+msgid "keywords"
+msgstr ""
+
+#: apps/store/models.py:40
+msgid "banner image url"
+msgstr ""
+
+#: apps/store/models.py:41
+msgid "is approved"
+msgstr ""
+
+#: apps/store/models.py:44
+msgid "Store"
+msgstr ""
+
+#: apps/store/models.py:45
+msgid "Stores"
+msgstr ""
+
+#: exmr/settings/base.py:151
+msgid "English"
+msgstr ""
+
+#: exmr/settings/base.py:152
+msgid "Spanish"
+msgstr ""
+
+#: templates/accounts/activation_email.html:6
+msgid "registration"
+msgstr ""
+
+#: templates/accounts/activation_email.html:11
+#, python-format
+msgid ""
+"\n"
+"    You (or someone pretending to be you) have asked to register an account at\n"
+"    %(site_name)s.  If this wasn't you, please ignore this email\n"
+"    and your address will be removed from our records.\n"
+"    "
+msgstr ""
+
+#: templates/accounts/activation_email.html:18
+msgid ""
+"\n"
+"    To activate this account, please click the following link\n"
+"    "
+msgstr ""
+
+#: templates/accounts/activation_email.html:29
+#, python-format
+msgid ""
+"\n"
+"    Sincerely,\n"
+"    %(site_name)s Management\n"
+"    "
+msgstr ""
+
+#: templates/accounts/activation_email.txt:2
+#, python-format
+msgid ""
+"\n"
+"You (or someone pretending to be you) have asked to register an account at\n"
+"%(site_name)s.  If this wasn't you, please ignore this email\n"
+"and your address will be removed from our records.\n"
+msgstr ""
+
+#: templates/accounts/activation_email.txt:7
+msgid ""
+"\n"
+"To activate this account, please click the following link:\n"
+msgstr ""
+
+#: templates/accounts/activation_email.txt:13
+#, python-format
+msgid ""
+"\n"
+"Sincerely,\n"
+"%(site_name)s Management\n"
+msgstr ""
+
+#: templates/base.html:53 templates/base.html:135
+msgid "Public Coin Vote"
+msgstr "dfsf"
+
+#: templates/base.html:56 templates/base.html:133
+msgid "Supported Coins"
+msgstr "Monedas compatibles"
+
+#: templates/base.html:59 templates/base.html:136
+msgid "Store Directory"
+msgstr "Directorio de tiendas"
+
+#: templates/base.html:62 templates/base.html:134
+msgid "Merchant Tools"
+msgstr "Herramientas de comerciante"
+
+#: templates/base.html:66
+msgid "Contact Us"
+msgstr "Contáctenos"
+
+#: templates/base.html:92
+msgid "Language"
+msgstr "Idioma"
+
+#: templates/base.html:146
+msgid "Get Mobile App"
+msgstr "Obtener la aplicación móvil"
+
+#: templates/base.html:147
+msgid "Affiliate Information"
+msgstr ""
+
+#: templates/base.html:148
+msgid "Official TOR URL"
+msgstr "Información afiliado"
+
+#: templates/base.html:149
+msgid "PGP Key"
+msgstr "Clave PGP"
+
+#: templates/base.html:159
+msgid "Fees/Pricing"
+msgstr "Tarifas / precios"
+
+#: templates/base.html:160
+msgid "Help"
+msgstr "Ayuda"
+
+#: templates/base.html:161 templates/base.html:190
+msgid "Add Your Store"
+msgstr "Agrega tu tienda"
+
+#: templates/base.html:162 templates/base.html:191
+msgid "Coin Request"
+msgstr "Solicitud de moneda"
+
+#: templates/base.html:185
+msgid "Privacy Policy"
+msgstr "Política de privacidad"
+
+#: templates/base.html:186
+msgid "Terms of Service"
+msgstr "Términos de servicio"
+
+#: templates/registration/password_reset_complete.html:6
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr ""
+
+#: templates/registration/password_reset_complete.html:8
+msgid "Log in"
+msgstr "sdada"
+
+#: templates/registration/password_reset_confirm.html:45
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""

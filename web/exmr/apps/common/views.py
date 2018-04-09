@@ -15,3 +15,5 @@ class HomeView(TemplateView):
             user_profile.referance_count = referance_count
             user_profile.save()
         return super(HomeView, self).get_context_data(**kwargs)
+
+

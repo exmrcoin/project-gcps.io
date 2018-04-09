@@ -1,4 +1,7 @@
 {% load staticfiles %}
+{% load i18n %}
+{% get_available_languages as languages %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,20 +50,20 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav menu-nav ">
                 <li>
-                    <a href="#">Public Coin Vote </a>
+                    <a href="#">{% trans 'Public Coin Vote'%}</a>
                 </li>
                 <li>
-                    <a href="#">Supported Coins</a>
+                    <a href="#">{% trans 'Supported Coins' %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'store-directory' %}">Store Directory</a>
+                    <a href="{% url 'store-directory' %}">{% trans 'Store Directory' %}</a>
                 </li>
                 <li>
-                    <a href="{% url 'merchant-tools' %}">Merchant Tools</a>
+                    <a href="{% url 'merchant-tools' %}">{% trans 'Merchant Tools' %}</a>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button"
-                       aria-haspopup="true" aria-expanded="false">Contact Us
+                       aria-haspopup="true" aria-expanded="false">{% trans 'Contact Us' %}
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu drop-down-box">
@@ -86,27 +89,17 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button"
                        aria-haspopup="true" aria-expanded="false">
-                        <img class="language-icon" src="{% static 'images/language.png' %}"> Language
+                        <img class="language-icon" src="{% static 'images/language.png' %}"> {% trans 'Language' %}
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu drop-down-box">
-                        <li>
-                            <a href="#">Action</a>
-                        </li>
-                        <li>
-                            <a href="#">Another action</a>
-                        </li>
-                        <li>
-                            <a href="#">Something else here</a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li>
-                            <a href="#">Separated link</a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li>
-                            <a href="#">One more separated link</a>
-                        </li>
+                        {% for language in languages %}
+                            <li class="{% ifequal current_language language.0 %}active{% endifequal %}">
+                                <a href="/./{{ language.0 }}/" title="{{ language.1 }}">
+                                    {{ language.1 }}
+                                </a>
+                            </li>
+                        {% endfor %}
                     </ul>
                 </li>
 
@@ -137,10 +130,10 @@
               </span>
                     </div>
                     <ul>
-                        <li>Supported Coins</li>
-                        <li>Merchant Tools</li>
-                        <li>Public Coin Vote</li>
-                        <li>Store Directory</li>
+                        <li>{% trans 'Supported Coins' %}</li>
+                        <li>{% trans 'Merchant Tools' %}</li>
+                        <li>{% trans 'Public Coin Vote' %}</li>
+                        <li>{% trans 'Store Directory' %}</li>
                     </ul>
                 </div>
                 <div class="col-sm-2">
@@ -150,10 +143,10 @@
               </span>
                     </div>
                     <ul>
-                        <li>Get Mobile App</li>
-                        <li>Affiliate Information</li>
-                        <li>Official TOR URL</li>
-                        <li>PGP Key</li>
+                        <li>{% trans 'Get Mobile App' %}</li>
+                        <li>{% trans 'Affiliate Information' %}</li>
+                        <li>{% trans 'Official TOR URL' %}</li>
+                        <li>{% trans 'PGP Key' %}</li>
                     </ul>
                 </div>
                 <div class="col-sm-2">
@@ -163,10 +156,10 @@
               </span>
                     </div>
                     <ul>
-                        <li>Fees/Pricing</li>
-                        <li>Help</li>
-                        <li>Add Your Store</li>
-                        <li>Coin Request</li>
+                        <li>{% trans 'Fees/Pricing' %}</li>
+                        <li>{% trans 'Help' %}</li>
+                        <li>{% trans 'Add Your Store' %}</li>
+                        <li>{% trans 'Coin Request' %}</li>
                     </ul>
                 </div>
                 <div class="col-sm-2">
@@ -189,13 +182,13 @@
               </span>
                     </div>
                     <ul>
-                        <li>Privacy Policy</li>
-                        <li>Terms of Service</li>
+                        <li>{% trans 'Privacy Policy' %}</li>
+                        <li>{% trans 'Terms of Service' %}</li>
                     </ul>
                 </div>
                 <div class="col-sm-2 footer-head-menu">
-                    <button type="submit" class="btn- btn-default btn-footer">Add Your Store</button>
-                    <button type="submit" class="btn- btn-default btn-footer coin-payment">Coin Request</button>
+                    <button type="submit" class="btn- btn-default btn-footer">{% trans 'Add Your Store' %}</button>
+                    <button type="submit" class="btn- btn-default btn-footer coin-payment">{% trans 'Coin Request' %}</button>
                     <img class="apple-icon" src="{% static 'images/apple-icon.png' %}">
                     <img class="apple-icon" src="{% static 'images/play-store.png' %}">
                 </div>

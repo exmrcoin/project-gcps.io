@@ -95,7 +95,7 @@
                     <ul class="dropdown-menu drop-down-box">
                         {% for language in languages %}
                             <li class="{% ifequal current_language language.0 %}active{% endifequal %}">
-                                <a href="/./{{ language.0 }}/" title="{{ language.1 }}">
+                                <a href="{{ language.0 }}/" title="{{ language.1 }}">
                                     {{ language.1 }}
                                 </a>
                             </li>

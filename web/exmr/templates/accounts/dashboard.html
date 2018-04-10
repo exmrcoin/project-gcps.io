@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block content %}
     {% load widget_tweaks %}
+    {% load i18n %}
     <section>
         <div class="dashboard-bg">
             <div class="container">
@@ -11,7 +12,7 @@
                             <img src="{% static '/images/dashboard-icom.png' %}">
 
                         </div>
-                        <h3>Dashboard</h3>
+                        <h3>{% trans 'Dashboard'%}</h3>
                     </div>
                     <div class="dasboard-sec">
 
@@ -22,39 +23,39 @@
                                 </a>
                             </div>
                             <a href= "{% url 'accounts:profile' %}">
-                                <span class="dashboard-span">Home</span>
+                                <span class="dashboard-span">{% trans 'Home' %}</span>
                             </a>
                         </div>
                         <div class="col-sm-4 dashboard-componatns">
                             <div class="home-icon box-1">
                                 <img class="img-d-icon" src="{% static '/images/wallet.png' %}">
                             </div>
-                            <span class="dashboard-span">Your Wallet</span>
+                            <span class="dashboard-span">{% trans 'Your Wallet' %}</span>
                         </div>
                         <div class="col-sm-4 dashboard-componatns">
                             <div class="home-icon box-2">
                                 <img class="img-d-icon" src="{% static '/images/coin01.png' %} ">
                             </div>
-                            <span class="dashboard-span">Coin Settings</span>
+                            <span class="dashboard-span">{% trans 'Coin Settings' %}</span>
                         </div>
                         <div class="col-sm-4 dashboard-componatns">
 
                             <div class="home-icon box-3">
                                 <img class="img-d-icon" src="{% static '/images/bill-not.png' %}">
                             </div>
-                            <span class="dashboard-span">Transaction History</span>
+                            <span class="dashboard-span">{% trans 'Transaction History' %}</span>
                         </div>
                         <div class="col-sm-4 dashboard-componatns">
                             <div class="home-icon box-4">
                                 <img class="img-d-icon" src="{% static '/images/pos.png' %}">
                             </div>
-                            <span class="dashboard-span">Quick POS</span>
+                            <span class="dashboard-span">{% trans 'Quick POS' %}</span>
                         </div>
                         <div class="col-sm-4 dashboard-componatns">
                             <div class="home-icon box-5">
                                 <img class="img-d-icon" src="{% static '/images/pay.png' %}">
                             </div>
-                            <span class="dashboard-span">$PayByName</span>
+                            <span class="dashboard-span">{% trans '$PayByName' %}</span>
                         </div>
                     </div>
                 </div>
@@ -64,7 +65,7 @@
                             <img src="{% static '/images/recevied.png'%} ">
 
                         </div>
-                        <h3 class="trans">Recent Transaction</h3>
+                        <h3 class="trans">{% trans 'Recent Transaction' %}</h3>
                     </div>
                     <div class="dashboard-table">
                         <div class="dasboard-head">
@@ -78,10 +79,11 @@
                                         <thead>
                                         <tr class="table-top">
 
-                                            <th>Time</th>
-                                            <th>Received / Sent Name</th>                                             <th>Coin</th>
-                                            <th>Amount</th>
-                                            <th>Status</th>
+                                            <th>{% trans 'Time' %}</th>
+                                            <th>{% trans 'Received / Sent Name' %}</th>
+                                            <th>{% trans 'Coin' %}</th>
+                                            <th>{% trans 'Amount' %}</th>
+                                            <th>{% trans 'Status' %}</th>
 
                                         </tr>
                                         </thead>
@@ -100,7 +102,7 @@
                                          </tr> -->
 
                                         <tr>
-                                            <td class="table-style" colspan="5">No Payment Found</td>
+                                            <td class="table-style" colspan="5">{% trans 'No Payment Found' %}</td>
 
                                         </tr>
                                         </tbody>

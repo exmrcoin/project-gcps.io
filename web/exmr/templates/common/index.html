@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
+    {% load i18n %}
     {% block meta %}
         <!-- Schema.org markup for Google+ -->
         <meta itemprop="name" content="GETCRYPTOPAYMENTS">
@@ -25,9 +26,11 @@
                         <img class="banner-img-circle img-responsive" src="static/images/banner-img.png" alt="">
                     </div>
                     <div class="col-sm-6 banner-content">
-                        <div class="banner-head-line">Accept over 140 altcoins now for only 0.50%</div>
-                        <p>Integrated payment gateway for cryptocurrencies such as Bitcoin and Litecoin</p>
-                        <button type="submit" class="btn- btn-default btn-get-strat">Get Start</button>
+                        <div class="banner-head-line">
+                        {% trans 'Accept over 140 altcoins now for only 0.50' %}%
+                        </div>
+                        <p>{% trans 'Integrated payment gateway for cryptocurrencies such as Bitcoin and Litecoin' %}</p>
+                        <button type="submit" class="btn- btn-default btn-get-strat">{% trans 'Get Start' %}</button>
                     </div>
 
                 </div>
@@ -39,8 +42,7 @@
                 </span>
           </span>
           </a>
-          <p>scroll me</p>
-
+          <p>{% trans 'scroll me' %}</p>
           </span>
 
                 </div>
@@ -56,20 +58,20 @@
                         <div class="col-sm-6 runnnig-sec">
 
                             <img class="coin-b" src="static/images/b-coin.png" alt="">
-                            <span class="running"> Running an ICO?</span>
-                            <p>Let Getcryptopayments help with:</p>
+                            <span class="running"> {% trans 'Running an ICO?' %}</span>
+                            <p>{% trans 'Let Getcryptopayments help with:' %}</p>
                             <ul>
-                                <li> Accepting payments from over 150 different coins</li>
-                                <li> Accepting payments from over 150 different coins</li>
+                                <li> {% trans 'Accepting payments from over 150 different coins' %}</li>
+                                <li> {% trans 'Accepting payments from over 150 different coins' %}</li>
                             </ul>
-                            <button type="submit" class="btn- btn-default btn-more">Find Out More</button>
+                            <button type="submit" class="btn- btn-default btn-more">{% trans 'Find Out More' %}</button>
 
                         </div>
                         <div class="col-sm-6 runnnig-sec">
                             <img class="coin-b" src="static/images/fingure.png" alt="">
-                            <span class="running">$PayByName </span>
-                            <p>One unique $tag to receive payments from all coins. </p>
-                            <h1>Example Profile</h1>
+                            <span class="running">{% trans '$PayByName' %}</span>
+                            <p>{% trans 'One unique $tag to receive payments from all coins.' %} </p>
+                            <h1>{% trans 'Example Profile' %}</h1>
                             <div class="co-md-6">
                                 <div class="pay-by">
                                     <div class="doller">$</div>
@@ -79,7 +81,7 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn- btn-default btn-more check-availabe">Check
-                                        Available
+                                        {% trans 'Available' %}
                                     </button>
                                 </div>
                             </div>
@@ -89,10 +91,8 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-12 shopping-cart">Shopping Cart Plugins</div>
-                    <div class="col-sm-12 shopping">Offering plugins for all the popular webcarts used today. Register
-                        and install a plugin to set up Getcryptopayments with
-                        your new or pre-existing checkout
+                    <div class="col-sm-12 shopping-cart">{% trans 'Shopping Cart Plugins' %}</div>
+                    <div class="col-sm-12 shopping">{% trans 'Offering plugins for all the popular webcarts used today. Register and install a plugin to set up Getcryptopayments with your new or pre-existing checkout' %}
                     </div>
 
                 </div>
@@ -138,9 +138,8 @@
     <section>
         <div class="container ">
             <div class="row">
-                <div class="col-sm-12 shopping-cart">Payment Features</div>
-                <div class="col-sm-12 shopping">Getcryptopayments supports BitGo Instant making Bitcoin payments faster
-                    than ever before.
+                <div class="col-sm-12 shopping-cart">{% trans 'Payment Features' %}</div>
+                <div class="col-sm-12 shopping">{% trans 'Getcryptopayments supports BitGo Instant making Bitcoin payments fasterthan ever before.' %}
                 </div>
 
                 <div class="col-sm-6 text-right">
@@ -149,9 +148,9 @@
                         <!-- repeat -->
                         <div class="pay-setbx">
                             <div class="pay-setbx-content right">
-                                <h3>BitGo™ Instant</h3>
-                                <p>Getcryptopayments supports BitGo Instant making Bitcoin payments faster than ever
-                                    before.</p>
+                                <h3>{% trans 'BitGo™ Instant' %}</h3>
+                                <p>{% blocktrans %}Getcryptopayments supports BitGo Instant making Bitcoin payments faster than ever
+                                    before. {% endblocktrans %}</p>
                             </div>
                             <div class="pay-setbx-image right">
                                 <img src="static/images/coin.png"/>
@@ -162,9 +161,9 @@
                         <!-- repeat -->
                         <div class="pay-setbx">
                             <div class="pay-setbx-content right">
-                                <h3>Vault</h3>
-                                <p>Protect your coins in the vault, requiring a time amount you specify before being
-                                    able to spend them.</p>
+                                <h3>{% trans 'Vault' %}</h3>
+                                <p>{% blocktrans %}Protect your coins in the vault, requiring a time amount you specify before being
+                                    able to spend them.{% endblocktrans %}</p>
                             </div>
                             <div class="pay-setbx-image right">
                                 <img src="static/images/valut.png"/>
@@ -175,9 +174,9 @@
                         <!-- repeat -->
                         <div class="pay-setbx">
                             <div class="pay-setbx-content right">
-                                <h3>Fiat Settlements</h3>
-                                <p>United States and Euro merchants now have fiat settlements directly to their bank
-                                    accounts.</p>
+                                <h3>{% trans 'Fiat Settlements' %}</h3>
+                                <p>{% blocktrans %}United States and Euro merchants now have fiat settlements directly to their bank
+                                    accounts. {% endblocktrans %}</p>
                             </div>
                             <div class="pay-setbx-image right">
                                 <img src="static/images/fiat.png"/>
@@ -188,9 +187,9 @@
                         <!-- repeat -->
                         <div class="pay-setbx">
                             <div class="pay-setbx-content right">
-                                <h3>Point of Sale (POS)</h3>
-                                <p>Our hot wallet is secured by BitGo - meaning 100% of our funds are protected by
-                                    multisig technology.</p>
+                                <h3>{% trans 'Point of Sale (POS)' %}</h3>
+                                <p>{% blocktrans %}Our hot wallet is secured by BitGo - meaning 100{% endblocktrans %} % {% blocktrans %}of our funds are protected by
+                                    multisig technology.{% endblocktrans %}</p>
                             </div>
                             <div class="pay-setbx-image right">
                                 <img src="static/images/pint-off-sale.png"/>
@@ -208,9 +207,9 @@
                         <!-- repeat -->
                         <div class="pay-setbx">
                             <div class="pay-setbx-content left">
-                                <h3>Secured with BitGo</h3>
-                                <p>Our hot wallet is secured by BitGo - meaning 100% of our funds are protected by
-                                    multisig technology.</p>
+                                <h3>{% trans 'Secured with BitGo' %}</h3>
+                                <p>{% blocktrans %}Our hot wallet is secured by BitGo - meaning 100{% endblocktrans %}% {% blocktrans %}of our funds are protected by
+                                    multisig technology.{% endblocktrans %}</p>
                             </div>
                             <div class="pay-setbx-image left">
                                 <img src="static/images/secured.png"/>
@@ -220,9 +219,9 @@
                         <!-- repeat -->
                         <div class="pay-setbx">
                             <div class="pay-setbx-content left">
-                                <h3>Mobile Apps</h3>
-                                <p>Access your account, accept payments in person, and convert coins anywhere with our
-                                    mobile apps for Android and iOS.</p>
+                                <h3>{% trans 'Mobile Apps' %}</h3>
+                                <p>{% blocktrans %}Access your account, accept payments in person, and convert coins anywhere with our
+                                    mobile apps for Android and iOS.{% endblocktrans %}</p>
                             </div>
                             <div class="pay-setbx-image left">
                                 <img src="static/images/mobileapp.png"/>
@@ -232,9 +231,9 @@
                         <!-- repeat -->
                         <div class="pay-setbx">
                             <div class="pay-setbx-content left">
-                                <h3>Auto Coin Conversion</h3>
-                                <p>Auto convert for some of our coins, saving you the trouble of moving funds, wasting
-                                    time and fees.</p>
+                                <h3>{% trans 'Auto Coin Conversion' %}</h3>
+                                <p>{% blocktrans %}Auto convert for some of our coins, saving you the trouble of moving funds, wasting
+                                    time and fees.{% endblocktrans %}</p>
                             </div>
                             <div class="pay-setbx-image left">
                                 <img src="static/images/auto-coin.png"/>
@@ -244,8 +243,8 @@
                         <!-- repeat -->
                         <div class="pay-setbx">
                             <div class="pay-setbx-content left">
-                                <h3>Multi-Coin Wallet</h3>
-                                <p>Optionally store your coins in our secure online wallet.</p>
+                                <h3>{% trans 'Multi-Coin Wallet' %}</h3>
+                                <p>{% blocktrans %}Optionally store your coins in our secure online wallet.{% endblocktrans %}</p>
                             </div>
                             <div class="pay-setbx-image left">
                                 <img src="static/images/multi-coin.png"/>
@@ -263,8 +262,8 @@
         <div class="grtstrat-last">
             <div class="container">
                 <div class="row">
-                    <h4>Over 730,000 vendors across 182 different countries</h4>
-                    <p>Getcryptopayments is the first and largest payment processor of over 150 cryptocurrencies</p>
+                    <h4>{% trans 'Over 730,000 vendors across 182 different countries' %}</h4>
+                    <p>{% blocktrans %}Getcryptopayments is the first and largest payment processor of over 150 cryptocurrencies{% endblocktrans %}</p>
                     <di class="col-sm-4 sub-company site__title mega ">
                         <img src="static/images/coi-deskicon.png">
                     </di>
@@ -293,13 +292,13 @@
                                     <!-- Single Testimonial -->
                                     <div class="single-testimonial">
                                         <div class="testimonial-holder">
-                                            <div class="testimonial-content">We wanted to accept StartCOIN payments so
+                                            <div class="testimonial-content">{% blocktrans %}We wanted to accept StartCOIN payments so
                                                 we starting developing. We wanted to accept Ether payments so we
                                                 starting developing. Then we realised Getcryptopayments could do the
                                                 hard work for us and we could accept all payments and receive the money
                                                 in Bitcoin. Thanks Getcryptopayments, we only need to develop with one
-                                                API now.
-                                                <p>Simon Dixon, CEO BnkToTheFuture.com</p>
+                                                API now.{% endblocktrans %}
+                                                <p>{% trans 'Simon Dixon, CEO BnkToTheFuture.com' %}</p>
                                                 <div class="testimonial-caret"><i class="fa fa-caret-down"></i></div>
                                             </div>
 
@@ -310,13 +309,13 @@
                                     <!-- Single Testimonial -->
                                     <div class="single-testimonial">
                                         <div class="testimonial-holder">
-                                            <div class="testimonial-content">We wanted to accept StartCOIN payments so
+                                            <div class="testimonial-content">{% blocktrans %}We wanted to accept StartCOIN payments so
                                                 we starting developing. We wanted to accept Ether payments so we
                                                 starting developing. Then we realised Getcryptopayments could do the
                                                 hard work for us and we could accept all payments and receive the money
                                                 in Bitcoin. Thanks Getcryptopayments, we only need to develop with one
-                                                API now.
-                                                <p>Simon Dixon, CEO BnkToTheFuture.com</p>
+                                                API now.{% endblocktrans %}
+                                                <p>{% trans 'Simon Dixon, CEO BnkToTheFuture.com' %}</p>
                                                 <div class="testimonial-caret"><i class="fa fa-caret-down"></i></div>
                                             </div>
 
@@ -327,13 +326,13 @@
                                     <!-- Single Testimonial -->
                                     <div class="single-testimonial">
                                         <div class="testimonial-holder">
-                                            <div class="testimonial-content">We wanted to accept StartCOIN payments so
+                                            <div class="testimonial-content">{% blocktrans %}We wanted to accept StartCOIN payments so
                                                 we starting developing. We wanted to accept Ether payments so we
                                                 starting developing. Then we realised Getcryptopayments could do the
                                                 hard work for us and we could accept all payments and receive the money
                                                 in Bitcoin. Thanks Getcryptopayments, we only need to develop with one
-                                                API now.
-                                                <p>Simon Dixon, CEO BnkToTheFuture.com</p>
+                                                API now.{% endblocktrans %}
+                                                <p>{% trans 'Simon Dixon, CEO BnkToTheFuture.com' %}</p>
                                                 <div class="testimonial-caret"><i class="fa fa-caret-down"></i></div>
                                             </div>
 

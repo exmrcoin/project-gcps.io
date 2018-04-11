@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles widget_tweaks %}
 {% block title %}Signup{% endblock %}
+{% load i18n %}
 {% block content %}
     <section>
         <div class="login-bg">
@@ -15,58 +16,55 @@
                                 <img class="logo-log" src="{% static 'images/log-log.png' %}" alt="">
                             </a>
                         </div>
-                        <div class="form-group welcome">Welcome!</div>
-                        <h3 class="log-subline">Sign in by entering the information below</h3>
+                        <div class="form-group welcome">{% trans 'Welcome!' %}</div>
+                        <h3 class="log-subline">{% trans 'Sign in by entering the information below' %}</h3>
 
                         <div class="form-group">
                             <form id="signupForm" action="." method="post" novalidate>{% csrf_token %}
                                 <div class=" form-group">
                                     {% render_field form.username class="form-control usernmae-log" placeholder="Username" %}
-                                    {{ form.username.errors }}
+                                    {% blocktrans %}{{ form.username.errors }} {% endblocktrans %}
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         {% render_field form.email class="form-control usernmae-log" placeholder="Email" %}
-                                        {{ form.email.errors }}
+                                        {% blocktrans %}{{ form.email.errors }} {% endblocktrans %}
                                     </div>
                                     <div class="col-md-6 form-group">
                                         {% render_field form.confirm_email class="form-control usernmae-log" placeholder="Confirm Email" %}
-                                        {{ form.confirm_email.errors }}
+                                        {% blocktrans %}{{ form.confirm_email.errors }} {% endblocktrans %}
                                     </div>
                                     <div class="col-md-6 form-group">
                                         {% render_field form.password1 class="form-control usernmae-log" placeholder="Password" %}
-                                        {{ form.password1.errors }}
+                                        {% blocktrans %}{{ form.password1.errors }}{% endblocktrans %}
                                     </div>
                                     <div class="col-md-6 form-group">
                                         {% render_field form.password2 class="form-control usernmae-log" placeholder="Confirm Password" %}
-                                        {{ form.password2.errors }}
+                                        {% blocktrans %}{{ form.password2.errors }}{% endblocktrans %}
                                     </div>
                                 </div>
-                                <p>Please make it at least 10 characters long and include letters, numbers, and special
-                                    characters.</p>
-                                <h4 class="time-cone">Timezone</h4>
+                                <p>{% trans "Please make it at least 10 characters long and include letters, numbers, and special characters." %}</p>
+                                <h4 class="time-cone">{% trans "Timezone" %}</h4>
                                 <div class=" form-group">
 
                                     {% render_field form.timezone class="selectpicker picker-signup" placeholder="Confirm Password" %}
-                                    {{ form.timezone.errors }}
+                                    {% blocktrans %}{{ form.timezone.errors }}{% endblocktrans %}
                                 </div>
                                 <div class=" form-group">
                                     <div class="checkbox signup-ceckbox">
                                         {{ form.need_newsletter }}
                                         <label for="checkbox1  " class="label-sign">
-                                            Newsletters and other relevant information from Getcryptopayments.net to my
-                                            provided
-                                            e-mail.
+                                            {% trans 'Newsletters and other relevant information from Getcryptopayments.net to my provided e-mail.' %}
                                         </label>
                                     </div>
-                                    {{ form.need_newsletter.errors }}
+                                    {% blocktrans %}{{ form.need_newsletter.errors }}{% endblocktrans %}
                                 </div>
                                 <div class="form-group">
                                     <div class="checkbox signup-ceckbox">
                                         {{ form.accept_terms_and_conditions }}
                                         <label for="checkbox1  " class="label-sign">
-                                            Have read and agree to the <span class="terms">Terms of Service.</span>
+                                            {% trans 'Have read and agree to the' %} <span class="terms">{% trans 'Terms of Service.' %}</span>
                                         </label>
                                     </div>
                                     {{ form.accept_terms_and_conditions.errors }}
@@ -84,7 +82,7 @@
                                             <button class="btn" onclick='CreateCaptcha();'>
                                                 <i class="fas fa-sync-alt"></i>
                                             </button>
-                                            <p>Type the characters you see in the image above:</p>
+                                            <p>{% trans 'Type the characters you see in the image above:' %}</p>
                                             <input type="text" class="capticha-enter1 form-control"
                                                    id="UserCaptchaCode"
                                                    class="CaptchaTxtField"
@@ -94,7 +92,7 @@
 
                                     </fieldset>
                                 </section>
-                                <button type="submit" class="btn- btn-default btn-log sign-button">Signup</button>
+                                <button type="submit" class="btn- btn-default btn-log sign-button">{% trans 'Signup' %}</button>
                             </form>
                         </div>
                     </div>

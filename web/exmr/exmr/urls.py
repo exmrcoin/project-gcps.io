@@ -13,8 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import patterns as patterns
 from django.conf import settings
 from django.conf.urls import url
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
@@ -22,12 +24,18 @@ from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfirmView, \
     PasswordResetCompleteView
+from django.views.i18n import set_language
 
 from apps.common.views import HomeView
 from apps.store.views import StoreCategoryListView, StoreCategoryDetailView
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
+urlpatterns = [ path('admin/', admin.site.urls),
+                path('rosetta/', include('rosetta.urls')),
+                ]
+urlpatterns += static( settings.STATIC_URL, document_root=settings.STATIC_ROOT )
+urlpatterns += static( settings.MEDIA_URL, document_root=settings.MEDIA_ROOT )
+
+urlpatterns += i18n_patterns(
     path('password-reset-done', PasswordResetDoneView.as_view(template_name='accounts/forgot_password_done.html'),
          name='password_reset_done'),
     path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
@@ -44,9 +52,7 @@ urlpatterns = [
     path('store-directory/<slug:slug>', StoreCategoryDetailView.as_view(template_name='store-directory.html'), name='store-item'),
 
     path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'), name='forgot-password'),
+)
 
 
-]
 
-urlpatterns += static( settings.STATIC_URL, document_root=settings.STATIC_ROOT )
-urlpatterns += static( settings.MEDIA_URL, document_root=settings.MEDIA_ROOT )

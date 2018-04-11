@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+from django.utils.translation import ugettext_lazy as _
+
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -42,10 +45,12 @@ INSTALLED_APPS = [
     'django_social_share',
     'ckeditor',
 
+
     # Django packages
     'timezone_field',
     'django_countries',
     'widget_tweaks',
+    'rosetta',
 
     # Project apps
     'apps.accounts',
@@ -57,6 +62,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -82,6 +88,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.i18n',
             ],
         },
     },
@@ -99,6 +106,11 @@ DATABASES = {
         'NAME': os.path.join(PROJECT_PATH, 'db.sqlite3'),
     }
 }
+
+
+LOCALE_PATHS = (
+    os.path.join(PROJECT_PATH, 'conf/locale'),
+)
 
 
 # Password validation
@@ -123,7 +135,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en'
 
 TIME_ZONE = 'UTC'
 
@@ -134,11 +146,18 @@ USE_L10N = True
 USE_TZ = True
 
 
+LANGUAGES = (
+    ('en', _('English')),
+    ('es', _('Spanish')),
+)
+
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
+print(STATIC_ROOT)
 STATICFILES_DIRS = (os.path.join(PROJECT_PATH, 'staticfiles'),)
 
 MEDIA_URL = '/media/'

@@ -32,6 +32,9 @@ from apps.store.views import StoreCategoryListView, StoreCategoryDetailView
 urlpatterns = [ path('admin/', admin.site.urls),
                 path('rosetta/', include('rosetta.urls')),
                 ]
+urlpatterns += static( settings.STATIC_URL, document_root=settings.STATIC_ROOT )
+urlpatterns += static( settings.MEDIA_URL, document_root=settings.MEDIA_ROOT )
+
 urlpatterns += i18n_patterns(
     path('password-reset-done', PasswordResetDoneView.as_view(template_name='accounts/forgot_password_done.html'),
          name='password_reset_done'),
@@ -51,6 +54,5 @@ urlpatterns += i18n_patterns(
     path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'), name='forgot-password'),
 )
 
-urlpatterns += static( settings.STATIC_URL, document_root=settings.STATIC_ROOT )
-urlpatterns += static( settings.MEDIA_URL, document_root=settings.MEDIA_ROOT )
+
 

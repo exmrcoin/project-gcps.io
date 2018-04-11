@@ -8,8 +8,15 @@ $(function() {
         e.clearSelection();
     });
 
-    function formSubmit(formId, url) {
 
+    function getCurrentLanguage() {
+        var lang = window.location.pathname.split("/")[1]
+        return "/"+lang
+    }
+
+    function formSubmit(formId, url) {
+        lang = getCurrentLanguage()
+        url = lang + url
         var data = $(formId + " :input").serializeArray();
         $.ajax({
             url: url,

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-11 06:12+0000\n"
+"POT-Creation-Date: 2018-04-11 07:27+0000\n"
 "PO-Revision-Date: 2018-04-11 06:15+0000\n"
 "Last-Translator: b'  <ibin@mail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -497,7 +497,8 @@ msgstr "registro"
 #, python-format
 msgid ""
 "\n"
-"    You (or someone pretending to be you) have asked to register an account at\n"
+"    You (or someone pretending to be you) have asked to register an account "
+"at\n"
 "    %(site_name)s.  If this wasn't you, please ignore this email\n"
 "    and your address will be removed from our records.\n"
 "    "
@@ -721,9 +722,13 @@ msgstr "nombre público"
 msgid "Public Email"
 msgstr "Correo electrónico público"
 
-#: templates/accounts/settings.html:225 templates/accounts/settings.html:240
+#: templates/accounts/settings.html:225
 msgid "Public URL"
 msgstr "URL pública"
+
+#: templates/accounts/settings.html:240 templates/accounts/settings.html:302
+msgid "Update"
+msgstr "Actualizar"
 
 #: templates/accounts/settings.html:261
 msgid "Current Password"
@@ -750,10 +755,6 @@ msgstr "envío / retirada de confirmación por correo electrónico"
 #: templates/accounts/settings.html:294
 msgid "PGP/GPG Public Key"
 msgstr "Clave pública de PGP / GPG"
-
-#: templates/accounts/settings.html:302
-msgid "Update"
-msgstr "Actualizar"
 
 #: templates/accounts/signup.html:26
 #, python-format
@@ -782,8 +783,8 @@ msgstr ""
 
 #: templates/accounts/signup.html:47
 msgid ""
-"Please make it at least 10 characters long and include letters, numbers, and"
-" special characters."
+"Please make it at least 10 characters long and include letters, numbers, and "
+"special characters."
 msgstr ""
 "Por favor haga que tenga al menos 10 caracteres e incluya letras, números y "
 "caracteres especiales."
@@ -802,8 +803,8 @@ msgid ""
 "Newsletters and other relevant information from Getcryptopayments.net to my "
 "provided e-mail."
 msgstr ""
-"Boletines informativos y otra información relevante de Getcryptopayments.net"
-" a mi correo electrónico proporcionado."
+"Boletines informativos y otra información relevante de Getcryptopayments.net "
+"a mi correo electrónico proporcionado."
 
 #: templates/accounts/signup.html:61
 #, python-format
@@ -950,8 +951,8 @@ msgid ""
 "checkout"
 msgstr ""
 "Ofrece complementos para todos los webcarts populares que se usan hoy en "
-"día. Registre e instale un complemento para configurar Getcryptopayments con"
-" su pago nuevo o preexistente"
+"día. Registre e instale un complemento para configurar Getcryptopayments con "
+"su pago nuevo o preexistente"
 
 #: templates/common/index.html:141
 msgid "Payment Features"
@@ -971,10 +972,12 @@ msgstr "BitGo ™ Instante"
 
 #: templates/common/index.html:152
 msgid ""
-"Getcryptopayments supports BitGo Instant making Bitcoin payments faster than ever\n"
+"Getcryptopayments supports BitGo Instant making Bitcoin payments faster than "
+"ever\n"
 "                                    before. "
 msgstr ""
-"Getcryptopayments admite BitGo Instant realizando pagos de Bitcoin más rápido que nunca\n"
+"Getcryptopayments admite BitGo Instant realizando pagos de Bitcoin más "
+"rápido que nunca\n"
 "antes de."
 
 #: templates/common/index.html:164
@@ -983,10 +986,12 @@ msgstr "Bóveda"
 
 #: templates/common/index.html:165
 msgid ""
-"Protect your coins in the vault, requiring a time amount you specify before being\n"
+"Protect your coins in the vault, requiring a time amount you specify before "
+"being\n"
 "                                    able to spend them."
 msgstr ""
-"Protege tus monedas en la bóveda, requiriendo una cantidad de tiempo que especifiques antes de ser\n"
+"Protege tus monedas en la bóveda, requiriendo una cantidad de tiempo que "
+"especifiques antes de ser\n"
 "capaz de gastarlos."
 
 #: templates/common/index.html:177
@@ -995,10 +1000,12 @@ msgstr "Acuerdos de Fiat"
 
 #: templates/common/index.html:178
 msgid ""
-"United States and Euro merchants now have fiat settlements directly to their bank\n"
+"United States and Euro merchants now have fiat settlements directly to their "
+"bank\n"
 "                                    accounts. "
 msgstr ""
-"Los comerciantes de Estados Unidos y el euro ahora tienen acuerdos fijos directamente a su banco\n"
+"Los comerciantes de Estados Unidos y el euro ahora tienen acuerdos fijos "
+"directamente a su banco\n"
 "cuentas"
 
 #: templates/common/index.html:190
@@ -1028,10 +1035,12 @@ msgstr "Obtener la aplicación móvil"
 
 #: templates/common/index.html:223
 msgid ""
-"Access your account, accept payments in person, and convert coins anywhere with our\n"
+"Access your account, accept payments in person, and convert coins anywhere "
+"with our\n"
 "                                    mobile apps for Android and iOS."
 msgstr ""
-"Acceda a su cuenta, acepte pagos en persona y convierta monedas en cualquier lugar con nuestra\n"
+"Acceda a su cuenta, acepte pagos en persona y convierta monedas en cualquier "
+"lugar con nuestra\n"
 "aplicaciones móviles para Android e iOS."
 
 #: templates/common/index.html:234
@@ -1040,10 +1049,12 @@ msgstr "Conversión automática de monedas"
 
 #: templates/common/index.html:235
 msgid ""
-"Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
+"Auto convert for some of our coins, saving you the trouble of moving funds, "
+"wasting\n"
 "                                    time and fees."
 msgstr ""
-"Auto conversión para algunas de nuestras monedas, lo que le ahorra la molestia de mover fondos, perder\n"
+"Auto conversión para algunas de nuestras monedas, lo que le ahorra la "
+"molestia de mover fondos, perder\n"
 "tiempo y tarifas"
 
 #: templates/common/index.html:246
@@ -1071,17 +1082,24 @@ msgstr ""
 #: templates/common/index.html:329
 msgid ""
 "We wanted to accept StartCOIN payments so\n"
-"                                                we starting developing. We wanted to accept Ether payments so we\n"
-"                                                starting developing. Then we realised Getcryptopayments could do the\n"
-"                                                hard work for us and we could accept all payments and receive the money\n"
-"                                                in Bitcoin. Thanks Getcryptopayments, we only need to develop with one\n"
+"                                                we starting developing. We "
+"wanted to accept Ether payments so we\n"
+"                                                starting developing. Then we "
+"realised Getcryptopayments could do the\n"
+"                                                hard work for us and we "
+"could accept all payments and receive the money\n"
+"                                                in Bitcoin. Thanks "
+"Getcryptopayments, we only need to develop with one\n"
 "                                                API now."
 msgstr ""
 "Queríamos aceptar pagos de StartCOIN por lo\n"
 "estamos empezando a desarrollar. Queríamos aceptar pagos Ether por lo que\n"
-"comenzando a desarrollarse Entonces nos dimos cuenta de que Getcryptopayments podría hacer\n"
-"trabajo duro para nosotros y podríamos aceptar todos los pagos y recibir el dinero\n"
-"en Bitcoin. Gracias a Getcryptopayments, solo tenemos que desarrollar con uno\n"
+"comenzando a desarrollarse Entonces nos dimos cuenta de que "
+"Getcryptopayments podría hacer\n"
+"trabajo duro para nosotros y podríamos aceptar todos los pagos y recibir el "
+"dinero\n"
+"en Bitcoin. Gracias a Getcryptopayments, solo tenemos que desarrollar con "
+"uno\n"
 "API ahora."
 
 #: templates/common/index.html:301 templates/common/index.html:318
@@ -1095,8 +1113,8 @@ msgstr "HERRAMIENTAS COMERCIALES"
 
 #: templates/merchant-tools.html:11
 msgid ""
-"Instant ceyto checkout with easy to use cart plugin,advanced,invoice "
-"builder,and API for custom integration"
+"Instant ceyto checkout with easy to use cart plugin,advanced,invoice builder,"
+"and API for custom integration"
 msgstr ""
 "Descarga inmediata de ceyto con un plugin de carrito fácil de usar, "
 "avanzado, creador de factura y API para integración personalizada"
@@ -1105,8 +1123,7 @@ msgstr ""
 msgid ""
 "If you would like to be updated about new API or changes to existing Apis"
 msgstr ""
-"Si desea recibir actualizaciones sobre nuevas API o cambios a Apis "
-"existentes"
+"Si desea recibir actualizaciones sobre nuevas API o cambios a Apis existentes"
 
 #: templates/merchant-tools.html:19
 msgid "click here"

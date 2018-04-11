@@ -54,7 +54,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/dashboard.html'
 
 
-class AccountSettings(JSONResponseMixin, UpdateView):
+class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
     form_class = UpdateBasicProfileForm
     template_name = 'accounts/settings.html'
     success_url = reverse_lazy('accounts:settings')
@@ -126,7 +126,7 @@ class PublicInfoSave(JSONResponseMixin, UpdateView):
         return self.render_to_json_response(form.errors)
 
 
-class SecurityInfoSave(JSONResponseMixin, UpdateView):
+class SecurityInfoSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
 
     form_class = LoginSecurityForm
 
@@ -145,7 +145,8 @@ class SecurityInfoSave(JSONResponseMixin, UpdateView):
             if confirm_password != password:
                 response['password'] = [_("Passwords doesn't match")]
             else:
-                self.request.user.set_password('new password')
+                print(self.request.user)
+                user = self.request.user.set_password(password)
                 self.request.user.save()
         else:
             form.save()

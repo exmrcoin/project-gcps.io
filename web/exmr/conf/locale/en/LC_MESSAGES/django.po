@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-11 06:12+0000\n"
+"POT-Creation-Date: 2018-04-11 07:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -716,8 +716,12 @@ msgstr ""
 msgid "Public Email"
 msgstr ""
 
-#: templates/accounts/settings.html:225 templates/accounts/settings.html:240
+#: templates/accounts/settings.html:225
 msgid "Public URL"
+msgstr ""
+
+#: templates/accounts/settings.html:240 templates/accounts/settings.html:302
+msgid "Update"
 msgstr ""
 
 #: templates/accounts/settings.html:261
@@ -742,10 +746,6 @@ msgstr ""
 
 #: templates/accounts/settings.html:294
 msgid "PGP/GPG Public Key"
-msgstr ""
-
-#: templates/accounts/settings.html:302
-msgid "Update"
 msgstr ""
 
 #: templates/accounts/signup.html:26

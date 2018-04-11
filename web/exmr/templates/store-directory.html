@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
+    {% load i18n %}
     <section>
         <div class="dashboard-bg">
             <div class="merchant-tools">
                 <div class=" container merchant-box">
-                    STORE DIRECTORY</div>
+                    {% trans 'STORE DIRECTORY' %}</div>
                 <div class="container subline-p">
-                    <p>Largest directory of merchants accepting multiple cryptocurrencies
+                    <p>{% trans 'Largest directory of merchants accepting multiple cryptocurrencies' %}
                 </div>
                 <div class="container">
                     <div class="col-sm-6 search-div">
@@ -15,7 +16,7 @@
                             <div class="input-group">
                                 <input type="text" class="form-control search-area" placeholder="Search" name="srch-term" id="srch-term">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-default search-button" type="submit">Search</button>
+                                    <button class="btn btn-default search-button" type="submit">{% trans 'Search' %}</button>
                                 </div>
                             </div>
                         </form>
@@ -42,15 +43,15 @@
                             <fieldset class="setting-form form-settings setings-charity">
                                 <div class="form-group col-md-6">
                                     <select class="form-control select-view " name="" id="country">
-                                        <option>Any Coin (s)</option>
-                                        <option>Test</option>
+                                        <option>{% trans 'Any Coin (s)' %}</option>
+                                        <option>{% trans 'Test' %}</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <select class="form-control select-view" name="" id="country">
-                                        <option>CPS Sort</option>
-                                        <option>Test</option>
-                                        <option>Test</option>
+                                        <option>{% trans 'CPS Sort' %}</option>
+                                        <option>{% trans 'Test' %}</option>
+                                        <option>{% trans 'Test' %}</option>
                                     </select>
                                 </div>
                             </fieldset>
@@ -60,38 +61,38 @@
 
                         <div class="content-box-charity">
                             <div class="col-sm-3 feedback-content inbox-wrap">
-                                <div class="col-sm-12 head-feedback feedback">FEEDBACK</div>
+                                <div class="col-sm-12 head-feedback feedback">{% trans 'FEEDBACK' %}</div>
                                 <span class="fa fa-star checked star-rate"></span>
                                 <span class="fa fa-star checked star-rate"></span>
                                 <span class="fa fa-star checked star-rate"></span>
                                 <span class="fa fa-star star-rate"></span>
                                 <span class="fa fa-star star-rate"></span>
                                 <span class="percentage star-rate">(85%)</span>
-                                <div class="ratting star-rate">22 Rating (s)</div>
+                                <div class="ratting star-rate">{% trans '22 Rating (s)' %}</div>
                             </div>
 
                             <div class="col-sm-3 feedback-content inbox-wrap">
-                                <div class="col-sm-12 head-feedback feedback ">STORE</div>
-                                <div class="donation">CESHEO Donation</div>
+                                <div class="col-sm-12 head-feedback feedback ">{% trans 'STORE' %}</div>
+                                <div class="donation">{% trans 'CESHEO Donation' %}</div>
                                 <div class="logo-charity">
                                     <img src="{% static 'images/logo-charity.png'  %}">
                                 </div>
                                 <div class="donation-link">http://ceshe.org</div>
                             </div>
                             <div class="col-sm-3 feedback-content inbox-wrap">
-                                <div class="col-sm-12 head-feedback feedback">BUMP</div>
+                                <div class="col-sm-12 head-feedback feedback">{% trans 'BUMP' %}</div>
                             </div>
                         </div>
                         <div class="content-box-charity">
                             <div class="col-sm-3 feedback-content inbox-wrap">
-                                <div class="col-sm-12 head-feedback feedback">FEEDBACK</div>
+                                <div class="col-sm-12 head-feedback feedback">{% trans 'FEEDBACK' %}</div>
                                 <span class="fa fa-star checked star-rate"></span>
                                 <span class="fa fa-star checked star-rate"></span>
                                 <span class="fa fa-star checked star-rate"></span>
                                 <span class="fa fa-star star-rate"></span>
                                 <span class="fa fa-star star-rate"></span>
                                 <span class="percentage star-rate">(85%)</span>
-                                <div class="ratting star-rate">22 Rating (s)</div>
+                                <div class="ratting star-rate">{% trans '22 Rating (s)' %})</div>
                             </div>
 
                             <div class="col-sm-3 feedback-content inbox-wrap">
@@ -108,50 +109,50 @@
                         </div>
                         <div class="content-box-charity">
                             <div class="col-sm-3 feedback-content inbox-wrap">
-                                <div class="col-sm-12 head-feedback feedback">FEEDBACK</div>
+                                <div class="col-sm-12 head-feedback feedback">{% trans 'FEEDBACK' %}</div>
                                 <span class="fa fa-star checked star-rate"></span>
                                 <span class="fa fa-star checked star-rate"></span>
                                 <span class="fa fa-star checked star-rate"></span>
                                 <span class="fa fa-star star-rate"></span>
                                 <span class="fa fa-star star-rate"></span>
                                 <span class="percentage star-rate">(85%)</span>
-                                <div class="ratting star-rate">22 Rating (s)</div>
+                                <div class="ratting star-rate">{% trans '22 Rating (s)' %}</div>
                             </div>
 
                             <div class="col-sm-3 feedback-content inbox-wrap">
-                                <div class="col-sm-12 head-feedback feedback ">STORE</div>
-                                <div class="donation">CESHEO Donation</div>
+                                <div class="col-sm-12 head-feedback feedback ">{% trans 'STORE' %}</div>
+                                <div class="donation">{% trans 'CESHEO Donation' %}</div>
                                 <div class="logo-charity">
                                     <img src="{% static 'images/logo-charity.png' %}">
                                 </div>
                                 <div class="donation-link">http://ceshe.org</div>
                             </div>
                             <div class="col-sm-3 feedback-content inbox-wrap">
-                                <div class="col-sm-12 head-feedback feedback">BUMP</div>
+                                <div class="col-sm-12 head-feedback feedback">{% trans 'BUMP' %}</div>
                             </div>
                         </div>
                         <div class="content-box-charity">
                             <div class="col-sm-3 feedback-content inbox-wrap">
-                                <div class="col-sm-12 head-feedback feedback">FEEDBACK</div>
+                                <div class="col-sm-12 head-feedback feedback">{% trans 'FEEDBACK' %}</div>
                                 <span class="fa fa-star checked star-rate"></span>
                                 <span class="fa fa-star checked star-rate"></span>
                                 <span class="fa fa-star checked star-rate"></span>
                                 <span class="fa fa-star star-rate"></span>
                                 <span class="fa fa-star star-rate"></span>
                                 <span class="percentage star-rate">(85%)</span>
-                                <div class="ratting star-rate">22 Rating (s)</div>
+                                <div class="ratting star-rate">{% trans '22 Rating (s)' %}</div>
                             </div>
 
                             <div class="col-sm-3 feedback-content inbox-wrap">
-                                <div class="col-sm-12 head-feedback feedback ">STORE</div>
-                                <div class="donation">CESHEO Donation</div>
+                                <div class="col-sm-12 head-feedback feedback ">{% trans 'STORE' %}</div>
+                                <div class="donation">{% trans 'CESHEO Donation' %}</div>
                                 <div class="logo-charity">
                                     <img src="{% static 'images/logo-charity.png' %}">
                                 </div>
                                 <div class="donation-link">http://ceshe.org</div>
                             </div>
                             <div class="col-sm-3 feedback-content inbox-wrap">
-                                <div class="col-sm-12 head-feedback feedback">BUMP</div>
+                                <div class="col-sm-12 head-feedback feedback">{% trans 'BUMP' %}</div>
                             </div>
                         </div>
 

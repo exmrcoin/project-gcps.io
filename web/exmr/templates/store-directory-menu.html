@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
+        {% load i18n %}
     <section>
         <div class="dashboard-bg">
             <div class="merchant-tools">
                 <div class=" container merchant-box">
-                    STORE DIRECTORY</div>
+                    {% trans 'STORE DIRECTORY' %}</div>
                 <div class="container subline-p">
-                    <p>Largest directory of merchants accepting multtiple cryptocurrencies
+                    <p>{% trans 'Largest directory of merchants accepting multiple cryptocurrencies' %}
                 </div>
                 <div class="container">
                     <div class="col-sm-6 search-div">
@@ -15,7 +16,7 @@
                             <div class="input-group">
                                 <input type="text" class="form-control search-area" placeholder="Search" name="srch-term" id="srch-term">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-default search-button" type="submit">Search</button>
+                                    <button class="btn btn-default search-button" type="submit">{% trans 'Search' %}</button>
                                 </div>
                             </div>
                         </form>

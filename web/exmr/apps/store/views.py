@@ -12,7 +12,6 @@ class StoreCategoryListView(ListView):
     context_object_name = 'categories'
 
 
-
 class StoreCategoryDetailView(DetailView):
     model = StoreCategory
     context_object_name = 'category'

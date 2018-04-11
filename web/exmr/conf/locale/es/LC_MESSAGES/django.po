@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-11 07:27+0000\n"
-"PO-Revision-Date: 2018-04-11 06:15+0000\n"
-"Last-Translator: b'  <ibin@mail.com>'\n"
+"POT-Creation-Date: 2018-04-11 12:57+0000\n"
+"PO-Revision-Date: 2018-04-11 12:59+0000\n"
+"Last-Translator: b'  <admin@mail.com>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
@@ -269,7 +269,7 @@ msgstr "contenido"
 msgid "Account details updated successfully"
 msgstr "Detalles de la cuenta actualizados con éxito"
 
-#: apps/accounts/views.py:123 apps/accounts/views.py:152
+#: apps/accounts/views.py:123 apps/accounts/views.py:153
 msgid "Information updated successfully"
 msgstr "Información actualizada con éxito"
 
@@ -281,23 +281,23 @@ msgstr "La contraseña actual es incorrecta"
 msgid "Passwords doesn't match"
 msgstr "Las contraseñas no coinciden"
 
-#: apps/accounts/views.py:169
+#: apps/accounts/views.py:170
 msgid "Invalid account activation link"
 msgstr "Enlace de activación de cuenta inválido"
 
-#: apps/accounts/views.py:172
+#: apps/accounts/views.py:173
 msgid "Account activation link expired"
 msgstr "El enlace de activación de la cuenta expiró"
 
-#: apps/accounts/views.py:178
+#: apps/accounts/views.py:179
 msgid "Account activated <br><p>Please <a href=/login>login</a><p>"
 msgstr ""
 
-#: apps/coins/models.py:13
+#: apps/coins/models.py:13 templates/common/support-coins.html:29
 msgid "Crypto"
 msgstr "Crypto"
 
-#: apps/coins/models.py:14
+#: apps/coins/models.py:14 templates/common/support-coins.html:35
 msgid "Ripple"
 msgstr "Onda"
 
@@ -305,7 +305,7 @@ msgstr "Onda"
 msgid "Ether tokens"
 msgstr "Tokens de éter"
 
-#: apps/coins/models.py:16
+#: apps/coins/models.py:16 templates/common/support-coins.html:47
 msgid "Fiat"
 msgstr "Fíat"
 
@@ -497,8 +497,7 @@ msgstr "registro"
 #, python-format
 msgid ""
 "\n"
-"    You (or someone pretending to be you) have asked to register an account "
-"at\n"
+"    You (or someone pretending to be you) have asked to register an account at\n"
 "    %(site_name)s.  If this wasn't you, please ignore this email\n"
 "    and your address will be removed from our records.\n"
 "    "
@@ -783,8 +782,8 @@ msgstr ""
 
 #: templates/accounts/signup.html:47
 msgid ""
-"Please make it at least 10 characters long and include letters, numbers, and "
-"special characters."
+"Please make it at least 10 characters long and include letters, numbers, and"
+" special characters."
 msgstr ""
 "Por favor haga que tenga al menos 10 caracteres e incluya letras, números y "
 "caracteres especiales."
@@ -803,8 +802,8 @@ msgid ""
 "Newsletters and other relevant information from Getcryptopayments.net to my "
 "provided e-mail."
 msgstr ""
-"Boletines informativos y otra información relevante de Getcryptopayments.net "
-"a mi correo electrónico proporcionado."
+"Boletines informativos y otra información relevante de Getcryptopayments.net"
+" a mi correo electrónico proporcionado."
 
 #: templates/accounts/signup.html:61
 #, python-format
@@ -832,6 +831,7 @@ msgid "Please check your mail"
 msgstr ""
 
 #: templates/base.html:53 templates/base.html:135
+#: templates/common/public-coin-vote.html:8
 msgid "Public Coin Vote"
 msgstr "Voto público de monedas"
 
@@ -951,8 +951,8 @@ msgid ""
 "checkout"
 msgstr ""
 "Ofrece complementos para todos los webcarts populares que se usan hoy en "
-"día. Registre e instale un complemento para configurar Getcryptopayments con "
-"su pago nuevo o preexistente"
+"día. Registre e instale un complemento para configurar Getcryptopayments con"
+" su pago nuevo o preexistente"
 
 #: templates/common/index.html:141
 msgid "Payment Features"
@@ -972,12 +972,10 @@ msgstr "BitGo ™ Instante"
 
 #: templates/common/index.html:152
 msgid ""
-"Getcryptopayments supports BitGo Instant making Bitcoin payments faster than "
-"ever\n"
+"Getcryptopayments supports BitGo Instant making Bitcoin payments faster than ever\n"
 "                                    before. "
 msgstr ""
-"Getcryptopayments admite BitGo Instant realizando pagos de Bitcoin más "
-"rápido que nunca\n"
+"Getcryptopayments admite BitGo Instant realizando pagos de Bitcoin más rápido que nunca\n"
 "antes de."
 
 #: templates/common/index.html:164
@@ -986,12 +984,10 @@ msgstr "Bóveda"
 
 #: templates/common/index.html:165
 msgid ""
-"Protect your coins in the vault, requiring a time amount you specify before "
-"being\n"
+"Protect your coins in the vault, requiring a time amount you specify before being\n"
 "                                    able to spend them."
 msgstr ""
-"Protege tus monedas en la bóveda, requiriendo una cantidad de tiempo que "
-"especifiques antes de ser\n"
+"Protege tus monedas en la bóveda, requiriendo una cantidad de tiempo que especifiques antes de ser\n"
 "capaz de gastarlos."
 
 #: templates/common/index.html:177
@@ -1000,12 +996,10 @@ msgstr "Acuerdos de Fiat"
 
 #: templates/common/index.html:178
 msgid ""
-"United States and Euro merchants now have fiat settlements directly to their "
-"bank\n"
+"United States and Euro merchants now have fiat settlements directly to their bank\n"
 "                                    accounts. "
 msgstr ""
-"Los comerciantes de Estados Unidos y el euro ahora tienen acuerdos fijos "
-"directamente a su banco\n"
+"Los comerciantes de Estados Unidos y el euro ahora tienen acuerdos fijos directamente a su banco\n"
 "cuentas"
 
 #: templates/common/index.html:190
@@ -1035,12 +1029,10 @@ msgstr "Obtener la aplicación móvil"
 
 #: templates/common/index.html:223
 msgid ""
-"Access your account, accept payments in person, and convert coins anywhere "
-"with our\n"
+"Access your account, accept payments in person, and convert coins anywhere with our\n"
 "                                    mobile apps for Android and iOS."
 msgstr ""
-"Acceda a su cuenta, acepte pagos en persona y convierta monedas en cualquier "
-"lugar con nuestra\n"
+"Acceda a su cuenta, acepte pagos en persona y convierta monedas en cualquier lugar con nuestra\n"
 "aplicaciones móviles para Android e iOS."
 
 #: templates/common/index.html:234
@@ -1049,12 +1041,10 @@ msgstr "Conversión automática de monedas"
 
 #: templates/common/index.html:235
 msgid ""
-"Auto convert for some of our coins, saving you the trouble of moving funds, "
-"wasting\n"
+"Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
 "                                    time and fees."
 msgstr ""
-"Auto conversión para algunas de nuestras monedas, lo que le ahorra la "
-"molestia de mover fondos, perder\n"
+"Auto conversión para algunas de nuestras monedas, lo que le ahorra la molestia de mover fondos, perder\n"
 "tiempo y tarifas"
 
 #: templates/common/index.html:246
@@ -1082,24 +1072,17 @@ msgstr ""
 #: templates/common/index.html:329
 msgid ""
 "We wanted to accept StartCOIN payments so\n"
-"                                                we starting developing. We "
-"wanted to accept Ether payments so we\n"
-"                                                starting developing. Then we "
-"realised Getcryptopayments could do the\n"
-"                                                hard work for us and we "
-"could accept all payments and receive the money\n"
-"                                                in Bitcoin. Thanks "
-"Getcryptopayments, we only need to develop with one\n"
+"                                                we starting developing. We wanted to accept Ether payments so we\n"
+"                                                starting developing. Then we realised Getcryptopayments could do the\n"
+"                                                hard work for us and we could accept all payments and receive the money\n"
+"                                                in Bitcoin. Thanks Getcryptopayments, we only need to develop with one\n"
 "                                                API now."
 msgstr ""
 "Queríamos aceptar pagos de StartCOIN por lo\n"
 "estamos empezando a desarrollar. Queríamos aceptar pagos Ether por lo que\n"
-"comenzando a desarrollarse Entonces nos dimos cuenta de que "
-"Getcryptopayments podría hacer\n"
-"trabajo duro para nosotros y podríamos aceptar todos los pagos y recibir el "
-"dinero\n"
-"en Bitcoin. Gracias a Getcryptopayments, solo tenemos que desarrollar con "
-"uno\n"
+"comenzando a desarrollarse Entonces nos dimos cuenta de que Getcryptopayments podría hacer\n"
+"trabajo duro para nosotros y podríamos aceptar todos los pagos y recibir el dinero\n"
+"en Bitcoin. Gracias a Getcryptopayments, solo tenemos que desarrollar con uno\n"
 "API ahora."
 
 #: templates/common/index.html:301 templates/common/index.html:318
@@ -1107,110 +1090,347 @@ msgstr ""
 msgid "Simon Dixon, CEO BnkToTheFuture.com"
 msgstr "Simon Dixon, CEO BnkToTheFuture.com"
 
-#: templates/merchant-tools.html:8
+#: templates/common/merchant-tools.html:8
 msgid "MERCHANT TOOLS"
 msgstr "HERRAMIENTAS COMERCIALES"
 
-#: templates/merchant-tools.html:11
+#: templates/common/merchant-tools.html:11
 msgid ""
-"Instant ceyto checkout with easy to use cart plugin,advanced,invoice builder,"
-"and API for custom integration"
+"Instant ceyto checkout with easy to use cart plugin,advanced,invoice "
+"builder,and API for custom integration"
 msgstr ""
 "Descarga inmediata de ceyto con un plugin de carrito fácil de usar, "
 "avanzado, creador de factura y API para integración personalizada"
 
-#: templates/merchant-tools.html:19
+#: templates/common/merchant-tools.html:19
 msgid ""
 "If you would like to be updated about new API or changes to existing Apis"
 msgstr ""
-"Si desea recibir actualizaciones sobre nuevas API o cambios a Apis existentes"
+"Si desea recibir actualizaciones sobre nuevas API o cambios a Apis "
+"existentes"
 
-#: templates/merchant-tools.html:19
+#: templates/common/merchant-tools.html:19
+#: templates/common/public-coin-vote.html:66
 msgid "click here"
 msgstr "haga clic aquí"
 
-#: templates/merchant-tools.html:25
+#: templates/common/merchant-tools.html:25
 msgid "SHOPPING CART PLUGIN"
 msgstr "PLUGIN DEL CARRITO DE COMPRAS"
 
-#: templates/merchant-tools.html:27
+#: templates/common/merchant-tools.html:27
 msgid "Plugin Downloads"
 msgstr "Descargas de complementos"
 
-#: templates/merchant-tools.html:34
+#: templates/common/merchant-tools.html:34
 msgid "API & IPNs"
 msgstr "API e IPN"
 
-#: templates/merchant-tools.html:36
+#: templates/common/merchant-tools.html:36
 msgid "Instant Payment Notification"
 msgstr "Notificación de pago instantánea"
 
-#: templates/merchant-tools.html:37
+#: templates/common/merchant-tools.html:37
 msgid "CoinpaymentAPI"
 msgstr "CoinpaymentAPI"
 
-#: templates/merchant-tools.html:44
+#: templates/common/merchant-tools.html:44
 msgid "INVOICE BUILDER"
 msgstr "CONSTRUCTOR DE FACTURAS"
 
-#: templates/merchant-tools.html:46
+#: templates/common/merchant-tools.html:46
 msgid "Payment Request invoice maker"
 msgstr "Fabricante de factura de solicitud de pago"
 
-#: templates/merchant-tools.html:53
+#: templates/common/merchant-tools.html:53
 msgid "POINT OF SALE(POS) INTERFACE"
 msgstr "INTERFAZ DE PUNTO DE VENTA (POS)"
 
-#: templates/merchant-tools.html:55
+#: templates/common/merchant-tools.html:55
 msgid "HTML URL/ POST Fields"
 msgstr "HTML URL / POST campos"
 
-#: templates/merchant-tools.html:56
+#: templates/common/merchant-tools.html:56
 msgid "Post link QR Code Generator"
 msgstr "Publicar enlace QR Code Generator"
 
-#: templates/merchant-tools.html:57
+#: templates/common/merchant-tools.html:57
 msgid "POS Examle"
 msgstr "Ejemplo de POS"
 
-#: templates/merchant-tools.html:64
+#: templates/common/merchant-tools.html:64
 #, fuzzy
 #| msgid "DONATION BUTTONS"
 msgid "SIMPLE BUTTONS"
 msgstr "BOTONES DE DONACIÓN"
 
-#: templates/merchant-tools.html:66 templates/merchant-tools.html:77
-#: templates/merchant-tools.html:99
+#: templates/common/merchant-tools.html:66
+#: templates/common/merchant-tools.html:77
+#: templates/common/merchant-tools.html:99
 msgid "Button Maker"
 msgstr "botón Fabricante"
 
-#: templates/merchant-tools.html:67 templates/merchant-tools.html:78
-#: templates/merchant-tools.html:88 templates/merchant-tools.html:100
+#: templates/common/merchant-tools.html:67
+#: templates/common/merchant-tools.html:78
+#: templates/common/merchant-tools.html:88
+#: templates/common/merchant-tools.html:100
 msgid "HTML Post Field"
 msgstr "Campo de publicación HTML"
 
-#: templates/merchant-tools.html:68 templates/merchant-tools.html:79
-#: templates/merchant-tools.html:89 templates/merchant-tools.html:101
+#: templates/common/merchant-tools.html:68
+#: templates/common/merchant-tools.html:79
+#: templates/common/merchant-tools.html:89
+#: templates/common/merchant-tools.html:101
 msgid "Button Examples"
 msgstr "Ejemplos de botones"
 
-#: templates/merchant-tools.html:75
+#: templates/common/merchant-tools.html:75
 #, fuzzy
 #| msgid "DONATION BUTTONS"
 msgid "ADVANCE BUTTONS"
 msgstr "BOTONES DE DONACIÓN"
 
-#: templates/merchant-tools.html:86
+#: templates/common/merchant-tools.html:86
 msgid "SHOPPING CART BUTTONS"
 msgstr "BOTONES DEL CARRITO DE COMPRAS"
 
-#: templates/merchant-tools.html:90
+#: templates/common/merchant-tools.html:90
 msgid "Button Images"
 msgstr "Imágenes de botones"
 
-#: templates/merchant-tools.html:97
+#: templates/common/merchant-tools.html:97
 msgid "DONATION BUTTONS"
 msgstr "BOTONES DE DONACIÓN"
+
+#: templates/common/public-coin-vote.html:11
+msgid "CoinPayments Coin Vote for Charity"
+msgstr "CoinPayments Coin Vota por la caridad"
+
+#: templates/common/public-coin-vote.html:29
+msgid "VOTEST CAST"
+msgstr ""
+
+#: templates/common/public-coin-vote.html:31
+msgid "BTC RAISED"
+msgstr "BTC LEVANTADO"
+
+#: templates/common/public-coin-vote.html:33
+#, fuzzy
+#| msgid "BTC RAISED"
+msgid "LTC RAISED"
+msgstr "BTC LEVANTADO"
+
+#: templates/common/public-coin-vote.html:36
+msgid "DOGE RAISED"
+msgstr "DOGE LEVANTADO"
+
+#: templates/common/public-coin-vote.html:63
+msgid "of proceeds will go to"
+msgstr "de los ingresos irá a"
+
+#: templates/common/public-coin-vote.html:64
+msgid "Electronic Forntier Foundation"
+msgstr "Fundación Electronic Forntier"
+
+#: templates/common/public-coin-vote.html:64
+msgid "a 501(c)(3)non-profit oraganization, the remaining"
+msgstr "una organización sin fines de lucro 501 (c) (3), el resto"
+
+#: templates/common/public-coin-vote.html:64
+msgid "will go to feed the faucete at the"
+msgstr "irá a alimentar el faucete en el"
+
+#: templates/common/public-coin-vote.html:65
+msgid "CoinPayment Block Explorer"
+msgstr "CoinPayment Bloquear Explorador"
+
+#: templates/common/public-coin-vote.html:65
+msgid "For full rule and information"
+msgstr "Para regla completa e información"
+
+#: templates/common/public-coin-vote.html:71
+msgid "POSITION"
+msgstr "POSICIÓN"
+
+#: templates/common/public-coin-vote.html:72
+msgid "COIN"
+msgstr "ACUÑAR"
+
+#: templates/common/public-coin-vote.html:73
+msgid "NAME"
+msgstr "NOMBRE"
+
+#: templates/common/public-coin-vote.html:74
+msgid "VOTES"
+msgstr "VOTOS"
+
+#: templates/common/public-coin-vote.html:75
+msgid "PERCENTAGE OF VOTES"
+msgstr "PORCENTAJE DE VOTOS"
+
+#: templates/common/public-coin-vote.html:76
+msgid "VOTE"
+msgstr "VOTAR"
+
+#: templates/common/public-coin-vote.html:84
+msgid "DigitalNote"
+msgstr ""
+
+#: templates/common/public-coin-vote.html:93
+#: templates/common/public-coin-vote.html:94
+#: templates/common/public-coin-vote.html:95
+#: templates/common/public-coin-vote.html:112
+#: templates/common/public-coin-vote.html:113
+#: templates/common/public-coin-vote.html:114
+#: templates/common/public-coin-vote.html:131
+#: templates/common/public-coin-vote.html:132
+#: templates/common/public-coin-vote.html:133
+#: templates/common/public-coin-vote.html:150
+#: templates/common/public-coin-vote.html:151
+#: templates/common/public-coin-vote.html:152
+#: templates/common/public-coin-vote.html:169
+#: templates/common/public-coin-vote.html:170
+#: templates/common/public-coin-vote.html:171
+#: templates/common/public-coin-vote.html:188
+#: templates/common/public-coin-vote.html:189
+#: templates/common/public-coin-vote.html:190
+#: templates/common/public-coin-vote.html:207
+#: templates/common/public-coin-vote.html:208
+#: templates/common/public-coin-vote.html:209
+#: templates/common/public-coin-vote.html:226
+#: templates/common/public-coin-vote.html:227
+#: templates/common/public-coin-vote.html:228
+msgid "votes"
+msgstr "votos"
+
+#: templates/common/public-coin-vote.html:103
+msgid "Byteball Bytes"
+msgstr "Bytes Byteball"
+
+#: templates/common/store-directory-menu.html:9
+#: templates/common/store-directory.html:9
+msgid "STORE DIRECTORY"
+msgstr "DIRECTORIO DE TIENDAS"
+
+#: templates/common/store-directory-menu.html:11
+#: templates/common/store-directory.html:11
+msgid "Largest directory of merchants accepting multiple cryptocurrencies"
+msgstr ""
+"El directorio más grande de comerciantes que aceptan múltiples criptomonedas"
+
+#: templates/common/store-directory-menu.html:19
+#: templates/common/store-directory.html:19
+msgid "Search"
+msgstr "Buscar"
+
+#: templates/common/store-directory.html:46
+msgid "Any Coin (s)"
+msgstr "Cualquier moneda)"
+
+#: templates/common/store-directory.html:47
+#: templates/common/store-directory.html:53
+#: templates/common/store-directory.html:54
+msgid "Test"
+msgstr "Prueba"
+
+#: templates/common/store-directory.html:52
+msgid "CPS Sort"
+msgstr "CPS Sort"
+
+#: templates/common/store-directory.html:64
+#: templates/common/store-directory.html:88
+#: templates/common/store-directory.html:112
+#: templates/common/store-directory.html:136
+msgid "FEEDBACK"
+msgstr "REALIMENTACIÓN"
+
+#: templates/common/store-directory.html:71
+#: templates/common/store-directory.html:95
+#: templates/common/store-directory.html:119
+#: templates/common/store-directory.html:143
+msgid "22 Rating (s)"
+msgstr "22 Evaluación (es)"
+
+#: templates/common/store-directory.html:75
+#: templates/common/store-directory.html:123
+#: templates/common/store-directory.html:147
+msgid "STORE"
+msgstr "ALMACENAR"
+
+#: templates/common/store-directory.html:76
+#: templates/common/store-directory.html:124
+#: templates/common/store-directory.html:148
+msgid "CESHEO Donation"
+msgstr "Donación CESHEO"
+
+#: templates/common/store-directory.html:83
+#: templates/common/store-directory.html:131
+#: templates/common/store-directory.html:155
+msgid "BUMP"
+msgstr "BACHE"
+
+#: templates/common/support-coins.html:8
+msgid "SUPPORTED COIN"
+msgstr "MONEDA APOYADA"
+
+#: templates/common/support-coins.html:11
+#| msgid ""
+#| "Instant ceyto checkout with easy to use cart plugin,advanced,invoice "
+#| "builder,and API for custom integration"
+msgid ""
+"Instant get crypto payments checkout with easy to use cart "
+"plugin,advanced,invoice builder,and API for custom integration"
+msgstr ""
+"Descarga inmediata de ceyto con un plugin de carrito fácil de usar, "
+"avanzado, creador de factura y API para integración personalizada"
+
+#: templates/common/support-coins.html:41
+msgid "Ether Token (Wallet only)"
+msgstr "Ether Token (Monedero solo)"
+
+#: templates/common/support-coins.html:58
+msgid "COIN NAME"
+msgstr "NOMBRE DE MONEDA"
+
+#: templates/common/support-coins.html:59
+msgid "COD"
+msgstr ""
+
+#: templates/common/support-coins.html:60
+msgid "FEE"
+msgstr "CUOTA"
+
+#: templates/common/support-coins.html:63
+msgid "CONFIRMS"
+msgstr "CONFIRMA"
+
+#: templates/common/support-coins.html:64
+msgid "TO BTC"
+msgstr ""
+
+#: templates/common/support-coins.html:67
+msgid "EXPLORE"
+msgstr "EXPLORAR"
+
+#: templates/common/support-coins.html:75
+#, fuzzy
+#| msgid "coin"
+msgid "Bitcoin"
+msgstr "acuñar"
+
+#: templates/common/support-coins.html:261
+#, fuzzy
+#| msgid "ASAP + Convert"
+msgid "Convert"
+msgstr "ASAP + Convert"
+
+#: templates/common/support-coins.html:261
+msgid "BITCOIN"
+msgstr ""
+
+#: templates/common/support-coins.html:276
+msgid "Close"
+msgstr "Cerca"
 
 #: templates/registration/password_reset_complete.html:6
 msgid "Your password has been set.  You may go ahead and log in now."
@@ -1228,57 +1448,6 @@ msgid ""
 msgstr ""
 "El enlace de restablecimiento de contraseña no era válido, posiblemente "
 "porque ya se utilizó. Solicite un nuevo restablecimiento de contraseña."
-
-#: templates/store-directory-menu.html:9 templates/store-directory.html:9
-msgid "STORE DIRECTORY"
-msgstr "DIRECTORIO DE TIENDAS"
-
-#: templates/store-directory-menu.html:11 templates/store-directory.html:11
-msgid "Largest directory of merchants accepting multiple cryptocurrencies"
-msgstr ""
-"El directorio más grande de comerciantes que aceptan múltiples criptomonedas"
-
-#: templates/store-directory-menu.html:19 templates/store-directory.html:19
-msgid "Search"
-msgstr "Buscar"
-
-#: templates/store-directory.html:46
-msgid "Any Coin (s)"
-msgstr "Cualquier moneda)"
-
-#: templates/store-directory.html:47 templates/store-directory.html:53
-#: templates/store-directory.html:54
-msgid "Test"
-msgstr "Prueba"
-
-#: templates/store-directory.html:52
-msgid "CPS Sort"
-msgstr "CPS Sort"
-
-#: templates/store-directory.html:64 templates/store-directory.html:88
-#: templates/store-directory.html:112 templates/store-directory.html:136
-msgid "FEEDBACK"
-msgstr "REALIMENTACIÓN"
-
-#: templates/store-directory.html:71 templates/store-directory.html:95
-#: templates/store-directory.html:119 templates/store-directory.html:143
-msgid "22 Rating (s)"
-msgstr "22 Evaluación (es)"
-
-#: templates/store-directory.html:75 templates/store-directory.html:123
-#: templates/store-directory.html:147
-msgid "STORE"
-msgstr "ALMACENAR"
-
-#: templates/store-directory.html:76 templates/store-directory.html:124
-#: templates/store-directory.html:148
-msgid "CESHEO Donation"
-msgstr "Donación CESHEO"
-
-#: templates/store-directory.html:83 templates/store-directory.html:131
-#: templates/store-directory.html:155
-msgid "BUMP"
-msgstr "BACHE"
 
 #~ msgid "%(form.accept_terms_and_conditions)s"
 #~ msgstr "Por favor acepte los términos y condiciones"

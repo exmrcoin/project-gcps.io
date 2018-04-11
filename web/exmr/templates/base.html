@@ -50,10 +50,10 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav menu-nav ">
                 <li>
-                    <a href="#">{% trans 'Public Coin Vote'%}</a>
+                    <a href="{% url 'public coin vote' %}">{% trans 'Public Coin Vote'%}</a>
                 </li>
                 <li>
-                    <a href="#">{% trans 'Supported Coins' %}</a>
+                    <a href="{% url 'supported coins' %}">{% trans 'Supported Coins' %}</a>
                 </li>
                 <li>
                     <a href="{% url 'store-directory' %}">{% trans 'Store Directory' %}</a>
@@ -197,6 +197,8 @@
     </div>
 </footer>
 </body>
+
+
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"

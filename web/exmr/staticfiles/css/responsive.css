@@ -30,6 +30,26 @@
     
     }
   
+.head-box{
+      height: 75  px;;
+    
+    }
+    .coin-box{
+      width: 94.3%;
+    }
+    .box-col{
+      font-size: 16px;
+    }
+    .btn-cont-checkout{
+      height: 150px;;
+    }
+    .coin-payment-head {
+      height: 115px !important;
+  } 
+  .coin-box {
+    width: 96.3%;
+  }
+  
   }
   
   @media only screen and (max-width: 960px) {
@@ -83,9 +103,49 @@
 .banner-log .col-sm-5{
   width: 100%;
 }
+.head-box{
+  height: 75  px;;
+
+}
+.coin-box{
+  width: 94.3%;
+}
+.box-col{
+  font-size: 16px;
+}
+.btn-cont-checkout{
+  height: 150px;;
+}
+.coin-payment-head {
+  height: 115px !important;
+} 
+.coin-box {
+width: 96.3%;
+}
+
   }
   
   @media only screen and (max-width: 800px) {
+    .head-box{
+      height: 75  px;;
+    
+    }
+    .coin-box{
+      width: 94.3%;
+    }
+    .box-col{
+      font-size: 16px;
+    }
+    .btn-cont-checkout{
+      height: 150px;;
+    }
+    .coin-payment-head {
+      height: 115px !important;
+  } 
+  .coin-box {
+    width: 96.3%;
+  }
+  
    
   
   }
@@ -204,6 +264,111 @@
 .merchant-box01 ul{
   padding-left: 195px !important;
 }
+.head-charity-line{
+  text-align: center;
+}
+.payment-btn{
+  float: initial;
+  margin-left: inherit;
+  width: 100%;;
+}
+.head-box{
+  height: 178px;;
+
+}
+.coin-box{
+  width: 94.3%;
+}
+.box-col{
+  font-size: 16px;
+}
+.btn-cont-checkout{
+  height: 150px;;
+}
+.coin-payment-head {
+  height: 115px !important;
+} 
+.coin-box {
+width: 96.3%;
+}
+.captcha-new-store{
+  width: 100%;
+}
+.capcode{
+  width: 100% !important;
+}
+#UserCaptchaCode{
+  font-size: 16px;
+}
+.new-store-btn{
+  width: 100%;
+}
+.custom-table{
+  display: block;
+}
+.custom-table thead{
+  display: none;
+}
+.custom-table tr{
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+}
+.custom-table tr td{
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+}
+.custom-table tr td:last-child{
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+  border-bottom: 2px solid #d8d8d8 !important;
+}
+
+
+
+
+.support-table{
+  display: block;
+}
+.support-table thead{
+  display: none;
+}
+.support-table tr{
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+}
+.support-table tr td{
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+.support-table tr td:last-child{
+  display: block;
+  float: left;
+  position: relative;
+  width: 100%;
+  border-bottom: 2px solid #d8d8d8 !important;
+}
+.coin-icon-support {
+  width: 33px;
+  display: block;
+  margin: 0 auto;
+}
+.btn-gn{
+  width: 100%;
+}
+.form-settings{
+  text-align: center
+}
   }
   @media only screen and (max-width: 750px) {
 
@@ -269,7 +434,61 @@
 .content-box-charity{
   height: auto;
 }
+.head-charity-line{
+  text-align: center;
+}
+.payment-btn{
+  float: initial;
+  margin-left: inherit;
+  width: 100%;;
+}
+.head-box{
+  height: 178px;;
 
+}
+.coin-box{
+  width: 94.3%;
+}
+.box-col{
+  font-size: 16px;
+}
+.btn-cont-checkout{
+  height: 150px;;
+}
+.coin-payment-head {
+  height: 115px !important;
+} 
+.coin-box {
+width: 96.3%;
+}
+.captcha-new-store{
+  width: 100%;
+}
+.capcode{
+  width: 100% !important;
+}
+#UserCaptchaCode{
+  font-size: 16px;
+}
+.new-store-btn{
+  width: 100%;
+}
+.address-btn{
+  width: 100%;
+  margin-top: 8px;
+}
+.app-min-wrap{
+  height: inherit !important;
+}
+.sb-line-div {
+  margin-top: -71px;
+}
+.btn-history-wallet{
+  margin-top: 6px;
+  margin-bottom: 11px;
+  width: 100%;
+  
+}
   }
 
 
@@ -356,6 +575,70 @@
   .content-box-charity{
     height: auto;
   }
+  .head-charity-line{
+    text-align: center;
+  }
+  .payment-btn{
+    float: initial;
+    margin-left: inherit;
+    width: 100%;;
+  }
+  .head-box{
+    height: 178px;;
+  
+  }
+  .coin-box{
+    width: 94.3%;
+  }
+  .box-col{
+    font-size: 16px;
+  }
+  .btn-cont-checkout{
+    height: 150px;;
+  }
+  .coin-payment-head {
+    height: 115px !important;
+} 
+.coin-box {
+  width: 96.3%;
+}
+.captcha-new-store{
+  width: 100%;
+}
+.capcode{
+  width: 100% !important;
+}
+#UserCaptchaCode{
+  font-size: 16px;
+}
+.captcha-new-store{
+  width: 100%;
+}
+.capcode{
+  width: 100% !important;
+}
+#UserCaptchaCode{
+  font-size: 16px;
+}
+.new-store-btn{
+  width: 100%;
+}
+.address-btn{
+  width: 100%;
+  margin-top: 8px;
+}
+.app-min-wrap{
+  height: inherit !important;
+}
+.sb-line-div {
+  margin-top: -71px;
+}
+.btn-history-wallet{
+  margin-top: 6px;
+  margin-bottom: 11px;
+  width: 100%;
+  
+}
   
 }
 
@@ -418,7 +701,61 @@
     .content-box-charity{
       height: auto;
     }
+    .head-charity-line{
+      text-align: center;
+    }
+    .payment-btn{
+      float: initial;
+      margin-left: inherit;
+      width: 100%;;
+    }
+    .head-box{
+      height: 178px;;
     
+    }
+    .coin-box{
+      width: 94.3%;
+    }
+    .box-col{
+      font-size: 16px;
+    }
+    .btn-cont-checkout{
+      height: 150px;;
+    }
+    .coin-payment-head {
+      height: 115px !important;
+  } 
+  .coin-box {
+    width: 96.3%;
+  } 
+  .captcha-new-store{
+    width: 100%;
+  }
+  .capcode{
+    width: 100% !important;
+  }
+  #UserCaptchaCode{
+    font-size: 16px;
+  }
+  .new-store-btn{
+    width: 100%;
+  }
+  .address-btn{
+    width: 100%;
+    margin-top: 8px;
+  }
+  .app-min-wrap{
+    height: inherit !important;
+  }
+  .sb-line-div {
+    margin-top: -71px;
+}
+.btn-history-wallet{
+  margin-top: 6px;
+  margin-bottom: 11px;
+  width: 100%;
+  
+}
   }
 
   @media only screen and (max-width: 520px) {
@@ -497,7 +834,61 @@
   .content-box-charity{
     height: auto;
   }
+  .head-charity-line{
+    text-align: center;
+  }
+  .payment-btn{
+    float: initial;
+    margin-left: inherit;
+    width: 100%;;
+  }
+  .head-box{
+    height: 178px;;
   
+  }
+  .coin-box{
+    width: 94.3%;
+  }
+  .box-col{
+    font-size: 16px;
+  }
+  .btn-cont-checkout{
+    height: 150px;;
+  }
+  .coin-payment-head {
+    height: 115px !important;
+} 
+.coin-box {
+  width: 96.3%;
+}
+.captcha-new-store{
+  width: 100%;
+}
+.capcode{
+  width: 100% !important;
+}
+#UserCaptchaCode{
+  font-size: 16px;
+}
+.new-store-btn{
+  width: 100%;
+}
+.address-btn{
+  width: 100%;
+  margin-top: 8px;
+}
+.app-min-wrap{
+  height: inherit !important;
+}
+.sb-line-div {
+  margin-top: -71px;
+}
+.btn-history-wallet{
+  margin-top: 6px;
+  margin-bottom: 11px;
+  width: 100%;
+  
+}
   }
 
   @media only screen and (max-width: 480px) {
@@ -555,8 +946,61 @@
   .content-box-charity{
     height: auto;
   }
+  .head-charity-line{
+    text-align: center;
+  }
+  .payment-btn{
+    float: initial;
+    margin-left: inherit;
+    width: 100%;;
+  }
+  .head-box{
+    height: 178px;;
   
-
+  }
+  .coin-box{
+    width: 94.3%;
+  }
+  .box-col{
+    font-size: 16px;
+  }
+  .btn-cont-checkout{
+    height: 150px;;
+  }
+  .coin-payment-head {
+    height: 115px !important;
+} 
+.coin-box {
+  width: 96.3%;
+}
+.captcha-new-store{
+  width: 100%;
+}
+.capcode{
+  width: 100% !important;
+}
+#UserCaptchaCode{
+  font-size: 16px;
+}
+.new-store-btn{
+  width: 100%;
+}
+.address-btn{
+  width: 100%;
+  margin-top: 8px;
+}
+.app-min-wrap{
+  height: inherit !important;
+}
+.sb-line-div {
+  margin-top: -71px;
+}
+.btn-history-wallet{
+  margin-top: 6px;
+  margin-bottom: 11px;
+  width: 100%;
+  
+}
   }
 
   @media only screen and (max-width: 420px) {
@@ -637,7 +1081,58 @@
 .content-box-charity{
   height: auto;
 }
+.head-charity-line{
+  text-align: center;
+}
+.payment-btn{
+  float: initial;
+  margin-left: inherit;
+  width: 100%;;
+}
+.head-box{
+  height: 178px;;
 
+}
+.coin-box{
+  width: 94.3%;
+}
+.box-col{
+  font-size: 12 px;
+}
+.btn-cont-checkout{
+  height: 150px;;
+}
+.coin-payment-head {
+  height: 115px !important;
+} 
+.captcha-new-store{
+  width: 100%;
+}
+.capcode{
+  width: 100% !important;
+}
+#UserCaptchaCode{
+  font-size: 16px;
+}
+.new-store-btn{
+  width: 100%;
+}
+.address-btn{
+  width: 100%;
+  margin-top: 8px;
+}
+.app-min-wrap{
+  height: inherit !important;
+}
+.sb-line-div {
+  margin-top: -71px;
+}
+.btn-history-wallet{
+  margin-top: 6px;
+  margin-bottom: 11px;
+  width: 100%;
+  
+}
 
   }
   
@@ -701,9 +1196,58 @@
 .content-box-charity{
   height: auto;
 }
+.head-charity-line{
+  text-align: center;
+}
+.payment-btn{
+  float: initial;
+  margin-left: inherit;
+  width: 100%;;
+}
+.head-box{
+  height: 178px;;
 
-
+}
+.coin-box{
+  width: 94.3%;
+}
+.box-col{
+  font-size: 9px;
+}
+.btn-cont-checkout{
+  height: 150px;;
+}
+.coin-payment-head {
+  height: 115px !important;
+} 
+.captcha-new-store{
+  width: 100%;
+}
+.capcode{
+  width: 100% !important;
+}
+#UserCaptchaCode{
+  font-size: 16px;
+}
+.new-store-btn{
+  width: 100%;
+}
+.address-btn{
+  width: 100%;
+  margin-top: 8px;
+}
+.app-min-wrap{
+  height: inherit !important;
+}
+.sb-line-div {
+  margin-top: -71px;
+}
+.btn-history-wallet{
+  margin-top: 6px;
+  margin-bottom: 11px;
+  width: 100%;
   
+}
   }
   
   @media only screen and (max-width: 360px) {
@@ -790,6 +1334,58 @@
   .content-box-charity{
     height: auto;
   }
+  .head-charity-line{
+    text-align: center;
+  }
+  .payment-btn{
+    float: initial;
+    margin-left: inherit;
+    width: 100%;;
+  }
+  .head-box{
+    height: 178px;;
+  
+  }
+  .coin-box{
+    width: 94.3%;
+  }
+  .box-col{
+    font-size: 9px;
+  }
+  .btn-cont-checkout{
+    height: 150px;;
+  }
+  .coin-payment-head {
+    height: 115px !important;
+} 
+.captcha-new-store{
+  width: 100%;
+}
+.capcode{
+  width: 100% !important;
+}
+#UserCaptchaCode{
+  font-size: 16px;
+}
+.new-store-btn{
+  width: 100%;
+}
+.address-btn{
+  width: 100%;
+  margin-top: 8px;
+}
+.app-min-wrap{
+  height: inherit !important;
+}
+.sb-line-div {
+  margin-top: -71px;
+}
+.btn-history-wallet{
+  margin-top: 6px;
+  margin-bottom: 11px;
+  width: 100%;
+  
+}
   
   
 }
@@ -836,7 +1432,7 @@
     font-size: 16px !important;
   }
   .merchant-id{
-    font-size: 14px;
+    font-size: 10px;
   }
   .btn-log{
     width: 100% !important;
@@ -858,14 +1454,14 @@
     width: 100%;
   }
   .dashboard-wrapper p {
-    padding: 13px 0px 0px 3px;
+
     font-size: 9px;
 }
 .btn-log {
   width: 87% !important;
 }
 .merchant-id {
-  font-size: 10px;
+  font-size: 13px;
 }
 .merchant-box01{
   width: 91% !important;
@@ -875,9 +1471,7 @@
 .merchant-one {
   height: 200px;
 } 
-.merchant-box{
-  line-height: 98px;
-}
+
 .dashboard-wrapper p {
   padding: 13px 0px 0px 12px;
   font-size: 16px;
@@ -894,5 +1488,64 @@
 }
 .content-box-charity{
   height: auto;
+}
+.head-charity-line{
+  text-align: center;
+}
+.payment-btn{
+  float: initial;
+  margin-left: inherit;
+  width: 100%;
+}
+.head-box{
+  height: 178px;;
+
+}
+.coin-box{
+  width: 93.8%;
+}
+.box-col{
+  font-size: 9px;
+}
+.btn-cont-checkout{
+  height: 150px;;
+}
+.share{
+  margin-left: 30px;
+}
+.merchant-box{
+  font-size: 20px !important;
+}
+.dashboard-wrapper p{
+  font-size: 16px !important;
+}
+
+.captcha-new-store{
+  width: 100%;
+}
+.capcode{
+  width: 100% !important;
+}
+#UserCaptchaCode{
+  font-size: 16px;
+}
+.new-store-btn{
+  width: 100%;
+}
+.address-btn{
+  width: 100%;
+  margin-top: 8px;
+}
+.app-min-wrap{
+  height: inherit !important;
+}
+.sb-line-div {
+  margin-top: -71px;
+}
+.btn-history-wallet{
+  margin-top: 6px;
+  margin-bottom: 11px;
+  width: 100%;
+  
 }
   }

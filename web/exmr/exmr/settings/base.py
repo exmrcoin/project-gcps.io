@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django_countries',
     'widget_tweaks',
     'rosetta',
+    'pyotp',
 
     # Project apps
     'apps.accounts',

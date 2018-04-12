@@ -1,3 +1,5 @@
+import pyotp
+
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -7,7 +9,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
 
 from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm
-from apps.accounts.models import Profile, ProfileActivation
+from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount
 from apps.common.utils import generate_key, JSONResponseMixin
 
 
@@ -178,3 +180,30 @@ class ProfileActivationView(TemplateView):
                 act_obj.save()
                 context['status'] = _('Account activated <br><p>Please <a href=/login>login</a><p>')
         return context
+
+
+class CreateTwoFactorAccount(CreateView):
+    """
+        creating new two factor authentication account for current user
+    """
+    model = TwoFactorAccount
+    fields = ['account_name','totp']
+    template_name = 'accounts/create_2fa_account.html'
+    success_url = reverse_lazy('home')
+    key = pyotp.random_base32()
+
+    def form_valid(self, form):
+        """
+            modifing form data before validation
+        """
+        totp_code = self.request.POST.get('totp')
+        totp = pyotp.TOTP(self.key)
+
+        if totp.verify(totp_code):
+            form.instance.user = self.request.user
+            form.instance.key = self.key
+            form.instance.account_type = 'google_authenticator'
+            return super().form_valid(form)
+        else:
+            form.add_error('totp', 'Invalid Authentication Code')
+            return self.form_invalid(form)

@@ -19,4 +19,6 @@ urlpatterns = [
     path('password-reset', PasswordResetView.as_view(template_name='accounts/forgot_password.html',
                                                      form_class=CustomPasswordResetForm), name='reset_password'),
 
+    path('create-2fa/', views.CreateTwoFactorAccount.as_view(), name='create_2fa'),
+
 ]

@@ -24,7 +24,6 @@ from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfirmView, \
     PasswordResetCompleteView
-from django.views.i18n import set_language
 
 from apps.common.views import HomeView
 from apps.store.views import StoreCategoryListView, StoreCategoryDetailView
@@ -47,6 +46,8 @@ urlpatterns += i18n_patterns(
     path('sign-up/', TemplateView.as_view(template_name='accounts/signup.html'),
          name='signup'),
     path('merchant-tools/', TemplateView.as_view(template_name='common/merchant-tools.html'), name='merchant-tools'),
+    path('address-book/', TemplateView.as_view(template_name='common/address-book.html'), name='address-book'),
+    path('add-store/', TemplateView.as_view(template_name='common/add-or-update.html'), name='add-store'),
     path('store-directory/', StoreCategoryListView.as_view(template_name='common/store-directory-menu.html'),
          name='store-directory'),
     path('supported-coins/', TemplateView.as_view(template_name='common/support-coins.html'),

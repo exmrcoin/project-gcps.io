@@ -54,6 +54,10 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/dashboard.html'
 
 
+class TransactionHistoryView(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/payment-history.html'
+
+
 class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
     form_class = UpdateBasicProfileForm
     template_name = 'accounts/settings.html'
@@ -135,7 +139,6 @@ class SecurityInfoSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
 
     def form_valid(self, form):
         response = dict()
-        print (form.cleaned_data, "ffffffffffff")
         password = form.cleaned_data.pop('password')
         confirm_password = form.cleaned_data.pop('confirm_password')
         current_password = form.cleaned_data.pop('current_password')
@@ -145,8 +148,7 @@ class SecurityInfoSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
             if confirm_password != password:
                 response['password'] = [_("Passwords doesn't match")]
             else:
-                print(self.request.user)
-                user = self.request.user.set_password(password)
+                self.request.user.set_password(password)
                 self.request.user.save()
         else:
             form.save()

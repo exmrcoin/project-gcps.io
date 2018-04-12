@@ -1,17 +1,20 @@
 {% extends 'accounts/dashboard-base.html' %}
 {% load staticfiles %}
-    {% load widget_tweaks %}
-    {% load social_share %}
-    {% url 'home' as host %}
-    {% with user.get_profile as profile %}
-        {% load i18n %}
-        {% block dashboard_head_img %}
-            <img src="{% static '/images/settings.png' %}">
-        {% endblock %}
-        {% block dashboard_head_title %}{% trans 'Settings' %}{% endblock %}
-        {% block dashboard_wrapper_content %}
-            <div class="dashboard-wrapper top-sec">
-                <div class="bs-example bs-example-tabs examble-tab" role="tabpanel" data-example-id="togglable-tabs">
+{% load widget_tweaks %}
+{% load social_share %}
+{% url 'home' as host %}
+{% with user.get_profile as profile %}
+    {% load i18n %}
+    {% block dashboard_heading %}
+        <div class="dashboard-bg">
+        <div class="merchant-tools merchant-one coin-payment-head">
+            <div class=" container merchant-box">ACCOUNT SETTINGS
+            </div>
+        </div>
+    {% endblock %}
+    {% block dashboard_wrapper_content %}
+        <div class="dashboard-wrapper top-sec">
+            <div class="bs-example bs-example-tabs examble-tab" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs nav-tabs-responsive multiple-tab" role="tablist">
                     <li role="presentation" class="active">
                         <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home"
@@ -39,7 +42,7 @@
 
                 <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-                        <div class="setting-head">{% trans 'Account Settings' %}</div>
+{#                        <div class="setting-head">{% trans 'Account Settings' %}</div>#}
                         <div class="account-setting-wrap">
                             <div class="your-merchant">
                                 <form class="form-inline" role="form">
@@ -279,9 +282,9 @@
                     </div>
                 </div>
             </div>
-            </div>
-        {% endblock %}
-    {% endwith %}
+        </div>
+    {% endblock %}
+{% endwith %}
 
 {% block extra_js %}
     <script src="{% static 'js/clipboard.min.js' %}"></script>

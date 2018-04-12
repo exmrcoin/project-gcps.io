@@ -1,5 +1,6 @@
 import pyotp
 
+from django import forms
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -203,6 +204,7 @@ class CreateTwoFactorAccount(CreateView):
             form.instance.user = self.request.user
             form.instance.key = self.key
             form.instance.account_type = 'google_authenticator'
+            form.instance.totp = None
             return super().form_valid(form)
         else:
             form.add_error('totp', 'Invalid Authentication Code')

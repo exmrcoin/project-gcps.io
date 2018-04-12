@@ -199,7 +199,7 @@ class TwoFactorAccount(models.Model):
     account_name = models.CharField(max_length=128)
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE)
     key = models.CharField(max_length=128)
-    totp = models.CharField(max_length=128, null=True, verbose_name=_('Authentication Code'))
+    totp = models.CharField(max_length=12, null=True, verbose_name=_('Authentication Code'))
 
     def __str__(self):
         return self.account_name

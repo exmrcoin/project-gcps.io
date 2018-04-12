@@ -119,6 +119,14 @@ class LoginSecurityForm(forms.ModelForm):
                   'two_factor_auth', 'email_confirmation_transaction']
 
 
+class IPNSettingsForm(forms.ModelForm):
+
+    class Meta:
+        model = Profile
+        fields = ['ipn_secret', 'ipn_url', 'mail_on_new_payment_init', 'mail_on_new_fund_receive', 'mail_on_fund_sent',
+                  'mail_on_deposit_receive', 'mail_on_positive_feedback', 'status_email', 'receive_sms', 'phone']
+
+
 class CustomPasswordResetForm(PasswordResetForm):
 
     username = forms.CharField(required=False)

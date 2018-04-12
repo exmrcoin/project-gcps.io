@@ -12,372 +12,285 @@
             </div>
         </div>
     {% endblock %}
-<div class="dashboard-wrapper top-sec">
-    <div class="bs-example bs-example-tabs examble-tab" role="tabpanel" data-example-id="togglable-tabs">
-        <ul id="myTab" class="nav nav-tabs nav-tabs-responsive multiple-tab" role="tablist">
-            <li role="presentation" class="active">
-                <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home"
-                   aria-expanded="true">
-                    <span class="text">{% trans 'Basic Settings' %}</span>
-                </a>
-            </li>
-            <li role="presentation" class="next">
-                <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">
-                    <span class="text">{% trans 'Public Info' %}</span>
-                </a>
-            </li>
+    {% block dashboard_wrapper_content %}
+        <div class="dashboard-wrapper top-sec">
+            <div class="bs-example bs-example-tabs examble-tab" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs nav-tabs-responsive multiple-tab" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home"
+                           aria-expanded="true">
+                            <span class="text">{% trans 'Basic Settings' %}</span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="next">
+                        <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">
+                            <span class="text">{% trans 'Public Info' %}</span>
+                        </a>
+                    </li>
 
-            <li role="presentation">
-                <a href="#security" role="tab" id="security-tab" data-toggle="tab" aria-controls="samsa">
-                    <span class="text">{% trans 'Login & Security' %}</span>
-                </a>
-            </li>
-            <li role="presentation">
-                <a href="#merchant" role="tab" id="merchant-tab" data-toggle="tab" aria-controls="samsa">
-                    <span class="text">{% trans 'Merchant Settings' %}</span>
-                </a>
-            </li>
-        </ul>
+                    <li role="presentation">
+                        <a href="#security" role="tab" id="security-tab" data-toggle="tab" aria-controls="samsa">
+                            <span class="text">{% trans 'Login & Security' %}</span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#merchant" role="tab" id="merchant-tab" data-toggle="tab" aria-controls="samsa">
+                            <span class="text">{% trans 'Merchant Settings' %}</span>
+                        </a>
+                    </li>
+                </ul>
 
-        <div id="myTabContent" class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
-                {#                        <div class="setting-head">{% trans 'Account Settings' %}</div>#}
-                <div class="account-setting-wrap">
-                    <div class="your-merchant">
-                        <form class="form-inline" role="form">
-                            <div class="form-group merchant-id">
-                                <label for="name">{% trans 'Your Merchant ID:' %}</label>
-                                <label for="name">{{ profile.merchant_id }}</label>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+{#                        <div class="setting-head">{% trans 'Account Settings' %}</div>#}
+                        <div class="account-setting-wrap">
+                            <div class="your-merchant">
+                                <form class="form-inline" role="form">
+                                    <div class="form-group merchant-id">
+                                        <label for="name">{% trans 'Your Merchant ID:' %}</label>
+                                        <label for="name">{{ profile.merchant_id }}</label>
+
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="your-merchant">
+                                <form class="form-inline" role="form">
+                                    <div class="form-group merchant-id">
+                                        <label for="name">{% trans 'Affiliate URL:' %}</label>
+                                        <p for="name">  {% trans 'Want to earn some crypto? Give this URL to new users and when they sign up you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:' %}
+                                            <b><span id="refUrl">{{ ref_url }}</span></b></p>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="share" data-clipboard-target="#refUrl">{% trans 'Share/Save' %} <img
+                                    src="{% static 'images/share.png' %}"></div>
+                            <div class="social-media">
+                                <ul class="pull-right">
+                                    <li>
+                                        {% post_to_facebook_url ref_url as p %}
+                                        <a href="{{ facebook_url }}" target="_blank">
+                                            <img src="{% static 'images/facebook.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        {% post_to_twitter_url 'GETCRYPTOPAYMENTS' ref_url as p %}
+                                        <a href="{{ tweet_url }}">
+                                            <img src="{% static 'images/twitter.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        {% post_to_linkedin_url 'GETCRYPTOPAYMENTS' ref_url as p %}
+                                        <a href="{{ linkedin_url }}">
+                                            <img src="{% static 'images/linkedin.png' %}" alt="">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        {% post_to_gplus_url ref_url as p %}
+                                        <a href="{{ gplus_url }}">
+                                            <img src="{% static 'images/google.png' %}" alt="">
+                                        </a>
+                                    </li>
+
+                                </ul>
 
                             </div>
-                        </form>
+                            <div class="alert">
+
+                            </div>
+                            <form role="form" method="post" id="accountForm" action="{% url 'accounts:settings' %}"
+                                  novalidate>
+                                {% csrf_token %}
+                                <fieldset class="setting-form form-settings">
+
+                                    <div class="form-group col-md-6">
+                                        <label for="first_name">{% trans 'Account Email' %}</label>
+                                        {{ form.email }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="last_name">{% trans 'Confirm Email' %}</label>
+                                        {{ form.confirm_email }}
+                                        <span class="error"></span>
+                                    </div>
+
+
+                                    <div class="form-group col-md-6">
+                                        <label for="password">{% trans 'Gender' %}</label>
+                                        {{ form.gender }}
+                                        <span class="error"></span>
+
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="confirm_password">{% trans 'Time Zone' %}</label>
+                                        {{ form.timezone }}
+                                        <span class="error"></span>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <div class=" date-pick">
+                                            <label for="password">{% trans 'Date Format' %}</label>
+                                            {{ form.date_format }}
+                                            <span class="error"></span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="confirm_password">{% trans 'Time Format' %}</label>
+                                        {{ form.time_format }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+
+                                        <button type="submit"
+                                                class="btn- btn-default btn-log ">{% trans 'Update Account' %}</button>
+
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
-                    <div class="your-merchant">
-                        <form class="form-inline" role="form">
-                            <div class="form-group merchant-id">
-                                <label for="name">{% trans 'Affiliate URL:' %}</label>
-                                <p for="name">  {% trans 'Want to earn some crypto? Give this URL to new users and when they sign up you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:' %}
-                                    <b><span id="refUrl">{{ ref_url }}</span></b></p>
+                    <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+
+                        <div class="setting-head">{% trans 'Public Info' %}</div>
+                        <div class="account-setting-wrap">
+                            <div class="alert">
+
                             </div>
-                        </form>
+
+                            <form role="form" method="post" id="publicInfo"
+                                  action="{% url 'accounts:save_public_info' %}" novalidate>
+                                {% csrf_token %}
+                                <fieldset class="setting-form form-settings">
+
+                                    <div class="form-group col-md-12">
+                                        <label for="first_name">{% trans 'Public Name' %}</label>
+                                        {{ public_info_form.public_name|add_class:'form-control text-view' }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="first_name">{% trans 'Public Email' %}</label>
+                                        {{ public_info_form.public_email|add_class:'form-control text-view' }}
+                                        <span class="error"></span>
+                                    </div>
+
+
+                                    <div class="form-group col-md-12">
+                                        <label for="first_name">{% trans 'Public URL' %}</label>
+                                        {{ public_info_form.public_url|add_class:'form-control text-view' }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="confirm_password">Use <a href="https://en.gravatar.com/"
+                                                                             target="_blank">Gravatar</a></label>
+                                        {{ public_info_form.use_gravatar }}
+                                        <span class="error"></span>
+
+                                    </div>
+
+
+                                    <div class="form-group col-md-6">
+
+                                        <button type="submit"
+                                                class="btn- btn-default btn-log ">{% trans 'Update' %}</button>
+
+                                    </div>
+
+
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
+                    <div role="tabpanel" class="tab-pane fade" id="security" aria-labelledby="security-tab">
+                        <div class="setting-head">{% trans 'Login & Security' %}</div>
+                        <div class="account-setting-wrap">
+                            <div class="alert">
 
-                    <div class="share" data-clipboard-target="#refUrl">{% trans 'Share/Save' %} <img
-                            src="{% static 'images/share.png' %}"></div>
-                    <div class="social-media">
-                        <ul class="pull-right">
-                            <li>
-                                {% post_to_facebook_url ref_url as p %}
-                                <a href="{{ facebook_url }}" target="_blank">
-                                    <img src="{% static 'images/facebook.png' %}" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                {% post_to_twitter_url 'GETCRYPTOPAYMENTS' ref_url as p %}
-                                <a href="{{ tweet_url }}">
-                                    <img src="{% static 'images/twitter.png' %}" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                {% post_to_linkedin_url 'GETCRYPTOPAYMENTS' ref_url as p %}
-                                <a href="{{ linkedin_url }}">
-                                    <img src="{% static 'images/linkedin.png' %}" alt="">
-                                </a>
-                            </li>
-                            <li>
-                                {% post_to_gplus_url ref_url as p %}
-                                <a href="{{ gplus_url }}">
-                                    <img src="{% static 'images/google.png' %}" alt="">
-                                </a>
-                            </li>
+                            </div>
 
-                        </ul>
+                            <form role="form" method="post" id="securityForm"
+                                  action="{% url 'accounts:save_security_info' %}" novalidate>
+                                {% csrf_token %}
+                                <fieldset class="setting-form form-settings">
 
+                                    <div class="form-group col-md-12">
+                                        <label for="current_password">{% trans 'Current Password' %}</label>
+                                        {{ security_form.current_password|add_class:'form-control text-view' }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="password">{% trans 'New Password' %}</label>
+                                        {{ security_form.password|add_class:'form-control text-view' }}
+                                        <span class="error"></span>
+                                    </div>
+
+
+                                    <div class="form-group col-md-12">
+                                        <label for="confirm_password">{% trans 'Confirm Password' %}</label>
+                                        {{ security_form.confirm_password|add_class:'form-control text-view' }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="two_factor_auth">{% trans '2 Factor Authentication' %}</label>
+                                        {{ security_form.two_factor_auth|add_class:'form-control text-view' }}
+                                        <span class="error"></span>
+
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="two_factor_auth">{% trans 'Email Confirmations for Sends/Withdrawals' %}</label>
+                                        {{ security_form.email_confirmation_transaction }}
+                                        <span class="error"></span>
+
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="pgp_gpg_public_key">{% trans 'PGP/GPG Public Key' %}</label>
+                                        {{ security_form.pgp_gpg_public_key|add_class:'form-control text-view' }}
+                                        <span class="error"></span>
+
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+
+                                        <button type="submit"
+                                                class="btn- btn-default btn-log ">{% trans 'Update' %}</button>
+
+                                    </div>
+
+
+                                </fieldset>
+                            </form>
+                        </div>
                     </div>
-                    <div class="alert">
-
+                    <div role="tabpanel" class="tab-pane fade" id="merchant" aria-labelledby="merchant-tab">
+                        <div class="comming-soon">content coming soon.......!
+                            <img class="emoji" src="{% static '/images/emoji.jpg' %}">
+                        </div>
                     </div>
-                    <form role="form" method="post" id="accountForm" action="{% url 'accounts:settings' %}"
-                          novalidate>
-                        {% csrf_token %}
-                        <fieldset class="setting-form form-settings">
-
-                            <div class="form-group col-md-6">
-                                <label for="first_name">{% trans 'Account Email' %}</label>
-                                {{ form.email }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label for="last_name">{% trans 'Confirm Email' %}</label>
-                                {{ form.confirm_email }}
-                                <span class="error"></span>
-                            </div>
-
-
-                            <div class="form-group col-md-6">
-                                <label for="password">{% trans 'Gender' %}</label>
-                                {{ form.gender }}
-                                <span class="error"></span>
-
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label for="confirm_password">{% trans 'Time Zone' %}</label>
-                                {{ form.timezone }}
-                                <span class="error"></span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <div class=" date-pick">
-                                    <label for="password">{% trans 'Date Format' %}</label>
-                                    {{ form.date_format }}
-                                    <span class="error"></span>
-                                </div>
-
-                            </div>
-
-                            <div class="form-group col-md-6">
-                                <label for="confirm_password">{% trans 'Time Format' %}</label>
-                                {{ form.time_format }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-6">
-
-                                <button type="submit"
-                                        class="btn- btn-default btn-log ">{% trans 'Update Account' %}</button>
-
-                            </div>
-                        </fieldset>
-                    </form>
+                    <div role="tabpanel" class="tab-pane fade" id="samsa" aria-labelledby="samsa-tab">
+                        <div class="comming-soon">content coming soon.......!
+                            <img class="emoji" src="{% static '/images/emoji.jpg' %}">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-
-                <div class="setting-head">{% trans 'Public Info' %}</div>
-                <div class="account-setting-wrap">
-                    <div class="alert">
-
-                    </div>
-
-                    <form role="form" method="post" id="publicInfo"
-                          action="{% url 'accounts:save_public_info' %}" novalidate>
-                        {% csrf_token %}
-                        <fieldset class="setting-form form-settings">
-
-                            <div class="form-group col-md-12">
-                                <label for="first_name">{% trans 'Public Name' %}</label>
-                                {{ public_info_form.public_name|add_class:'form-control text-view' }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="first_name">{% trans 'Public Email' %}</label>
-                                {{ public_info_form.public_email|add_class:'form-control text-view' }}
-                                <span class="error"></span>
-                            </div>
-
-
-                            <div class="form-group col-md-12">
-                                <label for="first_name">{% trans 'Public URL' %}</label>
-                                {{ public_info_form.public_url|add_class:'form-control text-view' }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="confirm_password">Use <a href="https://en.gravatar.com/"
-                                                                     target="_blank">Gravatar</a></label>
-                                {{ public_info_form.use_gravatar }}
-                                <span class="error"></span>
-
-                            </div>
-
-
-                            <div class="form-group col-md-6">
-
-                                <button type="submit"
-                                        class="btn- btn-default btn-log ">{% trans 'Update' %}</button>
-
-                            </div>
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="security" aria-labelledby="security-tab">
-                <div class="setting-head">{% trans 'Login & Security' %}</div>
-                <div class="account-setting-wrap">
-                    <div class="alert">
-
-                    </div>
-
-                    <form role="form" method="post" id="securityForm"
-                          action="{% url 'accounts:save_security_info' %}" novalidate>
-                        {% csrf_token %}
-                        <fieldset class="setting-form form-settings">
-
-                            <div class="form-group col-md-12">
-                                <label for="current_password">{% trans 'Current Password' %}</label>
-                                {{ security_form.current_password|add_class:'form-control text-view' }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="password">{% trans 'New Password' %}</label>
-                                {{ security_form.password|add_class:'form-control text-view' }}
-                                <span class="error"></span>
-                            </div>
-
-
-                            <div class="form-group col-md-12">
-                                <label for="confirm_password">{% trans 'Confirm Password' %}</label>
-                                {{ security_form.confirm_password|add_class:'form-control text-view' }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="two_factor_auth">{% trans '2 Factor Authentication' %}</label>
-                                {{ security_form.two_factor_auth|add_class:'form-control text-view' }}
-                                <span class="error"></span>
-
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="two_factor_auth">{% trans 'Email Confirmations for Sends/Withdrawals' %}</label>
-                                {{ security_form.email_confirmation_transaction }}
-                                <span class="error"></span>
-
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="pgp_gpg_public_key">{% trans 'PGP/GPG Public Key' %}</label>
-                                {{ security_form.pgp_gpg_public_key|add_class:'form-control text-view' }}
-                                <span class="error"></span>
-
-                            </div>
-
-                            <div class="form-group col-md-6">
-
-                                <button type="submit"
-                                        class="btn- btn-default btn-log ">{% trans 'Update' %}</button>
-
-                            </div>
-
-
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-            <div role="tabpanel" class="tab-pane fade" id="merchant" aria-labelledby="merchant-tab">
-                <div class="setting-head">{% trans 'Merchant Settings' %}</div>
-                <div class="account-setting-wrap">
-                    <div class="alert">
-
-                    </div>
-
-                    <form role="form" method="post" id="merchantSettingsForm"
-                          action="{% url 'accounts:save_security_info' %}" novalidate>
-                        {% csrf_token %}
-                        <fieldset class="setting-form form-settings">
-
-                            <div class="form-group col-md-12">
-                                <label for="ipn_secret">{% trans 'IPN Secret' %}</label>
-                                {{ ipn_form.ipn_secret|add_class:'form-control text-view' }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="ipn_url">{% trans 'IPN URL' %}</label>
-                                {{ ipn_form.ipn_url|add_class:'form-control text-view' }}
-                                <span class="error"></span>
-                            </div>
-                            <label for="confirm_password">Email Notifications</label>
-
-                            <div class="form-group col-md-12">
-                                <label for="confirm_password">{{ ipn_form.mail_on_new_payment_init.label }}</label>
-                                {{ ipn_form.mail_on_new_payment_init }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="confirm_password">{{ ipn_form.mail_on_new_fund_receive.label }}</label>
-                                {{ ipn_form.mail_on_new_fund_receive }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="confirm_password">{{ ipn_form.mail_on_fund_sent.label }}</label>
-                                {{ ipn_form.mail_on_fund_sent }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="confirm_password">{{ ipn_form.mail_on_new_payment_init.label }}</label>
-                                {{ ipn_form.mail_on_new_payment_init }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="confirm_password">{{ ipn_form.mail_on_deposit_receive.label }}</label>
-                                {{ ipn_form.mail_on_deposit_receive }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="confirm_password">{{ ipn_form.mail_on_positive_feedback.label }}</label>
-                                {{ ipn_form.mail_on_positive_feedback }}
-                                <span class="error"></span>
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="two_factor_auth">{{ ipn_form.status_email.label }}</label>
-                                {{ ipn_form.status_email|add_class:'form-control text-view' }}
-                                <small class="form-text text-muted">
-                                    {% blocktrans %}
-                                        Payment status email will be sent to this email.
-                                        If not provided, notofications will be sent to the primary email
-                                    {% endblocktrans %}
-                                </small>
-                                <span class="error"></span>
-
-                            </div>
-
-                            <div class="form-group col-md-12">
-                                <label for="two_factor_auth">{{ ipn_form.receive_sms.label }}</label>
-                                {{ ipn_form.receive_sms }}
-
-                                <span class="error"></span>
-
-                            </div>
-
-
-                            <div class="form-group col-md-12">
-                                <label for="pgp_gpg_public_key">{{ ipn_form.phone.label }}</label>
-                                {{ ipn_form.phone|add_class:'form-control text-view' }}
-                                <span class="error"></span>
-
-                            </div>
-
-                            <div class="form-group col-md-6">
-
-                                <button type="submit"
-                                        class="btn- btn-default btn-log ">{% trans 'Update' %}</button>
-
-                            </div>
-
-
-                        </fieldset>
-                    </form>
-                </div>
-            </div>
-
         </div>
-    </div>
-</div>
-</div>
+        </div>
+    {% endblock %}
 {% endwith %}
 
 {% block extra_js %}
     <script src="{% static 'js/clipboard.min.js' %}"></script>
     <script src="{% static 'js/jquery.toaster.js' %}"></script>
     <script src="{% static 'js/account_settings.js' %}"></script>
+
+
 {% endblock %}

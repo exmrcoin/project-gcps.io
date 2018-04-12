@@ -6,7 +6,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
 
-from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm
+from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm, IPNSettingsForm
 from apps.accounts.models import Profile, ProfileActivation
 from apps.common.utils import generate_key, JSONResponseMixin
 
@@ -89,6 +89,7 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
         context = super(AccountSettings, self).get_context_data(**kwargs)
         context['public_info_form'] = PublicInfoForm(instance=self.object)
         context['security_form'] = LoginSecurityForm(instance=self.object)
+        context['ipn_form'] = IPNSettingsForm(instance=self.object)
         context['ref_url'] = self.request.scheme + "://" + self.request.META['HTTP_HOST'] + "?ref=" + self.object.merchant_id
         return context
 
@@ -116,6 +117,7 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
 
 
 class PublicInfoSave(JSONResponseMixin, UpdateView):
+
 
     form_class = PublicInfoForm
 
@@ -154,6 +156,24 @@ class SecurityInfoSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
             form.save()
             response.update({'msg': _('Information updated successfully')})
 
+        return self.render_to_json_response(response)
+
+    def form_invalid(self, form):
+        return self.render_to_json_response(form.errors)
+
+
+class IPNSettingsSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
+
+    form_class = IPNSettingsForm
+
+    def get_object(self, queryset=None):
+        return self.request.user.get_profile
+
+    def form_valid(self, form):
+
+        response = dict()
+        form.save()
+        response.update({'msg': _('Information updated successfully')})
         return self.render_to_json_response(response)
 
     def form_invalid(self, form):

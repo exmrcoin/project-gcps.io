@@ -13,9 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-import patterns as patterns
 from django.conf import settings
-from django.conf.urls import url
 from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.conf.urls.static import static
@@ -28,11 +26,13 @@ from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfir
 from apps.common.views import HomeView
 from apps.store.views import StoreCategoryListView, StoreCategoryDetailView
 
-urlpatterns = [ path('admin/', admin.site.urls),
-                path('rosetta/', include('rosetta.urls')),
-                ]
-urlpatterns += static( settings.STATIC_URL, document_root=settings.STATIC_ROOT )
-urlpatterns += static( settings.MEDIA_URL, document_root=settings.MEDIA_ROOT )
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('rosetta/', include('rosetta.urls')),
+]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(
     path('password-reset-done', PasswordResetDoneView.as_view(template_name='accounts/forgot_password_done.html'),
@@ -42,7 +42,6 @@ urlpatterns += i18n_patterns(
     path('', include('apps.accounts.urls')),
     path('', HomeView.as_view(), name='home'),
     path('login/', LoginView.as_view(template_name="accounts/login.html"), name='signin'),
-
     path('sign-up/', TemplateView.as_view(template_name='accounts/signup.html'),
          name='signup'),
     path('merchant-tools/', TemplateView.as_view(template_name='common/merchant-tools.html'), name='merchant-tools'),
@@ -54,9 +53,10 @@ urlpatterns += i18n_patterns(
          name='supported coins'),
     path('public-coin-votes/', TemplateView.as_view(template_name='common/public-coin-vote.html'),
          name='public coin vote'),
-    path('store-directory/<slug:slug>', StoreCategoryDetailView.as_view(template_name='common/store-directory.html'), name='store-item'),
-
-    path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'), name='forgot-password'),
+    path('store-directory/<slug:slug>', StoreCategoryDetailView.as_view(template_name='common/store-directory.html'),
+         name='store-item'),
+    path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'),
+         name='forgot-password'),
 )
 
 

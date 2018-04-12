@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    {% load widget_tweaks %}
+    {% load i18n %}
+    <section>
+        <div class="dashboard-bg">
+            <div class="container">
+                <div class="dashboard-wrapper top-sec">
+                    <div class="dasboard-head">
+
+                        <div class="img-dashboard">
+                            {% block dashboard_head_img %}
+                                <img src="{% static '/images/dashboard-icom.png' %}">
+                            {% endblock %}
+
+                        </div>
+                        <h3>
+                            {% block dashboard_head_title %}
+                            {% trans 'Dashboard'%}
+                            {% endblock %}
+                        </h3>
+                    </div>
+                    <div class="dasboard-sec">
+
+                        <div class="col-sm-4 dashboard-componatns">
+                            <div class="home-icon">
+                                <a href= "{% url 'accounts:profile' %}">
+                                    <img class="img-d-icon" src="{% static '/images/dash-icon1.png' %}">
+                                </a>
+                            </div>
+                            <a href= "{% url 'accounts:profile' %}">
+                                <span class="dashboard-span">{% trans 'Home' %}</span>
+                            </a>
+                        </div>
+                        <div class="col-sm-4 dashboard-componatns">
+                            <div class="home-icon box-1">
+                                <img class="img-d-icon" src="{% static '/images/wallet.png' %}">
+                            </div>
+                            <span class="dashboard-span">{% trans 'Your Wallet' %}</span>
+                        </div>
+                        <div class="col-sm-4 dashboard-componatns">
+                            <div class="home-icon box-2">
+                                <img class="img-d-icon" src="{% static '/images/coin01.png' %} ">
+                            </div>
+                            <span class="dashboard-span">{% trans 'Coin Settings' %}</span>
+                        </div>
+                        <div class="col-sm-4 dashboard-componatns">
+
+                            <div class="home-icon box-3">
+                                <img class="img-d-icon" src="{% static '/images/bill-not.png' %}">
+                            </div>
+                            <span class="dashboard-span">{% trans 'Transaction History' %}</span>
+                        </div>
+                        <div class="col-sm-4 dashboard-componatns">
+                            <div class="home-icon box-4">
+                                <img class="img-d-icon" src="{% static '/images/pos.png' %}">
+                            </div>
+                            <span class="dashboard-span">{% trans 'Quick POS' %}</span>
+                        </div>
+                        <div class="col-sm-4 dashboard-componatns">
+                            <div class="home-icon box-5">
+                                <img class="img-d-icon" src="{% static '/images/pay.png' %}">
+                            </div>
+                            <span class="dashboard-span">{% trans '$PayByName' %}</span>
+                        </div>
+                    </div>
+                </div>
+                {% block dashboard_wrapper_content %}
+
+
+                {% endblock %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

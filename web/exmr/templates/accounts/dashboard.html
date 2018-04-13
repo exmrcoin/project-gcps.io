@@ -1,5 +1,12 @@
 {% extends 'accounts/dashboard-base.html' %}
 {% load staticfiles %}
+{% block dashboard_heading %}
+    <div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">DASHBOARD
+        </div>
+    </div>
+{% endblock %}
 {% block dashboard_wrapper_content %}
     {% load widget_tweaks %}
     {% load i18n %}
@@ -7,7 +14,6 @@
         <div class="dasboard-head">
             <div class="img-dashboard">
                 <img src="{% static '/images/recevied.png' %} ">
-
             </div>
             <h3 class="trans">{% trans 'Recent Transaction' %}</h3>
         </div>

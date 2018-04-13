@@ -1,0 +1,97 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% load i18n %}
+{% block dashboard_heading %}
+    <div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">ADDRESS BOOK
+        </div>
+    </div>
+{% endblock %}
+{% block dashboard_wrapper_content %}
+    <div class="dashboard-wrapper">
+        <div class="dasboard-head">
+            <div class="img-dashboard">
+                <img src="{% static 'images/recevied.png' %}">
+
+            </div>
+            <h3 class="trans">Add New Address</h3>
+        </div>
+        <div class="account-setting-wrap">
+            <div class="main-field">Add New Address</div>
+
+            <fieldset class="setting-form form-settings">
+                <div class="form-group col-md-12">
+                    <label for="first_name">Saved Address Name</label>
+                    <input type="text" name="" value="" placeholder="Saved Address Name" class="form-control text-view">
+
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="first_name">Firsat Name</label>
+                    <input type="text" name="" value="" placeholder="Firsat Name" class="form-control text-view">
+
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label for="first_name">Last Name</label>
+                    <input type="text" name="" value="" placeholder="Last Name " class="form-control text-view">
+
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label for="first_name">Address</label>
+                    <input type="text" name="" value="" placeholder="Address" class="form-control text-view">
+                    <span>( Please specify which crypto processor your are using )</span>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="first_name">(con)</label>
+                    <input type="text" name="" value="" placeholder="(con)" class="form-control text-view">
+                    <span>( Please specify which crypto processor your are using )</span>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="confirm_password">Country</label>
+                    <select class="form-control select-view" name="" id="country">
+                        <option>USA</option>
+                        <option>test</option>
+                        <option>test</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="first_name">City</label>
+                    <input type="text" name="" value="" placeholder="City" class="form-control text-view">
+
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="first_name">State/Province</label>
+                    <input type="text" name="" value="" placeholder="State/Province" class="form-control text-view">
+                    <span>USA/Canada -2 disgit </br>code other countries use your loacl custim or leave blank</span>
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="first_name">Zip/postal Code</label>
+                    <input type="text" name="" value="" placeholder="Zip/postal Code" class="form-control text-view">
+
+                </div>
+                <div class="form-group col-md-12">
+                    <label for="first_name">Phone Number</label>
+                    <input type="text" name="" value="" placeholder="Phone NUmber" class="form-control text-view" id "number">
+
+                </div>
+                <div class="form-group col-md-12">
+                    <button type="button" class="btn address-btn btn-address">Nevermind</button>
+                    <button type="button" class="btn address-btn">Save Address</button>
+                </div>
+
+            </fieldset>
+
+
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+

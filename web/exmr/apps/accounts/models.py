@@ -65,6 +65,21 @@ class Profile(models.Model):
     is_subscribed = models.BooleanField(_('is subscribed'), default=False)
     referance_count = models.IntegerField(_('reference count'), null=True, default=0)
 
+    #  IPN Settings
+
+    ipn_secret = models.CharField(_('IPN Secret'), max_length=255, null=True, blank=True,
+                                  help_text=_('This is used to verify that an IPN is from us,'
+                                              ' use a good random string nobody can guess.'))
+    ipn_url = models.URLField(_('IPN URL'), null=True, blank=True)
+    mail_on_new_payment_init = models.BooleanField(_('When a user submits a new payment to you'), default=False)
+    mail_on_new_fund_receive = models.BooleanField(_('When funds have been received by us for a payment to you.'), default=True)
+    mail_on_fund_sent = models.BooleanField(_('When funds for a payment have been sent to you.'), default=True)
+    mail_on_deposit_receive = models.BooleanField(_('When a deposit is received on one of your deposit addresses.'), default=True)
+    mail_on_positive_feedback = models.BooleanField(_('When positive feedback has been left for you.'), default=True)
+    status_email = models.EmailField(_('status notification email'), null=True, blank=True)
+    receive_sms = models.BooleanField(_('receive SMS text when funds are received'), default=False)
+    phone = models.CharField(_('SMS phone number'), max_length=15, null=True, blank=True)
+
     class Meta:
         verbose_name = _('Profile')
         verbose_name_plural = _('Profiles')

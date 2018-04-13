@@ -1,93 +1,43 @@
-{% extends 'base.html' %}
+{% extends 'accounts/dashboard-base.html' %}
 {% load staticfiles %}
-{% block content %}
-    {% load widget_tweaks %}
-    {% load i18n %}
-    <section>
-        <div class="merchant-tools merchant-one coin-payment-head">
-            <div class=" container merchant-box">{% trans 'APP KEYS' %}
-                <p class="sb-line-div">{% trans 'Key for the Coin Payments Apps' %}</p>
-            </div>
-
+{% load widget_tweaks %}
+{% load i18n %}
+{% block dashboard_heading %}
+    <div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">TRANSACTION HISTORY
         </div>
-        <div class="dashboard-bg">
-            <div class="container">
-                <div class="dashboard-wrapper top-sec">
-                    <div class="dasboard-head">
-                        <div class="img-dashboard">
-                            <img src={% static 'images/dashboard-icom.png' %}>
-
-                        </div>
-                        <h3>Dashboard</h3>
-                    </div>
-                    <div class="dasboard-sec">
-
-                        <div class="col-sm-4 dashboard-componatns">
-                            <div class="home-icon">
-                                <img class="img-d-icon" src={% static 'images/dash-icon1.png' %}>
-                            </div>
-                            <span class="dashboard-span">Home</span>
-                        </div>
-                        <div class="col-sm-4 dashboard-componatns">
-                            <div class="home-icon box-1">
-                                <img class="img-d-icon" src={% static 'images/wallet.png' %}>
-                            </div>
-                            <span class="dashboard-span">Your Wallet</span>
-                        </div>
-                        <div class="col-sm-4 dashboard-componatns">
-                            <div class="home-icon box-2">
-                                <img class="img-d-icon" src={% static 'images/coin01.png' %}>
-                            </div>
-                            <span class="dashboard-span">Coin Settings</span>
-                        </div>
-                        <div class="col-sm-4 dashboard-componatns">
-
-                            <div class="home-icon box-3">
-                                <img class="img-d-icon" src={% static 'images/bill-not.png' %}>
-                            </div>
-                            <span class="dashboard-span">Transaction History</span>
-                        </div>
-                        <div class="col-sm-4 dashboard-componatns">
-                            <div class="home-icon box-4">
-                                <img class="img-d-icon" src="">
-                            </div>
-                            <span class="dashboard-span">Quick POS</span>
-                        </div>
-                        <div class="col-sm-4 dashboard-componatns">
-                            <div class="home-icon box-5">
-                                <img class="img-d-icon" src="images/pay.png">
-                            </div>
-                            <span class="dashboard-span">$PayByName</span>
-                        </div>
-                    </div>
-                </div>
+    </div>
+{% endblock %}
+{% block dashboard_wrapper_content %}
+    <div class="dashboard-bg">
+        <div class="container">
+            <div class="dashboard-wrapper top-sec">
                 <div class="dashboard-wrapper">
                     <div class="dasboard-head">
-
-                        <h3 class="trans coin-keys-app">CoinPayment Wallet HIstory</h3>
-
+                        <h3 class="trans coin-keys-app">GETCRYPTOPAYMENT Wallet HIstory</h3>
                     </div>
                     <div class="app-min-wrap history-wallet">
                         <div class="btn-history-wrap">
-                            <button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="images/deposit.svg"><span class="icon-wallet-name">Deposit History</span></button>
-                            <button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="images/withdraw.svg"><span class="icon-wallet-name">Deposit History</span></button>
-                            <button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="images/arrows (1).svg"><span class="icon-wallet-name">Deposit History</span></button>
-                            <button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="images/paper-plane.svg"><span class="icon-wallet-name">Deposit History</span></button>
+                            <button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/deposit.svg' %}"><span class="icon-wallet-name">{% trans 'Deposit History' %}</span></button>
+                            <button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/withdraw.svg' %}"><span class="icon-wallet-name">{% trans 'Deposit History' %}</span></button>
+                            <button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/arrows (1).svg' %}"><span class="icon-wallet-name">{% trans 'Deposit History' %}</span></button>
+                            <button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/paper-plane.svg' %}"><span class="icon-wallet-name">{% trans 'Deposit History' %}</span></button>
                         </div>
                     </div>
                 </div>
                 <div class="dashboard-wrapper">
                     <div class="dasboard-head">
 
-                        <h3 class="trans coin-keys-app">Incoming Payment HIstory</h3>
+                        <h3 class="trans coin-keys-app">{% trans 'Incoming Payment HIstory' %}</h3>
 
                     </div>
                     <div class="app-min-wrap history-wallet">
-                        <div class="sub-head-line-history">History Search & Export</div>
+                        <div class="sub-head-line-history">{% trans 'History Search & Export' %}</div>
 
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 {% endblock %}

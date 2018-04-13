@@ -1,17 +1,17 @@
 {% extends 'accounts/dashboard-base.html' %}
 {% load staticfiles %}
-    {% load widget_tweaks %}
-    {% load social_share %}
-    {% url 'home' as host %}
-    {% with user.get_profile as profile %}
-        {% load i18n %}
-        {% block dashboard_head_img %}
-            <img src="{% static '/images/settings.png' %}">
-        {% endblock %}
-        {% block dashboard_head_title %}{% trans 'Settings' %}{% endblock %}
-        {% block dashboard_wrapper_content %}
-            <div class="dashboard-wrapper top-sec">
-                <div class="bs-example bs-example-tabs examble-tab" role="tabpanel" data-example-id="togglable-tabs">
+{% load widget_tweaks %}
+{% load social_share %}
+{% url 'home' as host %}
+{% with user.get_profile as profile %}
+    {% load i18n %}
+    {% block dashboard_head_img %}
+        <img src="{% static '/images/settings.png' %}">
+    {% endblock %}
+    {% block dashboard_head_title %}{% trans 'Settings' %}{% endblock %}
+    {% block dashboard_wrapper_content %}
+        <div class="dashboard-wrapper top-sec">
+            <div class="bs-example bs-example-tabs examble-tab" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs nav-tabs-responsive multiple-tab" role="tablist">
                     <li role="presentation" class="active">
                         <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home"
@@ -268,20 +268,113 @@
                         </div>
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="merchant" aria-labelledby="merchant-tab">
-                        <div class="comming-soon">content coming soon.......!
-                            <img class="emoji" src="{% static '/images/emoji.jpg' %}">
+                        <div class="setting-head">{% trans 'Merchant Settings' %}</div>
+                        <div class="account-setting-wrap">
+                            <div class="alert">
+
+                            </div>
+
+                            <form role="form" method="post" id="merchantSettingsForm"
+                                  action="{% url 'accounts:save_security_info' %}" novalidate>
+                                {% csrf_token %}
+                                <fieldset class="setting-form form-settings">
+
+                                    <div class="form-group col-md-12">
+                                        <label for="ipn_secret">{% trans 'IPN Secret' %}</label>
+                                        {{ ipn_form.ipn_secret|add_class:'form-control text-view' }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="ipn_url">{% trans 'IPN URL' %}</label>
+                                        {{ ipn_form.ipn_url|add_class:'form-control text-view' }}
+                                        <span class="error"></span>
+                                    </div>
+                                    <label for="confirm_password">Email Notifications</label>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="confirm_password">{{ ipn_form.mail_on_new_payment_init.label }}</label>
+                                        {{ ipn_form.mail_on_new_payment_init }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="confirm_password">{{ ipn_form.mail_on_new_fund_receive.label }}</label>
+                                        {{ ipn_form.mail_on_new_fund_receive }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="confirm_password">{{ ipn_form.mail_on_fund_sent.label }}</label>
+                                        {{ ipn_form.mail_on_fund_sent }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="confirm_password">{{ ipn_form.mail_on_new_payment_init.label }}</label>
+                                        {{ ipn_form.mail_on_new_payment_init }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="confirm_password">{{ ipn_form.mail_on_deposit_receive.label }}</label>
+                                        {{ ipn_form.mail_on_deposit_receive }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="confirm_password">{{ ipn_form.mail_on_positive_feedback.label }}</label>
+                                        {{ ipn_form.mail_on_positive_feedback }}
+                                        <span class="error"></span>
+                                    </div>
+
+                                    <div class="form-group col-md-12">
+                                        <label for="two_factor_auth">{{ ipn_form.status_email.label }}</label>
+                                        {{ ipn_form.status_email|add_class:'form-control text-view' }}
+                                        <small class="form-text text-muted">
+                                            {% blocktrans %}
+                                                Payment status email will be sent to this email.
+                                                If not provided, notofications will be sent to the primary email
+                                            {% endblocktrans %}
+                                        </small>
+                                        <span class="error"></span>
+
+                                    </div>
+
+                                <div class="form-group col-md-12">
+                                        <label for="two_factor_auth">{{ ipn_form.receive_sms.label }}</label>
+                                        {{ ipn_form.receive_sms }}
+
+                                        <span class="error"></span>
+
+                                    </div>
+
+
+                                    <div class="form-group col-md-12">
+                                        <label for="pgp_gpg_public_key">{{ ipn_form.phone.label }}</label>
+                                        {{ ipn_form.phone|add_class:'form-control text-view' }}
+                                        <span class="error"></span>
+
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+
+                                        <button type="submit"
+                                                class="btn- btn-default btn-log ">{% trans 'Update' %}</button>
+
+                                    </div>
+
+
+                                </fieldset>
+                            </form>
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="samsa" aria-labelledby="samsa-tab">
-                        <div class="comming-soon">content coming soon.......!
-                            <img class="emoji" src="{% static '/images/emoji.jpg' %}">
-                        </div>
-                    </div>
+
                 </div>
             </div>
-            </div>
-        {% endblock %}
-    {% endwith %}
+        </div>
+    {% endblock %}
+{% endwith %}
 
 {% block extra_js %}
     <script src="{% static 'js/clipboard.min.js' %}"></script>

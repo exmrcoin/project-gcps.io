@@ -67,4 +67,13 @@ $(function() {
         $(this).find('.error').text('')
     });
 
+    $('#merchantSettingsForm').on('submit', function(e) {
+        e.preventDefault();
+        formSubmit('#merchantSettingsForm', '/save-ipn-settings/');
+    });
+
+    $('#merchantSettingsForm').on('input',function(e){
+        $(this).find('.error').text('')
+    });
+
     });

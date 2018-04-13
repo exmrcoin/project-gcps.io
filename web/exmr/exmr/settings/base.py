@@ -158,7 +158,6 @@ LANGUAGES = (
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
-print(STATIC_ROOT)
 STATICFILES_DIRS = (os.path.join(PROJECT_PATH, 'staticfiles'),)
 
 MEDIA_URL = '/media/'

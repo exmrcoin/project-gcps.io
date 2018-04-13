@@ -1,19 +1,25 @@
 import pyotp
 
+from django.conf import settings
 from django import forms
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView, TemplateView, FormView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
+from django.views import View
+from django.core.mail import send_mail
+from django.utils.decorators import method_decorator
+from django.urls import reverse
 
 from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm, IPNSettingsForm
 from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount
-from apps.common.utils import generate_key, JSONResponseMixin
+from apps.accounts.decorators import ckeck_2fa
+from apps.common.utils import generate_key, JSONResponseMixin, get_pin
 
 
 class SignUpView(CreateView):
@@ -158,6 +164,7 @@ class SecurityInfoSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
                 self.request.user.set_password(password)
                 self.request.user.save()
         else:
+            self.request.session['2fa_verified'] = True
             form.save()
             response.update({'msg': _('Information updated successfully')})
 
@@ -207,7 +214,7 @@ class ProfileActivationView(TemplateView):
         return context
 
 
-class CreateTwoFactorAccount(CreateView):
+class CreateTwoFactorAccount(LoginRequiredMixin, CreateView):
     """
         creating new two factor authentication account for current user
     """
@@ -235,7 +242,7 @@ class CreateTwoFactorAccount(CreateView):
             return self.form_invalid(form)
 
 
-class DeleteTwoFactorAccount(DeleteView):
+class DeleteTwoFactorAccount(LoginRequiredMixin, DeleteView):
     """
         removing 2fa account from active list
     """
@@ -244,10 +251,62 @@ class DeleteTwoFactorAccount(DeleteView):
     template_name = 'accounts/2fa_confirm_delete.html'
 
 
-class TwoFactorAccountList(ListView):
+@method_decorator(ckeck_2fa, name='dispatch')
+class TwoFactorAccountList(LoginRequiredMixin, ListView):
     """
         listing all active 2fa accounts
     """
     model = TwoFactorAccount
     template_name = 'accounts/2fa_account_lis.html'
+
+
+class Verify2FAView(AccessMixin, View):
+    """ verifying 2fa password"""
+    template_name = 'accounts/verify_2fa.html'
+
+    def get(self, request, *args, **kwargs):
+
+        if request.user.get_profile.two_factor_auth == 0 or \
+        not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
+            two_factor_type = 'Email'
+            request.session['email_otp'] = get_pin()
+            print(request.session['email_otp'])
+
+            if not request.session.get('email_send', False):
+
+                send_mail(
+                    'Verification Code',
+                    'Your verification code is %s' % request.session['email_otp'],
+                    settings.DEFAULT_FROM_EMAIL,
+                    [request.user.email],
+                    fail_silently=False
+                )
+
+                request.session['email_send'] = True
+
+        elif request.user.get_profile.two_factor_auth == 2:
+            two_factor_type = 'Google'
+
+        return render(request, self.template_name, {'two_factor_type': two_factor_type})
+
+    def post(self, request, *args, **kwargs):
+        otp_code = self.request.POST.get('otp')
+
+        if request.user.get_profile.two_factor_auth == 0 or \
+        not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
+            if request.session.get('email_otp') == otp_code:
+                request.session['2fa_verified'] = True
+                return redirect(reverse('home'))
+
+        elif request.user.get_profile.two_factor_auth == 2:
+            auth_accounts = TwoFactorAccount.objects.filter(account_type='google_authenticator')
+
+            for auth_account in auth_accounts:
+                totp = pyotp.TOTP(auth_account.key)
+
+                if totp.verify(otp_code):
+                    self.request.session['2fa_verified'] = True
+                    return redirect(reverse('home'))
+        
+        return render(request, self.template_name, {'error': 'Incorrect Verification Code'})
 

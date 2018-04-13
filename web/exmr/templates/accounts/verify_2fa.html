@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Verify Two Factor OTP{% endblock %}
+
+{% block content %}
+<section>
+  <style>
+    .errorlist{
+      position:static;
+    }
+  </style>
+
+  <div class="container">
+      <form method="post" action=".">
+      	{% csrf_token %}
+        <div>
+          <label>Enter {{two_factor_type}} Authentication Code</label>
+          <input type="text" name="otp" />
+        </div>
+
+      	<p><button class="btn btn-primary">Submit</button></p>
+      </form>
+  </div>
+</section>
+{% endblock %}

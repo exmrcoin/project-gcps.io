@@ -1,23 +1,40 @@
+{% extends 'base.html' %}
 {% load static %}
 
+{% block title %}Create Two Factor Authentication{% endblock %}
 
-<label>Your Secret Key</label>
-<div>
-	<canvas id="qr"></canvas>
-	<p>{{view.key}}</p>
-</div>
-<form method="post" action=".">
-	{% csrf_token %}
-	{{form.as_p}}
-	<button>Submit</button>
-</form>
+{% block content %}
+<section>
+  <style>
+    .errorlist{
+      position:static;
+    }
+  </style>
 
-<script src="{% static 'js/qrious.js' %}"></script>
-<script>
-   var qr_url = "otpauth://totp/exmr:{{user.email}}?secret={{view.key}}&amp;issuer=exmr"
-   var qr = new QRious({
-      element: document.getElementById('qr'),
-      value: qr_url
-    });
-    qr.size = 200;
-</script>
+  <div class="container">
+      <label>Your Secret Key</label>
+      <div>
+      	<canvas id="qr"></canvas>
+      	<p>{{view.key}}</p>
+      </div>
+      <form method="post" action=".">
+      	{% csrf_token %}
+      	{{form.as_p}}
+
+      	<p><button class="btn btn-primary">Submit</button></p>
+      </form>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+  <script src="{% static 'js/qrious.js' %}"></script>
+  <script>
+     var qr_url = "otpauth://totp/exmr:{{user.email}}?secret={{view.key}}&amp;issuer=exmr"
+     var qr = new QRious({
+        element: document.getElementById('qr'),
+        value: qr_url
+      });
+      qr.size = 200;
+  </script>
+{% endblock %}

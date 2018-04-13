@@ -5,6 +5,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from django.views.generic import CreateView, TemplateView, FormView, UpdateView
+from django.views.generic.list import ListView
+from django.views.generic.edit import DeleteView
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
@@ -190,7 +192,7 @@ class CreateTwoFactorAccount(CreateView):
     model = TwoFactorAccount
     fields = ['account_name','totp']
     template_name = 'accounts/create_2fa_account.html'
-    success_url = reverse_lazy('home')
+    success_url = reverse_lazy('accounts:2fa_list')
     key = pyotp.random_base32()
 
     def form_valid(self, form):
@@ -209,3 +211,21 @@ class CreateTwoFactorAccount(CreateView):
         else:
             form.add_error('totp', 'Invalid Authentication Code')
             return self.form_invalid(form)
+
+
+class DeleteTwoFactorAccount(DeleteView):
+    """
+        removing 2fa account from active list
+    """
+    model = TwoFactorAccount
+    success_url = reverse_lazy('accounts:2fa_list')
+    template_name = 'accounts/2fa_confirm_delete.html'
+
+
+class TwoFactorAccountList(ListView):
+    """
+        listing all active 2fa accounts
+    """
+    model = TwoFactorAccount
+    template_name = 'accounts/2fa_account_lis.html'
+

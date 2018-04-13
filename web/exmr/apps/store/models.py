@@ -30,7 +30,7 @@ class Store(models.Model):
     """
     Model for store information
     """
-    user = models.ForeignKey(User, verbose_name=_('user'), related_name='get_user_stores', on_delete=models.CASCADE)
+    models.ForeignKey(User, on_delete=models.CASCADE,  related_name='get_user_stores', verbose_name=_('user'))
     store_name = models.CharField(_('store name'), max_length=255)
     store_url = models.URLField(_('store url'))
     category = models.ForeignKey(StoreCategory, verbose_name=_('category'), related_name='get_store_category', on_delete=models.CASCADE)

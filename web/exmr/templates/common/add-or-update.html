@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
+    {% load widget_tweaks %}
     {% load i18n %}
     <section>
         <div class="dashboard-bg dash-base">
@@ -23,101 +24,103 @@
                         </div>
                         <h3>Add New Store</h3>
                     </div>
+                    <form id="addToStoreForm" action="{% url 'store:add-to-store' %}" method="post" novalidate>{% csrf_token %}
 
-                    <div class="account-setting-wrap">
-                        <div class="main-field">Main Field</div>
+                        <div class="account-setting-wrap">
+                            <div class="main-field">Main Field</div>
+                            <fieldset class="setting-form form-settings">
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Store Name</label>
+                                    {{ form.store_name|add_class:'form-control text-view' }}
+                                    <span class="error">{{ form.errors }}</span>
 
-                        <fieldset class="setting-form form-settings">
-                            <div class="form-group col-md-12">
-                                <label for="first_name">Store Name</label>
-                                <input type="text" name="" value="" placeholder="Store Name" class="form-control text-view" >
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Store URL</label>
+                                    {{ form.store_url|add_class:'form-control text-view' }}
+                                    <span class="error">{{ form.errors }}</span>
+
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Username/Merchant ID</label>
+                                    {{ form.username_or_merch_id|add_class:'form-control text-view' }}
+                                    <span class="error">{{ form.username_or_merch_id.errors }}</span>
+                                    <span>( This is needed to automatically show what coins you accept )</span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="confirm_password">Category</label>
+                                    {{ form.category|add_class:'form-control select-view' }}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Crypto Processor</label>
+                                    {{ form.crypto_processor|add_class:'form-control text-view' }}                                    <span>( Please specify which crypto processor your are using )</span>
+                                </div>
+
+                            </fieldset>
+                        </div>
+                        <div class="account-setting-wrap new-store-sec">
+                            <div class="main-field">
+                                Optional Fields</br>
+                                <p>( Items given will be shown in your listing )</p>
 
                             </div>
-                            <div class="form-group col-md-12">
-                                <label for="first_name">Store URL</label>
-                                <input type="text" name="" value="" placeholder="Store URL" class="form-control text-view" >
 
-                            </div>
+                            <fieldset class="setting-form form-settings">
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Store Email</label>
+                                    {{ form.store_email|add_class:'form-control text-view' }}
+                                    <span>( Obfuscation is used minimize any SPAM from your email being listed )</span>
+                                </div>
 
-                            <div class="form-group col-md-12">
-                                <label for="first_name">Username or Merchant ID</label>
-                                <input type="text" name="" value="" placeholder="Username or Merchant ID " class="form-control text-view" >
-                                <span>( This is needed to automatically show what coins you accept )</span>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="confirm_password">Category</label>
-                                <select class="form-control select-view" name="" id="country">
-                                    <option>Art & Collection</option>
-                                    <option>test</option>
-                                    <option>test</option>
-                                </select>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label for="first_name">Crypto Processor</label>
-                                <input type="text" name="" value="" placeholder="Crypto Processor" class="form-control text-view" >
-                                <span>( Please specify which crypto processor your are using )</span>
-                            </div>
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Keywords</label>
+                                    {{ form.keywords|add_class:'form-control text-view' }}
+                                    <span>(Optional enter up to 5 search kywords for your listing separated with a, )</span>
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Banner image URL</label>
+                                    {{ form.banner_image_url|add_class:'form-control text-view' }}
+                                    <span>Image shoud be 300pxwide * 10-150px all.fill rules <span class="c-here" >here </span></br>We will host the image o our server ,so you can use any dree/temporary host for temporary image store.  </span>
+                                </div>
 
 
-                        </fieldset>
+                            </fieldset>
 
-
-                    </div>
-                    <div class="account-setting-wrap new-store-sec">
-                        <div class="main-field">
-                            Optional Fields</br>
-                            <p>( Itemes given will be shown in your listing )</p>
 
                         </div>
 
-                        <fieldset class="setting-form form-settings">
-                            <div class="form-group col-md-12">
-                                <label for="first_name">Store Email</label>
-                                <input type="text" name="" value="" placeholder="Store Email" class="form-control text-view" >
-                                <span>( Obfuscation is used minimize any SPAM from your email being listed )</span>
-                            </div>
+                        <div class="account-setting-wrap new-store-sec">
+                            <div class="main-field">Submit Store </div>
 
-                            <div class="form-group col-md-12">
-                                <label for="first_name">Keywords</label>
-                                <input type="text" name="" value="" placeholder="Store Email" class="form-control text-view" >
-                                <span>(Optional enter up to 5 search kywords for your listing separated with a, )</span>
-                            </div>
+                            <section>
+                                <fieldset  class="captcha-new-store">
 
-                            <div class="form-group col-md-12">
-                                <label for="first_name">Banner image URL</label>
-                                <input type="text" name="" value="" placeholder="Banner image URL" class="form-control text-view" >
-                                <span>Image shoud be 300pxwide * 10-150px all.fill rules <span class="c-here" >here </span></br>We will host the image o our server ,so you can use any dree/temporary host for temporary image store.  </span>
-                            </div>
+                                    <span id="WrongCaptchaError" class="error"></span>
+                                    <div class='CaptchaWrap'>
 
+                                        <div id="CaptchaImageCode" class="CaptchaTxtField">
+                                            <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
 
-                        </fieldset>
+                                        </div>
+                                        <button class="btn" type="button" onclick='CreateCaptcha();'>
+                                            <i class="fas fa-sync-alt"></i>
+                                        </button>
+                                        <p>{% trans 'Type the characters you see in the image above:' %}</p>
+                                        <input type="text" class="capticha-enter1 form-control"
+                                               id="UserCaptchaCode"
+                                               class="CaptchaTxtField"
+                                               placeholder='Enter Captcha - Case Sensitive'>
 
-
-                    </div>
-
-                    <div class="account-setting-wrap new-store-sec">
-                        <div class="main-field">Submit Strore </div>
-
-                        <section>
-                            <fieldset  class="captcha-new-store">
-
-                                <div class='CaptchaWrap'>
-                                    <div id="CaptchaImageCode" class="CaptchaTxtField">
-                                        <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
                                     </div>
+                                    <input type="submit" class="btnSubmit new-store-btn" onclick="CheckCaptcha();" value="Add My Store"/>
+                                </fieldset>
+                            </section>
 
 
-                                </div>
-                                <p>Type the characters you see in the image above</p>
-                                <span id="SuccessMessage" class="success">Hurray! Your have successfully entered the captcha.</span>
-                                <input type="text" id="UserCaptchaCode" class="CaptchaTxtField" placeholder='Enter Captcha - Case Sensitive'>
-                                <span id="WrongCaptchaError" class="error"></span>
-                                <input type="button" class="btnSubmit new-store-btn" onclick="CheckCaptcha();" value="Add My Store">
-                            </fieldset>
-                        </section>
-
-
-                    </div>
+                        </div>
+                    </form>
 
 
                 </div>
@@ -127,128 +130,130 @@
 {% endblock %}
 
 </body>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.timepicker.min.js"></script>
-<script src="js/datepicker.min.js"></script>
-<script>
-    (function ($) {
 
-        'use strict';
+{% block extra_js %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="js/jquery.timepicker.min.js"></script>
+    <script src="js/datepicker.min.js"></script>
+    <script>
+        (function ($) {
 
-        $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
-            var $target = $(e.target);
-            var $tabs = $target.closest('.nav-tabs-responsive');
-            var $current = $target.closest('li');
-            var $parent = $current.closest('li.dropdown');
-            $current = $parent.length > 0 ? $parent : $current;
-            var $next = $current.next();
-            var $prev = $current.prev();
-            var updateDropdownMenu = function ($el, position) {
-                $el
-                    .find('.dropdown-menu')
-                    .removeClass('pull-xs-left pull-xs-center pull-xs-right')
-                    .addClass('pull-xs-' + position);
-            };
+            'use strict';
 
-            $tabs.find('>li').removeClass('next prev');
-            $prev.addClass('prev');
-            $next.addClass('next');
+            $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
+                var $target = $(e.target);
+                var $tabs = $target.closest('.nav-tabs-responsive');
+                var $current = $target.closest('li');
+                var $parent = $current.closest('li.dropdown');
+                $current = $parent.length > 0 ? $parent : $current;
+                var $next = $current.next();
+                var $prev = $current.prev();
+                var updateDropdownMenu = function ($el, position) {
+                    $el
+                        .find('.dropdown-menu')
+                        .removeClass('pull-xs-left pull-xs-center pull-xs-right')
+                        .addClass('pull-xs-' + position);
+                };
 
-            updateDropdownMenu($prev, 'left');
-            updateDropdownMenu($current, 'center');
-            updateDropdownMenu($next, 'right');
+                $tabs.find('>li').removeClass('next prev');
+                $prev.addClass('prev');
+                $next.addClass('next');
+
+                updateDropdownMenu($prev, 'left');
+                updateDropdownMenu($current, 'center');
+                updateDropdownMenu($next, 'right');
+            });
+
+        })(jQuery);
+        $('.datepicker').datepicker();
+        $('.timepicker').timepicker({
+            timeFormat: 'h:mm p',
+            interval: 60,
+            minTime: '10',
+            maxTime: '6:00pm',
+            defaultTime: '11',
+            startTime: '10:00',
+            dynamic: false,
+            dropdown: true,
+            scrollbar: true
+        });
+        $(function(){
+            CreateCaptcha();
         });
 
-    })(jQuery);
-    $('.datepicker').datepicker();
-    $('.timepicker').timepicker({
-        timeFormat: 'h:mm p',
-        interval: 60,
-        minTime: '10',
-        maxTime: '6:00pm',
-        defaultTime: '11',
-        startTime: '10:00',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true
-    });
-    $(function(){
-        CreateCaptcha();
-    });
+        // Create Captcha
+        function CreateCaptcha() {
+            //$('#InvalidCapthcaError').hide();
+            var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
 
-    // Create Captcha
-    function CreateCaptcha() {
-        //$('#InvalidCapthcaError').hide();
-        var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+            var i;
+            for (i = 0; i < 6; i++) {
+                var a = alpha[Math.floor(Math.random() * alpha.length)];
+                var b = alpha[Math.floor(Math.random() * alpha.length)];
+                var c = alpha[Math.floor(Math.random() * alpha.length)];
+                var d = alpha[Math.floor(Math.random() * alpha.length)];
+                var e = alpha[Math.floor(Math.random() * alpha.length)];
+                var f = alpha[Math.floor(Math.random() * alpha.length)];
+            }
+            cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
+            $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas>')
 
-        var i;
-        for (i = 0; i < 6; i++) {
-            var a = alpha[Math.floor(Math.random() * alpha.length)];
-            var b = alpha[Math.floor(Math.random() * alpha.length)];
-            var c = alpha[Math.floor(Math.random() * alpha.length)];
-            var d = alpha[Math.floor(Math.random() * alpha.length)];
-            var e = alpha[Math.floor(Math.random() * alpha.length)];
-            var f = alpha[Math.floor(Math.random() * alpha.length)];
+            var c = document.getElementById("CapCode"),
+                ctx=c.getContext("2d"),
+                x = c.width / 2,
+                img = new Image();
+
+            img.src = "https://pixelsharing.files.wordpress.com/2010/11/salvage-tileable-and-seamless-pattern.jpg";
+            img.onload = function () {
+                var pattern = ctx.createPattern(img, "repeat");
+                ctx.fillStyle = pattern;
+                ctx.fillRect(0, 0, c.width, c.height);
+                ctx.font="46px Roboto Slab";
+                ctx.fillStyle = '#ccc';
+                ctx.textAlign = 'center';
+                ctx.setTransform (1, -0.12, 0, 1, 0, 15);
+                ctx.fillText(cd,x,55);
+            };
+
+
         }
-        cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
-        $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas>')
 
-        var c = document.getElementById("CapCode"),
-            ctx=c.getContext("2d"),
-            x = c.width / 2,
-            img = new Image();
-
-        img.src = "https://pixelsharing.files.wordpress.com/2010/11/salvage-tileable-and-seamless-pattern.jpg";
-        img.onload = function () {
-            var pattern = ctx.createPattern(img, "repeat");
-            ctx.fillStyle = pattern;
-            ctx.fillRect(0, 0, c.width, c.height);
-            ctx.font="46px Roboto Slab";
-            ctx.fillStyle = '#ccc';
-            ctx.textAlign = 'center';
-            ctx.setTransform (1, -0.12, 0, 1, 0, 15);
-            ctx.fillText(cd,x,55);
-        };
-
-
-    }
-
-    // Validate Captcha
-    function ValidateCaptcha() {
-        var string1 = removeSpaces(cd);
-        var string2 = removeSpaces($('#UserCaptchaCode').val());
-        if (string1 == string2) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
-    // Remove Spaces
-    function removeSpaces(string) {
-        return string.split(' ').join('');
-    }
-
-    // Check Captcha
-    function CheckCaptcha() {
-        var result = ValidateCaptcha();
-        if( $("#UserCaptchaCode").val() == "" || $("#UserCaptchaCode").val() == null || $("#UserCaptchaCode").val() == "undefined") {
-            $('#WrongCaptchaError').text('Please enter code given below in a picture.').show();
-            $('#UserCaptchaCode').focus();
-        } else {
-            if(result == false) {
-                $('#WrongCaptchaError').text('Invalid Captcha! Please try again.').show();
-                CreateCaptcha();
-                $('#UserCaptchaCode').focus().select();
+        // Validate Captcha
+        function ValidateCaptcha() {
+            var string1 = removeSpaces(cd);
+            var string2 = removeSpaces($('#UserCaptchaCode').val());
+            if (string1 == string2) {
+                return true;
             }
             else {
-                $('#UserCaptchaCode').val('').attr('place-holder','Enter Captcha - Case Sensitive');
-                CreateCaptcha();
-                $('#WrongCaptchaError').fadeOut(100);
-                $('#SuccessMessage').fadeIn(500).css('display','block').delay(5000).fadeOut(250);
+                return false;
             }
         }
-    }
-</script>
-</html>
+
+        // Remove Spaces
+        function removeSpaces(string) {
+            return string.split(' ').join('');
+        }
+
+        // Check Captcha
+        function CheckCaptcha() {
+            var result = ValidateCaptcha();
+            if( $("#UserCaptchaCode").val() == "" || $("#UserCaptchaCode").val() == null || $("#UserCaptchaCode").val() == "undefined") {
+                $('#WrongCaptchaError').text('Please enter code given below in a picture.').show();
+                $('#UserCaptchaCode').focus();
+            } else {
+                if(result == false) {
+                    $('#WrongCaptchaError').text('Invalid Captcha! Please try again.').show();
+                    CreateCaptcha();
+                    $('#UserCaptchaCode').focus().select();
+                }
+                else {
+                    $('#UserCaptchaCode').val('').attr('place-holder','Enter Captcha - Case Sensitive');
+                    CreateCaptcha();
+                    $('#WrongCaptchaError').fadeOut(100);
+                    $('#SuccessMessage').fadeIn(500).css('display','block').delay(5000).fadeOut(250);
+                }
+            }
+        }
+    </script>
+{% endblock %}

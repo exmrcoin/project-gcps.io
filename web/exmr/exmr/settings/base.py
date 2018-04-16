@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'django_countries',
     'widget_tweaks',
     'rosetta',
+    # 'django.contrib.messages',
 
     # Project apps
     'apps.accounts',

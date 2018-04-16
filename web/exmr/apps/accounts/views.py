@@ -61,6 +61,7 @@ class SignUpCompleteView(TemplateView):
     template_name = 'accounts/signup_complete.html'
 
 
+@method_decorator(ckeck_2fa, name='dispatch')
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/dashboard.html'
 
@@ -214,6 +215,7 @@ class ProfileActivationView(TemplateView):
         return context
 
 
+@method_decorator(ckeck_2fa, name='dispatch')
 class CreateTwoFactorAccount(LoginRequiredMixin, CreateView):
     """
         creating new two factor authentication account for current user
@@ -236,12 +238,15 @@ class CreateTwoFactorAccount(LoginRequiredMixin, CreateView):
             form.instance.key = self.key
             form.instance.account_type = 'google_authenticator'
             form.instance.totp = None
+            self.key = pyotp.random_base32()
+            
             return super().form_valid(form)
         else:
             form.add_error('totp', 'Invalid Authentication Code')
             return self.form_invalid(form)
 
 
+@method_decorator(ckeck_2fa, name='dispatch')
 class DeleteTwoFactorAccount(LoginRequiredMixin, DeleteView):
     """
         removing 2fa account from active list
@@ -294,19 +299,27 @@ class Verify2FAView(AccessMixin, View):
 
         if request.user.get_profile.two_factor_auth == 0 or \
         not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
+            two_factor_type = 'Email'
+            
             if request.session.get('email_otp') == otp_code:
                 request.session['2fa_verified'] = True
-                return redirect(reverse('home'))
+                return redirect(reverse('accounts:profile'))
 
         elif request.user.get_profile.two_factor_auth == 2:
             auth_accounts = TwoFactorAccount.objects.filter(account_type='google_authenticator')
+            two_factor_type = 'Google'
 
             for auth_account in auth_accounts:
                 totp = pyotp.TOTP(auth_account.key)
 
                 if totp.verify(otp_code):
                     self.request.session['2fa_verified'] = True
-                    return redirect(reverse('home'))
+                    return redirect(reverse('accounts:profile'))
+
+        context = {
+            'two_factor_type': two_factor_type,
+            'error': 'Incorrect Verification Code'
+        }
         
-        return render(request, self.template_name, {'error': 'Incorrect Verification Code'})
+        return render(request, self.template_name, context)
 

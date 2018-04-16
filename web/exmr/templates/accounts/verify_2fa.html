@@ -15,6 +15,7 @@
       <form method="post" action=".">
       	{% csrf_token %}
         <div>
+          {% if error %}<ul class="errorlist"><li>{{error}}</li></ul>{% endif %}
           <label>Enter {{two_factor_type}} Authentication Code</label>
           <input type="text" name="otp" />
         </div>

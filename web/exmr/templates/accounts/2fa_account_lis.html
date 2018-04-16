@@ -6,26 +6,28 @@
 {% block content %}
 	<section>
 	  <div class="container">
-	  	{% for obj in object_list %}
-		  	<table class="table">
-		  		{% if forloop.counter is 1 %}
-		  		<tr>
-		  			<th>Date</th>
-		  			<th>Account Name</th>
-		  			<th>Account Type</th>
-		  			<th>Action</th>
-		  		</tr>
-		  		{% endif %}
-			  	<tr>
-			  		<td>{{ obj.time }}</td>
-			  		<td>{{ obj.account_name }}</td>
-			  		<td>{{ obj.get_account_type_display }}</td>
-			  		<td><a href="{% url 'accounts:delete_2fa' obj.pk %}" class="btn btn-danger">Delete</a></td>
-			  	</tr>
-		  	</table>
-	  	{% empty %}
+	  	{% if object_list %}
+		  	<table class="table table-striped">
+		  	{% for obj in object_list %}
+			  		{% if forloop.counter is 1 %}
+			  		<tr>
+			  			<th>Date</th>
+			  			<th>Account Name</th>
+			  			<th>Account Type</th>
+			  			<th>Action</th>
+			  		</tr>
+			  		{% endif %}
+				  	<tr>
+				  		<td>{{ obj.time }}</td>
+				  		<td>{{ obj.account_name }}</td>
+				  		<td>{{ obj.get_account_type_display }}</td>
+				  		<td><a href="{% url 'accounts:delete_2fa' obj.pk %}" class="btn btn-danger">Delete</a></td>
+				  	</tr>
+			{% endfor %}
+			</table>
+	  	{% else %}
 	  		<p align="center"> Nothing Found.</p>
-		{% endfor %}
+		{% endif %}
 		<p><a href="{% url 'accounts:create_2fa' %}" class="btn btn-primary">Create Two Factor Account</a></p>
 	  </div>
 	</section>

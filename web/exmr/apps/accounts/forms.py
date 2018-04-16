@@ -10,7 +10,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
 from django.db.models import Q
 
-from apps.accounts.models import Profile
+from apps.accounts.models import Profile, Address
 
 CHOICES = [(pytz.timezone(tz), tz) for tz in pytz.common_timezones]
 
@@ -106,6 +106,13 @@ class PublicInfoForm(forms.ModelForm):
         model = Profile
         fields = ['public_name', 'public_email', 'public_url', 'use_gravatar']
 
+class AddressForm(forms.ModelForm):
+
+    class Meta:
+        model = Address
+        fields = ['address_name', 'first_name', 'last_name', 'address_line_1',
+                  'address_line_2','country','city','state','postal_code','phone_number'
+                  ]
 
 class LoginSecurityForm(forms.ModelForm):
 

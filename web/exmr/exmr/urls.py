@@ -46,7 +46,7 @@ urlpatterns += i18n_patterns(
     path('sign-up/', TemplateView.as_view(template_name='accounts/signup.html'),
          name='signup'),
     path('merchant-tools/', TemplateView.as_view(template_name='common/merchant-tools.html'), name='merchant-tools'),
-    path('address-book/', TemplateView.as_view(template_name='common/address-book.html'), name='address-book'),
+    path('address-book/', TemplateView.as_view(template_name='accounts/address-book.html'), name='address-book'),
     path('store-directory/', StoreCategoryListView.as_view(template_name='common/store-directory-menu.html'),
          name='store-directory'),
     path('supported-coins/', TemplateView.as_view(template_name='common/support-coins.html'),

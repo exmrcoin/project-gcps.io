@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -6,7 +7,8 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
 
-from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm, IPNSettingsForm
+from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm, IPNSettingsForm, \
+     AddressForm
 from apps.accounts.models import Profile, ProfileActivation
 from apps.common.utils import generate_key, JSONResponseMixin
 
@@ -56,6 +58,36 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
 class TransactionHistoryView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/payment-history.html'
+
+
+class AddNewAddressView(LoginRequiredMixin, JSONResponseMixin, CreateView):
+    template_name = 'accounts/address-book.html'
+    form_class = AddressForm
+    success_url = reverse_lazy('accounts:add_new_address_complete')
+
+    def form_valid(self, form, commit=True):
+        self.object = form.save(commit=False)
+        user = self.request.user
+        try:
+            user = User.objects.get(username=user)
+            self.object.user = user
+        except User.DoesNotExist:
+            print("User not found")
+        if commit:
+            self.object.save()
+            messages.add_message(self.request, messages.INFO,
+                                 'Your store details has been added succesfully, '
+                                 'We will review the details and get back to you soon')
+            return super(AddNewAddressView, self).form_valid(form)
+
+    def form_invalid(self, form):
+        print(form.errors)
+        return super(AddNewAddressView, self).form_valid(form)
+
+
+class AddAddressCompleteView(TemplateView):
+    template_name = 'common/message.html'
+
 
 
 class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):

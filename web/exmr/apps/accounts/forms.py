@@ -1,8 +1,11 @@
+import re
+
 import pytz
 
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
@@ -106,13 +109,24 @@ class PublicInfoForm(forms.ModelForm):
         model = Profile
         fields = ['public_name', 'public_email', 'public_url', 'use_gravatar']
 
-class AddressForm(forms.ModelForm):
 
+
+class AddressForm(forms.ModelForm):
+    phone_number = forms.CharField()
     class Meta:
         model = Address
         fields = ['address_name', 'first_name', 'last_name', 'address_line_1',
-                  'address_line_2','country','city','state','postal_code','phone_number'
+                  'address_line_2','country','city','state','postal_code','phone_number',
+                  'is_default'
                   ]
+
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data.get('phone_number')
+        rule = re.compile('^\+(?:[0-9]●?){6,14}[0-9]$')
+        if not rule.search(phone_number):
+            raise forms.ValidationError(_('Invalid mobile number.'))
+        return phone_number
+
 
 class LoginSecurityForm(forms.ModelForm):
 

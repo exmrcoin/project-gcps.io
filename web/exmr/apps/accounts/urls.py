@@ -8,7 +8,7 @@ app_name = 'accounts'
 
 urlpatterns = [
     path('profile/', views.DashboardView.as_view(), name='profile'),
-    path('add-new-address/', views.AddNewAddressView.as_view(), name='add_new_address'),
+    path('address/', views.AddressView.as_view(), name='address'),
     path('add-new-address-complete/', views.AddAddressCompleteView.as_view(), name='add_new_address_complete'),
     path('transaction-history/', views.TransactionHistoryView.as_view(), name='transaction-history'),
     path('login/', LoginView.as_view(template_name='accounts/login.html'), name='login'),

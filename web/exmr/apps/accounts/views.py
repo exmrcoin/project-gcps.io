@@ -60,7 +60,7 @@ class TransactionHistoryView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/payment-history.html'
 
 
-class AddNewAddressView(LoginRequiredMixin, JSONResponseMixin, CreateView):
+class AddressView(LoginRequiredMixin, CreateView):
     template_name = 'accounts/address-book.html'
     form_class = AddressForm
     success_url = reverse_lazy('accounts:add_new_address_complete')
@@ -75,14 +75,13 @@ class AddNewAddressView(LoginRequiredMixin, JSONResponseMixin, CreateView):
             print("User not found")
         if commit:
             self.object.save()
-            messages.add_message(self.request, messages.INFO,
-                                 'Your store details has been added succesfully, '
-                                 'We will review the details and get back to you soon')
-            return super(AddNewAddressView, self).form_valid(form)
+        messages.add_message(self.request, messages.INFO,
+                                 'Address details have been stored successfully')
+        return super(AddressView, self).form_valid(form)
 
-    def form_invalid(self, form):
-        print(form.errors)
-        return super(AddNewAddressView, self).form_valid(form)
+    # def form_invalid(self, form):
+    #     print(form.errors)
+    #     return super(AddressView, self).form_valid(form)
 
 
 class AddAddressCompleteView(TemplateView):

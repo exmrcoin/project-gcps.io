@@ -152,6 +152,30 @@ width: 96.3%;
   
   @media only screen and (max-width: 768px) {
 
+.table>thead>tr>th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+    font-size: 9px;
+    text-align: center;
+    padding-bottom: 11px;
+}
+
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+    line-height: 14px;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+    font-size: 8px;
+    padding-top: 4px;
+    word-break:  break-all;
+}
+
+
+.btn-support-convert {
+    background-color: #16b101 !important;
+    border: inherit!important;
+    font-size: 8px !important;
+    padding: 4px 7px!important;
+}
 
     #CaptchaImageCode { width: 100%;}
 
@@ -921,7 +945,7 @@ width: 96.3%;
     margin-bottom: 5px;
   }
   .merchant-one {
-    height: 200px;
+    min-height: 200px;
   } 
   .merchant-box{
     line-height: 98px;

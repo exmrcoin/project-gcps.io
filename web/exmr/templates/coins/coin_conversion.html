@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    {% load i18n %}
+    <section>
+       <div class="merchant-tools merchant-one coin-payment-head">
+            <div class="merchant-tools merchant-one">
+                <div class=" container merchant-box">{% trans 'SUPPORTED COIN' %}
+                </div>
+                <div class="container subline-p merchant-toolp">
+                    <p>{% trans 'Instant get crypto payments checkout with easy to use cart plugin,advanced,invoice buillder,and API for custom intagration' %}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="dashboard-bg">
+            <div class="container">
+                <div class="dashboard-wrapper">
+                    {{ form }}
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

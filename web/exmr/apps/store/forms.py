@@ -1,7 +1,5 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.db.models import Q
-
 from apps.accounts.models import Profile
 from apps.store.models import Store, StoreCategory
 from django.utils.translation import ugettext_lazy as _

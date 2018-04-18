@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    {% load i18n %}
+    <section>
+        <div class="dashboard-bg dash-base">
+            <div class="merchant-tools">
+                <div class=" container merchant-box">
+                    {% trans 'STORE DIRECTORY' %}</div>
+                <div class="container subline-p">
+                    <p>{% trans 'Largest directory of merchants accepting multiple cryptocurrencies' %}
+                </div>
+                <div class="container">
+                    <div class="col-sm-6 search-div">
+                        <form id="searchform" action="{% url 'store:store-search' %}" method="get"
+                              accept-charset="utf-8">
+                            <div class="input-group">
+                                <input type="text" class="form-control search-area" placeholder="Search"
+                                       name="q" id="srch-term">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-default search-button"
+                                            type="submit">{% trans 'Search' %}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="container">
+                <div class="dashboard-wrapper top-sec">
+                    <div class="col-sm-3">
+                        <ul>
+                            {% for each_category in categories %}
+                                <a href="{% url 'store:store-item' each_category.slug %}">
+                                    <li {% if each_category.name == category.name %}
+                                        class="active-tab directoru-menu menu-story" {% else %}
+                                        class="directoru-menu menu-story" {% endif %} >{{ each_category.name }}<span
+                                            class="glyphicon glyphicon-chevron-right right-arow"
+                                            aria-hidden="true"></span></li>
+                                </a>
+                            {% endfor %}
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div class="charity">{{ category.name }}</div>
+                        <div class="coins-sort">
+                            <fieldset class="setting-form form-settings setings-charity">
+                                <div class="form-group col-md-6">
+                                    <select class="form-control select-view " name="" id="country">
+                                        <option>{% trans 'Any Coin (s)' %}</option>
+                                        <option>{% trans 'Test' %}</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <select class="form-control select-view" name="" id="country">
+                                        <option>{% trans 'CPS Sort' %}</option>
+                                        <option>{% trans 'Test' %}</option>
+                                        <option>{% trans 'Test' %}</option>
+                                    </select>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="col-sm-9">
+                        {% for store in stores %}
+                        <div class="content-box-charity">
+                            <div class="col-sm-3 feedback-content inbox-wrap">
+                                <div class="col-sm-12 head-feedback feedback">{% trans 'FEEDBACK' %}</div>
+                                <span class="fa fa-star checked star-rate"></span>
+                                <span class="fa fa-star checked star-rate"></span>
+                                <span class="fa fa-star checked star-rate"></span>
+                                <span class="fa fa-star star-rate"></span>
+                                <span class="fa fa-star star-rate"></span>
+                                <span class="percentage star-rate">(85%)</span>
+                                <div class="ratting star-rate">{% trans '22 Rating (s)' %}</div>
+                            </div>
+
+                            <div class="col-sm-3 feedback-content inbox-wrap">
+                                <div class="col-sm-12 head-feedback feedback ">{% trans 'STORE' %}</div>
+                                <div class="donation">{{ store.store_name }}</div>
+                                <div class="logo-charity">
+                                    <img src="{% static 'images/logo-charity.png' %}">
+                                </div>
+                                <div class="donation-link">http://ceshe.org</div>
+                            </div>
+                            <div class="col-sm-3 feedback-content inbox-wrap">
+                                <div class="col-sm-12 head-feedback feedback">{% trans 'BUMP' %}</div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+</body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/datepicker.min.js"></script>
+<script>
+    (function ($) {
+
+        'use strict';
+
+        $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
+            var $target = $(e.target);
+            var $tabs = $target.closest('.nav-tabs-responsive');
+            var $current = $target.closest('li');
+            var $parent = $current.closest('li.dropdown');
+            $current = $parent.length > 0 ? $parent : $current;
+            var $next = $current.next();
+            var $prev = $current.prev();
+            var updateDropdownMenu = function ($el, position) {
+                $el
+                    .find('.dropdown-menu')
+                    .removeClass('pull-xs-left pull-xs-center pull-xs-right')
+                    .addClass('pull-xs-' + position);
+            };
+
+            $tabs.find('>li').removeClass('next prev');
+            $prev.addClass('prev');
+            $next.addClass('next');
+
+            updateDropdownMenu($prev, 'left');
+            updateDropdownMenu($current, 'center');
+            updateDropdownMenu($next, 'right');
+        });
+
+    })(jQuery);
+    $('.datepicker').datepicker();
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 60,
+        minTime: '10',
+        maxTime: '6:00pm',
+        defaultTime: '11',
+        startTime: '10:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+</script>
+
+</html>

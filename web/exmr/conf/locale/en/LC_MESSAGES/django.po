@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-11 12:57+0000\n"
+"POT-Creation-Date: 2018-04-18 12:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,8 +21,8 @@ msgstr ""
 msgid "Basic Details"
 msgstr ""
 
-#: apps/accounts/admin.py:20 templates/accounts/settings.html:74
-#: templates/accounts/settings.html:201
+#: apps/accounts/admin.py:20 templates/accounts/settings.html:24
+#: templates/accounts/settings.html:155
 msgid "Public Info"
 msgstr ""
 
@@ -30,47 +30,51 @@ msgstr ""
 msgid "Login Security"
 msgstr ""
 
-#: apps/accounts/forms.py:23 apps/accounts/models.py:20
+#: apps/accounts/forms.py:26 apps/accounts/models.py:20
 msgid "Male"
 msgstr ""
 
-#: apps/accounts/forms.py:24 apps/accounts/models.py:21
+#: apps/accounts/forms.py:27 apps/accounts/models.py:21
 msgid "Female"
 msgstr ""
 
-#: apps/accounts/forms.py:25 apps/accounts/models.py:22
+#: apps/accounts/forms.py:28 apps/accounts/models.py:22
 msgid "Other/Prefer Not to say"
 msgstr ""
 
-#: apps/accounts/forms.py:29
+#: apps/accounts/forms.py:32
 msgid "02-10-2018"
 msgstr ""
 
-#: apps/accounts/forms.py:30
+#: apps/accounts/forms.py:33
 msgid "02/10/2018"
 msgstr ""
 
-#: apps/accounts/forms.py:33
+#: apps/accounts/forms.py:36
 msgid "02:00"
 msgstr ""
 
-#: apps/accounts/forms.py:34
+#: apps/accounts/forms.py:37
 msgid "02:00:00"
 msgstr ""
 
-#: apps/accounts/forms.py:57
+#: apps/accounts/forms.py:60
 msgid "Emails doesn't match"
 msgstr ""
 
-#: apps/accounts/forms.py:68
+#: apps/accounts/forms.py:71
 msgid "Please accept the terms and conditions"
 msgstr ""
 
-#: apps/accounts/forms.py:129
+#: apps/accounts/forms.py:127
+msgid "Invalid mobile number."
+msgstr ""
+
+#: apps/accounts/forms.py:158 apps/store/forms.py:21
 msgid "Either username or email needs to be provided"
 msgstr ""
 
-#: apps/accounts/forms.py:134
+#: apps/accounts/forms.py:163 apps/store/forms.py:26
 msgid "User not found"
 msgstr ""
 
@@ -98,8 +102,8 @@ msgstr ""
 msgid "None"
 msgstr ""
 
-#: apps/accounts/models.py:50 apps/accounts/models.py:97
-#: apps/accounts/models.py:132 apps/accounts/models.py:157
+#: apps/accounts/models.py:50 apps/accounts/models.py:112
+#: apps/accounts/models.py:147 apps/accounts/models.py:172
 #: apps/coins/models.py:71 apps/store/models.py:33
 msgid "user"
 msgstr ""
@@ -164,139 +168,186 @@ msgstr ""
 msgid "reference count"
 msgstr ""
 
-#: apps/accounts/models.py:69
+#: apps/accounts/models.py:70 templates/accounts/settings.html:283
+msgid "IPN Secret"
+msgstr ""
+
+#: apps/accounts/models.py:71
+msgid ""
+"This is used to verify that an IPN is from us, use a good random string "
+"nobody can guess."
+msgstr ""
+
+#: apps/accounts/models.py:73 templates/accounts/settings.html:289
+msgid "IPN URL"
+msgstr ""
+
+#: apps/accounts/models.py:74
+msgid "When a user submits a new payment to you"
+msgstr ""
+
+#: apps/accounts/models.py:75
+msgid "When funds have been received by us for a payment to you."
+msgstr ""
+
+#: apps/accounts/models.py:76
+msgid "When funds for a payment have been sent to you."
+msgstr ""
+
+#: apps/accounts/models.py:77
+msgid "When a deposit is received on one of your deposit addresses."
+msgstr ""
+
+#: apps/accounts/models.py:78
+msgid "When positive feedback has been left for you."
+msgstr ""
+
+#: apps/accounts/models.py:79
+msgid "status notification email"
+msgstr ""
+
+#: apps/accounts/models.py:80
+msgid "receive SMS text when funds are received"
+msgstr ""
+
+#: apps/accounts/models.py:81
+msgid "SMS phone number"
+msgstr ""
+
+#: apps/accounts/models.py:84
 msgid "Profile"
 msgstr ""
 
-#: apps/accounts/models.py:70
+#: apps/accounts/models.py:85
 msgid "Profiles"
 msgstr ""
 
-#: apps/accounts/models.py:107
+#: apps/accounts/models.py:122
 msgid "Account Activation Link"
 msgstr ""
 
-#: apps/accounts/models.py:124
+#: apps/accounts/models.py:139
 msgid "Profile Activation"
 msgstr ""
 
-#: apps/accounts/models.py:125
+#: apps/accounts/models.py:140
 msgid "Profile Activations"
 msgstr ""
 
-#: apps/accounts/models.py:133
+#: apps/accounts/models.py:148
 msgid "saved address name"
 msgstr ""
 
-#: apps/accounts/models.py:134
+#: apps/accounts/models.py:149
 msgid "is default"
 msgstr ""
 
-#: apps/accounts/models.py:135
+#: apps/accounts/models.py:150
 msgid "first name"
 msgstr ""
 
-#: apps/accounts/models.py:136
+#: apps/accounts/models.py:151
 msgid "last name"
 msgstr ""
 
-#: apps/accounts/models.py:137
+#: apps/accounts/models.py:152
 msgid "address line 1"
 msgstr ""
 
-#: apps/accounts/models.py:138
+#: apps/accounts/models.py:153
 msgid "address line 2"
 msgstr ""
 
-#: apps/accounts/models.py:139
+#: apps/accounts/models.py:154
 msgid "country"
 msgstr ""
 
-#: apps/accounts/models.py:140
+#: apps/accounts/models.py:155
 msgid "city"
 msgstr ""
 
-#: apps/accounts/models.py:141
+#: apps/accounts/models.py:156
 msgid "state"
 msgstr ""
 
-#: apps/accounts/models.py:142
+#: apps/accounts/models.py:157
 msgid "postal code"
 msgstr ""
 
-#: apps/accounts/models.py:143
+#: apps/accounts/models.py:158
 msgid "phone_number"
 msgstr ""
 
-#: apps/accounts/models.py:146
+#: apps/accounts/models.py:161
 msgid "Address"
 msgstr ""
 
-#: apps/accounts/models.py:147
+#: apps/accounts/models.py:162
 msgid "Addresses"
 msgstr ""
 
-#: apps/accounts/models.py:158
+#: apps/accounts/models.py:173
 msgid "rating"
 msgstr ""
 
-#: apps/accounts/models.py:159
+#: apps/accounts/models.py:174
 msgid "comment"
 msgstr ""
 
-#: apps/accounts/models.py:161
+#: apps/accounts/models.py:176
 msgid "left by"
 msgstr ""
 
-#: apps/accounts/models.py:163
+#: apps/accounts/models.py:178
 msgid "buyer or seller"
 msgstr ""
 
-#: apps/accounts/models.py:166 apps/accounts/models.py:167
+#: apps/accounts/models.py:181 apps/accounts/models.py:182
 msgid "Feedback"
 msgstr ""
 
-#: apps/accounts/models.py:178
+#: apps/accounts/models.py:193
 msgid "subject"
 msgstr ""
 
-#: apps/accounts/models.py:180
+#: apps/accounts/models.py:195
 msgid "content"
 msgstr ""
 
-#: apps/accounts/views.py:111
+#: apps/accounts/views.py:147
 msgid "Account details updated successfully"
 msgstr ""
 
-#: apps/accounts/views.py:123 apps/accounts/views.py:153
+#: apps/accounts/views.py:160 apps/accounts/views.py:188
+#: apps/accounts/views.py:207
 msgid "Information updated successfully"
 msgstr ""
 
-#: apps/accounts/views.py:144
+#: apps/accounts/views.py:180
 msgid "Current password is incorrect"
 msgstr ""
 
-#: apps/accounts/views.py:146
+#: apps/accounts/views.py:182
 msgid "Passwords doesn't match"
 msgstr ""
 
-#: apps/accounts/views.py:170
+#: apps/accounts/views.py:223
 msgid "Invalid account activation link"
 msgstr ""
 
-#: apps/accounts/views.py:173
+#: apps/accounts/views.py:226
 msgid "Account activation link expired"
 msgstr ""
 
-#: apps/accounts/views.py:179
+#: apps/accounts/views.py:232
 msgid "Account activated <br><p>Please <a href=/login>login</a><p>"
 msgstr ""
 
-#: apps/coins/models.py:13 templates/common/support-coins.html:29
+#: apps/coins/models.py:13 templates/common/support-coins.html:27
 msgid "Crypto"
 msgstr ""
 
-#: apps/coins/models.py:14 templates/common/support-coins.html:35
+#: apps/coins/models.py:14 templates/common/support-coins.html:34
 msgid "Ripple"
 msgstr ""
 
@@ -304,7 +355,7 @@ msgstr ""
 msgid "Ether tokens"
 msgstr ""
 
-#: apps/coins/models.py:16 templates/common/support-coins.html:47
+#: apps/coins/models.py:16 templates/common/support-coins.html:48
 msgid "Fiat"
 msgstr ""
 
@@ -348,7 +399,7 @@ msgstr ""
 msgid "type"
 msgstr ""
 
-#: apps/coins/models.py:45 templates/accounts/dashboard.html:84
+#: apps/coins/models.py:45 templates/accounts/dashboard.html:34
 msgid "Coin"
 msgstr ""
 
@@ -480,11 +531,11 @@ msgstr ""
 msgid "Stores"
 msgstr ""
 
-#: exmr/settings/base.py:150
+#: exmr/settings/base.py:151
 msgid "English"
 msgstr ""
 
-#: exmr/settings/base.py:151
+#: exmr/settings/base.py:152
 msgid "Spanish"
 msgstr ""
 
@@ -542,56 +593,59 @@ msgid ""
 "%(site_name)s Management\n"
 msgstr ""
 
-#: templates/accounts/dashboard.html:15
-msgid "Dashboard"
+#: templates/accounts/address-book.html:22
+msgid "Add New Address"
 msgstr ""
 
-#: templates/accounts/dashboard.html:26 templates/accounts/settings.html:28
+#: templates/accounts/address-book.html:27
+msgid "Saved Address"
+msgstr ""
+
+#: templates/accounts/dashboard-base.html:19
 msgid "Home"
 msgstr ""
 
-#: templates/accounts/dashboard.html:33 templates/accounts/settings.html:35
+#: templates/accounts/dashboard-base.html:26
 msgid "Your Wallet"
 msgstr ""
 
-#: templates/accounts/dashboard.html:39 templates/accounts/settings.html:41
+#: templates/accounts/dashboard-base.html:32
 msgid "Coin Settings"
 msgstr ""
 
-#: templates/accounts/dashboard.html:46 templates/accounts/settings.html:48
+#: templates/accounts/dashboard-base.html:40
 msgid "Transaction History"
 msgstr ""
 
-#: templates/accounts/dashboard.html:52 templates/accounts/settings.html:54
+#: templates/accounts/dashboard-base.html:47
 msgid "Quick POS"
 msgstr ""
 
-#: templates/accounts/dashboard.html:58 templates/accounts/settings.html:60
-#: templates/common/index.html:72
+#: templates/accounts/dashboard-base.html:53 templates/common/index.html:72
 msgid "$PayByName"
 msgstr ""
 
-#: templates/accounts/dashboard.html:68
+#: templates/accounts/dashboard.html:18
 msgid "Recent Transaction"
 msgstr ""
 
-#: templates/accounts/dashboard.html:82
+#: templates/accounts/dashboard.html:32
 msgid "Time"
 msgstr ""
 
-#: templates/accounts/dashboard.html:83
+#: templates/accounts/dashboard.html:33
 msgid "Received / Sent Name"
 msgstr ""
 
-#: templates/accounts/dashboard.html:85
+#: templates/accounts/dashboard.html:35
 msgid "Amount"
 msgstr ""
 
-#: templates/accounts/dashboard.html:86
+#: templates/accounts/dashboard.html:36
 msgid "Status"
 msgstr ""
 
-#: templates/accounts/dashboard.html:105
+#: templates/accounts/dashboard.html:43
 msgid "No Payment Found"
 msgstr ""
 
@@ -642,110 +696,136 @@ msgstr ""
 msgid "Don't have an account?"
 msgstr ""
 
-#: templates/accounts/settings.html:17
+#: templates/accounts/payment-history.html:22
+#: templates/accounts/payment-history.html:23
+#: templates/accounts/payment-history.html:24
+#: templates/accounts/payment-history.html:25
+msgid "Deposit History"
+msgstr ""
+
+#: templates/accounts/payment-history.html:32
+msgid "Incoming Payment HIstory"
+msgstr ""
+
+#: templates/accounts/payment-history.html:36
+msgid "History Search & Export"
+msgstr ""
+
+#: templates/accounts/settings.html:11
 msgid "Settings"
 msgstr ""
 
-#: templates/accounts/settings.html:69
+#: templates/accounts/settings.html:19
 msgid "Basic Settings"
 msgstr ""
 
-#: templates/accounts/settings.html:80 templates/accounts/settings.html:250
+#: templates/accounts/settings.html:30 templates/accounts/settings.html:207
 msgid "Login & Security"
 msgstr ""
 
-#: templates/accounts/settings.html:85
+#: templates/accounts/settings.html:35 templates/accounts/settings.html:271
 msgid "Merchant Settings"
 msgstr ""
 
-#: templates/accounts/settings.html:92
+#: templates/accounts/settings.html:42 templates/base.html:116
 msgid "Account Settings"
 msgstr ""
 
-#: templates/accounts/settings.html:97
+#: templates/accounts/settings.html:47
 msgid "Your Merchant ID:"
 msgstr ""
 
-#: templates/accounts/settings.html:106
+#: templates/accounts/settings.html:56
 msgid "Affiliate URL:"
 msgstr ""
 
-#: templates/accounts/settings.html:107
+#: templates/accounts/settings.html:57
 msgid ""
 "Want to earn some crypto? Give this URL to new users and when they sign up "
 "you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:"
 msgstr ""
 
-#: templates/accounts/settings.html:112
+#: templates/accounts/settings.html:63
 msgid "Share/Save"
 msgstr ""
 
-#: templates/accounts/settings.html:151
+#: templates/accounts/settings.html:104
 msgid "Account Email"
 msgstr ""
 
-#: templates/accounts/settings.html:157
+#: templates/accounts/settings.html:110
 msgid "Confirm Email"
 msgstr ""
 
-#: templates/accounts/settings.html:164
+#: templates/accounts/settings.html:117
 msgid "Gender"
 msgstr ""
 
-#: templates/accounts/settings.html:171
+#: templates/accounts/settings.html:124
 msgid "Time Zone"
 msgstr ""
 
-#: templates/accounts/settings.html:177
+#: templates/accounts/settings.html:130
 msgid "Date Format"
 msgstr ""
 
-#: templates/accounts/settings.html:185
+#: templates/accounts/settings.html:138
 msgid "Time Format"
 msgstr ""
 
-#: templates/accounts/settings.html:192
+#: templates/accounts/settings.html:146
 msgid "Update Account"
 msgstr ""
 
-#: templates/accounts/settings.html:212
+#: templates/accounts/settings.html:167
 msgid "Public Name"
 msgstr ""
 
-#: templates/accounts/settings.html:218
+#: templates/accounts/settings.html:173
 msgid "Public Email"
 msgstr ""
 
-#: templates/accounts/settings.html:225
+#: templates/accounts/settings.html:180
 msgid "Public URL"
 msgstr ""
 
-#: templates/accounts/settings.html:240 templates/accounts/settings.html:302
+#: templates/accounts/settings.html:197 templates/accounts/settings.html:261
+#: templates/accounts/settings.html:363
 msgid "Update"
 msgstr ""
 
-#: templates/accounts/settings.html:261
+#: templates/accounts/settings.html:219
 msgid "Current Password"
 msgstr ""
 
-#: templates/accounts/settings.html:267
+#: templates/accounts/settings.html:225
 msgid "New Password"
 msgstr ""
 
-#: templates/accounts/settings.html:274
+#: templates/accounts/settings.html:232
 msgid "Confirm Password"
 msgstr ""
 
-#: templates/accounts/settings.html:280
+#: templates/accounts/settings.html:238
 msgid "2 Factor Authentication"
 msgstr ""
 
-#: templates/accounts/settings.html:287
+#: templates/accounts/settings.html:245
 msgid "Email Confirmations for Sends/Withdrawals"
 msgstr ""
 
-#: templates/accounts/settings.html:294
+#: templates/accounts/settings.html:252
 msgid "PGP/GPG Public Key"
+msgstr ""
+
+#: templates/accounts/settings.html:335
+msgid ""
+"\n"
+"                                                Payment status email will be "
+"sent to this email.\n"
+"                                                If not provided, "
+"notofications will be sent to the primary email\n"
+"                                            "
 msgstr ""
 
 #: templates/accounts/signup.html:26
@@ -807,7 +887,7 @@ msgstr ""
 msgid "Terms of Service."
 msgstr ""
 
-#: templates/accounts/signup.html:85
+#: templates/accounts/signup.html:85 templates/store/add-or-update.html:109
 msgid "Type the characters you see in the image above:"
 msgstr ""
 
@@ -819,24 +899,23 @@ msgstr ""
 msgid "Please check your mail"
 msgstr ""
 
-#: templates/base.html:53 templates/base.html:135
-#: templates/common/public-coin-vote.html:8
+#: templates/base.html:54 templates/base.html:153
 msgid "Public Coin Vote"
 msgstr ""
 
-#: templates/base.html:56 templates/base.html:133
+#: templates/base.html:57 templates/base.html:151
 msgid "Supported Coins"
 msgstr ""
 
-#: templates/base.html:59 templates/base.html:136
+#: templates/base.html:60 templates/base.html:154
 msgid "Store Directory"
 msgstr ""
 
-#: templates/base.html:62 templates/base.html:134
+#: templates/base.html:63 templates/base.html:152
 msgid "Merchant Tools"
 msgstr ""
 
-#: templates/base.html:66
+#: templates/base.html:67
 msgid "Contact Us"
 msgstr ""
 
@@ -844,43 +923,59 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: templates/base.html:146
+#: templates/base.html:108
+msgid "Account"
+msgstr ""
+
+#: templates/base.html:113
+msgid "Dashboard"
+msgstr ""
+
+#: templates/base.html:119
+msgid "AddressBook"
+msgstr ""
+
+#: templates/base.html:122
+msgid "Logout"
+msgstr ""
+
+#: templates/base.html:164
 msgid "Get Mobile App"
 msgstr ""
 
-#: templates/base.html:147
+#: templates/base.html:165
 msgid "Affiliate Information"
 msgstr ""
 
-#: templates/base.html:148
+#: templates/base.html:166
 msgid "Official TOR URL"
 msgstr ""
 
-#: templates/base.html:149
+#: templates/base.html:167
 msgid "PGP Key"
 msgstr ""
 
-#: templates/base.html:159
+#: templates/base.html:177
 msgid "Fees/Pricing"
 msgstr ""
 
-#: templates/base.html:160
+#: templates/base.html:178
 msgid "Help"
 msgstr ""
 
-#: templates/base.html:161 templates/base.html:190
+#: templates/base.html:179 templates/base.html:208
 msgid "Add Your Store"
 msgstr ""
 
-#: templates/base.html:162 templates/base.html:191
+#: templates/base.html:180 templates/base.html:209
 msgid "Coin Request"
 msgstr ""
 
-#: templates/base.html:185
+#: templates/base.html:203
 msgid "Privacy Policy"
 msgstr ""
 
-#: templates/base.html:186
+#: templates/base.html:204
 msgid "Terms of Service"
 msgstr ""
 
@@ -1044,7 +1139,7 @@ msgstr ""
 #: templates/common/index.html:295 templates/common/index.html:312
 #: templates/common/index.html:329
 msgid ""
-"We wanted to accept StartCOIN payments so\n"
+"We wanted to accept Start coin payments so\n"
 "                                                we starting developing. We "
 "wanted to accept Ether payments so we\n"
 "                                                starting developing. Then we "
@@ -1067,319 +1162,154 @@ msgstr ""
 
 #: templates/common/merchant-tools.html:11
 msgid ""
-"Instant ceyto checkout with easy to use cart plugin,advanced,invoice builder,"
-"and API for custom integration"
+"Instant crypto checkout with easy to use cart plugin,advanced,invoice "
+"builder,and API for custom integration"
 msgstr ""
 
-#: templates/common/merchant-tools.html:19
+#: templates/common/merchant-tools.html:17
 msgid ""
 "If you would like to be updated about new API or changes to existing Apis"
 msgstr ""
 
-#: templates/common/merchant-tools.html:19
-#: templates/common/public-coin-vote.html:66
+#: templates/common/merchant-tools.html:17
 msgid "click here"
 msgstr ""
 
-#: templates/common/merchant-tools.html:25
+#: templates/common/merchant-tools.html:23
 msgid "SHOPPING CART PLUGIN"
 msgstr ""
 
-#: templates/common/merchant-tools.html:27
+#: templates/common/merchant-tools.html:25
 msgid "Plugin Downloads"
 msgstr ""
 
-#: templates/common/merchant-tools.html:34
+#: templates/common/merchant-tools.html:32
 msgid "API & IPNs"
 msgstr ""
 
-#: templates/common/merchant-tools.html:36
+#: templates/common/merchant-tools.html:34
 msgid "Instant Payment Notification"
 msgstr ""
 
-#: templates/common/merchant-tools.html:37
-msgid "CoinpaymentAPI"
+#: templates/common/merchant-tools.html:35
+msgid "GETCRYPTOPAYMENTAPI"
 msgstr ""
 
-#: templates/common/merchant-tools.html:44
+#: templates/common/merchant-tools.html:42
 msgid "INVOICE BUILDER"
 msgstr ""
 
-#: templates/common/merchant-tools.html:46
+#: templates/common/merchant-tools.html:44
 msgid "Payment Request invoice maker"
 msgstr ""
 
-#: templates/common/merchant-tools.html:53
+#: templates/common/merchant-tools.html:51
 msgid "POINT OF SALE(POS) INTERFACE"
 msgstr ""
 
-#: templates/common/merchant-tools.html:55
+#: templates/common/merchant-tools.html:53
 msgid "HTML URL/ POST Fields"
 msgstr ""
 
-#: templates/common/merchant-tools.html:56
+#: templates/common/merchant-tools.html:54
 msgid "Post link QR Code Generator"
 msgstr ""
 
-#: templates/common/merchant-tools.html:57
+#: templates/common/merchant-tools.html:55
 msgid "POS Examle"
 msgstr ""
 
-#: templates/common/merchant-tools.html:64
+#: templates/common/merchant-tools.html:62
 msgid "SIMPLE BUTTONS"
+msgstr ""
+
+#: templates/common/merchant-tools.html:64
+#: templates/common/merchant-tools.html:75
+#: templates/common/merchant-tools.html:97
+msgid "Button Maker"
+msgstr ""
+
+#: templates/common/merchant-tools.html:65
+#: templates/common/merchant-tools.html:76
+#: templates/common/merchant-tools.html:86
+#: templates/common/merchant-tools.html:98
+msgid "HTML Post Field"
 msgstr ""
 
 #: templates/common/merchant-tools.html:66
 #: templates/common/merchant-tools.html:77
+#: templates/common/merchant-tools.html:87
 #: templates/common/merchant-tools.html:99
-msgid "Button Maker"
-msgstr ""
-
-#: templates/common/merchant-tools.html:67
-#: templates/common/merchant-tools.html:78
-#: templates/common/merchant-tools.html:88
-#: templates/common/merchant-tools.html:100
-msgid "HTML Post Field"
-msgstr ""
-
-#: templates/common/merchant-tools.html:68
-#: templates/common/merchant-tools.html:79
-#: templates/common/merchant-tools.html:89
-#: templates/common/merchant-tools.html:101
 msgid "Button Examples"
 msgstr ""
 
-#: templates/common/merchant-tools.html:75
+#: templates/common/merchant-tools.html:73
 msgid "ADVANCE BUTTONS"
 msgstr ""
 
-#: templates/common/merchant-tools.html:86
+#: templates/common/merchant-tools.html:84
 msgid "SHOPPING CART BUTTONS"
 msgstr ""
 
-#: templates/common/merchant-tools.html:90
+#: templates/common/merchant-tools.html:88
 msgid "Button Images"
 msgstr ""
 
-#: templates/common/merchant-tools.html:97
+#: templates/common/merchant-tools.html:95
 msgid "DONATION BUTTONS"
 msgstr ""
 
-#: templates/common/public-coin-vote.html:11
-msgid "CoinPayments Coin Vote for Charity"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:29
-msgid "VOTEST CAST"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:31
-msgid "BTC RAISED"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:33
-msgid "LTC RAISED"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:36
-msgid "DOGE RAISED"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:63
-msgid "of proceeds will go to"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:64
-msgid "Electronic Forntier Foundation"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:64
-msgid "a 501(c)(3)non-profit oraganization, the remaining"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:64
-msgid "will go to feed the faucete at the"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:65
-msgid "CoinPayment Block Explorer"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:65
-msgid "For full rule and information"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:71
-msgid "POSITION"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:72
-msgid "COIN"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:73
-msgid "NAME"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:74
-msgid "VOTES"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:75
-msgid "PERCENTAGE OF VOTES"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:76
-msgid "VOTE"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:84
-msgid "DigitalNote"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:93
-#: templates/common/public-coin-vote.html:94
-#: templates/common/public-coin-vote.html:95
-#: templates/common/public-coin-vote.html:112
-#: templates/common/public-coin-vote.html:113
-#: templates/common/public-coin-vote.html:114
-#: templates/common/public-coin-vote.html:131
-#: templates/common/public-coin-vote.html:132
-#: templates/common/public-coin-vote.html:133
-#: templates/common/public-coin-vote.html:150
-#: templates/common/public-coin-vote.html:151
-#: templates/common/public-coin-vote.html:152
-#: templates/common/public-coin-vote.html:169
-#: templates/common/public-coin-vote.html:170
-#: templates/common/public-coin-vote.html:171
-#: templates/common/public-coin-vote.html:188
-#: templates/common/public-coin-vote.html:189
-#: templates/common/public-coin-vote.html:190
-#: templates/common/public-coin-vote.html:207
-#: templates/common/public-coin-vote.html:208
-#: templates/common/public-coin-vote.html:209
-#: templates/common/public-coin-vote.html:226
-#: templates/common/public-coin-vote.html:227
-#: templates/common/public-coin-vote.html:228
-msgid "votes"
-msgstr ""
-
-#: templates/common/public-coin-vote.html:103
-msgid "Byteball Bytes"
-msgstr ""
-
-#: templates/common/store-directory-menu.html:9
-#: templates/common/store-directory.html:9
-msgid "STORE DIRECTORY"
-msgstr ""
-
-#: templates/common/store-directory-menu.html:11
-#: templates/common/store-directory.html:11
-msgid "Largest directory of merchants accepting multiple cryptocurrencies"
-msgstr ""
-
-#: templates/common/store-directory-menu.html:19
-#: templates/common/store-directory.html:19
-msgid "Search"
-msgstr ""
-
-#: templates/common/store-directory.html:46
-msgid "Any Coin (s)"
-msgstr ""
-
-#: templates/common/store-directory.html:47
-#: templates/common/store-directory.html:53
-#: templates/common/store-directory.html:54
-msgid "Test"
-msgstr ""
-
-#: templates/common/store-directory.html:52
-msgid "CPS Sort"
-msgstr ""
-
-#: templates/common/store-directory.html:64
-#: templates/common/store-directory.html:88
-#: templates/common/store-directory.html:112
-#: templates/common/store-directory.html:136
-msgid "FEEDBACK"
-msgstr ""
-
-#: templates/common/store-directory.html:71
-#: templates/common/store-directory.html:95
-#: templates/common/store-directory.html:119
-#: templates/common/store-directory.html:143
-msgid "22 Rating (s)"
-msgstr ""
-
-#: templates/common/store-directory.html:75
-#: templates/common/store-directory.html:123
-#: templates/common/store-directory.html:147
-msgid "STORE"
-msgstr ""
-
-#: templates/common/store-directory.html:76
-#: templates/common/store-directory.html:124
-#: templates/common/store-directory.html:148
-msgid "CESHEO Donation"
-msgstr ""
-
-#: templates/common/store-directory.html:83
-#: templates/common/store-directory.html:131
-#: templates/common/store-directory.html:155
-msgid "BUMP"
-msgstr ""
-
 #: templates/common/support-coins.html:8
-msgid "SUPPORTED COIN"
+msgid "SUPPORTED COINS"
 msgstr ""
 
 #: templates/common/support-coins.html:11
 msgid ""
 "Instant get crypto payments checkout with easy to use cart plugin,advanced,"
-"invoice builder,and API for custom integration"
+"invoice buillder,and API for custom integration"
 msgstr ""
 
 #: templates/common/support-coins.html:41
 msgid "Ether Token (Wallet only)"
 msgstr ""
 
-#: templates/common/support-coins.html:58
+#: templates/common/support-coins.html:59
 msgid "COIN NAME"
 msgstr ""
 
-#: templates/common/support-coins.html:59
+#: templates/common/support-coins.html:60
 msgid "COD"
 msgstr ""
 
-#: templates/common/support-coins.html:60
+#: templates/common/support-coins.html:61
 msgid "FEE"
 msgstr ""
 
-#: templates/common/support-coins.html:63
+#: templates/common/support-coins.html:64
 msgid "CONFIRMS"
 msgstr ""
 
-#: templates/common/support-coins.html:64
+#: templates/common/support-coins.html:65
 msgid "TO BTC"
 msgstr ""
 
-#: templates/common/support-coins.html:67
+#: templates/common/support-coins.html:68
 msgid "EXPLORE"
 msgstr ""
 
-#: templates/common/support-coins.html:75
+#: templates/common/support-coins.html:76
 msgid "Bitcoin"
 msgstr ""
 
-#: templates/common/support-coins.html:261
+#: templates/common/support-coins.html:263
 msgid "Convert"
 msgstr ""
 
-#: templates/common/support-coins.html:261
+#: templates/common/support-coins.html:263
 msgid "BITCOIN"
 msgstr ""
 
-#: templates/common/support-coins.html:276
+#: templates/common/support-coins.html:278
 msgid "Close"
 msgstr ""
 
@@ -1395,4 +1325,47 @@ msgstr ""
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
+msgstr ""
+
+#: templates/store/store_categories.html:9 templates/store/store_listing.html:9
+msgid "STORE DIRECTORY"
+msgstr ""
+
+#: templates/store/store_categories.html:11
+#: templates/store/store_listing.html:11
+msgid "Largest directory of merchants accepting multiple cryptocurrencies"
+msgstr ""
+
+#: templates/store/store_categories.html:22
+#: templates/store/store_listing.html:22
+msgid "Search"
+msgstr ""
+
+#: templates/store/store_listing.html:52
+msgid "Any Coin (s)"
+msgstr ""
+
+#: templates/store/store_listing.html:53 templates/store/store_listing.html:59
+#: templates/store/store_listing.html:60
+msgid "Test"
+msgstr ""
+
+#: templates/store/store_listing.html:58
+msgid "CPS Sort"
+msgstr ""
+
+#: templates/store/store_listing.html:70
+msgid "FEEDBACK"
+msgstr ""
+
+#: templates/store/store_listing.html:77
+msgid "22 Rating (s)"
+msgstr ""
+
+#: templates/store/store_listing.html:81
+msgid "STORE"
+msgstr ""
+
+#: templates/store/store_listing.html:89
+msgid "BUMP"
 msgstr ""

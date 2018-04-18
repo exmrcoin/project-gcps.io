@@ -2,13 +2,79 @@
 {% load staticfiles %}
 {% block content %}
     {% load i18n %}
+    {% block page_css %}
+
+        <style type="text/css">
+
+   /*
+    Max width before this PARTICULAR table gets nasty
+    This query will take effect for any screen smaller than 760px
+    and also iPads specifically.
+    */
+    @media
+    only screen and (max-width: 760px),
+    (min-device-width: 768px) and (max-device-width: 1024px)  {
+
+        /* Force table to not be like tables anymore */
+     .responsive-table   table, thead, tbody, th, td, tr {
+            display: block;
+        }
+
+        /* Hide table headers (but not display: none;, for accessibility) */
+     .responsive-table   thead tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+      .responsive-table  tr { border: 1px solid #ccc; margin: 5px; }
+
+     .responsive-table   td {
+            /* Behave  like a "row" */
+            border: none;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 50% !important;
+        }
+
+    .responsive-table    td:before {
+              position: absolute;
+    top: 6px;
+    left: 13px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+        }
+
+        /*
+        Label the data
+        */
+     .responsive-table   td:nth-of-type(1):before { content: "POSITION"; }
+     .responsive-table   td:nth-of-type(2):before { content: "COIN"; }
+     .responsive-table   td:nth-of-type(3):before { content: "NAME"; }
+     .responsive-table   td:nth-of-type(4):before { content: "VOTES"; }
+     .responsive-table   td:nth-of-type(5):before { content: "PERCENTAGE OF VOTES?"; }
+     .responsive-table   td:nth-of-type(6):before { content: "VOTE"; }
+
+    }
+
+
+
+
+
+</style>
+    {% endblock %}
     <section>
         <div class="merchant-tools merchant-one coin-payment-head">
             <div class="merchant-tools merchant-one">
                 <div class=" container merchant-box">Public Coin Vote
                 </div>
                 <div class="container subline-p merchant-toolp">
-                    <p>GETCRYPTOPAYMENTS Coin Vote for Charity </p>
+                    <p>GETCRYPTOPAYMENTS
+
+                        Vote for Charity </p>
                 </div>
 
             </div>
@@ -64,7 +130,7 @@
                                 <span class="electroinc">GETCRYPTOPAYMENT Block Explorer</span>.For full rule and information
                                 <span class="electroinc">click here</span>.</div>
 
-                            <table class="table">
+                            <table class="table ">
                                 <thead>
                                     <tr>
                                         <th>POSITION</th>

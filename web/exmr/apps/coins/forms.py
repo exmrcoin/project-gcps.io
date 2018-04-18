@@ -7,7 +7,9 @@ class ConvertRequestForm(forms.ModelForm):
     """
     Form used to save the coin requests
     """
+    wallet_from = forms.CharField()
+    wallet_to = forms.CharField()
 
     class Meta:
         model = CoinConvertRequest
-        exclude = ('wallet_from', 'wallet_to')
+        fields = ('wallet_from', 'wallet_to')

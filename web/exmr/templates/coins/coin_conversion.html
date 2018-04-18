@@ -1,15 +1,15 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
-    {% load i18n %}
+    {% load i18n widget_tweaks %}
     <section>
        <div class="merchant-tools merchant-one coin-payment-head">
             <div class="merchant-tools merchant-one">
-                <div class=" container merchant-box">{% trans 'SUPPORTED COIN' %}
+                <div class=" container merchant-box">{% trans 'Coin Conversion' %}
+
                 </div>
                 <div class="container subline-p merchant-toolp">
-                    <p>{% trans 'Instant get crypto payments checkout with easy to use cart plugin,advanced,invoice buillder,and API for custom intagration' %}
-                    </p>
+                    <p>{{ coin_from.code }} to {{ coin_to.code }}</p>
                 </div>
 
             </div>
@@ -17,7 +17,40 @@
         <div class="dashboard-bg">
             <div class="container">
                 <div class="dashboard-wrapper">
-                    {{ form }}
+
+
+
+                    <div class="dasboard-head">
+                        <h3>{%trans 'If you log in the fields below will be prepopulated with your Wallet deposit addresses.' %}</h3>
+                    </div>
+                    <form id="convertCoinForm" action="." method="post" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="Vyws2Cu8wObO6Ap3PHqHaWlnhV84IfeZJLbPzXIOElRu4H4DZ3kYUHopZcprWFSx">
+
+                        <div class="account-setting-wrap">
+                            <div class="main-field">Main Field</div>
+                            <fieldset class="setting-form form-settings">
+                                <div class="form-group col-md-12">
+                                    <label for="id_wallet_to">{{ coin_to.coin_name }} Wallet Address</label>
+                                    {{ form.wallet_to|add_class:"form-control text-view" }}
+                                    {{ form.wallet_to.errors }}
+
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="id_wallet_from">{{ coin_from.coin_name }} Wallet Address</label>
+                                    {{ form.wallet_from|add_class:"form-control text-view" }}
+                                    {{ form.wallet_from.errors }}
+
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <button type="submit" class="btn- btn-default btn-log">{% trans 'Convert' %}</button>
+                                </div>
+
+
+
+                            </fieldset>
+                        </div>
+
+                    </form>
+
 
                 </div>
             </div>

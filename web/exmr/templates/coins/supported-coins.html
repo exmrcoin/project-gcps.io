@@ -131,7 +131,8 @@
 
     $('.conver-btn-coin').on('click', function () {
         var from_coin = $(this).attr('id').split('_')[1];
-        window.location.replace('/coin-conversion/' + from_coin + '/' + selected_coin + '/');
+        var url_mask = "{% url 'coins:coin_conversion' from=12345 to=11 %}".replace('/12345/11/', '/'+from_coin+'/'+selected_coin+'/');
+        window.location.replace(url_mask);
     })
 
     </script>

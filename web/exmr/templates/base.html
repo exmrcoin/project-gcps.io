@@ -110,16 +110,16 @@
                         </a>
                         <ul class="dropdown-menu drop-down-box">
                             <li>
-                                <a href="{% url 'accounts:profile' %}">Dashboard</a>
+                                <a href="{% url 'accounts:profile' %}">{% trans 'Dashboard' %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'accounts:settings' %}">Account Settings</a>
+                                <a href="{% url 'accounts:settings' %}">{% trans 'Account Settings' %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'accounts:address' %}">AddressBook</a>
+                                <a href="{% url 'accounts:address' %}">{% trans 'AddressBook' %}</a>
                             </li>
                             <li>
-                                <a href="{% url 'accounts:logout' %}?next=/">Logout</a>
+                                <a href="{% url 'accounts:logout' %}?next=/">{% trans 'Logout' %}</a>
                             </li>
                         </ul>
                     </li>

@@ -16,12 +16,12 @@ class AddStoreForm(forms.ModelForm):
                   'keywords', 'banner_image_url']
 
     def clean_username_or_merch_id(self):
-        if not self.cleaned_data.get('username_or_merch_id'):
+        username_or_merch_id = self.cleaned_data.get('username_or_merch_id')
+        if not username_or_merch_id:
             raise forms.ValidationError(_('Either username or email needs to be provided'))
-        else:
-            username_or_merch_id = self.cleaned_data.get('username_or_merch_id')
-            user = User.objects.filter(username=username_or_merch_id)
-        if not user:
-            profile = Profile.objects.filter(merchant_id=username_or_merch_id)
-            if not profile:
-                raise forms.ValidationError(_('User not found'))
+        if Profile.objects.filter(merchant_id=username_or_merch_id).exists():
+            return username_or_merch_id
+        elif Profile.objects.filter(user__username=username_or_merch_id).exists():
+            return username_or_merch_id
+        raise forms.ValidationError(_('User not found'))
+

@@ -43,7 +43,7 @@ class StoreListView(ListView):
 
 
 class AddToStoreView(LoginRequiredMixin, CreateView):
-    template_name = 'common/add-or-update.html'
+    template_name = 'store/add-or-update.html'
     form_class = AddStoreForm
     success_url = reverse_lazy('store:addtostore_complete')
 

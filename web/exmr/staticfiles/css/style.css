@@ -971,7 +971,7 @@ fieldset {
   font-size: 18px;
   font-weight: normal;
   font-family: 'Open Sans', sans-serif;
-  width: 305px;
+  width: 100% !important;
 }
 #CaptchaImageCode {
   text-align:center;

@@ -1,0 +1,115 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% load countries %}
+{% get_countries as countries %}
+{% block dashboard_heading %}
+    <div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">ADDRESS BOOK
+        </div>
+    </div>
+{% endblock %}
+{% block dashboard_wrapper_content %}
+    <div class="dashboard-wrapper">
+        <div class="dasboard-head">
+            <div class="bs-example bs-example-tabs examble-tab" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs nav-tabs-responsive multiple-tab" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home"
+                           aria-expanded="true">
+                            <span class="text">{% trans 'Add New Address' %}</span>
+                        </a>
+                    </li>
+                    <li role="presentation" class="next">
+                        <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">
+                            <span class="text">{% trans 'Saved Address' %}</span>
+                        </a>
+                    </li>
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
+                    </div>
+                    <div class="account-setting-wrap">
+                        <form id="address" action="{% url 'accounts:address' %}" method="post" novalidate>
+                            {% csrf_token %}
+                            <fieldset class="setting-form form-settings">
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Saved Address Name</label>
+                                    {{ form.address_name|add_class:'form-control text-view' }}
+                                    {{ form.address_name.errors }}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Is Default</label>
+                                    {{ form.is_default|add_class:'mt0' }}
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">First Name</label>
+                                    {{ form.first_name|add_class:'form-control text-view' }}
+                                    {{ form.first_name.errors }}
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Last Name</label>
+                                    {{ form.last_name|add_class:'form-control text-view' }}
+                                </div>
+
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Address</label>
+                                    {{ form.address_line_1|add_class:'form-control text-view' }}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">(con)</label>
+                                    {{ form.address_line_2|add_class:'form-control text-view' }}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="confirm_password">Country</label>
+                                    {{ form.country|add_class:'form-control select-view' }}
+                                    {% for country in countries %}
+                                        <option>{{ country.name }}</option>
+                                    {% endfor %}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">City</label>
+                                    {{ form.city|add_class:'form-control text-view' }}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">State/Province</label>
+                                    {{ form.state|add_class:'form-control text-view' }}
+                                    <span>USA/Canada -2 digits code </br> other countries use your local custom or leave blank</span>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Zip/postal Code</label>
+                                    {{ form.postal_code|add_class:'form-control text-view' }}
+
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="first_name">Phone Number</label>
+                                    {{ form.phone_number|add_class:'form-control text-view' }}
+                                    <span>( Phone number should start with '+' followed by country code and number )</span>
+                                    {{ form.phone_number.errors }}
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <button type="submit" class="btn address-btn btn-address">Nevermind</button>
+                                    <button type="submit" class="btn address-btn">Save Address</button>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/clipboard.min.js' %}"></script>
+    <script src="{% static 'js/jquery.toaster.js' %}"></script>
+    <script src="{% static 'js/account_settings.js' %}"></script>
+{% endblock %}
+
+

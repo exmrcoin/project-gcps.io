@@ -21,7 +21,7 @@ class StoreAdmin(admin.ModelAdmin):
     """
     Custom admin for model store
     """
-    list_display = ['user', 'store_name', 'category', 'is_approved']
+    list_display = ['store_name', 'category', 'is_approved']
     list_editable = ['is_approved']
     list_filter = ['is_approved']
 

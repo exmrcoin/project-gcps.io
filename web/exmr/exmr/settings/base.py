@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'import_export',
 
+
     # Project apps
     'apps.accounts',
     'apps.store',

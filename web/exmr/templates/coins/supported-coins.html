@@ -98,12 +98,12 @@
                 <div class="modal-body">
                     {% for coin in coins %}
                     <button id="coin_{{ coin.code }}" class="conver-btn-coin" type="button">
-                        {% if coin.coin.image %}
+                        {% if coin.image %}
                         <img  class="coin-icon-support coin-replace"
                               src={{ coin.image.url }}>
                         {% endif %}
                         <span class="coin-name">
-                            {{ coin.name }}
+                            {{ coin.coin_name }}
                         </span>
                     </button>
                     {% endfor %}

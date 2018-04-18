@@ -39,15 +39,13 @@ urlpatterns += i18n_patterns(
     path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
     path('reset/done/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
     path('', include('apps.accounts.urls')),
+    path('coins/', include('apps.coins.urls')),
     path('store/', include('apps.store.urls')),
     path('', HomeView.as_view(), name='home'),
     path('login/', LoginView.as_view(template_name="accounts/login.html"), name='signin'),
     path('sign-up/', TemplateView.as_view(template_name='accounts/signup.html'),
          name='signup'),
     path('merchant-tools/', TemplateView.as_view(template_name='common/merchant-tools.html'), name='merchant-tools'),
-
-    path('supported-coins/', TemplateView.as_view(template_name='common/support-coins.html'),
-         name='supported coins'),
     path('public-coin-votes/', TemplateView.as_view(template_name='common/public-coin-vote.html'),
          name='public coin vote'),
 

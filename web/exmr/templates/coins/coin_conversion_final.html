@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    {% load i18n widget_tweaks %}
+    <section>
+       <div class="merchant-tools merchant-one coin-payment-head">
+            <div class="merchant-tools merchant-one">
+                <div class=" container merchant-box">{% trans 'Coin Conversion Confirmed' %}
+
+                </div>
+                <div class="container subline-p merchant-toolp">
+                    <p>{{ coin_request.convert_from.coin_name }} to {{ coin_request.convert_to.coin_name }}</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="dashboard-bg">
+            <div class="container">
+                <div class="dashboard-wrapper">
+
+
+
+                    <div class="dasboard-head">
+                        <h3>{%trans 'If you log in the fields below will be prepopulated with your Wallet deposit addresses.' %}</h3>
+                    </div>
+                    <h1>You request will be processed</h1>
+
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

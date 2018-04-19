@@ -22,6 +22,7 @@ $(function() {
             url: url,
             type: 'POST',
             data: data,
+
             dataType: 'json',
             success: function (data) {
                 if (data.msg) {

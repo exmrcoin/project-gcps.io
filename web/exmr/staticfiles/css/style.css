@@ -971,7 +971,7 @@ fieldset {
   font-size: 18px;
   font-weight: normal;
   font-family: 'Open Sans', sans-serif;
-  width: 305px;
+  width: 100% !important;
 }
 #CaptchaImageCode {
   text-align:center;
@@ -1440,8 +1440,7 @@ fieldset {
 	font-size: 18px;
 	color: #fff;
 	text-align: center;
-
-
+	/* padding-top: 21px; */
 }
 .merchant-toolp{
 	margin-bottom: 52px;
@@ -1519,7 +1518,7 @@ fieldset {
 
 .dashboard-wrapper ul{
 	padding: 0px;
-
+	margin-top: 18px;
 }
 .directoru-menu{
     width: 100%;
@@ -1980,9 +1979,8 @@ fieldset {
 /*============== support coin css ==============*/
 .supportcoin-check-wrap{
 	width: 100%;
-	height: 50px;
+	min-height: 50px;
 	background-color: #3c576e;
-
 }
 .coin-icon-support{
 	width: 33px;
@@ -2029,7 +2027,7 @@ fieldset {
 }
 
 .coin-name{
-	color: #fff;
+	color: #333333;
 	text-align: right;
 }
 .popup-top{
@@ -2184,13 +2182,13 @@ fieldset {
 }
 .proceeds-div{
 	width: 100%;
-    height: 60px;
-    border-radius: 4px;
+	min-height: 60px;
+	border-radius: 4px;
 	border: solid 1px #a2fbe9;
-    background-color: #ddfff8;
-    color: #000;
-    padding: 7px 0px 2px 17px;
-    margin-bottom: 20px;
+	background-color: #ddfff8;
+	color: #000;
+	padding: 7px 0px 2px 17px;
+	margin-bottom: 20px;
 }
 .electroinc{
 	color:#ef5362;
@@ -2297,3 +2295,4 @@ fieldset {
 .dash-base .merchant-box {line-height: 160px;}
 
 .mt0 { margin-top: 0px;}
+

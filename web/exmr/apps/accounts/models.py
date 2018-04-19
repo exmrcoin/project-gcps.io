@@ -54,7 +54,7 @@ class Profile(models.Model):
     public_name = models.CharField(_('public name'), max_length=255, null=True, blank=True)
     public_email = models.EmailField(_('public email'), null=True, blank=True)
     public_url = models.URLField(_('public URL'), null=True, blank=True)
-    merchant_id = models.CharField(_('merchant id'), max_length=32, null=True, blank=True, unique=True, editable=False)
+    merchant_id = models.CharField(_('merchant id'), max_length=32, null=True, blank=True, unique=True, editable=True)
     date_format = models.CharField(_('date format'), max_length=255, null=True, blank=True)
     time_format = models.CharField(_('time format'), max_length=255, null=True, blank=True)
     use_gravatar = models.BooleanField(_('use gravatar'), default=False)

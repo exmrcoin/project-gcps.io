@@ -141,7 +141,6 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-
                                         <button type="submit"
                                                 class="btn- btn-default btn-log ">{% trans 'Update Account' %}</button>
 
@@ -310,11 +309,11 @@
                                         <span class="error"></span>
                                     </div>
 
-                                    <div class="form-group col-md-12">
-                                        <label for="confirm_password">{{ ipn_form.mail_on_new_payment_init.label }}</label>
-                                        {{ ipn_form.mail_on_new_payment_init }}
-                                        <span class="error"></span>
-                                    </div>
+{#                                    <div class="form-group col-md-12">#}
+{#                                        <label for="confirm_password">{{ ipn_form.mail_on_new_payment_init.label }}</label>#}
+{#                                        {{ ipn_form.mail_on_new_payment_init }}#}
+{#                                        <span class="error"></span>#}
+{#                                    </div>#}
 
                                     <div class="form-group col-md-12">
                                         <label for="confirm_password">{{ ipn_form.mail_on_deposit_receive.label }}</label>
@@ -364,7 +363,6 @@
 
                                     </div>
 
-
                                 </fieldset>
                             </form>
                         </div>
@@ -377,6 +375,7 @@
 {% endwith %}
 
 {% block extra_js %}
+    sdfsdfsdfsdfsdf
     <script src="{% static 'js/clipboard.min.js' %}"></script>
     <script src="{% static 'js/jquery.toaster.js' %}"></script>
     <script src="{% static 'js/account_settings.js' %}"></script>

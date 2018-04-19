@@ -26,6 +26,7 @@ $(function() {
             dataType: 'json',
             success: function (data) {
                 if (data.msg) {
+                    console.log(msg, "ffffffffffffff")
                     $.toaster(data.msg, 'Success', 'success');
 
                     // $(formId).siblings('.alert').text(data.msg)

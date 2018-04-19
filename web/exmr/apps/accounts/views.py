@@ -189,12 +189,13 @@ class SecurityInfoSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
         current_password = form.cleaned_data.pop('current_password')
         if password:
             if not self.request.user.check_password(current_password):
-                response['current_password'] = [_('Current password is incorrect')]
+                response['msg'] = [_('Current password is incorrect')]
             if confirm_password != password:
-                response['password'] = [_("Passwords doesn't match")]
+                response['msg'] = [_("Passwords doesn't match")]
             else:
                 self.request.user.set_password(password)
                 self.request.user.save()
+                response.update({'msg': _('Information updated successfully')})
         else:
             self.request.session['2fa_verified'] = True
             form.save()

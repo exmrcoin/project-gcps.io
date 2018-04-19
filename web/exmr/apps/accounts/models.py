@@ -199,3 +199,22 @@ class NewsLetter(models.Model):
     #
     # @property
     # def newsletter_id(self):
+
+
+ACCOUNT_TYPE = (
+        ('google_authenticator', 'Google Authenticator/TOTP'),
+    )
+
+class TwoFactorAccount(models.Model):
+    """
+        model to hold totp two factor authentication details
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    time = models.DateTimeField(auto_now_add=True)
+    account_name = models.CharField(max_length=128)
+    account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE)
+    key = models.CharField(max_length=128)
+    totp = models.CharField(max_length=12, null=True, verbose_name=_('Authentication Code'))
+
+    def __str__(self):
+        return self.account_name

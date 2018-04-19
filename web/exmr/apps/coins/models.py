@@ -36,10 +36,17 @@ class Coin(models.Model):
     Model for coin details
     """
     coin_name = models.CharField(_('coin name'), max_length=255)
-    code = models.CharField(_('code'), max_length=25)
+    coin_url = models.URLField(_('coin site URL'), null=True, blank=True)
+    code = models.CharField(_('code'), max_length=25, unique=True)
     confirms = models.PositiveSmallIntegerField(_('confirms'))
-    image = models.ImageField(_('image'))
+    image = models.ImageField(_('image'), help_text=_('Upload a 35X35 image for better experience'))
+    to_btc = models.DecimalField(_('to BTC value'), max_digits=10, decimal_places=8, default=1.00000000)
+    fee_percentage = models.DecimalField(_('fee percentage'), max_digits=5, decimal_places=2, default=0.00)
     type = models.PositiveSmallIntegerField(_('type'), choices=TYPE_CHOICES, default=CRYPTO)
+    can_convert = models.BooleanField(_('can convert coin to another'), default=True)
+    can_explore = models.BooleanField(_('can explore coins'), default=False)
+    can_donate = models.BooleanField(_('can donate coins'), default=False)
+    active = models.BooleanField(default=True, help_text=_('Disable this coin anytime'))
 
     class Meta:
         verbose_name = _('Coin')
@@ -79,3 +86,24 @@ class CoinSetting(models.Model):
 
     def __str__(self):
         return '%s setting for %s' % (self.coin, self.user)
+
+
+class CoinConvertRequest(models.Model):
+    """
+    Model to save all the coin conversion requests
+    """
+    user = models.ForeignKey(User, verbose_name=_('user'), related_name='user_conversion_requests',
+                             null=True, blank=True, on_delete=models.SET_NULL)
+    convert_from = models.ForeignKey(Coin, verbose_name=_('convert from coin'),
+                                     related_name='from_conversions', on_delete=models.CASCADE)
+    convert_to = models.ForeignKey(Coin, verbose_name=_('convert to coin'), related_name='to_conversions',
+                                   on_delete=models.CASCADE)
+    wallet_from = models.CharField(_('wallet from address'), max_length=255, null=True, blank=True)
+    wallet_to = models.CharField(_('wallet to address'), max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return 'Conversion request %s to %s' % (self.convert_from, self.convert_to)
+
+    class Meta:
+        verbose_name = _('Coin Conversion Request')
+        verbose_name_plural = _('Coin Conversion Requests')

@@ -47,6 +47,8 @@ class Coin(models.Model):
     can_explore = models.BooleanField(_('can explore coins'), default=False)
     can_donate = models.BooleanField(_('can donate coins'), default=False)
     active = models.BooleanField(default=True, help_text=_('Disable this coin anytime'))
+    min_deposit = models.DecimalField(max_digits=10, decimal_places=8, default=0)
+    max_deposit = models.DecimalField(max_digits=10, decimal_places=8, default=0)
 
     class Meta:
         verbose_name = _('Coin')

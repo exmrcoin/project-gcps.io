@@ -2183,13 +2183,13 @@ fieldset {
 }
 .proceeds-div{
 	width: 100%;
-    height: 60px;
-    border-radius: 4px;
+	min-height: 60px;
+	border-radius: 4px;
 	border: solid 1px #a2fbe9;
-    background-color: #ddfff8;
-    color: #000;
-    padding: 7px 0px 2px 17px;
-    margin-bottom: 20px;
+	background-color: #ddfff8;
+	color: #000;
+	padding: 7px 0px 2px 17px;
+	margin-bottom: 20px;
 }
 .electroinc{
 	color:#ef5362;

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Delete Two Factor Authentication{% endblock %}
+
+{% block content %}
+<section>
+	<div class="container">
+		<form action="{% url 'accounts:delete_2fa' object.pk %}" method="post">{% csrf_token %}
+		    <p>Are you sure you want to delete "{{ object }}"?</p>
+		    <p><input type="submit" value="Confirm" class="btn btn-danger"/></p>
+		</form>
+	</div>
+</section>
+{% endblock %}

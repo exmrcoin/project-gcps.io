@@ -44,14 +44,14 @@
       height: 150px;;
     }
     .coin-payment-head {
-      height: 115px !important;
-  } 
+      /* height: 115px !important; */
+  }
   .coin-box {
     width: 96.3%;
   }
-  
+
   }
-  
+
   @media only screen and (max-width: 960px) {
     .ios-box p{
       line-height: 20px;
@@ -117,18 +117,18 @@
   height: 150px;;
 }
 .coin-payment-head {
-  height: 115px !important;
-} 
+  /* height: 115px !important; */
+}
 .coin-box {
 width: 96.3%;
 }
 
   }
-  
+
   @media only screen and (max-width: 800px) {
     .head-box{
       height: 75  px;;
-    
+
     }
     .coin-box{
       width: 94.3%;
@@ -141,15 +141,15 @@ width: 96.3%;
     }
     .coin-payment-head {
       height: 115px !important;
-  } 
+  }
   .coin-box {
     width: 96.3%;
   }
-  
-   
-  
+
+
+
   }
-  
+
   @media only screen and (max-width: 768px) {
 
 .table>thead>tr>th {
@@ -161,20 +161,14 @@ width: 96.3%;
 }
 
 .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
-    line-height: 14px;
     vertical-align: top;
     border-top: 1px solid #ddd;
-    font-size: 8px;
-    padding-top: 4px;
     word-break:  break-all;
 }
 
 
 .btn-support-convert {
     background-color: #16b101 !important;
-    border: inherit!important;
-    font-size: 8px !important;
-    padding: 4px 7px!important;
 }
 
     #CaptchaImageCode { width: 100%;}
@@ -204,8 +198,8 @@ width: 96.3%;
 }
 
     .sub-img{
-      width: inherit; 
-      background-size:inherit; 
+      width: inherit;
+      background-size:inherit;
     }
     .grtstrat-last{
       height: auto;
@@ -281,7 +275,7 @@ width: 96.3%;
 }
 .merchant-one {
   height: 200px;
-} 
+}
 .merchant-box{
   line-height: 98px;
 }
@@ -311,7 +305,7 @@ width: 96.3%;
 }
 .coin-payment-head {
   height: 115px !important;
-} 
+}
 .coin-box {
 width: 96.3%;
 }
@@ -434,7 +428,7 @@ width: 96.3%;
 }
 .merchant-one {
   height: 200px;
-} 
+}
 .merchant-box{
   line-height: 98px;
 }
@@ -481,7 +475,7 @@ width: 96.3%;
 }
 .coin-payment-head {
   height: 115px !important;
-} 
+}
 .coin-box {
 width: 96.3%;
 }
@@ -511,12 +505,18 @@ width: 96.3%;
   margin-top: 6px;
   margin-bottom: 11px;
   width: 100%;
-  
+
 }
   }
 
 
   @media only screen and (max-width: 680px) {
+      .merchant-tools p{
+	font-size: 18px;
+	color: #fff;
+	text-align: center;
+	padding-top: 21px;
+}
     .second-sec{
       height: auto;
     }
@@ -575,7 +575,7 @@ width: 96.3%;
   }
   .merchant-one {
     height: 200px;
-  } 
+  }
   .merchant-box{
     line-height: 98px;
   }
@@ -609,7 +609,7 @@ width: 96.3%;
   }
   .head-box{
     height: 178px;;
-  
+
   }
   .coin-box{
     width: 94.3%;
@@ -622,7 +622,7 @@ width: 96.3%;
   }
   .coin-payment-head {
     height: 115px !important;
-} 
+}
 .coin-box {
   width: 96.3%;
 }
@@ -661,9 +661,9 @@ width: 96.3%;
   margin-top: 6px;
   margin-bottom: 11px;
   width: 100%;
-  
+
 }
-  
+
 }
 
   @media only screen and (max-width: 640px) {
@@ -701,7 +701,7 @@ width: 96.3%;
     }
     .merchant-one {
       height: 200px;
-    } 
+    }
     .merchant-box{
       line-height: 98px;
     }
@@ -735,7 +735,7 @@ width: 96.3%;
     }
     .head-box{
       height: 178px;;
-    
+
     }
     .coin-box{
       width: 94.3%;
@@ -748,10 +748,10 @@ width: 96.3%;
     }
     .coin-payment-head {
       height: 115px !important;
-  } 
+  }
   .coin-box {
     width: 96.3%;
-  } 
+  }
   .captcha-new-store{
     width: 100%;
   }
@@ -778,7 +778,7 @@ width: 96.3%;
   margin-top: 6px;
   margin-bottom: 11px;
   width: 100%;
-  
+
 }
   }
 
@@ -834,7 +834,7 @@ width: 96.3%;
   }
   .merchant-one {
     height: 200px;
-  } 
+  }
   .merchant-box{
     line-height: 98px;
   }
@@ -868,7 +868,7 @@ width: 96.3%;
   }
   .head-box{
     height: 178px;;
-  
+
   }
   .coin-box{
     width: 94.3%;
@@ -881,7 +881,7 @@ width: 96.3%;
   }
   .coin-payment-head {
     height: 115px !important;
-} 
+}
 .coin-box {
   width: 96.3%;
 }
@@ -911,7 +911,7 @@ width: 96.3%;
   margin-top: 6px;
   margin-bottom: 11px;
   width: 100%;
-  
+
 }
   }
 
@@ -946,7 +946,7 @@ width: 96.3%;
   }
   .merchant-one {
     min-height: 200px;
-  } 
+  }
   .merchant-box{
     line-height: 98px;
   }
@@ -980,7 +980,7 @@ width: 96.3%;
   }
   .head-box{
     height: 178px;;
-  
+
   }
   .coin-box{
     width: 94.3%;
@@ -993,7 +993,7 @@ width: 96.3%;
   }
   .coin-payment-head {
     height: 115px !important;
-} 
+}
 .coin-box {
   width: 96.3%;
 }
@@ -1023,7 +1023,7 @@ width: 96.3%;
   margin-top: 6px;
   margin-bottom: 11px;
   width: 100%;
-  
+
 }
   }
 
@@ -1047,8 +1047,8 @@ width: 96.3%;
     .share{
       color: #fff;
       float: inherit;
-      float: inherit;
-      margin-left: 11px;
+      float: none;
+      margin: auto;
     }
     .form-settings{
       width: 100% !important;
@@ -1066,7 +1066,7 @@ width: 96.3%;
     margin-top: 14px;
 }
 .login-bg h4{
-  margin-top: 14px; 
+  margin-top: 14px;
 }
 .banner-img-circle{
   width: 100%;
@@ -1078,7 +1078,7 @@ width: 96.3%;
 }
 .merchant-one {
   height: 200px;
-} 
+}
 .merchant-box{
   line-height: 98px;
 }
@@ -1128,7 +1128,7 @@ width: 96.3%;
 }
 .coin-payment-head {
   height: 115px !important;
-} 
+}
 .captcha-new-store{
   width: 100%;
 }
@@ -1155,11 +1155,11 @@ width: 96.3%;
   margin-top: 6px;
   margin-bottom: 11px;
   width: 100%;
-  
+
 }
 
   }
-  
+
   @media only screen and (max-width: 375px) {
     .check-availabe{
       margin-bottom: 41px;
@@ -1174,7 +1174,7 @@ width: 96.3%;
       font-size: 16px !important;
     }
     .merchant-id {
-      
+
       font-size: 12px;
   }
   .login-bg h1{
@@ -1196,7 +1196,7 @@ width: 96.3%;
 }
 .merchant-one {
   height: 200px;
-} 
+}
 .merchant-box{
   line-height: 98px;
 }
@@ -1243,7 +1243,7 @@ width: 96.3%;
 }
 .coin-payment-head {
   height: 115px !important;
-} 
+}
 .captcha-new-store{
   width: 100%;
 }
@@ -1270,10 +1270,10 @@ width: 96.3%;
   margin-top: 6px;
   margin-bottom: 11px;
   width: 100%;
-  
+
 }
   }
-  
+
   @media only screen and (max-width: 360px) {
     .scroll-btn .mouse {
       margin: 94px auto 20px !important;
@@ -1334,7 +1334,7 @@ width: 96.3%;
   }
   .merchant-one {
     height: 200px;
-  } 
+  }
   .merchant-box{
     line-height: 139px;
   }
@@ -1368,7 +1368,7 @@ width: 96.3%;
   }
   .head-box{
     height: 178px;;
-  
+
   }
   .coin-box{
     width: 94.3%;
@@ -1381,7 +1381,7 @@ width: 96.3%;
   }
   .coin-payment-head {
     height: 115px !important;
-} 
+}
 .captcha-new-store{
   width: 100%;
 }
@@ -1408,12 +1408,12 @@ width: 96.3%;
   margin-top: 6px;
   margin-bottom: 11px;
   width: 100%;
-  
+
 }
-  
-  
+
+
 }
-  
+
   @media only screen and (max-width: 320px) {
     .sub-company{
       padding-left: inherit !important;
@@ -1466,7 +1466,7 @@ width: 96.3%;
     width: 100% !important;
   }
   .login-bg h1{
- 
+
     margin-top: 13px;
   }
   .login-bg h4{
@@ -1494,7 +1494,7 @@ width: 96.3%;
 }
 .merchant-one {
   height: 200px;
-} 
+}
 
 .dashboard-wrapper p {
   padding: 13px 0px 0px 12px;
@@ -1570,9 +1570,14 @@ width: 96.3%;
   margin-top: 6px;
   margin-bottom: 11px;
   width: 100%;
-  
+
 }
   }
 
 
+@media only screen and (min-width: 768px) and (max-width: 1200px) {
 
+
+    .navbar-nav>li>a {font-size: 9px;}
+
+}

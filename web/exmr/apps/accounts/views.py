@@ -1,16 +1,27 @@
+import pyotp
+
+from django.conf import settings
+from django import forms
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render, redirect
 from django.views.generic import CreateView, TemplateView, FormView, UpdateView
+from django.views.generic.list import ListView
+from django.views.generic.edit import DeleteView
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
+from django.views import View
+from django.core.mail import send_mail
+from django.utils.decorators import method_decorator
+from django.urls import reverse
 
+from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount
+from apps.accounts.decorators import ckeck_2fa
+from apps.common.utils import generate_key, JSONResponseMixin, get_pin
 from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm, IPNSettingsForm, \
      AddressForm
-from apps.accounts.models import Profile, ProfileActivation
-from apps.common.utils import generate_key, JSONResponseMixin
 
 
 class SignUpView(CreateView):
@@ -52,6 +63,7 @@ class SignUpCompleteView(TemplateView):
     template_name = 'accounts/signup_complete.html'
 
 
+@method_decorator(ckeck_2fa, name='dispatch')
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/dashboard.html'
 
@@ -184,6 +196,7 @@ class SecurityInfoSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
                 self.request.user.set_password(password)
                 self.request.user.save()
         else:
+            self.request.session['2fa_verified'] = True
             form.save()
             response.update({'msg': _('Information updated successfully')})
 
@@ -231,3 +244,113 @@ class ProfileActivationView(TemplateView):
                 act_obj.save()
                 context['status'] = _('Account activated <br><p>Please <a href=/login>login</a><p>')
         return context
+
+
+@method_decorator(ckeck_2fa, name='dispatch')
+class CreateTwoFactorAccount(LoginRequiredMixin, CreateView):
+    """
+        creating new two factor authentication account for current user
+    """
+    model = TwoFactorAccount
+    fields = ['account_name','totp']
+    template_name = 'accounts/create_2fa_account.html'
+    success_url = reverse_lazy('accounts:2fa_list')
+    key = pyotp.random_base32()
+
+    def form_valid(self, form):
+        """
+            modifing form data before validation
+        """
+        totp_code = self.request.POST.get('totp')
+        totp = pyotp.TOTP(self.key)
+
+        if totp.verify(totp_code):
+            form.instance.user = self.request.user
+            form.instance.key = self.key
+            form.instance.account_type = 'google_authenticator'
+            form.instance.totp = None
+            self.key = pyotp.random_base32()
+            
+            return super().form_valid(form)
+        else:
+            form.add_error('totp', 'Invalid Authentication Code')
+            return self.form_invalid(form)
+
+
+@method_decorator(ckeck_2fa, name='dispatch')
+class DeleteTwoFactorAccount(LoginRequiredMixin, DeleteView):
+    """
+        removing 2fa account from active list
+    """
+    model = TwoFactorAccount
+    success_url = reverse_lazy('accounts:2fa_list')
+    template_name = 'accounts/2fa_confirm_delete.html'
+
+
+@method_decorator(ckeck_2fa, name='dispatch')
+class TwoFactorAccountList(LoginRequiredMixin, ListView):
+    """
+        listing all active 2fa accounts
+    """
+    model = TwoFactorAccount
+    template_name = 'accounts/2fa_account_lis.html'
+
+
+class Verify2FAView(AccessMixin, View):
+    """ verifying 2fa password"""
+    template_name = 'accounts/verify_2fa.html'
+
+    def get(self, request, *args, **kwargs):
+
+        if request.user.get_profile.two_factor_auth == 0 or \
+        not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
+            two_factor_type = 'Email'
+            request.session['email_otp'] = get_pin()
+            print(request.session['email_otp'])
+
+            if not request.session.get('email_send', False):
+
+                send_mail(
+                    'Verification Code',
+                    'Your verification code is %s' % request.session['email_otp'],
+                    settings.DEFAULT_FROM_EMAIL,
+                    [request.user.email],
+                    fail_silently=False
+                )
+
+                request.session['email_send'] = True
+
+        elif request.user.get_profile.two_factor_auth == 2:
+            two_factor_type = 'Google'
+
+        return render(request, self.template_name, {'two_factor_type': two_factor_type})
+
+    def post(self, request, *args, **kwargs):
+        otp_code = self.request.POST.get('otp')
+
+        if request.user.get_profile.two_factor_auth == 0 or \
+        not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
+            two_factor_type = 'Email'
+            
+            if request.session.get('email_otp') == otp_code:
+                request.session['2fa_verified'] = True
+                return redirect(reverse('accounts:profile'))
+
+        elif request.user.get_profile.two_factor_auth == 2:
+            auth_accounts = TwoFactorAccount.objects.filter(account_type='google_authenticator')
+            two_factor_type = 'Google'
+
+            for auth_account in auth_accounts:
+                totp = pyotp.TOTP(auth_account.key)
+
+                if totp.verify(otp_code):
+                    self.request.session['2fa_verified'] = True
+                    return redirect(reverse('accounts:profile'))
+
+        context = {
+            'two_factor_type': two_factor_type,
+            'error': 'Incorrect Verification Code'
+        }
+        
+        return render(request, self.template_name, context)
+

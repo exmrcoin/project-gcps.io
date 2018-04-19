@@ -3,7 +3,7 @@
 {% block content %}
     {% load i18n widget_tweaks %}
     <section>
-       <div class="merchant-tools merchant-one coin-payment-head">
+        <div class="merchant-tools merchant-one coin-payment-head">
             <div class="merchant-tools merchant-one">
                 <div class=" container merchant-box">{% trans 'Coin Conversion' %}
 
@@ -21,8 +21,8 @@
                     <div class="dasboard-head">
                         <h3>{%trans 'If you log in the fields below will be prepopulated with your Wallet deposit addresses.' %}</h3>
                     </div>
-                    <form id="convertCoinForm" action="." method="post" novalidate=""><input type="hidden" name="csrfmiddlewaretoken" value="Vyws2Cu8wObO6Ap3PHqHaWlnhV84IfeZJLbPzXIOElRu4H4DZ3kYUHopZcprWFSx">
-
+                    <form id="convertCoinForm" action="." method="post" novalidate="">
+                        {% csrf_token %}
                         <div class="account-setting-wrap">
                             <div class="main-field">Main Field</div>
                             <fieldset class="setting-form form-settings">

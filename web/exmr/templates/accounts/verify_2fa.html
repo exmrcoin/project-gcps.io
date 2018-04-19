@@ -1,27 +1,35 @@
 {% extends 'base.html' %}
-{% load static %}
-
+{% load staticfiles %}
 {% block title %}Verify Two Factor OTP{% endblock %}
-
 {% block content %}
-<section>
-  <style>
-    .errorlist{
-      position:static;
-    }
-  </style>
-
-  <div class="container">
-      <form method="post" action=".">
-      	{% csrf_token %}
-        <div>
-          {% if error %}<ul class="errorlist"><li>{{error}}</li></ul>{% endif %}
-          <label>Enter {{two_factor_type}} Authentication Code</label>
-          <input type="text" name="otp" />
+    {% load i18n %}
+    {% load widget_tweaks %}
+    <section>
+        <div class="login-bg">
+            <div class="container">
+                <div class="row">
+                    <div class=" offset-md-4 col-sm-5 login-sec">
+                        <div class="form-group">
+                            <a href= "{% url 'home' %}">
+                                <img class="logo-log" src="{% static 'images/log-log.png'  %}" alt="">
+                            </a>
+                        </div>
+                        <div class="form-group welcome">{{ two_factor_type }} Authentication</div>
+                        <h3 class="log-subline">{% trans 'Enter' %} {{two_factor_type  }} {% trans 'Authentication Code' %}</h3>
+                        <div class="form-group">
+                            <form method="post" action=".">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input name="otp" class="form-control usernmae-log" placeholder="Code" type="text">
+                                    {% if error %}<ul class="errorlist"><li>{{error}}</li></ul>{% endif %}
+                                    <button type="submit" class="btn- btn-default btn-log forgot-pw">{% trans 'Submit' %}</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
 
-      	<p><button class="btn btn-primary">Submit</button></p>
-      </form>
-  </div>
-</section>
 {% endblock %}

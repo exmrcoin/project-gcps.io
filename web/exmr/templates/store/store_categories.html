@@ -33,7 +33,9 @@
                             <li class="menu-box">
                                 <a href="{% url 'store:store-item' category.slug %}">
                                     <div class="menu-icon-wrap">
+                                        {% if category.image %}
                                         <img class="img-icons" src="{{ category.image.url }}">
+                                        {% endif %}
                                     </div>
                                     <div class="name-icons-menu">{{ category.name }}   </div>
                                 </a>

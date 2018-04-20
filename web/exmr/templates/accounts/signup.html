@@ -23,34 +23,29 @@
                             <form id="signupForm" action="." method="post" novalidate>{% csrf_token %}
                                 <div class=" form-group">
                                     {% render_field form.username class="form-control usernmae-log" placeholder="Username" %}
-                                    {% blocktrans %}{{ form.username.errors }} {% endblocktrans %}
+                                    <span class="error"></span>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         {% render_field form.email class="form-control usernmae-log" placeholder="Email" %}
-                                        {% blocktrans %}{{ form.email.errors }} {% endblocktrans %}
-                                    </div>
+                                        <span class="error"></span>                                    </div>
                                     <div class="col-md-6 form-group">
                                         {% render_field form.confirm_email class="form-control usernmae-log" placeholder="Confirm Email" %}
-                                        {% blocktrans %}{{ form.confirm_email.errors }} {% endblocktrans %}
-                                    </div>
+                                        <span class="error"></span>                                    </div>
                                     <div class="col-md-6 form-group">
                                         {% render_field form.password1 class="form-control usernmae-log" placeholder="Password" %}
-                                        {% blocktrans %}{{ form.password1.errors }}{% endblocktrans %}
-                                    </div>
+                                        <span class="error"></span>                                    </div>
                                     <div class="col-md-6 form-group">
                                         {% render_field form.password2 class="form-control usernmae-log" placeholder="Confirm Password" %}
-                                        {% blocktrans %}{{ form.password2.errors }}{% endblocktrans %}
-                                    </div>
+                                        <span class="error"></span>                                    </div>
                                 </div>
                                 <p>{% trans "Please make it at least 10 characters long and include letters, numbers, and special characters." %}</p>
                                 <h4 class="time-cone">{% trans "Timezone" %}</h4>
                                 <div class=" form-group">
 
                                     {% render_field form.timezone class="selectpicker picker-signup" placeholder="Confirm Password" %}
-                                    {% blocktrans %}{{ form.timezone.errors }}{% endblocktrans %}
-                                </div>
+                                    <span class="error"></span>                                </div>
                                 <div class=" form-group">
                                     <div class="checkbox signup-ceckbox">
                                         {{ form.need_newsletter }}
@@ -58,8 +53,7 @@
                                             {% trans 'Newsletters and other relevant information from Getcryptopayments.net to my provided e-mail.' %}
                                         </label>
                                     </div>
-                                    {% blocktrans %}{{ form.need_newsletter.errors }}{% endblocktrans %}
-                                </div>
+                                    <span class="error"></span>                                </div>
                                 <div class="form-group">
                                     <div class="checkbox signup-ceckbox">
                                         {{ form.accept_terms_and_conditions }}
@@ -67,8 +61,7 @@
                                             {% trans 'Have read and agree to the' %} <span class="terms">{% trans 'Terms of Service.' %}</span>
                                         </label>
                                     </div>
-                                    {{ form.accept_terms_and_conditions.errors }}
-                                </div>
+                                    <span class="error"></span>                                </div>
                                 <section class="entr-box">
                                     <fieldset>
 
@@ -108,10 +101,22 @@
         var cd;
 
         $(function () {
+
             CreateCaptcha();
-            $('#signupForm').submit(function() {
+
+            $('#signupForm').on('input',function(e){
+                $(this).find('.error').text('')
+            });
+
+            $('#signupForm').submit(function(e){
+                e.preventDefault();
+
+                var form_submit_status = formSubmit('#signupForm', '/sign-up/');
                 var captchaResult = CheckCaptcha();
-                if(!captchaResult)
+                console.log(captchaResult, form_submit_status, "capcta form submit")
+                if(captchaResult && form_submit_status)
+                    location.replace("{% url 'accounts:signup_complete'  %}");
+                if(!captchaResult || !form_submit_status)
                     return false;
             });
         });
@@ -191,5 +196,8 @@
             }
             return result;
         }
+
+
     </script>
+
 {% endblock %}

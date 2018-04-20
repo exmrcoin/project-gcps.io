@@ -24,7 +24,7 @@ from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoFo
      AddressForm
 
 
-class SignUpView(CreateView):
+class SignUpView(JSONResponseMixin, CreateView):
     """
     View to signup a new user
     """
@@ -43,7 +43,10 @@ class SignUpView(CreateView):
         profile.is_subscribed = form.cleaned_data.get('need_newsletter')
         profile.save()
         self.send_activation_mail(profile)
-        return super(SignUpView, self).form_valid(form)
+        return self.render_to_json_response({'msg': _('Activation mail sent')})
+
+    def form_invalid(self, form):
+        return self.render_to_json_response(form.errors)
 
     def send_activation_mail(self, profile):
         """
@@ -90,10 +93,6 @@ class AddressView(LoginRequiredMixin, CreateView):
         messages.add_message(self.request, messages.INFO,
                                  'Address details have been stored successfully')
         return super(AddressView, self).form_valid(form)
-
-    # def form_invalid(self, form):
-    #     print(form.errors)
-    #     return super(AddressView, self).form_valid(form)
 
 
 class AddAddressCompleteView(TemplateView):
@@ -176,7 +175,6 @@ class PublicInfoSave(JSONResponseMixin, UpdateView):
 
 
 class SecurityInfoSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
-
     form_class = LoginSecurityForm
 
     def get_object(self, queryset=None):

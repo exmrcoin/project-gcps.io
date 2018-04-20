@@ -60,6 +60,10 @@ class SignUpView(JSONResponseMixin, CreateView):
             profile_activation.expired = False
         profile_activation.save()
         profile_activation.send_activation_email(get_current_site(self.request))
+        
+    def form_invalid(self, form):
+        print(form.errors)
+        return super(SignUpView, self).form_invalid(form)
 
 
 class SignUpCompleteView(TemplateView):
@@ -159,7 +163,6 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
 
 
 class PublicInfoSave(JSONResponseMixin, UpdateView):
-
 
     form_class = PublicInfoForm
 

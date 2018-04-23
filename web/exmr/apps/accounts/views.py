@@ -294,7 +294,7 @@ class TwoFactorAccountList(LoginRequiredMixin, ListView):
     template_name = 'accounts/2fa_account_lis.html'
 
 
-class Verify2FAView(AccessMixin, View):
+class Verify2FAView(LoginRequiredMixin, AccessMixin, View):
     """ verifying 2fa password"""
     template_name = 'accounts/verify_2fa.html'
 

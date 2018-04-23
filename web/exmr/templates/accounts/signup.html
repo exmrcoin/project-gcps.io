@@ -110,7 +110,6 @@
 
             $('#signupForm').submit(function(e){
                 e.preventDefault();
-
                 var form_submit_status = formSubmit('#signupForm', '/sign-up/');
                 var captchaResult = CheckCaptcha();
                 console.log(captchaResult, form_submit_status, "capcta form submit")

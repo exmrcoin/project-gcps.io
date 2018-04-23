@@ -1,15 +1,15 @@
 {% extends 'accounts/dashboard-base.html' %}
-{% load staticfiles %}
+{% load staticfiles widget_tweaks i18n %}
 {% block dashboard_heading %}
     <div class="dashboard-bg">
     <div class="merchant-tools merchant-one coin-payment-head">
         <div class=" container merchant-box">DASHBOARD
         </div>
     </div>
+    </div>
 {% endblock %}
 {% block dashboard_wrapper_content %}
-    {% load widget_tweaks %}
-    {% load i18n %}
+
     <div class="dashboard-wrapper">
         <div class="dasboard-head">
             <div class="img-dashboard">
@@ -55,6 +55,5 @@
             </div>
 
         </div>
-    </div>
     </div>
 {% endblock %}

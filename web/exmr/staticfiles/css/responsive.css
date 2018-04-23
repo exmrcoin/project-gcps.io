@@ -390,6 +390,16 @@ width: 96.3%;
   }
   @media only screen and (max-width: 750px) {
 
+  .btn-share { margin-left: 0px;}
+
+  .div-share{
+      text-align: center;
+  }
+
+  .social-media{
+      margin-top: 20px;
+  }
+
     #UserCaptchaCode { width: 100% !important;}
 
     fieldset {

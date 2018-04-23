@@ -50,7 +50,7 @@
                                     <div class="checkbox signup-ceckbox">
                                         {{ form.need_newsletter }}
                                         <label for="checkbox1  " class="label-sign">
-                                            {% trans 'Newsletters and other relevant information from Getcryptopayments.net to my provided e-mail.' %}
+                                            {% trans 'Send newsletters and other relevant information to my provided e-mail.' %}
                                         </label>
                                     </div>
                                     <span class="error"></span>                                </div>
@@ -65,26 +65,25 @@
                                 <section class="entr-box">
                                     <fieldset>
 
-                                        <span id="WrongCaptchaError" class="error"></span>
                                         <div class='CaptchaWrap'>
-
                                             <div id="CaptchaImageCode" class="CaptchaTxtField">
                                                 <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
 
                                             </div>
-                                            <button class="btn" onclick='CreateCaptcha();'>
-                                                <i class="fas fa-sync-alt"></i>
-                                            </button>
+
                                             <p>{% trans 'Type the characters you see in the image above:' %}</p>
-                                            <input type="text" class="capticha-enter1 form-control"
-                                                   id="UserCaptchaCode"
-                                                   class="CaptchaTxtField"
-                                                   placeholder='Enter Captcha - Case Sensitive'>
 
                                         </div>
 
                                     </fieldset>
                                 </section>
+                                <div class="form-group">
+                                    <input type="text" class="capticha-enter1 form-control usernmae-log"
+                                                   id="UserCaptchaCode"
+                                                   class="CaptchaTxtField"
+                                                   placeholder='Enter Captcha - Case Sensitive'>
+                                            <span id="WrongCaptchaError" class="error"></span>
+                                </div>
                                 <button type="submit" class="btn- btn-default btn-log sign-button">{% trans 'Signup' %}</button>
                             </form>
                         </div>
@@ -135,7 +134,7 @@
                 var f = alpha[Math.floor(Math.random() * alpha.length)];
             }
             cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
-            $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas>')
+            $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas><button class="btn btn-sync" onclick="CreateCaptcha();"><i class="fas fa-sync-alt"></i></button>');
 
             var c = document.getElementById("CapCode"),
                 ctx = c.getContext("2d"),

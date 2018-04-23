@@ -103,6 +103,13 @@ class UpdateBasicProfileForm(forms.ModelForm):
         return cleaned_data
 
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if email and User.objects.filter(email=email).exists():
+            raise forms.ValidationError(u'Please use a different email address.')
+        return email
+
+
 class PublicInfoForm(forms.ModelForm):
 
     class Meta:

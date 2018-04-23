@@ -74,7 +74,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 class TransactionHistoryView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/payment-history.html'
 
-
+@method_decorator(ckeck_2fa, name='dispatch')
 class AddressView(LoginRequiredMixin, CreateView):
     template_name = 'accounts/address-book.html'
     form_class = AddressForm
@@ -99,7 +99,7 @@ class AddAddressCompleteView(TemplateView):
     template_name = 'common/message.html'
 
 
-
+@method_decorator(ckeck_2fa, name='dispatch')
 class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
     form_class = UpdateBasicProfileForm
     template_name = 'accounts/settings.html'

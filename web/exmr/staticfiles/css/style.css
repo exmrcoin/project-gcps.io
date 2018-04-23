@@ -795,6 +795,7 @@ a {
 
  #testimonials {
 	 background-color: #f1f1f1;
+	 overflow-x: hidden;
  }
  #testimonials #dev-snippet-title{
 	 margin-top: 0px;
@@ -906,7 +907,8 @@ a {
  }
  #testimonials{
 	 background-color: inherit !important;
- }
+	 overflow-x: hidden;
+	}
  .single-testimonial p{
 	 margin-top: 18px;
 	 color: #e75d14;

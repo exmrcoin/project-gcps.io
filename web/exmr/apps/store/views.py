@@ -9,8 +9,10 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.views.generic import ListView, DetailView, CreateView, TemplateView
 
+from apps.accounts.decorators import ckeck_2fa
 from apps.accounts.models import Profile
 from apps.store.forms import AddStoreForm
 from apps.store.models import StoreCategory, Store
@@ -41,7 +43,7 @@ class StoreListView(ListView):
         context['categories'] = StoreCategory.objects.filter(publish=True)
         return context
 
-
+@method_decorator(ckeck_2fa, name='dispatch')
 class AddToStoreView(LoginRequiredMixin, CreateView):
     template_name = 'store/add-or-update.html'
     form_class = AddStoreForm

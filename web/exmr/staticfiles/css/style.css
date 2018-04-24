@@ -791,8 +791,6 @@ a {
  }
 
 
-
-
  #testimonials {
 	 background-color: #f1f1f1;
 	 overflow-x: hidden;
@@ -2166,7 +2164,7 @@ fieldset {
 /*========= publicl vote voin ========*/
 .btn-vote-btn{
 	width: 32%;
-	height: 30px;
+	min-height: 30px;
 	border: none;
 	border-radius: 4px;
 	background-color:#16b101;

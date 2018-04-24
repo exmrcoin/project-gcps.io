@@ -24,7 +24,7 @@ from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoFo
      AddressForm
 
 
-class SignUpView(CreateView):
+class SignUpView(JSONResponseMixin, CreateView):
     """
     View to signup a new user
     """
@@ -43,7 +43,10 @@ class SignUpView(CreateView):
         profile.is_subscribed = form.cleaned_data.get('need_newsletter')
         profile.save()
         self.send_activation_mail(profile)
-        return super(SignUpView, self).form_valid(form)
+        return self.render_to_json_response({'msg': _('Activation mail sent')})
+
+    def form_invalid(self, form):
+        return self.render_to_json_response(form.errors)
 
     def send_activation_mail(self, profile):
         """
@@ -71,7 +74,7 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 class TransactionHistoryView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/payment-history.html'
 
-
+@method_decorator(ckeck_2fa, name='dispatch')
 class AddressView(LoginRequiredMixin, CreateView):
     template_name = 'accounts/address-book.html'
     form_class = AddressForm
@@ -91,16 +94,12 @@ class AddressView(LoginRequiredMixin, CreateView):
                                  'Address details have been stored successfully')
         return super(AddressView, self).form_valid(form)
 
-    # def form_invalid(self, form):
-    #     print(form.errors)
-    #     return super(AddressView, self).form_valid(form)
-
 
 class AddAddressCompleteView(TemplateView):
     template_name = 'common/message.html'
 
 
-
+@method_decorator(ckeck_2fa, name='dispatch')
 class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
     form_class = UpdateBasicProfileForm
     template_name = 'accounts/settings.html'
@@ -161,7 +160,6 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
 
 class PublicInfoSave(JSONResponseMixin, UpdateView):
 
-
     form_class = PublicInfoForm
 
     def get_object(self, queryset=None):
@@ -176,7 +174,6 @@ class PublicInfoSave(JSONResponseMixin, UpdateView):
 
 
 class SecurityInfoSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
-
     form_class = LoginSecurityForm
 
     def get_object(self, queryset=None):
@@ -189,12 +186,13 @@ class SecurityInfoSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
         current_password = form.cleaned_data.pop('current_password')
         if password:
             if not self.request.user.check_password(current_password):
-                response['current_password'] = [_('Current password is incorrect')]
+                response['msg'] = [_('Current password is incorrect')]
             if confirm_password != password:
-                response['password'] = [_("Passwords doesn't match")]
+                response['msg'] = [_("Passwords doesn't match")]
             else:
                 self.request.user.set_password(password)
                 self.request.user.save()
+                response.update({'msg': _('Information updated successfully')})
         else:
             self.request.session['2fa_verified'] = True
             form.save()
@@ -293,10 +291,10 @@ class TwoFactorAccountList(LoginRequiredMixin, ListView):
         listing all active 2fa accounts
     """
     model = TwoFactorAccount
-    template_name = 'accounts/2fa_account_lis.html'
+    template_name = 'accounts/2fa_account_list.html'
 
 
-class Verify2FAView(AccessMixin, View):
+class Verify2FAView(LoginRequiredMixin, View):
     """ verifying 2fa password"""
     template_name = 'accounts/verify_2fa.html'
 
@@ -306,7 +304,6 @@ class Verify2FAView(AccessMixin, View):
         not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
             two_factor_type = 'Email'
             request.session['email_otp'] = get_pin()
-            print(request.session['email_otp'])
 
             if not request.session.get('email_send', False):
 

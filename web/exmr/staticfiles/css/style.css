@@ -46,7 +46,7 @@ a {
 	background-color: #fff;
 	border: solid 1px #e75d14 !important;
 	font-size: 16px !important;
-	
+
 }
 .btn-log1:hover{
 	background-color: #e75d14 !important;
@@ -58,7 +58,7 @@ a {
 	background-color: #e75d14 !important;
 	color: #fff !important;
 	font-size: 16px !important;
-	margin-left: 11px;	
+	margin-left: 11px;
 }
 .language-icon{
 	margin-top: -1px;
@@ -87,7 +87,7 @@ a {
 }
 .menu-btn{
 	margin-top: 28px !important;
-	background-color:#e75d14 	 !important; 
+	background-color:#e75d14 	 !important;
 }
 .banner-img-circle{
 	margin-top: 125px;
@@ -104,14 +104,15 @@ a {
 }
 .btn-get-strat{
 	width: 168px;
-	height: 50px; 
+	height: 50px;
 	border: none;
 	background-color: #e75d14 !important;
 	color: #fff !important;
 	font-size: 24px;
 	border-radius: 4px;
 	box-shadow: 0 4px 12px -1px #808080;
-}
+}    <section>
+
 
 
 
@@ -204,7 +205,7 @@ a {
   .scroll-btn .mouse > * {
 	  position: absolute;
 	  display: block;
-	
+
 	  top: 29%;
 	  left: 50%;
 	  width: 8px;
@@ -250,7 +251,7 @@ a {
   }
   .btn-more{
 	width: 168px;
-	height: 41px; 
+	height: 41px;
 	border: none;
 	background-color: #e75d14 !important;
 	color: #fff !important;
@@ -287,7 +288,7 @@ a {
   }
   .check-availabe{
     margin: -5px 0px 0px 3px;
-    vertical-align: middle;	
+    vertical-align: middle;
   }
   .pay-by{
 	margin-left: 75px;
@@ -336,7 +337,7 @@ a {
   }
   .border-effect{
   border-top:    1px solid #e3e3e3 ;
-  border-right:  1px solid #e3e3e3; 
+  border-right:  1px solid #e3e3e3;
   border-bottom: 1px solid #e3e3e3;
   }
 
@@ -446,13 +447,13 @@ a {
 
   }
   .login-sec{
-	 
+
 	  background-color:#fff;
 	  margin: 0 auto ;
 	  float: none !important;
 	  margin-top: 80px;
 	  box-shadow: 0 4px 12px -1px #dedede;
-	 
+
   }
   .log-top-icon{
 	margin: -43px auto !important;
@@ -476,7 +477,7 @@ a {
   .log-subline{
 	  text-align: center;
 	  font-size: 18px;
-	  color: black;  
+	  color: black;
 	   margin-bottom: 27px;
 	}
 	.usernmae-log{
@@ -487,20 +488,20 @@ a {
       height: 50px;
       border-radius: 4px;
       border: solid 1px #d7d7d7 !important;
-	  box-shadow: inset 4px 0px 0px #e75d14 !important;
-	  padding-left:14px;
-	  height: 57px !important; 
-	}
+      box-shadow: inset 4px 0px 0px #e75d14 !important;
+      padding-left:14px;
+      height: 40px !important;
+ }
 	.btn-log{
 		width: 165px;
-		min-height: 49px;
+		min-height: 40px;
 		border: none;
 		background-color: #e75d14 !important;
 		color: #fff !important;
 		font-size: 20px;
 		border-radius: 4px;
 		box-shadow: 0 4px 12px -1px #cecccc;
-		font-size: 20px;
+		font-size: 16px;
 		margin-top: 13px;
 	}
 	.signup-btn{
@@ -654,7 +655,7 @@ a {
  }
 .picker-signup{
 	width: 100%;
-	height: 55px;
+	height: 40px;
 	border: solid 1px #d7d7d7 !important;
 	border-radius: 4px;
 	margin: 0 auto;
@@ -794,6 +795,7 @@ a {
 
  #testimonials {
 	 background-color: #f1f1f1;
+	 overflow-x: hidden;
  }
  #testimonials #dev-snippet-title{
 	 margin-top: 0px;
@@ -905,7 +907,8 @@ a {
  }
  #testimonials{
 	 background-color: inherit !important;
- }
+	 overflow-x: hidden;
+	}
  .single-testimonial p{
 	 margin-top: 18px;
 	 color: #e75d14;
@@ -960,7 +963,6 @@ fieldset {
 .CaptchaWrap { position: relative; }
 .CaptchaTxtField {
   border-radius: 5px;
-  border: 1px solid #ccc;
   display: block;
   box-sizing: border-box;
 }
@@ -968,22 +970,20 @@ fieldset {
 #UserCaptchaCode {
   padding: 15px 10px;
   outline: none;
-  font-size: 18px;
   font-weight: normal;
-  font-family: 'Open Sans', sans-serif;
   width: 100% !important;
 }
 #CaptchaImageCode {
   text-align:center;
   margin-top: 15px;
   padding: 0px 0;
-  width: 300px;
   overflow: hidden;
 }
 
 .capcode {
+  float: left;
   font-size: 46px;
-  display: block;
+  /* display: block; */
   -moz-user-select: none;
   -webkit-user-select: none;
   user-select: none;
@@ -1328,10 +1328,9 @@ fieldset {
 	box-shadow: 0 1px 16px 2px #dedede;
 }
 .your-merchant{
-    width: 95%;
+    /* width: 95%; */
     height: auto;
     margin: 0px auto;
-
 }
 .merchant-id{
 	padding: 14px 0px 0px 21px;
@@ -1364,7 +1363,7 @@ fieldset {
 	border: solid 1px #d7d7d7 !important;
     box-shadow: inset 4px 0px 0px #e75d14 !important;
 	padding-left: 14px;
-	height: 49px !important;
+	height: 40px !important;
 }
 .select-view{
 	height: 49px !important;
@@ -1376,7 +1375,7 @@ fieldset {
 .date-box{
 	width: 110px !important;
 	background-image: url(image/down-arrow.png);
-	
+
 }
 .second-date{
 	margin-top:24px;
@@ -1403,7 +1402,7 @@ fieldset {
     padding: 9px 0px 0px 25px;
     font-size: 18px;
 	cursor: pointer;
-	
+
     margin-top: 5px;
 }
 .share:hover{
@@ -1518,7 +1517,7 @@ fieldset {
 
 .dashboard-wrapper ul{
 	padding: 0px;
-	margin-top: 18px;
+	/* margin-top: 18px; */
 }
 .directoru-menu{
     width: 100%;
@@ -2294,5 +2293,30 @@ fieldset {
 
 .dash-base .merchant-box {line-height: 160px;}
 
-.mt0 { margin-top: 0px;}
-
+.mt0 { margin-top: 0px!important;}
+.mt20{
+	margin-top: 20px!important;
+}
+.m0{
+	margin: 0px!important;
+}
+.pr0{
+	padding: 0px!important;
+}
+.pt20{
+	padding-top: 20px!important;
+}
+.btn-share{
+	min-height: 49px;
+	border: none;
+	background-color: #e75d14 !important;
+	color: #fff !important;
+	border-radius: 4px;
+	box-shadow: 0 4px 12px -1px #cecccc;
+	font-size: 16px;
+	margin-left: 20px;
+}
+.btn-sync{
+	float: left;
+    margin: 23px;
+}

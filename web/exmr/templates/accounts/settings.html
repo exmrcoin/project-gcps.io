@@ -54,16 +54,24 @@
                                 <form class="form-inline" role="form">
                                     <div class="form-group merchant-id">
                                         <label for="name">{% trans 'Affiliate URL:' %}</label>
-                                        <p for="name">  {% trans 'Want to earn some crypto? Give this URL to new users and when they sign up you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:' %}
-                                            <b><span id="refUrl">{{ ref_url }}</span></b></p>
+                                        <p class="pr0">  {% trans 'Want to earn some crypto? Give this URL to new users and when they sign up you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:' %}
+                                            <br>
+                                            <b>
+                                                <span id="refUrl">{{ ref_url }}</span>
+                                            </b>
+                                        </p>
                                     </div>
                                 </form>
                             </div>
-
-                            <div class="share" data-clipboard-target="#refUrl">{% trans 'Share/Save' %} <img
-                                    src="{% static 'images/share.png' %}"></div>
-                            <div class="social-media">
-                                <ul class="pull-right">
+                            <div class="row m0">
+                                <div class="col-md-6 div-share">
+                                    <button class="btn btn-default btn-share" data-clipboard-target="#refUrl">
+                                        {% trans 'Share/Save' %}
+                                        <img src="{% static 'images/share.png' %}"></button>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="social-media">
+                                <ul class="text-center">
                                     <li>
                                         {% post_to_facebook_url ref_url as p %}
                                         <a href="{{ facebook_url }}" target="_blank">
@@ -92,9 +100,10 @@
                                 </ul>
 
                             </div>
-                            <div class="alert">
+                                </div>
 
                             </div>
+
                             <form role="form" method="post" id="accountForm" action="{% url 'accounts:settings' %}"
                                   novalidate>
                                 {% csrf_token %}
@@ -141,7 +150,6 @@
                                     </div>
 
                                     <div class="form-group col-md-6">
-
                                         <button type="submit"
                                                 class="btn- btn-default btn-log ">{% trans 'Update Account' %}</button>
 
@@ -153,10 +161,7 @@
                     <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
 
                         <div class="setting-head">{% trans 'Public Info' %}</div>
-                        <div class="account-setting-wrap">
-                            <div class="alert">
-
-                            </div>
+                        <div class="account-setting-wrap pt20">
 
                             <form role="form" method="post" id="publicInfo"
                                   action="{% url 'accounts:save_public_info' %}" novalidate>
@@ -205,10 +210,7 @@
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="security" aria-labelledby="security-tab">
                         <div class="setting-head">{% trans 'Login & Security' %}</div>
-                        <div class="account-setting-wrap">
-                            <div class="alert">
-
-                            </div>
+                        <div class="account-setting-wrap pt20">
 
                             <form role="form" method="post" id="securityForm"
                                   action="{% url 'accounts:save_security_info' %}" novalidate>
@@ -238,6 +240,11 @@
                                         <label for="two_factor_auth">{% trans '2 Factor Authentication' %}</label>
                                         {{ security_form.two_factor_auth|add_class:'form-control text-view' }}
                                         <span class="error"></span>
+                                        <small class="form-text text-muted">
+                                            {% trans 'Email: You will be prompted for a code at the time of login which will be sent to your provided email ID.' %}
+                                            {% trans 'Linked 2FA Accounts: Link authenticators supporting TOTP such as Google Authenticator, Authy, FreeOTP, etc. You can edit your linked devices' %}
+                                             <a href="{% url 'accounts:2fa_list' %}">here</a>.
+                                        </small>
 
                                     </div>
 
@@ -269,10 +276,7 @@
                     </div>
                     <div role="tabpanel" class="tab-pane fade" id="merchant" aria-labelledby="merchant-tab">
                         <div class="setting-head">{% trans 'Merchant Settings' %}</div>
-                        <div class="account-setting-wrap">
-                            <div class="alert">
-
-                            </div>
+                        <div class="account-setting-wrap pt20">
 
                             <form role="form" method="post" id="merchantSettingsForm"
                                   action="{% url 'accounts:save_security_info' %}" novalidate>
@@ -310,11 +314,11 @@
                                         <span class="error"></span>
                                     </div>
 
-                                    <div class="form-group col-md-12">
-                                        <label for="confirm_password">{{ ipn_form.mail_on_new_payment_init.label }}</label>
-                                        {{ ipn_form.mail_on_new_payment_init }}
-                                        <span class="error"></span>
-                                    </div>
+                                    {#                                    <div class="form-group col-md-12">#}
+                                    {#                                        <label for="confirm_password">{{ ipn_form.mail_on_new_payment_init.label }}</label>#}
+                                    {#                                        {{ ipn_form.mail_on_new_payment_init }}#}
+                                    {#                                        <span class="error"></span>#}
+                                    {#                                    </div>#}
 
                                     <div class="form-group col-md-12">
                                         <label for="confirm_password">{{ ipn_form.mail_on_deposit_receive.label }}</label>
@@ -341,7 +345,7 @@
 
                                     </div>
 
-                                <div class="form-group col-md-12">
+                                    <div class="form-group col-md-12">
                                         <label for="two_factor_auth">{{ ipn_form.receive_sms.label }}</label>
                                         {{ ipn_form.receive_sms }}
 
@@ -364,7 +368,6 @@
 
                                     </div>
 
-
                                 </fieldset>
                             </form>
                         </div>
@@ -378,7 +381,6 @@
 
 {% block extra_js %}
     <script src="{% static 'js/clipboard.min.js' %}"></script>
-    <script src="{% static 'js/jquery.toaster.js' %}"></script>
     <script src="{% static 'js/account_settings.js' %}"></script>
 
 

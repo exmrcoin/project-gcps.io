@@ -215,7 +215,7 @@
     </div>
 </footer>
 </body>
-
+</html>
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -227,6 +227,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 <script src="{% static 'js/jquery.timepicker.min.js' %}"></script>
 <script src="{% static 'js/datepicker.min.js' %}"></script>
+<script src="{% static 'js/jquery.toaster.js' %}"></script>
+
+<script src="{% static 'js/common.js' %}"></script>
+
 
 
 
@@ -244,5 +248,8 @@
 </script>
 
 
-{% block extra_js %} {% endblock %}
-</html>
+{% block extra_js %}
+
+
+
+ {% endblock %}

@@ -997,5 +997,5 @@
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = A2F07956203AD7E600B55E5D /* Project object */;
+	rootObject = A2F07956203AD7E600B55E5D /* Project objects */;
 }

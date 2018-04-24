@@ -76,7 +76,7 @@ class CoinConversionFinalView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(CoinConversionFinalView, self).get_context_data(**kwargs)
         coin_request_id = self.request.session.get('coin_request_id')
-        context['coin_request'] = get_object_or_404(CoinConvertRequest, id=9)
+        context['coin_request'] = get_object_or_404(CoinConvertRequest, id=coin_request_id)
 
         if self.request.session.get('coin_request_id'):
             del self.request.session['coin_request_id']

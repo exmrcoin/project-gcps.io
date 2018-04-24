@@ -6,7 +6,7 @@
     <section>
         <div class="dashboard-bg dash-base">
             <div class="merchant-tools merchant-one coin-payment-head">
-                <div class=" container merchant-box"> ADD OR UPDATE STORE LISTING
+                <div class=" container merchant-box"> ADD OR UPDATE STORE
                 </div>
 
             </div>
@@ -32,14 +32,13 @@
                                 <div class="form-group col-md-12">
                                     <label for="first_name">Store Name</label>
                                     {{ form.store_name|add_class:'form-control text-view' }}
-                                    <span class="error">{{ form.errors }}</span>
+                                    {{ form.store_name.errors }}
 
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="first_name">Store URL</label>
                                     {{ form.store_url|add_class:'form-control text-view' }}
-                                    <span class="error">{{ form.errors }}</span>
-
+                                    {{ form.store_url.errors }}
                                 </div>
 
                                 <div class="form-group col-md-12">
@@ -50,10 +49,15 @@
                                 <div class="form-group col-md-12">
                                     <label for="confirm_password">Category</label>
                                     {{ form.category|add_class:'form-control select-view' }}
+                                    {{ form.category.errors }}
+
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="first_name">Crypto Processor</label>
-                                    {{ form.crypto_processor|add_class:'form-control text-view' }}                                    <span>( Please specify which crypto processor your are using )</span>
+                                    {{ form.crypto_processor|add_class:'form-control text-view' }}
+                                    <span>( Please specify which crypto processor your are using )</span>
+                                                                        {{ form.crypto_processor.errors }}
+
                                 </div>
 
                             </fieldset>
@@ -69,19 +73,20 @@
                                 <div class="form-group col-md-12">
                                     <label for="first_name">Store Email</label>
                                     {{ form.store_email|add_class:'form-control text-view' }}
-                                    <span>( Obfuscation is used minimize any SPAM from your email being listed )</span>
+                                    {{ form.store_email.errors }}
+
                                 </div>
 
                                 <div class="form-group col-md-12">
                                     <label for="first_name">Keywords</label>
                                     {{ form.keywords|add_class:'form-control text-view' }}
-                                    <span>(Optional enter up to 5 search kywords for your listing separated with a, )</span>
+                                    <span>(Optional enter up to 5 search keywords for your listing separated with a, )</span>
                                 </div>
 
                                 <div class="form-group col-md-12">
                                     <label for="first_name">Banner image URL</label>
                                     {{ form.banner_image_url|add_class:'form-control text-view' }}
-                                    <span>Image shoud be 300pxwide * 10-150px all.fill rules <span class="c-here" >here </span></br>We will host the image o our server ,so you can use any dree/temporary host for temporary image store.  </span>
+                                    {{ form.banner_image_url.errors }}
                                 </div>
 
 
@@ -108,9 +113,9 @@
                                         </button>
                                         <p>{% trans 'Type the characters you see in the image above:' %}</p>
                                         <input type="text" class="capticha-enter1 form-control"
-                                                   id="UserCaptchaCode"
-                                                   class="CaptchaTxtField"
-                                                   placeholder='Enter Captcha - Case Sensitive'>
+                                               id="UserCaptchaCode"
+                                               class="CaptchaTxtField"
+                                               placeholder='Enter Captcha - Case Sensitive'>
 
                                     </div>
                                     <input type="submit" class="btnSubmit new-store-btn" onclick="CheckCaptcha();" value="Add My Store"/>

@@ -23,43 +23,37 @@
                             <form id="signupForm" action="." method="post" novalidate>{% csrf_token %}
                                 <div class=" form-group">
                                     {% render_field form.username class="form-control usernmae-log" placeholder="Username" %}
-                                    {% blocktrans %}{{ form.username.errors }} {% endblocktrans %}
+                                    <span class="error"></span>
                                 </div>
 
                                 <div class="row">
                                     <div class="col-md-6 form-group">
                                         {% render_field form.email class="form-control usernmae-log" placeholder="Email" %}
-                                        {% blocktrans %}{{ form.email.errors }} {% endblocktrans %}
-                                    </div>
+                                        <span class="error"></span>                                    </div>
                                     <div class="col-md-6 form-group">
                                         {% render_field form.confirm_email class="form-control usernmae-log" placeholder="Confirm Email" %}
-                                        {% blocktrans %}{{ form.confirm_email.errors }} {% endblocktrans %}
-                                    </div>
+                                        <span class="error"></span>                                    </div>
                                     <div class="col-md-6 form-group">
                                         {% render_field form.password1 class="form-control usernmae-log" placeholder="Password" %}
-                                        {% blocktrans %}{{ form.password1.errors }}{% endblocktrans %}
-                                    </div>
+                                        <span class="error"></span>                                    </div>
                                     <div class="col-md-6 form-group">
                                         {% render_field form.password2 class="form-control usernmae-log" placeholder="Confirm Password" %}
-                                        {% blocktrans %}{{ form.password2.errors }}{% endblocktrans %}
-                                    </div>
+                                        <span class="error"></span>                                    </div>
                                 </div>
                                 <p>{% trans "Please make it at least 10 characters long and include letters, numbers, and special characters." %}</p>
                                 <h4 class="time-cone">{% trans "Timezone" %}</h4>
                                 <div class=" form-group">
 
                                     {% render_field form.timezone class="selectpicker picker-signup" placeholder="Confirm Password" %}
-                                    {% blocktrans %}{{ form.timezone.errors }}{% endblocktrans %}
-                                </div>
+                                    <span class="error"></span>                                </div>
                                 <div class=" form-group">
                                     <div class="checkbox signup-ceckbox">
                                         {{ form.need_newsletter }}
                                         <label for="checkbox1  " class="label-sign">
-                                            {% trans 'Newsletters and other relevant information from Getcryptopayments.net to my provided e-mail.' %}
+                                            {% trans 'Send newsletters and other relevant information to my provided e-mail.' %}
                                         </label>
                                     </div>
-                                    {% blocktrans %}{{ form.need_newsletter.errors }}{% endblocktrans %}
-                                </div>
+                                    <span class="error"></span>                                </div>
                                 <div class="form-group">
                                     <div class="checkbox signup-ceckbox">
                                         {{ form.accept_terms_and_conditions }}
@@ -67,31 +61,29 @@
                                             {% trans 'Have read and agree to the' %} <span class="terms">{% trans 'Terms of Service.' %}</span>
                                         </label>
                                     </div>
-                                    {{ form.accept_terms_and_conditions.errors }}
-                                </div>
+                                    <span class="error"></span>                                </div>
                                 <section class="entr-box">
                                     <fieldset>
 
-                                        <span id="WrongCaptchaError" class="error"></span>
                                         <div class='CaptchaWrap'>
-
                                             <div id="CaptchaImageCode" class="CaptchaTxtField">
                                                 <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
 
                                             </div>
-                                            <button class="btn" onclick='CreateCaptcha();'>
-                                                <i class="fas fa-sync-alt"></i>
-                                            </button>
+
                                             <p>{% trans 'Type the characters you see in the image above:' %}</p>
-                                            <input type="text" class="capticha-enter1 form-control"
-                                                   id="UserCaptchaCode"
-                                                   class="CaptchaTxtField"
-                                                   placeholder='Enter Captcha - Case Sensitive'>
 
                                         </div>
 
                                     </fieldset>
                                 </section>
+                                <div class="form-group">
+                                    <input type="text" class="capticha-enter1 form-control usernmae-log"
+                                                   id="UserCaptchaCode"
+                                                   class="CaptchaTxtField"
+                                                   placeholder='Enter Captcha - Case Sensitive'>
+                                            <span id="WrongCaptchaError" class="error"></span>
+                                </div>
                                 <button type="submit" class="btn- btn-default btn-log sign-button">{% trans 'Signup' %}</button>
                             </form>
                         </div>
@@ -108,10 +100,21 @@
         var cd;
 
         $(function () {
+
             CreateCaptcha();
-            $('#signupForm').submit(function() {
+
+            $('#signupForm').on('input',function(e){
+                $(this).find('.error').text('')
+            });
+
+            $('#signupForm').submit(function(e){
+                e.preventDefault();
+                var form_submit_status = formSubmit('#signupForm', '/sign-up/');
                 var captchaResult = CheckCaptcha();
-                if(!captchaResult)
+                console.log(captchaResult, form_submit_status, "capcta form submit")
+                if(captchaResult && form_submit_status)
+                    location.replace("{% url 'accounts:signup_complete'  %}");
+                if(!captchaResult || !form_submit_status)
                     return false;
             });
         });
@@ -131,7 +134,7 @@
                 var f = alpha[Math.floor(Math.random() * alpha.length)];
             }
             cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
-            $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas>')
+            $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas><button class="btn btn-sync" onclick="CreateCaptcha();"><i class="fas fa-sync-alt"></i></button>');
 
             var c = document.getElementById("CapCode"),
                 ctx = c.getContext("2d"),
@@ -191,5 +194,8 @@
             }
             return result;
         }
+
+
     </script>
+
 {% endblock %}

@@ -291,10 +291,10 @@ class TwoFactorAccountList(LoginRequiredMixin, ListView):
         listing all active 2fa accounts
     """
     model = TwoFactorAccount
-    template_name = 'accounts/2fa_account_lis.html'
+    template_name = 'accounts/2fa_account_list.html'
 
 
-class Verify2FAView(LoginRequiredMixin, AccessMixin, View):
+class Verify2FAView(LoginRequiredMixin, View):
     """ verifying 2fa password"""
     template_name = 'accounts/verify_2fa.html'
 
@@ -304,7 +304,6 @@ class Verify2FAView(LoginRequiredMixin, AccessMixin, View):
         not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
             two_factor_type = 'Email'
             request.session['email_otp'] = get_pin()
-            print(request.session['email_otp'])
 
             if not request.session.get('email_send', False):
 

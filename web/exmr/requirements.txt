@@ -15,7 +15,6 @@ idna==2.6
 microsofttranslator==0.8
 polib==1.1.0
 psycopg2==2.7.4
-pyotp==2.2.6
 pytz==2018.4
 requests==2.18.4
 six==1.11.0

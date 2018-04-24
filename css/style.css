@@ -1003,6 +1003,7 @@ section { padding: 0 15px; }
   font-size: 12px; 
   display: none; 
 }
+<<<<<<< HEAD
 .success {
   color: green;
   font-size: 18px;
@@ -1028,3 +1029,8 @@ section { padding: 0 15px; }
 	color: #e75d14;
 	font-weight: 600;
 }
+=======
+/* Phones/ */
+
+/*==========  Mobile First Method  ==========*/
+>>>>>>> c52ef3a20406857197ee02786b48d1c940044ff4

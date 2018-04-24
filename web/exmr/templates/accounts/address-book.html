@@ -14,8 +14,8 @@
 {% block dashboard_wrapper_content %}
     <div class="dashboard-wrapper">
         <div class="dasboard-head">
-            <div class="bs-example bs-example-tabs examble-tab" role="tabpanel" data-example-id="togglable-tabs">
-                <ul id="myTab" class="nav nav-tabs nav-tabs-responsive multiple-tab" role="tablist">
+            <div class="bs-example bs-example-tabs examble-tab w100" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs nav-tabs-responsive multiple-tab m0" role="tablist">
                     <li role="presentation" class="active">
                         <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home"
                            aria-expanded="true">
@@ -28,7 +28,14 @@
                         </a>
                     </li>
                 </ul>
-                <div id="myTabContent" class="tab-content">
+
+
+
+            </div>
+
+    </div>
+
+      <div id="myTabContent" class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="home" aria-labelledby="home-tab">
                     </div>
                     <div class="account-setting-wrap">
@@ -99,9 +106,7 @@
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+
     </div>
     </div>
 {% endblock %}

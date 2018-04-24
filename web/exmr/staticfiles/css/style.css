@@ -41,7 +41,7 @@ a {
 }
 .btn-log1{
 	margin-top: 27px;
-	width: 82px;
+	min-width: 82px;
 	color: #000 !important;
 	background-color: #fff;
 	border: solid 1px #e75d14 !important;
@@ -54,7 +54,7 @@ a {
 }
 .btn-sign{
 	margin-top: 27px;
-	width: 82px;
+	min-width: 82px;
 	background-color: #e75d14 !important;
 	color: #fff !important;
 	font-size: 16px !important;
@@ -103,7 +103,7 @@ a {
 	color:black;
 }
 .btn-get-strat{
-	width: 168px;
+	min-width: 168px;
 	height: 50px;
 	border: none;
 	background-color: #e75d14 !important;
@@ -250,7 +250,7 @@ a {
 	color: black;
   }
   .btn-more{
-	width: 168px;
+	min-width: 168px;
 	height: 41px;
 	border: none;
 	background-color: #e75d14 !important;
@@ -493,7 +493,7 @@ a {
       height: 40px !important;
  }
 	.btn-log{
-		width: 165px;
+		min-width: 165px;
 		min-height: 40px;
 		border: none;
 		background-color: #e75d14 !important;
@@ -2292,6 +2292,9 @@ fieldset {
 
 
 .dash-base .merchant-box {line-height: 160px;}
+
+.w100 { width: 100% !important;}
+
 
 .mt0 { margin-top: 0px!important;}
 .mt20{

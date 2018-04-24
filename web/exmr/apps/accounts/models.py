@@ -205,11 +205,12 @@ ACCOUNT_TYPE = (
         ('google_authenticator', 'Google Authenticator/TOTP'),
     )
 
+
 class TwoFactorAccount(models.Model):
     """
         model to hold totp two factor authentication details
     """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='get_user_2fa')
     time = models.DateTimeField(auto_now_add=True)
     account_name = models.CharField(max_length=128)
     account_type = models.CharField(max_length=20, choices=ACCOUNT_TYPE)

@@ -250,14 +250,20 @@ class CreateTwoFactorAccount(LoginRequiredMixin, CreateView):
         creating new two factor authentication account for current user
     """
     model = TwoFactorAccount
-    fields = ['account_name','totp']
-    template_name = 'accounts/create_2fa_account.html'
+    fields = ['account_name', 'totp']
+    template_name = 'accounts/2fa_account.html'
     success_url = reverse_lazy('accounts:2fa_list')
     key = pyotp.random_base32()
 
+    def get_context_data(self, **kwargs):
+        context = super(CreateTwoFactorAccount, self).get_context_data(**kwargs)
+        context['object_list'] = self.request.user.get_user_2fa.all()
+        return context
+
     def form_valid(self, form):
         """
-            modifing form data before validation
+        modifying form data before validation
+
         """
         totp_code = self.request.POST.get('totp')
         totp = pyotp.TOTP(self.key)

@@ -6,11 +6,11 @@
   
   @media only screen and (max-width: 1200px) {
     .btn-footer{
-      width: 80%;
+      /* width: 80%; */
     }
-  
+
   }
-  
+
   @media only screen and (max-width: 1080px) {
     .container{
       width: 100%;
@@ -22,17 +22,17 @@
   }
 
   }
-  
+
   @media only screen and (max-width: 1024px) {
     .menu-nav {
         margin: 21px 8px 3px 1px !important;
         font-size: 11px !important;
-    
+
     }
-  
+
 .head-box{
       height: 75  px;;
-    
+
     }
     .coin-box{
       width: 94.3%;
@@ -60,7 +60,7 @@
       width: 206px !important;
     }
     .btn-footer {
-      width: 120px;
+      /* width: 120px; */
   }
   .apple-icon{
     width: 153px;

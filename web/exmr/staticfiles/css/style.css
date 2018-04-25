@@ -2331,7 +2331,16 @@ fieldset {
     background-color: #e75d13;
     border-color: #e8ebef;
 }
-
+.bootbox-confirm .btn-primary{
+	color: #fff;
+    background-color: #e75d13!important;
+    border-color: #e8ebef!important;
+}
+.bootbox-confirm .btn-primary:hover{
+	color: #fff;
+    background-color: #e75d13;
+    border-color: #e8ebef;
+}
 .two-fa-table{
 	min-height: 500px;
   }

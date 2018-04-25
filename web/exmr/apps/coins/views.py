@@ -1,10 +1,12 @@
-from django.views.generic import ListView, FormView, TemplateView
+from django.views.generic import ListView, FormView, TemplateView, View
+from django.shortcuts import HttpResponse, render, redirect
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 
 from apps.coins.forms import ConvertRequestForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest
-
+from apps.coins.utils import *
+from apps.accounts.models import User
 
 class SupportedCoinView(ListView):
 
@@ -81,3 +83,15 @@ class CoinConversionFinalView(TemplateView):
         if self.request.session.get('coin_request_id'):
             del self.request.session['coin_request_id']
         return context
+
+
+class NewCoinAddr(View):
+    def post(self, request, *args, **kwargs):
+        currency = self.request.POST.get('currency')
+        username = self.request.POST.get('user')
+        user = User.objects.get(username=username)
+        try:
+            addr = create_wallet(user, currency)
+            return HttpResponse(json.dumps({"success": True, "addr": addr}), content_type='application/json')
+        except:
+            return HttpResponse(json.dumps({"error": "An error occured"}), content_type='application/json')

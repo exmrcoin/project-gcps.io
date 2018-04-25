@@ -109,3 +109,27 @@ class CoinConvertRequest(models.Model):
     class Meta:
         verbose_name = _('Coin Conversion Request')
         verbose_name_plural = _('Coin Conversion Requests')
+
+class WalletAddress(models.Model):
+    """
+    Model to save the coin addresses generated for each user
+    """
+    address = models.CharField(max_length=500, blank=True, default="")
+
+    def __str__(self):
+        return self.address
+
+class Wallet(models.Model):
+    """
+    Model to save the coin wallet for each user
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.ForeignKey(Coin, on_delete=models.CASCADE)
+    addresses = models.ManyToManyField(WalletAddress) 
+    private = models.CharField(max_length=500, blank=True, default="")
+    public = models.CharField(max_length=500, blank=True, default="")
+    words = models.CharField(max_length=500, blank=True, default="")
+    paymentid = models.CharField(max_length=500, blank=True, default="")
+
+    def __str__(self):
+        return self.user.username + '_' + self.name.code  

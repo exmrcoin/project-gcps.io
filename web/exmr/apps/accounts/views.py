@@ -1,27 +1,32 @@
 import pyotp
 
-from django.conf import settings
 from django import forms
-from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+from django.views import View
+from django.urls import reverse
+from django.conf import settings
 from django.contrib import messages
+from django.urls import reverse_lazy
+from django.core.mail import send_mail
 from django.contrib.auth.models import User
-from django.shortcuts import get_object_or_404, render, redirect
-from django.views.generic import CreateView, TemplateView, FormView, UpdateView
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
-from django.contrib.sites.shortcuts import get_current_site
-from django.utils.translation import ugettext_lazy as _
-from django.urls import reverse_lazy
-from django.views import View
-from django.core.mail import send_mail
 from django.utils.decorators import method_decorator
-from django.urls import reverse
+from django.utils.translation import ugettext_lazy as _
+from django.contrib.sites.shortcuts import get_current_site
+from django.shortcuts import get_object_or_404, render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+from django.views.generic import CreateView, TemplateView, FormView, UpdateView
 
 from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, Address
 from apps.accounts.decorators import ckeck_2fa
+from apps.coins.utils import *
+from apps.coins.models import Coin, Wallet
 from apps.common.utils import generate_key, JSONResponseMixin, get_pin
 from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm, IPNSettingsForm, \
-     AddressForm
+    AddressForm
+
+
+CURRENCIES = ['BTC']
 
 
 class SignUpView(JSONResponseMixin, CreateView):
@@ -54,12 +59,14 @@ class SignUpView(JSONResponseMixin, CreateView):
         :param profile:
         :return:
         """
-        profile_activation, created = ProfileActivation.objects.get_or_create(user=profile.user)
+        profile_activation, created = ProfileActivation.objects.get_or_create(
+            user=profile.user)
         if created or profile_activation.expired:
             profile_activation.activation_key = generate_key(64)
             profile_activation.expired = False
         profile_activation.save()
-        profile_activation.send_activation_email(get_current_site(self.request))
+        profile_activation.send_activation_email(
+            get_current_site(self.request))
 
 
 class SignUpCompleteView(TemplateView):
@@ -71,8 +78,39 @@ class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/dashboard.html'
 
 
+class WalletsView(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/wallets.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(WalletsView, self).get_context_data(**kwargs)
+        for currency in CURRENCIES:
+            coin = Coin.objects.get(code=currency)
+            if not Wallet.objects.filter(user=self.request.user, name=coin):
+                create_wallet(self.request.user, currency)
+        context['coin_list'] = {
+            'BTC': '1',
+            'BCH': '2',
+            'BTG': '3',
+            'ETH': '4',
+            'XMR': '5',
+            'LTC': '6',
+            'XRP': '7',
+            'ADA': '8',
+            'XLM': '9',
+            'EOS': '10',
+            'NEO': '11',
+            'IOT': '12',
+            'DASH': '13',
+            'TRX': '14',
+            'XEM': '15'
+        }
+        context['wallets'] = Wallet.objects.filter(user=self.request.user)
+        return context
+
+
 class TransactionHistoryView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/payment-history.html'
+
 
 @method_decorator(ckeck_2fa, name='dispatch')
 class AddressView(LoginRequiredMixin, CreateView):
@@ -96,7 +134,7 @@ class AddressView(LoginRequiredMixin, CreateView):
         if commit:
             self.object.save()
         messages.add_message(self.request, messages.INFO,
-                                 'Address details have been stored successfully')
+                             'Address details have been stored successfully')
         return super(AddressView, self).form_valid(form)
 
 
@@ -111,7 +149,8 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
     success_url = reverse_lazy('accounts:settings')
 
     def get_object(self, queryset=None):
-        user_profile, created = Profile.objects.get_or_create(user=self.request.user)
+        user_profile, created = Profile.objects.get_or_create(
+            user=self.request.user)
         return user_profile
 
     def get_initial(self):
@@ -128,7 +167,8 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
         initial['date_format'] = user_profile.date_format
         initial['time_format'] = user_profile.time_format
         initial['merchant_id'] = user_profile.merchant_id
-        initial['ref_url'] = self.request.scheme +"://"+ self.request.META['HTTP_HOST'] + "?ref="  + user_profile.merchant_id
+        initial['ref_url'] = self.request.scheme + "://" + \
+            self.request.META['HTTP_HOST'] + "?ref=" + user_profile.merchant_id
         initial['gender'] = user_profile.gender
         return initial
 
@@ -137,7 +177,8 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
         context['public_info_form'] = PublicInfoForm(instance=self.object)
         context['security_form'] = LoginSecurityForm(instance=self.object)
         context['ipn_form'] = IPNSettingsForm(instance=self.object)
-        context['ref_url'] = self.request.scheme + "://" + self.request.META['HTTP_HOST'] + "?ref=" + self.object.merchant_id
+        context['ref_url'] = self.request.scheme + "://" + \
+            self.request.META['HTTP_HOST'] + "?ref=" + self.object.merchant_id
         return context
 
     def form_invalid(self, form):
@@ -245,7 +286,8 @@ class ProfileActivationView(TemplateView):
                 act_obj.user.save()
                 act_obj.expired = True
                 act_obj.save()
-                context['status'] = _('Account activated <br><p>Please <a href=/login>login</a><p>')
+                context['status'] = _(
+                    'Account activated <br><p>Please <a href=/login>login</a><p>')
         return context
 
 
@@ -279,7 +321,7 @@ class TwoFactorAccountView(LoginRequiredMixin, CreateView):
             form.instance.account_type = 'google_authenticator'
             form.instance.totp = None
             self.key = pyotp.random_base32()
-            
+
             return super().form_valid(form)
         else:
             form.add_error('totp', 'Invalid Authentication Code')
@@ -322,7 +364,7 @@ class Verify2FAView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
 
         if request.user.get_profile.two_factor_auth == 0 or \
-        not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
+                not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
             two_factor_type = 'Email'
             request.session['email_otp'] = get_pin()
 
@@ -347,15 +389,16 @@ class Verify2FAView(LoginRequiredMixin, View):
         otp_code = self.request.POST.get('otp')
 
         if request.user.get_profile.two_factor_auth == 0 or \
-        not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
+                not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
             two_factor_type = 'Email'
-            
+
             if request.session.get('email_otp') == otp_code:
                 request.session['2fa_verified'] = True
                 return redirect(reverse('accounts:profile'))
 
         elif request.user.get_profile.two_factor_auth == 2:
-            auth_accounts = TwoFactorAccount.objects.filter(account_type='google_authenticator')
+            auth_accounts = TwoFactorAccount.objects.filter(
+                account_type='google_authenticator')
             two_factor_type = 'Google'
 
             for auth_account in auth_accounts:
@@ -369,6 +412,5 @@ class Verify2FAView(LoginRequiredMixin, View):
             'two_factor_type': two_factor_type,
             'error': 'Incorrect Verification Code'
         }
-        
-        return render(request, self.template_name, context)
 
+        return render(request, self.template_name, context)

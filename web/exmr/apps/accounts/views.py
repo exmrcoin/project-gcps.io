@@ -86,9 +86,6 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         for currency in CURRENCIES:
             coin = Coin.objects.get(code=currency)
             if not Wallet.objects.filter(user=self.request.user, name=coin):
-
-                import pdb
-                pdb.set_trace()
                 create_wallet(self.request.user, currency)
         context['coin_list'] = {
             'BTC': '1',

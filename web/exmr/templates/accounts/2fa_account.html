@@ -32,13 +32,12 @@
         </div>
 
         <div id="myTabContent" class="tab-content">
-            <div role="tabpanel" class="tab-pane fade in active" id="profile" aria-labelledby="home-tab">
+            <div role="tabpanel" class="tab-pane fade in" id="home" aria-labelledby="home-tab">
             <div class="card">
                     <div class="card-body">
 
                         <!--Table-->
-                        <table class="table table-border table-responsive-md table-fixed">
-                            {% if object_list %}
+                        <table class="table table-border table-responsive-md table-fixed two-fa-table">
                             <!--Table head-->
                             <thead>
                             <tr class="table-top">
@@ -57,15 +56,18 @@
                                     <td>{{ obj.account_name }}</td>
                                     <td>{{ obj.get_account_type_display }}</td>
                                     <td><a href="{% url 'accounts:delete_2fa' obj.pk %}"
-                                           class="btn btn-danger">Delete</a></td>
+                                           class="btn btn-delete">Delete</a></td>
+
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td class="table-style" colspan="5">{% trans '' %}No devices Found</td>
 
                                 </tr>
                             {% endfor %}
                             </tbody>
                             <!--Table body-->
-                        {% else %}
-                            <a href="{% url 'accounts:create_2fa' %}"><button type="button" class="btn btn-default btn-share">Add Authenticator</button></a>
-                        {% endif %}
+
                         </table>
                         <!--Table-->
 
@@ -73,9 +75,9 @@
                     </div>
                 </div>
             </div>
-            <div role="tabpanel" class="tab-pane fade in" id="home" aria-labelledby="home-tab">
+            <div role="tabpanel" class="tab-pane fade in active" id="profile" aria-labelledby="home-tab">
                 <div class="account-setting-wrap pt20">
-                <form id="address" action="{% url 'accounts:create_2fa' %}" method="post" novalidate>
+                <form id="address" action="{% url 'accounts:accounts_2fa' %}" method="post" novalidate>
                     {% csrf_token %}
                     <fieldset class="setting-form form-settings">
 
@@ -116,6 +118,8 @@
 {% endblock %}
 
 {% block extra_js %}
+
+    <script src="{% static 'js/bootbox.min.js' %}"></script>
     <script src="{% static 'js/qrious.js' %}"></script>
     <script>
         var qr_url = "otpauth://totp/exmr:{{user.email}}?secret={{view.key}}&amp;issuer=exmr"
@@ -124,5 +128,33 @@
             value: qr_url
         });
         qr.size = 200;
+
+        $('.btn-delete').on('click', function (e) {
+            var url = $(this).attr('href');
+            e.preventDefault();
+            bootbox.confirm({
+            title: "Delete 2FA Device",
+            message: "<form id='deleteDevice' action=\""+url+"\" method=\"post\">{% csrf_token %}\n" +
+            "    <p>Are you sure you want to delete ?</p>\n" +
+            "</form>",
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i> Cancel'
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i> Confirm'
+                }
+            },
+            callback: function (result) {
+                if(result){
+                    $('#deleteDevice').submit();
+                }
+            }
+        });
+
+        });
+
+
+
     </script>
 {% endblock %}

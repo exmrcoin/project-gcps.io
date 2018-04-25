@@ -2321,3 +2321,17 @@ fieldset {
 	float: left;
     margin: 23px;
 }
+.btn-delete{
+	color: #fff;
+    background-color: #e75d13;
+    border-color: #e8ebef;
+}
+.btn-delete:hover{
+	color: #fff;
+    background-color: #e75d13;
+    border-color: #e8ebef;
+}
+
+.two-fa-table{
+	min-height: 500px;
+  }

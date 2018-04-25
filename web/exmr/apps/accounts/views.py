@@ -17,7 +17,7 @@ from django.core.mail import send_mail
 from django.utils.decorators import method_decorator
 from django.urls import reverse
 
-from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount
+from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, Address
 from apps.accounts.decorators import ckeck_2fa
 from apps.common.utils import generate_key, JSONResponseMixin, get_pin
 from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm, IPNSettingsForm, \
@@ -79,6 +79,11 @@ class AddressView(LoginRequiredMixin, CreateView):
     template_name = 'accounts/address-book.html'
     form_class = AddressForm
     success_url = reverse_lazy('accounts:add_new_address_complete')
+
+    def get_context_data(self, **kwargs):
+        context = super(AddressView, self).get_context_data(**kwargs)
+        context['address'] = self.request.user.get_user_addresses.all()
+        return context
 
     def form_valid(self, form, commit=True):
         self.object = form.save(commit=False)
@@ -289,6 +294,16 @@ class DeleteTwoFactorAccount(LoginRequiredMixin, DeleteView):
     model = TwoFactorAccount
     success_url = reverse_lazy('accounts:accounts_2fa')
     template_name = 'accounts/2fa_confirm_delete.html'
+
+@method_decorator(ckeck_2fa, name='dispatch')
+class DeleteAddress(LoginRequiredMixin, DeleteView):
+    """
+        removing 2fa account from active list
+    """
+    model = Address
+    success_url = reverse_lazy('accounts:address')
+    # template_name = 'accounts/2fa_confirm_delete.html'
+
 
 
 @method_decorator(ckeck_2fa, name='dispatch')

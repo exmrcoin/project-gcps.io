@@ -2,10 +2,10 @@ import json
 import requests
 
 from bitcoinrpc.authproxy import AuthServiceProxy
-from apps.coins.models import Wallet, WalletAddress
+from apps.coins.models import Wallet, WalletAddress, Coin
 
 
-def create_btc_connection():
+def create_BTC_connection():
     """
     create connetion to bitcoin fullnode
     """
@@ -17,10 +17,11 @@ def create_wallet(user, currency):
     """
     create an account name in full node
     """
+    coin = Coin.objects.get(code=currency)
     wallet_username = user.username + "_exmr"
     access = globals()['create_'+currency+'_connection']()
     addr = access.getnewaddress(wallet_username)
-    wallet, created = Wallet.objects.get_or_create(user=user, name=currency)
+    wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
     wallet.addresses.add(WalletAddress.objects.create(address=addr))
     return addr
 
@@ -33,13 +34,13 @@ def get_balance(user, currency):
     access = globals()['create_'+currency+'_connection']()
     balance = access.getreceivedbyaccount(wallet_username)
 
-    
     transaction = Transaction.objects.filter(
         user__username=user, currency=currency)
     if transaction:
         balance = balance - sum([Decimal(obj.amount)for obj in transaction])
 
     return balance
+
 
 def wallet_info(currency):
     """

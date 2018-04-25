@@ -1,0 +1,234 @@
+{% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
+<div></div>
+{% load transaction_status %} {% block dashboard_heading %}
+<div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">WALLETS
+        </div>
+    </div>
+</div>
+{% endblock %} {% block dashboard_wrapper_content %}
+
+<div class="dashboard-wrapper">
+    <div class="dasboard-head">
+        <div class="img-dashboard">
+            <img src="{% static '/images/recevied.png' %} ">
+        </div>
+        <h3 class="trans">{% trans 'Wallets' %}</h3>
+    </div>
+    <div class="dashboard-table">
+        <div class="dasboard-head">
+            <div class="card">
+                <div class="card-body">
+
+                    <!--Table-->
+                    <table class="table table-border table-responsive-md table-fixed overflow">
+
+                        <!--Table head-->
+                        <thead>
+                            <tr class="table-top">
+
+                                <th>{% trans 'Coin Name' %}</th>
+                                <th>{% trans 'Code' %}</th>
+                                <th>{% trans 'Balance' %}</th>
+                                <th>{% trans 'Value' %}</th>
+                                <th>{% trans 'Commands' %}</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <!-- <tr>
+                                <td class="table-style" colspan="5">{% trans 'No Payment Found' %}</td>
+
+                            </tr> -->
+                            {% for obj in wallets %}
+                            <tr class="table-th">
+                                <th>
+                                    <img src="{% static 'images/coins/' %}{{ obj.name.code }}.png" class="wallets-img">
+                                    <span>{{ obj.name }}</span>
+                                </th>
+                                <th>
+                                    <span>{{ obj.name.code }}</span>
+                                </th>
+                                <th>{% get_bal_coin obj.name request.user.username %}</th>
+                                <th>Value</th>
+                                <th style="width: 150px;">
+                                    <div class="btn-group " style="width: 100%;">
+                                        <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="dropdown" aria-expanded="true">BTC Options
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="#" data-toggle="modal" data-target="#receiveModal" onclick="receive_coin('{{request.user}}', '{{obj.name.code}}', {{ forloop.counter}})">
+                                                    <span class="glyphicon glyphicon-import"></span> Deposit / Receive</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Send / Withdraw</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i> Auto-Sweep
+                                                    <sup>3</sup>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-space-shuttle" aria-hidden="true"></i> Diversify your Portfolio</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="glyphicon glyphicon-lock"></span> Lock in Vault</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="glyphicon glyphicon-import"></span> Deposit History</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Withdrawal History</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Transfer History</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </th>
+
+
+
+                                </th>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <!--Table body-->
+
+                    </table>
+                    <!--Table-->
+                    <!-- modal -->
+                    <!-- Modal -->
+                    <div class="modal fade" id="receiveModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3 class="modal-title text-capitalize" id="LongTitle"> Your
+                                        <span class="text-uppercase" id="coin_name"></span> Wallet Address</h3>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body text-center">
+
+                                    <img id="qr-chart" src="" + class="col-8 img-fluid"></img>
+
+                                    <div class="col-12 wallet-address-span">
+                                        <span class="col-10" style="word-wrap:break-word;" id="coin_addr_input"></span>
+
+                                        <button class="glyphicon glyphicon-copy btn1 btn-empty col-2" data-clipboard-target="#coin_addr_input">
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <span>
+                                        <strong>send only
+                                            <span id="coin_name2" class="text-uppercase"></span>
+                                            to this address.</strong>
+                                        Sending any other altcoin, will result in permanent loss.
+                                    </span>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- modal -->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{% endblock %} {% block extra_js %}
+<script>
+    function modal_loading(currency) {
+        $("#coin_name").text(currency);
+        $("#coin_name1").text(currency);
+        $("#coin_name2").text(currency);
+        $('#qr-chart').addClass('blink');
+        $('#coin_addr_input').addClass('blink');
+        $("#coin_addr_input").text("Creating a new address, please wait.");
+        $("#qr-chart").attr("src", "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=dummydata");
+        $("#coin-modal").modal("show")
+
+    }
+</script>
+<script>
+    function receive_coin(user, currency, counter) {
+        modal_loading(currency);
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: "{% url 'coins:newaddr' %}",
+            data: {
+                'currency': currency,
+                'user': user,
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+            },
+            success: function (data) {
+                console.log(data);
+                $("#coin_name").text(currency);
+                $("#coin_name1").text(currency);
+                $("#coin_name2").text(currency);
+                $('#qr-chart').removeClass('blink');
+                $('#coin_addr_input').removeClass('blink');
+                $("#qr-chart").attr("src", "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=" + data.addr);
+                $("#coin_addr_input").text(data.addr);
+
+            }
+        });
+    }
+</script>
+<script src="{% static 'js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'js/clipboard2.min.js' %}"></script>
+<script>
+
+    $('.btn1').tooltip({
+        trigger: 'click',
+        placement: 'bottom'
+    });
+
+    function setTooltip(btn, message) {
+        btn.tooltip('hide')
+            .attr('data-original-title', message)
+            .tooltip('show');
+    }
+
+    function hideTooltip(btn) {
+        setTimeout(function () {
+            btn.tooltip('hide');
+        }, 1000);
+    }
+
+    // Clipboard
+
+    var clipboard = new Clipboard('.btn1');
+
+    clipboard.on('success', function (e) {
+        var btn = $(e.trigger);
+        setTooltip(btn, 'Copied!');
+        hideTooltip(btn);
+    });
+
+    clipboard.on('error', function (e) {
+        var btn = $(e.trigger);
+        setTooltip('Failed!');
+        hideTooltip(btn);
+    });
+
+
+</script> {% endblock %}

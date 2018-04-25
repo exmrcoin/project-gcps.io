@@ -114,8 +114,25 @@ a {
 }    <section>
 
 
-
-
+/* padding */
+.p-3{
+	padding: 2.5rem;
+}
+.p-4{
+	padding: 3rem;
+}
+.p-5{
+	padding: 4rem;
+}
+.p-1{
+	padding: 1rem;
+}
+.p-2{
+	padding: 2rem;
+}
+.p-0{
+	padding: 0;
+}
 /*====================== scroll =========*/
 
   p {
@@ -1150,6 +1167,15 @@ fieldset {
 .top-sec{
 	margin-top: 12px;
 }
+.wallets-img{
+	height: 40px;
+	border: none;
+}
+.overflow{
+	overflow: scroll;
+}
+
+
 /**
  * Responsive Bootstrap Tabs by @hayatbiralem
  * 15 May 2015
@@ -2344,3 +2370,20 @@ fieldset {
 .two-fa-table{
 	min-height: 500px;
   }
+
+/* wallet */
+th{
+	vertical-align: middle;
+}
+.wallet-address-span {
+    padding: 10px;
+    border-radius: 25px;
+    background: rgb(232, 232, 232);
+}
+.btn-empty{
+	background: none;
+	border: none;
+}
+.table-th >th{
+	vertical-align: middle !important;
+}

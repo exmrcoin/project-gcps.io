@@ -27,6 +27,7 @@ urlpatterns = [
     path('2fa-accounts/', views.TwoFactorAccountView.as_view(), name='accounts_2fa'),
     # path('2fa-list/', views.TwoFactorAccountList.as_view(), name='2fa_list'),
     path('delete-2fa/<int:pk>/', views.DeleteTwoFactorAccount.as_view(), name='delete_2fa'),
+    path('delete-address/<int:pk>/', views.DeleteAddress.as_view(), name='delete_address'),
     path('verify-2fa/', views.Verify2FAView.as_view(), name='verify_2fa'),
 
 ]

@@ -79,6 +79,8 @@
                                     {% endfor %}
                                     </tbody>
                                     <!--Table body-->
+                                {% else %}
+                                    <td class="table-style" colspan="5">{% trans '' %}No Address Found</td>
                                 {% endif %}
                             </table>
                             <!--Table body-->
@@ -152,7 +154,6 @@
                                 {{ form.phone_number.errors }}
                             </div>
                             <div class="form-group col-md-12">
-                                <button type="submit" class="btn address-btn btn-address">Nevermind</button>
                                 <button type="submit" class="btn address-btn">Save Address</button>
                             </div>
                         </fieldset>
@@ -174,24 +175,24 @@
             var url = $(this).attr('href');
             e.preventDefault();
             bootbox.confirm({
-            title: "Delete Address Device",
-            message: "<form id='deleteAddress' action=\""+url+"\" method=\"post\">{% csrf_token %}\n" +
-            "    <p>Are you sure you want to delete ?</p>\n" +
-            "</form>",
-            buttons: {
-                cancel: {
-                    label: '<i class="fa fa-times"></i> Cancel'
+                title: "Delete Address Device",
+                message: "<form id='deleteAddress' action=\""+url+"\" method=\"post\">{% csrf_token %}\n" +
+                "    <p>Are you sure you want to delete ?</p>\n" +
+                "</form>",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Cancel'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Confirm'
+                    }
                 },
-                confirm: {
-                    label: '<i class="fa fa-check"></i> Confirm'
+                callback: function (result) {
+                    if(result){
+                        $('#deleteAddress').submit();
+                    }
                 }
-            },
-            callback: function (result) {
-                if(result){
-                    $('#deleteAddress').submit();
-                }
-            }
-        });
+            });
 
         });
 

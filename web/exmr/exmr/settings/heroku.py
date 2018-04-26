@@ -2,7 +2,7 @@ import dj_database_url
 
 from .base import *
 
-ALLOWED_HOSTS = ['get-crypto-payments.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 # Heroku postgres settings
 db_from_env = dj_database_url.config()

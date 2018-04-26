@@ -1651,16 +1651,15 @@ fieldset {
     color: #e75d14;
     cursor: pointer;
 }
-
-.merchant-box01 {
-    border: solid 1px #f1eded;
-    height: 250px;
-    width: 23.5% !important;
-    margin-left: 13px;
-    width: 23.5% !important;
-    margin-left: 13px;
-    margin-top: 10px;
-    margin-bottom: 30px;
+.merchant-box01{
+	border: solid 1px #f1eded;
+	min-height: 250px;
+	width: 23.5% !important;
+	margin-left: 13px;
+	width: 23.5% !important;
+	margin-left: 13px;
+	margin-top: 10px;
+	margin-bottom: 30px;
 }
 
 .icon-merchant {
@@ -2439,9 +2438,11 @@ fieldset {
     width: 20px;
     margin-top: -6px;
 }
-
-.icon-wallet-name {
-    margin-left: 14px;
+.wallets-img{
+	height: 40px;
+}
+.icon-wallet-name{
+	margin-left: 14px;
 }
 
 .sub-head-line-history {

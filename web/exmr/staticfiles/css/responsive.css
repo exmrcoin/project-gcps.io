@@ -271,7 +271,7 @@ width: 96.3%;
   width: 91% !important;
   margin: 0 auto;
   margin-bottom: 5px;
-
+  text-align: center;
 }
 .merchant-one {
   /* height: 200px; */
@@ -280,7 +280,8 @@ width: 96.3%;
   /* line-height: 98px; */
 }
 .merchant-box01 ul{
-  padding-left: 195px !important;
+  padding-left: 0px !important;
+  list-style:  none;
 }
 .head-charity-line{
   text-align: center;
@@ -443,7 +444,7 @@ width: 96.3%;
   /* line-height: 98px; */
 }
 .merchant-box01 ul{
-  padding-left: 195px !important;
+  /* padding-left: 195px !important; */
 }
 .dashboard-wrapper p {
   padding: 13px 0px 0px 12px;
@@ -590,7 +591,7 @@ width: 96.3%;
     /* line-height: 98px; */
   }
   .merchant-box01 ul{
-    padding-left: 195px !important;
+    /* padding-left: 195px !important; */
   }
   .dashboard-wrapper p {
     padding: 13px 0px 0px 12px;
@@ -716,7 +717,7 @@ width: 96.3%;
       /* line-height: 98px; */
     }
     .merchant-box01 ul{
-      padding-left: 195px !important;
+      /* padding-left: 195px !important; */
     }
     .dashboard-wrapper p {
       padding: 13px 0px 0px 12px;
@@ -849,7 +850,7 @@ width: 96.3%;
     /* line-height: 98px; */
   }
   .merchant-box01 ul{
-    padding-left: 125px !important;
+    /* padding-left: 125px !important; */
   }
   .dashboard-wrapper p {
     padding: 13px 0px 0px 12px;
@@ -961,7 +962,7 @@ width: 96.3%;
     /* line-height: 98px; */
   }
   .merchant-box01 ul{
-    padding-left: 125px !important;
+    /* padding-left: 125px !important; */
   }
   .dashboard-wrapper p {
     padding: 13px 0px 0px 12px;
@@ -1093,7 +1094,7 @@ width: 96.3%;
   /* line-height: 98px; */
 }
 .merchant-box01 ul{
-  padding-left: 95px !important;
+  /* padding-left: 95px !important; */
 }
 .dashboard-wrapper p {
   padding: 13px 0px 0px 12px;

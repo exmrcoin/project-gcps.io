@@ -134,7 +134,7 @@
     <orderEntry type="library" name="calligraphy-2.3.0" level="project" />
     <orderEntry type="library" scope="TEST" name="junit-4.12" level="project" />
     <orderEntry type="library" name="design-26.0.2" level="project" />
-    <orderEntry type="library" name="play-service-tasks-11.0.2" level="project" />
+    <orderEntry type="library" name="play-services-tasks-11.0.2" level="project" />
     <orderEntry type="library" name="multidex-1.0.2" level="project" />
     <orderEntry type="library" scope="TEST" name="rules-1.0.1" level="project" />
   </component>

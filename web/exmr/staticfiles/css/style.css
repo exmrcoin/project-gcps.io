@@ -1456,14 +1456,13 @@ fieldset {
 }
 .merchant-box01{
 	border: solid 1px #f1eded;
-	height: 250px;
+	min-height: 250px;
 	width: 23.5% !important;
 	margin-left: 13px;
 	width: 23.5% !important;
 	margin-left: 13px;
 	margin-top: 10px;
 	margin-bottom: 30px;
-
 }
 .icon-merchant{
     height: 100px;
@@ -2148,6 +2147,9 @@ fieldset {
 .wallet-icon{
 	width: 20px;
     margin-top: -6px;
+}
+.wallets-img{
+	height: 40px;
 }
 .icon-wallet-name{
 	margin-left: 14px;

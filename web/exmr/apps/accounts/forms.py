@@ -5,7 +5,6 @@ import pytz
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode
@@ -102,7 +101,6 @@ class UpdateBasicProfileForm(forms.ModelForm):
                 raise forms.ValidationError("Emails do not match.")
         return cleaned_data
 
-
     def clean_email(self):
         email = self.cleaned_data.get('email')
         if email and User.objects.filter(email=email).exclude(pk=self.instance.user.pk).exists():
@@ -117,13 +115,14 @@ class PublicInfoForm(forms.ModelForm):
         fields = ['public_name', 'public_email', 'public_url', 'use_gravatar']
 
 
-
 class AddressForm(forms.ModelForm):
+
     phone_number = forms.CharField()
+
     class Meta:
         model = Address
         fields = ['address_name', 'first_name', 'last_name', 'address_line_1',
-                  'address_line_2','country','city','state','postal_code','phone_number',
+                  'address_line_2', 'country', 'city', 'state', 'postal_code', 'phone_number',
                   'is_default'
                   ]
 
@@ -145,6 +144,13 @@ class LoginSecurityForm(forms.ModelForm):
         model = Profile
         fields = ['password', 'pgp_gpg_public_key', 'current_password', 'confirm_password',
                   'two_factor_auth', 'email_confirmation_transaction']
+
+    def clean_two_factor_auth(self):
+
+        auth_method = self.cleaned_data.get('two_factor_auth')
+        if not self.instance.user.get_user_2fa.exists():
+            raise forms.ValidationError('Please add a 2FA device to enable this method')
+        return auth_method
 
 
 class IPNSettingsForm(forms.ModelForm):

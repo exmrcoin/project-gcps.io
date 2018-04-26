@@ -114,25 +114,8 @@ a {
 }    <section>
 
 
-/* padding */
-.p-3{
-	padding: 2.5rem;
-}
-.p-4{
-	padding: 3rem;
-}
-.p-5{
-	padding: 4rem;
-}
-.p-1{
-	padding: 1rem;
-}
-.p-2{
-	padding: 2rem;
-}
-.p-0{
-	padding: 0;
-}
+
+
 /*====================== scroll =========*/
 
   p {
@@ -1037,6 +1020,7 @@ fieldset {
   color: red;
   font-size: 12px;
   display: none;
+  position: absolute;
 }
 .success {
   color: green;
@@ -1167,15 +1151,6 @@ fieldset {
 .top-sec{
 	margin-top: 12px;
 }
-.wallets-img{
-	height: 40px;
-	border: none;
-}
-.overflow{
-	overflow: scroll;
-}
-
-
 /**
  * Responsive Bootstrap Tabs by @hayatbiralem
  * 15 May 2015
@@ -1440,7 +1415,7 @@ fieldset {
 	background-color: #3c576e;
 }
 .merchant-one{
-	height: 200px;
+	/* height: 200px; */
 }
 
 
@@ -1451,25 +1426,24 @@ fieldset {
 
 }
 .merchant-box{
-	line-height: 135px;
 	height: auto;
 	text-align: center;
 	font-size: 24px;
 	/*font-weight: 600;*/
 	color: #fff;
-	padding: 10px 6px 12px 76px;
+	padding-top: 2em;
 }
 .merchant-tools p{
 	font-size: 18px;
 	color: #fff;
 	text-align: center;
-	/* padding-top: 21px; */
+	padding-bottom: 2em;
 }
 .merchant-toolp{
-	margin-bottom: 52px;
+	/* margin-bottom: 52px; */
 }
 .subline-p{
-	margin-top: -57px;
+	/* margin-top: -57px; */
 }
 .dashboard-wrapper  p{
 	padding: 13px 0px 0px 14px;
@@ -1557,6 +1531,7 @@ fieldset {
 	color: #fff;
 	float: right;
 	font-size: 14px;
+	right: 10px;
 }
 .down-box{
 	margin-top: -1px !important;
@@ -1906,7 +1881,7 @@ fieldset {
 	margin-bottom: 20px;
 }
 .coin-payment-head{
-	height: 150px !important;
+	/* height: 150px !important; */
 }
 .or{
 	text-align: center;
@@ -2050,7 +2025,7 @@ fieldset {
 }
 
 .coin-name{
-	color: #333333;
+	color: #ffffff;
 	text-align: right;
 }
 .popup-top{
@@ -2315,7 +2290,7 @@ fieldset {
 	}
 
 
-.dash-base .merchant-box {line-height: 160px;}
+.dash-base .merchant-box {/* line-height: 160px; */}
 
 .w100 { width: 100% !important;}
 
@@ -2370,20 +2345,3 @@ fieldset {
 .two-fa-table{
 	min-height: 500px;
   }
-
-/* wallet */
-th{
-	vertical-align: middle;
-}
-.wallet-address-span {
-    padding: 10px;
-    border-radius: 25px;
-    background: rgb(232, 232, 232);
-}
-.btn-empty{
-	background: none;
-	border: none;
-}
-.table-th >th{
-	vertical-align: middle !important;
-}

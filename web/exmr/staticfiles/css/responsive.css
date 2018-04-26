@@ -140,7 +140,7 @@ width: 96.3%;
       height: 150px;;
     }
     .coin-payment-head {
-      height: 115px !important;
+      /* height: 115px !important; */
   }
   .coin-box {
     width: 96.3%;
@@ -274,10 +274,10 @@ width: 96.3%;
 
 }
 .merchant-one {
-  height: 200px;
+  /* height: 200px; */
 }
 .merchant-box{
-  line-height: 98px;
+  /* line-height: 98px; */
 }
 .merchant-box01 ul{
   padding-left: 195px !important;
@@ -304,7 +304,7 @@ width: 96.3%;
   height: 150px;;
 }
 .coin-payment-head {
-  height: 115px !important;
+  /* height: 115px !important; */
 }
 .coin-box {
 width: 96.3%;
@@ -378,7 +378,7 @@ width: 96.3%;
 }
 .coin-icon-support {
   width: 33px;
-  display: block;
+  /* display: block; */
   margin: 0 auto;
 }
 .btn-gn{
@@ -437,10 +437,10 @@ width: 96.3%;
 
 }
 .merchant-one {
-  height: 200px;
+  /* height: 200px; */
 }
 .merchant-box{
-  line-height: 98px;
+  /* line-height: 98px; */
 }
 .merchant-box01 ul{
   padding-left: 195px !important;
@@ -484,7 +484,7 @@ width: 96.3%;
   height: 150px;;
 }
 .coin-payment-head {
-  height: 115px !important;
+  /* height: 115px !important; */
 }
 .coin-box {
 width: 96.3%;
@@ -584,10 +584,10 @@ width: 96.3%;
 
   }
   .merchant-one {
-    height: 200px;
+    /* height: 200px; */
   }
   .merchant-box{
-    line-height: 98px;
+    /* line-height: 98px; */
   }
   .merchant-box01 ul{
     padding-left: 195px !important;
@@ -631,7 +631,7 @@ width: 96.3%;
     height: 150px;;
   }
   .coin-payment-head {
-    height: 115px !important;
+    /* height: 115px !important; */
 }
 .coin-box {
   width: 96.3%;
@@ -710,10 +710,10 @@ width: 96.3%;
       margin-bottom: 5px;
     }
     .merchant-one {
-      height: 200px;
+      /* height: 200px; */
     }
     .merchant-box{
-      line-height: 98px;
+      /* line-height: 98px; */
     }
     .merchant-box01 ul{
       padding-left: 195px !important;
@@ -757,7 +757,7 @@ width: 96.3%;
       height: 150px;;
     }
     .coin-payment-head {
-      height: 115px !important;
+      /* height: 115px !important; */
   }
   .coin-box {
     width: 96.3%;
@@ -843,10 +843,10 @@ width: 96.3%;
     margin-bottom: 5px;
   }
   .merchant-one {
-    height: 200px;
+    /* height: 200px; */
   }
   .merchant-box{
-    line-height: 98px;
+    /* line-height: 98px; */
   }
   .merchant-box01 ul{
     padding-left: 125px !important;
@@ -890,7 +890,7 @@ width: 96.3%;
     height: 150px;;
   }
   .coin-payment-head {
-    height: 115px !important;
+    /* height: 115px !important; */
 }
 .coin-box {
   width: 96.3%;
@@ -955,10 +955,10 @@ width: 96.3%;
     margin-bottom: 5px;
   }
   .merchant-one {
-    min-height: 200px;
+    /* min-height: 307px; */
   }
   .merchant-box{
-    line-height: 98px;
+    /* line-height: 98px; */
   }
   .merchant-box01 ul{
     padding-left: 125px !important;
@@ -1002,7 +1002,7 @@ width: 96.3%;
     height: 150px;;
   }
   .coin-payment-head {
-    height: 115px !important;
+    /* height: 115px !important; */
 }
 .coin-box {
   width: 96.3%;
@@ -1087,10 +1087,10 @@ width: 96.3%;
   margin-bottom: 5px;
 }
 .merchant-one {
-  height: 200px;
+  /* height: 200px; */
 }
 .merchant-box{
-  line-height: 98px;
+  /* line-height: 98px; */
 }
 .merchant-box01 ul{
   padding-left: 95px !important;
@@ -1137,7 +1137,7 @@ width: 96.3%;
   height: 150px;;
 }
 .coin-payment-head {
-  height: 115px !important;
+  /* height: 115px !important; */
 }
 .captcha-new-store{
   width: 100%;
@@ -1205,10 +1205,10 @@ width: 96.3%;
   margin-bottom: 5px;
 }
 .merchant-one {
-  height: 200px;
+  /* height: 200px; */
 }
 .merchant-box{
-  line-height: 98px;
+  /* line-height: 98px; */
 }
 .dashboard-wrapper p {
   padding: 13px 0px 0px 12px;
@@ -1252,7 +1252,7 @@ width: 96.3%;
   height: 150px;;
 }
 .coin-payment-head {
-  height: 115px !important;
+  /* height: 115px !important; */
 }
 .captcha-new-store{
   width: 100%;
@@ -1343,10 +1343,10 @@ width: 96.3%;
     margin-bottom: 5px;
   }
   .merchant-one {
-    height: 200px;
+    /* height: 200px; */
   }
   .merchant-box{
-    line-height: 139px;
+    /* line-height: 139px; */
   }
   .dashboard-wrapper p {
     padding: 13px 0px 0px 12px;
@@ -1390,7 +1390,7 @@ width: 96.3%;
     height: 150px;;
   }
   .coin-payment-head {
-    height: 115px !important;
+    /* height: 115px !important; */
 }
 .captcha-new-store{
   width: 100%;
@@ -1503,7 +1503,6 @@ width: 96.3%;
   margin-bottom: 5px;
 }
 .merchant-one {
-  height: 200px;
 }
 
 .dashboard-wrapper p {

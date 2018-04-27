@@ -279,10 +279,7 @@ width: 96.3%;
 .merchant-box{
   /* line-height: 98px; */
 }
-.merchant-box01 ul{
-  padding-left: 0px !important;
-  list-style:  none;
-}
+.merchant-box01 ul{display: inline-block;text-align: left;}
 .head-charity-line{
   text-align: center;
 }
@@ -368,7 +365,7 @@ width: 96.3%;
   float: left;
   position: relative;
   width: 100%;
-  text-align: center;
+  text-align: right;
 }
 .support-table tr td:last-child{
   display: block;
@@ -390,6 +387,27 @@ width: 96.3%;
 }
   }
   @media only screen and (max-width: 750px) {
+
+      .support-table	td:before {
+			/* Now like a table header */
+			position: absolute;
+			/* Top/left values mimic padding */
+			top: 6px;
+			left: 6px;
+			width: 11%;
+			padding-right: 10px;
+			white-space: nowrap;
+			font-weight: bold;
+		}
+
+
+        .support-table td:nth-of-type(1):before { content: "COIN NAME"; }
+        .support-table td:nth-of-type(2):before { content: "COD"; }
+		.support-table td:nth-of-type(3):before { content: "FEE "; }
+		.support-table td:nth-of-type(4):before { content: "CONFIRMS"; }
+		.support-table td:nth-of-type(5):before { content: "TO BTC "; }
+        .support-table td:nth-of-type(6):before { content: "EXPLORE"; }
+
 
   .btn-share { margin-left: 0px;}
 
@@ -1587,6 +1605,30 @@ width: 96.3%;
 
 @media only screen and (min-width: 768px) and (max-width: 1200px) {
 
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 5px 5px;
+}
+    .btn-log1,.btn-sign {
+
+    font-size: 11px !important;
+}
+
+
+    .merchant-box01 {
+
+    width:100% !important;
+
+}
+
+    .dashboard-wrapper ul {
+    text-align: left;
+    padding-left: 0px !important;
+    display: inline-block;
+    }
+
+.merchant-box01 {text-align: center;}
 
     .navbar-nav>li>a {font-size: 9px;}
 

@@ -19,7 +19,7 @@ a {
 }
 
 .nave-menu {
-    height: 93px;
+    /* height: 93px; */
     border: inherit;
     box-shadow: 0 -3px 11px 2px #b3b1b1;
     color: black;
@@ -1776,10 +1776,6 @@ fieldset {
     background-color: #3c576e;
 }
 
-.merchant-one {
-    height: 200px;
-}
-
 .merchant-tools h2 {
     text-align: center;
     font-size: 24px;
@@ -1800,7 +1796,7 @@ fieldset {
     font-size: 18px;
     color: #fff;
     text-align: center;
-    /* padding-top: 21px; */
+    padding-bottom: 21px;
 }
 
 .merchant-toolp {
@@ -2306,7 +2302,7 @@ fieldset {
 }
 
 .coin-payment-head {
-    height: 150px !important;
+    /* height: 150px !important; */
 }
 
 .or {
@@ -2784,7 +2780,7 @@ fieldset {
 }
 
 .dash-base .merchant-box {
-    line-height: 160px;
+    /* line-height: 160px; */
 }
 
 .w100 {
@@ -2897,7 +2893,11 @@ li.menu-box {    width: 266px;
     margin-left: 11px;
     cursor: pointer;}
 
+.signup-form-sec .error  {position: absolute;}
 
 
+.signup-form-sec .form-group {
+    margin-bottom: 28px;
+}
 
 /*****************test*******************/

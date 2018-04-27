@@ -20,6 +20,7 @@ def create_wallet(user, currency):
     coin = Coin.objects.get(code=currency)
     wallet_username = user.username + "_exmr"
     access = globals()['create_'+currency+'_connection']()
+    print (access)
     addr = access.getnewaddress(wallet_username)
     wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
     wallet.addresses.add(WalletAddress.objects.create(address=addr))

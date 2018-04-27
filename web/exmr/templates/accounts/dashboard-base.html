@@ -4,50 +4,35 @@
     <div class="container">
         <div class="dashboard-wrapper top-sec">
             <div class="dasboard-sec">
-                <div class="col-sm-2 dashboard-componatns">
-                    <div class="home-icon">
-                        <a href="{% url 'accounts:profile' %}">
-                            <img class="img-d-icon" src="{% static '/images/dash-icon1.png' %}">
-                        </a>
-                    </div>
-                    <a href="{% url 'accounts:profile' %}">
-                        <span class="dashboard-span">{% trans 'Home' %}</span>
+                <div class="col-xs-4 col-sm-2 dashboard-componatns box-0">
+                    <a href="{% url 'accounts:profile' %}" class="v-mid">
+                        <img class="img-responsive col-xs-12 col-md-6" src="{% static '/images/dash-icon1.png' %}">
+                        <span class="dashboard-span hidden-xs col-md-6 wallet-menu">{% trans 'Home' %}</span>
                     </a>
                 </div>
-                <div class="col-sm-2 dashboard-componatns">
-                    <div class="home-icon box-1">
-                        <img class="img-d-icon" src="{% static '/images/wallet.png' %}">
-                    </div>
+                <div class="col-xs-4 col-sm-2 dashboard-componatns box-1">
                     <a href="{% url 'accounts:wallets' %}">
-                        <span class="dashboard-span">{% trans 'Your Wallet' %}</span>
+                        <img class="img-responsive col-xs-12 col-md-6" src="{% static '/images/wallet.png' %}">
+                        <span class="dashboard-span hidden-xs col-md-6 wallet-menu">{% trans 'Your Wallet' %}</span>
                     </a>
                 </div>
-                <div class="col-sm-2 dashboard-componatns">
-                    <div class="home-icon box-2">
-                        <img class="img-d-icon" src="{% static '/images/coin01.png' %} ">
-                    </div>
-                    <span class="dashboard-span">{% trans 'Coin Settings' %}</span>
+                <div class="col-xs-4 col-sm-2 dashboard-componatns box-2">
+                    <img class="img-responsive col-xs-12 col-md-6" src="{% static '/images/coin01.png' %} ">
+                    <span class="dashboard-span hidden-xs col-md-6 wallet-menu">{% trans 'Coin Settings' %}</span>
                 </div>
-                <div class="col-sm-2 dashboard-componatns">
-
-                    <div class="home-icon box-3">
-                        <img class="img-d-icon" src="{% static '/images/bill-not.png' %}">
-                    </div>
+                <div class="col-xs-4 col-sm-2 dashboard-componatns box-3">
                     <a href="{% url 'accounts:transaction-history' %}">
-                        <span class="dashboard-span">{% trans 'Transaction History' %}</span>
+                        <img class="img-responsive col-xs-12 col-md-6" src="{% static '/images/bill-not.png' %}">
+                        <span class="dashboard-span hidden-xs col-md-6 wallet-menu">{% trans 'Transaction History' %}</span>
                     </a>
                 </div>
-                <div class="col-sm-2 dashboard-componatns">
-                    <div class="home-icon box-4">
-                        <img class="img-d-icon" src="{% static '/images/pos.png' %}">
-                    </div>
-                    <span class="dashboard-span">{% trans 'Quick POS' %}</span>
+                <div class="col-xs-4 col-sm-2 dashboard-componatns box-4">
+                    <img class="img-responsive col-xs-12 col-md-6" src="{% static '/images/pos.png' %}">
+                    <span class="dashboard-span hidden-xs col-md-6 wallet-menu">{% trans 'Quick POS' %}</span>
                 </div>
-                <div class="col-sm-2 dashboard-componatns">
-                    <div class="home-icon box-5">
-                        <img class="img-d-icon" src="{% static '/images/pay.png' %}">
-                    </div>
-                    <span class="dashboard-span">{% trans '$PayByName' %}</span>
+                <div class="col-xs-4 col-sm-2 dashboard-componatns box-5">
+                    <img class="img-responsive col-xs-12 col-md-6" src="{% static '/images/pay.png' %}">
+                    <span class="dashboard-span hidden-xs col-md-6 wallet-menu">{% trans '$PayByName' %}</span>
                 </div>
             </div>
         </div>

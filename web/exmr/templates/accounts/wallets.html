@@ -22,7 +22,7 @@
                 <div class="card-body">
 
                     <!--Table-->
-                    <table class="table table-border table-responsive-md table-fixed overflow">
+                    <table class="table table-border table-responsive-md table-fixed overflow table-scroll">
 
                         <!--Table head-->
                         <thead>
@@ -36,14 +36,14 @@
 
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-center">
 
                             <!-- <tr>
                                 <td class="table-style" colspan="5">{% trans 'No Payment Found' %}</td>
 
                             </tr> -->
                             {% for obj in wallets %}
-                            <tr class="table-th">
+                            <tr class="table-th text-center">
                                 <th>
                                     <img src="{% static 'images/coins/' %}{{ obj.name.code }}.png" class="wallets-img">
                                     <span>{{ obj.name }}</span>

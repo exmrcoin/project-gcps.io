@@ -18,7 +18,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.views.generic import CreateView, TemplateView, FormView, UpdateView
 
 from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, Address
-from apps.accounts.decorators import ckeck_2fa
+from apps.accounts.decorators import check_2fa
 from apps.coins.utils import *
 from apps.coins.models import Coin, Wallet
 from apps.common.utils import generate_key, JSONResponseMixin, get_pin
@@ -73,7 +73,7 @@ class SignUpCompleteView(TemplateView):
     template_name = 'accounts/signup_complete.html'
 
 
-@method_decorator(ckeck_2fa, name='dispatch')
+@method_decorator(check_2fa, name='dispatch')
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/dashboard.html'
 
@@ -112,7 +112,7 @@ class TransactionHistoryView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/payment-history.html'
 
 
-@method_decorator(ckeck_2fa, name='dispatch')
+@method_decorator(check_2fa, name='dispatch')
 class AddressView(LoginRequiredMixin, CreateView):
     template_name = 'accounts/address-book.html'
     form_class = AddressForm
@@ -142,7 +142,7 @@ class AddAddressCompleteView(TemplateView):
     template_name = 'common/message.html'
 
 
-@method_decorator(ckeck_2fa, name='dispatch')
+@method_decorator(check_2fa, name='dispatch')
 class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
     form_class = UpdateBasicProfileForm
     template_name = 'accounts/settings.html'
@@ -291,7 +291,7 @@ class ProfileActivationView(TemplateView):
         return context
 
 
-@method_decorator(ckeck_2fa, name='dispatch')
+@method_decorator(check_2fa, name='dispatch')
 class TwoFactorAccountView(LoginRequiredMixin, CreateView):
     """
         creating new two factor authentication account for current user
@@ -328,7 +328,7 @@ class TwoFactorAccountView(LoginRequiredMixin, CreateView):
             return self.form_invalid(form)
 
 
-@method_decorator(ckeck_2fa, name='dispatch')
+@method_decorator(check_2fa, name='dispatch')
 class DeleteTwoFactorAccount(LoginRequiredMixin, DeleteView):
     """
         removing 2fa account from active list
@@ -337,7 +337,7 @@ class DeleteTwoFactorAccount(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('accounts:accounts_2fa')
     template_name = 'accounts/2fa_confirm_delete.html'
 
-@method_decorator(ckeck_2fa, name='dispatch')
+@method_decorator(check_2fa, name='dispatch')
 class DeleteAddress(LoginRequiredMixin, DeleteView):
     """
         removing 2fa account from active list
@@ -348,7 +348,7 @@ class DeleteAddress(LoginRequiredMixin, DeleteView):
 
 
 
-@method_decorator(ckeck_2fa, name='dispatch')
+@method_decorator(check_2fa, name='dispatch')
 class TwoFactorAccountList(LoginRequiredMixin, ListView):
     """
         listing all active 2fa accounts

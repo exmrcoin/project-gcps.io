@@ -556,7 +556,7 @@ a {
 	}
 	.footer-head-menu{
 		color: #fff;
-		font-size: 16px;
+		font-size: 13px;
 		margin-top: 28px;
 	}
 	.footer-head-line{
@@ -564,10 +564,10 @@ a {
 	}
 	.footer-bg ul{
 	   padding: 8px 5px 4px 1px;
-       list-style: none;
-       color: #fff;
-       font-size: 14px;
-       line-height: 35px;
+	   list-style: none;
+	   color: #fff;
+	   font-size: 12px;
+	   line-height: 35px;
 	}
 	.footer-bg li:hover{
 		color:#ff6600;
@@ -1456,7 +1456,7 @@ fieldset {
 }
 .merchant-box01{
 	border: solid 1px #f1eded;
-	min-height: 250px;
+	min-height: 250px !important;
 	width: 23.5% !important;
 	margin-left: 13px;
 	width: 23.5% !important;
@@ -1515,6 +1515,7 @@ fieldset {
 .dashboard-wrapper ul{
 	padding: 0px;
 	/* margin-top: 18px; */
+	word-break:  break-word;
 }
 .directoru-menu{
     width: 100%;
@@ -2024,7 +2025,7 @@ fieldset {
 }
 
 .coin-name{
-	color: #ffffff;
+	/* color: #ffffff; */
 	text-align: right;
 }
 .popup-top{

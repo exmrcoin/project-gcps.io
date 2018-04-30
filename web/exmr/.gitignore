@@ -3,3 +3,4 @@
 exmr/dev.py
 db.sqlite3
 heroku_deploy.sh
+/static

@@ -1,7 +1,7 @@
 import os
 name = os.environ.get('ENV_NAME')
 
-if name == 'heroku':
+if name == 'aws':
     from .heroku import *
 elif name == 'production':
     from .production import *

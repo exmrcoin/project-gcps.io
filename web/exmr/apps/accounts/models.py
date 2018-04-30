@@ -133,17 +133,17 @@ class ProfileActivation(models.Model):
             'site': site,
         }
 
-        # send_email(activation_email_subject, ctx_dict, self.user.email, email_template_txt=activation_email_body,
-        #            email_template_html=activation_email_html)
+        send_email(activation_email_subject, ctx_dict, self.user.email, email_template_txt=activation_email_body,
+                   email_template_html=activation_email_html)
 
         # Temporary code to send email without template
 
-        current_site = Site.objects.get_current()
-        domain = current_site.domain
-
-        message = 'Please use the link to activate' \
-                  ' your account.'
-        send_mail(activation_email_subject, message, settings.DEFAULT_FROM_EMAIL, [self.user.email])
+        # current_site = Site.objects.get_current()
+        # domain = current_site.domain
+        #
+        # message = 'Please use the link to activate' \
+        #           ' your account.'
+        # send_mail(activation_email_subject, message, settings.DEFAULT_FROM_EMAIL, [self.user.email])
 
     def __str__(self):
         return self.user.username

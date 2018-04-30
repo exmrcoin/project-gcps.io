@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -29,3 +29,8 @@ EMAIL_HOST_PASSWORD = 'Gcp1234!!'
 EMAIL_PORT = 587
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+ADMINS = (
+   ('ME', 'krishnag.nair@techversantinfotech.com'),
+)
+MANAGERS = ADMINS

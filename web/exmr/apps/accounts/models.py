@@ -1,10 +1,14 @@
 from ckeditor.fields import RichTextField
+from django.conf import settings
+from django.core.mail import send_mail
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.crypto import get_random_string
+from django.contrib.sites.models import Site
 
 from timezone_field import TimeZoneField
 from django_countries.fields import CountryField
@@ -129,8 +133,19 @@ class ProfileActivation(models.Model):
             'site': site,
         }
 
-        send_email(activation_email_subject, ctx_dict, self.user.email, email_template_txt=activation_email_body,
-                   email_template_html=activation_email_html)
+        # send_email(activation_email_subject, ctx_dict, self.user.email, email_template_txt=activation_email_body,
+        #            email_template_html=activation_email_html)
+
+        # Temporary code to send email without template
+
+        current_site = Site.objects.get_current()
+        domain = current_site.domain
+
+        message = 'Please use the link to activate' \
+                  ' your account. http://%s%s' % (domain,
+                                                  reverse_lazy('accounts:registration_activate',
+                                                               kwargs={'key': self.activation_key}))
+        send_mail(activation_email_subject, message, settings.DEFAULT_FROM_EMAIL, [self.user.email])
 
     def __str__(self):
         return self.user.username

@@ -142,9 +142,7 @@ class ProfileActivation(models.Model):
         domain = current_site.domain
 
         message = 'Please use the link to activate' \
-                  ' your account. http://%s%s' % (domain,
-                                                  reverse_lazy('accounts:registration_activate',
-                                                               kwargs={'key': self.activation_key}))
+                  ' your account.'
         send_mail(activation_email_subject, message, settings.DEFAULT_FROM_EMAIL, [self.user.email])
 
     def __str__(self):

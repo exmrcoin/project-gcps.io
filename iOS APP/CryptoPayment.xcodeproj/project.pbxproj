@@ -6,7 +6,7 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXBuildFile section */
+/* Begin PBXBuildFile section  */
 		4B12BD7D6B4A20796500D422 /* Pods_CryptoPaymentUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99B175E3A4A78A82940A95E2 /* Pods_CryptoPaymentUITests.framework */; };
 		5D994F21E70A7333AC6A424E /* Pods_CryptoPaymentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A473337F50F1C64FF9D705C /* Pods_CryptoPaymentTests.framework */; };
 		A24536F4203C40BA00CDA2D4 /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = A24536F3203C40BA00CDA2D4 /* Alert.swift */; };

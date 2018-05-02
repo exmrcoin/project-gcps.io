@@ -1,6 +1,7 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models import Avg
 from django.utils.translation import ugettext_lazy as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -89,6 +90,29 @@ class Profile(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.since.strftime('%Y-%m-%d %H:%M')
+
+
+    @property
+    def positive(self):
+        rating = Feedback.objects.filter(rating__gt=2.5)
+        return rating.count()
+
+    @property
+    def negative(self):
+        return Feedback.objects.filter(rating__lt=2.5).count()
+        return rating.count()
+
+    @property
+    def average(self):
+        return Feedback.objects.all().aggregate(Avg('rating'))['rating__avg']
+
+    @property
+    def total_reviews(self):
+        return Feedback.objects.all().count()
+
+    @property
+    def neutral(self):
+        return Feedback.objects.all().filter(rating=2.5).count()
 
 
 @receiver(post_save, sender=Profile, dispatch_uid="update_merchant_id")
@@ -183,7 +207,6 @@ class Feedback(models.Model):
 
     def __str__(self):
         return '%s\'s feedback about %s' % (self.left_by.username, self.user.username)
-
 
 
 class NewsLetter(models.Model):

@@ -51,6 +51,8 @@ urlpatterns += i18n_patterns(
 
     path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'),
          name='forgot-password'),
+
+
 )
 
 

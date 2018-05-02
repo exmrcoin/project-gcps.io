@@ -17,7 +17,7 @@
 ➥albertnanita<br>
 ➥JulianIsrael<br>
 
-⌘ Alpha Version this June 2018 
-⌘ Beta Version this July 2018
-⌘ Official Launch this August 2018 
-⌘ First dividends this September 2018 
+⌘ Alpha Version this June 2018<br>:
+⌘ Beta Version this July 2018<br>
+⌘ Official Launch this August 2018<br>
+⌘ First dividends this September 2018 <br>

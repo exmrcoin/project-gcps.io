@@ -1,8 +1,10 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView, LogoutView, PasswordResetView
+from django.views.generic import TemplateView
 
 from apps.accounts import views
 from apps.accounts.forms import CustomPasswordResetForm
+from apps.accounts.views import FeedbackListView
 
 app_name = 'accounts'
 
@@ -29,5 +31,7 @@ urlpatterns = [
     path('delete-2fa/<int:pk>/', views.DeleteTwoFactorAccount.as_view(), name='delete_2fa'),
     path('delete-address/<int:pk>/', views.DeleteAddress.as_view(), name='delete_address'),
     path('verify-2fa/', views.Verify2FAView.as_view(), name='verify_2fa'),
+    path('feedback/<slug:slug>/', FeedbackListView.as_view()),
+    path('feedback/', FeedbackListView.as_view()),
 
 ]

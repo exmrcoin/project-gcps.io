@@ -17,7 +17,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.views.generic import CreateView, TemplateView, FormView, UpdateView
 
-from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, Address
+from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, Address, Feedback
 from apps.accounts.decorators import check_2fa
 from apps.coins.utils import *
 from apps.coins.models import Coin, Wallet
@@ -414,3 +414,18 @@ class Verify2FAView(LoginRequiredMixin, View):
         }
 
         return render(request, self.template_name, context)
+
+
+class FeedbackListView(ListView):
+    template_name = 'accounts/feedback.html'
+    model = Feedback
+    queryset = Feedback.objects.all()
+    context_object_name = 'feedback'
+
+    def get_context_data(self, *args, **kwargs):
+        slug = self.kwargs.get('slug')
+        context = super(FeedbackListView, self).get_context_data(**kwargs)
+        if slug:
+            self.user = get_object_or_404(User,id=slug)
+            context['user'] = self.user
+            return context

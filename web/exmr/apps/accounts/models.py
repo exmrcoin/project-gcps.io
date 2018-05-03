@@ -199,7 +199,7 @@ class Feedback(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     left_by = models.ForeignKey(User, verbose_name=_('left by'), on_delete=models.CASCADE, null=True, blank=True)
     blocked = models.BooleanField(default=False)
-    buyer_or_seller = models.PositiveSmallIntegerField(_('buyer or seller'))
+    buyer_or_seller = models.PositiveSmallIntegerField(_('buyer or seller'), choices=USER_TYPE)
 
     class Meta:
         verbose_name = _('Feedback')

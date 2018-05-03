@@ -41,8 +41,9 @@
                                             <tr>
                                                 <td style="border:0px"><b>Rating</b> <span class="pull-right">:</span></td>
                                                 <td style="border:0px"><span style="color: #5cb85c;">
-                                                    <i class="fa fa-star" aria-hidden="true"></i>
-                                                </span> <span style="color: #5cb85c;">{{ user.get_profile.average }}</span></td>
+{#                                                    <i class="fa fa-star" aria-hidden="true"></i>#}
+                                                    <span class="stars" data-rating={{ user.get_profile.average }} data-num-stars="5" ></span>
+                                                </span> </td>
                                             </tr>
                                             <tr>
                                                 <td style="border:0px"><b>Positive</b> <span class="pull-right">:</span></td>
@@ -74,18 +75,19 @@
                                     <th width="0" >B/S</th>
                                     <th width="0" >Left By</th>
                                     <th>Comment</th>
-                                    <th>Country</th>
+                                    {#                                    <th>Country</th>#}
                                 </tr>
                                 </thead>
                                 <tbody>
                                 {% for feedback in user.get_all_feedback.all %}
-                                <tr>
-                                    <td class="coins nobr" align="">{{ feedback.date }}</td>
-                                    <td class="text-center"><img src={% static 'images/pos1.png' %} border="0" alt="Positive" title="Positive">{{ feedback.rating }}</td>
-                                    <td>{{ feedback.buyer_or_seller }}</td>
-                                    <td>{{ feedback.left_by }}</td>
-                                    <td>{{ feedback.comment }}</td>
-                                </tr>
+                                    <tr>
+                                        <td class="coins nobr" align="">{{ feedback.date }}</td>
+                                        <td class="text-center"><img src={% static 'images/pos1.png' %} border="0" alt="Positive" title="Positive">{{ feedback.rating }}</td>
+                                        <td>{{ feedback.get_buyer_or_seller_display }}</td>
+                                        <td>{{ feedback.left_by }}</td>
+                                        <td>{{ feedback.comment }}</td>
+                                        {#                                    <td>{{ user.get_user_addresses.country }}</td>#}
+                                    </tr>
                                 {% endfor %}
                                 </tbody>
                                 <tfoot>
@@ -101,54 +103,33 @@
         </div>
     </section>
 {% endblock %}
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script
-        src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<script src="js/jquery.timepicker.min.js"></script>
-<script src="js/datepicker.min.js"></script>
-<script>
-    (function ($) {
 
-        'use strict';
+ {% block extra_js %}
 
-        $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
-            var $target = $(e.target);
-            var $tabs = $target.closest('.nav-tabs-responsive');
-            var $current = $target.closest('li');
-            var $parent = $current.closest('li.dropdown');
-            $current = $parent.length > 0 ? $parent : $current;
-            var $next = $current.next();
-            var $prev = $current.prev();
-            var updateDropdownMenu = function ($el, position) {
-                $el
-                    .find('.dropdown-menu')
-                    .removeClass('pull-xs-left pull-xs-center pull-xs-right')
-                    .addClass('pull-xs-' + position);
-            };
+     <script>
+    $.fn.stars = function() {
+        return $(this).each(function() {
+            var rating = $(this).data("rating");
 
-            $tabs.find('>li').removeClass('next prev');
-            $prev.addClass('prev');
-            $next.addClass('next');
+            var numStars = $(this).data("numStars");
 
-            updateDropdownMenu($prev, 'left');
-            updateDropdownMenu($current, 'center');
-            updateDropdownMenu($next, 'right');
+            var fullStar = new Array(Math.floor(rating + 1)).join('<i class="fa fa-star"></i>');
+
+            var halfStar = ((rating%1) !== 0) ? '<i class="fas fa-star-half"></i>': '';
+
+            var noStar = new Array(Math.floor(numStars + 1 - rating)).join('<i class="fa fa-star-o"></i>');
+            console.log(fullStar, halfStar, noStar, "kjjjjjjjjjjjjjjjjjj")
+            $(this).html(fullStar + halfStar + noStar);
+
         });
+    }
 
-    })(jQuery);
-    $('.datepicker').datepicker();
-    $('.timepicker').timepicker({
-        timeFormat: 'h:mm p',
-        interval: 60,
-        minTime: '10',
-        maxTime: '6:00pm',
-        defaultTime: '11',
-        startTime: '10:00',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true
-    });
+    $('.stars').stars();
 </script>
+
+ {% endblock %}
+
+
+
+
+

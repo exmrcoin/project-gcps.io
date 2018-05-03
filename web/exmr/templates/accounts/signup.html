@@ -109,12 +109,16 @@
 
             $('#signupForm').submit(function(e){
                 e.preventDefault();
+                var submit = $(this).closest('form').find(':submit');
+                submit.attr('disabled', true);
+                submit.text('Processing...')
                 var form_submit_status = formSubmit('#signupForm', '/sign-up/');
                 var captchaResult = CheckCaptcha();
-                console.log(captchaResult, form_submit_status, "capcta form submit")
                 if(captchaResult && form_submit_status)
                     location.replace("{% url 'accounts:signup_complete'  %}");
                 if(!captchaResult || !form_submit_status)
+                    submit.attr('disabled', false);
+                    submit.text('Signup');
                     return false;
             });
         });
@@ -134,7 +138,7 @@
                 var f = alpha[Math.floor(Math.random() * alpha.length)];
             }
             cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
-            $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas><button class="btn btn-sync" onclick="CreateCaptcha();"><i class="fas fa-sync-alt"></i></button>');
+            $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas><button type="button" class="btn btn-sync" onclick="CreateCaptcha();"><i class="fas fa-sync-alt"></i></button>');
 
             var c = document.getElementById("CapCode"),
                 ctx = c.getContext("2d"),

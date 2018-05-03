@@ -40,13 +40,10 @@ def send_email(subject, ctx_dict, to_email, email_template_txt=None, email_templ
     email_message = EmailMultiAlternatives(subject, message_txt,
                                            from_email, to_email)
 
-    try:
-        message_html = render_to_string(
-            email_template_html, ctx_dict, request=request)
-    except TemplateDoesNotExist:
-        pass
-    else:
-        email_message.attach_alternative(message_html, 'text/html')
+    message_html = render_to_string(
+        email_template_html, ctx_dict, request=request)
+
+    email_message.attach_alternative(message_html, 'text/html')
 
     email_message.send()
 

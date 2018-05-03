@@ -97,25 +97,25 @@ class Profile(models.Model):
 
     @property
     def positive(self):
-        rating = Feedback.objects.filter(rating__gt=2.5)
+        rating = self.user.get_all_feedback.filter(rating__gt=2.5)
         return rating.count()
 
     @property
     def negative(self):
-        return Feedback.objects.filter(rating__lt=2.5).count()
+        return self.user.get_all_feedback.filter(rating__lt=2.5).count()
         return rating.count()
 
     @property
     def average(self):
-        return Feedback.objects.all().aggregate(Avg('rating'))['rating__avg']
+        return self.user.get_all_feedback.aggregate(Avg('rating'))['rating__avg']
 
     @property
     def total_reviews(self):
-        return Feedback.objects.all().count()
+        return self.user.get_all_feedback.count()
 
     @property
     def neutral(self):
-        return Feedback.objects.all().filter(rating=2.5).count()
+        return self.user.get_all_feedback.filter(rating=2.5).count()
 
 
 @receiver(post_save, sender=Profile, dispatch_uid="update_merchant_id")

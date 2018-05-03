@@ -31,7 +31,7 @@ urlpatterns = [
     path('delete-2fa/<int:pk>/', views.DeleteTwoFactorAccount.as_view(), name='delete_2fa'),
     path('delete-address/<int:pk>/', views.DeleteAddress.as_view(), name='delete_address'),
     path('verify-2fa/', views.Verify2FAView.as_view(), name='verify_2fa'),
-    path('feedback/<slug:slug>/', FeedbackListView.as_view()),
-    path('feedback/', FeedbackListView.as_view()),
+    path('feedback/<slug:slug>/', FeedbackListView.as_view(), name='feedback'),
+    path('feedback/', FeedbackListView.as_view(), name='feedbac'),
 
 ]

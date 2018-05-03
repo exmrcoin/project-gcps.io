@@ -48,11 +48,8 @@ urlpatterns += i18n_patterns(
     path('merchant-tools/', TemplateView.as_view(template_name='common/merchant-tools.html'), name='merchant-tools'),
     path('public-coin-votes/', TemplateView.as_view(template_name='common/public-coin-vote.html'),
          name='public coin vote'),
-
     path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'),
          name='forgot-password'),
-
-
 )
 
 

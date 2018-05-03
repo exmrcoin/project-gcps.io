@@ -1,0 +1,171 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    {% load i18n widget_tweaks %}
+    <section>
+        <div class="dashboard-bg">
+            <div class="merchant-tools merchant-one coin-payment-head">
+                <div class=" container merchant-box">GETCRYPTOPAYMENTS
+                </div>
+
+            </div>
+            <div class="container">
+
+                <div class="dashboard-wrapper top-sec">
+                    <div class="col-sm-12 head-box">
+                        <div class="col-sm-6 head-charity-line">vote for charity
+                            <div class="feed-back">Feedback<span class="starfeddback">☆</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>  100%</div>
+                        </div>
+
+                        <button type="button" class="btn btn-primary payment-btn"><img class="view-icon" src={% static 'images/email.svg' %}> Contact seller</button>
+                        <a href={% url 'accounts:feedbac' %}>
+                            <button type="button" class="btn btn-primary payment-btn"><img class="view-icon" src={% static 'images/view-profile.svg' %}>View profile</button>
+                        </a>
+                    </div>
+                    <div class="col-sm-6 payment-box-contact">
+                        <div class="payment-item-box">
+                            <table class="table">
+                                <thead class="box-col">
+                                <tr>
+                                    <th class="col-md-3">Item#</th>
+                                    <th class="col-md-3">Item</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>XBY</td>
+                                    <td>GETCRYPTOPAYMENTS vote-XTRABYTES</td>
+
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="payment-item-box">
+
+                            <div class="shipping-info"><img class="view-icon user-icon" src={% static 'images/man-user.svg' %}>Buyer shipping information</div>
+                            <p cl>Already a member of GETCRYPTOPAYMENTS.net? <span class="click-h">Click here</span>    to log in and save time filling out this form.....</p>
+                            <div class="form-group">
+                                <input type="text" name="username" autofocus="" maxlength="254" placeholder="First Name" class="form-control usernmae-log payment-text" required="" id="id_username">
+
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="username" autofocus="" maxlength="254" placeholder="Last Name" class="form-control usernmae-log payment-text" required="" id="id_username">
+
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="username" autofocus="" maxlength="254" placeholder="Email Adress" class="form-control usernmae-log payment-text" required="" id="id_username">
+
+                            </div>
+
+                        </div>
+                        <div class="payment-item-box price-per">
+                            <table class="table">
+                                <thead class="box-col">
+                                <tr>
+                                    <th class="col-md-3">Price per item</th>
+                                    <th class="col-md-3">Quantity</th>
+                                    <th class="col-md-3">Price</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>0.000100BTC</td>
+                                    <td> <form>
+                                        <input type="text" name="username" autofocus="" maxlength="254" placeholder="" class="form-control quantity-pay" required="" id="id_username">
+                                    </form></td>
+                                    <td>0.000100BTC</td>
+
+                                </tr>
+
+                                </tbody>
+
+                            </table>
+                            <button type="button" class="btn btn-primary btn-chekout "><img class="out-icon" src={% static 'images/refresh.svg' %}> Refresh</button>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 payment-box-contact">
+                        <div class="payment-item-box totals-div">
+
+                            <div class="shipping-info totals-line"><img class="view-icon user-icon" src={% static 'images/account-balance.svg' %}>Totals</div>
+                            <table class="table">
+
+                                <tbody>
+                                <tr>
+                                    <td>Totals :</td>
+                                    <td class="coin-vot">0.000100BTC  </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="payment-item-box totals-div choose-coin-div">
+
+                            <div class="shipping-info totals-line Choosecoin">Choosecoin</div>
+                            <ul>
+                                <li class="coin-box"> <img class="coin-pay-icon" src={% static 'images/payment-coin.png' %}><div class="price-coin">0.000100 BTC</div></li>
+                                <li class="coin-box"> <img class="coin-pay-icon" src={% static 'images/ltc.png' %}><div class="price-coin">0.000100 LTC</div></li>
+                                <li class="coin-box"> <img class="coin-pay-icon" src={% static 'images/btc.png' %}><div class="price-coin">0.000100 BTC</div></li>
+                            </ul>
+
+
+                        </div>
+                        <div c4lass="btn-cont-checkout">
+                            <button type="button" class="btn btn-primary btn-chekout "><img class="out-icon" src={% static 'images/forward-arrow.svg' %}> Complete Checkout</button>
+                            <h4 class="or">OR</h4>
+                            <p class="return">Cancel and return to seller's store</p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script>
+    (function ($) {
+
+        'use strict';
+
+        $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
+            var $target = $(e.target);
+            var $tabs = $target.closest('.nav-tabs-responsive');
+            var $current = $target.closest('li');
+            var $parent = $current.closest('li.dropdown');
+            $current = $parent.length > 0 ? $parent : $current;
+            var $next = $current.next();
+            var $prev = $current.prev();
+            var updateDropdownMenu = function ($el, position) {
+                $el
+                    .find('.dropdown-menu')
+                    .removeClass('pull-xs-left pull-xs-center pull-xs-right')
+                    .addClass('pull-xs-' + position);
+            };
+
+            $tabs.find('>li').removeClass('next prev');
+            $prev.addClass('prev');
+            $next.addClass('next');
+
+            updateDropdownMenu($prev, 'left');
+            updateDropdownMenu($current, 'center');
+            updateDropdownMenu($next, 'right');
+        });
+
+    })(jQuery);
+    $('.datepicker').datepicker();
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 60,
+        minTime: '10',
+        maxTime: '6:00pm',
+        defaultTime: '11',
+        startTime: '10:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+</script>
+

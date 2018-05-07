@@ -95,3 +95,8 @@ class NewCoinAddr(View):
             return HttpResponse(json.dumps({"success": True, "addr": addr}), content_type='application/json')
         except:
             return HttpResponse(json.dumps({"error": "An error occured"}), content_type='application/json')
+
+
+class AddNewCoin(FormView):
+    template_name = 'coins/host-coin.html'
+    form_class = ConvertRequestForm

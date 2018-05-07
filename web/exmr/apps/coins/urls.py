@@ -12,4 +12,5 @@ urlpatterns = [
     path('coin-conversion/<str:from>/<str:to>/', coin_views.ConvertCoinsView.as_view(), name='coin_conversion'),
     path('coin-conversion-confirm/', coin_views.CoinConversionFinalView.as_view(), name='conversion_final'),
     path('checkout/', TemplateView.as_view(template_name='coins/coin-checkout.html')),
+    path('add-coin/', coin_views.AddNewCoin.as_view(), name = 'add-coin'),
 ]

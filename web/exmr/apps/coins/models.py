@@ -132,4 +132,11 @@ class Wallet(models.Model):
     paymentid = models.CharField(max_length=500, blank=True, default="")
 
     def __str__(self):
-        return self.user.username + '_' + self.name.code  
+        return self.user.username + '_' + self.name.code
+
+
+class CoinRequest(models.Model):
+    name = models.CharField(verbose_name=_('name'), max_length=500, blank=True, default="")
+    email = models.EmailField(verbose_name=_('email'), null=True, blank=True)
+    coin_website = models.CharField(verbose_name=_('coin website'), max_length=500, blank=True, default="")
+    coin_url = models.URLField(verbose_name=_('coin url'), null=True, blank=True)

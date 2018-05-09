@@ -3,7 +3,7 @@
   <component name="FaceteManager">
     <facet type="android-gradle" name="Android-Gradle">
       <configuration>
-        <option name="GRADLE_PROJECT_PATH" value=":app" />
+        <option name="GRADLE_PROJECT_PATH" value=":apps" />
       </configuration>
     </facet>
     <facet type="android" name="Android">

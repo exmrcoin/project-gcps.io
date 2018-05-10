@@ -30,3 +30,15 @@ class SocialLink(models.Model):
 
     def __str__(self):
         return self.provider
+
+class CoinRequest(models.Model):
+    """
+    Model to save incoming request for coins
+    """
+    requester_name = models.CharField(max_length=64)
+    requester_email =  models.EmailField()
+    coin_symbol = models.CharField(max_length= 10)
+    coin_name = models.CharField(max_length=64)
+    coin_url = models.CharField(max_length=128)
+    coin_algorithm = models.CharField(max_length=255)
+    coin_source_url = models.CharField(max_length=128)

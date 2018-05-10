@@ -107,5 +107,3 @@ class AddNewCoin(FormView):
     form_class = ConvertRequestForm
 
 
-class CoinHosting(TemplateView):
-    template_name = 'common/coin-hostinh.hmtl'

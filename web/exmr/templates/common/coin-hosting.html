@@ -11,13 +11,15 @@
 
             <div class="panel panel-default mt-5">
                 <div class="panel-heading">
-                   <h3 class="panel-title"><strong>Coin Hosting Request</strong></h3> 
+                    <h3 class="panel-title">
+                        <strong>Coin Hosting Request</strong>
+                    </h3>
                 </div>
-                <div class="panel-body">Coin hosting on the EXMR platform is the ideal way to increase the number of users of your coin.
-                    Our hosted wallets allow users to store, send, and receive your coin and our custom APIs and plugins
-                    allow merchants to easily accept payment in your coin (non-ERC20 only at the moment). With over 1,059,500
-                    vendors across 182 countries, it's only a matter of time before the adoption of your coin starts to grow.
-                    To get started simply fill out the form below then pay the $25.00 non-refundable application fee.
+                <div class="panel-body">Coin hosting on the EXMR platform is the ideal way to increase the number of users of your coin. Our hosted
+                    wallets allow users to store, send, and receive your coin and our custom APIs and plugins allow merchants
+                    to easily accept payment in your coin (non-ERC20 only at the moment). With over 1,059,500 vendors across
+                    182 countries, it's only a matter of time before the adoption of your coin starts to grow. To get started
+                    simply fill out the form below then pay the $25.00 non-refundable application fee.
                     <br>
                     <br> Our Coin Hosting Packages Include:
                     <br>
@@ -44,5 +46,17 @@
         </div>
     </div>
 </section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+                <form method="post" novalidate>
+                    {% csrf_token %} {% include 'base_form.html' with form=form %}
+                    <button type="submit" class="btn btn-primary margin-center">Submit</button>
+                </form>
+            </div>
 
+        </div>
+    </div>
+</section>
 {% endblock %} {% block script %}{% endblock %}

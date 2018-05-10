@@ -1,54 +1,53 @@
-{% extends 'base.html' %}
-{% load staticfiles widget_tweaks %}
-{% block content %}
-    {% load i18n %}
-    <section>
-        <div class="login-bg">
-            <div class="container">
-                <div class="row">
-                    <div class=" offset-md-4 col-sm-5 login-sec">
-                        <div class="form-group">
-                            <img class="log-top-icon" src="{% static 'images/login-top-icon.png' %}" alt="">
-                        </div>
-                        <div class="form-group">
-                            <a href= "{% url 'home' %}">
-                                <img class="logo-log" src="{% static 'images/log-log.png' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="form-group welcome">{% trans 'Welcome!' %}</div>
-                        <h3 class="log-subline">{% trans 'Sign in by entering the information below' %}</h3>
+{% extends 'exmr.html' %} {% load staticfiles widget_tweaks %} {% block content %} {% load i18n %}
+<section>
+    <div class="login-bg">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-xs-12 col-sm-4 col-lg-4 col-sm-offset-4 login-sec">
+                    <div class="form-group col-xs-12">
+                        <img class="log-top-icon" src="{% static 'images/login-top-icon.png' %}" alt="">
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <a href="{% url 'home' %}">
+                            <img class="logo-log" src="{% static 'images/log-log.png' %}" alt="">
+                        </a>
+                    </div>
+                    <h1 class="">{% trans 'Welcome!' %}</h1>
+                    <h4 class="">{% trans 'Sign in by entering the information below' %}</h4>
 
-                        <div class="form-group">
-                            {{ form.non_field_errors }}
-                            <form novalidate method="post">{% csrf_token %}
-                                <div class="form-group">
-                                    {% render_field form.username class="form-control usernmae-log" placeholder="Username/Email" %}
-                                    {{ form.username.errors }}
-                                </div>
-                                <div class="form-group">
-                                    {% render_field form.password class="form-control usernmae-log" placeholder="Password" %}
-                                    {{ form.password.errors }}
-                                    <button type="submit" class="btn- btn-default btn-log">{% trans 'Login' %}</button>
-                                    <a href="{% url 'accounts:signup' %}">
-                                        <button type="button" class="btn- btn-default btn-log signup-btn">{% trans 'Signup' %}</button>
-                                    </a>
-                                </div>
+                    <div class="form-group col-xs-12">
+                        {{ form.non_field_errors }}
+                        <form novalidate method="post">{% csrf_token %}
+                            <div class="form-group col-xs-12">
+                                {% render_field form.username class="form-control username-log" placeholder="Username/Email" %} {{ form.username.errors }}
+                            </div>
+                            <div class="form-group col-xs-12">
+                                {% render_field form.password class="form-control username-log" placeholder="Password" %} {{ form.password.errors }}
+                                <button type="submit" class="btn btn-default btn-login mt-4 floatl">{% trans 'Login' %}</button>
+                                <a href="{% url 'accounts:signup' %}">
+                                    <button type="button" class="btn btn-default btn-signup mt-4  floatr ">{% trans 'Signup' %}</button>
+                                </a>
+                            </div>
 
-                            </form>
-                        </div>
-                        <div class="form-group ">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <a href="{% url 'accounts:reset_password' %}"> <h4>{% trans 'Forgot Password?' %}</h4></a>
-                                </div>
-                                <div class="col-sm-6">
-                                    <a href="{% url 'accounts:signup' %}"> <h1>{% trans "Don't have an account?" %}</h1></a>
-                                </div>
+                        </form>
+                    </div>
+                    <div class="form-group col-xs-12">
+                        <div class="row">
+                            <div class="col-xs-6 floatl">
+                                <a href="{% url 'accounts:reset_password' %}">
+                                    <h5>{% trans 'Forgot Password?' %}</h5>
+                                </a>
+                            </div>
+                            <div class="col-xs-6 floatr">
+                                <a href="{% url 'accounts:signup' %}">
+                                    <h5>{% trans "Don't have an account?" %}</h5>
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 {% endblock %}

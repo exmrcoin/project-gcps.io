@@ -1,107 +1,155 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
-{% block content %}
-        {% load i18n %}
-    <section>
-        <div class="dashboard-bg dash-base">
-            <div class="merchant-tools">
-                <div class=" container merchant-box">
-                    {% trans 'STORE DIRECTORY' %}</div>
-                <div class="container subline-p">
-                    <p>{% trans 'Largest directory of merchants accepting multiple cryptocurrencies' %}
-                </div>
-                <div class="container">
-                    <div class="col-sm-6 search-div">
-                        <form id="searchform" action="{% url 'store:store-search' %}" method="get"
-                              accept-charset="utf-8">
-                            <div class="input-group">
-                                <input type="text" class="form-control search-area" placeholder="Search"
-                                       name="q" id="srch-term">
-                                <div class="input-group-btn">
-                                    <button class="btn btn-default search-button"
-                                            type="submit">{% trans 'Search' %}</button>
-                                </div>
-                            </div>
-                        </form>
+{% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+<section>
+    <div class="dark-page-header text-center">
+        <h1 class="pad10 mt-2">
+            {% trans 'STORE DIRECTORY' %}</h1>
+        <h4 class="mt-2">
+            <p>{% trans 'Largest directory of merchants accepting multiple cryptocurrencies' %}
+        </h4>
+        <div class="container-fluid mt-5 padx0">
+            <div class="col-xs-12 col-sm-6 col-sm-offset-3 padx0">
+                <form id="searchform" action="{% url 'store:store-search' %}" method="get" accept-charset="utf-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-area" placeholder="Search" name="q" id="srch-term">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default search-button" type="submit">{% trans 'Search' %}</button>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="dashboard-wrapper top-sec menu-stoty-directory">
-                    <ul>
-                        {% for category in categories %}
-                            <li class="menu-box">
-                                <a href="{% url 'store:store-item' category.slug %}">
-                                    <div class="menu-icon-wrap">
-                                        {% if category.image %}
-                                        <img class="img-icons" src="{{ category.image.url }}">
-                                        {% endif %}
-                                    </div>
-                                    <div class="name-icons-menu">{{ category.name }}   </div>
-                                </a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
+                </form>
             </div>
         </div>
-    </section>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            {% for category in categories %}
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 menu-box ">
+                <a href="">
+                    <div class="menu-icon-wrap">
+                        <img class="store-icons" src="{% static 'images/art-collectibles.svg' %}">
+                    </div>
+                    <div class="menu-icon-wrap">
+                        <h4 class="store-title">sample name </h4>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 padx5">
+                <div class="col-xs-12 menu-box ">
+                    <a href="">
+                        <div class="menu-icon-wrap">
+                            <img class="store-icons" src="{% static 'images/art-collectibles.svg' %}">
+                        </div>
+                        <div class="menu-icon-wrap">
+                            <h4 class="store-title">sample name </h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+    
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  padx5">
+                <div class="col-xs-12 menu-box ">
+                    <a href="">
+                        <div class="menu-icon-wrap">
+                            <img class="store-icons" src="{% static 'images/art-collectibles.svg' %}">
+                        </div>
+                        <div class="menu-icon-wrap">
+                            <h4 class="store-title">sample name </h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+    
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  padx5">
+                <div class="col-xs-12 menu-box ">
+                    <a href="">
+                        <div class="menu-icon-wrap">
+                            <img class="store-icons" src="{% static 'images/art-collectibles.svg' %}">
+                        </div>
+                        <div class="menu-icon-wrap">
+                            <h4 class="store-title">sample name </h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+    
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  padx5">
+                <div class="col-xs-12 menu-box ">
+                    <a href="">
+                        <div class="menu-icon-wrap">
+                            <img class="store-icons" src="{% static 'images/art-collectibles.svg' %}">
+                        </div>
+                        <div class="menu-icon-wrap">
+                            <h4 class="store-title">sample name </h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+    
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  padx5">
+                <div class="col-xs-12 menu-box ">
+                    <a href="">
+                        <div class="menu-icon-wrap">
+                            <img class="store-icons" src="{% static 'images/art-collectibles.svg' %}">
+                        </div>
+                        <div class="menu-icon-wrap">
+                            <h4 class="store-title">sample name </h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+    
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  padx5">
+                <div class="col-xs-12 menu-box ">
+                    <a href="">
+                        <div class="menu-icon-wrap">
+                            <img class="store-icons" src="{% static 'images/art-collectibles.svg' %}">
+                        </div>
+                        <div class="menu-icon-wrap">
+                            <h4 class="store-title">sample name </h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+    
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  padx5">
+                <div class="col-xs-12 menu-box ">
+                    <a href="">
+                        <div class="menu-icon-wrap">
+                            <img class="store-icons" src="{% static 'images/art-collectibles.svg' %}">
+                        </div>
+                        <div class="menu-icon-wrap">
+                            <h4 class="store-title">sample name </h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+    
+            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3  padx5">
+                <div class="col-xs-12 menu-box ">
+                    <a href="">
+                        <div class="menu-icon-wrap">
+                            <img class="store-icons" src="{% static 'images/art-collectibles.svg' %}">
+                        </div>
+                        <div class="menu-icon-wrap">
+                            <h4 class="store-title">sample name </h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
 {% endblock %}
 
 
+{% block script %}
 
-
-</body>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script
-        src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<script src="js/jquery.timepicker.min.js"></script>
-<script src="js/datepicker.min.js"></script>
-<script>
-    (function ($) {
-
-        'use strict';
-
-        $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
-            var $target = $(e.target);
-            var $tabs = $target.closest('.nav-tabs-responsive');
-            var $current = $target.closest('li');
-            var $parent = $current.closest('li.dropdown');
-            $current = $parent.length > 0 ? $parent : $current;
-            var $next = $current.next();
-            var $prev = $current.prev();
-            var updateDropdownMenu = function ($el, position) {
-                $el
-                    .find('.dropdown-menu')
-                    .removeClass('pull-xs-left pull-xs-center pull-xs-right')
-                    .addClass('pull-xs-' + position);
-            };
-
-            $tabs.find('>li').removeClass('next prev');
-            $prev.addClass('prev');
-            $next.addClass('next');
-
-            updateDropdownMenu($prev, 'left');
-            updateDropdownMenu($current, 'center');
-            updateDropdownMenu($next, 'right');
-        });
-
-    })(jQuery);
-    $('.datepicker').datepicker();
-    $('.timepicker').timepicker({
-        timeFormat: 'h:mm p',
-        interval: 60,
-        minTime: '10',
-        maxTime: '6:00pm',
-        defaultTime: '11',
-        startTime: '10:00',
-        dynamic: false,
-        dropdown: true,
-        scrollbar: true
-    });
-</script>
-
-</html>
+{% endblock %}

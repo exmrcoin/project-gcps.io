@@ -163,6 +163,7 @@ a {
     padding-right: 0px;
 }
 
+/* padding */
 /*====================== scroll =========*/
 
 p {
@@ -572,111 +573,60 @@ p {
       padding-left:14px;
       height: 40px !important;
  }
-    .btn-log{
-        min-width: 165px;
-        min-height: 40px;
-        border: none;
-        background-color: #e75d14 !important;
-        color: #fff !important;
-        font-size: 20px;
-        border-radius: 4px;
-        box-shadow: 0 4px 12px -1px #cecccc;
-        font-size: 16px;
-        margin-top: 13px;
-    }
-    .signup-btn{
-        background-color: #fff !important;
-        color: black !important;
-        border: solid 1px #e75d14 !important;
-        float: right;
-        margin-top: 13px;
+	.btn-log{
+		min-width: 165px;
+		min-height: 40px;
+		border: none;
+		background-color: #e75d14 !important;
+		color: #fff !important;
+		font-size: 20px;
+		border-radius: 4px;
+		box-shadow: 0 4px 12px -1px #cecccc;
+		font-size: 16px;
+		margin-top: 13px;
+	}
+	.signup-btn{
+		background-color: #fff !important;
+		color: black !important;
+		border: solid 1px #e75d14 !important;
+		float: right;
+		margin-top: 13px;
 
-    }
-    .form-box{
-        padding: 0 !important;
-    }
-    .login-bg h4{
-        float: left;
-        font-size: 15px;
-        padding-left: 18px;
-        cursor: pointer;
-        padding: 0px 0px 0px 0px;
-        margin-top: 2px;
-        margin-bottom: 8px;
-    }
-    .login-bg h4:hover{
-        color: #e75d14;
-    }
-    .login-bg h1{
-        float: left;
-        font-size: 15px !important;
-        padding-left: 18px;
-        cursor: pointer;
-        float: right;
-        margin-top: 2px;
-        border: none;
-    }
-    .login-bg h1:hover{
-        color: #e75d14;
-    }
-    .signup-btn:hover{
-        background-color:#e75d14 !important;
-        color: #fff !important;
-    }
+	}
+	.form-box{
+		padding: 0 !important;
+	}
+	.login-bg h4{
+		float: left;
+		font-size: 15px;
+		padding-left: 18px;
+		cursor: pointer;
+		padding: 0px 0px 0px 0px;
+		margin-top: 2px;
+		margin-bottom: 8px;
+	}
+	.login-bg h4:hover{
+		color: #e75d14;
+	}
+	.login-bg h1{
+		float: left;
+		font-size: 15px !important;
+		padding-left: 18px;
+		cursor: pointer;
+		float: right;
+		margin-top: 2px;
+		border: none;
+	}
+	.login-bg h1:hover{
+		color: #e75d14;
+	}
+	.signup-btn:hover{
+		background-color:#e75d14 !important;
+		color: #fff !important;
+	}
 
-    /*============== login end========*/
-    /*============== footer start ========*/
-    .footer-bg{
-        background-color: #3c576e;
-        width: 100%;
-        height: auto;
-        background-size:cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }
-    .footer-head-menu{
-        color: #fff;
-        font-size: 13px;
-        margin-top: 28px;
-    }
-    .footer-head-line{
-        padding: 4px 0px 0px 4px;
-    }
-    .footer-bg ul{
-       padding: 8px 5px 4px 1px;
-       list-style: none;
-       color: #fff;
-       font-size: 12px;
-       line-height: 35px;
-    }
-    .footer-bg li:hover{
-        color:#ff6600;
-        cursor:pointer;
-    }
-    .btn-footer{
-        width: 100%;
-        height: 38px;
-        border: none;
-        background-color: #e75d14 !important;
-        color: #fff !important;
-        font-size: 14px !important;
-        border-radius: 4px;
-        box-shadow: 0 4px 3px -5px #403d3d;
-        margin: 5px 0px 0px 33px;
-       font-size: 20px
-}
-   .coin-payment{
-    background-color:inherit !important;
-    border: solid 1px #ff6600;
-   }
-   .coin-payment:hover{
-    background-color: #ff6600 !important;
-   }
-   .apple-icon{
-     padding: 6px 0px 0px 33px;
-       cursor: pointer;
-       width: 100%;
-   }
+	/*============== login end========*/
+	
  /*========== signup========*/
  .signup-form{
     width: 50.4%;
@@ -847,8 +797,7 @@ p {
     font-size: 14px !important;
     border-radius: 4px;
     box-shadow: 0 4px 3px -5px #403d3d;
-    margin: 5px 0px 0px 33px;
-    font-size: 20px
+    margin-top: 5px;
 }
 
 .coin-payment {
@@ -1527,85 +1476,6 @@ fieldset {
     transform: $transform;
 }
 
-@media screen and (max-width: 479px) {
-    .nav-tabs-responsive {
-        >li {
-            display: none;
-            width: 23%;
-            >a {
-                @include ellipsis();
-                width: 100%;
-                text-align: center;
-                vertical-align: top;
-            }
-            &.active {
-                width: 54%;
-                &:first-child {
-                    margin-left: 23%;
-                }
-            }
-            &.active,
-            &.prev,
-            &.next {
-                display: block;
-            }
-            &.prev,
-            &.next {
-                -webkit-transform: scale(0.9);
-                transform: scale(0.9);
-            }
-            &.next>a,
-            &.prev>a {
-                -webkit-transition: none;
-                transition: none;
-                .text {
-                    display: none;
-                }
-                &:after,
-                &:after {
-                    @include icon-styles();
-                }
-            }
-            &.prev>a:after {
-                content: "\e079";
-            }
-            &.next>a:after {
-                content: "\e080";
-            }
-            &.dropdown {
-                >a>.caret {
-                    display: none;
-                }
-                >a:after {
-                    content: "\e114";
-                }
-                &.active>a {
-                    &:after {
-                        display: none;
-                    }
-                    >.caret {
-                        display: inline-block;
-                    }
-                }
-                .dropdown-menu {
-                    &.pull-xs-left {
-                        left: 0;
-                        right: auto;
-                    }
-                    &.pull-xs-center {
-                        right: auto;
-                        left: 50%;
-                        @include transform(translateX(-50%));
-                    }
-                    &.pull-xs-right {
-                        left: auto;
-                        right: 0;
-                    }
-                }
-            }
-        }
-    }
-}
 
 /**
  * Demo Styles

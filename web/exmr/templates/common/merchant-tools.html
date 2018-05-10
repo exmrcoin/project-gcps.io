@@ -1,110 +1,109 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
-{% block title %} Merchant Tools{% endblock %}
-{% block content %}
-    {% load i18n %}
-    <section>
-        <div class="dashboard-bg dash-base">
-            <div class="merchant-tools merchant-one">
-                <div class=" container merchant-box">{% trans 'MERCHANT TOOLS' %}
-                </div>
-                <div class="container subline-p merchant-toolp">
-                    <p>{% trans 'Instant crypto checkout with easy to use cart plugin,advanced,invoice builder,and API for custom integration' %}
-                </div>
-            </div>
+{% extends 'exmr.html' %} {% load staticfiles %} 
+{% block title %} Merchant Tools{% endblock %} {% block content %} 
+{% load i18n %}
+<section>
+    <div class="dark-page-header text-center">
+        <h1 class="pad10 mt-2">
+            {% trans 'MERCHANT TOOLS' %}</h1>
+        <h4 class="mt-2">
+            {% trans 'If you would like to be updated about new API or changes to existing Apis' %}
+            <span class="click">{% trans 'click here' %}</span>
+        </h4>
+    </div>
+    <div class="container">
+        <div class="mt-5">
             <div class="container">
-                <div class="dashboard-wrapper top-sec">
-                    <div class="container">
-                        <p>{% trans 'If you would like to be updated about new API or changes to existing Apis' %} <span class="click">{% trans 'click here' %}</span></p>
-                    </div>
+                <p>{% trans 'If you would like to be updated about new API or changes to existing Apis' %}
+                    <a href="" class="click">{% trans 'click here' %}</a>
+                </p>
+            </div>
 
-                    <div class="col-sm-6 col-md-3 text-center merch-box">
-                        <div class="icon-merchant">
-                            <img class="merchant-icon" src="{% static 'images/cart.png' %}">
-                        </div>
-                        <h5 class=" shopping-headline">{% trans 'SHOPPING CART PLUGIN' %}</h5>
-                        <ul  >
-                            <li>{% trans 'Plugin Downloads' %}</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 text-center merch-box">
-                        <div class="icon-merchant">
-                            <img class="merchant-icon" src="{% static 'images/api.png' %}">
-                        </div>
-                        <h5 class=" shopping-headline">{% trans 'API & IPNs' %}</h5>
-                        <ul  >
-                            <li>{% trans 'Instant Payment Notification' %}</li>
-                            <li>{% trans 'GETCRYPTOPAYMENTAPI' %}</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 text-center merch-box">
-                        <div class="icon-merchant">
-                            <img class="merchant-icon" src="{% static 'images/invoice.png' %}">
-                        </div>
-                        <h5 class=" shopping-headline">{% trans 'INVOICE BUILDER' %}</h5>
-                        <ul  >
-                            <li>{% trans 'Payment Request invoice maker' %}</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 text-center merch-box">
-                        <div class="icon-merchant">
-                            <img class="merchant-icon" src="{% static 'images/point.png' %}">
-                        </div>
-                        <h5 class=" shopping-headline">{% trans 'POINT OF SALE(POS) INTERFACE' %}</h5>
-                        <ul  >
-                            <li>{% trans 'HTML URL/ POST Fields'  %}</li>
-                            <li>{% trans 'Post link QR Code Generator' %}</li>
-                            <li>{% trans 'POS Examle' %}</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 text-center merch-box">
-                        <div class="icon-merchant">
-                            <img class="merchant-icon" src="{% static 'images/simle-button.png' %}">
-                        </div>
-                        <h5 class=" shopping-headline">{% trans 'SIMPLE BUTTONS' %}</h5>
-                        <ul  >
-                            <li>{% trans 'Button Maker' %}</li>
-                            <li>{% trans 'HTML Post Field' %}</li>
-                            <li>{% trans 'Button Examples' %}</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 text-center merch-box">
-                        <div class="icon-merchant">
-                            <img class="merchant-icon" src="{% static 'images/advance.png' %}">
-                        </div>
-                        <h5 class=" shopping-headline">{% trans 'ADVANCE BUTTONS' %}</h5>
-                        <ul  >
-                            <li>{% trans 'Button Maker' %}</li>
-                            <li>{% trans 'HTML Post Field' %}</li>
-                            <li>{% trans 'Button Examples' %}</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 text-center merch-box">
-                        <div class="icon-merchant">
-                            <img class="merchant-icon" src="{% static 'images/shopping-cart.png' %}">
-                        </div>
-                        <h5 class=" shopping-headline">{% trans 'SHOPPING CART BUTTONS' %}</h5>
-                        <ul  >
-                            <li>{% trans 'HTML Post Field' %}</li>
-                            <li>{% trans 'Button Examples' %}</li>
-                            <li>{% trans 'Button Images' %}</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-6 col-md-3 text-center merch-box">
-                        <div class="icon-merchant">
-                            <img class="merchant-icon" src="{% static 'images/donation.png' %}">
-                        </div>
-                        <h5 class=" shopping-headline">{% trans 'DONATION BUTTONS' %}</h5>
-                        <ul  >
-                            <li>{% trans 'Button Maker' %}</li>
-                            <li>{% trans 'HTML Post Field' %}</li>
-                            <li>{% trans 'Button Examples' %}</li>
-                        </ul>
-                    </div>
+            <div class="col-sm-6 col-md-3 text-center merch-box">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/cart.png' %}">
                 </div>
+                <h5 class=" shopping-headline">{% trans 'SHOPPING CART PLUGIN' %}</h5>
+                <ul>
+                    <li>{% trans 'Plugin Downloads' %}</li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-3 text-center merch-box">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/api.png' %}">
+                </div>
+                <h5 class=" shopping-headline">{% trans 'API & IPNs' %}</h5>
+                <ul>
+                    <li>{% trans 'Instant Payment Notification' %}</li>
+                    <li>{% trans 'GETCRYPTOPAYMENTAPI' %}</li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-3 text-center merch-box">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/invoice.png' %}">
+                </div>
+                <h5 class=" shopping-headline">{% trans 'INVOICE BUILDER' %}</h5>
+                <ul>
+                    <li>{% trans 'Payment Request invoice maker' %}</li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-3 text-center merch-box">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/point.png' %}">
+                </div>
+                <h5 class=" shopping-headline">{% trans 'POINT OF SALE(POS) INTERFACE' %}</h5>
+                <ul>
+                    <li>{% trans 'HTML URL/ POST Fields' %}</li>
+                    <li>{% trans 'Post link QR Code Generator' %}</li>
+                    <li>{% trans 'POS Examle' %}</li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-3 text-center merch-box">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/simle-button.png' %}">
+                </div>
+                <h5 class=" shopping-headline">{% trans 'SIMPLE BUTTONS' %}</h5>
+                <ul>
+                    <li>{% trans 'Button Maker' %}</li>
+                    <li>{% trans 'HTML Post Field' %}</li>
+                    <li>{% trans 'Button Examples' %}</li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-3 text-center merch-box">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/advance.png' %}">
+                </div>
+                <h5 class=" shopping-headline">{% trans 'ADVANCE BUTTONS' %}</h5>
+                <ul>
+                    <li>{% trans 'Button Maker' %}</li>
+                    <li>{% trans 'HTML Post Field' %}</li>
+                    <li>{% trans 'Button Examples' %}</li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-3 text-center merch-box">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/shopping-cart.png' %}">
+                </div>
+                <h5 class=" shopping-headline">{% trans 'SHOPPING CART BUTTONS' %}</h5>
+                <ul>
+                    <li>{% trans 'HTML Post Field' %}</li>
+                    <li>{% trans 'Button Examples' %}</li>
+                    <li>{% trans 'Button Images' %}</li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-md-3 text-center merch-box">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/donation.png' %}">
+                </div>
+                <h5 class=" shopping-headline">{% trans 'DONATION BUTTONS' %}</h5>
+                <ul>
+                    <li>{% trans 'Button Maker' %}</li>
+                    <li>{% trans 'HTML Post Field' %}</li>
+                    <li>{% trans 'Button Examples' %}</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 {% endblock %}
 
 
@@ -112,11 +111,11 @@
 
 </body>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script
-        src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
+    crossorigin="anonymous"></script>
 <script src="js/jquery.timepicker.min.js"></script>
 <script src="js/datepicker.min.js"></script>
 <script>

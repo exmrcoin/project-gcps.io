@@ -1,261 +1,248 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
-{% block content %}
-    {% load widget_tweaks %}
-    {% load i18n %}
-    <section>
-        <div class="dashboard-bg dash-base">
-            <div class="merchant-tools merchant-one coin-payment-head">
-                <div class=" container merchant-box"> ADD OR UPDATE STORE
+{% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load widget_tweaks %} {% load i18n %}
+<section>
+    <div class="dark-page-header text-center">
+        <h1 class="pad10 mt-2">
+            {% trans 'MERCHANT TOOLS' %}</h1>
+        <h4 class="mt-2">
+            {% trans 'If you would like to be updated about new API or changes to existing Apis' %}
+            <span class="click">{% trans 'click here' %}</span>
+        </h4>
+    </div>
+    <div class="container">
+        <div class="dashboard-wrapper top-sec">
+            <div class="warning-message">
+                <p>This form can also be used to update your listing if you are already listed with us</p>
+            </div>
+
+
+            <div class="dasboard-head col-xs-12">
+                <div class="col-xs-1">
+                    <img class="w20px mt-2" src="{% static 'images/add-icon.svg' %}">
+                </div>
+                <div class="col-xs-11">
+                    <h4 class="font-h3 mt-1">Add New Store</h4>
+                </div>
+            </div>
+            <form id="addToStoreForm" action="{% url 'store:add-to-store' %}" method="post" novalidate>{% csrf_token %}
+
+                <div class="account-setting-wrap2">
+                    <fieldset class="col-xs-12">
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Store Name</label>
+                            {{ form.store_name|add_class:'form-control text-view' }} {{ form.store_name.errors }}
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Store URL</label>
+                            {{ form.store_url|add_class:'form-control text-view' }} {{ form.store_url.errors }}
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Username/Merchant ID</label>
+                            {{ form.username_or_merch_id|add_class:'form-control text-view' }} {{ form.username_or_merch_id.errors }}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="confirm_password">Category</label>
+                            {{ form.category|add_class:'form-control select-view' }} {{ form.category.errors }}
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Crypto Processor</label>
+                            {{ form.crypto_processor|add_class:'form-control text-view' }}
+                            <span>( Please specify which crypto processor your are using )</span>
+                            {{ form.crypto_processor.errors }}
+
+                        </div>
+
+                    </fieldset>
+                </div>
+                <div class="account-setting-wrap new-store-sec">
+                    <div class="main-field">
+                        Optional Fields</br>
+                        <p>( Items given will be shown in your listing )</p>
+
+                    </div>
+
+                    <fieldset class="setting-form form-settings">
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Store Email</label>
+                            {{ form.store_email|add_class:'form-control text-view' }} {{ form.store_email.errors }}
+
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Keywords</label>
+                            {{ form.keywords|add_class:'form-control text-view' }}
+                            <span>(Optional enter up to 5 search keywords for your listing separated with a, )</span>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Banner image URL</label>
+                            {{ form.banner_image_url|add_class:'form-control text-view' }} {{ form.banner_image_url.errors }}
+                        </div>
+
+
+                    </fieldset>
+
+
                 </div>
 
-            </div>
-            <div class="container">
+                <div class="account-setting-wrap new-store-sec">
+                    <div class="main-field">Submit Store </div>
 
-                <div class="dashboard-wrapper top-sec">
-                    <div class="warning-message">
-                        <p>This form can also be used to update your listing if you are already listed with us</p>
-                    </div>
+                    <section>
+                        <fieldset class="captcha-new-store">
 
+                            <span id="WrongCaptchaError" class="error"></span>
+                            <div class='CaptchaWrap'>
 
-                    <div class="dasboard-head">
-                        <div class="img-dashboard">
-                            <img class="add-icon" src="{% static 'images/add-icon.svg' %}">
-                        </div>
-                        <h3>Add New Store</h3>
-                    </div>
-                    <form id="addToStoreForm" action="{% url 'store:add-to-store' %}" method="post" novalidate>{% csrf_token %}
-
-                        <div class="account-setting-wrap">
-                            <div class="main-field">Main Field</div>
-                            <fieldset class="setting-form form-settings">
-                                <div class="form-group col-md-12">
-                                    <label for="first_name">Store Name</label>
-                                    {{ form.store_name|add_class:'form-control text-view' }}
-                                    {{ form.store_name.errors }}
+                                <div id="CaptchaImageCode" class="CaptchaTxtField">
+                                    <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
 
                                 </div>
-                                <div class="form-group col-md-12">
-                                    <label for="first_name">Store URL</label>
-                                    {{ form.store_url|add_class:'form-control text-view' }}
-                                    {{ form.store_url.errors }}
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <label for="first_name">Username/Merchant ID</label>
-                                    {{ form.username_or_merch_id|add_class:'form-control text-view' }}
-                                    {{ form.username_or_merch_id.errors }}
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="confirm_password">Category</label>
-                                    {{ form.category|add_class:'form-control select-view' }}
-                                    {{ form.category.errors }}
-
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <label for="first_name">Crypto Processor</label>
-                                    {{ form.crypto_processor|add_class:'form-control text-view' }}
-                                    <span>( Please specify which crypto processor your are using )</span>
-                                                                        {{ form.crypto_processor.errors }}
-
-                                </div>
-
-                            </fieldset>
-                        </div>
-                        <div class="account-setting-wrap new-store-sec">
-                            <div class="main-field">
-                                Optional Fields</br>
-                                <p>( Items given will be shown in your listing )</p>
+                                <button class="btn" type="button" onclick='CreateCaptcha();'>
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <p>{% trans 'Type the characters you see in the image above:' %}</p>
+                                <input type="text" class="capticha-enter1 form-control" id="UserCaptchaCode" class="CaptchaTxtField" placeholder='Enter Captcha - Case Sensitive'>
 
                             </div>
-
-                            <fieldset class="setting-form form-settings">
-                                <div class="form-group col-md-12">
-                                    <label for="first_name">Store Email</label>
-                                    {{ form.store_email|add_class:'form-control text-view' }}
-                                    {{ form.store_email.errors }}
-
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <label for="first_name">Keywords</label>
-                                    {{ form.keywords|add_class:'form-control text-view' }}
-                                    <span>(Optional enter up to 5 search keywords for your listing separated with a, )</span>
-                                </div>
-
-                                <div class="form-group col-md-12">
-                                    <label for="first_name">Banner image URL</label>
-                                    {{ form.banner_image_url|add_class:'form-control text-view' }}
-                                    {{ form.banner_image_url.errors }}
-                                </div>
-
-
-                            </fieldset>
-
-
-                        </div>
-
-                        <div class="account-setting-wrap new-store-sec">
-                            <div class="main-field">Submit Store </div>
-
-                            <section>
-                                <fieldset  class="captcha-new-store">
-
-                                    <span id="WrongCaptchaError" class="error"></span>
-                                    <div class='CaptchaWrap'>
-
-                                        <div id="CaptchaImageCode" class="CaptchaTxtField">
-                                            <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
-
-                                        </div>
-                                        <button class="btn" type="button" onclick='CreateCaptcha();'>
-                                            <i class="fas fa-sync-alt"></i>
-                                        </button>
-                                        <p>{% trans 'Type the characters you see in the image above:' %}</p>
-                                        <input type="text" class="capticha-enter1 form-control"
-                                               id="UserCaptchaCode"
-                                               class="CaptchaTxtField"
-                                               placeholder='Enter Captcha - Case Sensitive'>
-
-                                    </div>
-                                    <input type="submit" class="btnSubmit new-store-btn" onclick="CheckCaptcha();" value="Add My Store"/>
-                                </fieldset>
-                            </section>
-
-
-                        </div>
-                    </form>
+                            <input type="submit" class="btnSubmit new-store-btn" onclick="CheckCaptcha();" value="Add My Store" />
+                        </fieldset>
+                    </section>
 
 
                 </div>
-            </div>
+            </form>
+
+
         </div>
-    </section>
+    </div>
+</section>
 {% endblock %}
 
 </body>
 
 {% block extra_js %}
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script>
-        (function ($) {
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script>
+    (function ($) {
 
-            'use strict';
+        'use strict';
 
-            $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
-                var $target = $(e.target);
-                var $tabs = $target.closest('.nav-tabs-responsive');
-                var $current = $target.closest('li');
-                var $parent = $current.closest('li.dropdown');
-                $current = $parent.length > 0 ? $parent : $current;
-                var $next = $current.next();
-                var $prev = $current.prev();
-                var updateDropdownMenu = function ($el, position) {
-                    $el
-                        .find('.dropdown-menu')
-                        .removeClass('pull-xs-left pull-xs-center pull-xs-right')
-                        .addClass('pull-xs-' + position);
-                };
-
-                $tabs.find('>li').removeClass('next prev');
-                $prev.addClass('prev');
-                $next.addClass('next');
-
-                updateDropdownMenu($prev, 'left');
-                updateDropdownMenu($current, 'center');
-                updateDropdownMenu($next, 'right');
-            });
-
-        })(jQuery);
-        $('.datepicker').datepicker();
-        $('.timepicker').timepicker({
-            timeFormat: 'h:mm p',
-            interval: 60,
-            minTime: '10',
-            maxTime: '6:00pm',
-            defaultTime: '11',
-            startTime: '10:00',
-            dynamic: false,
-            dropdown: true,
-            scrollbar: true
-        });
-        $(function(){
-            CreateCaptcha();
-        });
-
-        // Create Captcha
-        function CreateCaptcha() {
-            //$('#InvalidCapthcaError').hide();
-            var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
-
-            var i;
-            for (i = 0; i < 6; i++) {
-                var a = alpha[Math.floor(Math.random() * alpha.length)];
-                var b = alpha[Math.floor(Math.random() * alpha.length)];
-                var c = alpha[Math.floor(Math.random() * alpha.length)];
-                var d = alpha[Math.floor(Math.random() * alpha.length)];
-                var e = alpha[Math.floor(Math.random() * alpha.length)];
-                var f = alpha[Math.floor(Math.random() * alpha.length)];
-            }
-            cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
-            $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas>')
-
-            var c = document.getElementById("CapCode"),
-                ctx=c.getContext("2d"),
-                x = c.width / 2,
-                img = new Image();
-
-            img.src = "https://pixelsharing.files.wordpress.com/2010/11/salvage-tileable-and-seamless-pattern.jpg";
-            img.onload = function () {
-                var pattern = ctx.createPattern(img, "repeat");
-                ctx.fillStyle = pattern;
-                ctx.fillRect(0, 0, c.width, c.height);
-                ctx.font="46px Roboto Slab";
-                ctx.fillStyle = '#ccc';
-                ctx.textAlign = 'center';
-                ctx.setTransform (1, -0.12, 0, 1, 0, 15);
-                ctx.fillText(cd,x,55);
+        $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
+            var $target = $(e.target);
+            var $tabs = $target.closest('.nav-tabs-responsive');
+            var $current = $target.closest('li');
+            var $parent = $current.closest('li.dropdown');
+            $current = $parent.length > 0 ? $parent : $current;
+            var $next = $current.next();
+            var $prev = $current.prev();
+            var updateDropdownMenu = function ($el, position) {
+                $el
+                    .find('.dropdown-menu')
+                    .removeClass('pull-xs-left pull-xs-center pull-xs-right')
+                    .addClass('pull-xs-' + position);
             };
 
+            $tabs.find('>li').removeClass('next prev');
+            $prev.addClass('prev');
+            $next.addClass('next');
 
+            updateDropdownMenu($prev, 'left');
+            updateDropdownMenu($current, 'center');
+            updateDropdownMenu($next, 'right');
+        });
+
+    })(jQuery);
+    $('.datepicker').datepicker();
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 60,
+        minTime: '10',
+        maxTime: '6:00pm',
+        defaultTime: '11',
+        startTime: '10:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+    $(function () {
+        CreateCaptcha();
+    });
+
+    // Create Captcha
+    function CreateCaptcha() {
+        //$('#InvalidCapthcaError').hide();
+        var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+
+        var i;
+        for (i = 0; i < 6; i++) {
+            var a = alpha[Math.floor(Math.random() * alpha.length)];
+            var b = alpha[Math.floor(Math.random() * alpha.length)];
+            var c = alpha[Math.floor(Math.random() * alpha.length)];
+            var d = alpha[Math.floor(Math.random() * alpha.length)];
+            var e = alpha[Math.floor(Math.random() * alpha.length)];
+            var f = alpha[Math.floor(Math.random() * alpha.length)];
         }
+        cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
+        $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas>')
 
-        // Validate Captcha
-        function ValidateCaptcha() {
-            var string1 = removeSpaces(cd);
-            var string2 = removeSpaces($('#UserCaptchaCode').val());
-            if (string1 == string2) {
-                return true;
+        var c = document.getElementById("CapCode"),
+            ctx = c.getContext("2d"),
+            x = c.width / 2,
+            img = new Image();
+
+        img.src = "https://pixelsharing.files.wordpress.com/2010/11/salvage-tileable-and-seamless-pattern.jpg";
+        img.onload = function () {
+            var pattern = ctx.createPattern(img, "repeat");
+            ctx.fillStyle = pattern;
+            ctx.fillRect(0, 0, c.width, c.height);
+            ctx.font = "46px Roboto Slab";
+            ctx.fillStyle = '#ccc';
+            ctx.textAlign = 'center';
+            ctx.setTransform(1, -0.12, 0, 1, 0, 15);
+            ctx.fillText(cd, x, 55);
+        };
+
+
+    }
+
+    // Validate Captcha
+    function ValidateCaptcha() {
+        var string1 = removeSpaces(cd);
+        var string2 = removeSpaces($('#UserCaptchaCode').val());
+        if (string1 == string2) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    // Remove Spaces
+    function removeSpaces(string) {
+        return string.split(' ').join('');
+    }
+
+    // Check Captcha
+    function CheckCaptcha() {
+        var result = ValidateCaptcha();
+        if ($("#UserCaptchaCode").val() == "" || $("#UserCaptchaCode").val() == null || $("#UserCaptchaCode").val() == "undefined") {
+            $('#WrongCaptchaError').text('Please enter code given below in a picture.').show();
+            $('#UserCaptchaCode').focus();
+        } else {
+            if (result == false) {
+                $('#WrongCaptchaError').text('Invalid Captcha! Please try again.').show();
+                CreateCaptcha();
+                $('#UserCaptchaCode').focus().select();
             }
             else {
-                return false;
+                $('#UserCaptchaCode').val('').attr('place-holder', 'Enter Captcha - Case Sensitive');
+                CreateCaptcha();
+                $('#WrongCaptchaError').fadeOut(100);
+                $('#SuccessMessage').fadeIn(500).css('display', 'block').delay(5000).fadeOut(250);
             }
         }
-
-        // Remove Spaces
-        function removeSpaces(string) {
-            return string.split(' ').join('');
-        }
-
-        // Check Captcha
-        function CheckCaptcha() {
-            var result = ValidateCaptcha();
-            if( $("#UserCaptchaCode").val() == "" || $("#UserCaptchaCode").val() == null || $("#UserCaptchaCode").val() == "undefined") {
-                $('#WrongCaptchaError').text('Please enter code given below in a picture.').show();
-                $('#UserCaptchaCode').focus();
-            } else {
-                if(result == false) {
-                    $('#WrongCaptchaError').text('Invalid Captcha! Please try again.').show();
-                    CreateCaptcha();
-                    $('#UserCaptchaCode').focus().select();
-                }
-                else {
-                    $('#UserCaptchaCode').val('').attr('place-holder','Enter Captcha - Case Sensitive');
-                    CreateCaptcha();
-                    $('#WrongCaptchaError').fadeOut(100);
-                    $('#SuccessMessage').fadeIn(500).css('display','block').delay(5000).fadeOut(250);
-                }
-            }
-        }
-    </script>
-{% endblock %}
+    }
+</script> {% endblock %}

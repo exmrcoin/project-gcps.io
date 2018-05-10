@@ -8,6 +8,7 @@ from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest
 from apps.coins.utils import *
 from apps.accounts.models import User
 
+
 class SupportedCoinView(ListView):
 
     template_name = 'coins/supported-coins.html'
@@ -19,7 +20,8 @@ class SupportedCoinView(ListView):
         return self.queryset.filter(type=self.coin_type, active=True)
 
     def get_context_data(self, *, object_list=None, **kwargs):
-        context = super(SupportedCoinView, self).get_context_data(object_list=None, **kwargs)
+        context = super(SupportedCoinView, self).get_context_data(
+            object_list=None, **kwargs)
         context['coin_types'] = TYPE_CHOICES
         context['selected_coin_type'] = self.coin_type
         return context
@@ -34,7 +36,8 @@ class ConvertCoinsView(FormView):
     def get_initial(self, **kwargs):
         initial = super(ConvertCoinsView, self).get_initial(**kwargs)
         if self.kwargs.get('from'):
-            self.from_coin = get_object_or_404(Coin, code=self.kwargs.get('from'))
+            self.from_coin = get_object_or_404(
+                Coin, code=self.kwargs.get('from'))
         if self.kwargs.get('to'):
             self.to_coin = get_object_or_404(Coin, code=self.kwargs.get('to'))
 
@@ -76,9 +79,11 @@ class CoinConversionFinalView(TemplateView):
     template_name = 'coins/coin_conversion_final.html'
 
     def get_context_data(self, **kwargs):
-        context = super(CoinConversionFinalView, self).get_context_data(**kwargs)
+        context = super(CoinConversionFinalView,
+                        self).get_context_data(**kwargs)
         coin_request_id = self.request.session.get('coin_request_id')
-        context['coin_request'] = get_object_or_404(CoinConvertRequest, id=coin_request_id)
+        context['coin_request'] = get_object_or_404(
+            CoinConvertRequest, id=coin_request_id)
 
         if self.request.session.get('coin_request_id'):
             del self.request.session['coin_request_id']
@@ -100,3 +105,7 @@ class NewCoinAddr(View):
 class AddNewCoin(FormView):
     template_name = 'coins/host-coin.html'
     form_class = ConvertRequestForm
+
+
+class CoinHosting(TemplateView):
+    template_name = 'common/coin-hostinh.hmtl'

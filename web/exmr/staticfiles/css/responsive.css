@@ -59,15 +59,8 @@
     .form-coin{
       width: 206px !important;
     }
-    .btn-footer {
-      /* width: 120px; */
-  }
   .apple-icon{
     width: 153px;
-  }
-  .btn-footer{
-    margin: 5px 0px 0px 8px;
-
   }
   .apple-icon{
     padding: 4px 0px 0px 7px;
@@ -206,6 +199,14 @@ width: 96.3%;
     }
     .footer-bg ul{
       text-align: center;
+    }
+    .footer-heading-line{
+      margin: 0 auto;
+    }
+    .appstore-icon{
+      margin: 0 auto;
+      margin-top: 5px;
+      max-width: 250px;
     }
     .btn-footer{
       margin: inherit;

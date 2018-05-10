@@ -13,7 +13,7 @@
     <!-- favicon -->
     <title>GetCryptoPayments | {% block title %}{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
@@ -29,119 +29,47 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default nave-menu">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed menu-btn" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                    aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
+        <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <a href="{% url 'home' %}" class="">
-                    <img src="{% static 'images/logo.png' %}" class="img-responsive">
-                </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav menu-nav ">
-                    <li>
-                        <a href="{% url 'public coin vote' %}">{% trans 'Public Coin Vote'%}</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'coins:supported_coins' %}">{% trans 'Supported Coins' %}</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'store:store-directory' %}">{% trans 'Store Directory' %}</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'merchant-tools' %}">{% trans 'Merchant Tools' %}</a>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Contact Us' %}
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu drop-down-box">
-                            <li>
-                                <a href="#">Help Topics</a>
-                            </li>
-                            <li>
-                                <a href="#">Coin Request</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'store:add-to-store' %}">Add Store to Store Directory</a>
-                            </li>
-                            <li>
-                                <a href="#">Contact Us</a>
-                            </li>
-                            <li role="separator" class="divider"></li>
-                            <li>
-                                <a href="{% url 'coins:add-coin' %}">Add Coin</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                            <img class="language-icon" src="{% static 'images/language.png' %}"> {% trans 'Language' %}
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu drop-down-box">
-                            {% for language in languages %}
-                            <li class="{% ifequal current_language language.0 %}active{% endifequal %}">
-                                <a href="/./{{ language.0 }}/" title="{{ language.1 }}">
-                                    {{ language.1 }}
-                                </a>
-                            </li>
-                            {% endfor %}
-                        </ul>
-                    </li>
-                    {% if user.is_authenticated %}
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Account' %}
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu drop-down-box">
-                            <li>
-                                <a href="{% url 'accounts:profile' %}">{% trans 'Dashboard' %}</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'accounts:settings' %}">{% trans 'Account Settings' %}</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'accounts:address' %}">{% trans 'AddressBook' %}</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'accounts:logout' %}?next=/">{% trans 'Logout' %}</a>
-                            </li>
-                        </ul>
-                    </li>
-                    {% endif %}
-                </ul>
-                {% if not user.is_authenticated %}
-                <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-default btn-log1">Login</a>
-                <a href="{% url 'accounts:signup' %}" type="submit" class="btn btn-default btn-sign">Signup</a>
-                {% else %} {% endif %}
-
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-
-
+                  </button>    
+                </div>
+                <a class="navbar-brand" href="#">Brand</a>
+                <div class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav navbar-left">
+                      <li><a href="#">Left</a></li>
+                      <li><a href="#about">Left</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about">Right</a></li>
+                    <li><a href="#contact">Right</a></li>
+                  </ul>
+                </div>
+              </nav>
+              
+              .navbar-brand
+              {
+                  position: absolute;
+                  width: 100%;
+                  left: 0;
+                  text-align: center;
+                  margin:0 auto;
+              }
+              .navbar-toggle {
+                  z-index:3;
+              }
     {% block content %} {% endblock %}
     <footer>
         <div class="footer-bg">
             <div class="container ">
                 <div class="row ">
-                    <div class="col-sm-2">
+                    <div class="col-sm-4 col-lg-2">
                         <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                            <span>
-                                <img class="footer-head-line" src="{% static 'images/footer-line.png' %}">
-                            </span>
+                            <div class="footer-heading-line">
+                            </div>
                         </div>
                         <ul>
                             <li>
@@ -158,11 +86,10 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4 col-lg-2">
                         <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                            <span>
-                                <img class="footer-head-line" src="{% static 'images/footer-line.png' %}">
-                            </span>
+                            <div class="footer-heading-line">
+                            </div>
                         </div>
                         <ul>
                             <li>{% trans 'Get Mobile App' %}</li>
@@ -171,11 +98,10 @@
                             <li>{% trans 'PGP Key' %}</li>
                         </ul>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4 col-lg-2">
                         <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                            <span>
-                                <img class="footer-head-line" src="{% static 'images/footer-line.png' %}">
-                            </span>
+                            <div class="footer-heading-line">
+                            </div>
                         </div>
                         <ul>
                             <li>{% trans 'Fees/Pricing' %}</li>
@@ -184,11 +110,10 @@
                             <li>{% trans 'Coin Request' %}</li>
                         </ul>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4 col-lg-2">
                         <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                            <span>
-                                <img class="footer-head-line" src="{% static 'images/footer-line.png' %}">
-                            </span>
+                        </div>
+                        <div class="footer-heading-line">
                         </div>
                         <ul>
                             <a href="https://twitter.com/GCryptoPayments" target="_blank">
@@ -205,22 +130,21 @@
                             </a>
                         </ul>
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-4 col-lg-2">
                         <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                            <span>
-                                <img class="footer-head-line" src="{% static 'images/footer-line.png' %}">
-                            </span>
+                            <div class="footer-heading-line">
+                            </div>
                         </div>
                         <ul>
                             <li>{% trans 'Privacy Policy' %}</li>
                             <li>{% trans 'Terms of Service' %}</li>
                         </ul>
                     </div>
-                    <div class="col-sm-2 footer-head-menu">
-                        <button type="submit" class="btn- btn-default btn-footer">{% trans 'Add Store' %}</button>
-                        <button type="submit" class="btn- btn-default btn-footer coin-payment">{% trans 'Coin Request' %}</button>
-                        <img class="apple-icon" src="{% static 'images/apple-icon.png' %}">
-                        <img class="apple-icon" src="{% static 'images/play-store.png' %}">
+                    <div class="col-sm-4 col-lg-2 footer-head-menu">
+                        <button type="submit" class="btn- btn-default btn-footer w100p">{% trans 'Add Store' %}</button>
+                        <button type="submit" class="btn- btn-default btn-footer coin-payment w100p">{% trans 'Coin Request' %}</button>
+                        <img class="img-responsive w100p appstore-icon" src="{% static 'images/apple-icon.png' %}">
+                        <img class="img-responsive w100p appstore-icon" src="{% static 'images/play-store.png' %}">
                     </div>
                 </div>
             </div>

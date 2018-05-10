@@ -113,7 +113,6 @@ label {
 
 /* Zebra striping */
 
-
 .vote_table th {
     font-weight: bold;
 }
@@ -148,8 +147,8 @@ and also iPads specifically.
         left: -9999px;
     }
     .vote_table tr {
-        margin-top:20px;
-        padding-bottom: 
+        margin-top: 20px;
+        padding-bottom:
     }
     .vote_table td {
         /* Behave  like a "row" */
@@ -191,30 +190,51 @@ and also iPads specifically.
 }
 
 /*********************merchant tools******************/
+
 .merch-box ul {
     padding-left: 25px;
     color: #e75d14;
     cursor: pointer;
 }
-.merch-box{
+
+.merch-box {
     border: 1px solid #eee;
     padding: 5px;
     height: 250px;
     max-height: 400px;
 }
-.icon-merchant{
+
+.icon-merchant {
     position: relative;
 }
-.merchant-icon{
+
+.merchant-icon {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .btn-vote-btn2 {
     min-height: 30px;
     border: none;
     border-radius: 4px;
     background-color: #16b101;
     color: #fff;
+}
+
+/*******************footer*******************/
+
+.footer-heading-line {
+    height: 3px;
+    width: 30px;
+    background: #e75d14;
+    margin: 10px 0 0 0;
+}
+.w100p{
+    width: 100%;
+}
+.appstore-icon{
+    margin-top: 5px;
+    max-width: 250px;
 }

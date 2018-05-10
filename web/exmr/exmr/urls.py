@@ -50,6 +50,8 @@ urlpatterns += i18n_patterns(
          name='public coin vote'),
     path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'),
          name='forgot-password'),
+    path('contact/', TemplateView.as_view(template_name='common/contact.html'),
+         name='contact'),
 )
 
 

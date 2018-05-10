@@ -21,7 +21,12 @@ def create_wallet(user, currency):
     wallet_username = user.username + "_exmr"
     access = globals()['create_'+currency+'_connection']()
     print (access)
-    addr = access.getnewaddress(wallet_username)
+    try:
+        # addr = access.getnewaddress(wallet_username)
+        addr = False
+        raise Exception
+    except:
+        addr = 'unable to generate address , please try later'
     wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
     wallet.addresses.add(WalletAddress.objects.create(address=addr))
     return addr

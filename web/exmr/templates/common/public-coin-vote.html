@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% load staticfiles %} {% block content %} {% load i18n %} {% block page_css %}
+{% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load i18n %} {% block page_css %}
 
 <style type="text/css">
     /*
@@ -11,7 +11,12 @@
     (min-device-width: 768px) and (max-device-width: 1024px) {
 
         /* Force table to not be like tables anymore */
-        .responsive-table table, thead, tbody, th, td, tr {
+        .responsive-table table,
+        thead,
+        tbody,
+        th,
+        td,
+        tr {
             display: block;
         }
 
@@ -73,243 +78,103 @@
 {% endblock %}
 <section>
     <div class="merchant-tools merchant-one coin-payment-head">
-        <div class="merchant-tools merchant-one">
-            <div class=" container merchant-box">Public Coin Vote
-            </div>
-            <div class="container subline-p merchant-toolp">
-                <p>GETCRYPTOPAYMENTS Vote for Charity </p>
-            </div>
-
-        </div>
-
+        <h1>Public Coin Vote </h1>
+        <h3>GETCRYPTOPAYMENTS Vote for Charity </h3>
     </div>
-    <div class="dashboard-bg">
-        <div class="container">
-            <div class="dashboard-wrapper">
-                <div class="dasboard-head">
-                </div>
-                <div class="account-setting-wrap coin-support-main-wrap">
-                    <fieldset class="setting-form form-settings">
-                        <div class="col-xs-12 text-center pad10">
-                            <div class="col-xs-12 col-sm-6 col-md-3 pad10">
-                                <div class="col-xs-12">
-                                    <h5>VOTEST CAST</h5>
-                                </div>
-                                <div class="col-xs-12 btop">
-                                    <h5>6,536</h5>
-                                </div>
+    <div class="container-fluid xs-padx1">
+        <div class="col-xs-12 xs-padx1">
+            <div class="account-setting-wrap coin-support-main-wrap xs-padx1">
+                <fieldset class="setting-form form-settings">
+                    <div class="col-xs-12 text-center pad10">
+                        <div class="col-xs-12 col-sm-6 col-md-3 pad10">
+                            <div class="col-xs-12">
+                                <h5>VOTEST CAST</h5>
                             </div>
-                            <div class="col-xs-12 col-sm-6 col-md-3 pad10">
-                                <div class="col-xs-12">
-                                    <h5>BTC RAISED</h5>
-                                </div>
-                                <div class="col-xs-12 btop">
-                                    <h5>20.16624000</h5>
-                                </div>
+                            <div class="col-xs-12 btop">
+                                <h5>6,536</h5>
                             </div>
-
-                            <div class="col-xs-12 col-sm-6 col-md-3 pad10">
-                                <div class="col-xs-12">
-                                    <h5>LTC RAISED</h5>
-                                </div>
-                                <div class="col-xs-12 btop">
-                                    <h5>3.44100009</h5>
-                                </div>
-                            </div>
-
-                            <div class="col-xs-12 col-sm-6 col-md-3 pad10">
-                                <div class="col-xs-12">
-                                    <h5>DOGE RAISED</h5>
-                                </div>
-                                <div class="col-xs-12 btop">
-                                    <h5>36697.46205000</h5>
-                                </div>
-                            </div>
-
                         </div>
-                        <div class="clearfix">
-
-                        </div>
-                        <div class="proceeds-div">75% of proceeds will go to
-                            <span class="electroinc">Electronic Frontier Foundation</span> ,a 501(c)(3)non-profit organization, the remaining 25%
-                            will go to feed the faucete at the
-                            <span class="electroinc">GETCRYPTOPAYMENT Block Explorer</span>.For full rule and information
-                            <span class="electroinc">click here</span>.
+                        <div class="col-xs-12 col-sm-6 col-md-3 pad10">
+                            <div class="col-xs-12">
+                                <h5>BTC RAISED</h5>
+                            </div>
+                            <div class="col-xs-12 btop">
+                                <h5>20.16624000</h5>
+                            </div>
                         </div>
 
-                        <table class="table vote_table">
-                            <thead >
-                                <tr class="table-top">
-                                    <th>POSITION</th>
+                        <div class="col-xs-12 col-sm-6 col-md-3 pad10">
+                            <div class="col-xs-12">
+                                <h5>LTC RAISED</h5>
+                            </div>
+                            <div class="col-xs-12 btop">
+                                <h5>3.44100009</h5>
+                            </div>
+                        </div>
 
-                                    <th>COIN</th>
-                                    <th>NAME </th>
-                                    <th>VOTES</th>
-                                    <th> PERCENTAGE OF VOTES</th>
+                        <div class="col-xs-12 col-sm-6 col-md-3 pad10">
+                            <div class="col-xs-12">
+                                <h5>DOGE RAISED</h5>
+                            </div>
+                            <div class="col-xs-12 btop">
+                                <h5>36697.46205000</h5>
+                            </div>
+                        </div>
 
-                                    <th>VOTE</th>
+                    </div>
+                    <div class="clearfix">
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr  class="table-th">
-                                    <td>1st</td>
-                                    <td> XDN</td>
-                                    <td>
-                                        <B>DigitalNote</B>
-                                    </td>
-                                    <td>1,00/1,000</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar prograss-color" style="width:10%">10%</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn-vote-btn2">+1 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+5 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+10 votes</button>
+                    </div>
+                    <div class="proceeds-div">75% of proceeds will go to
+                        <span class="electroinc">Electronic Frontier Foundation</span> ,a 501(c)(3)non-profit organization, the remaining 25% will
+                        go to feed the faucete at the
+                        <span class="electroinc">GETCRYPTOPAYMENT Block Explorer</span>.For full rule and information
+                        <span class="electroinc">click here</span>.
+                    </div>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2nd </td>
-                                    <td>GBYTE</td>
-                                    <td>
-                                        <B>Byteball Bytes</B>
-                                    </td>
-                                    <td>428/1,000</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar prograss-color" style="width:10%">10%</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn-vote-btn2">+1 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+5 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+10 votes</button>
+                    <table class="table vote_table">
+                        <thead>
+                            <tr class="table-top">
+                                <th>POSITION</th>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3rd </td>
-                                    <td>Ark</td>
-                                    <td>
-                                        <B>Ark</B>
-                                    </td>
-                                    <td>1,00/1,000</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar prograss-color" style="width:10%">10%</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn-vote-btn2">+1 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+5 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+10 votes</button>
+                                <th>COIN</th>
+                                <th>NAME </th>
+                                <th>VOTES</th>
+                                <th> PERCENTAGE OF VOTES</th>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>4nd </td>
-                                    <td>GBYTE</td>
-                                    <td>
-                                        <B>Byteball Bytes</B>
-                                    </td>
-                                    <td>100/1,000</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar prograss-color" style="width:10%">10%</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn-vote-btn2">+1 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+5 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+10 votes</button>
+                                <th>VOTE</th>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>5rd </td>
-                                    <td>Ark</td>
-                                    <td>
-                                        <B>Ark</B>
-                                    </td>
-                                    <td>1,00/1,000</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar prograss-color" style="width:10%">10%</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn-vote-btn2">+1 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+5 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+10 votes</button>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for i in '1234567' %}
+                            <tr class="table-th">
+                                <td>{{forloop.counter}}st</td>
+                                <td> XDN</td>
+                                <td>
+                                    <B>DigitalNote</B>
+                                </td>
+                                <td>1,00/1,000</td>
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar progress-green" style="width:10%">10%</div>
+                                    </div>
+                                </td>
+                                <td class="padx0">
+                                    <button type="button" class="btn-vote-btn2">+1 votes</button>
+                                    <button type="button" class="btn-vote-btn2">+5 votes</button>
+                                    <button type="button" class="btn-vote-btn2">+10 votes</button>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>6nd </td>
-                                    <td>GBYTE</td>
-                                    <td>
-                                        <B>Byteball Bytes</B>
-                                    </td>
-                                    <td>100/1,000</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar prograss-color" style="width:10%">10%</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn-vote-btn2">+1 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+5 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+10 votes</button>
+                                </td>
+                            </tr>
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>7rd </td>
-                                    <td>Ark</td>
-                                    <td>
-                                        <B>Ark</B>
-                                    </td>
-                                    <td>1,00/1,000</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar prograss-color" style="width:10%">10%</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn-vote-btn2">+1 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+5 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+10 votes</button>
+                            {% endfor %}
+                            
 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>8nd </td>
-                                    <td>GBYTE</td>
-                                    <td>
-                                        <B>Byteball Bytes</B>
-                                    </td>
-                                    <td>100/1,000</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar prograss-color" style="width:10%">10%</div>
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button type="button" class="btn-vote-btn2">+1 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+5 votes</button>
-                                        <button type="button" class="btn-vote-btn2">+10 votes</button>
+                        </tbody>
 
-                                    </td>
-                                </tr>
-
-                            </tbody>
-
-                        </table>
-                    </fieldset>
-                </div>
+                    </table>
+                </fieldset>
             </div>
         </div>
     </div>

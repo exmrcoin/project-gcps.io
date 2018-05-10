@@ -1,355 +1,426 @@
-{% extends 'base.html' %}
-{% load staticfiles %}
-{% block content %}
-    {% load i18n %}
-    {% block meta %}
-        <!-- Schema.org markup for Google+ -->
-        <meta itemprop="name" content="GETCRYPTOPAYMENTS">
-        <meta itemprop="description" content="GETCRYPTOPAYMENTS">
-        <meta itemprop="image" content={{ request.scheme }}://{{ request.get_host }}://{% static 'images/logo.png' %}>
-
-        <!-- Twitter Card data -->
-        <meta name="twitter:title" content="GETCRYPTOPAYMENTS">
-        <meta name="twitter:description" content="GETCRYPTOPAYMENTS">
-        <meta name="twitter:image" content={{ request.scheme }}://{{ request.get_host }}://{% static 'images/logo.png' %}>
-
-        <!-- Open Graph data -->
-        <meta property="og:title" content="GETCRYPTOPAYMENTS" />
-        <meta property="og:image" content={{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.png' %} />
-        <meta property="og:description" content="GETCRYPTOPAYMENTS" />
-    {% endblock %}
-    <section>
-        <div class="banner-log">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-5">
-                        <img class="banner-img-circle img-responsive" src={% static 'images/banner-img.png' %} alt="">
-                    </div>
-                    <div class="col-sm-6 banner-content">
-                        <div class="banner-head-line">
+{% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load i18n %} {% block meta %}
+<!-- Schema.org markup for Google+ -->
+<meta itemprop="name" content="GETCRYPTOPAYMENTS">
+<meta itemprop="description" content="GETCRYPTOPAYMENTS">
+<meta itemprop="image" content={{ request.scheme }}://{{ request.get_host }}://{% static 'images/logo.png' %}>
+<!-- Twitter Card data -->
+<meta name="twitter:title" content="GETCRYPTOPAYMENTS">
+<meta name="twitter:description" content="GETCRYPTOPAYMENTS">
+<meta name="twitter:image" content={{ request.scheme }}://{{ request.get_host }}://{% static 'images/logo.png' %}>
+<!-- Open Graph data -->
+<meta property="og:title" content="GETCRYPTOPAYMENTS" />
+<meta property="og:image" content={{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.png' %} />
+<meta property="og:description" content="GETCRYPTOPAYMENTS" /> {% endblock %}
+<section>
+    <div class="banner-log">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-5 xs-text-center ">
+                    <img class="banner-img-circle img-responsive xs-margin-center" src={% static 'images/banner-img.png' %} alt="">
+                </div>
+                <div class="col-xs-12 col-sm-6 banner-content xs-text-center ">
+                    <div class="banner-head-line col-xs-12">
                         {% trans 'Accept over 140 altcoins now for only 0.50' %}%
-                        </div>
-                        <p>{% trans 'Integrated payment gateway for cryptocurrencies such as Bitcoin and Litecoin' %}</p>
-                        <button type="submit" class="btn- btn-default btn-get-strat">{% trans 'Get Start' %}</button>
                     </div>
-
+                    <span class="index-subhead col-xs-12">{% trans 'Integrated payment gateway for cryptocurrencies such as Bitcoin and Litecoin' %}</span>
+                    <button type="submit" class="btn- btn-default btn-get-start mb-4">{% trans 'Get Start' %}</button>
                 </div>
                 <div class="hidden-xs col-sm-12">
-          <span class="scroll-btn">
-            <a href="#">
-              <span class="mouse">
-                <span>
-                </span>
-          </span>
-          </a>
-          <p>{% trans 'scroll me' %}</p>
-          </span>
-
+                    <span class="scroll-btn">
+                        <a href="#">
+                            <span class="mouse">
+                                <span>
+                                </span>
+                            </span>
+                        </a>
+                        <p>{% trans 'scroll me' %}</p>
+                    </span>
                 </div>
             </div>
         </div>
-
-    </section>
-    <section>
-        <div class="second-sec">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 ios-box">
-                        <div class="col-sm-6 runnnig-sec">
-
+    </div>
+</section>
+<section>
+    <div class="second-sec">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 box-shadow">
+                    <div class="col-xs-12 col-sm-6 mt-2">
+                        <div class="col-xs-12 col-sm-3 col-md-2">
                             <img class="coin-b" src={% static 'images/b-coin.png' %} alt="">
-                            <span class="running"> {% trans 'Running an ICO?' %}</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-9 col-md-10 font-h4">
+                            <span class="font-h3"> {% trans 'Running an ICO?' %}</span>
                             <p>{% trans 'Let Getcryptopayments help with:' %}</p>
                             <ul>
                                 <li> {% trans 'Accepting payments from over 150 different coins' %}</li>
                                 <li> {% trans 'Accepting payments from over 150 different coins' %}</li>
                             </ul>
-                            <button type="submit" class="btn- btn-default btn-more">{% trans 'Find Out More' %}</button>
-
+                            <button type="submit" class="btn- btn-default btn-get-start">{% trans 'Find Out More' %}</button>
                         </div>
-                        <div class="col-sm-6 runnnig-sec">
+                    </div>
+                    <div class="col-xs-12 col-sm-6 mt-2">
+                        <div class="col-xs-12 col-sm-3 col-md-2">
                             <img class="coin-b" src={% static 'images/fingure.png' %} alt="">
-                            <span class="running">{% trans '$PayByName' %}</span>
+                        </div>
+                        <div class="col-xs-12 col-sm-9 col-md-10 font-h4">
+                            <span class="font-h3"> {% trans '$PayByName' %}</span>
                             <p>{% trans 'One unique $tag to receive payments from all coins.' %} </p>
-                            <h1>{% trans 'Example Profile' %}</h1>
-                            <div class="co-md-6">
-                                <div class="pay-by">
-                                    <div class="doller">$</div>
-                                    <div class="input-coin">
-                                        <div class="form-group ">
-                                            <input type="text" class="form-control form-coin" id="pwd">
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn- btn-default btn-more check-availabe">Check
-                                        {% trans 'Available' %}
-                                    </button>
+                            <h1 class="font-h3-orange">{% trans 'Example Profile' %}</h1>
+                            <div class="co-md-12">
+
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default dollar-btn">$</button>
+                                    </span>
+                                    <input type="text" class="form-control input-text-index " placeholder="Check availability">
+                                    <span class="input-group-btn">
+                                        <button type="button" class="btn btn-default dollar-btn">check</button>
+                                    </span>
                                 </div>
+                                <!-- <div class="col-xs-3 col-md-1 pad0 mt-2">
+                                    <button class="dollar-btn" disabled>$</button>
+                                </div>
+                                <div class="col-xs-9 col-md-7 mt-2">
+                                    <input type="text" class="input-text-index form-control">
+                                </div>
+                                <div class="col-xs-12 col-md-4 pad0 mt-2">
+                                    <button class="dollar-btn">check-availabe</button>
+                                </div> -->
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12 shopping-cart">{% trans 'Shopping Cart Plugins' %}</div>
-                    <div class="col-sm-12 shopping">{% trans 'Offering plugins for all the popular webcarts used today. Register and install a plugin to set up Getcryptopayments with your new or pre-existing checkout' %}
-                    </div>
-
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-3 box">
-                        <img class="cart-name" src={% static 'images/cart01.png' %} alt="">
-                    </div>
-                    <div class="col-sm-3 box">
-                        <img class="cart-name" src={% static 'images/cart02.png' %} alt="">
-                    </div>
-
-                    <div class="col-sm-3 box">
-                        <img class="cart-name" src={% static 'images/cart03.png' %} alt="">
-                    </div>
-
-                    <div class="col-sm-3 box ">
-                        <img class="cart-name" src="{% static 'images/cart04.png' %}" alt="">
-                    </div>
-
-                    <div class="col-sm-3 box box1">
-                        <img class="cart-name" src="{% static 'images/cart05.png'  %}" alt="">
-                    </div>
-
-                    <div class="col-sm-3 box box1">
-                        <img class="cart-name" src={% static 'images/cart06.png' %} alt="">
-                    </div>
-
-                    <div class="col-sm-3 box box1">
-                        <img class="cart-name" src={% static 'images/cart07.png' %} alt="">
-                    </div>
-                    <div class="col-sm-3  box box1">
-                        <img class="cart-name" src={% static 'images/cart08.png' %} alt="">
-                    </div>
-
-                </div>
-                <div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section>
-        <div class="container ">
-            <div class="row">
-                <div class="col-sm-12 shopping-cart">{% trans 'Payment Features' %}</div>
-                <div class="col-sm-12 shopping">{% trans 'Getcryptopayments supports BitGo Instant making Bitcoin payments fasterthan ever before.' %}
-                </div>
-
-                <div class="col-sm-6 text-right">
-                    <div class="payment-sect">
-                        <span class="vline"></span>
-                        <!-- repeat -->
-                        <div class="pay-setbx">
-                            <div class="pay-setbx-content right">
-                                <h3>{% trans 'BitGo™ Instant' %}</h3>
-                                <p>{% blocktrans %}Getcryptopayments supports BitGo Instant making Bitcoin payments faster than ever
-                                    before. {% endblocktrans %}</p>
-                            </div>
-                            <div class="pay-setbx-image right">
-                                <img src={% static 'images/coin.png' %}>
-                            </div>
-                        </div>
-                        <!-- repeat end -->
-
-                        <!-- repeat -->
-                        <div class="pay-setbx">
-                            <div class="pay-setbx-content right">
-                                <h3>{% trans 'Vault' %}</h3>
-                                <p>{% blocktrans %}Protect your coins in the vault, requiring a time amount you specify before being
-                                    able to spend them.{% endblocktrans %}</p>
-                            </div>
-                            <div class="pay-setbx-image right">
-                                <img src={% static 'images/vault.png' %}>
-                            </div>
-                        </div>
-                        <!-- repeat end -->
-
-                        <!-- repeat -->
-                        <div class="pay-setbx">
-                            <div class="pay-setbx-content right">
-                                <h3>{% trans 'Fiat Settlements' %}</h3>
-                                <p>{% blocktrans %}United States and Euro merchants now have fiat settlements directly to their bank
-                                    accounts. {% endblocktrans %}</p>
-                            </div>
-                            <div class="pay-setbx-image right">
-                                <img src={% static 'images/fiat.png' %}>
-                            </div>
-                        </div>
-                        <!-- repeat end -->
-
-                        <!-- repeat -->
-                        <div class="pay-setbx">
-                            <div class="pay-setbx-content right">
-                                <h3>{% trans 'Point of Sale (POS)' %}</h3>
-                                <p>{% blocktrans %}Our hot wallet is secured by BitGo - meaning 100{% endblocktrans %} % {% blocktrans %}of our funds are protected by
-                                    multisig technology.{% endblocktrans %}</p>
-                            </div>
-                            <div class="pay-setbx-image right">
-                                <img src={% static 'images/pint-off-sale.png' %}>
-                            </div>
-                        </div>
-                        <!-- repeat end -->
-
-                        <!-- repeat -->
-
-                        <!-- repeat end -->
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="payment-sect">
-                        <!-- repeat -->
-                        <div class="pay-setbx">
-                            <div class="pay-setbx-content left">
-                                <h3>{% trans 'Secured with BitGo' %}</h3>
-                                <p>{% blocktrans %}Our hot wallet is secured by BitGo - meaning 100{% endblocktrans %}% {% blocktrans %}of our funds are protected by
-                                    multisig technology.{% endblocktrans %}</p>
-                            </div>
-                            <div class="pay-setbx-image left">
-                                <img src={% static 'images/secured.png' %}>
-                            </div>
-                        </div>
-                        <!-- repeat end -->
-                        <!-- repeat -->
-                        <div class="pay-setbx">
-                            <div class="pay-setbx-content left">
-                                <h3>{% trans 'Mobile Apps' %}</h3>
-                                <p>{% blocktrans %}Access your account, accept payments in person, and convert coins anywhere with our
-                                    mobile apps for Android and iOS.{% endblocktrans %}</p>
-                            </div>
-                            <div class="pay-setbx-image left">
-                                <img src={% static 'images/mobileapp.png' %}>
-                            </div>
-                        </div>
-                        <!-- repeat end -->
-                        <!-- repeat -->
-                        <div class="pay-setbx">
-                            <div class="pay-setbx-content left">
-                                <h3>{% trans 'Auto Coin Conversion' %}</h3>
-                                <p>{% blocktrans %}Auto convert for some of our coins, saving you the trouble of moving funds, wasting
-                                    time and fees.{% endblocktrans %}</p>
-                            </div>
-                            <div class="pay-setbx-image left">
-                                <img src={% static 'images/auto-coin.png' %}>
-                            </div>
-                        </div>
-                        <!-- repeat end -->
-                        <!-- repeat -->
-                        <div class="pay-setbx">
-                            <div class="pay-setbx-content left">
-                                <h3>{% trans 'Multi-Coin Wallet' %}</h3>
-                                <p>{% blocktrans %}Optionally store your coins in our secure online wallet.{% endblocktrans %}</p>
-                            </div>
-                            <div class="pay-setbx-image left">
-                                <img src={% static 'images/multi-coin.png' %}>
-                            </div>
-                        </div>
-                        <!-- repeat end -->
-                        <!-- repeat -->
-                        <!-- repeat end -->
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <section>
-        <div class="grtstrat-last">
-            <div class="container">
-                <div class="row">
-                    <h4>{% trans 'Over 730,000 vendors across 182 different countries' %}</h4>
-                    <p>{% blocktrans %}Getcryptopayments is the first and largest payment processor of over 150 cryptocurrencies{% endblocktrans %}</p>
-                    <div class="col-sm-4 sub-company site__title mega ">
-                        <img src={% static 'images/coi-deskicon.png' %}>
+    </div>
+</section>
+<section class="shopping-bg col-xs-12 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 shopping-cart text-center mt-2">
+                <h1>{% trans 'Shopping Cart Plugins' %}</h1>
+            </div>
+            <div class="col-xs-12 shopping text-center">
+                <h3 class="font-h4">{% trans 'Offering plugins for all the popular webcarts used today. Register and install a plugin to set
+                    up Getcryptopayments with your new or pre-existing checkout' %}
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12 mt-1">
+
+        <div id="myCanvasContainer" class="col-xs-12 col-md-8 col-md-offset-2">
+            <canvas width="680" height="400" style="width: 80%; margin: 10%" id="myCanvas">
+                <p>Anything in here will be replaced on browsers that support the canvas element</p>
+                <ul>
+                    <li>
+                        <a href="/fish" class="text-shadow shadow">
+                            <img class="cart-name" src={% static 'images/cart01.png' %} alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/fish" class="text-shadow shadow">
+                            <img class="cart-name" src={% static 'images/cart02.png' %} alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/fish" class="text-shadow shadow">
+                            <img class="cart-name" src={% static 'images/cart03.png' %} alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/fish" class="text-shadow shadow">
+                            <img class="cart-name" src={% static 'images/cart04.png' %} alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/fish" class="text-shadow shadow">
+                            <img class="cart-name" src={% static 'images/cart05.png' %} alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/fish" class="text-shadow shadow">
+                            <img class="cart-name" src={% static 'images/cart06.png' %} alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/fish" class="text-shadow shadow">
+                            <img class="cart-name" src={% static 'images/cart07.png' %} alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/fish" class="text-shadow shadow">
+                            <img class="cart-name" src={% static 'images/cart08.png' %} alt="">
+                        </a>
+                    </li>
+                </ul>
+            </canvas>
+        </div>
+
+    </div>
+    <!-- <div class="container mt-2">
+        <div class="row mt-2">
+            <div class="col-xs-12 col-sm-4 col-md-3 box">
+                <img class="cart-name" src={% static 'images/cart01.png' %} alt="">
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-3 box">
+                <img class="cart-name" src={% static 'images/cart02.png' %} alt="">
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-3 box">
+                <img class="cart-name" src={% static 'images/cart03.png' %} alt="">
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-3 box ">
+                <img class="cart-name" src="{% static 'images/cart04.png' %}" alt="">
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-3 box box1">
+                <img class="cart-name" src="{% static 'images/cart05.png'  %}" alt="">
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-3 box box1">
+                <img class="cart-name" src={% static 'images/cart06.png' %} alt="">
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-3 box box1">
+                <img class="cart-name" src={% static 'images/cart07.png' %} alt="">
+            </div>
+            <div class="col-xs-12 col-sm-4 col-md-3 box">
+                <img class="cart-name" src={% static 'images/cart08.png' %} alt="">
+            </div>
+        </div>
+        <div>
+        </div>
+    </div> -->
+</section>
+<section class="">
+    <div class="container mt-5">
+        <div class="row mt-2">
+            <div class="col-sm-12 shopping-cart text-center">
+                <h1>{% trans 'Payment Features' %}</h1>
+            </div>
+            <div class="col-sm-12 shopping text-center font-h4">{% trans 'Getcryptopayments supports BitGo Instant making Bitcoin payments fasterthan ever before.' %}
+            </div>
+            <div class="col-sm-6 text-right">
+                <div class="payment-sect">
+                    <span class="vline"></span>
+                    <!-- repeat -->
+                    <div class="pay-setbx">
+                        <div class="pay-setbx-content right">
+                            <h3>{% trans 'BitGo™ Instant' %}</h3>
+                            <p>{% blocktrans %}Getcryptopayments supports BitGo Instant making Bitcoin payments faster than
+                                ever before. {% endblocktrans %}
+                            </p>
+                        </div>
+                        <div class="pay-setbx-image right">
+                            <img src="{% static 'images/coin.png' %}" class="img-responsive">
+                        </div>
                     </div>
-                    <div class="col-sm-4 sub-company">
-                        <img src={% static 'images/retures.png' %}>
+                    <!-- repeat end -->
+                    <!-- repeat -->
+                    <div class="pay-setbx">
+                        <div class="pay-setbx-content right">
+                            <h3>{% trans 'Vault' %}</h3>
+                            <p>{% blocktrans %}Protect your coins in the vault, requiring a time amount you specify before being
+                                able to spend them.{% endblocktrans %}
+                            </p>
+                        </div>
+                        <div class="pay-setbx-image right">
+                            <img src={% static 'images/vault.png' %}/>
+                        </div>
                     </div>
-                    <div class="col-sm-4 sub-company">
-                        <img src={% static 'images/yahoo-icon.png' %}>
+                    <!-- repeat end -->
+                    <!-- repeat -->
+                    <div class="pay-setbx">
+                        <div class="pay-setbx-content right">
+                            <h3>{% trans 'Fiat Settlements' %}</h3>
+                            <p>{% blocktrans %}United States and Euro merchants now have fiat settlements directly to their
+                                bank accounts. {% endblocktrans %}
+                            </p>
+                        </div>
+                        <div class="pay-setbx-image right">
+                            <img src={% static 'images/fiat.png' %}/>
+                        </div>
                     </div>
-                    <button type="submit" class="btn- btn-default btn-more check-availabe coin-sale">Check Available
-                    </button>
+                    <!-- repeat end -->
+                    <!-- repeat -->
+                    <div class="pay-setbx">
+                        <div class="pay-setbx-content right">
+                            <h3>{% trans 'Point of Sale (POS)' %}</h3>
+                            <p>{% blocktrans %}Our hot wallet is secured by BitGo - meaning 100 {% endblocktrans %} % {%blocktrans%}of
+                                our funds are protected by multisig technology.{% endblocktrans %}
+                            </p>
+                        </div>
+                        <div class="pay-setbx-image right">
+                            <img src={% static 'images/pint-off-sale.png' %}/>
+                        </div>
+                    </div>
+                    <!-- repeat end -->
+                    <!-- repeat -->
+                    <!-- repeat end -->
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="payment-sect">
+                    <!-- repeat -->
+                    <div class="pay-setbx">
+                        <div class="pay-setbx-content left">
+                            <h3>{% trans 'Secured with BitGo' %}</h3>
+                            <p>{% blocktrans %}Our hot wallet is secured by BitGo - meaning 100 {% endblocktrans %}% {%blocktrans%}of
+                                our funds are protected by multisig technology.{% endblocktrans %}
+                            </p>
+                        </div>
+                        <div class="pay-setbx-image left">
+                            <img src={% static 'images/secured.png' %}/>
+                        </div>
+                    </div>
+                    <!-- repeat end -->
+                    <!-- repeat -->
+                    <div class="pay-setbx">
+                        <div class="pay-setbx-content left">
+                            <h3>{% trans 'Mobile Apps' %}</h3>
+                            <p>{% blocktrans %}Access your account, accept payments in person, and convert coins anywhere with
+                                our mobile apps for Android and iOS.{% endblocktrans %}
+                            </p>
+                        </div>
+                        <div class="pay-setbx-image left">
+                            <img src={% static 'images/mobileapp.png' %}/>
+                        </div>
+                    </div>
+                    <!-- repeat end -->
+                    <!-- repeat -->
+                    <div class="pay-setbx">
+                        <div class="pay-setbx-content left">
+                            <h3>{% trans 'Auto Coin Conversion' %}</h3>
+                            <p>{% blocktrans %}Auto convert for some of our coins, saving you the trouble of moving funds, wasting
+                                time and fees.{% endblocktrans %}
+                            </p>
+                        </div>
+                        <div class="pay-setbx-image left">
+                            <img src={% static 'images/auto-coin.png' %}/>
+                        </div>
+                    </div>
+                    <!-- repeat end -->
+                    <!-- repeat -->
+                    <div class="pay-setbx">
+                        <div class="pay-setbx-content left">
+                            <h3>{% trans 'Multi-Coin Wallet' %}</h3>
+                            <p>{% blocktrans %}Optionally store your coins in our secure online wallet.{% endblocktrans %}</p>
+                        </div>
+                        <div class="pay-setbx-image left">
+                            <img src={% static 'images/multi-coin.png' %}/>
+                        </div>
+                    </div>
+                    <!-- repeat end -->
+                    <!-- repeat -->
+                    <!-- repeat end -->
                 </div>
             </div>
         </div>
-    </section>
-    <section>
+    </div>
+</section>
+<!-- <section>
+    <div class="largest-payment">
         <div class="container">
             <div class="row">
-                <div id="testimonials">
-
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8 col-lg-offset-2">
-                                <div class="testimonials-list">
-
-                                    <!-- Single Testimonial -->
-                                    <div class="single-testimonial">
-                                        <div class="testimonial-holder">
-                                            <div class="testimonial-content">{% blocktrans %}We wanted to accept Start coin payments so
-                                                we starting developing. We wanted to accept Ether payments so we
-                                                starting developing. Then we realised Getcryptopayments could do the
-                                                hard work for us and we could accept all payments and receive the money
-                                                in Bitcoin. Thanks Getcryptopayments, we only need to develop with one
-                                                API now.{% endblocktrans %}
-                                                <p>{% trans 'Start Coin by  Stellar Lumens Coin' %}</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <!-- End of Single Testimonial -->
-
-                                    <!-- Single Testimonial -->
-                                    <div class="single-testimonial">
-                                        <div class="testimonial-holder">
-                                            <div class="testimonial-content">{% blocktrans %}We wanted to accept Start coin payments so
-                                                we starting developing. We wanted to accept Ether payments so we
-                                                starting developing. Then we realised Getcryptopayments could do the
-                                                hard work for us and we could accept all payments and receive the money
-                                                in Bitcoin. Thanks Getcryptopayments, we only need to develop with one
-                                                API now.{% endblocktrans %}
-                                                <p>{% trans 'Johannes S by Jed McCaleb CEO stellar.org' %}</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                    <!-- End of Single Testimonial -->
-
-                                    <!-- Single Testimonial -->
-
-                                    <!-- End of Single Testimonial -->
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--End of Testimonials -->
-
-
+                <h1 class="white-font largest-payment-h1">{% trans 'Over 730,000 vendors across 182 different countries' %}</h1>
+                <h4 class="white-font">{% blocktrans %}Getcryptopayments is the first and largest payment processor of over 150 cryptocurrencies
+                    {% endblocktrans %}</h4>
+                <di class="col-sm-4 sub-company site__title mega ">
+                    <img src={% static 'images/coi-deskicon.png' %}>
+                </di>
+                <di class="col-sm-4 sub-company">
+                    <img src={% static 'images/retures.png' %}>
+                </di>
+                <di class="col-sm-4 sub-company">
+                    <img src={% static 'images/yahoo-icon.png' %}>
+                </di>
+                <button type="submit" class="btn- btn-default btn-get-start check-availabe coin-sale">Check Available
+                </button>
+                <div class="col-xs-12 pad10"></div>
             </div>
         </div>
-    </section>
+    </div>
+</section> -->
+<section id="carousel">
+    <div id="myCarousel" class="carousel slide testimonial carousel-fade" data-ride="carousel">
 
-{% endblock %}
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner testimonial-inner">
+            <div class="item active">
+                <div class="text-justify">
+                    <span class="text-center">
+                        {% blocktrans %}We wanted to accept Start coin payments so we starting developing. We wanted to accept Ether payments so
+                        we starting developing. Then we realised Getcryptopayments could do the hard work for us and we could
+                        accept all payments and receive the money in Bitcoin. Thanks Getcryptopayments, we only need to develop
+                        with one API now.{% endblocktrans %}
+                        <p class="font-h3-orange mt-2">{% trans 'Start Coin by Stellar Lumens Coin' %}</p>
+                    </span>
+                </div>
+            </div>
 
-{% block extra_js %}
-    <script src="{% static 'js/slick.js' %}"></script>
-    <script>
-        $(document).ready(function () {
-            $('.testimonials-list').slick({
-                dots: true,
-                autoplay: true,
-                prevArrow: '<span class="fa-stack testimonial-left-handle fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-caret-left fa-stack-1x"></i></span>',
-                nextArrow: '<span class="fa-stack testimonial-right-handle fa-lg"><i class="fa fa-square-o fa-stack-2x"></i><i class="fa fa-caret-right fa-stack-1x"></i></span>',
-            });
-        });
-    </script>
-{% endblock %}
+            <div class="item">
+                <div class="text-justify">
+                    <span class="text-center">
+                        {% blocktrans %}We wanted to accept Start coin payments so we starting developing. We wanted to accept Ether payments so
+                        we starting developing. Then we realised Getcryptopayments could do the hard work for us and we could
+                        accept all payments and receive the money in Bitcoin. Thanks Getcryptopayments, we only need to develop
+                        with one API now.{% endblocktrans %}
+                        <p class="font-h3-orange mt-2">{% trans 'Johannes S by Jed McCaleb CEO stellar.org' %}</p>
+                    </span>
+                </div>
+            </div>
 
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control dark-font" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control dark-font" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+            <span class="sr-only">Next</span>
+        </a>
+
+        <!-- Indicators -->
+        <ol class="carousel-indicators orange-font">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+        </ol>
+    </div>
+
+</section>
+
+
+
+{% endblock %} {% block script %}
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="{% static 'js/jquery.tagcanvas.min.js' %}"></script>
+<script type="text/javascript">
+    window.onload = function () {
+        try {
+            TagCanvas.Start('myCanvas');
+            if (!$('#myCanvas').tagcanvas({
+                textColour: null,
+                outlineThickness: 1,
+                maxSpeed: 0.5,
+                depth: 0.6,
+                zoom: 1.0,
+                reverse: true,
+                outlineMethod: 'none',
+                shuffleTags: true,
+                maxSpeed: 0.05,
+                decel: 0.99,
+                initial: [0.08, -0.03],
+                textHeight: 26,
+                outlineThickness: 2,
+                outlineOffset: 3,
+                wheelZoom: false
+            })) {
+                // TagCanvas failed to load
+                $('#tagCloudContainer').hide();
+            }
+        } catch (e) {
+            // something went wrong, hide the canvas container
+            document.getElementById('myCanvasContainer').style.display = 'none';
+        }
+    };
+</script> {% endblock %}

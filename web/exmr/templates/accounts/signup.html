@@ -1,205 +1,199 @@
-{% extends 'base.html' %}
-{% load staticfiles widget_tweaks %}
-{% block title %}Signup{% endblock %}
-{% load i18n %}
+{% extends 'exmr.html' %} {% load staticfiles widget_tweaks %} {% block title %}Signup{% endblock %} {% load i18n %} 
 {% block content %}
-    <section>
-        <div class="login-bg">
-            <div class="container">
-                <div class="row">
-                    <div class=" offset-md-4 col-sm-6 login-sec signup-form-sec">
-                        <div class="col-md-12">
-                            <img class="log-top-icon" src="{% static 'images/login-top-icon.png' %}" alt="">
-                        </div>
-                        <div class="col-md-12">
-                            <a href= "{% url 'home' %}">
-                                <img class="logo-log" src="{% static 'images/log-log.png' %}" alt="">
-                            </a>
-                        </div>
-                        <div class="form-group welcome">{% trans 'Welcome!' %}</div>
-                        <h3 class="log-subline">{% trans 'Sign in by entering the information below' %}</h3>
+<section>
+    <div class="login-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-lg-6 col-sm-offset-3 login-sec">
+                    <div class="col-md-12">
+                        <img class="log-top-icon" src="{% static 'images/login-top-icon.png' %}" alt="">
+                    </div>
+                    <div class="col-md-12">
+                        <a href="{% url 'home' %}">
+                            <img class="logo-log" src="{% static 'images/log-log.png' %}" alt="">
+                        </a>
+                    </div>
+                    <div class="form-group welcome">{% trans 'Welcome!' %}</div>
+                    <h3 class="log-subline">{% trans 'Sign in by entering the information below' %}</h3>
 
-                        <div class="form-group">
-                            <form id="signupForm" action="." method="post" novalidate>{% csrf_token %}
-                                <div class=" form-group">
-                                    {% render_field form.username class="form-control usernmae-log" placeholder="Username" %}
+                    <div class="form-group col-xs-12">
+                        <form id="signupForm" action="." method="post" novalidate class="pad20 col-xs-12">{% csrf_token %}
+                            <div class=" form-group">
+                                {% render_field form.username class="form-control username-log" placeholder="Username" %}
+                                <span class="error"></span>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    {% render_field form.email class="form-control username-log" placeholder="Email" %}
                                     <span class="error"></span>
                                 </div>
-
-                                <div class="row">
-                                    <div class="col-md-6 form-group">
-                                        {% render_field form.email class="form-control usernmae-log" placeholder="Email" %}
-                                        <span class="error"></span>                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        {% render_field form.confirm_email class="form-control usernmae-log" placeholder="Confirm Email" %}
-                                        <span class="error"></span>                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        {% render_field form.password1 class="form-control usernmae-log" placeholder="Password" %}
-                                        <span class="error"></span>                                    </div>
-                                    <div class="col-md-6 form-group">
-                                        {% render_field form.password2 class="form-control usernmae-log" placeholder="Confirm Password" %}
-                                        <span class="error"></span>                                    </div>
+                                <div class="col-md-6 form-group">
+                                    {% render_field form.confirm_email class="form-control username-log" placeholder="Confirm Email" %}
+                                    <span class="error"></span>
                                 </div>
-                                <p>{% trans "Please make it at least 10 characters long and include letters, numbers, and special characters." %}</p>
-                                <h4 class="time-cone">{% trans "Timezone" %}</h4>
-                                <div class=" form-group">
+                                <div class="col-md-6 form-group">
+                                    {% render_field form.password1 class="form-control username-log" placeholder="Password" %}
+                                    <span class="error"></span>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    {% render_field form.password2 class="form-control username-log" placeholder="Confirm Password" %}
+                                    <span class="error"></span>
+                                </div>
+                            </div>
+                            <p class="text-left">{% trans "Please make it at least 10 characters long and include letters, numbers, and special characters." %}</p>
+                            <h5 class="text-left">{% trans "Timezone" %}</h5>
+                            <div class=" form-group">
 
-                                    {% render_field form.timezone class="selectpicker picker-signup" placeholder="Confirm Password" %}
-                                    <span class="error"></span>                                </div>
-                                <div class=" form-group">
-                                    <div class="checkbox signup-ceckbox">
-                                        {{ form.need_newsletter }}
-                                        <label for="checkbox1  " class="label-sign">
-                                            {% trans 'Send newsletters and other relevant information to my provided e-mail.' %}
-                                        </label>
-                                    </div>
-                                    <span class="error"></span>                                </div>
-                                <div class="form-group">
-                                    <div class="checkbox signup-ceckbox">
-                                        {{ form.accept_terms_and_conditions }}
-                                        <label for="checkbox1  " class="label-sign">
-                                            {% trans 'Have read and agree to the' %} <span class="terms">{% trans 'Terms of Service.' %}</span>
-                                        </label>
-                                    </div>
-                                    <span class="error"></span>                                </div>
-                                <section class="entr-box">
-                                    <fieldset>
+                                {% render_field form.timezone class="selectpicker picker-signup form-control" placeholder="Confirm Password" %}
+                                <span class="error"></span>
+                            </div>
+                            <div class="text-left form-group">
+                                <div class="checkbox signup-ceckbox col-xs-12">
+                                    {{ form.need_newsletter }}
+                                    <label for="checkbox1  " class="label-sign">
+                                        {% trans 'Send newsletters and other relevant information to my provided e-mail.' %}
+                                    </label>
+                                </div>
+                                <span class="error"></span>
+                            </div>
+                            <div class="text-left form-group">
+                                <div class="checkbox signup-ceckbox col-xs-12">
+                                    {{ form.accept_terms_and_conditions }}
+                                    <label for="checkbox1  " class="label-sign">
+                                        {% trans 'Have read and agree to the' %}
+                                        <span class="terms">{% trans 'Terms of Service.' %}</span>
+                                    </label>
+                                </div>
+                                <span class="error"></span>
+                            </div>
+                            <section class="entr-box col-xs-12">
+                                <fieldset>
 
-                                        <div class='CaptchaWrap'>
-                                            <div id="CaptchaImageCode" class="CaptchaTxtField">
-                                                <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
-
-                                            </div>
-
-                                            <p>{% trans 'Type the characters you see in the image above:' %}</p>
+                                    <div class='CaptchaWrap'>
+                                        <div id="CaptchaImageCode" class="CaptchaTxtField">
+                                            <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
 
                                         </div>
 
-                                    </fieldset>
-                                </section>
-                                <div class="form-group">
-                                    <input type="text" class="capticha-enter1 form-control usernmae-log"
-                                                   id="UserCaptchaCode"
-                                                   class="CaptchaTxtField"
-                                                   placeholder='Enter Captcha - Case Sensitive'>
-                                            <span id="WrongCaptchaError" class="error"></span>
-                                </div>
-                                <button type="submit" class="btn- btn-default btn-log sign-button">{% trans 'Signup' %}</button>
-                            </form>
-                        </div>
-                    </div>
+                                        <p>{% trans 'Type the characters you see in the image above:' %}</p>
 
+                                    </div>
+
+                                </fieldset>
+                            </section>
+                            <div class="form-group">
+                                <input type="text" class="capticha-enter1 form-control username-log" id="UserCaptchaCode" class="CaptchaTxtField" placeholder='Enter Captcha - Case Sensitive'>
+                                <span id="WrongCaptchaError" class="error"></span>
+                            </div>
+                            <button type="submit" class="btn- btn-default btn-log sign-button">{% trans 'Signup' %}</button>
+                        </form>
+                    </div>
                 </div>
+
             </div>
         </div>
-    </section>
-{% endblock %}
+    </div>
+</section>
+{% endblock %} {% block script %}
+<script>
+    var cd;
 
-{% block extra_js %}
-    <script>
-        var cd;
+    $(function () {
 
-        $(function () {
+        CreateCaptcha();
 
-            CreateCaptcha();
-
-            $('#signupForm').on('input',function(e){
-                $(this).find('.error').text('')
-            });
-
-            $('#signupForm').submit(function(e){
-                e.preventDefault();
-                var submit = $(this).closest('form').find(':submit');
-                submit.attr('disabled', true);
-                submit.text('Processing...')
-                var form_submit_status = formSubmit('#signupForm', '/sign-up/');
-                var captchaResult = CheckCaptcha();
-                if(captchaResult && form_submit_status)
-                    location.replace("{% url 'accounts:signup_complete'  %}");
-                if(!captchaResult || !form_submit_status)
-                    submit.attr('disabled', false);
-                    submit.text('Signup');
-                    return false;
-            });
+        $('#signupForm').on('input', function (e) {
+            $(this).find('.error').text('')
         });
 
-        // Create Captcha
-        function CreateCaptcha() {
-            //$('#InvalidCapthcaError').hide();
-            var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+        $('#signupForm').submit(function (e) {
+            e.preventDefault();
+            var form_submit_status = formSubmit('#signupForm', '/sign-up/');
+            var captchaResult = CheckCaptcha();
+            console.log(captchaResult, form_submit_status, "capcta form submit")
+            if (captchaResult && form_submit_status)
+                location.replace("{% url 'accounts:signup_complete'  %}");
+            if (!captchaResult || !form_submit_status)
+                return false;
+        });
+    });
 
-            var i;
-            for (i = 0; i < 6; i++) {
-                var a = alpha[Math.floor(Math.random() * alpha.length)];
-                var b = alpha[Math.floor(Math.random() * alpha.length)];
-                var c = alpha[Math.floor(Math.random() * alpha.length)];
-                var d = alpha[Math.floor(Math.random() * alpha.length)];
-                var e = alpha[Math.floor(Math.random() * alpha.length)];
-                var f = alpha[Math.floor(Math.random() * alpha.length)];
-            }
-            cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
-            $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas><button type="button" class="btn btn-sync" onclick="CreateCaptcha();"><i class="fas fa-sync-alt"></i></button>');
+    // Create Captcha
+    function CreateCaptcha() {
+        //$('#InvalidCapthcaError').hide();
+        var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
 
-            var c = document.getElementById("CapCode"),
-                ctx = c.getContext("2d"),
-                x = c.width / 2,
-                img = new Image();
-
-            img.src = "https://pixelsharing.files.wordpress.com/2010/11/salvage-tileable-and-seamless-pattern.jpg";
-            img.onload = function () {
-                var pattern = ctx.createPattern(img, "repeat");
-                ctx.fillStyle = pattern;
-                ctx.fillRect(0, 0, c.width, c.height);
-                ctx.font = "46px Roboto Slab";
-                ctx.fillStyle = '#ccc';
-                ctx.textAlign = 'center';
-                ctx.setTransform(1, -0.12, 0, 1, 0, 15);
-                ctx.fillText(cd, x, 55);
-            };
-
-
+        var i;
+        for (i = 0; i < 6; i++) {
+            var a = alpha[Math.floor(Math.random() * alpha.length)];
+            var b = alpha[Math.floor(Math.random() * alpha.length)];
+            var c = alpha[Math.floor(Math.random() * alpha.length)];
+            var d = alpha[Math.floor(Math.random() * alpha.length)];
+            var e = alpha[Math.floor(Math.random() * alpha.length)];
+            var f = alpha[Math.floor(Math.random() * alpha.length)];
         }
+        cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
+        $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas><button class="btn btn-sync" onclick="CreateCaptcha();"><i class="fas fa-sync-alt"></i></button>');
 
-        // Validate Captcha
-        function ValidateCaptcha() {
-            var string1 = removeSpaces(cd);
-            var string2 = removeSpaces($('#UserCaptchaCode').val());
-            if (string1 == string2) {
-                return true;
+        var c = document.getElementById("CapCode"),
+            ctx = c.getContext("2d"),
+            x = c.width / 2,
+            img = new Image();
+
+        img.src = "{% static 'images/captcha2.jpg' %}";
+        img.onload = function () {
+            var pattern = ctx.createPattern(img, "repeat");
+            ctx.fillStyle = pattern;
+            ctx.fillRect(0, 0, c.width, c.height);
+            ctx.font = "48px Roboto Slab";
+            ctx.fillStyle = '#a5a5a5';
+            ctx.textAlign = 'center';
+            ctx.setTransform(1, -0.12, 0, 1, 0, 15);
+            ctx.fillText(cd, x, 55);
+        };
+
+
+    }
+
+    // Validate Captcha
+    function ValidateCaptcha() {
+        var string1 = removeSpaces(cd);
+        var string2 = removeSpaces($('#UserCaptchaCode').val());
+        if (string1 == string2) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    // Remove Spaces
+    function removeSpaces(string) {
+        return string.split(' ').join('');
+    }
+
+    // Check Captcha
+    function CheckCaptcha() {
+        var result = ValidateCaptcha();
+        if ($("#UserCaptchaCode").val() == "" || $("#UserCaptchaCode").val() == null || $("#UserCaptchaCode").val() == "undefined") {
+            $('#WrongCaptchaError').text('Please enter code given below in a picture.').show();
+            $('#UserCaptchaCode').focus();
+        } else {
+            if (result == false) {
+                $('#WrongCaptchaError').text('Invalid Captcha! Please try again.').show();
+                CreateCaptcha();
+                $('#UserCaptchaCode').focus().select();
             }
             else {
-                return false;
+                $('#UserCaptchaCode').val('').attr('place-holder', 'Enter Captcha - Case Sensitive');
+                CreateCaptcha();
+                $('#WrongCaptchaError').fadeOut(100);
+                $('#SuccessMessage').fadeIn(500).css('display', 'block').delay(5000).fadeOut(250);
             }
         }
-
-        // Remove Spaces
-        function removeSpaces(string) {
-            return string.split(' ').join('');
-        }
-
-        // Check Captcha
-        function CheckCaptcha() {
-            var result = ValidateCaptcha();
-            if ($("#UserCaptchaCode").val() == "" || $("#UserCaptchaCode").val() == null || $("#UserCaptchaCode").val() == "undefined") {
-                $('#WrongCaptchaError').text('Please enter code given below in a picture.').show();
-                $('#UserCaptchaCode').focus();
-            } else {
-                if (result == false) {
-                    $('#WrongCaptchaError').text('Invalid Captcha! Please try again.').show();
-                    CreateCaptcha();
-                    $('#UserCaptchaCode').focus().select();
-                }
-                else {
-                    $('#UserCaptchaCode').val('').attr('place-holder', 'Enter Captcha - Case Sensitive');
-                    CreateCaptcha();
-                    $('#WrongCaptchaError').fadeOut(100);
-                    $('#SuccessMessage').fadeIn(500).css('display', 'block').delay(5000).fadeOut(250);
-                }
-            }
-            return result;
-        }
+        return result;
+    }
 
 
-    </script>
-
-{% endblock %}
+</script> {% endblock %}

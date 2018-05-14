@@ -1006,7 +1006,22 @@ footer {
     box-shadow: 0 1px 16px 2px #dedede;
     padding: 2rem;
 }
-
+.account-setting-wrap3 {
+    width: 100%;
+    height: auto;
+    background-color: #fff;
+    margin: 30px auto;
+    padding: 2rem;
+}
+.dashboard-wrapper {
+    margin-top: 1.5rem;
+    background-color: #fff;
+    height: auto;
+    width: 100%;
+    float: left;
+    box-shadow: 0 1px 16px 2px #dedede;
+    margin-bottom: 1.5rem;
+}
 input[type="radio"] {
     margin-right: 10px;
 }
@@ -1356,4 +1371,70 @@ select:-moz-focusring * {
     color: white;
     background-color: #1d908c;
     border-color: #156663;
+}
+
+/*****************add to store************/
+.form-orange input[type="text"],input[type="url"],input[type="email"]  {
+    width: 100% !important;
+    margin: 0 auto;
+    margin-top: 0px;
+    display: block;
+    margin-top: -3px !important;
+    height: 50px;
+    border-radius: 4px;
+    border: solid 1px #d7d7d7 !important;
+    box-shadow: inset 4px 0px 0px #e75d14 !important;
+    padding-left: 14px;
+    height: 40px !important;
+}
+.form-orange select {
+    width: 100% !important;
+    margin: 0 auto;
+    margin-top: 0px;
+    display: block;
+    margin-top: -3px !important;
+    height: 50px;
+    border-radius: 4px;
+    border: solid 1px #d7d7d7 !important;
+    box-shadow: inset 4px 0px 0px #e75d14 !important;
+    padding-left: 14px;
+    height: 40px !important;
+}
+.main-field{
+    background: whitesmoke;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+/****************help**************/
+.help-sidebar {
+    padding-right: 15px;
+    border-right: 1px solid #e8e8e8;
+    text-align: left;
+}
+.help-sidebar li{
+    list-style: none;
+    padding: 8px;
+}
+.help-sidebar li:hover{
+    background: #e75d15;
+    color: white !important;
+    padding: 10px;
+    border-radius: 10px;
+}
+.help-sidebar li:hover >a{
+        color: white;
+}
+
+.help-sidebar li:active{
+    background: #e75d15;
+    color: white !important;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.help-sidebar li:active >a{
+    color: white;
 }

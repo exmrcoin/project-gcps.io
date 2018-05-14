@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django_social_share',
     'ckeditor',
+    'ckeditor_uploader',
 
 
     # Django packages
@@ -165,6 +166,7 @@ STATICFILES_DIRS = (os.path.join(PROJECT_PATH, 'staticfiles'),)
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media/')
+CKEDITOR_UPLOAD_PATH = 'uploads/'
 
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True

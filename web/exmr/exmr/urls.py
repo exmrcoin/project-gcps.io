@@ -53,7 +53,8 @@ urlpatterns += i18n_patterns(
          name='forgot-password'),
     path('contact/', TemplateView.as_view(template_name='common/contact.html'),
          name='contact'),
-)
+         path('ckeditor/',include('ckeditor_uploader.urls')),
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 

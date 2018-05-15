@@ -46,8 +46,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="text-left text-info">{% trans "Please make it at least 10 characters long and include letters, numbers,"%} {% trans
-                                " and special characters." %}</p>
+                            <p class="text-left text-info">{% blocktrans %} Please make it at least 10 characters long and include letters, numbers,
+                                 and special characters. {% endblocktrans %}</p>
                             <h5 class="text-left">{% trans "Timezone" %}</h5>
                             <div class=" form-group">
 
@@ -116,7 +116,6 @@
         $('#signupForm').submit(function (e) {
             e.preventDefault();
             var captchaResult = CheckCaptcha();
-            alert(captchaResult);
             if (captchaResult == true) {
                 var form_submit_status = formSubmit('#signupForm', '{% url "accounts:signup" %}');
                 console.log(captchaResult, form_submit_status, "capcta form submit")
@@ -194,9 +193,25 @@
             $('#UserCaptchaCode').focus();
         } else {
             if (result == false) {
-                $('#WrongCaptchaError').text('Invalid Captcha! Please try again.').show();
+                // $('#WrongCaptchaError').text('Invalid Captcha! Please try again.').show();
+                window.setTimeout(function () {
+                    $.notify({
+                        icon: 'fa fa-warning-sign',
+                        title: 'warning',
+                        message: 'invalid captcha'
+                    }, {
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutDown'
+                            },
+    
+                            type: 'danger'
+    
+                        });
+                    }, 500);
                 CreateCaptcha();
                 $('#UserCaptchaCode').focus().select();
+                $('#UserCaptchaCode').addClass('error-focus');
             }
             else {
                 $('#UserCaptchaCode').val('').attr('place-holder', 'Enter Captcha - Case Sensitive');

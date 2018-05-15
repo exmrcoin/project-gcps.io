@@ -1586,3 +1586,8 @@ input[type="email"] {
     cursor: pointer;
     white-space: nowrap;
   }
+.error-focus{   
+    border-color: rgba(255, 1, 1, 0.8) !important;
+    box-shadow: 0 1px 1px rgba(255, 0, 0, 0.075) inset, 0 0 8px rgba(255, 0, 0, 0.6) !important;
+    outline: 0 none !important;
+  }

@@ -1,10 +1,12 @@
-from django.views.generic import TemplateView, FormView
+import os
+
+from django.http import HttpResponse
+from django.urls import reverse, reverse_lazy
+from django.views.generic import View, TemplateView, FormView
 
 from apps.accounts.models import Profile
-from apps.common.models import FAQ, HelpSidebar, LegalSidebar
-from django.urls import reverse, reverse_lazy
 from apps.common.forms import CoinRequestForm
-
+from apps.common.models import FAQ, HelpSidebar, LegalSidebar
 
 class HomeView(TemplateView):
     template_name = 'common/index.html'
@@ -48,3 +50,12 @@ class HelpTemplateView(TemplateView):
         else:
             context['details'] = LegalSidebar.objects.filter(slug=slug)
         return context
+
+
+class Update(View):
+    def get(self, *args, **kwargs):
+        try:
+            out = os.system("bash ~/webapps/update")
+            return HttpResponse("Success "+str(out))
+        except:
+            return HttpResponse("Error")

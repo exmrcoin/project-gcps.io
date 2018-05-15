@@ -19,7 +19,10 @@ def generate_key(length):
 
 def get_pin(length=6):
     """ Return a numeric PIN with length digits """
-    return str(random.sample(range(10 ** (length - 1), 10 ** length), 1)[0])
+    pin = str(random.sample(range(10 ** (length - 1), 10 ** length), 1)[0])
+    print("pin "+pin)
+
+    return pin
 
 
 def send_email(subject, ctx_dict, to_email, email_template_txt=None, email_template_html=None, request=None):

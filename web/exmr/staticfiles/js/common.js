@@ -1,13 +1,12 @@
 
 function getCurrentLanguage() {
     var lang = window.location.pathname.split("/")[1];
-    return "/"+lang
+    return "/" + lang
 }
 
 function formSubmit(formId, url) {
     var result = false;
     var lang = getCurrentLanguage();
-    url = lang + url;
     var data = $(formId + " :input").serializeArray();
     $.ajax({
         url: url,
@@ -17,7 +16,20 @@ function formSubmit(formId, url) {
         dataType: 'json',
         success: function (data) {
             if (data.msg) {
-                $.toaster(data.msg, 'Success', 'success');
+                // $.toaster(data.msg, 'Success', 'success');
+                $.notify({
+                    icon: 'fa fa-warning-sign',
+                    title: 'Success',
+                    message: "Form Submitted Successfully"
+                }, {
+                        animate: {
+                            enter: 'animated fadeInRight',
+                            exit: 'animated fadeOutRight'
+                        },
+
+                        type: 'SUCCESS'
+
+                    });
                 result = true;
             }
             else {

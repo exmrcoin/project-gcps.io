@@ -62,6 +62,8 @@ footer {
     -webkit-box-shadow: 0px 5px 5px 0px rgba(94, 94, 94, 0.5);
     -moz-box-shadow: 0px 5px 5px 0px rgba(94, 94, 94, 0.5);
     box-shadow: 0px 5px 5px 0px rgba(94, 94, 94, 0.5);
+    min-height: 60px;
+    padding: 5px;
 }
 
 .navbar-brand {
@@ -92,7 +94,7 @@ footer {
 .menu-btn {
     /* margin-top: 28px !important; */
     background-color: #e75d14 !important;
-    margin-top: 25px;
+    margin-top: 10px;
 }
 
 .store-btn {
@@ -227,17 +229,18 @@ footer {
     .collapse.in {
         display: block !important;
     }
-    .dropdown-menu {
+    .navbar-nav .dropdown-menu {
         position: static;
         float: none;
         width: auto;
-        margin-top: 0;
-        background-color: transparent;
+        background-color: white;
         border: 0;
         -webkit-box-shadow: none;
         box-shadow: none;
+        border-radius: 20px;
     }
 }
+
 
 /*============== footer start ========*/
 
@@ -1482,16 +1485,19 @@ input[type="email"] {
     height: 60px;
     color: white;
 }
+
 .dashboard-component:hover {
-	box-shadow: 0 1px 1px 1px #aaaaaa;
-	transform: scale(1.15);
-	transition-duration: 350ms;
-	z-index: 99999;
+    box-shadow: 0 1px 1px 1px #aaaaaa;
+    transform: scale(1.15);
+    transition-duration: 350ms;
+    z-index: 99999;
 }
-.posrel{
+
+.posrel {
     position: relative;
 }
-.dashboard-component img{
+
+.dashboard-component img {
     padding-left: 0px;
     /* position: absolute;
     top: 50%;
@@ -1499,10 +1505,12 @@ input[type="email"] {
     max-width: 100px;
     margin: 0 auto;
 }
-.dashboard-component span{
+
+.dashboard-component span {
     padding-left: 0px;
     padding-right: 0px;
 }
+
 .dashboard-component a {
     color: white;
 }
@@ -1542,18 +1550,21 @@ input[type="email"] {
     padding-left: 9px;
     display: block;
 }
+
 .dasboard-head {
     width: 100%;
     background-color: #e8ebef;
     margin-top: 10px;
     color: #858ea4;
 }
+
 .img-dashboard {
     width: 30px;
     height: 30px;
     /* padding: 10px 0px 0px 10px; */
     float: left;
 }
+
 .dashboard-table {
     background-color: #fff;
     height: auto;
@@ -1572,12 +1583,28 @@ input[type="email"] {
     height: 300px;
 }
 
+tbody tr:nth-child(even) {
+    background-color: white;
+    color: #383a41;
+}
+tbody tr:nth-child(even) .dropdown-menu{
+    background: whitesmoke;
+    border: 1px solid rgb(219, 219, 219);
+}
+tbody .dropdown-menu{
+    border-radius: 20px;
+    margin-top: 2px;
+    background: white;
+    padding: 15px 5px;
+}
 .table-top {
     background-color: #fff;
 }
-.wallets-img{
+
+.wallets-img {
     width: 30px;
 }
+
 .dd-button {
     display: inline-block;
     border: 1px solid gray;
@@ -1585,9 +1612,10 @@ input[type="email"] {
     padding: 10px 30px 10px 20px;
     cursor: pointer;
     white-space: nowrap;
-  }
-.error-focus{   
+}
+
+.error-focus {
     border-color: rgba(255, 1, 1, 0.8) !important;
     box-shadow: 0 1px 1px rgba(255, 0, 0, 0.075) inset, 0 0 8px rgba(255, 0, 0, 0.6) !important;
     outline: 0 none !important;
-  }
+}

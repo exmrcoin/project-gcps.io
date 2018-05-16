@@ -1330,6 +1330,7 @@ fieldset {
     width: 99%;
     background-color: #e8ebef;
     margin-top: 10px;
+    padding: 5px;
 }
 
 .img-dashboard {

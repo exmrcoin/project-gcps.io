@@ -1,4 +1,5 @@
 {% extends 'exmr.html' %} {% load staticfiles widget_tweaks %} {% block title %}Signup{% endblock %} {% load i18n %} 
+<div></div>
 {% block content %}
 <section>
     <div class="login-bg">
@@ -24,24 +25,29 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6 form-group">
-                                    {% render_field form.email class="form-control username-log" placeholder="Email" %}
-                                    <span class="error"></span>
+                                <div class="col-md-12 padx0">
+                                    <div class="col-md-6 form-group">
+                                        {% render_field form.email class="form-control username-log" placeholder="Email" %}
+                                        <span class="error"></span>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        {% render_field form.confirm_email class="form-control username-log" placeholder="Confirm Email" %}
+                                        <span class="error"></span>
+                                    </div>
                                 </div>
-                                <div class="col-md-6 form-group">
-                                    {% render_field form.confirm_email class="form-control username-log" placeholder="Confirm Email" %}
-                                    <span class="error"></span>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    {% render_field form.password1 class="form-control username-log" placeholder="Password" %}
-                                    <span class="error"></span>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    {% render_field form.password2 class="form-control username-log" placeholder="Confirm Password" %}
-                                    <span class="error"></span>
+                                <div class="col-md-12 padx0">
+                                    <div class="col-md-6 form-group">
+                                        {% render_field form.password1 class="form-control username-log" placeholder="Password" %}
+                                        <span class="error"></span>
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        {% render_field form.password2 class="form-control username-log" placeholder="Confirm Password" %}
+                                        <span class="error"></span>
+                                    </div>
                                 </div>
                             </div>
-                            <p class="text-left">{% trans "Please make it at least 10 characters long and include letters, numbers, and special characters." %}</p>
+                            <p class="text-left text-info">{% blocktrans %} Please make it at least 10 characters long and include letters, numbers,
+                                 and special characters. {% endblocktrans %}</p>
                             <h5 class="text-left">{% trans "Timezone" %}</h5>
                             <div class=" form-group">
 
@@ -76,7 +82,7 @@
 
                                         </div>
 
-                                        <p>{% trans 'Type the characters you see in the image above:' %}</p>
+                                        <p>{% blocktrans%} 'Type the characters you see in the image above:' {% endblocktrans %}</p>
 
                                     </div>
 
@@ -109,11 +115,17 @@
 
         $('#signupForm').submit(function (e) {
             e.preventDefault();
-            var form_submit_status = formSubmit('#signupForm', '/sign-up/');
             var captchaResult = CheckCaptcha();
-            console.log(captchaResult, form_submit_status, "capcta form submit")
-            if (captchaResult && form_submit_status)
-                location.replace("{% url 'accounts:signup_complete'  %}");
+            if (captchaResult == true) {
+                var form_submit_status = formSubmit('#signupForm', '{% url "accounts:signup" %}');
+                console.log(captchaResult, form_submit_status, "capcta form submit")
+                if (captchaResult && form_submit_status)
+                    location.replace("{% url 'accounts:signup_complete'  %}");
+            }
+            // var form_submit_status = formSubmit('#signupForm', '/sign-up/');
+            // console.log(captchaResult, form_submit_status, "capcta form submit")
+            // if (captchaResult && form_submit_status)
+            //     location.replace("{% url 'accounts:signup_complete'  %}");
             if (!captchaResult || !form_submit_status)
                 return false;
         });
@@ -181,9 +193,25 @@
             $('#UserCaptchaCode').focus();
         } else {
             if (result == false) {
-                $('#WrongCaptchaError').text('Invalid Captcha! Please try again.').show();
+                // $('#WrongCaptchaError').text('Invalid Captcha! Please try again.').show();
+                window.setTimeout(function () {
+                    $.notify({
+                        icon: 'fa fa-warning-sign',
+                        title: 'warning',
+                        message: 'invalid captcha'
+                    }, {
+                            animate: {
+                                enter: 'animated fadeInDown',
+                                exit: 'animated fadeOutDown'
+                            },
+    
+                            type: 'danger'
+    
+                        });
+                    }, 500);
                 CreateCaptcha();
                 $('#UserCaptchaCode').focus().select();
+                $('#UserCaptchaCode').addClass('error-focus');
             }
             else {
                 $('#UserCaptchaCode').val('').attr('place-holder', 'Enter Captcha - Case Sensitive');

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'exmr.html' %}
 {% load staticfiles %}
 {% block title %}Verify Two Factor OTP{% endblock %}
 {% block content %}
@@ -8,7 +8,7 @@
         <div class="login-bg">
             <div class="container">
                 <div class="row">
-                    <div class=" offset-md-4 col-sm-5 login-sec">
+                    <div class=" col-sm-offset-3 col-sm-6  login-sec">
                         <div class="form-group">
                             <a href= "{% url 'home' %}">
                                 <img class="logo-log" src="{% static 'images/log-log.png'  %}" alt="">

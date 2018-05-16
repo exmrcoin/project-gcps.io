@@ -1,38 +1,38 @@
-{% extends 'base.html' %} {% load staticfiles %} {% block content %} {% load widget_tweaks %} {% load i18n %}
+{% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load widget_tweaks %} {% load i18n %}
 <section>
     {% block dashboard_heading %} {% endblock %}
     <div class="container">
         <div class="dashboard-wrapper top-sec">
-            <div class="dasboard-sec">
-                <div class="col-xs-4 col-sm-2 dashboard-componatns box-0">
-                    <a href="{% url 'accounts:profile' %}" class="v-mid">
-                        <img class="img-responsive col-xs-12 col-md-6" src="{% static '/images/dash-icon1.png' %}">
-                        <span class="dashboard-span hidden-xs col-md-6 wallet-menu">{% trans 'Home' %}</span>
+            <div class="col-xs-12 padx0">
+                <div class="col-xs-4 col-sm-2 dashboard-component box-0">
+                    <a href="{% url 'accounts:profile' %}" class="v-mid ">
+                        <img class="img-responsive col-xs-12 col-md-5" src="{% static '/images/dash-icon1.png' %}">
+                        <span class="dashboard-span hidden-xs hidden-sm col-md-7 wallet-menu">{% trans 'Home' %}</span>
                     </a>
                 </div>
-                <div class="col-xs-4 col-sm-2 dashboard-componatns box-1">
+                <div class="col-xs-4 col-sm-2 dashboard-component box-1">
                     <a href="{% url 'accounts:wallets' %}">
-                        <img class="img-responsive col-xs-12 col-md-6" src="{% static '/images/wallet.png' %}">
-                        <span class="dashboard-span hidden-xs col-md-6 wallet-menu">{% trans 'Your Wallet' %}</span>
+                        <img class="img-responsive col-xs-12 col-md-5" src="{% static '/images/wallet.png' %}">
+                        <span class="dashboard-span hidden-xs hidden-sm col-md-7 wallet-menu">{% trans 'Your Wallet' %}</span>
                     </a>
                 </div>
-                <div class="col-xs-4 col-sm-2 dashboard-componatns box-2">
-                    <img class="img-responsive col-xs-12 col-md-6" src="{% static '/images/coin01.png' %} ">
-                    <span class="dashboard-span hidden-xs col-md-6 wallet-menu">{% trans 'Coin Settings' %}</span>
+                <div class="col-xs-4 col-sm-2 dashboard-component box-2">
+                    <img class="img-responsive col-xs-12 col-md-5" src="{% static '/images/coin01.png' %} ">
+                    <span class="dashboard-span hidden-xs hidden-sm col-md-7 wallet-menu">{% trans 'Coin Settings' %}</span>
                 </div>
-                <div class="col-xs-4 col-sm-2 dashboard-componatns box-3">
+                <div class="col-xs-4 col-sm-2 dashboard-component box-3">
                     <a href="{% url 'accounts:transaction-history' %}">
-                        <img class="img-responsive col-xs-12 col-md-6" src="{% static '/images/bill-not.png' %}">
-                        <span class="dashboard-span hidden-xs col-md-6 wallet-menu">{% trans 'Transaction History' %}</span>
+                        <img class="img-responsive col-xs-12 col-md-5" src="{% static '/images/bill-not.png' %}">
+                        <span class="dashboard-span hidden-xs hidden-sm col-md-7 wallet-menu">{% trans 'Transaction History' %}</span>
                     </a>
                 </div>
-                <div class="col-xs-4 col-sm-2 dashboard-componatns box-4">
-                    <img class="img-responsive col-xs-12 col-md-6" src="{% static '/images/pos.png' %}">
-                    <span class="dashboard-span hidden-xs col-md-6 wallet-menu">{% trans 'Quick POS' %}</span>
+                <div class="col-xs-4 col-sm-2 dashboard-component box-4">
+                    <img class="img-responsive col-xs-12 col-md-5" src="{% static '/images/pos.png' %}">
+                    <span class="dashboard-span hidden-xs hidden-sm col-md-7 wallet-menu">{% trans 'Quick POS' %}</span>
                 </div>
-                <div class="col-xs-4 col-sm-2 dashboard-componatns box-5">
-                    <img class="img-responsive col-xs-12 col-md-6" src="{% static '/images/pay.png' %}">
-                    <span class="dashboard-span hidden-xs col-md-6 wallet-menu">{% trans '$PayByName' %}</span>
+                <div class="col-xs-4 col-sm-2 dashboard-component box-5">
+                    <img class="img-responsive col-xs-12 col-md-5" src="{% static '/images/pay.png' %}">
+                    <span class="dashboard-span hidden-xs hidden-sm col-md-7 wallet-menu">{% trans '$PayByName' %}</span>
                 </div>
             </div>
         </div>

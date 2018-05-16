@@ -13,6 +13,22 @@ def create_BTC_connection():
     return access
 
 
+def create_LTC_connection():
+    """
+    create connetion to litecoin fullnode
+    """
+    access = AuthServiceProxy("http://anand:anandkrishnan@127.0.0.1:19332")
+    return access
+
+
+def create_BCH_connection():
+    """
+    create connetion to bitcoin cash fullnode
+    """
+    access = AuthServiceProxy("http://anand:anandkrishnan@13.58.70.247:18332")
+    return access
+
+
 def create_wallet(user, currency):
     """
     create an account name in full node
@@ -20,11 +36,11 @@ def create_wallet(user, currency):
     coin = Coin.objects.get(code=currency)
     wallet_username = user.username + "_exmr"
     access = globals()['create_'+currency+'_connection']()
-    print (access)
+    print(access)
     try:
-        # addr = access.getnewaddress(wallet_username)
-        addr = False
-        raise Exception
+        addr = access.getnewaddress(wallet_username)
+        # addr = False
+        # raise Exception
     except:
         addr = 'unable to generate address , please try later'
     wallet, created = Wallet.objects.get_or_create(user=user, name=coin)

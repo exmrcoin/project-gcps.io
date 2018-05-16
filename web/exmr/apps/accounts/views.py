@@ -26,7 +26,7 @@ from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoFo
     AddressForm
 
 
-CURRENCIES = ['BTC']
+CURRENCIES = ['BTC','LTC', 'BCH']
 
 
 class SignUpView(JSONResponseMixin, CreateView):

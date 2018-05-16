@@ -78,9 +78,9 @@
 
                                     <div class='CaptchaWrap'>
                                         <div id="CaptchaImageCode" class="CaptchaTxtField">
-                                            <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
-
+                                            <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>                                            
                                         </div>
+                                        <button class="btn btn-sync" onclick="CreateCaptcha();"><i class="fas fa-sync-alt"></i></button>
 
                                         <p>{% blocktrans%} 'Type the characters you see in the image above:' {% endblocktrans %}</p>
 
@@ -146,7 +146,7 @@
             var f = alpha[Math.floor(Math.random() * alpha.length)];
         }
         cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
-        $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas><button class="btn btn-sync" onclick="CreateCaptcha();"><i class="fas fa-sync-alt"></i></button>');
+        $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas>');
 
         var c = document.getElementById("CapCode"),
             ctx = c.getContext("2d"),

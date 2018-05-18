@@ -17,7 +17,7 @@ def create_LTC_connection():
     """
     create connetion to litecoin fullnode
     """
-    access = AuthServiceProxy("http://anand:anandkrishnan@127.0.0.1:19332")
+    access = AuthServiceProxy("http://anand:anandkrishnan@18.218.176.0:19332")
     return access
 
 

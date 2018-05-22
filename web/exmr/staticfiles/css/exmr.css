@@ -1515,6 +1515,18 @@ input[type="email"] {
     color: white;
 }
 
+
+.dash-icon {
+        font-size: 25px;
+        margin-right: 20px;
+        margin-top: 5px;
+    }
+    
+.d-inline { 
+    display: inline-block;
+ }
+
+
 .v-mid {
     vertical-align: middle;
 }

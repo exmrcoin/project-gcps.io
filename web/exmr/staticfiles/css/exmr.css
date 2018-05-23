@@ -85,6 +85,8 @@ footer {
 }
 
 .logoheader {
+    height: 82px;
+    width: 93px;
     position: absolute;
     top: 0px;
     left: 50%;

@@ -1,38 +1,49 @@
 {% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load widget_tweaks %} {% load i18n %}
 <section>
     {% block dashboard_heading %} {% endblock %}
+    <style>
+    
+
+   
+
+    </style>
     <div class="container">
         <div class="dashboard-wrapper top-sec">
             <div class="col-xs-12 padx0">
                 <div class="col-xs-4 col-sm-2 dashboard-component box-0">
                     <a href="{% url 'accounts:profile' %}" class="v-mid ">
-                        <img class="img-responsive col-xs-12 col-md-5" src="{% static '/images/dash-icon1.png' %}">
-                        <span class="dashboard-span hidden-xs hidden-sm col-md-7 wallet-menu">{% trans 'Home' %}</span>
+                      
+                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"><p class="">  <i class="fas fa-tachometer-alt dash-icon"></i> {% trans 'Home' %}</p></span> 
                     </a>
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-1">
                     <a href="{% url 'accounts:wallets' %}">
-                        <img class="img-responsive col-xs-12 col-md-5" src="{% static '/images/wallet.png' %}">
-                        <span class="dashboard-span hidden-xs hidden-sm col-md-7 wallet-menu">{% trans 'Your Wallet' %}</span>
+                       
+                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
+                            
+                        <p class=""> <i class="fas fa-wallet dash-icon"></i> {% trans 'Your Wallet' %} </p></span>
                     </a>
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-2">
-                    <img class="img-responsive col-xs-12 col-md-5" src="{% static '/images/coin01.png' %} ">
-                    <span class="dashboard-span hidden-xs hidden-sm col-md-7 wallet-menu">{% trans 'Coin Settings' %}</span>
+                    <p class="">
+                    <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
+                    <i class="fas fa-coins dash-icon"></i>{% trans 'Coin Settings' %}</span>
+                   </p>
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-3">
                     <a href="{% url 'accounts:transaction-history' %}">
-                        <img class="img-responsive col-xs-12 col-md-5" src="{% static '/images/bill-not.png' %}">
-                        <span class="dashboard-span hidden-xs hidden-sm col-md-7 wallet-menu">{% trans 'Transaction History' %}</span>
+                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"><i class="fas fa-receipt dash-icon"></i> {% trans 'Transaction History' %}</span>
                     </a>
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-4">
-                    <img class="img-responsive col-xs-12 col-md-5" src="{% static '/images/pos.png' %}">
-                    <span class="dashboard-span hidden-xs hidden-sm col-md-7 wallet-menu">{% trans 'Quick POS' %}</span>
+                    <p class="">
+                    <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"><i class="fas fa-shopping-cart dash-icon"></i> {% trans 'Quick POS' %}</span>
+                </p>
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-5">
-                    <img class="img-responsive col-xs-12 col-md-5" src="{% static '/images/pay.png' %}">
-                    <span class="dashboard-span hidden-xs hidden-sm col-md-7 wallet-menu">{% trans '$PayByName' %}</span>
+                   <p class="">
+                    <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"><i class="fas fa-user-tie dash-icon"></i> {% trans '$PayByName' %}</span>
+                </p>
                 </div>
             </div>
         </div>

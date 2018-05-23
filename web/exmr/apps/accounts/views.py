@@ -26,8 +26,6 @@ from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoFo
     AddressForm
 
 
-CURRENCIES = ['BTC','LTC', 'BCH']
-
 
 class SignUpView(JSONResponseMixin, CreateView):
     """
@@ -76,36 +74,6 @@ class SignUpCompleteView(TemplateView):
 @method_decorator(check_2fa, name='dispatch')
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/dashboard.html'
-
-
-class WalletsView(LoginRequiredMixin, TemplateView):
-    template_name = 'accounts/wallets.html'
-
-    def get_context_data(self, *args, **kwargs):
-        context = super(WalletsView, self).get_context_data(**kwargs)
-        for currency in CURRENCIES:
-            coin = Coin.objects.get(code=currency)
-            if not Wallet.objects.filter(user=self.request.user, name=coin):
-                create_wallet(self.request.user, currency)
-        context['coin_list'] = {
-            'BTC': '1',
-            'BCH': '2',
-            'BTG': '3',
-            'ETH': '4',
-            'XMR': '5',
-            'LTC': '6',
-            'XRP': '7',
-            'ADA': '8',
-            'XLM': '9',
-            'EOS': '10',
-            'NEO': '11',
-            'IOT': '12',
-            'DASH': '13',
-            'TRX': '14',
-            'XEM': '15'
-        }
-        context['wallets'] = Wallet.objects.filter(user=self.request.user)
-        return context
 
 
 class TransactionHistoryView(LoginRequiredMixin, TemplateView):

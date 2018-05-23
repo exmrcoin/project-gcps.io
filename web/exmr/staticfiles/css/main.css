@@ -71,3 +71,69 @@
     border-radius: 4px;
     font-size: 18px;
     color: #fff;}
+
+.sup-wrap {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    border: 1px solid #f1f1f1;
+}    
+
+.sup-wrap ol {    padding-top: 2em;
+    padding-bottom: 2em;
+    line-height: 25px;}
+
+.mb24 { margin-bottom: 24px; }
+
+.mt20 { margin-top: 20px; }
+
+.ml10 { margin-left: 10px; }
+
+.supwiz .panel-default>.panel-heading {
+    color: #fff;
+    background-color: #3c576e;
+    border-color: #ddd;
+}
+
+.sup-wiz-convertion {margin-top: 2em; margin-bottom: 2em;}
+
+.sup-wiz-convertion .panel-default>.panel-heading {
+    color: #fff;
+    background-color: #3c576e;
+    border-color: #ddd;
+}
+
+
+.deposit-content {
+	padding: 5px;
+	border: 1px solid #c1c1c1;
+	border-radius: 4px;
+	margin-bottom: 1em;
+}
+
+
+.divid-b {    border-bottom: 1px solid #e4e4e4;}
+
+
+.deposit-content h4 {
+    font-size: 15px;
+    color: #888888;
+}
+
+
+.deposit-box p {     font-size: 16px;
+    margin-top: 10px;}
+
+.deposit-box {    background: #f1f1f1;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 4px;}
+
+
+.deposit-box p span {    margin: 4px;
+    background: #1b7bb2;
+    padding: 5px;
+    color: #fff;
+    border-radius: 4px;
+    font-size: 13px;}
+
+

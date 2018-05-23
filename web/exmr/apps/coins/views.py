@@ -1,12 +1,44 @@
-from django.views.generic import ListView, FormView, TemplateView, View
-from django.shortcuts import HttpResponse, render, redirect
-from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
+from django.shortcuts import get_object_or_404
+from django.shortcuts import HttpResponse, render, redirect
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+from django.views.generic import ListView, FormView, TemplateView, View
 
-from apps.coins.forms import ConvertRequestForm
-from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest
 from apps.coins.utils import *
 from apps.accounts.models import User
+from apps.coins.forms import ConvertRequestForm
+from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest
+
+CURRENCIES = ['BTC','LTC', 'BCH', 'XRP']
+
+class WalletsView(LoginRequiredMixin, TemplateView):
+    template_name = 'coins/wallets.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(WalletsView, self).get_context_data(**kwargs)
+        for currency in CURRENCIES:
+            coin = Coin.objects.get(code=currency)
+            if not Wallet.objects.filter(user=self.request.user, name=coin):
+                create_wallet(self.request.user, currency)
+        context['coin_list'] = {
+            'BTC': '1',
+            'BCH': '2',
+            'BTG': '3',
+            'ETH': '4',
+            'XMR': '5',
+            'LTC': '6',
+            'XRP': '7',
+            'ADA': '8',
+            'XLM': '9',
+            'EOS': '10',
+            'NEO': '11',
+            'IOT': '12',
+            'DASH': '13',
+            'TRX': '14',
+            'XEM': '15'
+        }
+        context['wallets'] = Wallet.objects.filter(user=self.request.user)
+        return context
 
 
 class SupportedCoinView(ListView):
@@ -90,17 +122,13 @@ class CoinConversionFinalView(TemplateView):
         return context
 
 
-class NewCoinAddr(View):
-    def post(self, request, *args, **kwargs):
-        currency = self.request.POST.get('currency')
-        username = self.request.POST.get('user')
-        user = User.objects.get(username=username)
-        try:
-            addr = create_wallet(user, currency)
-            return HttpResponse(json.dumps({"success": True, "addr": addr}), content_type='application/json')
-        except:
-            return HttpResponse(json.dumps({"error": "An error occured"}), content_type='application/json')
+class NewCoinAddr(TemplateView):
+    template_name = 'coins/deposit.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(NewCoinAddr, self).get_context_data(**kwargs)
+        context['wallets']=Wallet.objects.get(user=self.request.user,  name__code=kwargs.get('currency')).addresses.all()
+        return context
 
 class AddNewCoin(FormView):
     template_name = 'coins/host-coin.html'

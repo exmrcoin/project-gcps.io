@@ -7,9 +7,10 @@ from apps.accounts.forms import CustomPasswordResetForm
 app_name = 'coins'
 
 urlpatterns = [
+    path('wallets/', coin_views.WalletsView.as_view(), name='wallets'),
     path('supported/', coin_views.SupportedCoinView.as_view(),
          name='supported_coins'),
-    path('newaddr/', coin_views.NewCoinAddr.as_view(), name='newaddr'),
+    path('newaddr/<str:currency>/', coin_views.NewCoinAddr.as_view(), name='newaddr'),
     path('coin-conversion/<str:from>/<str:to>/',
          coin_views.ConvertCoinsView.as_view(), name='coin_conversion'),
     path('coin-conversion-confirm/',

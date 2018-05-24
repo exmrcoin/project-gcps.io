@@ -1,0 +1,58 @@
+{% extends 'exmr.html' %}
+{% load staticfiles %}
+{% block content %}
+
+<div class="accept-wrap">
+    <div class="container">
+        <div class="panel panel-default">
+          <div class="panel-heading"><ul class="nav nav-pills">
+              <li class="active"><a href="#">Setup Wizard</a></li>
+              <li><a href="#">Std.coin</a></li>
+              <li><a href="#">Omini coin</a></li>
+              <li><a href="#">Ripple</a></li>
+              <li><a href="#">Escrow</a></li>
+              <li><a href="#">Paypal/other</a></li>
+              <li><a href="#"></a></li>
+          </ul></div>
+          <div class="panel-body">
+              <div class="accept-table-wrap">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Enabled</th>
+                        <th>Coin</th>
+                        <th>Your payment Address
+                            <h6>(only needed for ASAP modes)</h6></th>
+                            <th>Payout Mode </th>
+                            <th>Discount</th>
+                            <th>Maximum value per Transation</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     
+                  <tr>
+                        <td ><input  type="checkbox" name=""></td>
+                        <td> <p><img src="{% static 'images/payment-coin.png' %}" width="30px"> Bitcoin BTC</p>  </td>
+                        <td><input type="text" class="form-control" /></td>
+                        <td><select class="form-control">
+                            <option>To balance</option>
+                        </select></td>
+                        <td><input type="text" name="" value="0%" class="form-control"></td>
+                        <td> <div class="input-group">
+                          
+                          <input id="msg" type="text" class="form-control" name="msg" value="0">
+                          <span class="input-group-addon p0 "> <select ><option>USD</option></select></span>
+                      </div></td>
+                  </tr>
+
+                  
+            </tbody>
+        </table>
+    </div>      
+</div>
+</div>
+</div>
+</div>
+
+
+{% endblock %}

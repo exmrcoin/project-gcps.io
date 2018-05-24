@@ -137,3 +137,22 @@
     font-size: 13px;}
 
 
+.accept-wrap .nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus {
+    color: #fff;
+    background-color: #e75d14;
+}
+
+.accept-table-wrap {
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+}
+
+
+
+.accept-table-wrap  .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    padding: 8px;
+    line-height: 1.42857143;
+    vertical-align: top;
+    border: 0px;
+}
+

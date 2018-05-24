@@ -8,6 +8,7 @@ from apps.coins.utils import *
 from apps.accounts.models import User
 from apps.coins.forms import ConvertRequestForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest
+from django.shortcuts import render
 
 CURRENCIES = ['BTC','LTC', 'BCH', 'XRP']
 
@@ -133,5 +134,11 @@ class NewCoinAddr(TemplateView):
 class AddNewCoin(FormView):
     template_name = 'coins/host-coin.html'
     form_class = ConvertRequestForm
+
+
+
+class CoinSettings(TemplateView):
+    template_name = 'coins/coin_settings.html'
+
 
 

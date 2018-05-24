@@ -26,8 +26,10 @@
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-2">
                     <p class="">
-                    <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
-                    <i class="fas fa-coins dash-icon"></i>{% trans 'Coin Settings' %}</span>
+                    <a href="{% url 'coins:coin-settings' %}">	
+	                    <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
+	                    <i class="fas fa-coins dash-icon"></i>{% trans 'Coin Settings' %}</span>
+                    </a>
                    </p>
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-3">

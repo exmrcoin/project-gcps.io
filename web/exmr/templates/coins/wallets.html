@@ -45,11 +45,11 @@
                             {% for obj in wallets %}
                             <tr class="table-th text-center">
                                 <th>
-                                    <img src="{% static 'images/coins/' %}{{ obj.name.code }}.png" class="wallets-img">
+                                    <img src="{% static 'images/coins/' %}{{ obj.code}}.png" class="wallets-img">
                                     <span>{{ obj.name }}</span>
                                 </th>
                                 <th>
-                                    <span>{{ obj.name.code }}</span>
+                                    <span>{{ obj.code }}</span>
                                 </th>
                                 <th>{% get_bal_coin obj.name request.user.username %}</th>
                                 <th>Value</th>
@@ -60,7 +60,7 @@
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
                                             <li>
-                                                <a href="{% url 'coins:newaddr' obj.name.code  %}">
+                                                <a href="{% url 'coins:newaddr' obj.code  %}">
                                                     <span class="glyphicon glyphicon-import"></span> Deposit / Receive</a>
                                             </li>
                                             <li>

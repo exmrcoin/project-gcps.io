@@ -19,27 +19,10 @@ class WalletsView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(WalletsView, self).get_context_data(**kwargs)
-        for currency in CURRENCIES:
-            coin = Coin.objects.get(code=currency)
-            if not Wallet.objects.filter(user=self.request.user, name=coin):
-                create_wallet(self.request.user, currency)
-        context['coin_list'] = {
-            'BTC': '1',
-            'BCH': '2',
-            'BTG': '3',
-            'ETH': '4',
-            'XMR': '5',
-            'LTC': '6',
-            'XRP': '7',
-            'ADA': '8',
-            'XLM': '9',
-            'EOS': '10',
-            'NEO': '11',
-            'IOT': '12',
-            'DASH': '13',
-            'TRX': '14',
-            'XEM': '15'
-        }
+        # for currency in CURRENCIES:
+        #     coin = Coin.objects.get(code=currency)
+        #     if not Wallet.objects.filter(user=self.request.user, name=coin):
+        #         create_wallet(self.request.user, currency)
         context['wallets'] = Wallet.objects.filter(user=self.request.user)
         return context
 
@@ -130,8 +113,16 @@ class NewCoinAddr(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(NewCoinAddr, self).get_context_data(**kwargs)
-        context['wallets']=Wallet.objects.get(user=self.request.user,  name__code=kwargs.get('currency')).addresses.all()
+        code = kwargs.get('currency')
+        context['wallets']=Wallet.objects.get(user=self.request.user,  name__code=code).addresses.all()
+        context['code'] = code
         return context
+
+    def post(self, request, *args, **kwargs):
+        code = kwargs.get('currency')
+        address = create_wallet(request.user, code)
+        if address:
+            return HttpResponse(json.dumps(address), content_type='application/json')
 
 class AddNewCoin(FormView):
     template_name = 'coins/host-coin.html'

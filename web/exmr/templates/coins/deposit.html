@@ -1,39 +1,57 @@
-{% extends 'exmr.html' %}
+{% extends 'accounts/dashboard-base.html' %}
 {% load staticfiles %}
 {% block content %}
 {% load i18n widget_tweaks %}
-        <div class="deposit-wrap">
-            <div class="container">
-                <div class="deposit-content">
-                    <div class="row m0 divid-b">
-                        <div class="col-sm-6">
-                            <h4><b>Deposit Address-BTC</b></h4>
-                        </div>
-                        <div class="col-sm-3">
-                            <h4><b>TYPE<sup>1</sup></b></h4>
-                        </div>
-                        <div class="col-sm-3">
-                            <h4><b>Date Added</b></h4>
-                        </div>
-                    </div>
-                    {% for wallet in wallets %}
-                    <div class="row m0 deposit-box">
-                        <div class="col-sm-6">
-                            <p><span>{{wallet}}</span></p>
-                            <button class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Label</button>
-                            <button class="btn btn-warning"> <i class="fas fa-eye-slash"></i> Hide</button>
-                        </div>
-                        <div class="col-sm-3">
-                            <p><i class="fas fa-user"></i> Personal</p>
-                            <img src="images/qr-code.jpg" width="100px">
-                        </div>
-                        <div class="col-sm-3">
-                            <p>Wednesday, 16 May 2018</p>
-                        </div>
-                    </div>
-                    {% endfor %}
-                    
+<div class="deposit-wrap">
+    <div class="container">
+        <div class="deposit-content">
+            <div class="row m0 divid-b">
+                <div class="col-sm-6">
+                    <h4><b>Deposit Address-{{code}}</b></h4>
+                </div>
+                <div class="col-sm-3">
+                    <h4><b>TYPE<sup>1</sup></b></h4>
+                </div>
+                <div class="col-sm-3">
+                    <h4><b>Date Added</b></h4>
                 </div>
             </div>
+            <div id="wallet_div">
+                {% for wallet in wallets %}
+                <div class="row m0 deposit-box">
+                    <div class="col-sm-6">
+                        <p><span>{{wallet}}</span></p>
+                        <button class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Label</button>
+                        <button class="btn btn-warning"> <i class="fas fa-eye-slash"></i> Hide</button>
+                    </div>
+                    <div class="col-sm-3">
+                        <p><i class="fas fa-user"></i> Personal</p>
+                        <img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{wallet}}"></img>
+                    </div>
+                    <div class="col-sm-3">
+                        <p>Wednesday, 16 May 2018</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="btn btn-signup mt20 mb20" onclick="newAddress()"><i class="fas fa-plus-circle"></i> Add New Deposit Address</button>
+            
         </div>
+    </div>
+</div>
+<script type="text/javascript">
+function newAddress(){
+    $.ajax({
+                type: "POST",
+                url: "{% url 'coins:newaddr' code  %}",
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (data) {
+                    str='<div class="row m0 deposit-box"><div class="col-sm-6"><p><span>'+data+'</span></p><button class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Label</button><button class="btn btn-warning"> <i class="fas fa-eye-slash"></i> Hide</button></div><div class="col-sm-3"><p><i class="fas fa-user"></i> Personal</p><img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl='+data+'"></img></div><div class="col-sm-3"><p>Wednesday, 16 May 2018</p></div></div>'
+                    $("#wallet_div").append(str);
+                }
+            })
+}
+</script>
 {% endblock %}

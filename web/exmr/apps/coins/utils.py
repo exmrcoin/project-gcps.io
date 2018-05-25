@@ -34,7 +34,6 @@ def create_wallet(user, currency):
     create an account name in full node
     """
     if currency in ['XRP']:
-        import pdb;pdb.set_trace()
         return XRP(user).create_xrp_wallet()
     else:
         coin = Coin.objects.get(code=currency)
@@ -46,9 +45,9 @@ def create_wallet(user, currency):
             # addr = False
             # raise Exception
         except:
-            addr = 'unable to generate address , please try later'
+            addr = ''
         wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
-        wallet.addresses.add(WalletAddress.objects.create(address=addr))
+        # wallet.addresses.add(WalletAddress.objects.create(address=addr))
     return addr
 
 

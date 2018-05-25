@@ -1,4 +1,4 @@
-{% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load i18n %} {% block page_css %}
+{% extends 'exmr.html' %} {% load staticfiles %} {% load transaction_status %} {% block content %} {% load i18n %} {% block page_css %}
 
 <style type="text/css">
     /*
@@ -131,75 +131,71 @@
                         <span class="electroinc">50K EXMR</span>. For full rule and information
                         <span class="electroinc">click here</span>.
                     </div>
+                    <div id="table_div">
+                        <table class="table vote_table">
+                            <thead>
+                                <tr class="table-top">
+                                    <th>POSITION</th>
 
-                    <table class="table vote_table">
-                        <thead>
-                            <tr class="table-top">
-                                <th>POSITION</th>
+                                    <th>COIN</th>
+                                    <th>NAME </th>
+                                    <th>VOTES</th>
+                                    <th> PERCENTAGE OF VOTES</th>
 
-                                <th>COIN</th>
-                                <th>NAME </th>
-                                <th>VOTES</th>
-                                <th> PERCENTAGE OF VOTES</th>
+                                    <th>VOTE</th>
 
-                                <th>VOTE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for coin in coins %}
+                                <tr class="table-th">
+                                    <td>{{forloop.counter}}st</td>
+                                    <td> {{coin.coin_name}}</td>
+                                    <td>
+                                        <B>DigitalNote</B>
+                                    </td>
+                                    <td>{{coin.vote_count}}/1,000</td>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-green" style="width:{% percentage coin.vote_count%}%">{% percentage coin.vote_count%}%</div>
+                                        </div>
+                                    </td>
+                                    <td class="padx0">
+                                        <button class="btn-vote-btn2" onclick="coinVote('{{coin.id}}',1);">+1 votes</button>
+                                        <button type="button" class="btn-vote-btn2" onclick="coinVote('{{coin.id}}',5);">+5 votes</button>
+                                        <button type="button" class="btn-vote-btn2" onclick="coinVote('{{coin.id}}',10);">+10 votes</button>
 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for i in '1234567' %}
-                            <tr class="table-th">
-                                <td>{{forloop.counter}}st</td>
-                                <td> XDN</td>
-                                <td>
-                                    <B>DigitalNote</B>
-                                </td>
-                                <td>1,00/1,000</td>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-green" style="width:10%">10%</div>
-                                    </div>
-                                </td>
-                                <td class="padx0">
-                                    <button type="button" class="btn-vote-btn2">+1 votes</button>
-                                    <button type="button" class="btn-vote-btn2">+5 votes</button>
-                                    <button type="button" class="btn-vote-btn2">+10 votes</button>
+                                    </td>
+                                </tr>
 
-                                </td>
-                            </tr>
+                                {% endfor %}
+                                
 
-                            {% endfor %}
-                            
+                            </tbody>
 
-                        </tbody>
-
-                    </table>
+                        </table>
+                    </div>
                 </fieldset>
             </div>
         </div>
     </div>
 </section>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script type="text/javascript">
+function coinVote(coin_id,count){
+    $.ajax({
+                type: "POST",
+                url: "{% url 'public coin vote' %}",
+                data: {
+                    'count': count,
+                    'id':coin_id,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (data) {
+                    $("#table_div").html('')
+                    $("#table_div").append(data)
+                }
+            })
+}
+</script>
 {% endblock %}

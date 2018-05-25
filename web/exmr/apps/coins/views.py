@@ -1,5 +1,7 @@
 from django.urls import reverse_lazy
+from django.template import RequestContext
 from django.shortcuts import get_object_or_404
+from django.template.loader import render_to_string
 from django.shortcuts import HttpResponse, render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.views.generic import ListView, FormView, TemplateView, View
@@ -134,6 +136,27 @@ class NewCoinAddr(TemplateView):
 class AddNewCoin(FormView):
     template_name = 'coins/host-coin.html'
     form_class = ConvertRequestForm
+
+class PublicCoinVote(TemplateView):
+    template_name = 'coins/public-coin-vote.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(PublicCoinVote, self).get_context_data(**kwargs)
+        context['coins'] = Coin.objects.all()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        count = request.POST.get('count')
+        coin_id = request.POST.get('id')
+        if count and coin_id:
+            obj = Coin.objects.get(id=coin_id)
+            obj.vote_count += int(count)
+            obj.save()
+            context = {
+                'coins':Coin.objects.all(),
+            }
+            response_data = render_to_string('coins/vote.html', context, )
+            return HttpResponse(json.dumps(response_data), content_type='application/json') 
 
 
 

@@ -44,5 +44,8 @@ def unix_to_datetime(value):
         date = value
     return date
 
-
+@register.simple_tag
+def percentage(count):
+    percentage = (int(count)/1000)*100
+    return percentage
 

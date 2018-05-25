@@ -49,6 +49,7 @@ class Coin(models.Model):
     active = models.BooleanField(default=True, help_text=_('Disable this coin anytime'))
     min_deposit = models.DecimalField(max_digits=10, decimal_places=8, default=0)
     max_deposit = models.DecimalField(max_digits=10, decimal_places=8, default=0)
+    vote_count = models.IntegerField(_('vote count'), default=0)
 
     class Meta:
         verbose_name = _('Coin')
@@ -56,21 +57,6 @@ class Coin(models.Model):
 
     def __str__(self):
         return self.coin_name
-
-
-class CoinVote(models.Model):
-    """
-    Model for coin votes
-    """
-    coin = models.ForeignKey(Coin, verbose_name=_('coin'), related_name='get_coin_votes', on_delete=models.CASCADE)
-    vote_count = models.IntegerField(_('vote count'))
-
-    class Meta:
-        verbose_name = _('Coin Vote')
-        verbose_name_plural = _('Coin Votes')
-
-    def __str__(self):
-        return self.coin.coin_name
 
 
 class CoinSetting(models.Model):

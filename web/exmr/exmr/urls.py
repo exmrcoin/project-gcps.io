@@ -23,6 +23,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfirmView, \
     PasswordResetCompleteView
 
+from apps.coins.views import PublicCoinVote
 from apps.common.views import HomeView
 
 urlpatterns = [
@@ -47,8 +48,7 @@ urlpatterns += i18n_patterns(
     path('sign-up/', TemplateView.as_view(template_name='accounts/signup.html'),
          name='signup'),
     path('merchant-tools/', TemplateView.as_view(template_name='common/merchant-tools.html'), name='merchant-tools'),
-    path('public-coin-votes/', TemplateView.as_view(template_name='common/public-coin-vote.html'),
-         name='public coin vote'),
+    path('public-coin-votes/', PublicCoinVote.as_view(), name='public coin vote'),
     path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'),
          name='forgot-password'),
     path('contact/', TemplateView.as_view(template_name='common/contact.html'),

@@ -51,7 +51,7 @@
                                 <th>
                                     <span>{{ obj.code }}</span>
                                 </th>
-                                <th>{% get_bal_coin obj.name request.user.username %}</th>
+                                <th>{% get_bal_coin obj.code request.user %}</th>
                                 <th>Value</th>
                                 <th style="width: 150px;">
                                     <div class="btn-group " style="width: 100%;">
@@ -64,7 +64,7 @@
                                                     <span class="glyphicon glyphicon-import"></span> Deposit / Receive</a>
                                             </li>
                                             <li>
-                                                <a href="">
+                                                <a href="{% url 'coins:coin-withdrawal' %}">
                                                     <i class="fa fa-paper-plane" aria-hidden="true"></i> Send / Withdraw</a>
                                             </li>
                                             <li>

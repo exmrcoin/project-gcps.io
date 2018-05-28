@@ -88,6 +88,8 @@
 
 .ml10 { margin-left: 10px; }
 
+
+
 .supwiz .panel-default>.panel-heading {
     color: #fff;
     background-color: #3c576e;
@@ -104,10 +106,10 @@
 
 
 .deposit-content {
-	padding: 5px;
-	border: 1px solid #c1c1c1;
-	border-radius: 4px;
-	margin-bottom: 1em;
+    padding: 5px;
+    border: 1px solid #c1c1c1;
+    border-radius: 4px;
+    margin-bottom: 1em;
 }
 
 
@@ -156,3 +158,47 @@
     border: 0px;
 }
 
+
+.pay-name-wrap a {    color: #fff;
+    background: #e75d14;
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 16px;
+text-decoration: none;}
+
+
+
+.pl0 { padding-left: 0px }
+
+.mb20 { margin-bottom: 20px; }
+
+.p15 { padding: 15px; }
+.p5{padding:5px !important;}
+.p0 { padding:0px;}
+.pay-name-table {
+    border: 1px solid #dddddd;
+    padding: 10px;
+    border-radius: 4px}
+
+.width80per { width: 80%;}
+
+.divid {
+    position: absolute;
+    left: -47px;
+    top: -2px;
+    }
+
+.lh40 {    line-height: 40px;}
+
+
+.btn-pad {
+        margin: 5px 0px;
+        height: 60px;
+        background: #e75d14;
+        color: #fff !important;
+        font-size: 17px;
+        font-weight: bold;
+}    
+
+.withdrawal select { background-image: none !important;}

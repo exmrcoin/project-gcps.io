@@ -1,6 +1,8 @@
 import json
 import requests
 
+from decimal import Decimal
+
 from bitcoinrpc.authproxy import AuthServiceProxy
 from apps.coins.models import Wallet, WalletAddress, Coin
 
@@ -33,7 +35,7 @@ def create_wallet(user, currency):
     """
     create an account name in full node
     """
-    if currency in ['XRP']:
+    if currency in ['XRPTest']:
         return XRP(user).create_xrp_wallet()
     else:
         coin = Coin.objects.get(code=currency)
@@ -55,14 +57,19 @@ def get_balance(user, currency):
     """
     Retrive specified user wallet balance.
     """
-    wallet_username = user.username + "_exmr"
-    access = globals()['create_'+currency+'_connection']()
-    balance = access.getreceivedbyaccount(wallet_username)
+    print (currency)
+    if currency == "XRPTest":
+        balance = XRP(user).balance()
+    else:
+        # wallet_username = user.username + "_exmr"
+        # access = globals()['create_'+currency+'_connection']()
+        # balance = access.getreceivedbyaccount(wallet_username)
 
-    transaction = Transaction.objects.filter(
-        user__username=user, currency=currency)
-    if transaction:
-        balance = balance - sum([Decimal(obj.amount)for obj in transaction])
+        # transaction = Transaction.objects.filter(
+        #     user__username=user, currency=currency)
+        # if transaction:
+        #     balance = balance - sum([Decimal(obj.amount)for obj in transaction])
+        balance = 0
 
     return balance
 
@@ -86,7 +93,7 @@ class XRP():
         self.user = user
 
     def balance(self):
-        wallet = Wallet.objects.get(user=self.user, name="xrp")
+        wallet = Wallet.objects.get(user=self.user, name__code="XRPTest")
         secret = wallet.private
         address = wallet.addresses.all().first().address
         params =    {
@@ -144,7 +151,7 @@ class XRP():
         # addresses = address_data.decode("utf-8") .replace("\n", "")
         # pub_address = addresses.split("{ address: '")[1].split("'")[0]
         # priv_address = addresses.split("secret: '")[-1].replace("' }", "")
-        coin = Coin.objects.get(code='XRP')
+        coin = Coin.objects.get(code='XRPTest')
         addresses = json.loads(requests.post("https://faucet.altnet.rippletest.net/accounts").text)
         pub_address = addresses["account"]["address"] 
         priv_address = addresses["account"]["secret"] 

@@ -1,0 +1,56 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load i18n widget_tweaks %}
+<div class="withdrawal">
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading"><b>{% trans 'Coin Withdrawal' %}</b></div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-4 lh40" align="right">
+            <p><b>{% trans 'Minimum Withdrawal' %} :</b></p>
+            <p><b>{% trans 'Current Bal' %} :</b</p>
+            <p><b>{% trans 'Send/Withdrawal Amount' %} : </b</p>
+            <p><b>{% trans 'Transation Fee (est.)' %}' : </b</p>
+            <p><b>{% trans 'Total Withdrawal' %} : </b</p>
+             <p>{% trans 'Litecoin Testnet address or $payByName to send to' %} : </p>
+             <p>{% trans 'Optional Note (Only Viewable by you)' %}' </p>
+          </div>
+          <div class="col-sm-6 lh40" align="right">
+            <p>00020000 LTCT</p>
+            <p>00020000 LTCT</p>
+            <div class="row m0 mb20">
+              <div class="col-sm-6 ">
+                <div class="input-group">
+                  <input id="msg" type="text" class="form-control"  >
+                  <span class="input-group-addon p5">
+                  <select >
+                  <option>USD</option>	
+                  </select></span> </div>
+              </div>
+              
+               <div class="col-sm-6 p0">
+               
+                <div class="input-group width80per">
+					<div class="divid"></div>
+                  <input id="msg" type="text" class="form-control"  >
+                  <span class="input-group-addon p5">
+                  <select >
+                  <option>USD</option>	
+                  </select></span> </div>
+              </div>
+            </div>
+             <p>00020000 LTCT</p>
+            <p>00020000 LTCT</p>
+            <input type="text" class="form-control form-group" />
+             <input type="text" class="form-control form-group" />
+             <button class="btn btn-signup"> {% trans 'Request Withdrawal/Send' %} </button>
+           
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

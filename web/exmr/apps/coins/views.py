@@ -154,5 +154,8 @@ class PublicCoinVote(TemplateView):
 class CoinSettings(TemplateView):
     template_name = 'coins/coin_settings.html'
 
+class CoinWithdrawal(TemplateView):
+    template_name = 'coins/coin-withdrawal.html'
+
 
 

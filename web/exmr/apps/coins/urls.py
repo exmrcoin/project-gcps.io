@@ -8,7 +8,7 @@ app_name = 'coins'
 
 urlpatterns = [
     path('wallets/', coin_views.WalletsView.as_view(), name='wallets'),
-    path('supported/', coin_views.SupportedCoinView.as_view(),
+    path('supported/<str:type>/', coin_views.SupportedCoinView.as_view(),
          name='supported_coins'),
     path('newaddr/<str:currency>/', coin_views.NewCoinAddr.as_view(), name='newaddr'),
     path('coin-conversion/<str:from>/<str:to>/',

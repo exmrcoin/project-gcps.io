@@ -30,11 +30,12 @@ class WalletsView(LoginRequiredMixin, TemplateView):
 class SupportedCoinView(ListView):
 
     template_name = 'coins/supported-coins.html'
-    queryset = Coin.objects.filter(type=CRYPTO, active=True)
+    queryset = Coin.objects.filter(active=True)
     context_object_name = 'coins'
 
-    def get_queryset(self):
-        self.coin_type = int(self.request.GET.get('type', 0))
+    def get_queryset(self, *args, **kwargs):
+        type_dict = dict(TYPE_CHOICES)
+        self.coin_type = dict(zip(type_dict.values(),type_dict.keys())).get(self.kwargs['type'],0)
         return self.queryset.filter(type=self.coin_type, active=True)
 
     def get_context_data(self, *, object_list=None, **kwargs):

@@ -141,101 +141,13 @@
 
             <ul class="md-ul">
 
-                <a href="/en/store/store-directory/art-collectibles/">
-                    <li class="directoru-menu menu-story">Art &amp; Collectibles
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/charities/">
-                    <li class="directoru-menu menu-story">Charities
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/dining-groceries/">
-                    <li class="directoru-menu menu-story">Dining &amp; Groceries
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/electronics-mining/">
-                    <li class="directoru-menu menu-story">Electronics &amp; Mining
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/gaming-ebooks/">
-                    <li class="directoru-menu menu-story">Gaming &amp; eBooks
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/gift-cards-prepaid/">
-                    <li class="directoru-menu menu-story">Gift Cards / Prepaid
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/health-beauty/">
-                    <li class="directoru-menu menu-story">Health &amp; Beauty
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/hosting-vps-vpn/">
-                    <li class="directoru-menu menu-story">Hosting / VPS &amp; VPN
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/investments-metals/">
-                    <li class="directoru-menu menu-story">Investments / Metals
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/misc-products/">
-                    <li class="directoru-menu menu-story">Misc Products
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/music-movies-tv/">
-                    <li class="directoru-menu menu-story">Music / Movies &amp; TV
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/shoes-clothing/">
-                    <li class="directoru-menu menu-story">Shoes &amp; Clothing
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/socialseomarketing/">
-                    <li class="directoru-menu menu-story">Social/SEO/Marketing
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/tickets-travel/">
-                    <li class="directoru-menu menu-story">Tickets &amp; Travel
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/adult-18/">
-                    <li class="directoru-menu menu-story">Adult 18+
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
-
-                <a href="/en/store/store-directory/all-stores/">
-                    <li class="directoru-menu menu-story">All Stores
-                        <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                    </li>
-                </a>
+                {% for category in categories%}
+                    <a href="{% url 'store:store-item' category.slug %}">
+                        <li class="directoru-menu menu-story">{{category.name}}
+                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
+                        </li>
+                    </a>
+                    {% endfor %}
 
             </ul>
         </div>
@@ -247,102 +159,13 @@
                 <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                 <ul class="sidebar-ul">
 
-                    <a href="/en/store/store-directory/art-collectibles/">
-                        <li class="directoru-menu menu-story">Art &amp; Collectibles
+                    {% for category in categories%}
+                    <a href="{% url 'store:store-item' category.slug %}">
+                        <li class="directoru-menu menu-story">{{category.name}}
                             <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
                         </li>
                     </a>
-
-                    <a href="/en/store/store-directory/charities/">
-                        <li class="directoru-menu menu-story">Charities
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/dining-groceries/">
-                        <li class="directoru-menu menu-story">Dining &amp; Groceries
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/electronics-mining/">
-                        <li class="directoru-menu menu-story">Electronics &amp; Mining
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/gaming-ebooks/">
-                        <li class="directoru-menu menu-story">Gaming &amp; eBooks
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/gift-cards-prepaid/">
-                        <li class="directoru-menu menu-story">Gift Cards / Prepaid
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/health-beauty/">
-                        <li class="directoru-menu menu-story">Health &amp; Beauty
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/hosting-vps-vpn/">
-                        <li class="directoru-menu menu-story">Hosting / VPS &amp; VPN
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/investments-metals/">
-                        <li class="directoru-menu menu-story">Investments / Metals
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/misc-products/">
-                        <li class="directoru-menu menu-story">Misc Products
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/music-movies-tv/">
-                        <li class="directoru-menu menu-story">Music / Movies &amp; TV
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/shoes-clothing/">
-                        <li class="directoru-menu menu-story">Shoes &amp; Clothing
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/socialseomarketing/">
-                        <li class="directoru-menu menu-story">Social/SEO/Marketing
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/tickets-travel/">
-                        <li class="directoru-menu menu-story">Tickets &amp; Travel
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/adult-18/">
-                        <li class="directoru-menu menu-story">Adult 18+
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
-                    <a href="/en/store/store-directory/all-stores/">
-                        <li class="directoru-menu menu-story">All Stores
-                            <span class="glyphicon glyphicon-chevron-right floatr" aria-hidden="true"></span>
-                        </li>
-                    </a>
-
+                    {% endfor %}
                 </ul>
             </div>
 
@@ -384,129 +207,34 @@
 
                 </div>
             </div>
-            <div class="col-xs-12 mt-2 store-list" id="test">
-                <div class="col-xs-12 col-sm-3 text-center">
-                    <div class="col-xs-12 pady20 padt40">
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
+            {% for store in stores%}
+                <div class="col-xs-12 mt-2 store-list" id="test">
+                    <div class="col-xs-12 col-sm-3 text-center">
+                        <div class="col-xs-12 pady20 padt40">
+                            <span class="glyphicon glyphicon-star starchecked"></span>
+                            <span class="glyphicon glyphicon-star starchecked"></span>
+                            <span class="glyphicon glyphicon-star starchecked"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
+                            <span class="glyphicon glyphicon-star-empty"></span>
 
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-7 text-center">
+                        <span class="">{{store.store_name}}</span>
+                        <img src="{{ store.banner_image_url }}" class="img-responsive w150px margin-center">
+                        <p>
+                            <a href="{{store.store_url}}">{{store.store_url}}</a>
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 text-center">
+                        <button class="btn btn-primary mt-xs-10p mt-3">
+                            <i class="glyphicon glyphicon-chevron-up"></i>
+                        </button>
                     </div>
                 </div>
-                <div class="col-xs-12 col-sm-7 text-center">
-                    <span class="">Sample name</span>
-                    <img src="{% static 'images/cart01.png' %}" class="img-responsive w150px margin-center">
-                    <p>
-                        <a href="">www.sample.com</a>
-                    </p>
-                </div>
-                <div class="col-xs-12 col-sm-2 text-center">
-                    <button class="btn btn-primary mt-xs-10p mt-3">
-                        <i class="glyphicon glyphicon-chevron-up"></i>
-                    </button>
-                </div>
-            </div>
+            {% endfor %}
 
-            <div class="col-xs-12 mt-2 store-list">
-                <div class="col-xs-12 col-sm-3 text-center">
-                    <div class="col-xs-12 pady20 padt40">
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-7 text-center">
-                    <span class="">Sample name</span>
-                    <img src="{% static 'images/cart01.png' %}" class="img-responsive w150px margin-center">
-                    <p>
-                        <a href="">www.sample.com</a>
-                    </p>
-                </div>
-                <div class="col-xs-12 col-sm-2 text-center">
-                    <button class="btn btn-primary mt-xs-10p mt-3">
-                        <i class="glyphicon glyphicon-chevron-up"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="col-xs-12 mt-2 store-list">
-                <div class="col-xs-12 col-sm-3 text-center">
-                    <div class="col-xs-12 pady20 padt40">
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-7 text-center">
-                    <span class="">Sample name</span>
-                    <img src="{% static 'images/cart01.png' %}" class="img-responsive w150px margin-center">
-                    <p>
-                        <a href="">www.sample.com</a>
-                    </p>
-                </div>
-                <div class="col-xs-12 col-sm-2 text-center">
-                    <button class="btn btn-primary mt-xs-10p mt-3">
-                        <i class="glyphicon glyphicon-chevron-up"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="col-xs-12 mt-2 store-list">
-                <div class="col-xs-12 col-sm-3 text-center">
-                    <div class="col-xs-12 pady20 padt40">
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-7 text-center">
-                    <span class="">Sample name</span>
-                    <img src="{% static 'images/cart01.png' %}" class="img-responsive w150px margin-center">
-                    <p>
-                        <a href="">www.sample.com</a>
-                    </p>
-                </div>
-                <div class="col-xs-12 col-sm-2 text-center">
-                    <button class="btn btn-primary mt-xs-10p mt-3">
-                        <i class="glyphicon glyphicon-chevron-up"></i>
-                    </button>
-                </div>
-            </div>
-
-            <div class="col-xs-12 mt-2 store-list">
-                <div class="col-xs-12 col-sm-3 text-center">
-                    <div class="col-xs-12 pady20 padt40">
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star starchecked"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-                        <span class="glyphicon glyphicon-star-empty"></span>
-
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-7 text-center">
-                    <span class="">Sample name</span>
-                    <img src="{% static 'images/cart01.png' %}" class="img-responsive w150px margin-center">
-                    <p>
-                        <a href="">www.sample.com</a>
-                    </p>
-                </div>
-                <div class="col-xs-12 col-sm-2 text-center">
-                    <button class="btn btn-primary mt-xs-10p mt-3">
-                        <i class="glyphicon glyphicon-chevron-up"></i>
-                    </button>
-                </div>
+            
             </div>
 
         </div>

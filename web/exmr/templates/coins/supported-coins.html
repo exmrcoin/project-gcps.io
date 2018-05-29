@@ -18,7 +18,7 @@
                     <li class="col-xs-12 col-sm-3">
                         <label for="checkbox1" class="mt0">
                             {{ coin_type.1 }}
-                            <input id="checkbox1" name="type" type="radio" value={{ coin_type.0 }} class="mt0 floatl" {% ifequal selected_coin_type coin_type.0%}
+                            <input id="checkbox1" name="type" type="radio" onclick="window.location='{% url 'coins:supported_coins' coin_type.1 %}';" value={{ coin_type.0 }} class="mt0 floatl" {% ifequal selected_coin_type coin_type.0%}
                                 checked{% endifequal %}>
                         </label>
                     </li>

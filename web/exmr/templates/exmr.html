@@ -41,7 +41,7 @@
                         <a href="{% url 'public coin vote' %}">{% trans 'Public Coin Vote'%}</a>
                     </li>
                     <li>
-                        <a href="{% url 'coins:supported_coins' %}">{% trans 'Supported Coins' %}</a>
+                        <a href="{% url 'coins:supported_coins' 'Crypto' %}">{% trans 'Supported Coins' %}</a>
                     </li>
                     <li>
                         <a href="{% url 'store:store-directory' %}">{% trans 'Store Directory' %}</a>
@@ -133,7 +133,7 @@
                         </div>
                         <ul>
                             <li>
-                                <a href="{% url 'coins:supported_coins' %}">{% trans 'Supported Coins' %}</a>
+                                <a href="{% url 'coins:supported_coins' 'Crypto' %}">{% trans 'Supported Coins' %}</a>
                             </li>
                             <li>
                                 <a href="{% url 'merchant-tools' %}">{% trans 'Merchant Tools' %}</a>

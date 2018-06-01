@@ -1,9 +1,16 @@
-from django.db import models
 from ckeditor.fields import RichTextField, RichTextFormField
 from ckeditor_uploader.fields import RichTextUploadingField
+
+from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 
+
+AUTH_TYPE = (
+    ('HTTP Auth', _('HTTP Auth')),
+    ('HMAC', _('HMAC')),
+    ('N/A', _('N/A')),
+)
 
 class Currency(models.Model):
     """
@@ -90,3 +97,18 @@ class LegalSidebar(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.help_topic)
         super(LegalSidebar, self).save(*args, **kwargs)
+
+
+class PluginDownload(models.Model):
+    """
+    Model to Save details in merchant tools plugins option
+    """
+    shopping_cart_logo = models.ImageField(_('image'))
+    last_update = models.DateField(auto_now_add=True)
+    download_url = models.URLField(_('link'))
+    auth_type = models.CharField(max_length=10)
+    zero_confirm = models.BooleanField(blank=True)
+    video_url = models.URLField(_('Video URL'))
+
+    # def __str__(self):
+    #     return download_url

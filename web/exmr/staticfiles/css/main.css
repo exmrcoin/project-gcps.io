@@ -201,4 +201,15 @@ text-decoration: none;}
         font-weight: bold;
 }    
 
-.withdrawal select { background-image: none !important;}
+
+.shop-cart .panel {
+    margin-bottom: 20px;
+    background-color: #fff;
+    border: 1px solid #d0d0d0ed;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.19);
+}
+
+
+.shop-cart tbody tr {border-bottom: 1px solid #e2e2e2;}

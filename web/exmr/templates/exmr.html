@@ -166,8 +166,8 @@
                         <ul>
                             <li>{% trans 'Fees/Pricing' %}</li>
                             <li>{% trans 'Help' %}</li>
-                            <li>{% trans 'Add Store' %}</li>
-                            <li>{% trans 'Coin Request' %}</li>
+                            <li onclick="window.location.href='{% url 'store:add-to-store' %}'">{% trans 'Add Store' %}</li>
+                            <li onclick="window.location.href='{% url 'common:coinhosting' %}'" >{% trans 'Coin Request' %}</li>
                         </ul>
                     </div>
 
@@ -193,8 +193,8 @@
                     </div>
 
                     <div class="col-xs-12 col-md-6 footer-head-menu buttons-footer-div">
-                        <button type="submit" class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 padx0 xs-floatn xs-margin-center footer-head-menubtn btn-default btn-footer ">{% trans 'Add Store' %}</button>
-                        <button type="submit" class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 padx0 img-responsive xs-floatn xs-margin-center btn-default btn-footer coin-payment ">{% trans 'Coin Request' %}</button>
+                        <button type="submit" class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 padx0 xs-floatn xs-margin-center footer-head-menubtn btn-default btn-footer " onclick="window.location.href='{% url 'store:add-to-store' %}'">{% trans 'Add Store' %}</button>
+                        <button type="submit" class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 padx0 img-responsive xs-floatn xs-margin-center btn-default btn-footer coin-payment " onclick="window.location.href='{% url 'common:coinhosting' %}'">{% trans 'Coin Request' %}</button>
                         <img class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 img-responsive xs-floatn padx0 xs-margin-center  appstore-icon" src="{% static 'images/apple-icon.png' %}">
                         <img class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 img-responsive xs-floatn padx0 xs-margin-center  appstore-icon" src="{% static 'images/play-store.png' %}">
                     </div>

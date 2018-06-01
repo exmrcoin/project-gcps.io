@@ -1,0 +1,30 @@
+{% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+<div class="shop-cart">
+  <div class="container">
+     <table class="table panel">
+    <thead>
+      <tr>
+        <th>SHOPPING CART</th>
+        <th>LAST UPDATE</th>
+        <th>DOWNLOAD</th>
+        <th>AUTH TYPE</th>
+        <th>ZERO-CONFIRM</th>
+        <th>VIDEO TUTORIAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for plugin in plugins %}
+        <tr>
+          <td><img src="{{ plugin.shopping_cart.url}}" width="100px"></td>
+          <td>{{ plugin.last_update }}</td>
+          <td><button class="btn btn-success" onclick="window.location.href='{{ plugin.download_url }}'"> <i class="fas fa-download"></i> Download</button></td>
+          <td>{{ plugin.auth_type }}</td>
+          <td></td>
+          <td><a href="{{ plugin.video_url }}"><i class="fa fa-play" aria-hidden="true"></i></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  </div>
+</div>
+{% endblock %}

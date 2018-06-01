@@ -6,7 +6,7 @@ from django.views.generic import View, TemplateView, FormView
 
 from apps.accounts.models import Profile
 from apps.common.forms import CoinRequestForm
-from apps.common.models import FAQ, HelpSidebar, LegalSidebar
+from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload
 
 class HomeView(TemplateView):
     template_name = 'common/index.html'
@@ -49,6 +49,14 @@ class HelpTemplateView(TemplateView):
             context['details'] = HelpSidebar.objects.filter(slug=slug)
         else:
             context['details'] = LegalSidebar.objects.filter(slug=slug)
+        return context
+
+class PluginDownloadView(TemplateView):
+    template_name = 'common/shopping-cart-plugin.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['plugins'] = PluginDownload.objects.all()
         return context
 
 

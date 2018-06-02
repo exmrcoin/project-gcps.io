@@ -15,7 +15,7 @@
     <tbody>
       {% for plugin in plugins %}
         <tr>
-          <td><img src="{{ plugin.shopping_cart.url}}" width="100px"></td>
+          <td><img src="{{ plugin.shopping_cart_logo.url}}" width="40px"></td>
           <td>{{ plugin.last_update }}</td>
           <td><button class="btn btn-success" onclick="window.location.href='{{ plugin.download_url }}'"> <i class="fas fa-download"></i> Download</button></td>
           <td>{{ plugin.auth_type }}</td>

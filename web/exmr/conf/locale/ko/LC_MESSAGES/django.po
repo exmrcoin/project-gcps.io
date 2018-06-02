@@ -19,718 +19,719 @@ msgstr ""
 
 #: apps/accounts/admin.py:17
 msgid "Basic Details"
-msgstr ""
+msgstr "기본 세부 사항"
 
 #: apps/accounts/admin.py:20 templates/accounts/settings.html:24
 #: templates/accounts/settings.html:163
 msgid "Public Info"
-msgstr ""
+msgstr "공개 정보"
 
 #: apps/accounts/admin.py:23
 msgid "Login Security"
-msgstr ""
+msgstr "로그인 보안"
 
 #: apps/accounts/forms.py:25 apps/accounts/models.py:24
 msgid "Male"
-msgstr ""
+msgstr "남성"
 
 #: apps/accounts/forms.py:26 apps/accounts/models.py:25
 msgid "Female"
-msgstr ""
+msgstr "여자"
 
 #: apps/accounts/forms.py:27 apps/accounts/models.py:26
 msgid "Other/Prefer Not to say"
-msgstr ""
+msgstr "기타 / 대답 안함"
 
 #: apps/accounts/forms.py:31
 msgid "02-10-2018"
-msgstr ""
+msgstr "02-10-2018"
 
 #: apps/accounts/forms.py:32
 msgid "02/10/2018"
-msgstr ""
+msgstr "02/10/2018"
 
 #: apps/accounts/forms.py:35
 msgid "02:00"
-msgstr ""
+msgstr "02:00"
 
 #: apps/accounts/forms.py:36
 msgid "02:00:00"
-msgstr ""
+msgstr "02:00:00"
 
 #: apps/accounts/forms.py:59
 msgid "Emails doesn't match"
-msgstr ""
+msgstr "이메일이 일치하지 않습니다."
 
 #: apps/accounts/forms.py:70
 msgid "Please accept the terms and conditions"
-msgstr ""
+msgstr "이용 약관에 동의하십시오."
 
 #: apps/accounts/forms.py:133
 msgid "Invalid mobile number."
-msgstr ""
+msgstr "휴대 전화 번호가 잘못되었습니다."
 
 #: apps/accounts/forms.py:171 apps/store/forms.py:21
 msgid "Either username or email needs to be provided"
-msgstr ""
+msgstr "사용자 이름 또는 전자 메일을 제공해야합니다."
 
 #: apps/accounts/forms.py:176 apps/store/forms.py:26
 msgid "User not found"
-msgstr ""
+msgstr "사용자를 찾을 수 없음"
 
 #: apps/accounts/models.py:38
 msgid "Buyer"
-msgstr ""
+msgstr "사는 사람"
 
 #: apps/accounts/models.py:39
 msgid "Seller"
-msgstr ""
+msgstr "파는 사람"
 
 #: apps/accounts/models.py:43
 msgid "Email"
-msgstr ""
+msgstr "이메일"
 
 #: apps/accounts/models.py:44
 msgid "Trezor Login"
-msgstr ""
+msgstr "Trezor 로그인"
 
 #: apps/accounts/models.py:45
 msgid "2FA Account"
-msgstr ""
+msgstr "2FA 계정"
 
 #: apps/accounts/models.py:46
 msgid "None"
-msgstr ""
+msgstr "없음"
 
 #: apps/accounts/models.py:54 apps/accounts/models.py:139
 #: apps/accounts/models.py:183 apps/accounts/models.py:208
 #: apps/coins/models.py:66 apps/coins/models.py:83 apps/store/models.py:34
 msgid "user"
-msgstr ""
+msgstr "사용자"
 
 #: apps/accounts/models.py:55
 msgid "gender"
-msgstr ""
+msgstr "성별"
 
 #: apps/accounts/models.py:56
 msgid "user type"
-msgstr ""
+msgstr "사용자 유형"
 
 #: apps/accounts/models.py:57
 msgid "timezone"
-msgstr ""
+msgstr "시간대"
 
 #: apps/accounts/models.py:58
 msgid "public name"
-msgstr ""
+msgstr "공적 이름"
 
 #: apps/accounts/models.py:59
 msgid "public email"
-msgstr ""
+msgstr "공개 이메일"
 
 #: apps/accounts/models.py:60
 msgid "public URL"
-msgstr ""
+msgstr "공개 URL"
 
 #: apps/accounts/models.py:61
 msgid "merchant id"
-msgstr ""
+msgstr "판매자 ID"
 
 #: apps/accounts/models.py:62
 msgid "date format"
-msgstr ""
+msgstr "날짜 형식"
 
 #: apps/accounts/models.py:63
 msgid "time format"
-msgstr ""
+msgstr "시간 형식"
 
 #: apps/accounts/models.py:64
 msgid "use gravatar"
-msgstr ""
+msgstr "그라비아를 사용하다"
 
 #: apps/accounts/models.py:65
 msgid "PGP/GPG public key"
-msgstr ""
+msgstr "PGP / GPG 공개 키"
 
 #: apps/accounts/models.py:66
 msgid "2FA authentication"
-msgstr ""
+msgstr "2FA 인증"
 
 #: apps/accounts/models.py:68
 msgid "email confirmation send/withdrawal"
-msgstr ""
+msgstr "이메일 확인 전송 / 철회"
 
 #: apps/accounts/models.py:69
 msgid "is subscribed"
-msgstr ""
+msgstr "구독했습니다."
 
 #: apps/accounts/models.py:70
 msgid "reference count"
-msgstr ""
+msgstr "참조 횟수"
 
 #: apps/accounts/models.py:74 templates/accounts/settings.html:287
 msgid "IPN Secret"
-msgstr ""
+msgstr "IPN 비밀"
 
 #: apps/accounts/models.py:75
 msgid ""
 "This is used to verify that an IPN is from us, use a good random string "
 "nobody can guess."
-msgstr ""
+msgstr "이것은 IPN이 우리에게서 왔는지 확인하는 데 사용되며 아무도 추측 할 수없는 좋은 임의의 문자열을 사용합니다."
 
 #: apps/accounts/models.py:77 templates/accounts/settings.html:293
 msgid "IPN URL"
-msgstr ""
+msgstr "IPN URL"
 
 #: apps/accounts/models.py:78
 msgid "When a user submits a new payment to you"
-msgstr ""
+msgstr "사용자가 새 지불액을 제출하면"
 
 #: apps/accounts/models.py:79
 msgid "When funds have been received by us for a payment to you."
-msgstr ""
+msgstr "귀하가 지불 한 금액을 저희가 수령했을 때."
 
 #: apps/accounts/models.py:80
 msgid "When funds for a payment have been sent to you."
-msgstr ""
+msgstr "지불을위한 자금이 귀하에게 발송되었을 때."
 
 #: apps/accounts/models.py:81
 msgid "When a deposit is received on one of your deposit addresses."
-msgstr ""
+msgstr "입금 주소 중 하나에서 입금이 접수 된 경우."
 
 #: apps/accounts/models.py:82
 msgid "When positive feedback has been left for you."
-msgstr ""
+msgstr "긍정적 인 피드백이 남았을 때."
 
 #: apps/accounts/models.py:83
 msgid "status notification email"
-msgstr ""
+msgstr "상태 알림 이메일"
 
 #: apps/accounts/models.py:84
 msgid "receive SMS text when funds are received"
-msgstr ""
+msgstr "자금이 도착하면 SMS 텍스트를 받는다."
 
 #: apps/accounts/models.py:85
 msgid "SMS phone number"
-msgstr ""
+msgstr "SMS 전화 번호"
 
 #: apps/accounts/models.py:88
 msgid "Profile"
-msgstr ""
+msgstr "윤곽"
 
 #: apps/accounts/models.py:89
 msgid "Profiles"
-msgstr ""
+msgstr "프로필"
 
 #: apps/accounts/models.py:149
 msgid "Account Activation Link"
-msgstr ""
+msgstr "계정 활성화 링크"
 
 #: apps/accounts/models.py:175
 msgid "Profile Activation"
-msgstr ""
+msgstr "프로필 활성화"
 
 #: apps/accounts/models.py:176
 msgid "Profile Activations"
-msgstr ""
+msgstr "프로필 활성화"
 
 #: apps/accounts/models.py:184
 msgid "saved address name"
-msgstr ""
+msgstr "저장된 주소 이름"
 
 #: apps/accounts/models.py:185
 msgid "is default"
-msgstr ""
+msgstr "기본값"
 
 #: apps/accounts/models.py:186
 msgid "first name"
-msgstr ""
+msgstr "이름"
 
 #: apps/accounts/models.py:187
 msgid "last name"
-msgstr ""
+msgstr "성"
 
 #: apps/accounts/models.py:188
 msgid "address line 1"
-msgstr ""
+msgstr "주소 라인 1"
 
 #: apps/accounts/models.py:189
 msgid "address line 2"
-msgstr ""
+msgstr "주소 2"
 
 #: apps/accounts/models.py:190
 msgid "country"
-msgstr ""
+msgstr "국가"
 
 #: apps/accounts/models.py:191
 msgid "city"
-msgstr ""
+msgstr "시티"
 
 #: apps/accounts/models.py:192
 msgid "state"
-msgstr ""
+msgstr "상태"
 
 #: apps/accounts/models.py:193
 msgid "postal code"
-msgstr ""
+msgstr "우편 번호"
 
 #: apps/accounts/models.py:194
 msgid "phone_number"
-msgstr ""
+msgstr "전화 번호"
 
 #: apps/accounts/models.py:197
 msgid "Address"
-msgstr ""
+msgstr "주소"
 
 #: apps/accounts/models.py:198
 msgid "Addresses"
-msgstr ""
+msgstr "구애"
 
 #: apps/accounts/models.py:209
 msgid "rating"
-msgstr ""
+msgstr "평가"
 
 #: apps/accounts/models.py:210
 msgid "comment"
-msgstr ""
+msgstr "논평"
 
 #: apps/accounts/models.py:212
 msgid "left by"
-msgstr ""
+msgstr "~에 의해 떠난"
 
 #: apps/accounts/models.py:214
 msgid "buyer or seller"
-msgstr ""
+msgstr "구매자 또는 판매자"
 
 #: apps/accounts/models.py:217 apps/accounts/models.py:218
 msgid "Feedback"
-msgstr ""
+msgstr "피드백"
 
 #: apps/accounts/models.py:228
 msgid "subject"
-msgstr ""
+msgstr "제목"
 
 #: apps/accounts/models.py:230
 msgid "content"
-msgstr ""
+msgstr "함유량"
 
 #: apps/accounts/models.py:253 templates/accounts/verify_2fa.html:18
 msgid "Authentication Code"
-msgstr ""
+msgstr "인증 코드"
 
 #: apps/accounts/views.py:49
 msgid "Activation mail sent"
-msgstr ""
+msgstr "보낸 메일 활성화 메일"
 
 #: apps/accounts/views.py:172
 msgid "Account details updated successfully"
-msgstr ""
+msgstr "계정 세부 정보가 성공적으로 업데이트되었습니다."
 
 #: apps/accounts/views.py:184 apps/accounts/views.py:209
 #: apps/accounts/views.py:213 apps/accounts/views.py:232
 msgid "Information updated successfully"
-msgstr ""
+msgstr "정보가 성공적으로 업데이트되었습니다."
 
 #: apps/accounts/views.py:203
 msgid "Current password is incorrect"
-msgstr ""
+msgstr "현재 암호가 잘못되었습니다"
 
 #: apps/accounts/views.py:205
 msgid "Passwords doesn't match"
-msgstr ""
+msgstr "암호가 일치하지 않습니다."
 
 #: apps/accounts/views.py:248
 msgid "Invalid account activation link"
-msgstr ""
+msgstr "계정 활성화 링크가 잘못되었습니다."
 
 #: apps/accounts/views.py:251
 msgid "Account activation link expired"
-msgstr ""
+msgstr "계정 활성화 링크가 만료되었습니다."
 
 #: apps/accounts/views.py:258
 msgid "Account activated <br><p>Please <a href=/login>login</a><p>"
-msgstr ""
+msgstr "계정 활성화 <br> <p> <a href=/login> 로그인 </a>하십시오 <p>"
 
 #: apps/coins/models.py:13
 msgid "Crypto"
-msgstr ""
+msgstr "암호"
 
 #: apps/coins/models.py:14
 msgid "Ripple"
-msgstr ""
+msgstr "리플"
 
 #: apps/coins/models.py:15
 msgid "Ether tokens"
-msgstr ""
+msgstr "에테르 토큰"
 
 #: apps/coins/models.py:16
 msgid "Fiat"
-msgstr ""
+msgstr "명령"
 
 #: apps/coins/models.py:26
 msgid "To Balance"
-msgstr ""
+msgstr "균형을 잡기 위해"
 
 #: apps/coins/models.py:27
 msgid "ASAP"
-msgstr ""
+msgstr "최대한 빨리"
 
 #: apps/coins/models.py:28
 msgid "Nightly"
-msgstr ""
+msgstr "야간"
 
 #: apps/coins/models.py:29
 msgid "To Balance + Convert"
-msgstr ""
+msgstr "잔액 + 전환하려면"
 
 #: apps/coins/models.py:30
 msgid "ASAP + Convert"
-msgstr ""
+msgstr "최대한 빨리 전환"
 
 #: apps/coins/models.py:38
 msgid "coin name"
-msgstr ""
+msgstr "동전 이름"
 
 #: apps/coins/models.py:39
 msgid "coin site URL"
-msgstr ""
+msgstr "동전 사이트 URL"
 
 #: apps/coins/models.py:40
 msgid "code"
-msgstr ""
+msgstr "암호"
 
 #: apps/coins/models.py:41
 msgid "confirms"
-msgstr ""
+msgstr "확인하다"
 
 #: apps/coins/models.py:42 apps/common/models.py:106 apps/store/models.py:14
 msgid "image"
-msgstr ""
+msgstr "영상"
 
 #: apps/coins/models.py:42
 msgid "Upload a 35X35 image for better experience"
-msgstr ""
+msgstr "더 나은 환경을 위해 35X35 이미지 업로드"
 
 #: apps/coins/models.py:43
 msgid "to BTC value"
-msgstr ""
+msgstr "BTC 값으로"
 
 #: apps/coins/models.py:44
 msgid "fee percentage"
-msgstr ""
+msgstr "수수료 비율"
 
 #: apps/coins/models.py:45
 msgid "type"
-msgstr ""
+msgstr "유형"
 
 #: apps/coins/models.py:46
 msgid "can convert coin to another"
-msgstr ""
+msgstr "동전을 다른 것으로 바꿀 수있다."
 
 #: apps/coins/models.py:47
 msgid "can explore coins"
-msgstr ""
+msgstr "동전을 탐구 할 수있다."
 
 #: apps/coins/models.py:48
 msgid "can donate coins"
-msgstr ""
+msgstr "동전을 기부 할 수있다."
 
 #: apps/coins/models.py:49
 msgid "Disable this coin anytime"
-msgstr ""
+msgstr "언제든지이 동전을 사용 중지하십시오."
 
 #: apps/coins/models.py:52
 msgid "vote count"
-msgstr ""
+msgstr "투표 수"
 
 #: apps/coins/models.py:55 templates/accounts/dashboard.html:34
 msgid "Coin"
-msgstr ""
+msgstr "동전"
 
 #: apps/coins/models.py:56
 msgid "Coins"
-msgstr ""
+msgstr "동전"
 
 #: apps/coins/models.py:67
 msgid "coin"
-msgstr ""
+msgstr "동전"
 
 #: apps/coins/models.py:68
 msgid "enabled"
-msgstr ""
+msgstr "사용 가능"
 
 #: apps/coins/models.py:69
 msgid "payment address"
-msgstr ""
+msgstr "지불 주소"
 
 #: apps/coins/models.py:70
 msgid "payment mode"
-msgstr ""
+msgstr "지불 모드"
 
 #: apps/coins/models.py:71
 msgid "discount field"
-msgstr ""
+msgstr "할인 필드"
 
 #: apps/coins/models.py:72
 msgid "maximum per transaction"
-msgstr ""
+msgstr "거래 당 최대"
 
 #: apps/coins/models.py:73
 msgid "currency"
-msgstr ""
+msgstr "통화"
 
 #: apps/coins/models.py:85
 msgid "convert from coin"
-msgstr ""
+msgstr "동전에서 개종하다"
 
 #: apps/coins/models.py:87
 msgid "convert to coin"
-msgstr ""
+msgstr "동전으로 변환하다"
 
 #: apps/coins/models.py:89
 msgid "wallet from address"
-msgstr ""
+msgstr "주소지 지갑"
 
 #: apps/coins/models.py:90
 msgid "wallet to address"
-msgstr ""
+msgstr "주소를 기입하는 지갑"
 
 #: apps/coins/models.py:96
 msgid "Coin Conversion Request"
-msgstr ""
+msgstr "코인 전환 요청"
 
 #: apps/coins/models.py:97
 msgid "Coin Conversion Requests"
-msgstr ""
+msgstr "코인 전환 요청"
 
 #: apps/coins/models.py:125 apps/common/models.py:19 apps/store/models.py:11
 msgid "name"
-msgstr ""
+msgstr "이름"
 
 #: apps/coins/models.py:126
 msgid "email"
-msgstr ""
+msgstr "이메일"
 
 #: apps/coins/models.py:127
 msgid "coin website"
-msgstr ""
+msgstr "코인 웹 사이트"
 
 #: apps/coins/models.py:128
 msgid "coin url"
-msgstr ""
+msgstr "동전 URL"
 
 #: apps/common/models.py:10
 msgid "HTTP Auth"
-msgstr ""
+msgstr "HTTP 인증"
 
 #: apps/common/models.py:11
 msgid "HMAC"
-msgstr ""
+msgstr "HMAC"
 
 #: apps/common/models.py:12
 msgid "N/A"
-msgstr ""
+msgstr "N / A"
 
 #: apps/common/models.py:25
 msgid "Currency"
-msgstr ""
+msgstr "통화"
 
 #: apps/common/models.py:26
 msgid "Currencies"
-msgstr ""
+msgstr "통화"
 
 #: apps/common/models.py:33
 msgid "provider"
-msgstr ""
+msgstr "공급자"
 
 #: apps/common/models.py:34 apps/common/models.py:108
 msgid "link"
-msgstr ""
+msgstr "링크"
 
 #: apps/common/models.py:38
 msgid "Social Link"
-msgstr ""
+msgstr "소셜 링크"
 
 #: apps/common/models.py:39
 msgid "Social Links"
-msgstr ""
+msgstr "소셜 링크"
 
 #: apps/common/models.py:111
 msgid "Video URL"
-msgstr ""
+msgstr "동영상 URL"
 
 #: apps/store/models.py:12
 msgid "publish"
-msgstr ""
+msgstr "출판하다"
 
 #: apps/store/models.py:13
 msgid "slug"
-msgstr ""
+msgstr "강타"
 
 #: apps/store/models.py:18
 msgid "Category"
-msgstr ""
+msgstr "범주"
 
 #: apps/store/models.py:19
 msgid "Categories"
-msgstr ""
+msgstr "카테고리"
 
 #: apps/store/models.py:35
 msgid "store name"
-msgstr ""
+msgstr "가게 이름"
 
 #: apps/store/models.py:36
 msgid "store url"
-msgstr ""
+msgstr "상점 URL"
 
 #: apps/store/models.py:37
 msgid "category"
-msgstr ""
+msgstr "범주"
 
 #: apps/store/models.py:38
 msgid "crypto processor"
-msgstr ""
+msgstr "암호 프로세서"
 
 #: apps/store/models.py:39
 msgid "store email"
-msgstr ""
+msgstr "상점 이메일"
 
 #: apps/store/models.py:40
 msgid "keywords"
-msgstr ""
+msgstr "키워드"
 
 #: apps/store/models.py:41
 msgid "banner image url"
-msgstr ""
+msgstr "배너 이미지 URL"
 
 #: apps/store/models.py:42
 msgid "is approved"
-msgstr ""
+msgstr "승인 됨"
 
 #: apps/store/models.py:45
 msgid "Store"
-msgstr ""
+msgstr "저장"
 
 #: apps/store/models.py:46
 msgid "Stores"
-msgstr ""
+msgstr "백화점"
 
 #: exmr/settings/base.py:155
 msgid "English"
-msgstr ""
+msgstr "영어"
 
 #: exmr/settings/base.py:156
 msgid "Spanish"
-msgstr ""
+msgstr "스페인 사람"
 
 #: exmr/settings/base.py:157
 msgid "Deutsche"
-msgstr ""
+msgstr "도이체"
 
 #: exmr/settings/base.py:158
 msgid "हिन्दी"
-msgstr ""
+msgstr "हिन्दी"
 
 #: exmr/settings/base.py:159
 msgid "Français"
-msgstr ""
+msgstr "Français"
 
 #: exmr/settings/base.py:160
 msgid "Italiano"
-msgstr ""
+msgstr "이탈리아어"
 
 #: exmr/settings/base.py:161
 msgid "Magyar"
-msgstr ""
+msgstr "마자르 사람"
 
 #: exmr/settings/base.py:162
 msgid "Português"
-msgstr ""
+msgstr "Português"
 
 #: exmr/settings/base.py:163
 msgid "русский"
-msgstr ""
+msgstr "русский"
 
 #: exmr/settings/base.py:164
 msgid "فارسی"
-msgstr ""
+msgstr "فارسی"
 
 #: exmr/settings/base.py:165
 msgid "中文"
-msgstr ""
+msgstr "中文"
 
 #: exmr/settings/base.py:166
 msgid "日本語"
-msgstr ""
+msgstr "日本語"
 
 #: exmr/settings/base.py:167
 msgid "한국어"
-msgstr ""
+msgstr "한국어"
 
 #: templates/accounts/2fa_account.html:17
 msgid "Add Google Authenticator"
-msgstr ""
+msgstr "Google OTP 추가"
 
 #: templates/accounts/2fa_account.html:23
 msgid "2FA Accounts"
-msgstr ""
+msgstr "2FA 계정"
 
 #: templates/accounts/2fa_account.html:45
 #: templates/accounts/2fa_account_list.html:34
 msgid "Date"
-msgstr ""
+msgstr "날짜"
 
 #: templates/accounts/2fa_account.html:46
 #: templates/accounts/2fa_account.html:92
 #: templates/accounts/2fa_account_list.html:35
 msgid "Account Name"
-msgstr ""
+msgstr "계정 이름"
 
 #: templates/accounts/2fa_account.html:47
 #: templates/accounts/2fa_account_list.html:36
 msgid "Account Type"
-msgstr ""
+msgstr "계정 유형"
 
 #: templates/accounts/2fa_account.html:48
 #: templates/accounts/2fa_account_list.html:37
 #: templates/accounts/address-book.html:59
 msgid "Action"
-msgstr ""
+msgstr "동작"
 
 #: templates/accounts/2fa_account.html:64
 msgid "No devices Found"
-msgstr ""
+msgstr "기기를 찾을 수 없음"
 
 #: templates/accounts/2fa_account.html:88
 msgid "Secret Key"
-msgstr ""
+msgstr "비밀 키"
 
 #: templates/accounts/2fa_account.html:97
 msgid "Activation Code"
-msgstr ""
+msgstr "활성화 코드"
 
 #: templates/accounts/2fa_account.html:105
 msgid "Add"
-msgstr ""
+msgstr "더하다"
 
 #: templates/accounts/2fa_account_list.html:20
 msgid "Two Factor Authentication List"
-msgstr ""
+msgstr "2 요소 인증 목록"
 
 #: templates/accounts/activation_email.html:6
 msgid "registration"
-msgstr ""
+msgstr "기재"
 
 #: templates/accounts/activation_email.html:11
 #, python-format
 msgid ""
 "\n"
-"    You (or someone pretending to be you) have asked to register an account "
-"at\n"
-"    %(site_name)s.  If this wasn't you, please ignore this email\n"
+"    You (or someone pretending to be you) have asked to register an account at\n"
 "    and your address will be removed from our records.\n"
 "    "
 msgstr ""
+"\n"
+"너 (또는 너로 가장하는 사람)가에서 계정을 등록하도록 요청했습니다.\n"
+"    귀하의 주소는 Google 기록에서 삭제됩니다."
 
 #: templates/accounts/activation_email.html:18
 msgid ""
@@ -738,6 +739,8 @@ msgid ""
 "    To activate this account, please click the following link\n"
 "    "
 msgstr ""
+"\n"
+"이 계정을 활성화하려면 다음 링크를 클릭하십시오."
 
 #: templates/accounts/activation_email.html:29
 #, python-format
@@ -747,21 +750,28 @@ msgid ""
 "    %(site_name)s Management\n"
 "    "
 msgstr ""
+"\n"
+"진정으로,\n"
+"    %(site_name)s 관리"
 
 #: templates/accounts/activation_email.txt:2
 #, python-format
 msgid ""
 "\n"
 "You (or someone pretending to be you) have asked to register an account at\n"
-"%(site_name)s.  If this wasn't you, please ignore this email\n"
 "and your address will be removed from our records.\n"
 msgstr ""
+"\n"
+"너 (또는 너로 가장하는 사람)가에서 계정을 등록하도록 요청했습니다.\n"
+"귀하의 주소는 Google 기록에서 삭제됩니다.\n"
 
 #: templates/accounts/activation_email.txt:7
 msgid ""
 "\n"
 "To activate this account, please click the following link:\n"
 msgstr ""
+"\n"
+"이 계정을 활성화하려면 다음 링크를 클릭하십시오.\n"
 
 #: templates/accounts/activation_email.txt:13
 #, python-format
@@ -770,558 +780,570 @@ msgid ""
 "Sincerely,\n"
 "%(site_name)s Management\n"
 msgstr ""
+"\n"
+"진정으로,\n"
+"%(site_name)s 관리\n"
 
 #: templates/accounts/address-book.html:22
 msgid "Add New Address"
-msgstr ""
+msgstr "새 주소 추가"
 
 #: templates/accounts/address-book.html:27
 msgid "Saved Address"
-msgstr ""
+msgstr "저장된 주소"
 
 #: templates/accounts/address-book.html:50
 msgid "Address Name"
-msgstr ""
+msgstr "주소 명"
 
 #: templates/accounts/address-book.html:51
 msgid "First Name"
-msgstr ""
+msgstr "이름"
 
 #: templates/accounts/address-book.html:52
 msgid "Last Name"
-msgstr ""
+msgstr "성"
 
 #: templates/accounts/address-book.html:53
 msgid "Address Line 1"
-msgstr ""
+msgstr "주소 라인 1"
 
 #: templates/accounts/address-book.html:54
 msgid "Address Line 2"
-msgstr ""
+msgstr "주소 2"
 
 #: templates/accounts/address-book.html:55
 msgid "Country"
-msgstr ""
+msgstr "국가"
 
 #: templates/accounts/address-book.html:56
 msgid "State/province"
-msgstr ""
+msgstr "시 /도"
 
 #: templates/accounts/address-book.html:57
 msgid "Pincode"
-msgstr ""
+msgstr "핀 코드"
 
 #: templates/accounts/address-book.html:58
 msgid "Phone number"
-msgstr ""
+msgstr "전화 번호"
 
 #: templates/accounts/address-book.html:83
 msgid "No Address Found"
-msgstr ""
+msgstr "주소를 찾을 수 없음"
 
 #: templates/accounts/dashboard-base.html:16
 msgid "Home"
-msgstr ""
+msgstr "집"
 
 #: templates/accounts/dashboard-base.html:24
 msgid "Your Wallet"
-msgstr ""
+msgstr "월렛"
 
 #: templates/accounts/dashboard-base.html:31
 msgid "Coin Settings"
-msgstr ""
+msgstr "동전 설정"
 
 #: templates/accounts/dashboard-base.html:37
 msgid "Transaction History"
-msgstr ""
+msgstr "거래 내역"
 
 #: templates/accounts/dashboard-base.html:42
 msgid "Quick POS"
-msgstr ""
+msgstr "빠른 POS"
 
 #: templates/accounts/dashboard-base.html:47 templates/common/index.html:67
 msgid "$PayByName"
-msgstr ""
+msgstr "$ PayByName"
 
 #: templates/accounts/dashboard.html:18 templates/coins/wallets.html:17
 msgid "Recent Transaction"
-msgstr ""
+msgstr "최근 거래"
 
 #: templates/accounts/dashboard.html:32
 msgid "Time"
-msgstr ""
+msgstr "시각"
 
 #: templates/accounts/dashboard.html:33
 msgid "Received / Sent Name"
-msgstr ""
+msgstr "받은 / 보낸 이름"
 
 #: templates/accounts/dashboard.html:35
 msgid "Amount"
-msgstr ""
+msgstr "양"
 
 #: templates/accounts/dashboard.html:36
 msgid "Status"
-msgstr ""
+msgstr "지위"
 
 #: templates/accounts/dashboard.html:70 templates/coins/wallets.html:42
 msgid "No Payment Found"
-msgstr ""
+msgstr "지불 없음"
 
 #: templates/accounts/forgot-password.html:14
 #: templates/accounts/forgot_password.html:13
 msgid "Forgot Password"
-msgstr ""
+msgstr "비밀번호를 잊으 셨나요"
 
 #: templates/accounts/forgot-password.html:15
 #: templates/accounts/forgot_password.html:14
 msgid "To reset your password, enter your username or email address below"
-msgstr ""
+msgstr "비밀번호를 재설정하려면 아래에 사용자 이름 또는 이메일 주소를 입력하십시오."
 
 #: templates/accounts/forgot-password.html:25
 #: templates/accounts/forgot_password.html:24
 #: templates/accounts/verify_2fa.html:25
 msgid "Submit"
-msgstr ""
+msgstr "제출"
 
 #: templates/accounts/forgot_password_done.html:8
 msgid "Instructions has been sent"
-msgstr ""
+msgstr "안내가 전송되었습니다."
 
 #: templates/accounts/forgot_password_done.html:9
 msgid "to your mail"
-msgstr ""
+msgstr "당신의 메일에"
 
 #: templates/accounts/login.html:15 templates/accounts/signup.html:17
 msgid "Welcome!"
-msgstr ""
+msgstr "환영!"
 
 #: templates/accounts/login.html:16 templates/accounts/signup.html:18
 msgid "Sign in by entering the information below"
-msgstr ""
+msgstr "아래 정보를 입력하여 로그인하십시오."
 
 #: templates/accounts/login.html:26
 msgid "Login"
-msgstr ""
+msgstr "로그인"
 
 #: templates/accounts/login.html:28 templates/accounts/signup.html:95
 #: templates/store/add-or-update.html:112
 msgid "Signup"
-msgstr ""
+msgstr "가입"
 
 #: templates/accounts/login.html:38
 msgid "Forgot Password?"
-msgstr ""
+msgstr "비밀번호를 잊으 셨나요?"
 
 #: templates/accounts/login.html:43
 msgid "Don't have an account?"
-msgstr ""
+msgstr "계정이 없으십니까?"
 
 #: templates/accounts/payment-history.html:22
 #: templates/accounts/payment-history.html:23
 #: templates/accounts/payment-history.html:24
 #: templates/accounts/payment-history.html:25
 msgid "Deposit History"
-msgstr ""
+msgstr "입금 내역"
 
 #: templates/accounts/payment-history.html:32
 msgid "Incoming Payment HIstory"
-msgstr ""
+msgstr "입금 HIstory"
 
 #: templates/accounts/payment-history.html:36
 msgid "History Search & Export"
-msgstr ""
+msgstr "연혁 검색 및 내보내기"
 
 #: templates/accounts/settings.html:11
 msgid "Settings"
-msgstr ""
+msgstr "설정"
 
 #: templates/accounts/settings.html:19
 msgid "Basic Settings"
-msgstr ""
+msgstr "기본 설정"
 
 #: templates/accounts/settings.html:30 templates/accounts/settings.html:212
 msgid "Login & Security"
-msgstr ""
+msgstr "로그인 및 보안"
 
 #: templates/accounts/settings.html:35 templates/accounts/settings.html:278
 msgid "Merchant Settings"
-msgstr ""
+msgstr "판매자 설정"
 
 #: templates/accounts/settings.html:42 templates/exmr.html:101
 msgid "Account Settings"
-msgstr ""
+msgstr "계정 설정"
 
 #: templates/accounts/settings.html:47
 msgid "Your Merchant ID:"
-msgstr ""
+msgstr "판매자 ID :"
 
 #: templates/accounts/settings.html:56
 msgid "Affiliate URL:"
-msgstr ""
+msgstr "제휴 URL :"
 
 #: templates/accounts/settings.html:57
 msgid ""
 "Want to earn some crypto? Give this URL to new users and when they sign up "
 "you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:"
 msgstr ""
+"암호를 적립하고 싶습니까? 이 URL을 새로운 사용자에게 제공하고 가입시 GETCRYPTOPAYMENTS 거래 수수료의 일정 비율을 "
+"받게됩니다."
 
 #: templates/accounts/settings.html:69
 msgid "Share/Save"
-msgstr ""
+msgstr "공유 / 저장"
 
 #: templates/accounts/settings.html:113
 msgid "Account Email"
-msgstr ""
+msgstr "계정 이메일"
 
 #: templates/accounts/settings.html:119
 msgid "Confirm Email"
-msgstr ""
+msgstr "이메일 확인"
 
 #: templates/accounts/settings.html:126
 msgid "Gender"
-msgstr ""
+msgstr "성별"
 
 #: templates/accounts/settings.html:133
 msgid "Time Zone"
-msgstr ""
+msgstr "시간대"
 
 #: templates/accounts/settings.html:139
 msgid "Date Format"
-msgstr ""
+msgstr "날짜 형식"
 
 #: templates/accounts/settings.html:147
 msgid "Time Format"
-msgstr ""
+msgstr "시간 형식"
 
 #: templates/accounts/settings.html:154
 msgid "Update Account"
-msgstr ""
+msgstr "계정 업데이트"
 
 #: templates/accounts/settings.html:172
 msgid "Public Name"
-msgstr ""
+msgstr "공개 이름"
 
 #: templates/accounts/settings.html:178
 msgid "Public Email"
-msgstr ""
+msgstr "공개 이메일"
 
 #: templates/accounts/settings.html:185
 msgid "Public URL"
-msgstr ""
+msgstr "공개 URL"
 
 #: templates/accounts/settings.html:202 templates/accounts/settings.html:268
 #: templates/accounts/settings.html:367
 msgid "Update"
-msgstr ""
+msgstr "최신 정보"
 
 #: templates/accounts/settings.html:221
 msgid "Current Password"
-msgstr ""
+msgstr "현재 비밀번호"
 
 #: templates/accounts/settings.html:227
 msgid "New Password"
-msgstr ""
+msgstr "새 비밀번호"
 
 #: templates/accounts/settings.html:234
 msgid "Confirm Password"
-msgstr ""
+msgstr "비밀번호 확인"
 
 #: templates/accounts/settings.html:240
 msgid "2 Factor Authentication"
-msgstr ""
+msgstr "2 요소 인증"
 
 #: templates/accounts/settings.html:244
 msgid ""
 "Email: You will be prompted for a code at the time of login which will be "
 "sent to your provided email ID."
-msgstr ""
+msgstr "전자 메일 : 로그인시 제공된 전자 메일 ID로 전송되는 코드를 입력하라는 메시지가 나타납니다."
 
 #: templates/accounts/settings.html:245
 msgid ""
 "Linked 2FA Accounts: Link authenticators supporting TOTP such as Google "
 "Authenticator, Authy, FreeOTP, etc. You can edit your linked devices"
 msgstr ""
+"연결된 2FA 계정 : Google Authenticator, Authy, FreeOTP 등과 같은 TOTP를 지원하는 인증 자 연결. "
+"연결된 기기를 수정할 수 있습니다."
 
 #: templates/accounts/settings.html:252
 msgid "Email Confirmations for Sends/Withdrawals"
-msgstr ""
+msgstr "송 / 출금에 대한 이메일 확인"
 
 #: templates/accounts/settings.html:259
 msgid "PGP/GPG Public Key"
-msgstr ""
+msgstr "PGP / GPG 공개 키"
 
 #: templates/accounts/settings.html:339
 msgid ""
 "\n"
-"                                                Payment status email will be "
-"sent to this email.\n"
-"                                                If not provided, "
-"notofications will be sent to the primary email\n"
+"                                                Payment status email will be sent to this email.\n"
+"                                                If not provided, notofications will be sent to the primary email\n"
 "                                            "
 msgstr ""
+"\n"
+"지불 상태 이메일이이 이메일로 발송됩니다.\n"
+"                                                제공되지 않으면 주목할만한 내용이 기본 이메일로 전송됩니다."
 
 #: templates/accounts/signup.html:49
 msgid ""
 " Please make it at least 10 characters long and include letters, numbers,\n"
 "                                 and special characters. "
 msgstr ""
+"10 자 이상으로 작성하고 문자, 숫자,\n"
+"                                 및 특수 문자."
 
 #: templates/accounts/signup.html:51
 msgid "Timezone"
-msgstr ""
+msgstr "시간대"
 
 #: templates/accounts/signup.html:61
 msgid "Send newsletters and other relevant information to my provided e-mail."
-msgstr ""
+msgstr "제공된 전자 메일에 뉴스 레터 및 기타 관련 정보를 보냅니다."
 
 #: templates/accounts/signup.html:70
 msgid "Have read and agree to the"
-msgstr ""
+msgstr "읽고"
 
 #: templates/accounts/signup.html:71
 msgid "Terms of Service."
-msgstr ""
+msgstr "서비스 약관."
 
 #: templates/accounts/signup.html:85
 msgid " 'Type the characters you see in the image above:' "
-msgstr ""
+msgstr "'위의 그림에서 볼 수있는 문자를 입력하십시오 :'"
 
 #: templates/accounts/signup_complete.html:6
 msgid "An activation link has been sent"
-msgstr ""
+msgstr "활성화 링크가 전송되었습니다."
 
 #: templates/accounts/signup_complete.html:7
 msgid "Please check your mail"
-msgstr ""
+msgstr "메일을 확인하십시오."
 
 #: templates/accounts/verify_2fa.html:18
 msgid "Enter"
-msgstr ""
+msgstr "들어가다"
 
 #: templates/base.html:76 templates/exmr.html:44 templates/exmr.html:136
 msgid "Supported Coins"
-msgstr ""
+msgstr "지원되는 동전"
 
 #: templates/base.html:79 templates/exmr.html:50 templates/exmr.html:139
 msgid "Merchant Tools"
-msgstr ""
+msgstr "판매자 도구"
 
 #: templates/base.html:82 templates/exmr.html:41 templates/exmr.html:142
 msgid "Public Coin Vote"
-msgstr ""
+msgstr "공중 코인 투표"
 
 #: templates/base.html:85 templates/exmr.html:47 templates/exmr.html:145
 msgid "Store Directory"
-msgstr ""
+msgstr "스토어 디렉토리"
 
 #: templates/base.html:95 templates/exmr.html:155
 msgid "Get Mobile App"
-msgstr ""
+msgstr "모바일 앱 다운로드"
 
 #: templates/base.html:96 templates/exmr.html:156
 msgid "Affiliate Information"
-msgstr ""
+msgstr "제휴사 정보"
 
 #: templates/base.html:97 templates/exmr.html:157
 msgid "Official TOR URL"
-msgstr ""
+msgstr "공식 TOR URL"
 
 #: templates/base.html:98 templates/exmr.html:158
 msgid "PGP Key"
-msgstr ""
+msgstr "PGP 키"
 
 #: templates/base.html:107 templates/exmr.html:167
 msgid "Fees/Pricing"
-msgstr ""
+msgstr "요금 / 가격"
 
 #: templates/base.html:108 templates/exmr.html:168
 msgid "Help"
-msgstr ""
+msgstr "도움"
 
 #: templates/base.html:109 templates/base.html:144 templates/exmr.html:169
 #: templates/exmr.html:196
 msgid "Add Store"
-msgstr ""
+msgstr "스토어 추가"
 
 #: templates/base.html:110 templates/base.html:145 templates/exmr.html:170
 #: templates/exmr.html:197
 msgid "Coin Request"
-msgstr ""
+msgstr "동전 요청"
 
 #: templates/base.html:139 templates/exmr.html:175
 msgid "Privacy Policy"
-msgstr ""
+msgstr "개인 정보 정책"
 
 #: templates/base.html:140 templates/exmr.html:178
 msgid "Terms of Service"
-msgstr ""
+msgstr "서비스 약관"
 
 #: templates/coins/coin-withdrawal.html:8
 msgid "Coin Withdrawal"
-msgstr ""
+msgstr "동전 탈퇴"
 
 #: templates/coins/coin-withdrawal.html:12
 msgid "Minimum Withdrawal"
-msgstr ""
+msgstr "최소 인출"
 
 #: templates/coins/coin-withdrawal.html:13
 msgid "Current Bal"
-msgstr ""
+msgstr "현재 발"
 
 #: templates/coins/coin-withdrawal.html:14
 msgid "Send/Withdrawal Amount"
-msgstr ""
+msgstr "송금 금액"
 
 #: templates/coins/coin-withdrawal.html:15
 msgid "Transation Fee (est.)"
-msgstr ""
+msgstr "전환 수수료 (예상)"
 
 #: templates/coins/coin-withdrawal.html:16
 msgid "Total Withdrawal"
-msgstr ""
+msgstr "총 탈퇴"
 
 #: templates/coins/coin-withdrawal.html:17
 msgid "Litecoin Testnet address or $payByName to send to"
-msgstr ""
+msgstr "Litecoin Testnet 주소 또는 $ payByName으로 보낼 주소"
 
 #: templates/coins/coin-withdrawal.html:18
 msgid "Optional Note (Only Viewable by you)"
-msgstr ""
+msgstr "선택 사항 메모 (귀하 만 볼 수 있음)"
 
 #: templates/coins/coin-withdrawal.html:48
 msgid "Request Withdrawal/Send"
-msgstr ""
+msgstr "요청 철회 / 보내기"
 
 #: templates/coins/coin_conversion.html:8
 msgid "Coin Conversion"
-msgstr ""
+msgstr "코인 전환"
 
 #: templates/coins/coin_conversion.html:22
 msgid ""
-"If you log in the fields below will be prepopulated with your Wallet deposit "
-"addresses."
-msgstr ""
+"If you log in the fields below will be prepopulated with your Wallet deposit"
+" addresses."
+msgstr "로그인하는 경우 아래 입력란에 월렛 입금 주소가 미리 입력됩니다."
 
 #: templates/coins/coin_conversion.html:42
 #: templates/common/support-coins.html:258
 msgid "Convert"
-msgstr ""
+msgstr "변하게 하다"
 
 #: templates/coins/coin_conversion_final.html:8
 msgid "Coin Conversion Requested"
-msgstr ""
+msgstr "코인 전환 요청 됨"
 
 #: templates/coins/supported-coins.html:4
 msgid "SUPPORTED COINS"
-msgstr ""
+msgstr "지원되는 비용"
 
 #: templates/coins/supported-coins.html:7
 msgid ""
-"Instant get crypto payments checkout with easy to use cart plugin, advanced, "
-"invoice buillder and API for custom integration"
+"Instant get crypto payments checkout with easy to use cart plugin, advanced,"
+" invoice buillder and API for custom integration"
 msgstr ""
+"즉시 사용 가능한 카트 플러그인, 고급, 인보이스 buillder 및 사용자 정의 통합을위한 API를 사용하여 암호화 지불 결제를 즉시 "
+"받으십시오."
 
 #: templates/coins/supported-coins.html:33
 msgid "COIN NAME"
-msgstr ""
+msgstr "동전 이름"
 
 #: templates/coins/supported-coins.html:34
 msgid "COD"
-msgstr ""
+msgstr "대구"
 
 #: templates/coins/supported-coins.html:35
 msgid "FEE"
-msgstr ""
+msgstr "보수"
 
 #: templates/coins/supported-coins.html:38
 msgid "CONFIRMS"
-msgstr ""
+msgstr "확인"
 
 #: templates/coins/supported-coins.html:39
 msgid "TO BTC"
-msgstr ""
+msgstr "BTC로"
 
 #: templates/coins/supported-coins.html:42
 msgid "EXPLORE"
-msgstr ""
+msgstr "탐험 해보세요."
 
 #: templates/coins/supported-coins.html:87
 msgid "Convert Coin"
-msgstr ""
+msgstr "동전 전환"
 
 #: templates/coins/supported-coins.html:104
 #: templates/common/support-coins.html:273
 msgid "Close"
-msgstr ""
+msgstr "닫기"
 
 #: templates/coins/wallets.html:31
 msgid "Coin Name"
-msgstr ""
+msgstr "동전 이름"
 
 #: templates/coins/wallets.html:32
 msgid "Code"
-msgstr ""
+msgstr "암호"
 
 #: templates/coins/wallets.html:33
 msgid "Balance"
-msgstr ""
+msgstr "밸런스"
 
 #: templates/coins/wallets.html:34
 msgid "Value"
-msgstr ""
+msgstr "값"
 
 #: templates/coins/wallets.html:35
 msgid "Commands"
-msgstr ""
+msgstr "명령들"
 
 #: templates/common/index.html:23
 msgid "Accept over 140 altcoins now for only 0.50"
-msgstr ""
+msgstr "140 개 이상의 altcoins을 현재 0.50 개만 허용"
 
 #: templates/common/index.html:25
 msgid ""
 "Integrated payment gateway for cryptocurrencies such as Bitcoin and Litecoin"
-msgstr ""
+msgstr "Bitcoin 및 Litecoin과 같은 cryptocurrencies에 대한 통합 지불 게이트웨이"
 
 #: templates/common/index.html:26
 msgid "Get Start"
-msgstr ""
+msgstr "시작하기"
 
 #: templates/common/index.html:36
 msgid "scroll me"
-msgstr ""
+msgstr "나를 스크롤하다"
 
 #: templates/common/index.html:53
 msgid "Running an ICO?"
-msgstr ""
+msgstr "ICO를 운영하고 있습니까?"
 
 #: templates/common/index.html:54
 msgid "Let GetCryptoPayments help with:"
-msgstr ""
+msgstr "GetCryptoPayments가 다음을 도와줍니다."
 
 #: templates/common/index.html:56
 msgid "Accepting payments from over 140 different coins"
-msgstr ""
+msgstr "140 가지가 넘는 동전에서 지불을 받아들입니다."
 
 #: templates/common/index.html:57
 msgid "All New GetCryptoPayments ICO Marketplace"
-msgstr ""
+msgstr "모든 새로운 GetCryptoPayments ICO 마켓 플레이스"
 
 #: templates/common/index.html:59
 msgid "Find Out More"
-msgstr ""
+msgstr "더 찾아 봐"
 
 #: templates/common/index.html:68
 msgid "One unique $tag to receive payments from all coins."
-msgstr ""
+msgstr "모든 동전에서 지불을받을 수있는 고유 한 $ 태그."
 
 #: templates/common/index.html:69
 msgid "Example Profile"
-msgstr ""
+msgstr "예제 프로필"
 
 #: templates/common/index.html:102
 msgid "Shopping Cart Plugins"
-msgstr ""
+msgstr "장바구니 플러그인"
 
 #: templates/common/index.html:105
 msgid ""
@@ -1329,300 +1351,305 @@ msgid ""
 "install a plugin to set up GetCryptoPayments with your new or pre-existing "
 "checkout"
 msgstr ""
+"현재 사용되는 모든 인기있는 웹 카트를 제공합니다. 신규 또는 기존 체크 아웃으로 GetCryptoPayments를 설정하는 플러그인 "
+"등록 및 설치"
 
 #: templates/common/index.html:196
 msgid "Payment Features"
-msgstr ""
+msgstr "지불 기능"
 
 #: templates/common/index.html:198
 msgid "Here some ways GetCryptoPayments can help you process payments."
-msgstr ""
+msgstr "여기 GetCryptoPayments가 지불을 처리하는 데 도움이되는 몇 가지 방법이 있습니다."
 
 #: templates/common/index.html:206
 msgid "BitGo™ Instant"
-msgstr ""
+msgstr "BitGo ™ 인스턴트"
 
 #: templates/common/index.html:207
 msgid ""
-"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster "
-"than\n"
+"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster than\n"
 "                                ever before. "
 msgstr ""
+"GetCryptoPayments는 BitGo Instant를 지원합니다.\n"
+"                                그 어느 때보 다."
 
 #: templates/common/index.html:219
 msgid "Vault"
-msgstr ""
+msgstr "둥근 천장"
 
 #: templates/common/index.html:220
 msgid ""
-"Protect your coins in the vault, requiring a time amount you specify before "
-"being\n"
+"Protect your coins in the vault, requiring a time amount you specify before being\n"
 "                                able to spend them."
 msgstr ""
+"금고에서 동전을 보호하십시오. 지정하기 전에 지정된 시간이 필요합니다.\n"
+"                                그들을 보낼 수 있습니다."
 
 #: templates/common/index.html:232
 msgid "Fiat Settlements"
-msgstr ""
+msgstr "피아트 타협"
 
 #: templates/common/index.html:233
 msgid ""
-"United States and Euro merchants now have fiat settlements directly to "
-"their\n"
+"United States and Euro merchants now have fiat settlements directly to their\n"
 "                                bank accounts. "
 msgstr ""
+"미국과 유로 상인들은 이제 그들의\n"
+"                                은행 계좌."
 
 #: templates/common/index.html:245
 msgid "Point of Sale (POS)"
-msgstr ""
+msgstr "POS (Point of Sale)"
 
 #: templates/common/index.html:246
 msgid "Simple interface for in person transactions. "
-msgstr ""
-
-#: templates/common/index.html:246
-msgid ""
-"\n"
-"                               "
-msgstr ""
+msgstr "개인 거래를위한 간단한 인터페이스."
 
 #: templates/common/index.html:264
 msgid "Secured with BitGo"
-msgstr ""
+msgstr "BitGo로 보안"
 
 #: templates/common/index.html:265
 msgid "Our hot wallet is secured by BitGo - meaning 100 "
-msgstr ""
+msgstr "우리의 뜨거운 지갑은 BitGo에 의해 보호됩니다 - 의미 100"
 
 #: templates/common/index.html:265
 msgid ""
 "of\n"
-"                                our funds are protected by multi-signature "
-"technology."
+"                                our funds are protected by multi-signature technology."
 msgstr ""
+"의\n"
+"                                우리의 자금은 다중 서명 기술로 보호됩니다."
 
 #: templates/common/index.html:277
 msgid "Mobile Apps"
-msgstr ""
+msgstr "모바일 앱"
 
 #: templates/common/index.html:278
 msgid ""
-"Access your account, accept payments in person, and convert coins anywhere "
-"with\n"
+"Access your account, accept payments in person, and convert coins anywhere with\n"
 "                                our mobile apps for Android and iOS."
 msgstr ""
+"계정에 액세스하고, 직접 지불을 수락하고, 어디서나 동전을 변환하십시오.\n"
+"                                Android 및 iOS 용 Google 모바일 앱"
 
 #: templates/common/index.html:290
 msgid "Auto Coin Conversion"
-msgstr ""
+msgstr "자동 코인 전환"
 
 #: templates/common/index.html:291
 msgid ""
-"Auto convert for some of our coins, saving you the trouble of moving funds, "
-"wasting\n"
+"Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
 "                                time and fees."
 msgstr ""
+"일부 동전을 자동 변환하여 자금 이동의 낭비를 줄이고 낭비하지 않습니다.\n"
+"                                시간과 비용."
 
 #: templates/common/index.html:303
 msgid "Multi-Coin Wallet"
-msgstr ""
+msgstr "멀티 코인 지갑"
 
 #: templates/common/index.html:304
 msgid "Optionally store your coins in our secure online wallet."
-msgstr ""
+msgstr "선택 사항으로 보안 온라인 지갑에 동전을 보관하십시오."
 
 #: templates/common/index.html:322
 msgid ""
 "Our goal is to exceed more than 1,000,000 vendors across 182 different "
 "countries"
-msgstr ""
+msgstr "우리의 목표는 182 개국에 걸쳐 1,000,000 개 이상의 공급 업체를 초과하는 것입니다."
 
 #: templates/common/index.html:323
 msgid ""
-"GetCryptoPayments is the first and largest payment processor of over 150 "
-"cryptocurrencies\n"
+"GetCryptoPayments is the first and largest payment processor of over 150 cryptocurrencies\n"
 "                    "
-msgstr ""
+msgstr "GetCryptoPayments는 150 개가 넘는 크립토 통화 중 최초이자 최대 지불 프로세서입니다."
 
 #: templates/common/index.html:349
 msgid ""
-"Thank you GetCryptoPayments for taking Tron coin into consideration to "
-"belong to the list of your ERC-20\n"
-"                        tokens portfolio. I know you will have many "
-"successes."
+"Thank you GetCryptoPayments for taking Tron coin into consideration to belong to the list of your ERC-20\n"
+"                        tokens portfolio. I know you will have many successes."
 msgstr ""
+"귀하의 ERC-20 목록에 속하는 것을 고려하여 Tron 동전을 가져가는 것에 대해 GetCryptoPayments에 감사드립니다.\n"
+"                        토큰 포트폴리오. 나는 네가 많은 성공을 거둘 것이라는 것을 안다."
 
 #: templates/common/index.html:351
 msgid "Justin Sun CEO Tronix Coin"
-msgstr ""
+msgstr "Justin Sun CEO Tronix Coin"
 
 #: templates/common/index.html:359
 msgid ""
-"We wanted to accept Stellar coin payments so we starting developing. Then we "
-"realized GetCryptoPayments\n"
-"                        could do the hard work for us and accept all "
-"payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we "
-"only\n"
+"We wanted to accept Stellar coin payments so we starting developing. Then we realized GetCryptoPayments\n"
+"                        could do the hard work for us and accept all payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we only\n"
 "                        need to develop  with one API now."
 msgstr ""
+"우리는 스텔라 코인 지불을 받아들이고 개발을 시작했습니다. 그런 다음 GetCryptoPayments를 실현했습니다.\n"
+"                        우리를 위해 열심히 일하고 모든 지불을 받아 Bitcoin에서 돈을받을 수 있습니다. GetCryptoPayments에 감사드립니다.\n"
+"                        이제는 하나의 API로 개발해야합니다."
 
 #: templates/common/index.html:362
 msgid "Jed McCaleb CEO stellar.org"
-msgstr ""
+msgstr "Jed McCaleb CEO stellar.org"
 
 #: templates/common/merchant-tools.html:7 templates/store/add-or-update.html:5
 msgid "MERCHANT TOOLS"
-msgstr ""
+msgstr "판매자 도구"
 
 #: templates/common/merchant-tools.html:9
-#: templates/common/merchant-tools.html:16 templates/store/add-or-update.html:7
+#: templates/common/merchant-tools.html:16
+#: templates/store/add-or-update.html:7
 msgid ""
 "If you would like to be updated about new API or changes to existing Apis"
-msgstr ""
+msgstr "새로운 API 또는 기존 API에 대한 변경 사항에 대해 업데이트하고 싶다면"
 
 #: templates/common/merchant-tools.html:10
-#: templates/common/merchant-tools.html:17 templates/store/add-or-update.html:8
+#: templates/common/merchant-tools.html:17
+#: templates/store/add-or-update.html:8
 msgid "click here"
-msgstr ""
+msgstr "여기를 클릭하십시오."
 
 #: templates/common/merchant-tools.html:25
 msgid "SHOPPING CART PLUGIN"
-msgstr ""
+msgstr "쇼핑 카트"
 
 #: templates/common/merchant-tools.html:27
 msgid "Plugin Downloads"
-msgstr ""
+msgstr "플러그인 다운로드"
 
 #: templates/common/merchant-tools.html:34
 msgid "API & IPNs"
-msgstr ""
+msgstr "API 및 IPN"
 
 #: templates/common/merchant-tools.html:36
 msgid "Instant Payment Notification"
-msgstr ""
+msgstr "즉시 지불 통지"
 
 #: templates/common/merchant-tools.html:37
 msgid "GETCRYPTOPAYMENTAPI"
-msgstr ""
+msgstr "취업 알선"
 
 #: templates/common/merchant-tools.html:44
 msgid "INVOICE BUILDER"
-msgstr ""
+msgstr "송장 작성자"
 
 #: templates/common/merchant-tools.html:46
 msgid "Payment Request invoice maker"
-msgstr ""
+msgstr "지불 요청 송장 생성기"
 
 #: templates/common/merchant-tools.html:53
 msgid "POINT OF SALE(POS) INTERFACE"
-msgstr ""
+msgstr "판매점 (POS) 인터페이스"
 
 #: templates/common/merchant-tools.html:55
 msgid "HTML URL/ POST Fields"
-msgstr ""
+msgstr "HTML URL / POST 필드"
 
 #: templates/common/merchant-tools.html:56
 msgid "Post link QR Code Generator"
-msgstr ""
+msgstr "포스트 링크 QR 코드 생성기"
 
 #: templates/common/merchant-tools.html:57
 msgid "POS Examle"
-msgstr ""
+msgstr "POS 시험"
 
 #: templates/common/merchant-tools.html:64
 msgid "SIMPLE BUTTONS"
-msgstr ""
+msgstr "간단한 단추"
 
 #: templates/common/merchant-tools.html:66
 #: templates/common/merchant-tools.html:77
 #: templates/common/merchant-tools.html:99
 msgid "Button Maker"
-msgstr ""
+msgstr "버튼 메이커"
 
 #: templates/common/merchant-tools.html:67
 #: templates/common/merchant-tools.html:78
 #: templates/common/merchant-tools.html:88
 #: templates/common/merchant-tools.html:100
 msgid "HTML Post Field"
-msgstr ""
+msgstr "HTML 게시 필드"
 
 #: templates/common/merchant-tools.html:68
 #: templates/common/merchant-tools.html:79
 #: templates/common/merchant-tools.html:89
 #: templates/common/merchant-tools.html:101
 msgid "Button Examples"
-msgstr ""
+msgstr "버튼 예제"
 
 #: templates/common/merchant-tools.html:75
 msgid "ADVANCE BUTTONS"
-msgstr ""
+msgstr "사전 버튼"
 
 #: templates/common/merchant-tools.html:86
 msgid "SHOPPING CART BUTTONS"
-msgstr ""
+msgstr "쇼핑 카트 버튼"
 
 #: templates/common/merchant-tools.html:90
 msgid "Button Images"
-msgstr ""
+msgstr "버튼 이미지"
 
 #: templates/common/merchant-tools.html:97
 msgid "DONATION BUTTONS"
-msgstr ""
+msgstr "기부 버튼"
 
 #: templates/common/support-coins.html:258
 msgid "BITCOIN"
-msgstr ""
+msgstr "비트 틴"
 
 #: templates/exmr.html:54
 msgid "Contact Us"
-msgstr ""
+msgstr "연락처"
 
 #: templates/exmr.html:78
 msgid "Language"
-msgstr ""
+msgstr "언어"
 
 #: templates/exmr.html:93
 msgid "Account"
-msgstr ""
+msgstr "계정"
 
 #: templates/exmr.html:98
 msgid "Dashboard"
-msgstr ""
+msgstr "계기반"
 
 #: templates/exmr.html:104
 msgid "AddressBook"
-msgstr ""
+msgstr "주소록"
 
 #: templates/exmr.html:107
 msgid "Logout"
-msgstr ""
+msgstr "로그 아웃"
 
 #: templates/registration/password_reset_complete.html:6
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr ""
+msgstr "암호가 설정되었습니다. 계속해서 로그인 할 수 있습니다."
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Log in"
-msgstr ""
+msgstr "로그인"
 
 #: templates/registration/password_reset_confirm.html:45
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
-msgstr ""
+msgstr "암호 재설정 링크가 이미 사용 되었기 때문에 유효하지 않습니다. 새 비밀번호 재설정을 요청하십시오."
 
 #: templates/store/add-or-update.html:102
 msgid "Type the characters you see in the image above:"
-msgstr ""
+msgstr "위 이미지에서 볼 수있는 문자를 입력하십시오 :"
 
-#: templates/store/store_categories.html:5 templates/store/store_listing.html:5
+#: templates/store/store_categories.html:5
+#: templates/store/store_listing.html:5
 msgid "STORE DIRECTORY"
-msgstr ""
+msgstr "매장 디렉토리"
 
-#: templates/store/store_categories.html:7 templates/store/store_listing.html:7
+#: templates/store/store_categories.html:7
+#: templates/store/store_listing.html:7
 msgid "Largest directory of merchants accepting multiple cryptocurrencies"
-msgstr ""
+msgstr "여러 크립토 체인을 허용하는 최대 디렉토리"
 
 #: templates/store/store_categories.html:15
 #: templates/store/store_listing.html:15
 msgid "Search"
-msgstr ""
+msgstr "수색"

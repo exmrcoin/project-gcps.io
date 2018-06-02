@@ -19,718 +19,721 @@ msgstr ""
 
 #: apps/accounts/admin.py:17
 msgid "Basic Details"
-msgstr ""
+msgstr "Alapvető részletek"
 
 #: apps/accounts/admin.py:20 templates/accounts/settings.html:24
 #: templates/accounts/settings.html:163
 msgid "Public Info"
-msgstr ""
+msgstr "Nyilvános információ"
 
 #: apps/accounts/admin.py:23
 msgid "Login Security"
-msgstr ""
+msgstr "Bejelentkezés biztonság"
 
 #: apps/accounts/forms.py:25 apps/accounts/models.py:24
 msgid "Male"
-msgstr ""
+msgstr "Férfi"
 
 #: apps/accounts/forms.py:26 apps/accounts/models.py:25
 msgid "Female"
-msgstr ""
+msgstr "Női"
 
 #: apps/accounts/forms.py:27 apps/accounts/models.py:26
 msgid "Other/Prefer Not to say"
-msgstr ""
+msgstr "Egyéb / Nem akarok mondani"
 
 #: apps/accounts/forms.py:31
 msgid "02-10-2018"
-msgstr ""
+msgstr "2018/02/10"
 
 #: apps/accounts/forms.py:32
 msgid "02/10/2018"
-msgstr ""
+msgstr "2018/02/10"
 
 #: apps/accounts/forms.py:35
 msgid "02:00"
-msgstr ""
+msgstr "02:00"
 
 #: apps/accounts/forms.py:36
 msgid "02:00:00"
-msgstr ""
+msgstr "02:00:00"
 
 #: apps/accounts/forms.py:59
 msgid "Emails doesn't match"
-msgstr ""
+msgstr "Az e-mailek nem egyeznek"
 
 #: apps/accounts/forms.py:70
 msgid "Please accept the terms and conditions"
-msgstr ""
+msgstr "Kérjük, fogadja el a feltételeket"
 
 #: apps/accounts/forms.py:133
 msgid "Invalid mobile number."
-msgstr ""
+msgstr "Érvénytelen telefonszám."
 
 #: apps/accounts/forms.py:171 apps/store/forms.py:21
 msgid "Either username or email needs to be provided"
-msgstr ""
+msgstr "Bármilyen felhasználónevet vagy e-mailt kell megadni"
 
 #: apps/accounts/forms.py:176 apps/store/forms.py:26
 msgid "User not found"
-msgstr ""
+msgstr "Felhasználó nem található"
 
 #: apps/accounts/models.py:38
 msgid "Buyer"
-msgstr ""
+msgstr "Vevő"
 
 #: apps/accounts/models.py:39
 msgid "Seller"
-msgstr ""
+msgstr "Eladó"
 
 #: apps/accounts/models.py:43
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: apps/accounts/models.py:44
 msgid "Trezor Login"
-msgstr ""
+msgstr "Trezor Bejelentkezés"
 
 #: apps/accounts/models.py:45
 msgid "2FA Account"
-msgstr ""
+msgstr "2FA fiók"
 
 #: apps/accounts/models.py:46
 msgid "None"
-msgstr ""
+msgstr "Egyik sem"
 
 #: apps/accounts/models.py:54 apps/accounts/models.py:139
 #: apps/accounts/models.py:183 apps/accounts/models.py:208
 #: apps/coins/models.py:66 apps/coins/models.py:83 apps/store/models.py:34
 msgid "user"
-msgstr ""
+msgstr "használó"
 
 #: apps/accounts/models.py:55
 msgid "gender"
-msgstr ""
+msgstr "nem"
 
 #: apps/accounts/models.py:56
 msgid "user type"
-msgstr ""
+msgstr "felhasználói típus"
 
 #: apps/accounts/models.py:57
 msgid "timezone"
-msgstr ""
+msgstr "időzóna"
 
 #: apps/accounts/models.py:58
 msgid "public name"
-msgstr ""
+msgstr "nyilvános név"
 
 #: apps/accounts/models.py:59
 msgid "public email"
-msgstr ""
+msgstr "nyilvános e-mail"
 
 #: apps/accounts/models.py:60
 msgid "public URL"
-msgstr ""
+msgstr "nyilvános URL"
 
 #: apps/accounts/models.py:61
 msgid "merchant id"
-msgstr ""
+msgstr "kereskedőazonosító"
 
 #: apps/accounts/models.py:62
 msgid "date format"
-msgstr ""
+msgstr "dátum formátum"
 
 #: apps/accounts/models.py:63
 msgid "time format"
-msgstr ""
+msgstr "idő formátum"
 
 #: apps/accounts/models.py:64
 msgid "use gravatar"
-msgstr ""
+msgstr "használja gravatar"
 
 #: apps/accounts/models.py:65
 msgid "PGP/GPG public key"
-msgstr ""
+msgstr "PGP / GPG nyilvános kulcs"
 
 #: apps/accounts/models.py:66
 msgid "2FA authentication"
-msgstr ""
+msgstr "2FA hitelesítés"
 
 #: apps/accounts/models.py:68
 msgid "email confirmation send/withdrawal"
-msgstr ""
+msgstr "e-mail visszaigazolás küldés / visszavonás"
 
 #: apps/accounts/models.py:69
 msgid "is subscribed"
-msgstr ""
+msgstr "feliratkozott"
 
 #: apps/accounts/models.py:70
 msgid "reference count"
-msgstr ""
+msgstr "hivatkozási szám"
 
 #: apps/accounts/models.py:74 templates/accounts/settings.html:287
 msgid "IPN Secret"
-msgstr ""
+msgstr "IPN Titok"
 
 #: apps/accounts/models.py:75
 msgid ""
 "This is used to verify that an IPN is from us, use a good random string "
 "nobody can guess."
 msgstr ""
+"Ezt annak ellenőrzésére használják, hogy egy IPN van tőlünk, használjunk egy"
+" jó véletlen sorozatot, amit senki sem találhat."
 
 #: apps/accounts/models.py:77 templates/accounts/settings.html:293
 msgid "IPN URL"
-msgstr ""
+msgstr "IPN URL"
 
 #: apps/accounts/models.py:78
 msgid "When a user submits a new payment to you"
-msgstr ""
+msgstr "Amikor a felhasználó új fizetést nyújt Önnek"
 
 #: apps/accounts/models.py:79
 msgid "When funds have been received by us for a payment to you."
-msgstr ""
+msgstr "Amikor pénzeket kaptunk tőlünk, fizetést kaptunk Öntől."
 
 #: apps/accounts/models.py:80
 msgid "When funds for a payment have been sent to you."
-msgstr ""
+msgstr "Amikor fizetési alapokat küldtek Önnek."
 
 #: apps/accounts/models.py:81
 msgid "When a deposit is received on one of your deposit addresses."
-msgstr ""
+msgstr "Amikor befizetést kap az egyik befizetési címére."
 
 #: apps/accounts/models.py:82
 msgid "When positive feedback has been left for you."
-msgstr ""
+msgstr "Ha pozitív visszajelzést hagytak neked."
 
 #: apps/accounts/models.py:83
 msgid "status notification email"
-msgstr ""
+msgstr "állapot értesítő e-mail"
 
 #: apps/accounts/models.py:84
 msgid "receive SMS text when funds are received"
-msgstr ""
+msgstr "SMS-eket kapnak, amikor pénzeszközök érkeznek"
 
 #: apps/accounts/models.py:85
 msgid "SMS phone number"
-msgstr ""
+msgstr "SMS telefonszám"
 
 #: apps/accounts/models.py:88
 msgid "Profile"
-msgstr ""
+msgstr "Profil"
 
 #: apps/accounts/models.py:89
 msgid "Profiles"
-msgstr ""
+msgstr "profilok"
 
 #: apps/accounts/models.py:149
 msgid "Account Activation Link"
-msgstr ""
+msgstr "Fiókaktiválási kapcsolat"
 
 #: apps/accounts/models.py:175
 msgid "Profile Activation"
-msgstr ""
+msgstr "Profil aktiválása"
 
 #: apps/accounts/models.py:176
 msgid "Profile Activations"
-msgstr ""
+msgstr "Profil aktiválás"
 
 #: apps/accounts/models.py:184
 msgid "saved address name"
-msgstr ""
+msgstr "elmentett cím nevét"
 
 #: apps/accounts/models.py:185
 msgid "is default"
-msgstr ""
+msgstr "alapértelmezett"
 
 #: apps/accounts/models.py:186
 msgid "first name"
-msgstr ""
+msgstr "keresztnév"
 
 #: apps/accounts/models.py:187
 msgid "last name"
-msgstr ""
+msgstr "vezetéknév"
 
 #: apps/accounts/models.py:188
 msgid "address line 1"
-msgstr ""
+msgstr "címsor 1"
 
 #: apps/accounts/models.py:189
 msgid "address line 2"
-msgstr ""
+msgstr "Cím sor 2"
 
 #: apps/accounts/models.py:190
 msgid "country"
-msgstr ""
+msgstr "ország"
 
 #: apps/accounts/models.py:191
 msgid "city"
-msgstr ""
+msgstr "város"
 
 #: apps/accounts/models.py:192
 msgid "state"
-msgstr ""
+msgstr "állapot"
 
 #: apps/accounts/models.py:193
 msgid "postal code"
-msgstr ""
+msgstr "irányítószám"
 
 #: apps/accounts/models.py:194
 msgid "phone_number"
-msgstr ""
+msgstr "telefonszám"
 
 #: apps/accounts/models.py:197
 msgid "Address"
-msgstr ""
+msgstr "Cím"
 
 #: apps/accounts/models.py:198
 msgid "Addresses"
-msgstr ""
+msgstr "Címek"
 
 #: apps/accounts/models.py:209
 msgid "rating"
-msgstr ""
+msgstr "értékelés"
 
 #: apps/accounts/models.py:210
 msgid "comment"
-msgstr ""
+msgstr "megjegyzés"
 
 #: apps/accounts/models.py:212
 msgid "left by"
-msgstr ""
+msgstr "balra"
 
 #: apps/accounts/models.py:214
 msgid "buyer or seller"
-msgstr ""
+msgstr "vevő vagy eladó"
 
 #: apps/accounts/models.py:217 apps/accounts/models.py:218
 msgid "Feedback"
-msgstr ""
+msgstr "Visszacsatolás"
 
 #: apps/accounts/models.py:228
 msgid "subject"
-msgstr ""
+msgstr "tantárgy"
 
 #: apps/accounts/models.py:230
 msgid "content"
-msgstr ""
+msgstr "tartalom"
 
 #: apps/accounts/models.py:253 templates/accounts/verify_2fa.html:18
 msgid "Authentication Code"
-msgstr ""
+msgstr "Hitelesítési kód"
 
 #: apps/accounts/views.py:49
 msgid "Activation mail sent"
-msgstr ""
+msgstr "Az aktiválási levelek elküldése"
 
 #: apps/accounts/views.py:172
 msgid "Account details updated successfully"
-msgstr ""
+msgstr "A fiókadatok sikeresen frissültek"
 
 #: apps/accounts/views.py:184 apps/accounts/views.py:209
 #: apps/accounts/views.py:213 apps/accounts/views.py:232
 msgid "Information updated successfully"
-msgstr ""
+msgstr "A tájékoztatás sikeresen frissült"
 
 #: apps/accounts/views.py:203
 msgid "Current password is incorrect"
-msgstr ""
+msgstr "Jelenlegi jelszó nem megfelelő"
 
 #: apps/accounts/views.py:205
 msgid "Passwords doesn't match"
-msgstr ""
+msgstr "A jelszavak nem egyeznek"
 
 #: apps/accounts/views.py:248
 msgid "Invalid account activation link"
-msgstr ""
+msgstr "Érvénytelen fiókaktiválási kapcsolat"
 
 #: apps/accounts/views.py:251
 msgid "Account activation link expired"
-msgstr ""
+msgstr "A fiókaktiválási link lejárt"
 
 #: apps/accounts/views.py:258
 msgid "Account activated <br><p>Please <a href=/login>login</a><p>"
-msgstr ""
+msgstr "Fiók aktiválása <p> Kérjük, <a href=/login> jelentkezzen be </a> <p>"
 
 #: apps/coins/models.py:13
 msgid "Crypto"
-msgstr ""
+msgstr "Crypto"
 
 #: apps/coins/models.py:14
 msgid "Ripple"
-msgstr ""
+msgstr "Fodrozódás"
 
 #: apps/coins/models.py:15
 msgid "Ether tokens"
-msgstr ""
+msgstr "Éter tokenek"
 
 #: apps/coins/models.py:16
 msgid "Fiat"
-msgstr ""
+msgstr "Fiat"
 
 #: apps/coins/models.py:26
 msgid "To Balance"
-msgstr ""
+msgstr "Az egyenleghez"
 
 #: apps/coins/models.py:27
 msgid "ASAP"
-msgstr ""
+msgstr "minél hamarabb"
 
 #: apps/coins/models.py:28
 msgid "Nightly"
-msgstr ""
+msgstr "Éjszakai"
 
 #: apps/coins/models.py:29
 msgid "To Balance + Convert"
-msgstr ""
+msgstr "Az egyenleg + konverzióhoz"
 
 #: apps/coins/models.py:30
 msgid "ASAP + Convert"
-msgstr ""
+msgstr "ASAP + konverzió"
 
 #: apps/coins/models.py:38
 msgid "coin name"
-msgstr ""
+msgstr "érme neve"
 
 #: apps/coins/models.py:39
 msgid "coin site URL"
-msgstr ""
+msgstr "Érme oldal URL-je"
 
 #: apps/coins/models.py:40
 msgid "code"
-msgstr ""
+msgstr "kód"
 
 #: apps/coins/models.py:41
 msgid "confirms"
-msgstr ""
+msgstr "megerősíti"
 
 #: apps/coins/models.py:42 apps/common/models.py:106 apps/store/models.py:14
 msgid "image"
-msgstr ""
+msgstr "kép"
 
 #: apps/coins/models.py:42
 msgid "Upload a 35X35 image for better experience"
-msgstr ""
+msgstr "Töltse fel a 35X35 képet a jobb élmény érdekében"
 
 #: apps/coins/models.py:43
 msgid "to BTC value"
-msgstr ""
+msgstr "a BTC értékre"
 
 #: apps/coins/models.py:44
 msgid "fee percentage"
-msgstr ""
+msgstr "díj százalékban"
 
 #: apps/coins/models.py:45
 msgid "type"
-msgstr ""
+msgstr "típus"
 
 #: apps/coins/models.py:46
 msgid "can convert coin to another"
-msgstr ""
+msgstr "konvertálhatja az érmét egy másikba"
 
 #: apps/coins/models.py:47
 msgid "can explore coins"
-msgstr ""
+msgstr "érméket is felfedezhet"
 
 #: apps/coins/models.py:48
 msgid "can donate coins"
-msgstr ""
+msgstr "adományozhat érméket"
 
 #: apps/coins/models.py:49
 msgid "Disable this coin anytime"
-msgstr ""
+msgstr "Tiltsa le ezt az érmét bármikor"
 
 #: apps/coins/models.py:52
 msgid "vote count"
-msgstr ""
+msgstr "szavazati szám"
 
 #: apps/coins/models.py:55 templates/accounts/dashboard.html:34
 msgid "Coin"
-msgstr ""
+msgstr "Érme"
 
 #: apps/coins/models.py:56
 msgid "Coins"
-msgstr ""
+msgstr "érmék"
 
 #: apps/coins/models.py:67
 msgid "coin"
-msgstr ""
+msgstr "érme"
 
 #: apps/coins/models.py:68
 msgid "enabled"
-msgstr ""
+msgstr "engedélyezve"
 
 #: apps/coins/models.py:69
 msgid "payment address"
-msgstr ""
+msgstr "fizetési cím"
 
 #: apps/coins/models.py:70
 msgid "payment mode"
-msgstr ""
+msgstr "fizetési mód"
 
 #: apps/coins/models.py:71
 msgid "discount field"
-msgstr ""
+msgstr "kedvezményes mező"
 
 #: apps/coins/models.py:72
 msgid "maximum per transaction"
-msgstr ""
+msgstr "tranzakciónként maximum"
 
 #: apps/coins/models.py:73
 msgid "currency"
-msgstr ""
+msgstr "valuta"
 
 #: apps/coins/models.py:85
 msgid "convert from coin"
-msgstr ""
+msgstr "konvertálja az érmét"
 
 #: apps/coins/models.py:87
 msgid "convert to coin"
-msgstr ""
+msgstr "konvertálni érmére"
 
 #: apps/coins/models.py:89
 msgid "wallet from address"
-msgstr ""
+msgstr "pénztárca a címről"
 
 #: apps/coins/models.py:90
 msgid "wallet to address"
-msgstr ""
+msgstr "pénztárca címre"
 
 #: apps/coins/models.py:96
 msgid "Coin Conversion Request"
-msgstr ""
+msgstr "Érme átváltási kérelem"
 
 #: apps/coins/models.py:97
 msgid "Coin Conversion Requests"
-msgstr ""
+msgstr "Érme konverziós kérelmek"
 
 #: apps/coins/models.py:125 apps/common/models.py:19 apps/store/models.py:11
 msgid "name"
-msgstr ""
+msgstr "név"
 
 #: apps/coins/models.py:126
 msgid "email"
-msgstr ""
+msgstr "email"
 
 #: apps/coins/models.py:127
 msgid "coin website"
-msgstr ""
+msgstr "érme honlapján"
 
 #: apps/coins/models.py:128
 msgid "coin url"
-msgstr ""
+msgstr "érme url"
 
 #: apps/common/models.py:10
 msgid "HTTP Auth"
-msgstr ""
+msgstr "HTTP hitelesítés"
 
 #: apps/common/models.py:11
 msgid "HMAC"
-msgstr ""
+msgstr "HMAC"
 
 #: apps/common/models.py:12
 msgid "N/A"
-msgstr ""
+msgstr "N / A"
 
 #: apps/common/models.py:25
 msgid "Currency"
-msgstr ""
+msgstr "Valuta"
 
 #: apps/common/models.py:26
 msgid "Currencies"
-msgstr ""
+msgstr "Pénznemek"
 
 #: apps/common/models.py:33
 msgid "provider"
-msgstr ""
+msgstr "ellátó"
 
 #: apps/common/models.py:34 apps/common/models.py:108
 msgid "link"
-msgstr ""
+msgstr "link"
 
 #: apps/common/models.py:38
 msgid "Social Link"
-msgstr ""
+msgstr "Közösségi link"
 
 #: apps/common/models.py:39
 msgid "Social Links"
-msgstr ""
+msgstr "Társadalmi kapcsolatok"
 
 #: apps/common/models.py:111
 msgid "Video URL"
-msgstr ""
+msgstr "Videó URL"
 
 #: apps/store/models.py:12
 msgid "publish"
-msgstr ""
+msgstr "közzétesz"
 
 #: apps/store/models.py:13
 msgid "slug"
-msgstr ""
+msgstr "meztelen csiga"
 
 #: apps/store/models.py:18
 msgid "Category"
-msgstr ""
+msgstr "Kategória"
 
 #: apps/store/models.py:19
 msgid "Categories"
-msgstr ""
+msgstr "Kategóriák"
 
 #: apps/store/models.py:35
 msgid "store name"
-msgstr ""
+msgstr "tárolja a nevet"
 
 #: apps/store/models.py:36
 msgid "store url"
-msgstr ""
+msgstr "tárolja url"
 
 #: apps/store/models.py:37
 msgid "category"
-msgstr ""
+msgstr "kategória"
 
 #: apps/store/models.py:38
 msgid "crypto processor"
-msgstr ""
+msgstr "crypto processzor"
 
 #: apps/store/models.py:39
 msgid "store email"
-msgstr ""
+msgstr "e-mail tárolása"
 
 #: apps/store/models.py:40
 msgid "keywords"
-msgstr ""
+msgstr "kulcsszavak"
 
 #: apps/store/models.py:41
 msgid "banner image url"
-msgstr ""
+msgstr "banner image url"
 
 #: apps/store/models.py:42
 msgid "is approved"
-msgstr ""
+msgstr "jóváhagyták"
 
 #: apps/store/models.py:45
 msgid "Store"
-msgstr ""
+msgstr "Bolt"
 
 #: apps/store/models.py:46
 msgid "Stores"
-msgstr ""
+msgstr "Üzletek"
 
 #: exmr/settings/base.py:155
 msgid "English"
-msgstr ""
+msgstr "angol"
 
 #: exmr/settings/base.py:156
 msgid "Spanish"
-msgstr ""
+msgstr "spanyol"
 
 #: exmr/settings/base.py:157
 msgid "Deutsche"
-msgstr ""
+msgstr "Deutsche"
 
 #: exmr/settings/base.py:158
 msgid "हिन्दी"
-msgstr ""
+msgstr "हिन्दी"
 
 #: exmr/settings/base.py:159
 msgid "Français"
-msgstr ""
+msgstr "Français"
 
 #: exmr/settings/base.py:160
 msgid "Italiano"
-msgstr ""
+msgstr "Olasz"
 
 #: exmr/settings/base.py:161
 msgid "Magyar"
-msgstr ""
+msgstr "magyar"
 
 #: exmr/settings/base.py:162
 msgid "Português"
-msgstr ""
+msgstr "Português"
 
 #: exmr/settings/base.py:163
 msgid "русский"
-msgstr ""
+msgstr "русский"
 
 #: exmr/settings/base.py:164
 msgid "فارسی"
-msgstr ""
+msgstr "فارسی"
 
 #: exmr/settings/base.py:165
 msgid "中文"
-msgstr ""
+msgstr "中文"
 
 #: exmr/settings/base.py:166
 msgid "日本語"
-msgstr ""
+msgstr "日本語"
 
 #: exmr/settings/base.py:167
 msgid "한국어"
-msgstr ""
+msgstr "한국어"
 
 #: templates/accounts/2fa_account.html:17
 msgid "Add Google Authenticator"
-msgstr ""
+msgstr "Add hozzá a Google Hitelesítőt"
 
 #: templates/accounts/2fa_account.html:23
 msgid "2FA Accounts"
-msgstr ""
+msgstr "2FA számlák"
 
 #: templates/accounts/2fa_account.html:45
 #: templates/accounts/2fa_account_list.html:34
 msgid "Date"
-msgstr ""
+msgstr "Dátum"
 
 #: templates/accounts/2fa_account.html:46
 #: templates/accounts/2fa_account.html:92
 #: templates/accounts/2fa_account_list.html:35
 msgid "Account Name"
-msgstr ""
+msgstr "Felhasználónév"
 
 #: templates/accounts/2fa_account.html:47
 #: templates/accounts/2fa_account_list.html:36
 msgid "Account Type"
-msgstr ""
+msgstr "Fiók Típus"
 
 #: templates/accounts/2fa_account.html:48
 #: templates/accounts/2fa_account_list.html:37
 #: templates/accounts/address-book.html:59
 msgid "Action"
-msgstr ""
+msgstr "Akció"
 
 #: templates/accounts/2fa_account.html:64
 msgid "No devices Found"
-msgstr ""
+msgstr "Nincs megtalálható eszközök"
 
 #: templates/accounts/2fa_account.html:88
 msgid "Secret Key"
-msgstr ""
+msgstr "Titkos kulcs"
 
 #: templates/accounts/2fa_account.html:97
 msgid "Activation Code"
-msgstr ""
+msgstr "Aktiváló kód"
 
 #: templates/accounts/2fa_account.html:105
 msgid "Add"
-msgstr ""
+msgstr "hozzáad"
 
 #: templates/accounts/2fa_account_list.html:20
 msgid "Two Factor Authentication List"
-msgstr ""
+msgstr "Két tényező hitelesítési lista"
 
 #: templates/accounts/activation_email.html:6
 msgid "registration"
-msgstr ""
+msgstr "bejegyzés"
 
 #: templates/accounts/activation_email.html:11
 #, python-format
 msgid ""
 "\n"
-"    You (or someone pretending to be you) have asked to register an account "
-"at\n"
-"    %(site_name)s.  If this wasn't you, please ignore this email\n"
+"    You (or someone pretending to be you) have asked to register an account at\n"
 "    and your address will be removed from our records.\n"
 "    "
 msgstr ""
+"\n"
+"Ön (vagy valaki úgy tesz, mintha te lennél) kérte, hogy regisztráljon egy fiókot\n"
+"    és a címed eltávolításra kerül."
 
 #: templates/accounts/activation_email.html:18
 msgid ""
@@ -738,6 +741,8 @@ msgid ""
 "    To activate this account, please click the following link\n"
 "    "
 msgstr ""
+"\n"
+"A fiók aktiválásához kattintson a következő linkre"
 
 #: templates/accounts/activation_email.html:29
 #, python-format
@@ -747,21 +752,28 @@ msgid ""
 "    %(site_name)s Management\n"
 "    "
 msgstr ""
+"\n"
+"Tisztelettel,\n"
+"    %(site_name)s Menedzsment"
 
 #: templates/accounts/activation_email.txt:2
 #, python-format
 msgid ""
 "\n"
 "You (or someone pretending to be you) have asked to register an account at\n"
-"%(site_name)s.  If this wasn't you, please ignore this email\n"
 "and your address will be removed from our records.\n"
 msgstr ""
+"\n"
+"Ön (vagy valaki úgy tesz, mintha te lennél) kérte, hogy regisztráljon egy fiókot\n"
+"és a címed eltávolításra kerül.\n"
 
 #: templates/accounts/activation_email.txt:7
 msgid ""
 "\n"
 "To activate this account, please click the following link:\n"
 msgstr ""
+"\n"
+"A fiók aktiválásához kattintson a következő linkre:\n"
 
 #: templates/accounts/activation_email.txt:13
 #, python-format
@@ -770,558 +782,579 @@ msgid ""
 "Sincerely,\n"
 "%(site_name)s Management\n"
 msgstr ""
+"\n"
+"Tisztelettel,\n"
+"%(site_name)s Menedzsment\n"
 
 #: templates/accounts/address-book.html:22
 msgid "Add New Address"
-msgstr ""
+msgstr "Új cím hozzáadása"
 
 #: templates/accounts/address-book.html:27
 msgid "Saved Address"
-msgstr ""
+msgstr "Mentett cím"
 
 #: templates/accounts/address-book.html:50
 msgid "Address Name"
-msgstr ""
+msgstr "Cím Név"
 
 #: templates/accounts/address-book.html:51
 msgid "First Name"
-msgstr ""
+msgstr "Keresztnév"
 
 #: templates/accounts/address-book.html:52
 msgid "Last Name"
-msgstr ""
+msgstr "Vezetéknév"
 
 #: templates/accounts/address-book.html:53
 msgid "Address Line 1"
-msgstr ""
+msgstr "Címsor 1"
 
 #: templates/accounts/address-book.html:54
 msgid "Address Line 2"
-msgstr ""
+msgstr "Cím sor 2"
 
 #: templates/accounts/address-book.html:55
 msgid "Country"
-msgstr ""
+msgstr "Ország"
 
 #: templates/accounts/address-book.html:56
 msgid "State/province"
-msgstr ""
+msgstr "Állam / tartomány"
 
 #: templates/accounts/address-book.html:57
 msgid "Pincode"
-msgstr ""
+msgstr "PIN-kód"
 
 #: templates/accounts/address-book.html:58
 msgid "Phone number"
-msgstr ""
+msgstr "Telefonszám"
 
 #: templates/accounts/address-book.html:83
 msgid "No Address Found"
-msgstr ""
+msgstr "Nincs cím megtalálva"
 
 #: templates/accounts/dashboard-base.html:16
 msgid "Home"
-msgstr ""
+msgstr "itthon"
 
 #: templates/accounts/dashboard-base.html:24
 msgid "Your Wallet"
-msgstr ""
+msgstr "A pénztárcád"
 
 #: templates/accounts/dashboard-base.html:31
 msgid "Coin Settings"
-msgstr ""
+msgstr "Érmebeállítások"
 
 #: templates/accounts/dashboard-base.html:37
 msgid "Transaction History"
-msgstr ""
+msgstr "Tranzakciós előzmények"
 
 #: templates/accounts/dashboard-base.html:42
 msgid "Quick POS"
-msgstr ""
+msgstr "Gyors POS"
 
 #: templates/accounts/dashboard-base.html:47 templates/common/index.html:67
 msgid "$PayByName"
-msgstr ""
+msgstr "$ PayByName"
 
 #: templates/accounts/dashboard.html:18 templates/coins/wallets.html:17
 msgid "Recent Transaction"
-msgstr ""
+msgstr "Legutóbbi tranzakció"
 
 #: templates/accounts/dashboard.html:32
 msgid "Time"
-msgstr ""
+msgstr "Idő"
 
 #: templates/accounts/dashboard.html:33
 msgid "Received / Sent Name"
-msgstr ""
+msgstr "Fogadott / elküldött név"
 
 #: templates/accounts/dashboard.html:35
 msgid "Amount"
-msgstr ""
+msgstr "Összeg"
 
 #: templates/accounts/dashboard.html:36
 msgid "Status"
-msgstr ""
+msgstr "Állapot"
 
 #: templates/accounts/dashboard.html:70 templates/coins/wallets.html:42
 msgid "No Payment Found"
-msgstr ""
+msgstr "Nincs kifizetés"
 
 #: templates/accounts/forgot-password.html:14
 #: templates/accounts/forgot_password.html:13
 msgid "Forgot Password"
-msgstr ""
+msgstr "Elfelejtett jelszó"
 
 #: templates/accounts/forgot-password.html:15
 #: templates/accounts/forgot_password.html:14
 msgid "To reset your password, enter your username or email address below"
 msgstr ""
+"A jelszó visszaállításához adja meg felhasználónevét vagy e-mail címét"
 
 #: templates/accounts/forgot-password.html:25
 #: templates/accounts/forgot_password.html:24
 #: templates/accounts/verify_2fa.html:25
 msgid "Submit"
-msgstr ""
+msgstr "beküldése"
 
 #: templates/accounts/forgot_password_done.html:8
 msgid "Instructions has been sent"
-msgstr ""
+msgstr "Az utasításokat elküldtük"
 
 #: templates/accounts/forgot_password_done.html:9
 msgid "to your mail"
-msgstr ""
+msgstr "az e-mail címedre"
 
 #: templates/accounts/login.html:15 templates/accounts/signup.html:17
 msgid "Welcome!"
-msgstr ""
+msgstr "Üdvözöljük!"
 
 #: templates/accounts/login.html:16 templates/accounts/signup.html:18
 msgid "Sign in by entering the information below"
-msgstr ""
+msgstr "Jelentkezzen be az alábbi információk beírásával"
 
 #: templates/accounts/login.html:26
 msgid "Login"
-msgstr ""
+msgstr "Belépés"
 
 #: templates/accounts/login.html:28 templates/accounts/signup.html:95
 #: templates/store/add-or-update.html:112
 msgid "Signup"
-msgstr ""
+msgstr "Regisztrálj"
 
 #: templates/accounts/login.html:38
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Elfelejtett jelszó?"
 
 #: templates/accounts/login.html:43
 msgid "Don't have an account?"
-msgstr ""
+msgstr "Nincs fiókod?"
 
 #: templates/accounts/payment-history.html:22
 #: templates/accounts/payment-history.html:23
 #: templates/accounts/payment-history.html:24
 #: templates/accounts/payment-history.html:25
 msgid "Deposit History"
-msgstr ""
+msgstr "Befizetési történelem"
 
 #: templates/accounts/payment-history.html:32
 msgid "Incoming Payment HIstory"
-msgstr ""
+msgstr "Bejövő fizetés HIstory"
 
 #: templates/accounts/payment-history.html:36
 msgid "History Search & Export"
-msgstr ""
+msgstr "Történelem keresése és exportálása"
 
 #: templates/accounts/settings.html:11
 msgid "Settings"
-msgstr ""
+msgstr "Beállítások"
 
 #: templates/accounts/settings.html:19
 msgid "Basic Settings"
-msgstr ""
+msgstr "Alapbeállítások"
 
 #: templates/accounts/settings.html:30 templates/accounts/settings.html:212
 msgid "Login & Security"
-msgstr ""
+msgstr "Bejelentkezés és biztonság"
 
 #: templates/accounts/settings.html:35 templates/accounts/settings.html:278
 msgid "Merchant Settings"
-msgstr ""
+msgstr "Kereskedői beállítások"
 
 #: templates/accounts/settings.html:42 templates/exmr.html:101
 msgid "Account Settings"
-msgstr ""
+msgstr "Fiók beállítások"
 
 #: templates/accounts/settings.html:47
 msgid "Your Merchant ID:"
-msgstr ""
+msgstr "Kereskedői azonosítója:"
 
 #: templates/accounts/settings.html:56
 msgid "Affiliate URL:"
-msgstr ""
+msgstr "Partner URL:"
 
 #: templates/accounts/settings.html:57
 msgid ""
 "Want to earn some crypto? Give this URL to new users and when they sign up "
 "you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:"
 msgstr ""
+"Akarsz keresni egy kriptát? Adja meg ezt az URL-t új felhasználóknak, és "
+"amikor regisztrálnak, a GETCRYPTOPAYMENTS tranzakciós díjaik egy százalékát "
+"keresik:"
 
 #: templates/accounts/settings.html:69
 msgid "Share/Save"
-msgstr ""
+msgstr "Share / Save"
 
 #: templates/accounts/settings.html:113
 msgid "Account Email"
-msgstr ""
+msgstr "Fiók e-mail"
 
 #: templates/accounts/settings.html:119
 msgid "Confirm Email"
-msgstr ""
+msgstr "Megerősítő E-mail"
 
 #: templates/accounts/settings.html:126
 msgid "Gender"
-msgstr ""
+msgstr "nem"
 
 #: templates/accounts/settings.html:133
 msgid "Time Zone"
-msgstr ""
+msgstr "Időzóna"
 
 #: templates/accounts/settings.html:139
 msgid "Date Format"
-msgstr ""
+msgstr "Dátum formátum"
 
 #: templates/accounts/settings.html:147
 msgid "Time Format"
-msgstr ""
+msgstr "Idő formátum"
 
 #: templates/accounts/settings.html:154
 msgid "Update Account"
-msgstr ""
+msgstr "Fiók frissítése"
 
 #: templates/accounts/settings.html:172
 msgid "Public Name"
-msgstr ""
+msgstr "Nyilvános név"
 
 #: templates/accounts/settings.html:178
 msgid "Public Email"
-msgstr ""
+msgstr "Nyilvános e-mail"
 
 #: templates/accounts/settings.html:185
 msgid "Public URL"
-msgstr ""
+msgstr "Nyilvános URL"
 
 #: templates/accounts/settings.html:202 templates/accounts/settings.html:268
 #: templates/accounts/settings.html:367
 msgid "Update"
-msgstr ""
+msgstr "frissítés"
 
 #: templates/accounts/settings.html:221
 msgid "Current Password"
-msgstr ""
+msgstr "jelenlegi jelszó"
 
 #: templates/accounts/settings.html:227
 msgid "New Password"
-msgstr ""
+msgstr "új jelszó"
 
 #: templates/accounts/settings.html:234
 msgid "Confirm Password"
-msgstr ""
+msgstr "Jelszó megerősítése"
 
 #: templates/accounts/settings.html:240
 msgid "2 Factor Authentication"
-msgstr ""
+msgstr "2 faktorhitelesítés"
 
 #: templates/accounts/settings.html:244
 msgid ""
 "Email: You will be prompted for a code at the time of login which will be "
 "sent to your provided email ID."
 msgstr ""
+"E-mail: A rendszer felszólít egy kódot a bejelentkezéskor, amelyet elküld a "
+"megadott e-mail azonosítóhoz."
 
 #: templates/accounts/settings.html:245
 msgid ""
 "Linked 2FA Accounts: Link authenticators supporting TOTP such as Google "
 "Authenticator, Authy, FreeOTP, etc. You can edit your linked devices"
 msgstr ""
+"Kapcsolt 2FA-fiókok: a TOTP-t támogató link hitelesítők, például a Google "
+"Authenticator, az Authy, a FreeOTP stb."
 
 #: templates/accounts/settings.html:252
 msgid "Email Confirmations for Sends/Withdrawals"
-msgstr ""
+msgstr "E-mail megerősítések küldése / visszalépésekhez"
 
 #: templates/accounts/settings.html:259
 msgid "PGP/GPG Public Key"
-msgstr ""
+msgstr "PGP / GPG nyilvános kulcs"
 
 #: templates/accounts/settings.html:339
 msgid ""
 "\n"
-"                                                Payment status email will be "
-"sent to this email.\n"
-"                                                If not provided, "
-"notofications will be sent to the primary email\n"
+"                                                Payment status email will be sent to this email.\n"
+"                                                If not provided, notofications will be sent to the primary email\n"
 "                                            "
 msgstr ""
+"\n"
+"A fizetési állapot e-mailje erre az e-mailre kerül.\n"
+"                                                Ha nincs megadva, a hírleveleket elküldjük az elsődleges e-mail címre"
 
 #: templates/accounts/signup.html:49
 msgid ""
 " Please make it at least 10 characters long and include letters, numbers,\n"
 "                                 and special characters. "
 msgstr ""
+"Kérjük, hogy legalább 10 karakter hosszú legyen, és tartalmazzon betűket, számokat,\n"
+"                                 és speciális karakterek."
 
 #: templates/accounts/signup.html:51
 msgid "Timezone"
-msgstr ""
+msgstr "Időzóna"
 
 #: templates/accounts/signup.html:61
 msgid "Send newsletters and other relevant information to my provided e-mail."
 msgstr ""
+"Küldj hírleveleket és egyéb vonatkozó információkat a megadott e-mail címre."
 
 #: templates/accounts/signup.html:70
 msgid "Have read and agree to the"
-msgstr ""
+msgstr "Olvassa el és elfogadja a"
 
 #: templates/accounts/signup.html:71
 msgid "Terms of Service."
-msgstr ""
+msgstr "Szolgáltatás feltételei."
 
 #: templates/accounts/signup.html:85
 msgid " 'Type the characters you see in the image above:' "
-msgstr ""
+msgstr "'Írja be a fenti képen látható karaktereket:'"
 
 #: templates/accounts/signup_complete.html:6
 msgid "An activation link has been sent"
-msgstr ""
+msgstr "Aktiválási kapcsolatot küldtünk"
 
 #: templates/accounts/signup_complete.html:7
 msgid "Please check your mail"
-msgstr ""
+msgstr "Kérjük, ellenőrizze az e-mailt"
 
 #: templates/accounts/verify_2fa.html:18
 msgid "Enter"
-msgstr ""
+msgstr "Belép"
 
 #: templates/base.html:76 templates/exmr.html:44 templates/exmr.html:136
 msgid "Supported Coins"
-msgstr ""
+msgstr "Támogatott érmék"
 
 #: templates/base.html:79 templates/exmr.html:50 templates/exmr.html:139
 msgid "Merchant Tools"
-msgstr ""
+msgstr "Kereskedelmi eszközök"
 
 #: templates/base.html:82 templates/exmr.html:41 templates/exmr.html:142
 msgid "Public Coin Vote"
-msgstr ""
+msgstr "Nyilvános érme szavazás"
 
 #: templates/base.html:85 templates/exmr.html:47 templates/exmr.html:145
 msgid "Store Directory"
-msgstr ""
+msgstr "Tárolja a címtárat"
 
 #: templates/base.html:95 templates/exmr.html:155
 msgid "Get Mobile App"
-msgstr ""
+msgstr "Get Mobile App"
 
 #: templates/base.html:96 templates/exmr.html:156
 msgid "Affiliate Information"
-msgstr ""
+msgstr "Partner információk"
 
 #: templates/base.html:97 templates/exmr.html:157
 msgid "Official TOR URL"
-msgstr ""
+msgstr "Hivatalos TOR URL"
 
 #: templates/base.html:98 templates/exmr.html:158
 msgid "PGP Key"
-msgstr ""
+msgstr "PGP kulcs"
 
 #: templates/base.html:107 templates/exmr.html:167
 msgid "Fees/Pricing"
-msgstr ""
+msgstr "Díjak / árak"
 
 #: templates/base.html:108 templates/exmr.html:168
 msgid "Help"
-msgstr ""
+msgstr "Segítség"
 
 #: templates/base.html:109 templates/base.html:144 templates/exmr.html:169
 #: templates/exmr.html:196
 msgid "Add Store"
-msgstr ""
+msgstr "Add Store"
 
 #: templates/base.html:110 templates/base.html:145 templates/exmr.html:170
 #: templates/exmr.html:197
 msgid "Coin Request"
-msgstr ""
+msgstr "Érme kérése"
 
 #: templates/base.html:139 templates/exmr.html:175
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Adatvédelmi irányelvek"
 
 #: templates/base.html:140 templates/exmr.html:178
 msgid "Terms of Service"
-msgstr ""
+msgstr "Szolgáltatás feltételei"
 
 #: templates/coins/coin-withdrawal.html:8
 msgid "Coin Withdrawal"
-msgstr ""
+msgstr "Érme visszavonása"
 
 #: templates/coins/coin-withdrawal.html:12
 msgid "Minimum Withdrawal"
-msgstr ""
+msgstr "Minimális visszavonás"
 
 #: templates/coins/coin-withdrawal.html:13
 msgid "Current Bal"
-msgstr ""
+msgstr "Jelenlegi Bal"
 
 #: templates/coins/coin-withdrawal.html:14
 msgid "Send/Withdrawal Amount"
-msgstr ""
+msgstr "Küldés / visszavonás összege"
 
 #: templates/coins/coin-withdrawal.html:15
 msgid "Transation Fee (est.)"
-msgstr ""
+msgstr "Átutalási díj (est)"
 
 #: templates/coins/coin-withdrawal.html:16
 msgid "Total Withdrawal"
-msgstr ""
+msgstr "Teljes visszavonás"
 
 #: templates/coins/coin-withdrawal.html:17
 msgid "Litecoin Testnet address or $payByName to send to"
-msgstr ""
+msgstr "Litecoin Testnet cím vagy $ payByName küldeni"
 
 #: templates/coins/coin-withdrawal.html:18
 msgid "Optional Note (Only Viewable by you)"
-msgstr ""
+msgstr "Opcionális megjegyzés (csak az Ön által megtekinthető)"
 
 #: templates/coins/coin-withdrawal.html:48
 msgid "Request Withdrawal/Send"
-msgstr ""
+msgstr "Kérés visszavonás / küldés"
 
 #: templates/coins/coin_conversion.html:8
 msgid "Coin Conversion"
-msgstr ""
+msgstr "Érme átalakítása"
 
 #: templates/coins/coin_conversion.html:22
 msgid ""
-"If you log in the fields below will be prepopulated with your Wallet deposit "
-"addresses."
+"If you log in the fields below will be prepopulated with your Wallet deposit"
+" addresses."
 msgstr ""
+"Ha bejelentkezik az alábbi mezőkbe, a Wallet-befizetési címek elől érkeznek."
 
 #: templates/coins/coin_conversion.html:42
 #: templates/common/support-coins.html:258
 msgid "Convert"
-msgstr ""
+msgstr "Alakítani"
 
 #: templates/coins/coin_conversion_final.html:8
 msgid "Coin Conversion Requested"
-msgstr ""
+msgstr "Érmek átalakítása igényelt"
 
 #: templates/coins/supported-coins.html:4
 msgid "SUPPORTED COINS"
-msgstr ""
+msgstr "TÁMOGATOTT CÉLOK"
 
 #: templates/coins/supported-coins.html:7
 msgid ""
-"Instant get crypto payments checkout with easy to use cart plugin, advanced, "
-"invoice buillder and API for custom integration"
+"Instant get crypto payments checkout with easy to use cart plugin, advanced,"
+" invoice buillder and API for custom integration"
 msgstr ""
+"Azonnal megkapja a crypto kifizetések pénztárát az egyszerűen használható "
+"kosárcsatlakozóval, a fejlett számlázási buillderrel és az API-val az egyéni"
+" integrációhoz"
 
 #: templates/coins/supported-coins.html:33
 msgid "COIN NAME"
-msgstr ""
+msgstr "COIN NAME"
 
 #: templates/coins/supported-coins.html:34
 msgid "COD"
-msgstr ""
+msgstr "TŐKEHAL"
 
 #: templates/coins/supported-coins.html:35
 msgid "FEE"
-msgstr ""
+msgstr "DÍJ"
 
 #: templates/coins/supported-coins.html:38
 msgid "CONFIRMS"
-msgstr ""
+msgstr "megerősíti"
 
 #: templates/coins/supported-coins.html:39
 msgid "TO BTC"
-msgstr ""
+msgstr "TO BTC"
 
 #: templates/coins/supported-coins.html:42
 msgid "EXPLORE"
-msgstr ""
+msgstr "FEDEZD FEL"
 
 #: templates/coins/supported-coins.html:87
 msgid "Convert Coin"
-msgstr ""
+msgstr "Érme konvertálása"
 
 #: templates/coins/supported-coins.html:104
 #: templates/common/support-coins.html:273
 msgid "Close"
-msgstr ""
+msgstr "Bezárás"
 
 #: templates/coins/wallets.html:31
 msgid "Coin Name"
-msgstr ""
+msgstr "Érme neve"
 
 #: templates/coins/wallets.html:32
 msgid "Code"
-msgstr ""
+msgstr "Kód"
 
 #: templates/coins/wallets.html:33
 msgid "Balance"
-msgstr ""
+msgstr "Egyensúly"
 
 #: templates/coins/wallets.html:34
 msgid "Value"
-msgstr ""
+msgstr "Érték"
 
 #: templates/coins/wallets.html:35
 msgid "Commands"
-msgstr ""
+msgstr "parancsok"
 
 #: templates/common/index.html:23
 msgid "Accept over 140 altcoins now for only 0.50"
-msgstr ""
+msgstr "Fogadj több mint 140 altcoins-ot most már csak 0,50-re"
 
 #: templates/common/index.html:25
 msgid ""
 "Integrated payment gateway for cryptocurrencies such as Bitcoin and Litecoin"
 msgstr ""
+"Beépített fizetési átjáró titkosítási pénznemekhez, mint például a Bitcoin "
+"és a Litecoin"
 
 #: templates/common/index.html:26
 msgid "Get Start"
-msgstr ""
+msgstr "Get Start"
 
 #: templates/common/index.html:36
 msgid "scroll me"
-msgstr ""
+msgstr "gördíts meg"
 
 #: templates/common/index.html:53
 msgid "Running an ICO?"
-msgstr ""
+msgstr "Az ICO működtetése?"
 
 #: templates/common/index.html:54
 msgid "Let GetCryptoPayments help with:"
-msgstr ""
+msgstr "A GetCryptoPayments segítséget nyújt a következőkhöz:"
 
 #: templates/common/index.html:56
 msgid "Accepting payments from over 140 different coins"
-msgstr ""
+msgstr "Több mint 140 különböző érme kifizetését fogadja el"
 
 #: templates/common/index.html:57
 msgid "All New GetCryptoPayments ICO Marketplace"
-msgstr ""
+msgstr "Minden új GetCryptoPayments ICO Marketplace"
 
 #: templates/common/index.html:59
 msgid "Find Out More"
-msgstr ""
+msgstr "Tudj meg többet"
 
 #: templates/common/index.html:68
 msgid "One unique $tag to receive payments from all coins."
-msgstr ""
+msgstr "Egyetlen $ tag, hogy minden érmétől befizetést kapjon."
 
 #: templates/common/index.html:69
 msgid "Example Profile"
-msgstr ""
+msgstr "Példaprofil"
 
 #: templates/common/index.html:102
 msgid "Shopping Cart Plugins"
-msgstr ""
+msgstr "Bevásárlókosár beépülő modulok"
 
 #: templates/common/index.html:105
 msgid ""
@@ -1329,300 +1362,316 @@ msgid ""
 "install a plugin to set up GetCryptoPayments with your new or pre-existing "
 "checkout"
 msgstr ""
+"Bővítményeket kínál az összes népszerű webcart számára, amelyet ma "
+"használnak. Regisztráljon és telepítsen egy plugint a GetCryptoPayments "
+"beállításához új vagy már meglévő fizetéssel"
 
 #: templates/common/index.html:196
 msgid "Payment Features"
-msgstr ""
+msgstr "Fizetési funkciók"
 
 #: templates/common/index.html:198
 msgid "Here some ways GetCryptoPayments can help you process payments."
 msgstr ""
+"Íme néhány olyan módszer, amellyel a GetCryptoPayments segíthet a "
+"kifizetések feldolgozásában."
 
 #: templates/common/index.html:206
 msgid "BitGo™ Instant"
-msgstr ""
+msgstr "BitGo ™ Instant"
 
 #: templates/common/index.html:207
 msgid ""
-"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster "
-"than\n"
+"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster than\n"
 "                                ever before. "
 msgstr ""
+"A GetCryptoPayments támogatja a BitGo Instant-ot, amely gyorsabbá teszi a Bitcoin fizetéseket\n"
+"                                valaha."
 
 #: templates/common/index.html:219
 msgid "Vault"
-msgstr ""
+msgstr "Boltozat"
 
 #: templates/common/index.html:220
 msgid ""
-"Protect your coins in the vault, requiring a time amount you specify before "
-"being\n"
+"Protect your coins in the vault, requiring a time amount you specify before being\n"
 "                                able to spend them."
 msgstr ""
+"Védje az érméket a boltozatba, és megkövetelje a megadott időtartamot, mielőtt megérintené\n"
+"                                képes költeni őket."
 
 #: templates/common/index.html:232
 msgid "Fiat Settlements"
-msgstr ""
+msgstr "Fiat Települések"
 
 #: templates/common/index.html:233
 msgid ""
-"United States and Euro merchants now have fiat settlements directly to "
-"their\n"
+"United States and Euro merchants now have fiat settlements directly to their\n"
 "                                bank accounts. "
 msgstr ""
+"Az egyesült államokbeli és az eurókereskedők most már fiat településekkel rendelkeznek közvetlenül\n"
+"                                bankszámlák."
 
 #: templates/common/index.html:245
 msgid "Point of Sale (POS)"
-msgstr ""
+msgstr "Értékesítési pont (POS)"
 
 #: templates/common/index.html:246
 msgid "Simple interface for in person transactions. "
-msgstr ""
-
-#: templates/common/index.html:246
-msgid ""
-"\n"
-"                               "
-msgstr ""
+msgstr "Egyszerű felület a személyes tranzakciókhoz."
 
 #: templates/common/index.html:264
 msgid "Secured with BitGo"
-msgstr ""
+msgstr "Biztosítva van a BitGo-val"
 
 #: templates/common/index.html:265
 msgid "Our hot wallet is secured by BitGo - meaning 100 "
-msgstr ""
+msgstr "Forró tárcánkat a BitGo biztosítja - ami 100-at jelent"
 
 #: templates/common/index.html:265
 msgid ""
 "of\n"
-"                                our funds are protected by multi-signature "
-"technology."
+"                                our funds are protected by multi-signature technology."
 msgstr ""
+"nak,-nek\n"
+"                                a pénzeszközeinket több aláírással védik."
 
 #: templates/common/index.html:277
 msgid "Mobile Apps"
-msgstr ""
+msgstr "Mobilalkalmazások"
 
 #: templates/common/index.html:278
 msgid ""
-"Access your account, accept payments in person, and convert coins anywhere "
-"with\n"
+"Access your account, accept payments in person, and convert coins anywhere with\n"
 "                                our mobile apps for Android and iOS."
 msgstr ""
+"Nyissa meg a fiókját, fogadja el személyesen a kifizetéseket, és bárhová konvertálja az érméket\n"
+"                                a mobilalkalmazások Android és iOS."
 
 #: templates/common/index.html:290
 msgid "Auto Coin Conversion"
-msgstr ""
+msgstr "Automatikus érmeátalakítás"
 
 #: templates/common/index.html:291
 msgid ""
-"Auto convert for some of our coins, saving you the trouble of moving funds, "
-"wasting\n"
+"Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
 "                                time and fees."
 msgstr ""
+"Automatikusan konvertálhat néhány pénzünket, megtakarítva a pénzmozgás problémáját, pazarlással\n"
+"                                idő és díjak."
 
 #: templates/common/index.html:303
 msgid "Multi-Coin Wallet"
-msgstr ""
+msgstr "Multi-Coin Wallet"
 
 #: templates/common/index.html:304
 msgid "Optionally store your coins in our secure online wallet."
-msgstr ""
+msgstr "Opcionálisan tárolja az érméket a biztonságos online pénztárcáján."
 
 #: templates/common/index.html:322
 msgid ""
 "Our goal is to exceed more than 1,000,000 vendors across 182 different "
 "countries"
 msgstr ""
+"Célunk, hogy meghaladjuk több mint 1 000 000 szállítót 182 különböző "
+"országban"
 
 #: templates/common/index.html:323
 msgid ""
-"GetCryptoPayments is the first and largest payment processor of over 150 "
-"cryptocurrencies\n"
+"GetCryptoPayments is the first and largest payment processor of over 150 cryptocurrencies\n"
 "                    "
 msgstr ""
+"A GetCryptoPayments az első és a legnagyobb fizetési processzor, amely több "
+"mint 150 titkos másolatot tartalmaz"
 
 #: templates/common/index.html:349
 msgid ""
-"Thank you GetCryptoPayments for taking Tron coin into consideration to "
-"belong to the list of your ERC-20\n"
-"                        tokens portfolio. I know you will have many "
-"successes."
+"Thank you GetCryptoPayments for taking Tron coin into consideration to belong to the list of your ERC-20\n"
+"                        tokens portfolio. I know you will have many successes."
 msgstr ""
+"Köszönjük, hogy a GetCryptoPayments-t a Tron érme figyelembe vételével vegye figyelembe az ERC-20 listájához\n"
+"                        tokenek portfólióját. Tudom, hogy sok sikered lesz."
 
 #: templates/common/index.html:351
 msgid "Justin Sun CEO Tronix Coin"
-msgstr ""
+msgstr "Justin Sun vezérigazgatója, a Tronix Coin"
 
 #: templates/common/index.html:359
 msgid ""
-"We wanted to accept Stellar coin payments so we starting developing. Then we "
-"realized GetCryptoPayments\n"
-"                        could do the hard work for us and accept all "
-"payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we "
-"only\n"
+"We wanted to accept Stellar coin payments so we starting developing. Then we realized GetCryptoPayments\n"
+"                        could do the hard work for us and accept all payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we only\n"
 "                        need to develop  with one API now."
 msgstr ""
+"Szerettük volna elfogadni a Stellar érme-fizetéseket, így kezdjük a fejlődést. Aztán rájöttünk, hogy GetCryptoPayments\n"
+"                        megtehetné a kemény munkát számunkra, és elfogadja az összes befizetést és megkapja a pénzt a Bitcoinban. Thanks GetCryptoPayments, csak mi\n"
+"                        fejleszteni kell egy API-val most."
 
 #: templates/common/index.html:362
 msgid "Jed McCaleb CEO stellar.org"
-msgstr ""
+msgstr "Jed McCaleb vezérigazgatója stellar.org"
 
 #: templates/common/merchant-tools.html:7 templates/store/add-or-update.html:5
 msgid "MERCHANT TOOLS"
-msgstr ""
+msgstr "SZERSZÁM ESZKÖZÖK"
 
 #: templates/common/merchant-tools.html:9
-#: templates/common/merchant-tools.html:16 templates/store/add-or-update.html:7
+#: templates/common/merchant-tools.html:16
+#: templates/store/add-or-update.html:7
 msgid ""
 "If you would like to be updated about new API or changes to existing Apis"
 msgstr ""
+"Ha frissíteni szeretne az új API-ról vagy a meglévő Apis változásokról"
 
 #: templates/common/merchant-tools.html:10
-#: templates/common/merchant-tools.html:17 templates/store/add-or-update.html:8
+#: templates/common/merchant-tools.html:17
+#: templates/store/add-or-update.html:8
 msgid "click here"
-msgstr ""
+msgstr "kattints ide"
 
 #: templates/common/merchant-tools.html:25
 msgid "SHOPPING CART PLUGIN"
-msgstr ""
+msgstr "VÁSÁRLÓKAPCSOLÓ"
 
 #: templates/common/merchant-tools.html:27
 msgid "Plugin Downloads"
-msgstr ""
+msgstr "Plugin Letöltések"
 
 #: templates/common/merchant-tools.html:34
 msgid "API & IPNs"
-msgstr ""
+msgstr "API és IPN"
 
 #: templates/common/merchant-tools.html:36
 msgid "Instant Payment Notification"
-msgstr ""
+msgstr "Azonnali fizetési értesítés"
 
 #: templates/common/merchant-tools.html:37
 msgid "GETCRYPTOPAYMENTAPI"
-msgstr ""
+msgstr "GETCRYPTOPAYMENTAPI"
 
 #: templates/common/merchant-tools.html:44
 msgid "INVOICE BUILDER"
-msgstr ""
+msgstr "INVOICE BUILDER"
 
 #: templates/common/merchant-tools.html:46
 msgid "Payment Request invoice maker"
-msgstr ""
+msgstr "Fizetési kérelem számlázó készítője"
 
 #: templates/common/merchant-tools.html:53
 msgid "POINT OF SALE(POS) INTERFACE"
-msgstr ""
+msgstr "VÁSÁRLÁSI PONT (POS) INTERFÉSZ"
 
 #: templates/common/merchant-tools.html:55
 msgid "HTML URL/ POST Fields"
-msgstr ""
+msgstr "HTML URL / POST mezők"
 
 #: templates/common/merchant-tools.html:56
 msgid "Post link QR Code Generator"
-msgstr ""
+msgstr "Post link QR kód generátor"
 
 #: templates/common/merchant-tools.html:57
 msgid "POS Examle"
-msgstr ""
+msgstr "POS Vizsgálat"
 
 #: templates/common/merchant-tools.html:64
 msgid "SIMPLE BUTTONS"
-msgstr ""
+msgstr "EGYSZERŰ GOMBOK"
 
 #: templates/common/merchant-tools.html:66
 #: templates/common/merchant-tools.html:77
 #: templates/common/merchant-tools.html:99
 msgid "Button Maker"
-msgstr ""
+msgstr "Gombkészítő"
 
 #: templates/common/merchant-tools.html:67
 #: templates/common/merchant-tools.html:78
 #: templates/common/merchant-tools.html:88
 #: templates/common/merchant-tools.html:100
 msgid "HTML Post Field"
-msgstr ""
+msgstr "HTML Post Field"
 
 #: templates/common/merchant-tools.html:68
 #: templates/common/merchant-tools.html:79
 #: templates/common/merchant-tools.html:89
 #: templates/common/merchant-tools.html:101
 msgid "Button Examples"
-msgstr ""
+msgstr "Gomb példák"
 
 #: templates/common/merchant-tools.html:75
 msgid "ADVANCE BUTTONS"
-msgstr ""
+msgstr "ADVANCE GOMBOK"
 
 #: templates/common/merchant-tools.html:86
 msgid "SHOPPING CART BUTTONS"
-msgstr ""
+msgstr "VÁSÁRLÓ GOMBOK"
 
 #: templates/common/merchant-tools.html:90
 msgid "Button Images"
-msgstr ""
+msgstr "Gomb képek"
 
 #: templates/common/merchant-tools.html:97
 msgid "DONATION BUTTONS"
-msgstr ""
+msgstr "DONÁCIÓS GOMBOK"
 
 #: templates/common/support-coins.html:258
 msgid "BITCOIN"
-msgstr ""
+msgstr "Bitcoin"
 
 #: templates/exmr.html:54
 msgid "Contact Us"
-msgstr ""
+msgstr "Lépjen kapcsolatba velünk"
 
 #: templates/exmr.html:78
 msgid "Language"
-msgstr ""
+msgstr "Nyelv"
 
 #: templates/exmr.html:93
 msgid "Account"
-msgstr ""
+msgstr "számla"
 
 #: templates/exmr.html:98
 msgid "Dashboard"
-msgstr ""
+msgstr "Irányítópult"
 
 #: templates/exmr.html:104
 msgid "AddressBook"
-msgstr ""
+msgstr "Címjegyzék"
 
 #: templates/exmr.html:107
 msgid "Logout"
-msgstr ""
+msgstr "Kijelentkezés"
 
 #: templates/registration/password_reset_complete.html:6
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr ""
+msgstr "A jelszavát beállította. Elmehetsz, és jelentkezz be."
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Log in"
-msgstr ""
+msgstr "Belépés"
 
 #: templates/registration/password_reset_confirm.html:45
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"A jelszó-visszaállító kapcsolat érvénytelen, valószínűleg azért, mert már "
+"használta. Kérjen új jelszó-visszaállítást."
 
 #: templates/store/add-or-update.html:102
 msgid "Type the characters you see in the image above:"
-msgstr ""
+msgstr "Írja be a fenti képen látható karaktereket:"
 
-#: templates/store/store_categories.html:5 templates/store/store_listing.html:5
+#: templates/store/store_categories.html:5
+#: templates/store/store_listing.html:5
 msgid "STORE DIRECTORY"
-msgstr ""
+msgstr "TÁROLÓ HATÓSÁG"
 
-#: templates/store/store_categories.html:7 templates/store/store_listing.html:7
+#: templates/store/store_categories.html:7
+#: templates/store/store_listing.html:7
 msgid "Largest directory of merchants accepting multiple cryptocurrencies"
 msgstr ""
+"A többszörös titkosító pénznemeket elfogadó kereskedők legnagyobb könyvtára"
 
 #: templates/store/store_categories.html:15
 #: templates/store/store_listing.html:15
 msgid "Search"
-msgstr ""
+msgstr "Keresés"

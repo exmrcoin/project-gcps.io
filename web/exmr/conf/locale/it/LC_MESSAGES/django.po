@@ -19,718 +19,723 @@ msgstr ""
 
 #: apps/accounts/admin.py:17
 msgid "Basic Details"
-msgstr ""
+msgstr "Dettagli di base"
 
 #: apps/accounts/admin.py:20 templates/accounts/settings.html:24
 #: templates/accounts/settings.html:163
 msgid "Public Info"
-msgstr ""
+msgstr "Informazioni pubbliche"
 
 #: apps/accounts/admin.py:23
 msgid "Login Security"
-msgstr ""
+msgstr "Login Security"
 
 #: apps/accounts/forms.py:25 apps/accounts/models.py:24
 msgid "Male"
-msgstr ""
+msgstr "Maschio"
 
 #: apps/accounts/forms.py:26 apps/accounts/models.py:25
 msgid "Female"
-msgstr ""
+msgstr "Femmina"
 
 #: apps/accounts/forms.py:27 apps/accounts/models.py:26
 msgid "Other/Prefer Not to say"
-msgstr ""
+msgstr "Altro / Preferisco Non dire"
 
 #: apps/accounts/forms.py:31
 msgid "02-10-2018"
-msgstr ""
+msgstr "2018/02/10"
 
 #: apps/accounts/forms.py:32
 msgid "02/10/2018"
-msgstr ""
+msgstr "2018/02/10"
 
 #: apps/accounts/forms.py:35
 msgid "02:00"
-msgstr ""
+msgstr "02:00"
 
 #: apps/accounts/forms.py:36
 msgid "02:00:00"
-msgstr ""
+msgstr "02:00:00"
 
 #: apps/accounts/forms.py:59
 msgid "Emails doesn't match"
-msgstr ""
+msgstr "Le email non corrispondono"
 
 #: apps/accounts/forms.py:70
 msgid "Please accept the terms and conditions"
-msgstr ""
+msgstr "Si prega di accettare i termini e le condizioni"
 
 #: apps/accounts/forms.py:133
 msgid "Invalid mobile number."
-msgstr ""
+msgstr "Numero cellulare invalido."
 
 #: apps/accounts/forms.py:171 apps/store/forms.py:21
 msgid "Either username or email needs to be provided"
-msgstr ""
+msgstr "È necessario fornire nome utente o email"
 
 #: apps/accounts/forms.py:176 apps/store/forms.py:26
 msgid "User not found"
-msgstr ""
+msgstr "Utente non trovato"
 
 #: apps/accounts/models.py:38
 msgid "Buyer"
-msgstr ""
+msgstr "Acquirente"
 
 #: apps/accounts/models.py:39
 msgid "Seller"
-msgstr ""
+msgstr "Venditore"
 
 #: apps/accounts/models.py:43
 msgid "Email"
-msgstr ""
+msgstr "E-mail"
 
 #: apps/accounts/models.py:44
 msgid "Trezor Login"
-msgstr ""
+msgstr "Login Trezor"
 
 #: apps/accounts/models.py:45
 msgid "2FA Account"
-msgstr ""
+msgstr "Account 2FA"
 
 #: apps/accounts/models.py:46
 msgid "None"
-msgstr ""
+msgstr "Nessuna"
 
 #: apps/accounts/models.py:54 apps/accounts/models.py:139
 #: apps/accounts/models.py:183 apps/accounts/models.py:208
 #: apps/coins/models.py:66 apps/coins/models.py:83 apps/store/models.py:34
 msgid "user"
-msgstr ""
+msgstr "utente"
 
 #: apps/accounts/models.py:55
 msgid "gender"
-msgstr ""
+msgstr "Genere"
 
 #: apps/accounts/models.py:56
 msgid "user type"
-msgstr ""
+msgstr "tipologia di utente"
 
 #: apps/accounts/models.py:57
 msgid "timezone"
-msgstr ""
+msgstr "fuso orario"
 
 #: apps/accounts/models.py:58
 msgid "public name"
-msgstr ""
+msgstr "nome pubblico"
 
 #: apps/accounts/models.py:59
 msgid "public email"
-msgstr ""
+msgstr "email pubblica"
 
 #: apps/accounts/models.py:60
 msgid "public URL"
-msgstr ""
+msgstr "URL pubblico"
 
 #: apps/accounts/models.py:61
 msgid "merchant id"
-msgstr ""
+msgstr "ID Commerciante"
 
 #: apps/accounts/models.py:62
 msgid "date format"
-msgstr ""
+msgstr "formato data"
 
 #: apps/accounts/models.py:63
 msgid "time format"
-msgstr ""
+msgstr "formato orario"
 
 #: apps/accounts/models.py:64
 msgid "use gravatar"
-msgstr ""
+msgstr "usa gravatar"
 
 #: apps/accounts/models.py:65
 msgid "PGP/GPG public key"
-msgstr ""
+msgstr "Chiave pubblica PGP / GPG"
 
 #: apps/accounts/models.py:66
 msgid "2FA authentication"
-msgstr ""
+msgstr "Autenticazione 2FA"
 
 #: apps/accounts/models.py:68
 msgid "email confirmation send/withdrawal"
-msgstr ""
+msgstr "email di conferma invia / ritiro"
 
 #: apps/accounts/models.py:69
 msgid "is subscribed"
-msgstr ""
+msgstr "è iscritto"
 
 #: apps/accounts/models.py:70
 msgid "reference count"
-msgstr ""
+msgstr "conteggio dei riferimenti"
 
 #: apps/accounts/models.py:74 templates/accounts/settings.html:287
 msgid "IPN Secret"
-msgstr ""
+msgstr "Segreto IPN"
 
 #: apps/accounts/models.py:75
 msgid ""
 "This is used to verify that an IPN is from us, use a good random string "
 "nobody can guess."
 msgstr ""
+"Questo è usato per verificare che un IPN è da noi, usa una buona stringa "
+"casuale che nessuno può indovinare."
 
 #: apps/accounts/models.py:77 templates/accounts/settings.html:293
 msgid "IPN URL"
-msgstr ""
+msgstr "URL IPN"
 
 #: apps/accounts/models.py:78
 msgid "When a user submits a new payment to you"
-msgstr ""
+msgstr "Quando un utente ti invia un nuovo pagamento"
 
 #: apps/accounts/models.py:79
 msgid "When funds have been received by us for a payment to you."
-msgstr ""
+msgstr "Quando i fondi sono stati ricevuti da noi per un pagamento a voi."
 
 #: apps/accounts/models.py:80
 msgid "When funds for a payment have been sent to you."
-msgstr ""
+msgstr "Quando ti sono stati inviati fondi per un pagamento."
 
 #: apps/accounts/models.py:81
 msgid "When a deposit is received on one of your deposit addresses."
 msgstr ""
+"Quando viene ricevuto un acconto su uno dei tuoi indirizzi di deposito."
 
 #: apps/accounts/models.py:82
 msgid "When positive feedback has been left for you."
-msgstr ""
+msgstr "Quando il feedback positivo è stato lasciato per te."
 
 #: apps/accounts/models.py:83
 msgid "status notification email"
-msgstr ""
+msgstr "email di notifica di stato"
 
 #: apps/accounts/models.py:84
 msgid "receive SMS text when funds are received"
-msgstr ""
+msgstr "ricevere SMS quando vengono ricevuti fondi"
 
 #: apps/accounts/models.py:85
 msgid "SMS phone number"
-msgstr ""
+msgstr "Numero di telefono SMS"
 
 #: apps/accounts/models.py:88
 msgid "Profile"
-msgstr ""
+msgstr "Profilo"
 
 #: apps/accounts/models.py:89
 msgid "Profiles"
-msgstr ""
+msgstr "Profili"
 
 #: apps/accounts/models.py:149
 msgid "Account Activation Link"
-msgstr ""
+msgstr "Link di attivazione dell'account"
 
 #: apps/accounts/models.py:175
 msgid "Profile Activation"
-msgstr ""
+msgstr "Attivazione del profilo"
 
 #: apps/accounts/models.py:176
 msgid "Profile Activations"
-msgstr ""
+msgstr "Attivazioni del profilo"
 
 #: apps/accounts/models.py:184
 msgid "saved address name"
-msgstr ""
+msgstr "nome indirizzo salvato"
 
 #: apps/accounts/models.py:185
 msgid "is default"
-msgstr ""
+msgstr "è predefinito"
 
 #: apps/accounts/models.py:186
 msgid "first name"
-msgstr ""
+msgstr "nome di battesimo"
 
 #: apps/accounts/models.py:187
 msgid "last name"
-msgstr ""
+msgstr "cognome"
 
 #: apps/accounts/models.py:188
 msgid "address line 1"
-msgstr ""
+msgstr "Indirizzo Linea 1"
 
 #: apps/accounts/models.py:189
 msgid "address line 2"
-msgstr ""
+msgstr "indirizzo 2"
 
 #: apps/accounts/models.py:190
 msgid "country"
-msgstr ""
+msgstr "nazione"
 
 #: apps/accounts/models.py:191
 msgid "city"
-msgstr ""
+msgstr "città"
 
 #: apps/accounts/models.py:192
 msgid "state"
-msgstr ""
+msgstr "stato"
 
 #: apps/accounts/models.py:193
 msgid "postal code"
-msgstr ""
+msgstr "codice postale"
 
 #: apps/accounts/models.py:194
 msgid "phone_number"
-msgstr ""
+msgstr "numero di telefono"
 
 #: apps/accounts/models.py:197
 msgid "Address"
-msgstr ""
+msgstr "Indirizzo"
 
 #: apps/accounts/models.py:198
 msgid "Addresses"
-msgstr ""
+msgstr "indirizzi"
 
 #: apps/accounts/models.py:209
 msgid "rating"
-msgstr ""
+msgstr "valutazione"
 
 #: apps/accounts/models.py:210
 msgid "comment"
-msgstr ""
+msgstr "commento"
 
 #: apps/accounts/models.py:212
 msgid "left by"
-msgstr ""
+msgstr "lasciato da"
 
 #: apps/accounts/models.py:214
 msgid "buyer or seller"
-msgstr ""
+msgstr "compratore o venditore"
 
 #: apps/accounts/models.py:217 apps/accounts/models.py:218
 msgid "Feedback"
-msgstr ""
+msgstr "Risposta"
 
 #: apps/accounts/models.py:228
 msgid "subject"
-msgstr ""
+msgstr "soggetto"
 
 #: apps/accounts/models.py:230
 msgid "content"
-msgstr ""
+msgstr "soddisfare"
 
 #: apps/accounts/models.py:253 templates/accounts/verify_2fa.html:18
 msgid "Authentication Code"
-msgstr ""
+msgstr "Codice di Autenticazione"
 
 #: apps/accounts/views.py:49
 msgid "Activation mail sent"
-msgstr ""
+msgstr "Mail di attivazione inviata"
 
 #: apps/accounts/views.py:172
 msgid "Account details updated successfully"
-msgstr ""
+msgstr "Dettagli dell'account aggiornati correttamente"
 
 #: apps/accounts/views.py:184 apps/accounts/views.py:209
 #: apps/accounts/views.py:213 apps/accounts/views.py:232
 msgid "Information updated successfully"
-msgstr ""
+msgstr "Informazioni aggiornate con successo"
 
 #: apps/accounts/views.py:203
 msgid "Current password is incorrect"
-msgstr ""
+msgstr "Password corrente non è corretta"
 
 #: apps/accounts/views.py:205
 msgid "Passwords doesn't match"
-msgstr ""
+msgstr "Le password non corrispondono"
 
 #: apps/accounts/views.py:248
 msgid "Invalid account activation link"
-msgstr ""
+msgstr "Link di attivazione dell'account non valido"
 
 #: apps/accounts/views.py:251
 msgid "Account activation link expired"
-msgstr ""
+msgstr "Link di attivazione dell'account scaduto"
 
 #: apps/accounts/views.py:258
 msgid "Account activated <br><p>Please <a href=/login>login</a><p>"
 msgstr ""
+"Account attivato <br> <p> Si prega di <a href=/login> accedere </a> <p>"
 
 #: apps/coins/models.py:13
 msgid "Crypto"
-msgstr ""
+msgstr "Crypto"
 
 #: apps/coins/models.py:14
 msgid "Ripple"
-msgstr ""
+msgstr "Ondulazione"
 
 #: apps/coins/models.py:15
 msgid "Ether tokens"
-msgstr ""
+msgstr "Token dell'Etere"
 
 #: apps/coins/models.py:16
 msgid "Fiat"
-msgstr ""
+msgstr "Fiat"
 
 #: apps/coins/models.py:26
 msgid "To Balance"
-msgstr ""
+msgstr "Bilanciare"
 
 #: apps/coins/models.py:27
 msgid "ASAP"
-msgstr ""
+msgstr "al più presto"
 
 #: apps/coins/models.py:28
 msgid "Nightly"
-msgstr ""
+msgstr "ogni notte"
 
 #: apps/coins/models.py:29
 msgid "To Balance + Convert"
-msgstr ""
+msgstr "Bilanciare + Convertire"
 
 #: apps/coins/models.py:30
 msgid "ASAP + Convert"
-msgstr ""
+msgstr "APPENA POSSIBILE + Converti"
 
 #: apps/coins/models.py:38
 msgid "coin name"
-msgstr ""
+msgstr "nome della moneta"
 
 #: apps/coins/models.py:39
 msgid "coin site URL"
-msgstr ""
+msgstr "coin site URL"
 
 #: apps/coins/models.py:40
 msgid "code"
-msgstr ""
+msgstr "codice"
 
 #: apps/coins/models.py:41
 msgid "confirms"
-msgstr ""
+msgstr "conferma"
 
 #: apps/coins/models.py:42 apps/common/models.py:106 apps/store/models.py:14
 msgid "image"
-msgstr ""
+msgstr "Immagine"
 
 #: apps/coins/models.py:42
 msgid "Upload a 35X35 image for better experience"
-msgstr ""
+msgstr "Carica un'immagine 35X35 per un'esperienza migliore"
 
 #: apps/coins/models.py:43
 msgid "to BTC value"
-msgstr ""
+msgstr "al valore di BTC"
 
 #: apps/coins/models.py:44
 msgid "fee percentage"
-msgstr ""
+msgstr "percentuale della tassa"
 
 #: apps/coins/models.py:45
 msgid "type"
-msgstr ""
+msgstr "genere"
 
 #: apps/coins/models.py:46
 msgid "can convert coin to another"
-msgstr ""
+msgstr "può convertire una moneta in un'altra"
 
 #: apps/coins/models.py:47
 msgid "can explore coins"
-msgstr ""
+msgstr "può esplorare monete"
 
 #: apps/coins/models.py:48
 msgid "can donate coins"
-msgstr ""
+msgstr "può donare monete"
 
 #: apps/coins/models.py:49
 msgid "Disable this coin anytime"
-msgstr ""
+msgstr "Disabilita questa moneta in qualsiasi momento"
 
 #: apps/coins/models.py:52
 msgid "vote count"
-msgstr ""
+msgstr "voto conta"
 
 #: apps/coins/models.py:55 templates/accounts/dashboard.html:34
 msgid "Coin"
-msgstr ""
+msgstr "Moneta"
 
 #: apps/coins/models.py:56
 msgid "Coins"
-msgstr ""
+msgstr "Monete"
 
 #: apps/coins/models.py:67
 msgid "coin"
-msgstr ""
+msgstr "moneta"
 
 #: apps/coins/models.py:68
 msgid "enabled"
-msgstr ""
+msgstr "abilitato"
 
 #: apps/coins/models.py:69
 msgid "payment address"
-msgstr ""
+msgstr "indirizzo di pagamento"
 
 #: apps/coins/models.py:70
 msgid "payment mode"
-msgstr ""
+msgstr "metodo di pagamento"
 
 #: apps/coins/models.py:71
 msgid "discount field"
-msgstr ""
+msgstr "campo di sconto"
 
 #: apps/coins/models.py:72
 msgid "maximum per transaction"
-msgstr ""
+msgstr "massimo per transazione"
 
 #: apps/coins/models.py:73
 msgid "currency"
-msgstr ""
+msgstr "moneta"
 
 #: apps/coins/models.py:85
 msgid "convert from coin"
-msgstr ""
+msgstr "convertire dalla moneta"
 
 #: apps/coins/models.py:87
 msgid "convert to coin"
-msgstr ""
+msgstr "convertire in moneta"
 
 #: apps/coins/models.py:89
 msgid "wallet from address"
-msgstr ""
+msgstr "portafoglio dall'indirizzo"
 
 #: apps/coins/models.py:90
 msgid "wallet to address"
-msgstr ""
+msgstr "portafoglio per indirizzo"
 
 #: apps/coins/models.py:96
 msgid "Coin Conversion Request"
-msgstr ""
+msgstr "Richiesta di conversione monete"
 
 #: apps/coins/models.py:97
 msgid "Coin Conversion Requests"
-msgstr ""
+msgstr "Richieste di conversione di monete"
 
 #: apps/coins/models.py:125 apps/common/models.py:19 apps/store/models.py:11
 msgid "name"
-msgstr ""
+msgstr "nome"
 
 #: apps/coins/models.py:126
 msgid "email"
-msgstr ""
+msgstr "e-mail"
 
 #: apps/coins/models.py:127
 msgid "coin website"
-msgstr ""
+msgstr "sito di monete"
 
 #: apps/coins/models.py:128
 msgid "coin url"
-msgstr ""
+msgstr "url moneta"
 
 #: apps/common/models.py:10
 msgid "HTTP Auth"
-msgstr ""
+msgstr "Autenticazione HTTP"
 
 #: apps/common/models.py:11
 msgid "HMAC"
-msgstr ""
+msgstr "HMAC"
 
 #: apps/common/models.py:12
 msgid "N/A"
-msgstr ""
+msgstr "N / A"
 
 #: apps/common/models.py:25
 msgid "Currency"
-msgstr ""
+msgstr "Moneta"
 
 #: apps/common/models.py:26
 msgid "Currencies"
-msgstr ""
+msgstr "valute"
 
 #: apps/common/models.py:33
 msgid "provider"
-msgstr ""
+msgstr "fornitore"
 
 #: apps/common/models.py:34 apps/common/models.py:108
 msgid "link"
-msgstr ""
+msgstr "collegamento"
 
 #: apps/common/models.py:38
 msgid "Social Link"
-msgstr ""
+msgstr "Collegamento sociale"
 
 #: apps/common/models.py:39
 msgid "Social Links"
-msgstr ""
+msgstr "Collegamenti sociali"
 
 #: apps/common/models.py:111
 msgid "Video URL"
-msgstr ""
+msgstr "URL del video"
 
 #: apps/store/models.py:12
 msgid "publish"
-msgstr ""
+msgstr "pubblicare"
 
 #: apps/store/models.py:13
 msgid "slug"
-msgstr ""
+msgstr "lumaca"
 
 #: apps/store/models.py:18
 msgid "Category"
-msgstr ""
+msgstr "Categoria"
 
 #: apps/store/models.py:19
 msgid "Categories"
-msgstr ""
+msgstr "categorie"
 
 #: apps/store/models.py:35
 msgid "store name"
-msgstr ""
+msgstr "nome del negozio"
 
 #: apps/store/models.py:36
 msgid "store url"
-msgstr ""
+msgstr "archivio url"
 
 #: apps/store/models.py:37
 msgid "category"
-msgstr ""
+msgstr "categoria"
 
 #: apps/store/models.py:38
 msgid "crypto processor"
-msgstr ""
+msgstr "processore crittografico"
 
 #: apps/store/models.py:39
 msgid "store email"
-msgstr ""
+msgstr "archivia l'email"
 
 #: apps/store/models.py:40
 msgid "keywords"
-msgstr ""
+msgstr "parole chiave"
 
 #: apps/store/models.py:41
 msgid "banner image url"
-msgstr ""
+msgstr "banner image url"
 
 #: apps/store/models.py:42
 msgid "is approved"
-msgstr ""
+msgstr "è approvato"
 
 #: apps/store/models.py:45
 msgid "Store"
-msgstr ""
+msgstr "Negozio"
 
 #: apps/store/models.py:46
 msgid "Stores"
-msgstr ""
+msgstr "I negozi"
 
 #: exmr/settings/base.py:155
 msgid "English"
-msgstr ""
+msgstr "Inglese"
 
 #: exmr/settings/base.py:156
 msgid "Spanish"
-msgstr ""
+msgstr "spagnolo"
 
 #: exmr/settings/base.py:157
 msgid "Deutsche"
-msgstr ""
+msgstr "Deutsche"
 
 #: exmr/settings/base.py:158
 msgid "हिन्दी"
-msgstr ""
+msgstr "हिन्दी"
 
 #: exmr/settings/base.py:159
 msgid "Français"
-msgstr ""
+msgstr "Français"
 
 #: exmr/settings/base.py:160
 msgid "Italiano"
-msgstr ""
+msgstr "Italiano"
 
 #: exmr/settings/base.py:161
 msgid "Magyar"
-msgstr ""
+msgstr "magiaro"
 
 #: exmr/settings/base.py:162
 msgid "Português"
-msgstr ""
+msgstr "Português"
 
 #: exmr/settings/base.py:163
 msgid "русский"
-msgstr ""
+msgstr "русский"
 
 #: exmr/settings/base.py:164
 msgid "فارسی"
-msgstr ""
+msgstr "فارسی"
 
 #: exmr/settings/base.py:165
 msgid "中文"
-msgstr ""
+msgstr "中文"
 
 #: exmr/settings/base.py:166
 msgid "日本語"
-msgstr ""
+msgstr "日本語"
 
 #: exmr/settings/base.py:167
 msgid "한국어"
-msgstr ""
+msgstr "한국어"
 
 #: templates/accounts/2fa_account.html:17
 msgid "Add Google Authenticator"
-msgstr ""
+msgstr "Aggiungi Google Authenticator"
 
 #: templates/accounts/2fa_account.html:23
 msgid "2FA Accounts"
-msgstr ""
+msgstr "Account 2FA"
 
 #: templates/accounts/2fa_account.html:45
 #: templates/accounts/2fa_account_list.html:34
 msgid "Date"
-msgstr ""
+msgstr "Data"
 
 #: templates/accounts/2fa_account.html:46
 #: templates/accounts/2fa_account.html:92
 #: templates/accounts/2fa_account_list.html:35
 msgid "Account Name"
-msgstr ""
+msgstr "Nome utente"
 
 #: templates/accounts/2fa_account.html:47
 #: templates/accounts/2fa_account_list.html:36
 msgid "Account Type"
-msgstr ""
+msgstr "Tipo di account"
 
 #: templates/accounts/2fa_account.html:48
 #: templates/accounts/2fa_account_list.html:37
 #: templates/accounts/address-book.html:59
 msgid "Action"
-msgstr ""
+msgstr "Azione"
 
 #: templates/accounts/2fa_account.html:64
 msgid "No devices Found"
-msgstr ""
+msgstr "Nessun dispositivo trovato"
 
 #: templates/accounts/2fa_account.html:88
 msgid "Secret Key"
-msgstr ""
+msgstr "Chiave segreta"
 
 #: templates/accounts/2fa_account.html:97
 msgid "Activation Code"
-msgstr ""
+msgstr "Codice di attivazione"
 
 #: templates/accounts/2fa_account.html:105
 msgid "Add"
-msgstr ""
+msgstr "Inserisci"
 
 #: templates/accounts/2fa_account_list.html:20
 msgid "Two Factor Authentication List"
-msgstr ""
+msgstr "Elenco di autenticazione a due fattori"
 
 #: templates/accounts/activation_email.html:6
 msgid "registration"
-msgstr ""
+msgstr "registrazione"
 
 #: templates/accounts/activation_email.html:11
 #, python-format
 msgid ""
 "\n"
-"    You (or someone pretending to be you) have asked to register an account "
-"at\n"
-"    %(site_name)s.  If this wasn't you, please ignore this email\n"
+"    You (or someone pretending to be you) have asked to register an account at\n"
 "    and your address will be removed from our records.\n"
 "    "
 msgstr ""
+"\n"
+"Tu (o qualcuno che finge di essere te) hai chiesto di registrare un account a\n"
+"    e il tuo indirizzo verrà rimosso dai nostri archivi."
 
 #: templates/accounts/activation_email.html:18
 msgid ""
@@ -738,6 +743,8 @@ msgid ""
 "    To activate this account, please click the following link\n"
 "    "
 msgstr ""
+"\n"
+"Per attivare questo account, fai clic sul seguente link"
 
 #: templates/accounts/activation_email.html:29
 #, python-format
@@ -747,21 +754,28 @@ msgid ""
 "    %(site_name)s Management\n"
 "    "
 msgstr ""
+"\n"
+"Cordiali saluti,\n"
+"    %(site_name)s Gestione"
 
 #: templates/accounts/activation_email.txt:2
 #, python-format
 msgid ""
 "\n"
 "You (or someone pretending to be you) have asked to register an account at\n"
-"%(site_name)s.  If this wasn't you, please ignore this email\n"
 "and your address will be removed from our records.\n"
 msgstr ""
+"\n"
+"Tu (o qualcuno che finge di essere te) hai chiesto di registrare un account a\n"
+"e il tuo indirizzo verrà rimosso dai nostri archivi.\n"
 
 #: templates/accounts/activation_email.txt:7
 msgid ""
 "\n"
 "To activate this account, please click the following link:\n"
 msgstr ""
+"\n"
+"Per attivare questo account, fare clic sul seguente collegamento:\n"
 
 #: templates/accounts/activation_email.txt:13
 #, python-format
@@ -770,558 +784,580 @@ msgid ""
 "Sincerely,\n"
 "%(site_name)s Management\n"
 msgstr ""
+"\n"
+"Cordiali saluti,\n"
+"%(site_name)s Gestione\n"
 
 #: templates/accounts/address-book.html:22
 msgid "Add New Address"
-msgstr ""
+msgstr "Aggiungi un nuovo indirizzo"
 
 #: templates/accounts/address-book.html:27
 msgid "Saved Address"
-msgstr ""
+msgstr "Indirizzo salvato"
 
 #: templates/accounts/address-book.html:50
 msgid "Address Name"
-msgstr ""
+msgstr "Nome dell'indirizzo"
 
 #: templates/accounts/address-book.html:51
 msgid "First Name"
-msgstr ""
+msgstr "Nome di battesimo"
 
 #: templates/accounts/address-book.html:52
 msgid "Last Name"
-msgstr ""
+msgstr "Cognome"
 
 #: templates/accounts/address-book.html:53
 msgid "Address Line 1"
-msgstr ""
+msgstr "Indirizzo Linea 1"
 
 #: templates/accounts/address-book.html:54
 msgid "Address Line 2"
-msgstr ""
+msgstr "indirizzo 2"
 
 #: templates/accounts/address-book.html:55
 msgid "Country"
-msgstr ""
+msgstr "Nazione"
 
 #: templates/accounts/address-book.html:56
 msgid "State/province"
-msgstr ""
+msgstr "Stato / Provincia"
 
 #: templates/accounts/address-book.html:57
 msgid "Pincode"
-msgstr ""
+msgstr "Codice PIN"
 
 #: templates/accounts/address-book.html:58
 msgid "Phone number"
-msgstr ""
+msgstr "Numero di telefono"
 
 #: templates/accounts/address-book.html:83
 msgid "No Address Found"
-msgstr ""
+msgstr "Nessun indirizzo trovato"
 
 #: templates/accounts/dashboard-base.html:16
 msgid "Home"
-msgstr ""
+msgstr "Casa"
 
 #: templates/accounts/dashboard-base.html:24
 msgid "Your Wallet"
-msgstr ""
+msgstr "Il tuo portafoglio"
 
 #: templates/accounts/dashboard-base.html:31
 msgid "Coin Settings"
-msgstr ""
+msgstr "Impostazioni monete"
 
 #: templates/accounts/dashboard-base.html:37
 msgid "Transaction History"
-msgstr ""
+msgstr "Cronologia delle transazioni"
 
 #: templates/accounts/dashboard-base.html:42
 msgid "Quick POS"
-msgstr ""
+msgstr "POS rapido"
 
 #: templates/accounts/dashboard-base.html:47 templates/common/index.html:67
 msgid "$PayByName"
-msgstr ""
+msgstr "$ PayByName"
 
 #: templates/accounts/dashboard.html:18 templates/coins/wallets.html:17
 msgid "Recent Transaction"
-msgstr ""
+msgstr "Transazione recente"
 
 #: templates/accounts/dashboard.html:32
 msgid "Time"
-msgstr ""
+msgstr "Tempo"
 
 #: templates/accounts/dashboard.html:33
 msgid "Received / Sent Name"
-msgstr ""
+msgstr "Nome ricevuto / inviato"
 
 #: templates/accounts/dashboard.html:35
 msgid "Amount"
-msgstr ""
+msgstr "Quantità"
 
 #: templates/accounts/dashboard.html:36
 msgid "Status"
-msgstr ""
+msgstr "Stato"
 
 #: templates/accounts/dashboard.html:70 templates/coins/wallets.html:42
 msgid "No Payment Found"
-msgstr ""
+msgstr "Nessun pagamento trovato"
 
 #: templates/accounts/forgot-password.html:14
 #: templates/accounts/forgot_password.html:13
 msgid "Forgot Password"
-msgstr ""
+msgstr "Ha dimenticato la password"
 
 #: templates/accounts/forgot-password.html:15
 #: templates/accounts/forgot_password.html:14
 msgid "To reset your password, enter your username or email address below"
 msgstr ""
+"Per reimpostare la password, inserisci il tuo nome utente o indirizzo email "
+"qui sotto"
 
 #: templates/accounts/forgot-password.html:25
 #: templates/accounts/forgot_password.html:24
 #: templates/accounts/verify_2fa.html:25
 msgid "Submit"
-msgstr ""
+msgstr "Sottoscrivi"
 
 #: templates/accounts/forgot_password_done.html:8
 msgid "Instructions has been sent"
-msgstr ""
+msgstr "Le istruzioni sono state inviate"
 
 #: templates/accounts/forgot_password_done.html:9
 msgid "to your mail"
-msgstr ""
+msgstr "alla tua posta"
 
 #: templates/accounts/login.html:15 templates/accounts/signup.html:17
 msgid "Welcome!"
-msgstr ""
+msgstr "Benvenuto!"
 
 #: templates/accounts/login.html:16 templates/accounts/signup.html:18
 msgid "Sign in by entering the information below"
-msgstr ""
+msgstr "Accedi inserendo le informazioni di seguito"
 
 #: templates/accounts/login.html:26
 msgid "Login"
-msgstr ""
+msgstr "Accesso"
 
 #: templates/accounts/login.html:28 templates/accounts/signup.html:95
 #: templates/store/add-or-update.html:112
 msgid "Signup"
-msgstr ""
+msgstr "Iscriviti"
 
 #: templates/accounts/login.html:38
 msgid "Forgot Password?"
-msgstr ""
+msgstr "Ha dimenticato la password?"
 
 #: templates/accounts/login.html:43
 msgid "Don't have an account?"
-msgstr ""
+msgstr "Non hai un account?"
 
 #: templates/accounts/payment-history.html:22
 #: templates/accounts/payment-history.html:23
 #: templates/accounts/payment-history.html:24
 #: templates/accounts/payment-history.html:25
 msgid "Deposit History"
-msgstr ""
+msgstr "Cronologia depositi"
 
 #: templates/accounts/payment-history.html:32
 msgid "Incoming Payment HIstory"
-msgstr ""
+msgstr "Cronologia pagamenti in entrata"
 
 #: templates/accounts/payment-history.html:36
 msgid "History Search & Export"
-msgstr ""
+msgstr "Ricerca ed esportazione cronologia"
 
 #: templates/accounts/settings.html:11
 msgid "Settings"
-msgstr ""
+msgstr "impostazioni"
 
 #: templates/accounts/settings.html:19
 msgid "Basic Settings"
-msgstr ""
+msgstr "Impostazioni di base"
 
 #: templates/accounts/settings.html:30 templates/accounts/settings.html:212
 msgid "Login & Security"
-msgstr ""
+msgstr "Login e sicurezza"
 
 #: templates/accounts/settings.html:35 templates/accounts/settings.html:278
 msgid "Merchant Settings"
-msgstr ""
+msgstr "Impostazioni del commerciante"
 
 #: templates/accounts/settings.html:42 templates/exmr.html:101
 msgid "Account Settings"
-msgstr ""
+msgstr "Impostazioni dell 'account"
 
 #: templates/accounts/settings.html:47
 msgid "Your Merchant ID:"
-msgstr ""
+msgstr "Il tuo ID commerciante:"
 
 #: templates/accounts/settings.html:56
 msgid "Affiliate URL:"
-msgstr ""
+msgstr "URL di affiliazione:"
 
 #: templates/accounts/settings.html:57
 msgid ""
 "Want to earn some crypto? Give this URL to new users and when they sign up "
 "you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:"
 msgstr ""
+"Vuoi guadagnare qualche cripto? Dai questo URL ai nuovi utenti e quando si "
+"iscrivono guadagnerai una percentuale delle loro commissioni di transazione "
+"GETCRYPTOPAYMENTS:"
 
 #: templates/accounts/settings.html:69
 msgid "Share/Save"
-msgstr ""
+msgstr "Share / Save"
 
 #: templates/accounts/settings.html:113
 msgid "Account Email"
-msgstr ""
+msgstr "Account e-mail"
 
 #: templates/accounts/settings.html:119
 msgid "Confirm Email"
-msgstr ""
+msgstr "Conferma email"
 
 #: templates/accounts/settings.html:126
 msgid "Gender"
-msgstr ""
+msgstr "Genere"
 
 #: templates/accounts/settings.html:133
 msgid "Time Zone"
-msgstr ""
+msgstr "Fuso orario"
 
 #: templates/accounts/settings.html:139
 msgid "Date Format"
-msgstr ""
+msgstr "Formato data"
 
 #: templates/accounts/settings.html:147
 msgid "Time Format"
-msgstr ""
+msgstr "Formato orario"
 
 #: templates/accounts/settings.html:154
 msgid "Update Account"
-msgstr ""
+msgstr "Aggiorna account"
 
 #: templates/accounts/settings.html:172
 msgid "Public Name"
-msgstr ""
+msgstr "Nome pubblico"
 
 #: templates/accounts/settings.html:178
 msgid "Public Email"
-msgstr ""
+msgstr "Email pubblica"
 
 #: templates/accounts/settings.html:185
 msgid "Public URL"
-msgstr ""
+msgstr "URL pubblico"
 
 #: templates/accounts/settings.html:202 templates/accounts/settings.html:268
 #: templates/accounts/settings.html:367
 msgid "Update"
-msgstr ""
+msgstr "Aggiornare"
 
 #: templates/accounts/settings.html:221
 msgid "Current Password"
-msgstr ""
+msgstr "Password attuale"
 
 #: templates/accounts/settings.html:227
 msgid "New Password"
-msgstr ""
+msgstr "nuova password"
 
 #: templates/accounts/settings.html:234
 msgid "Confirm Password"
-msgstr ""
+msgstr "conferma password"
 
 #: templates/accounts/settings.html:240
 msgid "2 Factor Authentication"
-msgstr ""
+msgstr "2 Autenticazione del fattore"
 
 #: templates/accounts/settings.html:244
 msgid ""
 "Email: You will be prompted for a code at the time of login which will be "
 "sent to your provided email ID."
 msgstr ""
+"Email: ti verrà richiesto un codice al momento del login che verrà inviato "
+"al tuo ID e-mail fornito."
 
 #: templates/accounts/settings.html:245
 msgid ""
 "Linked 2FA Accounts: Link authenticators supporting TOTP such as Google "
 "Authenticator, Authy, FreeOTP, etc. You can edit your linked devices"
 msgstr ""
+"Account 2FA collegati: autenticatori di link che supportano TOTP come Google"
+" Authenticator, Authy, FreeOTP, ecc. Puoi modificare i tuoi dispositivi "
+"collegati"
 
 #: templates/accounts/settings.html:252
 msgid "Email Confirmations for Sends/Withdrawals"
-msgstr ""
+msgstr "Email di conferma per invio / ritiro"
 
 #: templates/accounts/settings.html:259
 msgid "PGP/GPG Public Key"
-msgstr ""
+msgstr "Chiave pubblica PGP / GPG"
 
 #: templates/accounts/settings.html:339
 msgid ""
 "\n"
-"                                                Payment status email will be "
-"sent to this email.\n"
-"                                                If not provided, "
-"notofications will be sent to the primary email\n"
+"                                                Payment status email will be sent to this email.\n"
+"                                                If not provided, notofications will be sent to the primary email\n"
 "                                            "
 msgstr ""
+"\n"
+"L'e-mail sullo stato del pagamento verrà inviata a questa email.\n"
+"                                                Se non vengono fornite, le notifiche verranno inviate all'email principale"
 
 #: templates/accounts/signup.html:49
 msgid ""
 " Please make it at least 10 characters long and include letters, numbers,\n"
 "                                 and special characters. "
 msgstr ""
+"Si prega di renderlo di almeno 10 caratteri e includere lettere, numeri,\n"
+"                                 e personaggi speciali."
 
 #: templates/accounts/signup.html:51
 msgid "Timezone"
-msgstr ""
+msgstr "Fuso orario"
 
 #: templates/accounts/signup.html:61
 msgid "Send newsletters and other relevant information to my provided e-mail."
 msgstr ""
+"Invia newsletter e altre informazioni pertinenti alla mia e-mail fornita."
 
 #: templates/accounts/signup.html:70
 msgid "Have read and agree to the"
-msgstr ""
+msgstr "Ho letto e accetto il"
 
 #: templates/accounts/signup.html:71
 msgid "Terms of Service."
-msgstr ""
+msgstr "Termini di servizio."
 
 #: templates/accounts/signup.html:85
 msgid " 'Type the characters you see in the image above:' "
-msgstr ""
+msgstr "'Digita i caratteri che vedi nell'immagine sopra:'"
 
 #: templates/accounts/signup_complete.html:6
 msgid "An activation link has been sent"
-msgstr ""
+msgstr "È stato inviato un link di attivazione"
 
 #: templates/accounts/signup_complete.html:7
 msgid "Please check your mail"
-msgstr ""
+msgstr "Per favore controlla la tua posta"
 
 #: templates/accounts/verify_2fa.html:18
 msgid "Enter"
-msgstr ""
+msgstr "accedere"
 
 #: templates/base.html:76 templates/exmr.html:44 templates/exmr.html:136
 msgid "Supported Coins"
-msgstr ""
+msgstr "Monete supportate"
 
 #: templates/base.html:79 templates/exmr.html:50 templates/exmr.html:139
 msgid "Merchant Tools"
-msgstr ""
+msgstr "Strumenti del commerciante"
 
 #: templates/base.html:82 templates/exmr.html:41 templates/exmr.html:142
 msgid "Public Coin Vote"
-msgstr ""
+msgstr "Voto della moneta pubblica"
 
 #: templates/base.html:85 templates/exmr.html:47 templates/exmr.html:145
 msgid "Store Directory"
-msgstr ""
+msgstr "Directory del negozio"
 
 #: templates/base.html:95 templates/exmr.html:155
 msgid "Get Mobile App"
-msgstr ""
+msgstr "Ottieni l'app mobile"
 
 #: templates/base.html:96 templates/exmr.html:156
 msgid "Affiliate Information"
-msgstr ""
+msgstr "Informazioni di affiliazione"
 
 #: templates/base.html:97 templates/exmr.html:157
 msgid "Official TOR URL"
-msgstr ""
+msgstr "URL ufficiale TOR"
 
 #: templates/base.html:98 templates/exmr.html:158
 msgid "PGP Key"
-msgstr ""
+msgstr "Chiave PGP"
 
 #: templates/base.html:107 templates/exmr.html:167
 msgid "Fees/Pricing"
-msgstr ""
+msgstr "Tasse / Prezzi"
 
 #: templates/base.html:108 templates/exmr.html:168
 msgid "Help"
-msgstr ""
+msgstr "Aiuto"
 
 #: templates/base.html:109 templates/base.html:144 templates/exmr.html:169
 #: templates/exmr.html:196
 msgid "Add Store"
-msgstr ""
+msgstr "Aggiungi negozio"
 
 #: templates/base.html:110 templates/base.html:145 templates/exmr.html:170
 #: templates/exmr.html:197
 msgid "Coin Request"
-msgstr ""
+msgstr "Richiesta di monete"
 
 #: templates/base.html:139 templates/exmr.html:175
 msgid "Privacy Policy"
-msgstr ""
+msgstr "politica sulla riservatezza"
 
 #: templates/base.html:140 templates/exmr.html:178
 msgid "Terms of Service"
-msgstr ""
+msgstr "Termini di servizio"
 
 #: templates/coins/coin-withdrawal.html:8
 msgid "Coin Withdrawal"
-msgstr ""
+msgstr "Ritiro di monete"
 
 #: templates/coins/coin-withdrawal.html:12
 msgid "Minimum Withdrawal"
-msgstr ""
+msgstr "Prelievo minimo"
 
 #: templates/coins/coin-withdrawal.html:13
 msgid "Current Bal"
-msgstr ""
+msgstr "Bal attuale"
 
 #: templates/coins/coin-withdrawal.html:14
 msgid "Send/Withdrawal Amount"
-msgstr ""
+msgstr "Invia / Prelievo"
 
 #: templates/coins/coin-withdrawal.html:15
 msgid "Transation Fee (est.)"
-msgstr ""
+msgstr "Transation Fee (est.)"
 
 #: templates/coins/coin-withdrawal.html:16
 msgid "Total Withdrawal"
-msgstr ""
+msgstr "Ritiro totale"
 
 #: templates/coins/coin-withdrawal.html:17
 msgid "Litecoin Testnet address or $payByName to send to"
-msgstr ""
+msgstr "Litecoin Testnet indirizzo o $ payByName da inviare a"
 
 #: templates/coins/coin-withdrawal.html:18
 msgid "Optional Note (Only Viewable by you)"
-msgstr ""
+msgstr "Nota opzionale (solo visualizzabile dall'utente)"
 
 #: templates/coins/coin-withdrawal.html:48
 msgid "Request Withdrawal/Send"
-msgstr ""
+msgstr "Richiesta di prelievo / invio"
 
 #: templates/coins/coin_conversion.html:8
 msgid "Coin Conversion"
-msgstr ""
+msgstr "Conversione di monete"
 
 #: templates/coins/coin_conversion.html:22
 msgid ""
-"If you log in the fields below will be prepopulated with your Wallet deposit "
-"addresses."
+"If you log in the fields below will be prepopulated with your Wallet deposit"
+" addresses."
 msgstr ""
+"Se effettui il login nei campi sottostanti verranno prepopolati gli "
+"indirizzi di deposito di Wallet."
 
 #: templates/coins/coin_conversion.html:42
 #: templates/common/support-coins.html:258
 msgid "Convert"
-msgstr ""
+msgstr "Convertire"
 
 #: templates/coins/coin_conversion_final.html:8
 msgid "Coin Conversion Requested"
-msgstr ""
+msgstr "Richiesta di conversione della moneta"
 
 #: templates/coins/supported-coins.html:4
 msgid "SUPPORTED COINS"
-msgstr ""
+msgstr "MONETE SUPPORTATE"
 
 #: templates/coins/supported-coins.html:7
 msgid ""
-"Instant get crypto payments checkout with easy to use cart plugin, advanced, "
-"invoice buillder and API for custom integration"
+"Instant get crypto payments checkout with easy to use cart plugin, advanced,"
+" invoice buillder and API for custom integration"
 msgstr ""
+"Instant get cripto pagamento pagamenti con plug-in carrello facile da usare,"
+" avanzato, fattura buillder e API per l'integrazione personalizzata"
 
 #: templates/coins/supported-coins.html:33
 msgid "COIN NAME"
-msgstr ""
+msgstr "NOME COIN"
 
 #: templates/coins/supported-coins.html:34
 msgid "COD"
-msgstr ""
+msgstr "MERLUZZO"
 
 #: templates/coins/supported-coins.html:35
 msgid "FEE"
-msgstr ""
+msgstr "FEE"
 
 #: templates/coins/supported-coins.html:38
 msgid "CONFIRMS"
-msgstr ""
+msgstr "CONFERMA"
 
 #: templates/coins/supported-coins.html:39
 msgid "TO BTC"
-msgstr ""
+msgstr "A BTC"
 
 #: templates/coins/supported-coins.html:42
 msgid "EXPLORE"
-msgstr ""
+msgstr "ESPLORARE"
 
 #: templates/coins/supported-coins.html:87
 msgid "Convert Coin"
-msgstr ""
+msgstr "Convertire moneta"
 
 #: templates/coins/supported-coins.html:104
 #: templates/common/support-coins.html:273
 msgid "Close"
-msgstr ""
+msgstr "Vicino"
 
 #: templates/coins/wallets.html:31
 msgid "Coin Name"
-msgstr ""
+msgstr "Nome della moneta"
 
 #: templates/coins/wallets.html:32
 msgid "Code"
-msgstr ""
+msgstr "Codice"
 
 #: templates/coins/wallets.html:33
 msgid "Balance"
-msgstr ""
+msgstr "Equilibrio"
 
 #: templates/coins/wallets.html:34
 msgid "Value"
-msgstr ""
+msgstr "Valore"
 
 #: templates/coins/wallets.html:35
 msgid "Commands"
-msgstr ""
+msgstr "comandi"
 
 #: templates/common/index.html:23
 msgid "Accept over 140 altcoins now for only 0.50"
-msgstr ""
+msgstr "Accetta oltre 140 altcoin ora solo per 0,50"
 
 #: templates/common/index.html:25
 msgid ""
 "Integrated payment gateway for cryptocurrencies such as Bitcoin and Litecoin"
 msgstr ""
+"Gateway di pagamento integrato per criptovalute come Bitcoin e Litecoin"
 
 #: templates/common/index.html:26
 msgid "Get Start"
-msgstr ""
+msgstr "Inizia"
 
 #: templates/common/index.html:36
 msgid "scroll me"
-msgstr ""
+msgstr "scrollami"
 
 #: templates/common/index.html:53
 msgid "Running an ICO?"
-msgstr ""
+msgstr "Gestire un ICO?"
 
 #: templates/common/index.html:54
 msgid "Let GetCryptoPayments help with:"
-msgstr ""
+msgstr "Lascia che GetCryptoPayments ti aiuti con:"
 
 #: templates/common/index.html:56
 msgid "Accepting payments from over 140 different coins"
-msgstr ""
+msgstr "Accettare pagamenti da oltre 140 monete diverse"
 
 #: templates/common/index.html:57
 msgid "All New GetCryptoPayments ICO Marketplace"
-msgstr ""
+msgstr "Tutto il nuovo Marketplace ICO GetCryptoPayments"
 
 #: templates/common/index.html:59
 msgid "Find Out More"
-msgstr ""
+msgstr "Scopri di più"
 
 #: templates/common/index.html:68
 msgid "One unique $tag to receive payments from all coins."
-msgstr ""
+msgstr "Un unico tag $ per ricevere pagamenti da tutte le monete."
 
 #: templates/common/index.html:69
 msgid "Example Profile"
-msgstr ""
+msgstr "Profilo di esempio"
 
 #: templates/common/index.html:102
 msgid "Shopping Cart Plugins"
-msgstr ""
+msgstr "Plugin del carrello"
 
 #: templates/common/index.html:105
 msgid ""
@@ -1329,300 +1365,319 @@ msgid ""
 "install a plugin to set up GetCryptoPayments with your new or pre-existing "
 "checkout"
 msgstr ""
+"Offrendo plugin per tutte le famose webcar usate oggi. Registra e installa "
+"un plug-in per configurare GetCryptoPayments con il checkout nuovo o "
+"preesistente"
 
 #: templates/common/index.html:196
 msgid "Payment Features"
-msgstr ""
+msgstr "Funzioni di pagamento"
 
 #: templates/common/index.html:198
 msgid "Here some ways GetCryptoPayments can help you process payments."
 msgstr ""
+"Ecco alcuni modi in cui GetCryptoPayments può aiutarti a elaborare i "
+"pagamenti."
 
 #: templates/common/index.html:206
 msgid "BitGo™ Instant"
-msgstr ""
+msgstr "BitGo ™ Instant"
 
 #: templates/common/index.html:207
 msgid ""
-"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster "
-"than\n"
+"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster than\n"
 "                                ever before. "
 msgstr ""
+"GetCryptoPayments supporta BitGo Instant che effettua pagamenti con Bitcoin più velocemente di\n"
+"                                mai prima d'ora."
 
 #: templates/common/index.html:219
 msgid "Vault"
-msgstr ""
+msgstr "Volta"
 
 #: templates/common/index.html:220
 msgid ""
-"Protect your coins in the vault, requiring a time amount you specify before "
-"being\n"
+"Protect your coins in the vault, requiring a time amount you specify before being\n"
 "                                able to spend them."
 msgstr ""
+"Proteggi le tue monete nel caveau, richiedendo una quantità di tempo specificata prima di essere\n"
+"                                in grado di spenderli."
 
 #: templates/common/index.html:232
 msgid "Fiat Settlements"
-msgstr ""
+msgstr "Insediamenti Fiat"
 
 #: templates/common/index.html:233
 msgid ""
-"United States and Euro merchants now have fiat settlements directly to "
-"their\n"
+"United States and Euro merchants now have fiat settlements directly to their\n"
 "                                bank accounts. "
 msgstr ""
+"Gli Stati Uniti e i commercianti di euro ora hanno insediamenti legali direttamente al loro\n"
+"                                conto in banca."
 
 #: templates/common/index.html:245
 msgid "Point of Sale (POS)"
-msgstr ""
+msgstr "Punto di vendita (POS)"
 
 #: templates/common/index.html:246
 msgid "Simple interface for in person transactions. "
-msgstr ""
-
-#: templates/common/index.html:246
-msgid ""
-"\n"
-"                               "
-msgstr ""
+msgstr "Interfaccia semplice per le transazioni di persona."
 
 #: templates/common/index.html:264
 msgid "Secured with BitGo"
-msgstr ""
+msgstr "Protetto con BitGo"
 
 #: templates/common/index.html:265
 msgid "Our hot wallet is secured by BitGo - meaning 100 "
-msgstr ""
+msgstr "Il nostro portafoglio caldo è protetto da BitGo, ovvero 100"
 
 #: templates/common/index.html:265
 msgid ""
 "of\n"
-"                                our funds are protected by multi-signature "
-"technology."
+"                                our funds are protected by multi-signature technology."
 msgstr ""
+"di\n"
+"                                i nostri fondi sono protetti da tecnologia multi-firma."
 
 #: templates/common/index.html:277
 msgid "Mobile Apps"
-msgstr ""
+msgstr "App per dispositivi mobili"
 
 #: templates/common/index.html:278
 msgid ""
-"Access your account, accept payments in person, and convert coins anywhere "
-"with\n"
+"Access your account, accept payments in person, and convert coins anywhere with\n"
 "                                our mobile apps for Android and iOS."
 msgstr ""
+"Accedi al tuo account, accetta pagamenti di persona e converti le monete ovunque\n"
+"                                le nostre app mobili per Android e iOS."
 
 #: templates/common/index.html:290
 msgid "Auto Coin Conversion"
-msgstr ""
+msgstr "Conversione automatica delle monete"
 
 #: templates/common/index.html:291
 msgid ""
-"Auto convert for some of our coins, saving you the trouble of moving funds, "
-"wasting\n"
+"Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
 "                                time and fees."
 msgstr ""
+"Conversione automatica per alcune delle nostre monete, risparmiandoti la fatica di spostare fondi, sprecando\n"
+"                                tempo e costi."
 
 #: templates/common/index.html:303
 msgid "Multi-Coin Wallet"
-msgstr ""
+msgstr "Portafoglio multi-moneta"
 
 #: templates/common/index.html:304
 msgid "Optionally store your coins in our secure online wallet."
 msgstr ""
+"Se lo desideri, puoi conservare le tue monete nel nostro portafoglio online "
+"sicuro."
 
 #: templates/common/index.html:322
 msgid ""
 "Our goal is to exceed more than 1,000,000 vendors across 182 different "
 "countries"
 msgstr ""
+"Il nostro obiettivo è superare più di 1.000.000 di distributori in 182 "
+"diversi paesi"
 
 #: templates/common/index.html:323
 msgid ""
-"GetCryptoPayments is the first and largest payment processor of over 150 "
-"cryptocurrencies\n"
+"GetCryptoPayments is the first and largest payment processor of over 150 cryptocurrencies\n"
 "                    "
 msgstr ""
+"GetCryptoPayments è il primo e il più grande processore di pagamento di "
+"oltre 150 criptovalute"
 
 #: templates/common/index.html:349
 msgid ""
-"Thank you GetCryptoPayments for taking Tron coin into consideration to "
-"belong to the list of your ERC-20\n"
-"                        tokens portfolio. I know you will have many "
-"successes."
+"Thank you GetCryptoPayments for taking Tron coin into consideration to belong to the list of your ERC-20\n"
+"                        tokens portfolio. I know you will have many successes."
 msgstr ""
+"Grazie a GetCryptoPayments per prendere in considerazione la moneta Tron per far parte dell'elenco dei tuoi ERC-20\n"
+"                        portafoglio di gettoni. So che avrai molti successi."
 
 #: templates/common/index.html:351
 msgid "Justin Sun CEO Tronix Coin"
-msgstr ""
+msgstr "CEO di Justin Sun Tronix Coin"
 
 #: templates/common/index.html:359
 msgid ""
-"We wanted to accept Stellar coin payments so we starting developing. Then we "
-"realized GetCryptoPayments\n"
-"                        could do the hard work for us and accept all "
-"payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we "
-"only\n"
+"We wanted to accept Stellar coin payments so we starting developing. Then we realized GetCryptoPayments\n"
+"                        could do the hard work for us and accept all payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we only\n"
 "                        need to develop  with one API now."
 msgstr ""
+"Volevamo accettare pagamenti con monete stellari, quindi abbiamo iniziato a svilupparci. Quindi abbiamo realizzato GetCryptoPayments\n"
+"                        potrebbe fare il duro lavoro per noi e accettare tutti i pagamenti e ricevere i soldi in Bitcoin. Grazie a GetCryptoPayments, solo noi\n"
+"                        necessario sviluppare con una sola API ora."
 
 #: templates/common/index.html:362
 msgid "Jed McCaleb CEO stellar.org"
-msgstr ""
+msgstr "Jed McCaleb CEO stellar.org"
 
 #: templates/common/merchant-tools.html:7 templates/store/add-or-update.html:5
 msgid "MERCHANT TOOLS"
-msgstr ""
+msgstr "STRUMENTI COMMERCIANTI"
 
 #: templates/common/merchant-tools.html:9
-#: templates/common/merchant-tools.html:16 templates/store/add-or-update.html:7
+#: templates/common/merchant-tools.html:16
+#: templates/store/add-or-update.html:7
 msgid ""
 "If you would like to be updated about new API or changes to existing Apis"
 msgstr ""
+"Se desideri essere aggiornato sulla nuova API o le modifiche alle API "
+"esistenti"
 
 #: templates/common/merchant-tools.html:10
-#: templates/common/merchant-tools.html:17 templates/store/add-or-update.html:8
+#: templates/common/merchant-tools.html:17
+#: templates/store/add-or-update.html:8
 msgid "click here"
-msgstr ""
+msgstr "clicca qui"
 
 #: templates/common/merchant-tools.html:25
 msgid "SHOPPING CART PLUGIN"
-msgstr ""
+msgstr "CARRELLO DI ACQUISTO PLUGIN"
 
 #: templates/common/merchant-tools.html:27
 msgid "Plugin Downloads"
-msgstr ""
+msgstr "Download di plug-in"
 
 #: templates/common/merchant-tools.html:34
 msgid "API & IPNs"
-msgstr ""
+msgstr "API e IPN"
 
 #: templates/common/merchant-tools.html:36
 msgid "Instant Payment Notification"
-msgstr ""
+msgstr "Notifica immediata del pagamento"
 
 #: templates/common/merchant-tools.html:37
 msgid "GETCRYPTOPAYMENTAPI"
-msgstr ""
+msgstr "GETCRYPTOPAYMENTAPI"
 
 #: templates/common/merchant-tools.html:44
 msgid "INVOICE BUILDER"
-msgstr ""
+msgstr "FABBRICATO DI FATTURA"
 
 #: templates/common/merchant-tools.html:46
 msgid "Payment Request invoice maker"
-msgstr ""
+msgstr "Richiesta di pagamento fattura maker"
 
 #: templates/common/merchant-tools.html:53
 msgid "POINT OF SALE(POS) INTERFACE"
-msgstr ""
+msgstr "INTERFACCIA PUNTO VENDITA (POS)"
 
 #: templates/common/merchant-tools.html:55
 msgid "HTML URL/ POST Fields"
-msgstr ""
+msgstr "Campi URL / POST HTML"
 
 #: templates/common/merchant-tools.html:56
 msgid "Post link QR Code Generator"
-msgstr ""
+msgstr "Generatore di codice QR del link post"
 
 #: templates/common/merchant-tools.html:57
 msgid "POS Examle"
-msgstr ""
+msgstr "POS Examle"
 
 #: templates/common/merchant-tools.html:64
 msgid "SIMPLE BUTTONS"
-msgstr ""
+msgstr "PULSANTI SEMPLICI"
 
 #: templates/common/merchant-tools.html:66
 #: templates/common/merchant-tools.html:77
 #: templates/common/merchant-tools.html:99
 msgid "Button Maker"
-msgstr ""
+msgstr "Button Maker"
 
 #: templates/common/merchant-tools.html:67
 #: templates/common/merchant-tools.html:78
 #: templates/common/merchant-tools.html:88
 #: templates/common/merchant-tools.html:100
 msgid "HTML Post Field"
-msgstr ""
+msgstr "HTML Post Field"
 
 #: templates/common/merchant-tools.html:68
 #: templates/common/merchant-tools.html:79
 #: templates/common/merchant-tools.html:89
 #: templates/common/merchant-tools.html:101
 msgid "Button Examples"
-msgstr ""
+msgstr "Esempi di pulsanti"
 
 #: templates/common/merchant-tools.html:75
 msgid "ADVANCE BUTTONS"
-msgstr ""
+msgstr "PULSANTI ANTICIPATI"
 
 #: templates/common/merchant-tools.html:86
 msgid "SHOPPING CART BUTTONS"
-msgstr ""
+msgstr "BOTTONI DEL CARRELLO DELLO SHOPPING"
 
 #: templates/common/merchant-tools.html:90
 msgid "Button Images"
-msgstr ""
+msgstr "Immagini dei pulsanti"
 
 #: templates/common/merchant-tools.html:97
 msgid "DONATION BUTTONS"
-msgstr ""
+msgstr "BOTTONI DI DONAZIONE"
 
 #: templates/common/support-coins.html:258
 msgid "BITCOIN"
-msgstr ""
+msgstr "bitcoin"
 
 #: templates/exmr.html:54
 msgid "Contact Us"
-msgstr ""
+msgstr "Contattaci"
 
 #: templates/exmr.html:78
 msgid "Language"
-msgstr ""
+msgstr "linguaggio"
 
 #: templates/exmr.html:93
 msgid "Account"
-msgstr ""
+msgstr "account"
 
 #: templates/exmr.html:98
 msgid "Dashboard"
-msgstr ""
+msgstr "Cruscotto"
 
 #: templates/exmr.html:104
 msgid "AddressBook"
-msgstr ""
+msgstr "AddressBook"
 
 #: templates/exmr.html:107
 msgid "Logout"
-msgstr ""
+msgstr "Disconnettersi"
 
 #: templates/registration/password_reset_complete.html:6
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr ""
+msgstr "La tua password è stata impostata. Puoi andare avanti e accedere ora."
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Log in"
-msgstr ""
+msgstr "Accesso"
 
 #: templates/registration/password_reset_confirm.html:45
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"Il link per la reimpostazione della password non era valido, probabilmente "
+"perché è già stato utilizzato. Si prega di richiedere una nuova password di "
+"reset."
 
 #: templates/store/add-or-update.html:102
 msgid "Type the characters you see in the image above:"
-msgstr ""
+msgstr "Digita i caratteri che vedi nell'immagine sopra:"
 
-#: templates/store/store_categories.html:5 templates/store/store_listing.html:5
+#: templates/store/store_categories.html:5
+#: templates/store/store_listing.html:5
 msgid "STORE DIRECTORY"
-msgstr ""
+msgstr "STORE DIRECTORY"
 
-#: templates/store/store_categories.html:7 templates/store/store_listing.html:7
+#: templates/store/store_categories.html:7
+#: templates/store/store_listing.html:7
 msgid "Largest directory of merchants accepting multiple cryptocurrencies"
-msgstr ""
+msgstr "La più grande directory di commercianti che accetta più criptovalute"
 
 #: templates/store/store_categories.html:15
 #: templates/store/store_listing.html:15
 msgid "Search"
-msgstr ""
+msgstr "Ricerca"

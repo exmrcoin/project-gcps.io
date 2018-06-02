@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-01 18:27+0530\n"
+"POT-Creation-Date: 2018-06-02 10:34+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,718 +19,721 @@ msgstr ""
 
 #: apps/accounts/admin.py:17
 msgid "Basic Details"
-msgstr ""
+msgstr "मूल विवरण"
 
 #: apps/accounts/admin.py:20 templates/accounts/settings.html:24
 #: templates/accounts/settings.html:163
 msgid "Public Info"
-msgstr ""
+msgstr "सार्वजनिक जानकारी"
 
 #: apps/accounts/admin.py:23
 msgid "Login Security"
-msgstr ""
+msgstr "लॉगिन सुरक्षा"
 
 #: apps/accounts/forms.py:25 apps/accounts/models.py:24
 msgid "Male"
-msgstr ""
+msgstr "नर"
 
 #: apps/accounts/forms.py:26 apps/accounts/models.py:25
 msgid "Female"
-msgstr ""
+msgstr "महिला"
 
 #: apps/accounts/forms.py:27 apps/accounts/models.py:26
 msgid "Other/Prefer Not to say"
-msgstr ""
+msgstr "अन्य / पसंद न करें"
 
 #: apps/accounts/forms.py:31
 msgid "02-10-2018"
-msgstr ""
+msgstr "2018/02/10"
 
 #: apps/accounts/forms.py:32
 msgid "02/10/2018"
-msgstr ""
+msgstr "2018/02/10"
 
 #: apps/accounts/forms.py:35
 msgid "02:00"
-msgstr ""
+msgstr "2:00"
 
 #: apps/accounts/forms.py:36
 msgid "02:00:00"
-msgstr ""
+msgstr "02:00:00"
 
 #: apps/accounts/forms.py:59
 msgid "Emails doesn't match"
-msgstr ""
+msgstr "ईमेल मेल नहीं खाते हैं"
 
 #: apps/accounts/forms.py:70
 msgid "Please accept the terms and conditions"
-msgstr ""
+msgstr "कृपया नियम और शर्तें स्वीकार करें"
 
 #: apps/accounts/forms.py:133
 msgid "Invalid mobile number."
-msgstr ""
+msgstr "अमान्य मोबाइल नंबर।"
 
 #: apps/accounts/forms.py:171 apps/store/forms.py:21
 msgid "Either username or email needs to be provided"
-msgstr ""
+msgstr "या तो उपयोगकर्ता नाम या ईमेल प्रदान किया जाना चाहिए"
 
 #: apps/accounts/forms.py:176 apps/store/forms.py:26
 msgid "User not found"
-msgstr ""
+msgstr "उपयोगकर्ता नहीं मिला"
 
 #: apps/accounts/models.py:38
 msgid "Buyer"
-msgstr ""
+msgstr "क्रेता"
 
 #: apps/accounts/models.py:39
 msgid "Seller"
-msgstr ""
+msgstr "विक्रेता"
 
 #: apps/accounts/models.py:43
 msgid "Email"
-msgstr ""
+msgstr "ईमेल"
 
 #: apps/accounts/models.py:44
 msgid "Trezor Login"
-msgstr ""
+msgstr "Trezor लॉगिन"
 
 #: apps/accounts/models.py:45
 msgid "2FA Account"
-msgstr ""
+msgstr "2 एफए खाता"
 
 #: apps/accounts/models.py:46
 msgid "None"
-msgstr ""
+msgstr "कोई नहीं"
 
 #: apps/accounts/models.py:54 apps/accounts/models.py:139
 #: apps/accounts/models.py:183 apps/accounts/models.py:208
 #: apps/coins/models.py:66 apps/coins/models.py:83 apps/store/models.py:34
 msgid "user"
-msgstr ""
+msgstr "उपयोगकर्ता"
 
 #: apps/accounts/models.py:55
 msgid "gender"
-msgstr ""
+msgstr "लिंग"
 
 #: apps/accounts/models.py:56
 msgid "user type"
-msgstr ""
+msgstr "उपयोगकर्ता का प्रकार"
 
 #: apps/accounts/models.py:57
 msgid "timezone"
-msgstr ""
+msgstr "समय क्षेत्र"
 
 #: apps/accounts/models.py:58
 msgid "public name"
-msgstr ""
+msgstr "सार्वजनिक नाम"
 
 #: apps/accounts/models.py:59
 msgid "public email"
-msgstr ""
+msgstr "सार्वजनिक ईमेल"
 
 #: apps/accounts/models.py:60
 msgid "public URL"
-msgstr ""
+msgstr "सार्वजनिक यूआरएल"
 
 #: apps/accounts/models.py:61
 msgid "merchant id"
-msgstr ""
+msgstr "व्यापारी आइडी"
 
 #: apps/accounts/models.py:62
 msgid "date format"
-msgstr ""
+msgstr "डेटा प्रारूप"
 
 #: apps/accounts/models.py:63
 msgid "time format"
-msgstr ""
+msgstr "समय प्रारूप"
 
 #: apps/accounts/models.py:64
 msgid "use gravatar"
-msgstr ""
+msgstr "गुरुत्वाकर्षण का प्रयोग करें"
 
 #: apps/accounts/models.py:65
 msgid "PGP/GPG public key"
-msgstr ""
+msgstr "पीजीपी / जीपीजी सार्वजनिक कुंजी"
 
 #: apps/accounts/models.py:66
 msgid "2FA authentication"
-msgstr ""
+msgstr "2 एफए प्रमाणीकरण"
 
 #: apps/accounts/models.py:68
 msgid "email confirmation send/withdrawal"
-msgstr ""
+msgstr "ईमेल पुष्टिकरण भेजें / निकासी"
 
 #: apps/accounts/models.py:69
 msgid "is subscribed"
-msgstr ""
+msgstr "सब्सक्राइब किया गया है"
 
 #: apps/accounts/models.py:70
 msgid "reference count"
-msgstr ""
+msgstr "संदर्भ गिनती"
 
 #: apps/accounts/models.py:74 templates/accounts/settings.html:287
 msgid "IPN Secret"
-msgstr ""
+msgstr "आईपीएन गुप्त"
 
 #: apps/accounts/models.py:75
 msgid ""
 "This is used to verify that an IPN is from us, use a good random string "
 "nobody can guess."
 msgstr ""
+"इसका उपयोग यह सत्यापित करने के लिए किया जाता है कि एक आईपीएन हमारे पास है, "
+"एक अच्छी यादृच्छिक स्ट्रिंग का उपयोग करें जो कोई भी अनुमान लगा सकता है।"
 
 #: apps/accounts/models.py:77 templates/accounts/settings.html:293
 msgid "IPN URL"
-msgstr ""
+msgstr "आईपीएन यूआरएल"
 
 #: apps/accounts/models.py:78
 msgid "When a user submits a new payment to you"
-msgstr ""
+msgstr "जब कोई उपयोगकर्ता आपको नया भुगतान सबमिट करता है"
 
 #: apps/accounts/models.py:79
 msgid "When funds have been received by us for a payment to you."
-msgstr ""
+msgstr "जब आपको भुगतान के लिए धन प्राप्त हुआ है।"
 
 #: apps/accounts/models.py:80
 msgid "When funds for a payment have been sent to you."
-msgstr ""
+msgstr "जब भुगतान के लिए धन आपको भेजा गया है।"
 
 #: apps/accounts/models.py:81
 msgid "When a deposit is received on one of your deposit addresses."
-msgstr ""
+msgstr "जब आपके जमा पते में से एक पर जमा प्राप्त होता है।"
 
 #: apps/accounts/models.py:82
 msgid "When positive feedback has been left for you."
-msgstr ""
+msgstr "जब आपके लिए सकारात्मक प्रतिक्रिया छोड़ी गई है।"
 
 #: apps/accounts/models.py:83
 msgid "status notification email"
-msgstr ""
+msgstr "स्थिति अधिसूचना ईमेल"
 
 #: apps/accounts/models.py:84
 msgid "receive SMS text when funds are received"
-msgstr ""
+msgstr "धन प्राप्त होने पर एसएमएस टेक्स्ट प्राप्त करें"
 
 #: apps/accounts/models.py:85
 msgid "SMS phone number"
-msgstr ""
+msgstr "एसएमएस फोन नंबर"
 
 #: apps/accounts/models.py:88
 msgid "Profile"
-msgstr ""
+msgstr "प्रोफाइल"
 
 #: apps/accounts/models.py:89
 msgid "Profiles"
-msgstr ""
+msgstr "प्रोफाइल"
 
 #: apps/accounts/models.py:149
 msgid "Account Activation Link"
-msgstr ""
+msgstr "खाता सक्रियण लिंक"
 
 #: apps/accounts/models.py:175
 msgid "Profile Activation"
-msgstr ""
+msgstr "प्रोफाइल सक्रियण"
 
 #: apps/accounts/models.py:176
 msgid "Profile Activations"
-msgstr ""
+msgstr "प्रोफाइल सक्रियण"
 
 #: apps/accounts/models.py:184
 msgid "saved address name"
-msgstr ""
+msgstr "सहेजा गया पता नाम"
 
 #: apps/accounts/models.py:185
 msgid "is default"
-msgstr ""
+msgstr "डिफ़ॉल्ट है"
 
 #: apps/accounts/models.py:186
 msgid "first name"
-msgstr ""
+msgstr "पहला नाम"
 
 #: apps/accounts/models.py:187
 msgid "last name"
-msgstr ""
+msgstr "अंतिम नाम"
 
 #: apps/accounts/models.py:188
 msgid "address line 1"
-msgstr ""
+msgstr "पता पंक्ति 1"
 
 #: apps/accounts/models.py:189
 msgid "address line 2"
-msgstr ""
+msgstr "पता पंक्ति नं। 2"
 
 #: apps/accounts/models.py:190
 msgid "country"
-msgstr ""
+msgstr "देश"
 
 #: apps/accounts/models.py:191
 msgid "city"
-msgstr ""
+msgstr "शहर"
 
 #: apps/accounts/models.py:192
 msgid "state"
-msgstr ""
+msgstr "राज्य"
 
 #: apps/accounts/models.py:193
 msgid "postal code"
-msgstr ""
+msgstr "डाक कोड"
 
 #: apps/accounts/models.py:194
 msgid "phone_number"
-msgstr ""
+msgstr "फ़ोन नंबर"
 
 #: apps/accounts/models.py:197
 msgid "Address"
-msgstr ""
+msgstr "पता"
 
 #: apps/accounts/models.py:198
 msgid "Addresses"
-msgstr ""
+msgstr "पतों"
 
 #: apps/accounts/models.py:209
 msgid "rating"
-msgstr ""
+msgstr "रेटिंग"
 
 #: apps/accounts/models.py:210
 msgid "comment"
-msgstr ""
+msgstr "टिप्पणी"
 
 #: apps/accounts/models.py:212
 msgid "left by"
-msgstr ""
+msgstr "द्वारा छोड़ा गया"
 
 #: apps/accounts/models.py:214
 msgid "buyer or seller"
-msgstr ""
+msgstr "खरीदार या विक्रेता"
 
 #: apps/accounts/models.py:217 apps/accounts/models.py:218
 msgid "Feedback"
-msgstr ""
+msgstr "प्रतिक्रिया"
 
 #: apps/accounts/models.py:228
 msgid "subject"
-msgstr ""
+msgstr "विषय"
 
 #: apps/accounts/models.py:230
 msgid "content"
-msgstr ""
+msgstr "सामग्री"
 
 #: apps/accounts/models.py:253 templates/accounts/verify_2fa.html:18
 msgid "Authentication Code"
-msgstr ""
+msgstr "प्रमाणीकरण कोड"
 
 #: apps/accounts/views.py:49
 msgid "Activation mail sent"
-msgstr ""
+msgstr "सक्रियण मेल भेजा गया"
 
 #: apps/accounts/views.py:172
 msgid "Account details updated successfully"
-msgstr ""
+msgstr "खाता विवरण सफलतापूर्वक अपडेट किया गया"
 
 #: apps/accounts/views.py:184 apps/accounts/views.py:209
 #: apps/accounts/views.py:213 apps/accounts/views.py:232
 msgid "Information updated successfully"
-msgstr ""
+msgstr "सूचना सफलतापूर्वक अपडेट की गई"
 
 #: apps/accounts/views.py:203
 msgid "Current password is incorrect"
-msgstr ""
+msgstr "मौजूदा पासवर्ड गलत है"
 
 #: apps/accounts/views.py:205
 msgid "Passwords doesn't match"
-msgstr ""
+msgstr "पासवर्ड मेल नहीं खाता है"
 
 #: apps/accounts/views.py:248
 msgid "Invalid account activation link"
-msgstr ""
+msgstr "अमान्य खाता सक्रियण लिंक"
 
 #: apps/accounts/views.py:251
 msgid "Account activation link expired"
-msgstr ""
+msgstr "खाता सक्रियण लिंक समाप्त हो गया"
 
 #: apps/accounts/views.py:258
 msgid "Account activated <br><p>Please <a href=/login>login</a><p>"
-msgstr ""
+msgstr "खाता सक्रिय <br> <p> कृपया <a href=/login> लॉगिन </a> <p>"
 
 #: apps/coins/models.py:13
 msgid "Crypto"
-msgstr ""
+msgstr "क्रिप्टो"
 
 #: apps/coins/models.py:14
 msgid "Ripple"
-msgstr ""
+msgstr "लहर"
 
 #: apps/coins/models.py:15
 msgid "Ether tokens"
-msgstr ""
+msgstr "ईथर टोकन"
 
 #: apps/coins/models.py:16
 msgid "Fiat"
-msgstr ""
+msgstr "व्यवस्थापत्र"
 
 #: apps/coins/models.py:26
 msgid "To Balance"
-msgstr ""
+msgstr "संतुलन बनाओ"
 
 #: apps/coins/models.py:27
 msgid "ASAP"
-msgstr ""
+msgstr "यथाशीघ्र"
 
 #: apps/coins/models.py:28
 msgid "Nightly"
-msgstr ""
+msgstr "हर रात को"
 
 #: apps/coins/models.py:29
 msgid "To Balance + Convert"
-msgstr ""
+msgstr "संतुलन + कनवर्ट करने के लिए"
 
 #: apps/coins/models.py:30
 msgid "ASAP + Convert"
-msgstr ""
+msgstr "ASAP + कनवर्ट करें"
 
 #: apps/coins/models.py:38
 msgid "coin name"
-msgstr ""
+msgstr "सिक्के का नाम"
 
 #: apps/coins/models.py:39
 msgid "coin site URL"
-msgstr ""
+msgstr "सिक्का साइट यूआरएल"
 
 #: apps/coins/models.py:40
 msgid "code"
-msgstr ""
+msgstr "कोड"
 
 #: apps/coins/models.py:41
 msgid "confirms"
-msgstr ""
+msgstr "पुष्टि"
 
 #: apps/coins/models.py:42 apps/common/models.py:106 apps/store/models.py:14
 msgid "image"
-msgstr ""
+msgstr "छवि"
 
 #: apps/coins/models.py:42
 msgid "Upload a 35X35 image for better experience"
-msgstr ""
+msgstr "बेहतर अनुभव के लिए 35X35 छवि अपलोड करें"
 
 #: apps/coins/models.py:43
 msgid "to BTC value"
-msgstr ""
+msgstr "बीटीसी मूल्य के लिए"
 
 #: apps/coins/models.py:44
 msgid "fee percentage"
-msgstr ""
+msgstr "शुल्क प्रतिशत"
 
 #: apps/coins/models.py:45
 msgid "type"
-msgstr ""
+msgstr "प्रकार"
 
 #: apps/coins/models.py:46
 msgid "can convert coin to another"
-msgstr ""
+msgstr "सिक्के को दूसरे में परिवर्तित कर सकते हैं"
 
 #: apps/coins/models.py:47
 msgid "can explore coins"
-msgstr ""
+msgstr "सिक्कों का पता लगा सकते हैं"
 
 #: apps/coins/models.py:48
 msgid "can donate coins"
-msgstr ""
+msgstr "सिक्के दान कर सकते हैं"
 
 #: apps/coins/models.py:49
 msgid "Disable this coin anytime"
-msgstr ""
+msgstr "किसी भी समय इस सिक्का को अक्षम करें"
 
 #: apps/coins/models.py:52
 msgid "vote count"
-msgstr ""
+msgstr "वोट गिनती"
 
 #: apps/coins/models.py:55 templates/accounts/dashboard.html:34
 msgid "Coin"
-msgstr ""
+msgstr "सिक्का"
 
 #: apps/coins/models.py:56
 msgid "Coins"
-msgstr ""
+msgstr "सिक्के"
 
 #: apps/coins/models.py:67
 msgid "coin"
-msgstr ""
+msgstr "सिक्का"
 
 #: apps/coins/models.py:68
 msgid "enabled"
-msgstr ""
+msgstr "सक्षम"
 
 #: apps/coins/models.py:69
 msgid "payment address"
-msgstr ""
+msgstr "भुगतान करने का पता"
 
 #: apps/coins/models.py:70
 msgid "payment mode"
-msgstr ""
+msgstr "भुगतान का प्रकार"
 
 #: apps/coins/models.py:71
 msgid "discount field"
-msgstr ""
+msgstr "छूट क्षेत्र"
 
 #: apps/coins/models.py:72
 msgid "maximum per transaction"
-msgstr ""
+msgstr "प्रति लेनदेन अधिकतम"
 
 #: apps/coins/models.py:73
 msgid "currency"
-msgstr ""
+msgstr "मुद्रा"
 
 #: apps/coins/models.py:85
 msgid "convert from coin"
-msgstr ""
+msgstr "सिक्का से कनवर्ट करें"
 
 #: apps/coins/models.py:87
 msgid "convert to coin"
-msgstr ""
+msgstr "सिक्का में कनवर्ट करें"
 
 #: apps/coins/models.py:89
 msgid "wallet from address"
-msgstr ""
+msgstr "पते से बटुआ"
 
 #: apps/coins/models.py:90
 msgid "wallet to address"
-msgstr ""
+msgstr "पता करने के लिए बटुआ"
 
 #: apps/coins/models.py:96
 msgid "Coin Conversion Request"
-msgstr ""
+msgstr "सिक्का रूपांतरण अनुरोध"
 
 #: apps/coins/models.py:97
 msgid "Coin Conversion Requests"
-msgstr ""
+msgstr "सिक्का रूपांतरण अनुरोध"
 
 #: apps/coins/models.py:125 apps/common/models.py:19 apps/store/models.py:11
 msgid "name"
-msgstr ""
+msgstr "नाम"
 
 #: apps/coins/models.py:126
 msgid "email"
-msgstr ""
+msgstr "ईमेल"
 
 #: apps/coins/models.py:127
 msgid "coin website"
-msgstr ""
+msgstr "सिक्का वेबसाइट"
 
 #: apps/coins/models.py:128
 msgid "coin url"
-msgstr ""
+msgstr "सिक्का यूआरएल"
 
 #: apps/common/models.py:10
 msgid "HTTP Auth"
-msgstr ""
+msgstr "HTTP ऑथ"
 
 #: apps/common/models.py:11
 msgid "HMAC"
-msgstr ""
+msgstr "HMAC"
 
 #: apps/common/models.py:12
 msgid "N/A"
-msgstr ""
+msgstr "एन / ए"
 
 #: apps/common/models.py:25
 msgid "Currency"
-msgstr ""
+msgstr "मुद्रा"
 
 #: apps/common/models.py:26
 msgid "Currencies"
-msgstr ""
+msgstr "मुद्राओं"
 
 #: apps/common/models.py:33
 msgid "provider"
-msgstr ""
+msgstr "प्रदाता"
 
 #: apps/common/models.py:34 apps/common/models.py:108
 msgid "link"
-msgstr ""
+msgstr "संपर्क"
 
 #: apps/common/models.py:38
 msgid "Social Link"
-msgstr ""
+msgstr "सामाजिक लिंक"
 
 #: apps/common/models.py:39
 msgid "Social Links"
-msgstr ""
+msgstr "सामाजिक लिंक"
 
 #: apps/common/models.py:111
 msgid "Video URL"
-msgstr ""
+msgstr "वीडियो यूआरएल"
 
 #: apps/store/models.py:12
 msgid "publish"
-msgstr ""
+msgstr "प्रकाशित करना"
 
 #: apps/store/models.py:13
 msgid "slug"
-msgstr ""
+msgstr "काउंटर"
 
 #: apps/store/models.py:18
 msgid "Category"
-msgstr ""
+msgstr "वर्ग"
 
 #: apps/store/models.py:19
 msgid "Categories"
-msgstr ""
+msgstr "श्रेणियाँ"
 
 #: apps/store/models.py:35
 msgid "store name"
-msgstr ""
+msgstr "स्टोर नाम"
 
 #: apps/store/models.py:36
 msgid "store url"
-msgstr ""
+msgstr "स्टोर यूआरएल"
 
 #: apps/store/models.py:37
 msgid "category"
-msgstr ""
+msgstr "वर्ग"
 
 #: apps/store/models.py:38
 msgid "crypto processor"
-msgstr ""
+msgstr "क्रिप्टो प्रोसेसर"
 
 #: apps/store/models.py:39
 msgid "store email"
-msgstr ""
+msgstr "स्टोर ईमेल"
 
 #: apps/store/models.py:40
 msgid "keywords"
-msgstr ""
+msgstr "कीवर्ड"
 
 #: apps/store/models.py:41
 msgid "banner image url"
-msgstr ""
+msgstr "बैनर छवि यूआरएल"
 
 #: apps/store/models.py:42
 msgid "is approved"
-msgstr ""
+msgstr "ये स्वीकृत है"
 
 #: apps/store/models.py:45
 msgid "Store"
-msgstr ""
+msgstr "दुकान"
 
 #: apps/store/models.py:46
 msgid "Stores"
-msgstr ""
+msgstr "स्टोर"
 
 #: exmr/settings/base.py:154
 msgid "English"
-msgstr ""
+msgstr "अंग्रेज़ी"
 
 #: exmr/settings/base.py:155
 msgid "Spanish"
-msgstr ""
+msgstr "स्पेनिश"
 
 #: exmr/settings/base.py:156
 msgid "Deutsche"
-msgstr ""
+msgstr "ड्यूश"
 
 #: exmr/settings/base.py:157
 msgid "हिन्दी"
-msgstr ""
+msgstr "हिन्दी"
 
 #: exmr/settings/base.py:158
 msgid "Français"
-msgstr ""
+msgstr "Français"
 
 #: exmr/settings/base.py:159
 msgid "Italiano"
-msgstr ""
+msgstr "Italiano"
 
 #: exmr/settings/base.py:160
 msgid "Magyar"
-msgstr ""
+msgstr "हंगेरियन"
 
 #: exmr/settings/base.py:161
 msgid "Português"
-msgstr ""
+msgstr "Português"
 
 #: exmr/settings/base.py:162
 msgid "русский"
-msgstr ""
+msgstr "русский"
 
 #: exmr/settings/base.py:163
 msgid "فارسی"
-msgstr ""
+msgstr "فارسی"
 
 #: exmr/settings/base.py:164
 msgid "中文"
-msgstr ""
+msgstr "中文"
 
 #: exmr/settings/base.py:165
 msgid "日本語"
-msgstr ""
+msgstr "日本語"
 
 #: exmr/settings/base.py:166
 msgid "한국어"
-msgstr ""
+msgstr "한국어"
 
 #: templates/accounts/2fa_account.html:17
 msgid "Add Google Authenticator"
-msgstr ""
+msgstr "Google प्रमाणक जोड़ें"
 
 #: templates/accounts/2fa_account.html:23
 msgid "2FA Accounts"
-msgstr ""
+msgstr "2 एफए खाते"
 
 #: templates/accounts/2fa_account.html:45
 #: templates/accounts/2fa_account_list.html:34
 msgid "Date"
-msgstr ""
+msgstr "तारीख"
 
 #: templates/accounts/2fa_account.html:46
 #: templates/accounts/2fa_account.html:92
 #: templates/accounts/2fa_account_list.html:35
 msgid "Account Name"
-msgstr ""
+msgstr "खाते का नाम"
 
 #: templates/accounts/2fa_account.html:47
 #: templates/accounts/2fa_account_list.html:36
 msgid "Account Type"
-msgstr ""
+msgstr "खाते का प्रकार"
 
 #: templates/accounts/2fa_account.html:48
 #: templates/accounts/2fa_account_list.html:37
 #: templates/accounts/address-book.html:59
 msgid "Action"
-msgstr ""
+msgstr "कार्य"
 
 #: templates/accounts/2fa_account.html:64
 msgid "No devices Found"
-msgstr ""
+msgstr "कोई यंत्र नहीं मिले"
 
 #: templates/accounts/2fa_account.html:88
 msgid "Secret Key"
-msgstr ""
+msgstr "गुप्त कुंजी"
 
 #: templates/accounts/2fa_account.html:97
 msgid "Activation Code"
-msgstr ""
+msgstr "एक्टिवेशन कोड"
 
 #: templates/accounts/2fa_account.html:105
 msgid "Add"
-msgstr ""
+msgstr "जोड़ना"
 
 #: templates/accounts/2fa_account_list.html:20
 msgid "Two Factor Authentication List"
-msgstr ""
+msgstr "दो फैक्टर प्रमाणीकरण सूची"
 
 #: templates/accounts/activation_email.html:6
 msgid "registration"
-msgstr ""
+msgstr "पंजीकरण"
 
 #: templates/accounts/activation_email.html:11
 #, python-format
 msgid ""
 "\n"
-"    You (or someone pretending to be you) have asked to register an account "
-"at\n"
-"    %(site_name)s.  If this wasn't you, please ignore this email\n"
+"    You (or someone pretending to be you) have asked to register an account at\n"
 "    and your address will be removed from our records.\n"
 "    "
 msgstr ""
+"\n"
+"आप (या आप होने का नाटक करने वाले किसी व्यक्ति) ने एक खाता पंजीकृत करने के लिए कहा है\n"
+"    और आपका पता हमारे रिकॉर्ड से हटा दिया जाएगा।"
 
 #: templates/accounts/activation_email.html:18
 msgid ""
@@ -738,6 +741,8 @@ msgid ""
 "    To activate this account, please click the following link\n"
 "    "
 msgstr ""
+"\n"
+"इस खाते को सक्रिय करने के लिए, कृपया निम्न लिंक पर क्लिक करें"
 
 #: templates/accounts/activation_email.html:29
 #, python-format
@@ -747,21 +752,28 @@ msgid ""
 "    %(site_name)s Management\n"
 "    "
 msgstr ""
+"\n"
+"निष्ठा से,\n"
+"    %(site_name)s प्रबंधन"
 
 #: templates/accounts/activation_email.txt:2
 #, python-format
 msgid ""
 "\n"
 "You (or someone pretending to be you) have asked to register an account at\n"
-"%(site_name)s.  If this wasn't you, please ignore this email\n"
 "and your address will be removed from our records.\n"
 msgstr ""
+"\n"
+"आप (या आप होने का नाटक करने वाले किसी व्यक्ति) ने एक खाता पंजीकृत करने के लिए कहा है\n"
+"और आपका पता हमारे रिकॉर्ड से हटा दिया जाएगा।\n"
 
 #: templates/accounts/activation_email.txt:7
 msgid ""
 "\n"
 "To activate this account, please click the following link:\n"
 msgstr ""
+"\n"
+"इस खाते को सक्रिय करने के लिए, कृपया निम्न लिंक पर क्लिक करें:\n"
 
 #: templates/accounts/activation_email.txt:13
 #, python-format
@@ -770,558 +782,578 @@ msgid ""
 "Sincerely,\n"
 "%(site_name)s Management\n"
 msgstr ""
+"\n"
+"निष्ठा से,\n"
+"%(site_name)s प्रबंधन\n"
 
 #: templates/accounts/address-book.html:22
 msgid "Add New Address"
-msgstr ""
+msgstr "नया पता जोड़ें"
 
 #: templates/accounts/address-book.html:27
 msgid "Saved Address"
-msgstr ""
+msgstr "सहेजा गया पता"
 
 #: templates/accounts/address-book.html:50
 msgid "Address Name"
-msgstr ""
+msgstr "पता नाम"
 
 #: templates/accounts/address-book.html:51
 msgid "First Name"
-msgstr ""
+msgstr "पहला नाम"
 
 #: templates/accounts/address-book.html:52
 msgid "Last Name"
-msgstr ""
+msgstr "अंतिम नाम"
 
 #: templates/accounts/address-book.html:53
 msgid "Address Line 1"
-msgstr ""
+msgstr "पता पंक्ति 1"
 
 #: templates/accounts/address-book.html:54
 msgid "Address Line 2"
-msgstr ""
+msgstr "पता पंक्ति नं। 2"
 
 #: templates/accounts/address-book.html:55
 msgid "Country"
-msgstr ""
+msgstr "देश"
 
 #: templates/accounts/address-book.html:56
 msgid "State/province"
-msgstr ""
+msgstr "राज्य / प्रांत"
 
 #: templates/accounts/address-book.html:57
 msgid "Pincode"
-msgstr ""
+msgstr "पिन कोड"
 
 #: templates/accounts/address-book.html:58
 msgid "Phone number"
-msgstr ""
+msgstr "फ़ोन नंबर"
 
 #: templates/accounts/address-book.html:83
 msgid "No Address Found"
-msgstr ""
+msgstr "कोई पता नहीं मिला"
 
 #: templates/accounts/dashboard-base.html:16
 msgid "Home"
-msgstr ""
+msgstr "होम"
 
 #: templates/accounts/dashboard-base.html:24
 msgid "Your Wallet"
-msgstr ""
+msgstr "आपका बटुआ"
 
 #: templates/accounts/dashboard-base.html:31
 msgid "Coin Settings"
-msgstr ""
+msgstr "सिक्का सेटिंग्स"
 
 #: templates/accounts/dashboard-base.html:37
 msgid "Transaction History"
-msgstr ""
+msgstr "लेनदेन का इतिहास"
 
 #: templates/accounts/dashboard-base.html:42
 msgid "Quick POS"
-msgstr ""
+msgstr "त्वरित पीओएस"
 
 #: templates/accounts/dashboard-base.html:47 templates/common/index.html:67
 msgid "$PayByName"
-msgstr ""
+msgstr "$ PayByName"
 
 #: templates/accounts/dashboard.html:18 templates/coins/wallets.html:17
 msgid "Recent Transaction"
-msgstr ""
+msgstr "हालिया लेनदेन"
 
 #: templates/accounts/dashboard.html:32
 msgid "Time"
-msgstr ""
+msgstr "पहर"
 
 #: templates/accounts/dashboard.html:33
 msgid "Received / Sent Name"
-msgstr ""
+msgstr "प्राप्त / प्रेषित नाम"
 
 #: templates/accounts/dashboard.html:35
 msgid "Amount"
-msgstr ""
+msgstr "रकम"
 
 #: templates/accounts/dashboard.html:36
 msgid "Status"
-msgstr ""
+msgstr "स्थिति"
 
 #: templates/accounts/dashboard.html:70 templates/coins/wallets.html:42
 msgid "No Payment Found"
-msgstr ""
+msgstr "कोई भुगतान नहीं मिला"
 
 #: templates/accounts/forgot-password.html:14
 #: templates/accounts/forgot_password.html:13
 msgid "Forgot Password"
-msgstr ""
+msgstr "पासवर्ड भूल गए"
 
 #: templates/accounts/forgot-password.html:15
 #: templates/accounts/forgot_password.html:14
 msgid "To reset your password, enter your username or email address below"
 msgstr ""
+"अपना पासवर्ड रीसेट करने के लिए, नीचे अपना उपयोगकर्ता नाम या ईमेल पता दर्ज "
+"करें"
 
 #: templates/accounts/forgot-password.html:25
 #: templates/accounts/forgot_password.html:24
 #: templates/accounts/verify_2fa.html:25
 msgid "Submit"
-msgstr ""
+msgstr "जमा करें"
 
 #: templates/accounts/forgot_password_done.html:8
 msgid "Instructions has been sent"
-msgstr ""
+msgstr "निर्देश भेज दिए गए हैं"
 
 #: templates/accounts/forgot_password_done.html:9
 msgid "to your mail"
-msgstr ""
+msgstr "आपके मेल पर"
 
 #: templates/accounts/login.html:15 templates/accounts/signup.html:17
 msgid "Welcome!"
-msgstr ""
+msgstr "स्वागत हे!"
 
 #: templates/accounts/login.html:16 templates/accounts/signup.html:18
 msgid "Sign in by entering the information below"
-msgstr ""
+msgstr "नीचे दी गई जानकारी दर्ज करके साइन इन करें"
 
 #: templates/accounts/login.html:26
 msgid "Login"
-msgstr ""
+msgstr "लॉग इन करें"
 
 #: templates/accounts/login.html:28 templates/accounts/signup.html:95
 #: templates/store/add-or-update.html:112
 msgid "Signup"
-msgstr ""
+msgstr "साइन अप करें"
 
 #: templates/accounts/login.html:38
 msgid "Forgot Password?"
-msgstr ""
+msgstr "पासवर्ड भूल गए?"
 
 #: templates/accounts/login.html:43
 msgid "Don't have an account?"
-msgstr ""
+msgstr "खाता नहीं है?"
 
 #: templates/accounts/payment-history.html:22
 #: templates/accounts/payment-history.html:23
 #: templates/accounts/payment-history.html:24
 #: templates/accounts/payment-history.html:25
 msgid "Deposit History"
-msgstr ""
+msgstr "जमा इतिहास"
 
 #: templates/accounts/payment-history.html:32
 msgid "Incoming Payment HIstory"
-msgstr ""
+msgstr "आने वाली भुगतान इतिहास"
 
 #: templates/accounts/payment-history.html:36
 msgid "History Search & Export"
-msgstr ""
+msgstr "इतिहास खोज और निर्यात"
 
 #: templates/accounts/settings.html:11
 msgid "Settings"
-msgstr ""
+msgstr "सेटिंग्स"
 
 #: templates/accounts/settings.html:19
 msgid "Basic Settings"
-msgstr ""
+msgstr "मूल सेटिंग्स"
 
 #: templates/accounts/settings.html:30 templates/accounts/settings.html:212
 msgid "Login & Security"
-msgstr ""
+msgstr "लॉगिन और सुरक्षा"
 
 #: templates/accounts/settings.html:35 templates/accounts/settings.html:278
 msgid "Merchant Settings"
-msgstr ""
+msgstr "व्यापारी सेटिंग्स"
 
 #: templates/accounts/settings.html:42 templates/exmr.html:101
 msgid "Account Settings"
-msgstr ""
+msgstr "अकाउंट सेटिंग"
 
 #: templates/accounts/settings.html:47
 msgid "Your Merchant ID:"
-msgstr ""
+msgstr "आपका मर्चेंट आईडी:"
 
 #: templates/accounts/settings.html:56
 msgid "Affiliate URL:"
-msgstr ""
+msgstr "संबद्ध यूआरएल:"
 
 #: templates/accounts/settings.html:57
 msgid ""
 "Want to earn some crypto? Give this URL to new users and when they sign up "
 "you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:"
 msgstr ""
+"कुछ क्रिप्टो कमाने के लिए चाहते हैं? इस यूआरएल को नए उपयोगकर्ताओं को दें और "
+"जब वे साइन अप करें तो आप उनके GETCRYPTOPAYMENTS लेनदेन शुल्क का प्रतिशत "
+"कमाएंगे:"
 
 #: templates/accounts/settings.html:69
 msgid "Share/Save"
-msgstr ""
+msgstr "शेयर बचा"
 
 #: templates/accounts/settings.html:113
 msgid "Account Email"
-msgstr ""
+msgstr "ई - मेल खाता"
 
 #: templates/accounts/settings.html:119
 msgid "Confirm Email"
-msgstr ""
+msgstr "ईमेल की पुष्टि करें"
 
 #: templates/accounts/settings.html:126
 msgid "Gender"
-msgstr ""
+msgstr "लिंग"
 
 #: templates/accounts/settings.html:133
 msgid "Time Zone"
-msgstr ""
+msgstr "समय क्षेत्र"
 
 #: templates/accounts/settings.html:139
 msgid "Date Format"
-msgstr ""
+msgstr "डेटा प्रारूप"
 
 #: templates/accounts/settings.html:147
 msgid "Time Format"
-msgstr ""
+msgstr "समय प्रारूप"
 
 #: templates/accounts/settings.html:154
 msgid "Update Account"
-msgstr ""
+msgstr "अधतन खाता"
 
 #: templates/accounts/settings.html:172
 msgid "Public Name"
-msgstr ""
+msgstr "सार्वजनिक नाम"
 
 #: templates/accounts/settings.html:178
 msgid "Public Email"
-msgstr ""
+msgstr "सार्वजनिक ईमेल"
 
 #: templates/accounts/settings.html:185
 msgid "Public URL"
-msgstr ""
+msgstr "सार्वजनिक यूआरएल"
 
 #: templates/accounts/settings.html:202 templates/accounts/settings.html:268
 #: templates/accounts/settings.html:367
 msgid "Update"
-msgstr ""
+msgstr "अद्यतन करें"
 
 #: templates/accounts/settings.html:221
 msgid "Current Password"
-msgstr ""
+msgstr "वर्तमान पासवर्ड"
 
 #: templates/accounts/settings.html:227
 msgid "New Password"
-msgstr ""
+msgstr "नया पासवर्ड"
 
 #: templates/accounts/settings.html:234
 msgid "Confirm Password"
-msgstr ""
+msgstr "पासवर्ड की पुष्टि कीजिये"
 
 #: templates/accounts/settings.html:240
 msgid "2 Factor Authentication"
-msgstr ""
+msgstr "2 फैक्टर प्रमाणीकरण"
 
 #: templates/accounts/settings.html:244
 msgid ""
 "Email: You will be prompted for a code at the time of login which will be "
 "sent to your provided email ID."
 msgstr ""
+"ईमेल: लॉगिन के समय आपको एक कोड के लिए संकेत दिया जाएगा जो आपके प्रदत्त ईमेल "
+"आईडी पर भेजा जाएगा।"
 
 #: templates/accounts/settings.html:245
 msgid ""
 "Linked 2FA Accounts: Link authenticators supporting TOTP such as Google "
 "Authenticator, Authy, FreeOTP, etc. You can edit your linked devices"
 msgstr ""
+"लिंक किए गए 2 एफए खाते: Google प्रमाणीकरणकर्ता, लेखक, फ्रीओटीपी आदि जैसे "
+"TOTP का समर्थन करने वाले लिंक प्रमाणीकरणकर्ता आप अपने लिंक किए गए डिवाइस को "
+"संपादित कर सकते हैं"
 
 #: templates/accounts/settings.html:252
 msgid "Email Confirmations for Sends/Withdrawals"
-msgstr ""
+msgstr "भेजने / निकासी के लिए ईमेल पुष्टि"
 
 #: templates/accounts/settings.html:259
 msgid "PGP/GPG Public Key"
-msgstr ""
+msgstr "पीजीपी / जीपीजी पब्लिक की"
 
 #: templates/accounts/settings.html:339
 msgid ""
 "\n"
-"                                                Payment status email will be "
-"sent to this email.\n"
-"                                                If not provided, "
-"notofications will be sent to the primary email\n"
+"                                                Payment status email will be sent to this email.\n"
+"                                                If not provided, notofications will be sent to the primary email\n"
 "                                            "
 msgstr ""
+"\n"
+"भुगतान स्थिति ईमेल इस ईमेल को भेजा जाएगा।\n"
+"                                                यदि प्रदान नहीं किया गया है, तो प्राथमिक ईमेल को नोटिफिकेशन भेजे जाएंगे"
 
 #: templates/accounts/signup.html:49
 msgid ""
 " Please make it at least 10 characters long and include letters, numbers,\n"
 "                                 and special characters. "
 msgstr ""
+"कृपया इसे कम से कम 10 वर्ण लंबा बनाएं और अक्षरों, संख्याओं,\n"
+"                                 और विशेष पात्रों।"
 
 #: templates/accounts/signup.html:51
 msgid "Timezone"
-msgstr ""
+msgstr "समय क्षेत्र"
 
 #: templates/accounts/signup.html:61
 msgid "Send newsletters and other relevant information to my provided e-mail."
-msgstr ""
+msgstr "मेरे प्रदत्त ई-मेल पर न्यूज़लेटर्स और अन्य प्रासंगिक जानकारी भेजें।"
 
 #: templates/accounts/signup.html:70
 msgid "Have read and agree to the"
-msgstr ""
+msgstr "पढ़ें और सहमत हैं"
 
 #: templates/accounts/signup.html:71
 msgid "Terms of Service."
-msgstr ""
+msgstr "सेवा की शर्तें।"
 
 #: templates/accounts/signup.html:85
 msgid " 'Type the characters you see in the image above:' "
-msgstr ""
+msgstr "'उपरोक्त छवि में दिखाई देने वाले अक्षर टाइप करें:'"
 
 #: templates/accounts/signup_complete.html:6
 msgid "An activation link has been sent"
-msgstr ""
+msgstr "एक सक्रियण लिंक भेजा गया है"
 
 #: templates/accounts/signup_complete.html:7
 msgid "Please check your mail"
-msgstr ""
+msgstr "कृपया अपना मेल चेक करें"
 
 #: templates/accounts/verify_2fa.html:18
 msgid "Enter"
-msgstr ""
+msgstr "दर्ज"
 
 #: templates/base.html:76 templates/exmr.html:44 templates/exmr.html:136
 msgid "Supported Coins"
-msgstr ""
+msgstr "समर्थित सिक्के"
 
 #: templates/base.html:79 templates/exmr.html:50 templates/exmr.html:139
 msgid "Merchant Tools"
-msgstr ""
+msgstr "व्यापारी उपकरण"
 
 #: templates/base.html:82 templates/exmr.html:41 templates/exmr.html:142
 msgid "Public Coin Vote"
-msgstr ""
+msgstr "सार्वजनिक सिक्का वोट"
 
 #: templates/base.html:85 templates/exmr.html:47 templates/exmr.html:145
 msgid "Store Directory"
-msgstr ""
+msgstr "दुकान निर्देशिका"
 
 #: templates/base.html:95 templates/exmr.html:155
 msgid "Get Mobile App"
-msgstr ""
+msgstr "मोबाइल ऐप प्राप्त करें"
 
 #: templates/base.html:96 templates/exmr.html:156
 msgid "Affiliate Information"
-msgstr ""
+msgstr "संबद्ध जानकारी"
 
 #: templates/base.html:97 templates/exmr.html:157
 msgid "Official TOR URL"
-msgstr ""
+msgstr "आधिकारिक टीओआर यूआरएल"
 
 #: templates/base.html:98 templates/exmr.html:158
 msgid "PGP Key"
-msgstr ""
+msgstr "पीजीपी कुंजी"
 
 #: templates/base.html:107 templates/exmr.html:167
 msgid "Fees/Pricing"
-msgstr ""
+msgstr "शुल्क / मूल्य निर्धारण"
 
 #: templates/base.html:108 templates/exmr.html:168
 msgid "Help"
-msgstr ""
+msgstr "मदद"
 
 #: templates/base.html:109 templates/base.html:144 templates/exmr.html:169
 #: templates/exmr.html:196
 msgid "Add Store"
-msgstr ""
+msgstr "स्टोर जोड़ें"
 
 #: templates/base.html:110 templates/base.html:145 templates/exmr.html:170
 #: templates/exmr.html:197
 msgid "Coin Request"
-msgstr ""
+msgstr "सिक्का अनुरोध"
 
 #: templates/base.html:139 templates/exmr.html:175
 msgid "Privacy Policy"
-msgstr ""
+msgstr "गोपनीयता नीति"
 
 #: templates/base.html:140 templates/exmr.html:178
 msgid "Terms of Service"
-msgstr ""
+msgstr "सेवा की शर्तें"
 
 #: templates/coins/coin-withdrawal.html:8
 msgid "Coin Withdrawal"
-msgstr ""
+msgstr "सिक्का निकासी"
 
 #: templates/coins/coin-withdrawal.html:12
 msgid "Minimum Withdrawal"
-msgstr ""
+msgstr "न्यूनतम निकासी"
 
 #: templates/coins/coin-withdrawal.html:13
 msgid "Current Bal"
-msgstr ""
+msgstr "वर्तमान बाल"
 
 #: templates/coins/coin-withdrawal.html:14
 msgid "Send/Withdrawal Amount"
-msgstr ""
+msgstr "भेजें / निकासी राशि"
 
 #: templates/coins/coin-withdrawal.html:15
 msgid "Transation Fee (est.)"
-msgstr ""
+msgstr "लेनदेन शुल्क (अनुमान)"
 
 #: templates/coins/coin-withdrawal.html:16
 msgid "Total Withdrawal"
-msgstr ""
+msgstr "कुल निकासी"
 
 #: templates/coins/coin-withdrawal.html:17
 msgid "Litecoin Testnet address or $payByName to send to"
-msgstr ""
+msgstr "भेजने के लिए लाइटकोइन टेस्टनेट पता या $ payByName"
 
 #: templates/coins/coin-withdrawal.html:18
 msgid "Optional Note (Only Viewable by you)"
-msgstr ""
+msgstr "वैकल्पिक नोट (केवल आपके द्वारा देखा जा सकता है)"
 
 #: templates/coins/coin-withdrawal.html:48
 msgid "Request Withdrawal/Send"
-msgstr ""
+msgstr "निकासी / भेजें अनुरोध करें"
 
 #: templates/coins/coin_conversion.html:8
 msgid "Coin Conversion"
-msgstr ""
+msgstr "सिक्का रूपांतरण"
 
 #: templates/coins/coin_conversion.html:22
 msgid ""
-"If you log in the fields below will be prepopulated with your Wallet deposit "
-"addresses."
+"If you log in the fields below will be prepopulated with your Wallet deposit"
+" addresses."
 msgstr ""
+"यदि आप नीचे दिए गए फ़ील्ड में लॉग इन करेंगे तो आपके वॉलेट जमा पते से पूर्ववत"
+" किया जाएगा।"
 
 #: templates/coins/coin_conversion.html:42
 #: templates/common/support-coins.html:258
 msgid "Convert"
-msgstr ""
+msgstr "बदलना"
 
 #: templates/coins/coin_conversion_final.html:8
 msgid "Coin Conversion Requested"
-msgstr ""
+msgstr "सिक्का रूपांतरण अनुरोध किया"
 
 #: templates/coins/supported-coins.html:4
 msgid "SUPPORTED COINS"
-msgstr ""
+msgstr "समर्थित कोनों"
 
 #: templates/coins/supported-coins.html:7
 msgid ""
-"Instant get crypto payments checkout with easy to use cart plugin, advanced, "
-"invoice buillder and API for custom integration"
+"Instant get crypto payments checkout with easy to use cart plugin, advanced,"
+" invoice buillder and API for custom integration"
 msgstr ""
+"तत्काल कस्टम एकीकरण के लिए कार्ट प्लगइन, उन्नत, चालान बिल्डर और एपीआई का "
+"उपयोग करने के साथ आसानी से क्रिप्टो भुगतान चेकआउट प्राप्त करें"
 
 #: templates/coins/supported-coins.html:33
 msgid "COIN NAME"
-msgstr ""
+msgstr "कोन नाम"
 
 #: templates/coins/supported-coins.html:34
 msgid "COD"
-msgstr ""
+msgstr "सीओडी"
 
 #: templates/coins/supported-coins.html:35
 msgid "FEE"
-msgstr ""
+msgstr "शुल्क"
 
 #: templates/coins/supported-coins.html:38
 msgid "CONFIRMS"
-msgstr ""
+msgstr "इस बात की पुष्टि"
 
 #: templates/coins/supported-coins.html:39
 msgid "TO BTC"
-msgstr ""
+msgstr "बीटीसी को"
 
 #: templates/coins/supported-coins.html:42
 msgid "EXPLORE"
-msgstr ""
+msgstr "एक्सप्लोर"
 
 #: templates/coins/supported-coins.html:87
 msgid "Convert Coin"
-msgstr ""
+msgstr "सिक्का कनवर्ट करें"
 
 #: templates/coins/supported-coins.html:104
 #: templates/common/support-coins.html:273
 msgid "Close"
-msgstr ""
+msgstr "बंद करे"
 
 #: templates/coins/wallets.html:31
 msgid "Coin Name"
-msgstr ""
+msgstr "सिक्का नाम"
 
 #: templates/coins/wallets.html:32
 msgid "Code"
-msgstr ""
+msgstr "कोड"
 
 #: templates/coins/wallets.html:33
 msgid "Balance"
-msgstr ""
+msgstr "संतुलन"
 
 #: templates/coins/wallets.html:34
 msgid "Value"
-msgstr ""
+msgstr "मूल्य"
 
 #: templates/coins/wallets.html:35
 msgid "Commands"
-msgstr ""
+msgstr "आदेश"
 
 #: templates/common/index.html:23
 msgid "Accept over 140 altcoins now for only 0.50"
-msgstr ""
+msgstr "केवल 0.50 के लिए 140 से अधिक altcoins स्वीकार करें"
 
 #: templates/common/index.html:25
 msgid ""
 "Integrated payment gateway for cryptocurrencies such as Bitcoin and Litecoin"
-msgstr ""
+msgstr "बिटकोइन और लाइटकोइन जैसे क्रिप्टोकुरिटी के लिए एकीकृत भुगतान गेटवे"
 
 #: templates/common/index.html:26
 msgid "Get Start"
-msgstr ""
+msgstr "शुरू करो"
 
 #: templates/common/index.html:36
 msgid "scroll me"
-msgstr ""
+msgstr "मुझे स्क्रॉल करो"
 
 #: templates/common/index.html:53
 msgid "Running an ICO?"
-msgstr ""
+msgstr "एक आईसीओ चल रहा है?"
 
 #: templates/common/index.html:54
 msgid "Let GetCryptoPayments help with:"
-msgstr ""
+msgstr "GetCrypto भुगतान के साथ मदद करें:"
 
 #: templates/common/index.html:56
 msgid "Accepting payments from over 140 different coins"
-msgstr ""
+msgstr "140 से अधिक विभिन्न सिक्कों से भुगतान स्वीकार करना"
 
 #: templates/common/index.html:57
 msgid "All New GetCryptoPayments ICO Marketplace"
-msgstr ""
+msgstr "सभी नए GetCrypto भुगतान ICO बाज़ार"
 
 #: templates/common/index.html:59
 msgid "Find Out More"
-msgstr ""
+msgstr "और अधिक जानकारी प्राप्त करें"
 
 #: templates/common/index.html:68
 msgid "One unique $tag to receive payments from all coins."
-msgstr ""
+msgstr "सभी सिक्के से भुगतान प्राप्त करने के लिए एक अद्वितीय $ टैग।"
 
 #: templates/common/index.html:69
 msgid "Example Profile"
-msgstr ""
+msgstr "उदाहरण प्रोफाइल"
 
 #: templates/common/index.html:102
 msgid "Shopping Cart Plugins"
-msgstr ""
+msgstr "शॉपिंग कार्ट प्लगइन्स"
 
 #: templates/common/index.html:105
 msgid ""
@@ -1329,300 +1361,318 @@ msgid ""
 "install a plugin to set up GetCryptoPayments with your new or pre-existing "
 "checkout"
 msgstr ""
+"आज इस्तेमाल होने वाले सभी लोकप्रिय वेबकार्टों के लिए प्लगइन पेश करना। अपने "
+"नए या पूर्व-मौजूदा चेकआउट के साथ GetCryptoPayments सेट अप करने के लिए प्लगइन"
+" पंजीकृत करें और इंस्टॉल करें"
 
 #: templates/common/index.html:196
 msgid "Payment Features"
-msgstr ""
+msgstr "भुगतान सुविधाएं"
 
 #: templates/common/index.html:198
 msgid "Here some ways GetCryptoPayments can help you process payments."
 msgstr ""
+"यहां कुछ तरीकों से GetCryptoPayments भुगतान संसाधित करने में आपकी सहायता कर "
+"सकते हैं।"
 
 #: templates/common/index.html:206
 msgid "BitGo™ Instant"
-msgstr ""
+msgstr "बिटो ™ इंस्टेंट"
 
 #: templates/common/index.html:207
 msgid ""
-"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster "
-"than\n"
+"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster than\n"
 "                                ever before. "
 msgstr ""
+"GetCryptoPayments BitGo Instant को बिटकॉइन भुगतान को तेज़ी से बनाने का समर्थन करता है\n"
+"                                इस से पहले।"
 
 #: templates/common/index.html:219
 msgid "Vault"
-msgstr ""
+msgstr "मेहराब"
 
 #: templates/common/index.html:220
 msgid ""
-"Protect your coins in the vault, requiring a time amount you specify before "
-"being\n"
+"Protect your coins in the vault, requiring a time amount you specify before being\n"
 "                                able to spend them."
 msgstr ""
+"अपने सिक्कों को वॉल्ट में सुरक्षित रखें, जिसमें आपके द्वारा निर्दिष्ट समय सीमा की आवश्यकता होती है\n"
+"                                उन्हें खर्च करने में सक्षम।"
 
 #: templates/common/index.html:232
 msgid "Fiat Settlements"
-msgstr ""
+msgstr "फिएट निपटान"
 
 #: templates/common/index.html:233
 msgid ""
-"United States and Euro merchants now have fiat settlements directly to "
-"their\n"
+"United States and Euro merchants now have fiat settlements directly to their\n"
 "                                bank accounts. "
 msgstr ""
+"संयुक्त राज्य अमेरिका और यूरो व्यापारियों के पास अब उनके लिए फिएट बस्तियों हैं\n"
+"                                बैंक खाते।"
 
 #: templates/common/index.html:245
 msgid "Point of Sale (POS)"
-msgstr ""
+msgstr "प्वाइंट ऑफ सेल (पीओएस)"
 
 #: templates/common/index.html:246
 msgid "Simple interface for in person transactions. "
-msgstr ""
-
-#: templates/common/index.html:246
-msgid ""
-"\n"
-"                               "
-msgstr ""
+msgstr "व्यक्तिगत लेनदेन में सरल इंटरफ़ेस।"
 
 #: templates/common/index.html:264
 msgid "Secured with BitGo"
-msgstr ""
+msgstr "बिट्टो के साथ सुरक्षित"
 
 #: templates/common/index.html:265
 msgid "Our hot wallet is secured by BitGo - meaning 100 "
-msgstr ""
+msgstr "हमारा हॉट वॉलेट बिट्टो द्वारा सुरक्षित है - जिसका मतलब 100 है"
 
 #: templates/common/index.html:265
 msgid ""
 "of\n"
-"                                our funds are protected by multi-signature "
-"technology."
+"                                our funds are protected by multi-signature technology."
 msgstr ""
+"का\n"
+"                                हमारे फंड बहु-हस्ताक्षर प्रौद्योगिकी द्वारा संरक्षित हैं।"
 
 #: templates/common/index.html:277
 msgid "Mobile Apps"
-msgstr ""
+msgstr "मोबाईल ऐप्स"
 
 #: templates/common/index.html:278
 msgid ""
-"Access your account, accept payments in person, and convert coins anywhere "
-"with\n"
+"Access your account, accept payments in person, and convert coins anywhere with\n"
 "                                our mobile apps for Android and iOS."
 msgstr ""
+"अपने खाते तक पहुंचें, व्यक्तिगत रूप से भुगतान स्वीकार करें, और कहीं भी सिक्कों को रूपांतरित करें\n"
+"                                एंड्रॉइड और आईओएस के लिए हमारे मोबाइल एप्स।"
 
 #: templates/common/index.html:290
 msgid "Auto Coin Conversion"
-msgstr ""
+msgstr "ऑटो सिक्का रूपांतरण"
 
 #: templates/common/index.html:291
 msgid ""
-"Auto convert for some of our coins, saving you the trouble of moving funds, "
-"wasting\n"
+"Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
 "                                time and fees."
 msgstr ""
+"ऑटो हमारे कुछ सिक्कों के लिए रूपांतरित करते हैं, जिससे आप धन को आगे बढ़ने की परेशानी बचाते हैं\n"
+"                                समय और शुल्क"
 
 #: templates/common/index.html:303
 msgid "Multi-Coin Wallet"
-msgstr ""
+msgstr "मल्टी-सिक्का वॉलेट"
 
 #: templates/common/index.html:304
 msgid "Optionally store your coins in our secure online wallet."
 msgstr ""
+"वैकल्पिक रूप से अपने सिक्कों को हमारे सुरक्षित ऑनलाइन वॉलेट में स्टोर करें।"
 
 #: templates/common/index.html:322
 msgid ""
 "Our goal is to exceed more than 1,000,000 vendors across 182 different "
 "countries"
 msgstr ""
+"हमारा लक्ष्य 182 विभिन्न देशों में 1,000,000 से अधिक विक्रेताओं से अधिक है"
 
 #: templates/common/index.html:323
 msgid ""
-"GetCryptoPayments is the first and largest payment processor of over 150 "
-"cryptocurrencies\n"
+"GetCryptoPayments is the first and largest payment processor of over 150 cryptocurrencies\n"
 "                    "
 msgstr ""
+"GetCryptoPayments 150 से अधिक क्रिप्टोकुरेंसी का पहला और सबसे बड़ा भुगतान "
+"प्रोसेसर है"
 
 #: templates/common/index.html:349
 msgid ""
-"Thank you GetCryptoPayments for taking Tron coin into consideration to "
-"belong to the list of your ERC-20\n"
-"                        tokens portfolio. I know you will have many "
-"successes."
+"Thank you GetCryptoPayments for taking Tron coin into consideration to belong to the list of your ERC-20\n"
+"                        tokens portfolio. I know you will have many successes."
 msgstr ""
+"आपके ईआरसी -20 की सूची से संबंधित ट्रॉन सिक्का को ध्यान में रखने के लिए GetCrypto भुगतान धन्यवाद\n"
+"                        टोकन पोर्टफोलियो। मुझे पता है कि आपको कई सफलियां मिलेंगी।"
 
 #: templates/common/index.html:351
 msgid "Justin Sun CEO Tronix Coin"
-msgstr ""
+msgstr "जस्टिन सन सीईओ ट्रोनिक्स सिक्का"
 
 #: templates/common/index.html:359
 msgid ""
-"We wanted to accept Stellar coin payments so we starting developing. Then we "
-"realized GetCryptoPayments\n"
-"                        could do the hard work for us and accept all "
-"payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we "
-"only\n"
+"We wanted to accept Stellar coin payments so we starting developing. Then we realized GetCryptoPayments\n"
+"                        could do the hard work for us and accept all payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we only\n"
 "                        need to develop  with one API now."
 msgstr ""
+"हम तारकीय सिक्का भुगतान स्वीकार करना चाहते थे ताकि हम विकास शुरू कर सकें। फिर हमने GetCrypto भुगतान को महसूस किया\n"
+"                        हमारे लिए कड़ी मेहनत कर सकते हैं और सभी भुगतान स्वीकार कर सकते हैं और बिटकॉइन में पैसा प्राप्त कर सकते हैं। धन्यवाद GetCrypto भुगतान, हम केवल\n"
+"                        अब एक एपीआई के साथ विकसित करने की जरूरत है।"
 
 #: templates/common/index.html:362
 msgid "Jed McCaleb CEO stellar.org"
-msgstr ""
+msgstr "जेड मैककेलेब सीईओ stellar.org"
 
 #: templates/common/merchant-tools.html:7 templates/store/add-or-update.html:5
 msgid "MERCHANT TOOLS"
-msgstr ""
+msgstr "व्यापारी उपकरण"
 
 #: templates/common/merchant-tools.html:9
-#: templates/common/merchant-tools.html:16 templates/store/add-or-update.html:7
+#: templates/common/merchant-tools.html:16
+#: templates/store/add-or-update.html:7
 msgid ""
 "If you would like to be updated about new API or changes to existing Apis"
 msgstr ""
+"यदि आप नए एपीआई या मौजूदा एपिस में बदलाव के बारे में अपडेट करना चाहते हैं"
 
 #: templates/common/merchant-tools.html:10
-#: templates/common/merchant-tools.html:17 templates/store/add-or-update.html:8
+#: templates/common/merchant-tools.html:17
+#: templates/store/add-or-update.html:8
 msgid "click here"
-msgstr ""
+msgstr "यहां क्लिक करे"
 
 #: templates/common/merchant-tools.html:25
 msgid "SHOPPING CART PLUGIN"
-msgstr ""
+msgstr "शॉपिंग कार्ट प्लगइन"
 
 #: templates/common/merchant-tools.html:27
 msgid "Plugin Downloads"
-msgstr ""
+msgstr "प्लगइन डाउनलोड"
 
 #: templates/common/merchant-tools.html:34
 msgid "API & IPNs"
-msgstr ""
+msgstr "एपीआई और आईपीएन"
 
 #: templates/common/merchant-tools.html:36
 msgid "Instant Payment Notification"
-msgstr ""
+msgstr "तत्काल भुगतान अधिसूचना"
 
 #: templates/common/merchant-tools.html:37
 msgid "GETCRYPTOPAYMENTAPI"
-msgstr ""
+msgstr "GETCRYPTOPAYMENTAPI"
 
 #: templates/common/merchant-tools.html:44
 msgid "INVOICE BUILDER"
-msgstr ""
+msgstr "चालान निर्माता"
 
 #: templates/common/merchant-tools.html:46
 msgid "Payment Request invoice maker"
-msgstr ""
+msgstr "भुगतान अनुरोध चालान निर्माता"
 
 #: templates/common/merchant-tools.html:53
 msgid "POINT OF SALE(POS) INTERFACE"
-msgstr ""
+msgstr "बिक्री का बिंदु (पीओएस) इंटरफेस"
 
 #: templates/common/merchant-tools.html:55
 msgid "HTML URL/ POST Fields"
-msgstr ""
+msgstr "एचटीएमएल यूआरएल / पोस्ट फ़ील्ड"
 
 #: templates/common/merchant-tools.html:56
 msgid "Post link QR Code Generator"
-msgstr ""
+msgstr "पोस्ट लिंक क्यूआर कोड जेनरेटर"
 
 #: templates/common/merchant-tools.html:57
 msgid "POS Examle"
-msgstr ""
+msgstr "पीओएस परीक्षा"
 
 #: templates/common/merchant-tools.html:64
 msgid "SIMPLE BUTTONS"
-msgstr ""
+msgstr "सरल बटन"
 
 #: templates/common/merchant-tools.html:66
 #: templates/common/merchant-tools.html:77
 #: templates/common/merchant-tools.html:99
 msgid "Button Maker"
-msgstr ""
+msgstr "बटन निर्माता"
 
 #: templates/common/merchant-tools.html:67
 #: templates/common/merchant-tools.html:78
 #: templates/common/merchant-tools.html:88
 #: templates/common/merchant-tools.html:100
 msgid "HTML Post Field"
-msgstr ""
+msgstr "एचटीएमएल पोस्ट फील्ड"
 
 #: templates/common/merchant-tools.html:68
 #: templates/common/merchant-tools.html:79
 #: templates/common/merchant-tools.html:89
 #: templates/common/merchant-tools.html:101
 msgid "Button Examples"
-msgstr ""
+msgstr "बटन उदाहरण"
 
 #: templates/common/merchant-tools.html:75
 msgid "ADVANCE BUTTONS"
-msgstr ""
+msgstr "अग्रिम बटन"
 
 #: templates/common/merchant-tools.html:86
 msgid "SHOPPING CART BUTTONS"
-msgstr ""
+msgstr "शॉपिंग कार्ट बटन"
 
 #: templates/common/merchant-tools.html:90
 msgid "Button Images"
-msgstr ""
+msgstr "बटन छवियाँ"
 
 #: templates/common/merchant-tools.html:97
 msgid "DONATION BUTTONS"
-msgstr ""
+msgstr "दान बटन"
 
 #: templates/common/support-coins.html:258
 msgid "BITCOIN"
-msgstr ""
+msgstr "Bitcoin"
 
 #: templates/exmr.html:54
 msgid "Contact Us"
-msgstr ""
+msgstr "हमसे संपर्क करें"
 
 #: templates/exmr.html:78
 msgid "Language"
-msgstr ""
+msgstr "भाषा"
 
 #: templates/exmr.html:93
 msgid "Account"
-msgstr ""
+msgstr "लेखा"
 
 #: templates/exmr.html:98
 msgid "Dashboard"
-msgstr ""
+msgstr "डैशबोर्ड"
 
 #: templates/exmr.html:104
 msgid "AddressBook"
-msgstr ""
+msgstr "पता पुस्तिका"
 
 #: templates/exmr.html:107
 msgid "Logout"
-msgstr ""
+msgstr "लोग आउट"
 
 #: templates/registration/password_reset_complete.html:6
 msgid "Your password has been set.  You may go ahead and log in now."
 msgstr ""
+"आपका पासवर्ड सेट कर दिया गया है। आप आगे बढ़ सकते हैं और अभी लॉग इन कर सकते "
+"हैं।"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Log in"
-msgstr ""
+msgstr "लॉग इन करें"
 
 #: templates/registration/password_reset_confirm.html:45
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"पासवर्ड रीसेट लिंक अमान्य था, संभवतः क्योंकि इसका पहले से ही उपयोग किया जा "
+"चुका है। कृपया एक नया पासवर्ड रीसेट का अनुरोध करें।"
 
 #: templates/store/add-or-update.html:102
 msgid "Type the characters you see in the image above:"
-msgstr ""
+msgstr "उपरोक्त छवि में दिखाई देने वाले वर्ण टाइप करें:"
 
-#: templates/store/store_categories.html:5 templates/store/store_listing.html:5
+#: templates/store/store_categories.html:5
+#: templates/store/store_listing.html:5
 msgid "STORE DIRECTORY"
-msgstr ""
+msgstr "दुकान निर्देशिका"
 
-#: templates/store/store_categories.html:7 templates/store/store_listing.html:7
+#: templates/store/store_categories.html:7
+#: templates/store/store_listing.html:7
 msgid "Largest directory of merchants accepting multiple cryptocurrencies"
 msgstr ""
+"कई क्रिप्टोकुरियों को स्वीकार करने वाले व्यापारियों की सबसे बड़ी निर्देशिका"
 
 #: templates/store/store_categories.html:15
 #: templates/store/store_listing.html:15
 msgid "Search"
-msgstr ""
+msgstr "खोज"

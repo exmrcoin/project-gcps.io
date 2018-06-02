@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'pyotp',
     'sorl.thumbnail',
     'import_export',
+    'autotranslate',
 
     # Project apps
     'apps.accounts',

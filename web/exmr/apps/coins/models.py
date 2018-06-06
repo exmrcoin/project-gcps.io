@@ -126,3 +126,16 @@ class CoinRequest(models.Model):
     email = models.EmailField(verbose_name=_('email'), null=True, blank=True)
     coin_website = models.CharField(verbose_name=_('coin website'), max_length=500, blank=True, default="")
     coin_url = models.URLField(verbose_name=_('coin url'), null=True, blank=True)
+
+
+class Transaction(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    amount = models.CharField(blank=False, max_length=200)
+    balance = models.CharField(blank=True, max_length=20)
+    currency = models.CharField(blank=True, max_length=20)
+    transaction_id = models.CharField(blank=True, max_length=200)
+    transaction_to = models.CharField(blank=True, max_length=200)
+    message = models.CharField(blank=True, max_length=300)
+
+    def __str__(self):
+        return self.user.username

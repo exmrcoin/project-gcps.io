@@ -113,7 +113,7 @@ class XRP():
             return "0"
 
     def send(self, destination, amount):
-        wallet = Wallet.objects.get(user=self.user, name="xrp")
+        wallet = Wallet.objects.get(user=self.user, name__code="XRPTest")
         secret = wallet.private
         address = wallet.addresses.all().first().address
         params =    { "method" : "sign",

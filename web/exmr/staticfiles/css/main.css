@@ -213,3 +213,5 @@ text-decoration: none;}
 
 
 .shop-cart tbody tr {border-bottom: 1px solid #e2e2e2;}
+
+.withdrawal select { background-image: none !important;} 

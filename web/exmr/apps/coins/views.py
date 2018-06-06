@@ -4,12 +4,12 @@ from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.shortcuts import HttpResponse, render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
-from django.views.generic import ListView, FormView, TemplateView, View
+from django.views.generic import ListView, FormView, TemplateView, DetailView, View
 
 from apps.coins.utils import *
 from apps.accounts.models import User
 from apps.coins.forms import ConvertRequestForm
-from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest
+from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction
 from django.shortcuts import render
 
 CURRENCIES = ['BTC','LTC', 'BCH', 'XRP']
@@ -115,7 +115,11 @@ class NewCoinAddr(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(NewCoinAddr, self).get_context_data(**kwargs)
         code = kwargs.get('currency')
-        context['wallets']=Wallet.objects.get(user=self.request.user,  name__code=code).addresses.all()
+        try:
+            context['wallets']=Wallet.objects.get(user=self.request.user,  name__code=code).addresses.all()
+        except:
+            create_wallet(self.request.user, code)
+            context['wallets']=Wallet.objects.get(user=self.request.user,  name__code=code).addresses.all()
         context['code'] = code
         return context
 
@@ -158,5 +162,59 @@ class CoinSettings(TemplateView):
 class CoinWithdrawal(TemplateView):
     template_name = 'coins/coin-withdrawal.html'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['coin'] = Coin.objects.get(code=self.kwargs['code'])
+        return context
 
 
+
+class SendConfirmView(LoginRequiredMixin, View):
+    """
+    For sending coins to given address
+    """
+
+    def post(self, request, *args, **kwargs):
+        address = request.POST.get('to')
+        currency = kwargs.get('slug')
+        amount = Decimal(request.POST.get('amount'))
+        if currency not in ('eth', 'xlm', 'xmr','XRPTest', 'ada'):
+            access = getattr(apps.coins.utils, 'create_' +
+                             currency+'_connection')()
+            valid = access.sendtoaddress(address, amount)
+            balance = get_balance(request.user.username, currency)
+            balance = balance - amount
+        elif currency == "eth":
+            valid = send_eth_transaction(self.request.user, amount, address)
+        elif currency == 'xmr':
+            amount = int(amount)
+            balance = get_xmr_balance(self.request.user)
+            valid = validate_xmr_address(address)
+            param = {
+                "destinations": [{"amount": amount, "address": address}]
+            }
+            try:
+                res = create_xmr_connection("transfer", param)
+                if res['error']:
+                    return HttpResponse(json.dumps({"error": res['error']['message']}), content_type='application/json')
+                valid = "true"
+            except:
+                valid = False
+        elif currency == 'xlm':
+            valid = send_xlm_transaction(
+                self.request.user, address, str(amount))
+            balance = get_xlm_balance(user=self.request.user)
+        elif currency == 'XRPTest':
+            obj = XRP(self.request.user)
+            valid = obj.send(address, str(amount))
+            balance = obj.balance()
+        elif currency == 'ada':
+            obj = ADA(self.request.user)
+            valid = obj.send(address, str(amount))
+            balance = obj.balance()
+        if type(valid) == str:
+            Transaction.objects.create(user=self.request.user, currency=currency,
+                                       balance=balance, amount=amount, transaction_id=valid, transaction_to=address)
+            return HttpResponse(json.dumps({"success": True}), content_type='application/json')
+
+        return HttpResponse(json.dumps(valid), content_type='application/json')

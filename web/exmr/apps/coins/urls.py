@@ -18,5 +18,6 @@ urlpatterns = [
     path('checkout/', TemplateView.as_view(template_name='coins/coin-checkout.html')),
     path('add-coin/', coin_views.AddNewCoin.as_view(), name='add-coin'),
     path('coin-settings/',coin_views.CoinSettings.as_view(),name='coin-settings'),
-    path('coin-withdrawal/', coin_views.CoinWithdrawal.as_view(), name='coin-withdrawal'),
+    path('coin-withdrawal/<str:code>/', coin_views.CoinWithdrawal.as_view(), name='coin-withdrawal'),
+    path('sendconfirm/<slug:slug>/', coin_views.SendConfirmView.as_view(), name='sendconfirm'),
 ]

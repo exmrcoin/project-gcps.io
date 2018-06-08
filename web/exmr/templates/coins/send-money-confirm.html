@@ -1,0 +1,24 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load transaction_status %}
+{% load i18n widget_tweaks %}
+<div class="supwiz">
+    <div class="container">              
+        <div class="panel panel-default">
+            {% if status%}
+                <div class="panel-heading">Success</div>
+                <div class="panel-body">
+                <h4>Your withdrawal request has been Confirmed</h4>
+                <a href="{% url 'coins:wallets' %}">Back to coin balances</a>
+                </div>
+            {% else %}
+                <div class="panel-heading" style="background-color: #e25151;">Error</div>
+                <div class="panel-body">
+                <h4>Your have followed an invalid url. Please check the url.</h4>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

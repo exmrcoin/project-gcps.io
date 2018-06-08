@@ -1,4 +1,8 @@
+import random
+import string
+
 from django.urls import reverse_lazy
+from django.core.mail import EmailMessage
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
@@ -169,7 +173,7 @@ class CoinWithdrawal(TemplateView):
 
 
 
-class SendConfirmView(LoginRequiredMixin, View):
+class SendView(LoginRequiredMixin, View):
     """
     For sending coins to given address
     """
@@ -184,37 +188,59 @@ class SendConfirmView(LoginRequiredMixin, View):
             valid = access.sendtoaddress(address, amount)
             balance = get_balance(request.user.username, currency)
             balance = balance - amount
-        elif currency == "eth":
-            valid = send_eth_transaction(self.request.user, amount, address)
-        elif currency == 'xmr':
-            amount = int(amount)
-            balance = get_xmr_balance(self.request.user)
-            valid = validate_xmr_address(address)
-            param = {
-                "destinations": [{"amount": amount, "address": address}]
-            }
-            try:
-                res = create_xmr_connection("transfer", param)
-                if res['error']:
-                    return HttpResponse(json.dumps({"error": res['error']['message']}), content_type='application/json')
-                valid = "true"
-            except:
-                valid = False
-        elif currency == 'xlm':
-            valid = send_xlm_transaction(
-                self.request.user, address, str(amount))
-            balance = get_xlm_balance(user=self.request.user)
         elif currency == 'XRPTest':
             obj = XRP(self.request.user)
-            valid = obj.send(address, str(amount))
+            # valid = obj.send(address, str(amount))
             balance = obj.balance()
-        elif currency == 'ada':
-            obj = ADA(self.request.user)
-            valid = obj.send(address, str(amount))
-            balance = obj.balance()
-        if type(valid) == str:
-            Transaction.objects.create(user=self.request.user, currency=currency,
-                                       balance=balance, amount=amount, transaction_id=valid, transaction_to=address)
+            code = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase) for _ in range(12))
+            trans_obj =Transaction.objects.create(user=self.request.user, currency=currency,
+                                       balance=balance, amount=amount, transaction_to=address,
+                                       activation_code=code)
+
+            self.request.session['transaction'] = trans_obj.system_tx_id
+            slug = trans_obj.system_tx_id+"-"+code
+            context = {
+                'user': self.request.user.first_name,
+                'slug_val': slug,
+                'amount': amount,
+                'host': self.request.get_host(),
+                'scheme': self.request.scheme,
+            }
+            response_data = render_to_string('coins/transfer-confirmed-email.html', context, )
+            email = EmailMessage('Getcryptopayments.org Withdrawal Confirmation', response_data, to=[self.request.user.email])
+            email.send()
+
             return HttpResponse(json.dumps({"success": True}), content_type='application/json')
 
         return HttpResponse(json.dumps(valid), content_type='application/json')
+
+class SendSuccessView(TemplateView):
+    template_name = 'coins/send-money-success.html'
+
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['transaction'] = self.request.session['transaction'] 
+        return context
+
+class SendConfirmView(TemplateView):
+    template_name = 'coins/send-money-confirm.html'
+
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tx_id = kwargs.get('slug').split('-')[0]
+        token = kwargs.get('slug').split('-')[1]
+        t_obj = Transaction.objects.filter(system_tx_id=tx_id, activation_code=token).first()
+        if t_obj:
+            obj = XRP(self.request.user)
+            valid = obj.send(t_obj.transaction_to, str(t_obj.amount))
+            balance = obj.balance()
+            t_obj.approved=True
+            t_obj.balance = balance
+            t_obj.transaction_id=valid
+            t_obj.save()
+            context['status'] = True
+        else:
+            context['status'] = False
+        return context

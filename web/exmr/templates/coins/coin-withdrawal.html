@@ -3,6 +3,7 @@
 {% block content %}
 {% load transaction_status %}
 {% load i18n widget_tweaks %}
+
 <div class="withdrawal">
   <div class="container">
     <div class="panel panel-default">
@@ -47,6 +48,7 @@
             <input type="text" class="form-control form-group wallet-send-coin-addr" />
             <input type="text" class="form-control form-group" />
             <button class="btn btn-signup" onclick="sendConfirm();"> {% trans 'Request Withdrawal/Send' %} </button>
+            <img id="loading-image" src="{% static 'images/load.gif' %}" style="display:none;height: 60px;"/>
           </div>
         </div>
       </div>
@@ -69,22 +71,25 @@ function sendConfirm(){
     amount = $(".amount").val();
     $.ajax({
         type: "POST",
-        url: "{% url 'coins:sendconfirm' coin.code %}",
+        url: "{% url 'coins:send' coin.code %}",
         data: {
             'to': address,
             'amount': amount,
             csrfmiddlewaretoken: '{{ csrf_token }}',
+            beforeSend: function() {
+              $(".btn-signup").hide();
+              $("#loading-image").show();
+           },
         },
         success: function (data) {
             if (data['success']){
-                alert("success")
+                window.location.href = "{% url 'coins:send-success' %}"
             }     
             else{
               alert(data['error']);
            }
-           $('#successModal').on('hidden.bs.modal', function (e) {
-            location.reload();
-          })
+           $(".btn-signup").show();
+           $("#loading-image").hide();
         }
     });
 }

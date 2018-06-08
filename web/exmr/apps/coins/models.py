@@ -1,3 +1,5 @@
+import random
+
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
@@ -30,6 +32,10 @@ PAYMENT_MODE_CHOICES = (
     (ASAP_CONVERT, _('ASAP + Convert'))
 )
 
+
+def get_random():
+    u_id = ''.join(random.choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') for i in range(20))
+    return u_id
 
 class Coin(models.Model):
     """
@@ -136,6 +142,9 @@ class Transaction(models.Model):
     transaction_id = models.CharField(blank=True, max_length=200)
     transaction_to = models.CharField(blank=True, max_length=200)
     message = models.CharField(blank=True, max_length=300)
+    system_tx_id = models.CharField(max_length=50, default=get_random)
+    activation_code = models.CharField(max_length=20, blank=True)
+    approved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

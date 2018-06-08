@@ -19,5 +19,7 @@ urlpatterns = [
     path('add-coin/', coin_views.AddNewCoin.as_view(), name='add-coin'),
     path('coin-settings/',coin_views.CoinSettings.as_view(),name='coin-settings'),
     path('coin-withdrawal/<str:code>/', coin_views.CoinWithdrawal.as_view(), name='coin-withdrawal'),
+    path('send/<slug:slug>/', coin_views.SendView.as_view(), name='send'),
+    path('send-success/', coin_views.SendSuccessView.as_view(), name='send-success'),
     path('sendconfirm/<slug:slug>/', coin_views.SendConfirmView.as_view(), name='sendconfirm'),
 ]

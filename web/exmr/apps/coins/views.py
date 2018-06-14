@@ -13,7 +13,8 @@ from django.views.generic import ListView, FormView, TemplateView, DetailView, V
 from apps.coins.utils import *
 from apps.accounts.models import User
 from apps.coins.forms import ConvertRequestForm
-from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction
+from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
+                              CoinVote
 from django.shortcuts import render
 
 CURRENCIES = ['BTC','LTC', 'BCH', 'XRP']
@@ -200,11 +201,11 @@ class SendView(LoginRequiredMixin, View):
             self.request.session['transaction'] = trans_obj.system_tx_id
             slug = trans_obj.system_tx_id+"-"+code
             context = {
-                'user': self.request.user.first_name,
                 'slug_val': slug,
-                'amount': amount,
                 'host': self.request.get_host(),
                 'scheme': self.request.scheme,
+                'transaction': trans_obj,
+                'type': currency,
             }
             response_data = render_to_string('coins/transfer-confirmed-email.html', context, )
             email = EmailMessage('Getcryptopayments.org Withdrawal Confirmation', response_data, to=[self.request.user.email])
@@ -244,3 +245,30 @@ class SendConfirmView(TemplateView):
         else:
             context['status'] = False
         return context
+
+class VoteDetailsView(TemplateView):
+    template_name = 'coins/vote_details.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        coin_code = kwargs.get('currency') 
+        coin_votes = CoinVote.objects.filter(coin__code = coin_code)
+        context['votes_share_completed'] = coin_votes.filter(type="share" ).count()
+        context['votes_follow_completed'] = coin_votes.filter(type="follow" ).count()
+        context['votes_share'] = [source['source'] for source in  coin_votes.filter(user=self.request.user, type="share" ).values('source')]
+        context['votes_follow'] = [source['source'] for source in  coin_votes.filter(user=self.request.user, type="follow").values('source')]
+        context['coin'] = Coin.objects.get(code = coin_code)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        currency_code = kwargs.get('currency')
+        vote_source = request.POST.get('source')
+        vote_type = request.POST.get('type')
+        coin = Coin.objects.get(code=currency_code)
+        obj,created = CoinVote.objects.get_or_create(user=request.user,\
+                      coin=coin,type=vote_type,source=vote_source)
+        if created:
+            coin.vote_count += int(10)
+            coin.save()
+
+        return HttpResponse(json.dumps({"success": True}), content_type='application/json') 

@@ -20,7 +20,7 @@ from django.views.generic import CreateView, TemplateView, FormView, UpdateView
 from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, Address, Feedback
 from apps.accounts.decorators import check_2fa
 from apps.coins.utils import *
-from apps.coins.models import Coin, Wallet
+from apps.coins.models import Coin, Wallet, Transaction
 from apps.common.utils import generate_key, JSONResponseMixin, get_pin
 from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm, IPNSettingsForm, \
     AddressForm
@@ -74,6 +74,11 @@ class SignUpCompleteView(TemplateView):
 @method_decorator(check_2fa, name='dispatch')
 class DashboardView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/dashboard.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['transactions'] = Transaction.objects.filter(user=self.request.user)
+        return context
 
 
 class TransactionHistoryView(LoginRequiredMixin, TemplateView):
@@ -330,7 +335,6 @@ class Verify2FAView(LoginRequiredMixin, View):
     template_name = 'accounts/verify_2fa.html'
 
     def get(self, request, *args, **kwargs):
-
         if request.user.get_profile.two_factor_auth == 0 or \
                 not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
             two_factor_type = 'Email'

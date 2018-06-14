@@ -1,0 +1,140 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load transaction_status %}
+{% load i18n %} 
+<style type="text/css">
+.btn-is-disabled {
+  pointer-events: none; /* Disables the button completely. Better than just cursor: default; */
+  opacity: 0.7;
+}
+</style>
+<section class="buy-tocken">
+    <div class="container">
+        <div class="row m0">
+            <div class="col-sm-8">
+                <div class="st-left">
+                    <h2> <img src="{% static 'images/coins/'%}{{view.kwargs.currency}}.png" style="margin-right: 15px;"><b>
+                      {% coin_code_to_name view.kwargs.currency %}({{ view.kwargs.currency }}) </b></h2>
+                    <h3>Help us get listed on Getcryptopayments Exchange</h3>
+
+                    <p>{% trans 'We are participating in Phase 7 The Getcryptopayments Exchange New Coin Listing Competition' %}</p>
+
+                    <p>{% trans "If we win we get to list Bitcoin Token (BTK) on Getcryptopayments Exchange, the world's first integrated Crypto Exchange" %}</p>
+
+                    <p>{% trans 'How To Help Us Win.' %}</p>
+
+                    <p>{% trans 'Option 1. Place in the top 2 coins per most points scored.' %}</p>
+
+                    <p>{% trans 'Option 2. Get an instant listing scoring 100,000 points' %}</p>
+
+                    <p>{% trans 'Before Voting, Please Read The Mechanics Here' %}</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="st-right" align="center">
+                    <h3>{% trans 'TIME REMAINING' %}</h3>
+                 <div class="counts">
+                     <p>{% trans 'Points' %} :<b>15,406</b></p>
+                      <p>{% trans 'Current place' %} :<b>1/3,524</b></p>
+                 </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="l-p">
+    <div class="container">
+        <div class="col-sm-12">
+        <div class="l-p-wrap">
+            
+            <h2 align="center"><b>{% trans 'Instant Listing Progress' %}</b></h2>
+            <p align="center">{% trans "Once we reach 100% we get an instant listing on CryptalDash Exchange!"%}</p>
+
+            <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{% percentage coin.vote_count%}%">
+      {% percentage coin.vote_count%}%
+    </div>
+  </div>
+  <hr/>
+    <h2 align="center"><b>1- Social Shares</b></h2>
+    <p>Share Required:<b>1000</b> (1 share =10points)</p>
+    <p>Share Completed : <b>{{votes_share_completed}}</b></p>
+  
+  <div align="center">
+      <a href="https://twitter.com/intent/tweet?text=%F0%9F%94%A5%F0%9F%94%A5+Help+Needed%21+The+community+needs+your+support+to+get+{% coin_code_to_name view.kwargs.currency %} official+listed+via+%40GetCryptoPayments+Exchange.+Support+{% coin_code_to_name view.kwargs.currency %}++%28{{view.kwargs.currency}}%29+and+vote+here%3A+https%3A%2F%2Fwww.getcryptopayments.com%2Fpublic-coin-votes%2F{{view.kwargs.currency}}+&redirect_uri=https://www.getcryptopayments.com/public-coin-votes/{{view.kwargs.currency}}&hashtags=Exchange,Cryptocurrency,ethereum,cryptoexchange,bitcoin&related=GCryptoPayments" class="social-a social-share{%if 'twitter' in votes_share %} btn-is-disabled{%endif%}" target="_blank" id="id_twitter"><i class="fab fa-twitter"></i> Tweet</a>
+
+      <a href="#" class="social-a social-share{%if 'facebook' in votes_share%} btn-is-disabled{%endif%}" id="id_facebook"><i class="fab fa-facebook-square"></i> Share</a>
+      <a href="#" class="social-a social-share{%if 'linkedin' in votes_share%} btn-is-disabled{%endif%}" id="id_linkedin"><i class="fab fa-linkedin"></i> Post</a>
+      <a href="#" class="social-a social-share{%if 'telegram' in votes_share%} btn-is-disabled{%endif%}" id="id_telegram"><i class="fas fa-paper-plane"></i> Share</a>
+  </div>
+
+
+<hr/>
+   <h2 align="center"><b>2- Social Follows</b></h2>
+    <p>Follows Required:<b>1000</b> (1 follow = 10points)</p>
+    <p>Follows Completed : <b>{{votes_follow_completed}}</b></p>
+  
+  <div align="center">
+      <a href="#" class="social-a"><i class="fab fa-twitter"></i> Tweet</a>
+      <a href="#" class="social-a"><i class="fab fa-facebook-square"></i> Share</a>
+       <a href="#" class="social-a"><i class="fab fa-linkedin"></i> Post</a>
+       <a href="#" class="social-a"><i class="fas fa-paper-plane"></i> Share</a>
+  </div>
+<hr>
+   <h2 align="center"><b>3- ICO Token</b></h2>
+    <p>SPoints Required: <b>80,000</b> (1 share =10points)</p>
+    <p>Points Completed: <b>0</b></p>
+  
+ <div class="mt20" align="center">
+     <button class="btn btn-by"> BUY ICO TOKENS NOW</button>
+ </div>
+        </div>
+
+<div class="mb20">
+    
+<h3 align="center" >Disclaimer</h3>
+
+<p>1. The points earned by each coin are checked each day for fake votes, spamming, and other similar activities. Since the competition receives a huge number of fake votes, please note that the points seen on the page are not the final and verified numbers.</p>
+<p>2.Winners of the Coin Listing Competition are subject to the rules and regulations of the Gibraltar Financial Services Commission and other regulatory bodies.</p>
+<p>3.Buying CRD tokens is considered a term of involvement of the CRD community and should not be considered as payment for listing.</p>
+</div>
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+$(".social-share").click(function(event){
+  source = event.target.id.replace("id_", "")
+  console.log(source);
+  coinVote(source,'share')
+})
+$(".social-share").click(function(event){
+  source = event.target.id.replace("id_", "")
+  console.log(source);
+  coinVote(source,'share')
+})
+function coinVote(source,type){
+    $.ajax({
+                type: "POST",
+                url: "{% url 'coins:vote-details' view.kwargs.currency %}",
+                data: {
+                    'source': source,
+                    'type':type,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (data) {
+                    console.log(target)
+                    $("#id_twitter").addClass("btn-is-disabled");
+
+                }
+            })
+}
+</script>
+{% endblock %}

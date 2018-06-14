@@ -1,6 +1,6 @@
-Hello {{ username }},
+Hello {{ request.user.first_name }},
 
-We have received a request to withdraw {{ amount }} LTCT from your account to mv9qDCVRhhhxtNxgKH5AF74XAdCiDiZusA.
+We have received a request to withdraw {{ transaction.amount }} {{type}} from your account to {{transaction.system_tx_id}}.
 
 To acknowledge the request and process the withdrawal, click this link: {{scheme}}://{{host}}{% url 'coins:sendconfirm' slug_val %}
 

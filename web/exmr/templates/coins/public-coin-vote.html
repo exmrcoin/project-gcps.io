@@ -161,9 +161,8 @@
                                         </div>
                                     </td>
                                     <td class="padx0">
-                                        <button class="btn-vote-btn2" onclick="coinVote('{{coin.id}}',1);">+1 votes</button>
-                                        <button type="button" class="btn-vote-btn2" onclick="coinVote('{{coin.id}}',5);">+5 votes</button>
-                                        <button type="button" class="btn-vote-btn2" onclick="coinVote('{{coin.id}}',10);">+10 votes</button>
+                                        <button class="btn-vote-btn2" onclick="window.location.href='{% url 'coins:vote-details' coin.code %}'">Vote</button>
+                                        
 
                                     </td>
                                 </tr>

@@ -3,8 +3,9 @@ import requests
 import datetime
 
 from django import template
-from apps.coins.utils import *
 
+from apps.coins.utils import *
+from apps.coins.models import Coin
 register = template.Library()
 
 
@@ -49,3 +50,6 @@ def percentage(count):
     percentage = (int(count)/1000)*100
     return percentage
 
+@register.simple_tag
+def coin_code_to_name(code):
+    return Coin.objects.get(code=code).coin_name

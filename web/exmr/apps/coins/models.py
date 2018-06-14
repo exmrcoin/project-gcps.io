@@ -32,6 +32,23 @@ PAYMENT_MODE_CHOICES = (
     (ASAP_CONVERT, _('ASAP + Convert'))
 )
 
+SOCIAL_TYPE = (
+    ('follow', _('follow')),
+    ('share', _('share')),
+    ('token', _('token')),
+    )
+
+SOCIAL_SOURCE = (
+    ('facebook', _('facebook')),
+    ('twitter', _('twitter')),
+    ('linkedin', _('linkedin')),
+    ('telegram', _('telegram')),
+    ('reddit', _('reddit')),
+    ('youtube', _('youtube')),
+    ('medium', _('medium')),
+    ('steemit', _('steemit')),
+
+    )
 
 def get_random():
     u_id = ''.join(random.choice('0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ') for i in range(20))
@@ -64,6 +81,15 @@ class Coin(models.Model):
     def __str__(self):
         return self.coin_name
 
+
+class CoinVote(models.Model):
+    user = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.CASCADE)
+    coin = models.ForeignKey(Coin, verbose_name=_('coin'), on_delete=models.CASCADE)
+    type =  models.CharField(choices=SOCIAL_TYPE, max_length=20,default='')
+    source = models.CharField(choices=SOCIAL_SOURCE, max_length=20, default='')
+
+    def __str__(self):
+        return self.user.username+"_" +self.type+"_"+self.source
 
 class CoinSetting(models.Model):
     """
@@ -148,3 +174,4 @@ class Transaction(models.Model):
 
     def __str__(self):
         return self.user.username
+

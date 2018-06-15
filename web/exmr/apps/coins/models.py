@@ -47,6 +47,7 @@ SOCIAL_SOURCE = (
     ('youtube', _('youtube')),
     ('medium', _('medium')),
     ('steemit', _('steemit')),
+    ('instagram', _('instagram')),
 
     )
 

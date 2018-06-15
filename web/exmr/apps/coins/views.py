@@ -246,7 +246,7 @@ class SendConfirmView(TemplateView):
             context['status'] = False
         return context
 
-class VoteDetailsView(TemplateView):
+class VoteDetailsView(LoginRequiredMixin, TemplateView):
     template_name = 'coins/vote_details.html'
 
     def get_context_data(self, *args, **kwargs):

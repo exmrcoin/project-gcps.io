@@ -6,7 +6,7 @@ from django.core.mail import EmailMessage
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
-from django.shortcuts import HttpResponse, render, redirect
+from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.views.generic import ListView, FormView, TemplateView, DetailView, View
 
@@ -14,7 +14,7 @@ from apps.coins.utils import *
 from apps.accounts.models import User
 from apps.coins.forms import ConvertRequestForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
-                              CoinVote
+                              CoinVote, ClaimRefund
 from django.shortcuts import render
 
 CURRENCIES = ['BTC','LTC', 'BCH', 'XRP']
@@ -272,3 +272,39 @@ class VoteDetailsView(LoginRequiredMixin, TemplateView):
             coin.save()
 
         return HttpResponse(json.dumps({"success": True}), content_type='application/json') 
+
+class RefundClaimView(LoginRequiredMixin, TemplateView):
+    template_name = 'coins/coin_refund_claim.html'
+    msgs = []
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        transaction_id = kwargs.get('slug')
+        transaction_obj = self.validate_transaction_id(transaction_id) 
+        context['transaction_obj'] = transaction_obj
+        context['msgs'] = self.msgs
+        return context
+    
+    def validate_transaction_id(self, transaction_id:str):
+        trasaction_obj = get_object_or_404(Transaction, system_tx_id=transaction_id)
+        # check if the user is already made a claim request
+        if ClaimRefund.objects.filter(transaction__system_tx_id=transaction_id).exists():
+            self.msgs.append({'text':"Already Applied for refund", 'class':'alert-danger'})
+        
+        return trasaction_obj
+    def post (self, *args, **kwargs):
+        
+        transaction_id = self.request.POST.get('transation_id', None)
+        transaction_obj = self.validate_transaction_id(transaction_id)
+        send_addr = self.request.POST.get('send_addr', None)
+
+        obj = ClaimRefund()
+        obj.transaction = transaction_obj
+        obj.send_addr = send_addr
+        obj.save()
+
+        return HttpResponse(json.dumps({"success": True}), content_type='application/json') 
+
+
+
+    

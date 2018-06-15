@@ -175,3 +175,9 @@ class Transaction(models.Model):
     def __str__(self):
         return self.user.username
 
+class ClaimRefund(models.Model):
+    transaction = models.ForeignKey(Transaction, on_delete=models.CASCADE)
+    refund_sent_address = models.CharField(max_length=250)
+
+    def __str__(self):
+            return self.transaction.user.username

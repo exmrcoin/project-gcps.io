@@ -1,0 +1,90 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load transaction_status %}
+{% load i18n widget_tweaks %}
+
+<div class="withdrawal">
+  <div class="container">
+    {%for msg in msgs%}
+      <div class="alert {{msg.class}}">
+          <strong>{{msg.text}}</strong> 
+        </div>
+      {%endfor%}
+      <div class="alert alert-success hidden">
+          <strong>Claim Process initiated. Rdirecting to Home Page</strong> 
+        </div>
+        {%if not msgs%}
+                <div class="panel panel-default">
+                  <div class="panel-heading"><b>{% trans 'Claim  Refund' %}</b></div>
+                  <div class="panel-body">
+                    <div class="row">
+                      <div class="col-sm-4 lh40" align="right">
+                        <p><b>{% trans 'Payment ID' %} :</b></p>
+                        <p><b>{% trans 'Refund Amount' %} :</b</p>
+                        <p><b>{% trans 'Send Refund To' %} : </b</p>
+                      </div>
+                      <div class="col-sm-6 lh40" >
+                        <p> {{transaction_obj.system_tx_id}}</p>
+                        <div class="row m0 mb20">
+                          {%csrf_token%}
+                        <p>{{transaction_obj.amount}} {{ transaction_obj.currency }}</p>
+                        <input type="text" class="form-control form-groupwallet-send-coin-addr" id="send_addr"/>
+                        <p class="error hidden" id="send_error" style="margin-bottom:-25px">* required</p><br>
+                        <button class="btn btn-primary" id="claim_refund"> {% trans 'Claim Refund' %} </button>
+                        <img id="loading-image" src="{% static 'images/load.gif' %}" style="display:none;height: 60px;"/>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+      {%endif%}
+</div>
+{% endblock %}
+
+{% block script %} 
+<script>
+              $('#claim_refund').click(function(){
+
+              var send_addr = $('#send_addr').val().trim()
+              var is_valid = true;
+              if (send_addr.length==0)
+              {
+              $('#send_error').removeClass('hidden');
+              is_valid = false;
+              }
+              if(is_valid){
+                data = {};
+                data['transation_id'] = "{{transaction_obj.system_tx_id}}";
+                data['send_addr'] = send_addr;
+                data['csrfmiddlewaretoken'] = "{{csrf_token}}";
+                
+                $.post(window.location.href, data, function(result){
+                  $('.alert-success').removeClass('hidden')
+                  $('.withdrawal .panel-default').addClass('hidden')
+                  setTimeout(function(){ 
+                    window.location.href= "{% url 'coins:wallets' %}"
+                   }, 2000);
+    
+              });
+              }
+
+              })
+              $('#send_addr').keyup(function(){
+
+                var send_addr = $('#send_addr').val().trim()
+                if (send_addr.length==0)
+                {
+                  $('#send_error').removeClass('hidden');
+                }
+                else{
+                    if(!$('#send_error').hasClass('hidden'))
+                    {
+                      $('#send_error').addClass('hidden');
+                    }
+                }
+
+
+              })
+</script>
+{% endblock %}

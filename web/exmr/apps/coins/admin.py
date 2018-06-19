@@ -3,7 +3,8 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-from apps.coins.models import Coin, CoinSetting, CoinConvertRequest, Wallet, Transaction, ClaimRefund
+from apps.coins.models import Coin, CoinSetting, CoinConvertRequest, Wallet, Transaction,\
+                              ClaimRefund, NewCoin, CoinVote
 
 
 class CoinResource(resources.ModelResource):
@@ -34,3 +35,5 @@ admin.site.register(CoinConvertRequest)
 admin.site.register(Wallet)
 admin.site.register(Transaction)
 admin.site.register(ClaimRefund)
+admin.site.register(NewCoin)
+admin.site.register(CoinVote)

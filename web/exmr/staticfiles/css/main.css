@@ -290,3 +290,16 @@ text-decoration: none;}
     font-size: 20px;
     margin-bottom: 1em;
     }
+.f-logo {display: block;margin:auto;margin-top:  20px;margin-bottom:  20px;}
+
+.coin-listing-form  {    background: #eeeff3;}
+
+.list-wrap {
+    padding: 20px;
+    padding-bottom: 30px;
+    background: #fff;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}  
+
+.list-wrap h3 {    line-height: 31px;}

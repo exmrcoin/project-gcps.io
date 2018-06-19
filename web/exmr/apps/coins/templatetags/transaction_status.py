@@ -5,7 +5,7 @@ import datetime
 from django import template
 
 from apps.coins.utils import *
-from apps.coins.models import Coin
+from apps.coins.models import Coin, NewCoin
 register = template.Library()
 
 
@@ -52,4 +52,4 @@ def percentage(count):
 
 @register.simple_tag
 def coin_code_to_name(code):
-    return Coin.objects.get(code=code).coin_name
+    return NewCoin.objects.get(code=code).name

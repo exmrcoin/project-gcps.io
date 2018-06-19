@@ -24,5 +24,6 @@ urlpatterns = [
     path('sendconfirm/<slug:slug>/', coin_views.SendConfirmView.as_view(), name='sendconfirm'),
     path('vote-details/<str:currency>/', coin_views.VoteDetailsView.as_view(), name='vote-details'),
     path('refund-claim/<slug:slug>/', coin_views.RefundClaimView.as_view(), name='refund-claim'),
+    path('add-public-coin/', coin_views.NewCoinAddView.as_view(), name='add-public-coin' )
 
 ]

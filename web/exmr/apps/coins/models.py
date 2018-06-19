@@ -83,15 +83,6 @@ class Coin(models.Model):
         return self.coin_name
 
 
-class CoinVote(models.Model):
-    user = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.CASCADE)
-    coin = models.ForeignKey(Coin, verbose_name=_('coin'), on_delete=models.CASCADE)
-    type =  models.CharField(choices=SOCIAL_TYPE, max_length=20,default='')
-    source = models.CharField(choices=SOCIAL_SOURCE, max_length=20, default='')
-
-    def __str__(self):
-        return self.user.username+"_" +self.type+"_"+self.source
-
 class CoinSetting(models.Model):
     """
     Model to save the coin setting for each user
@@ -182,3 +173,39 @@ class ClaimRefund(models.Model):
 
     def __str__(self):
             return self.transaction.user.username
+
+
+class NewCoin(models.Model):
+    email = models.EmailField(verbose_name=_('email'))
+    company_email = models.EmailField(verbose_name=_('comapny email'))
+    first_name = models.CharField(verbose_name=_('first name'), max_length=30)
+    last_name = models.CharField(verbose_name=_('last name'), max_length=30)
+    contact_number = models.CharField(verbose_name=_('contact number'), max_length=20)
+    secondary_number = models.CharField(max_length=20, null=True, blank=True)
+    name = models.CharField(verbose_name=_('coin name'), max_length=30, unique=True)
+    code = models.CharField(verbose_name=_('coin code'), max_length=10, unique=True)
+    website = models.URLField(_('website URL'), null=True, blank=True)
+    # best_time_to_call = models.DateTimeField()
+    logo_url = models.URLField(_('logo_url'), null=True, blank=True)
+    hash_tags = models.CharField(verbose_name=_('hash tags'), max_length=100)
+    twitter_handle = models.CharField(_('twitter handle'), max_length=20)
+    fb_page = models.URLField(_('facebook page'), null=True, blank=True)
+    twitter_page = models.URLField(_('twitter page'), null=True, blank=True)
+    linkedin_page = models.URLField(_('linkedin page'), null=True, blank=True)
+    telegram_page = models.URLField(_('telegram page'), null=True, blank=True)
+    reddit_page = models.URLField(_('reddit page'), null=True, blank=True)
+    vote_count = models.IntegerField(_('vote count'), default=0, null=True, blank=True)
+    approved = models.BooleanField(default=False)
+
+
+    def __str__(self):
+        return self.name
+
+class CoinVote(models.Model):
+    user = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.CASCADE)
+    coin = models.ForeignKey(NewCoin, verbose_name=_('coin'), on_delete=models.CASCADE)
+    type =  models.CharField(choices=SOCIAL_TYPE, max_length=20,default='')
+    source = models.CharField(choices=SOCIAL_SOURCE, max_length=20, default='')
+
+    def __str__(self):
+        return self.user.username+"_" +self.type+"_"+self.source

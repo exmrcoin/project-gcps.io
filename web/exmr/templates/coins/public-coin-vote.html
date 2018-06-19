@@ -131,6 +131,7 @@
                         <span class="electroinc">50,000 EXMR</span>. For full rule and information
                         <span class="electroinc">click here</span>.
                     </div>
+                    <button class="btn btn-success" onclick="window.location.href='{% url 'coins:add-public-coin'%}'"> Submit Coin </button>
                     <div id="table_div">
                         <table class="table vote_table">
                             <thead>
@@ -150,7 +151,7 @@
                                 {% for coin in coins %}
                                 <tr class="table-th">
                                     <td>{{forloop.counter}}st</td>
-                                    <td> {{coin.coin_name}}</td>
+                                    <td> {{coin.name}}</td>
                                     <td>
                                         <B>{{coin.code}}</B>
                                     </td>

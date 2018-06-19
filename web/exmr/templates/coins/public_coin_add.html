@@ -1,0 +1,77 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load transaction_status %}
+{% load i18n %} 
+
+       <div class="coin-listing-form">
+           <div class="container">
+               <div class="row">
+               	<form method="post">
+               		{% csrf_token %}
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="list-wrap">
+                         <h3>GetCryptoPayments - New Coin Listing Competition</h3> 
+                         <p class="mb20"><b>Enter your contact information below for a chance to have your coin listed on June 2018</b></p>
+                         <label class="mt10">Email Address *</label> 
+                         <input type="text" name="email" id="id_email" class="form-control" placeholder="Your Email Address">
+                         <label class="mt20">Company Email Address (Optional)</label>
+                         <input type="text" name="company_email" id="id_company_email" placeholder="Company Email Address" value="" class="form-control">
+                         <label class="mt20">First Name </label>
+                         <input type="text" name="first_name" id="id_first_name" placeholder="Your First Name" value="" required="" class="form-control">
+                         <label class="mt20">Last Name </label>
+                         <input type="text" name="last_name" id="id_first_name" placeholder="Your First Name" value="" required="" class="form-control">
+                         <label class="mt20">Contact Number (With County Code) *</label>
+                         <input type="text" name="contact_number" id="id_contact_number" placeholder="Your Contact Number" value="" required="" class="form-control">
+                         <label class="mt20"> Secondary Contact Number (Optional)</label>
+                         <input type="text" name="secondary_number" id="id_secondary_number" placeholder="Your Contact Number" value="" class="form-control" >
+                         <label class="mt20"> Coin Name </label>
+                         <input type="text" name="name" id="id_name" placeholder="Example: YourCoin" value="" required="" class="form-control">
+                         <label class="mt20"> Coin Code </label>
+                         <input type="text" name="code" id="id_code" placeholder="Example: YCOIN" value="" required="" class="form-control">
+                         <label class="mt20">Website </label>
+                         <input type="text" id="id_website" name="website" placeholder="http://www.website.com" value="" required="" class="form-control">
+                         <!-- <label class="mt20">Role in the company</label> -->
+                         <!-- <select name="role" class="form-control" >
+                            <option value="VP/Director">VP/Director</option>
+                            <option value="Marketing Manager">Marketing Manager</option>
+                            <option value="Chief Engineer">Chief Engineer</option>
+                            <option value="Analyst">Analyst</option>
+                            <option value="External Relations">External Relations</option>
+                            <option value="Network Admin / System Admin">Network Admin / System Admin</option>
+                            <option value="Community Member">Community Member</option>
+                        </select> -->
+                        <!-- <label class="mt20" style="margin-bottom: 5px;">Best time to call (EDT) <strong class="red">*</strong></label>
+                        <p>Office hours: Mon-Fri (11pm - 8am EDT)</p> -->
+                        <div class="row">
+                            <div class="col-sm-6">
+                        <!-- <input type="date" name="besttime" placeholder="Date/Time/EDT" value="" required="" class="form-control"> -->
+                    </div>
+                    <div class="col-sm-6">
+                        <!-- <input id="time" type="time" class="form-control"> -->
+                    </div>
+                        </div>
+                        <label class="mt20">Logo URL (Optional)</label>
+                        <input type="text" name="logo_url" id="id_logo_url" placeholder="http://directory-to-the-logo/yourlogo.png" value="" class="form-control">
+                        <label class="mt20">Coin #hashtag</label>
+                        <input type="text" name="hash_tags" id="id_hash_tags" placeholder="Coin #hashtag" value="" class="form-control">
+                        <label class="mt20">Twitter Handle</label>
+                        <input type="text" name="twitter_handle" id="id_twitter_handle" placeholder="@coinname" value="" required="" class="form-control">
+                        <label class="mt20">Facebook Page (Optional)</label>
+                        <input type="text" name="fb_page" id="id_fb_page" placeholder="http://facebook.com/yourcoinspage" value="" class="form-control">
+                        <label class="mt20">Twitter Page (Optional)</label>
+                        <input type="text" name="twitter_page" id="id_twitter_page" placeholder="http://twitter.com/@yourcoinspage" value="" class="form-control">
+                        <label class="mt20">Linkedin Page (Optional)</label>
+                        <input type="text" name="linkedin_page" id="id_linkedin_page" placeholder="http://linkedin.com/profile/yourcoinspage" value="" class="form-control">
+                        <label class="mt20">Telegram Page (Optional)</label>
+                        <input type="text" name="telegram_page" id="id_telegram_page" placeholder="http://telegram.com/yourcoinspage" value="" class="form-control">
+                        <label class="mt20">Reddit Page (Optional)</label>
+                        <input type="text" name="reddit_page" id="id_reddit_page" placeholder="http://reddit.com/user/yourcoinspage" value="" class="form-control">
+                        <button class="btn btn-block btn-success mt20 btn-lg"> Send Request </button>
+                        </div>
+                    </div>
+                </form>
+               </div>
+           </div>
+       </div>
+{% endblock %}

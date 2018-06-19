@@ -67,8 +67,11 @@
       <a href="https://twitter.com/intent/tweet?text=%F0%9F%94%A5%F0%9F%94%A5+Help+Needed%21+The+community+needs+your+support+to+get+{% coin_code_to_name view.kwargs.currency %} official+listed+via+%40GetCryptoPayments+Exchange.+Support+{% coin_code_to_name view.kwargs.currency %}++%28{{view.kwargs.currency}}%29+and+vote+here%3A+https%3A%2F%2Fwww.getcryptopayments.com%2Fpublic-coin-votes%2F{{view.kwargs.currency}}+&redirect_uri=https://www.getcryptopayments.com/public-coin-votes/{{view.kwargs.currency}}&hashtags=Exchange,Cryptocurrency,ethereum,cryptoexchange,bitcoin&related=GCryptoPayments" class="social-a social-share{%if 'twitter' in votes_share %} btn-is-disabled{%endif%}" target="_blank" id="id_share_twitter"><i class="fab fa-twitter"></i> Tweet</a>
 
       <a href="https://www.facebook.com/GetCryptoPayments" class="social-a social-share{%if 'facebook' in votes_share%} btn-is-disabled{%endif%}" target="_blank" id="id_share_facebook"><i class="fab fa-facebook-square"></i> Share</a>
-      <a href="https://www.linkedin.com/company/getcryptopayments/" class="social-a social-share{%if 'linkedin' in votes_share%} btn-is-disabled{%endif%}" target="_blank" id="id_share_linkedin"><i class="fab fa-linkedin"></i> Post</a>
-      <a href="https://t.me/GetCryptoPayments" class="social-a social-share{%if 'telegram' in votes_share%} btn-is-disabled{%endif%}" id="id_share_telegram" target="_blank"><i class="fas fa-paper-plane"></i> Share</a>
+
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&title=The+Coin+Listing+Competition&ro=false&summary=&source=&counter=horizontal" class="social-a social-share{%if 'linkedin' in votes_share%} btn-is-disabled{%endif%}" target="_blank" id="id_share_linkedin"><i class="fab fa-linkedin"></i> Post</a>
+      
+      <a href="https://telegram.me/share/url?url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&bodytext=Support+and+grow+your+favorite+Cryptocurrency+by+getting+it+listed+on+GetCryptoPayments+Exchange&tags=&text=The+Coin+Listing+Competition" class="social-a social-share{%if 'telegram' in votes_share%} btn-is-disabled{%endif%}" id="id_share_telegram" target="_blank"><i class="fas fa-paper-plane"></i> Share</a>
+      
       <a href="https://www.instagram.com/GetCryptoPayments/" class="social-a social-share{%if 'instagram' in votes_share%} btn-is-disabled{%endif%}" id="id_share_instagram" target="_blank"><i<i class="fab fa-instagram"></i></i> Share</a>
   </div>
 

@@ -1,6 +1,6 @@
 from django import forms
 
-from apps.coins.models import CoinConvertRequest
+from apps.coins.models import CoinConvertRequest, NewCoin
 
 
 class ConvertRequestForm(forms.ModelForm):
@@ -13,3 +13,10 @@ class ConvertRequestForm(forms.ModelForm):
     class Meta:
         model = CoinConvertRequest
         fields = ('wallet_from', 'wallet_to')
+
+
+class NewCoinForm(forms.ModelForm):
+
+	class Meta:
+		model = NewCoin
+		exclude = ['']

@@ -14,7 +14,7 @@
         <div class="row m0">
             <div class="col-sm-8">
                 <div class="st-left">
-                    <h2> <img src="{% static 'images/coins/'%}{{view.kwargs.currency}}.png" style="margin-right: 15px;"><b>
+                    <h2> <img src="{% if coin.logo_url %}{{ coin.logo_url }}{% endif %}" style="margin-right: 15px; width: 20%;"><b>
                       {% coin_code_to_name view.kwargs.currency %}({{ view.kwargs.currency }}) </b></h2>
                     <h3>Help us get listed on Getcryptopayments Exchange</h3>
 

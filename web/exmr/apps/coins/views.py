@@ -143,7 +143,7 @@ class PublicCoinVote(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super(PublicCoinVote, self).get_context_data(**kwargs)
-        context['coins'] = NewCoin.objects.filter(approved=True)
+        context['coins'] = NewCoin.objects.filter(approved=True).order_by('-vote_count')
         return context
 
     def post(self, request, *args, **kwargs):
@@ -252,13 +252,16 @@ class VoteDetailsView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         coin_code = kwargs.get('currency') 
+        coin_obj = NewCoin.objects.get(code = coin_code)
         coin_votes = CoinVote.objects.filter(coin__code = coin_code)
         if coin_votes:
+            context['total_coins'] = NewCoin.objects.filter(approved=True).count()
+            context['position'] = [obj.id for obj in NewCoin.objects.filter(approved=True).order_by('-vote_count')].index(coin_obj.id)+1
             context['votes_share_completed'] = coin_votes.filter(type="share" ).count()
             context['votes_follow_completed'] = coin_votes.filter(type="follow" ).count()
             context['votes_share'] = [source['source'] for source in  coin_votes.filter(user=self.request.user, type="share" ).values('source')]
             context['votes_follow'] = [source['source'] for source in  coin_votes.filter(user=self.request.user, type="follow").values('source')]
-        context['coin'] = NewCoin.objects.get(code = coin_code)
+        context['coin'] = coin_obj
         return context
 
     def post(self, request, *args, **kwargs):
@@ -268,7 +271,7 @@ class VoteDetailsView(LoginRequiredMixin, TemplateView):
         coin = NewCoin.objects.get(code=currency_code)
         obj,created = CoinVote.objects.get_or_create(user=request.user,\
                       coin=coin,type=vote_type,source=vote_source)
-        coin.vote_count += int(10)
+        coin.vote_count += int(1)
         coin.save()
 
         return HttpResponse(json.dumps({"success": True}), content_type='application/json') 

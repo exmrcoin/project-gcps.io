@@ -35,8 +35,8 @@
                 <div class="st-right" align="center">
                     <h3>{% trans 'TIME REMAINING' %}</h3>
                  <div class="counts">
-                     <p>{% trans 'Points' %} :<b>15,406</b></p>
-                      <p>{% trans 'Current place' %} :<b>1/3,524</b></p>
+                     <p>{% trans 'Points' %} :<b>{{coin.vote_count}}</b></p>
+                      <p>{% trans 'Current place' %} :<b>{{position}}/{{total_coins}}</b></p>
                  </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
   </div>
   <hr/>
     <h2 align="center"><b>1- Social Shares</b></h2>
-    <p>Share Required:<b>1000</b> (1 share =10points)</p>
+    <p>Share Required:<b>1000</b> (1 share =1point)</p>
     <p>Share Completed : <b>{{votes_share_completed}}</b></p>
   
   <div align="center">
@@ -78,7 +78,7 @@
 
 <hr/>
    <h2 align="center"><b>2- Social Follows</b></h2>
-    <p>Follows Required:<b>1000</b> (1 follow = 10points)</p>
+    <p>Follows Required:<b>1000</b> (1 follow = 1point)</p>
     <p>Follows Completed : <b>{{votes_follow_completed}}</b></p>
   
   <div align="center">
@@ -96,7 +96,16 @@
  <div class="mt20" align="center">
      <button class="btn btn-by"> BUY TOKENS NOW</button>
  </div>
-        </div>
+</div>
+ <div class="d-box col-sm-6 col-sm-offset-3">
+    <h4><b>More way to Support  your coin</b></h4>
+    <h5>Bonus Points</h5>
+    <a href="{% url 'coins:add-public-coin'%}">Submit high leverage Point here</a>
+     <h5>Referral Link</h5>
+     <input type="text" value="http://{{site.domain}}{% url 'coins:vote-details' view.kwargs.currency %}" id="referalLink">
+     <button class="btn" onclick="copyBtn()"> Copy </button>
+</div>
+</div>
 
 <div class="mb20">
     
@@ -137,6 +146,12 @@ function coinVote(source,type){
 
                 }
             })
+}
+
+function copyBtn(link) {
+  var copyText = document.getElementById("referalLink");
+  copyText.select();
+  document.execCommand("copy");
 }
 </script>
 {% endblock %}

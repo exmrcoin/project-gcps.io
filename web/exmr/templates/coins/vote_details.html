@@ -35,11 +35,11 @@
                 <div class="st-left">
                     <h2> <img src="{% if coin.logo_url %}{{ coin.logo_url }}{% endif %}" style="margin-right: 15px; width: 20%;"><b>
                       {% coin_code_to_name view.kwargs.currency %}({{ view.kwargs.currency }}) </b></h2>
-                    <h3>Help us get listed on Getcryptopayments Exchange</h3>
+                    <h3>Help us get listed on GetCryptoPayments Gateway</h3>
 
-                    <p>{% trans 'We are participating in Phase 7 The Getcryptopayments Exchange New Coin Listing Competition' %}</p>
+                    <p>{% trans 'We are participating in Phase 1 The GetCryptoPayments Gateway New Coin Listing Competition' %}</p>
 
-                    <p>{% trans "If we win we get to list" %} {% coin_code_to_name view.kwargs.currency %}({{ view.kwargs.currency }}){% trans " on Getcryptopayments Exchange, the world's first integrated Crypto Exchange" %}</p>
+                    <p>{% trans "If we win we get to list" %} {% coin_code_to_name view.kwargs.currency %}({{ view.kwargs.currency }}){% trans " on GetCryptoPayments Gateway, the world's first integrated Crypto Payments  Gateway" %}</p>
 
                     <p>{% trans 'How To Help Us Win.' %}</p>
 
@@ -70,7 +70,7 @@
         <div class="l-p-wrap">
             
             <h2 align="center"><b>{% trans 'Instant Listing Progress' %}</b></h2>
-            <p align="center">{% trans "Once we reach 100% we get an instant listing on CryptalDash Exchange!"%}</p>
+            <p align="center">{% trans "Once we reach 100% we get an instant listing on GetCryptoPayments Gateway!"%}</p>
 
             <div class="progress">
     <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{% percentage coin.vote_count%}%">

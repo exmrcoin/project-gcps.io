@@ -18,18 +18,17 @@ DATABASES = {
 # For email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
 
-EMAIL_HOST = 'e12.ehosts.com'
+EMAIL_HOST = 'just150.justhost.com'
 
 EMAIL_HOST_USER = 'noreply@getcryptopayments.net'
 
-EMAIL_HOST_PASSWORD = 'Gcp1234!!'
+EMAIL_HOST_PASSWORD = 'Exmr@2018'
 
-EMAIL_PORT = 587
+EMAIL_PORT = 465
 
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
 
 # EMAIL_HOST = 'smtp.gmail.com'
 # EMAIL_HOST_USER = 'exmr.test@gmail.com'

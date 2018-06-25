@@ -9,6 +9,25 @@
   opacity: 0.7;
 }
 </style>
+<meta property="og:url"           content="https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}" />
+<meta property="og:type"          content="getcryptopayments" />
+<meta property="og:title"         content="GetCryptoPayments.org" />
+<meta property="og:description"   content="GetCryptoPayments" />
+<meta property="og:image"         content="{% if coin.logo_url %}{{ coin.logo_url }}{% endif %}" />
+
+<div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
 <section class="buy-tocken">
     <div class="container">
         <div class="row m0">
@@ -64,9 +83,18 @@
     <p>Share Completed : <b>{{votes_share_completed}}</b></p>
   
   <div align="center">
+
+    
       <a href="https://twitter.com/intent/tweet?text=%F0%9F%94%A5%F0%9F%94%A5+Help+Needed%21+The+community+needs+your+support+to+get+{% coin_code_to_name view.kwargs.currency %} official+listed+via+%40GetCryptoPayments+Exchange.+Support+{% coin_code_to_name view.kwargs.currency %}++%28{{view.kwargs.currency}}%29+and+vote+here%3A+https%3A%2F%2Fwww.getcryptopayments.com%2Fpublic-coin-votes%2F{{view.kwargs.currency}}+&redirect_uri=https://www.getcryptopayments.com/public-coin-votes/{{view.kwargs.currency}}&hashtags=Exchange,Cryptocurrency,ethereum,cryptoexchange,bitcoin&related=GCryptoPayments" class="social-a social-share{%if 'twitter' in votes_share %} btn-is-disabled{%endif%}" target="_blank" id="id_share_twitter"><i class="fab fa-twitter"></i> Tweet</a>
 
-      <a href="https://www.facebook.com/GetCryptoPayments" class="social-a social-share{%if 'facebook' in votes_share%} btn-is-disabled{%endif%}" target="_blank" id="id_share_facebook"><i class="fab fa-facebook-square"></i> Share</a>
+
+
+<div class="fb-share-button" style="display:none;" 
+    data-href="https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}" 
+    data-layout="button_count" id="id_share_facebook">
+  </div>
+
+      <a href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fwww.getcryptopayments.org%2Fcoins%2Fvote-details%2FAKK&display=popup&ref=plugin&src=share_button" target="_blank"  class="social-a social-share{%if 'facebook' in votes_share%} btn-is-disabled{%endif%}"  id="id_share_facebook"  data-layout="button_count"><i class="fab fa-facebook-square"></i> Share</a>
 
       <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&title=The+Coin+Listing+Competition&ro=false&summary=&source=&counter=horizontal" class="social-a social-share{%if 'linkedin' in votes_share%} btn-is-disabled{%endif%}" target="_blank" id="id_share_linkedin"><i class="fab fa-linkedin"></i> Post</a>
       
@@ -102,7 +130,7 @@
     <h5>Bonus Points</h5>
     <a href="{% url 'coins:add-public-coin'%}">Submit high leverage Point here</a>
      <h5>Referral Link</h5>
-     <input type="text" value="http://{{site.domain}}{% url 'coins:vote-details' view.kwargs.currency %}" id="referalLink">
+     <input type="text" value="https://getcryptopayments.org{% url 'coins:vote-details' view.kwargs.currency %}" id="referalLink">
      <button class="btn" onclick="copyBtn()"> Copy </button>
 </div>
 </div>
@@ -119,6 +147,7 @@
         </div>
     </div>
 </section>
+
 
 {% endblock %}
 
@@ -154,4 +183,5 @@ function copyBtn(link) {
   document.execCommand("copy");
 }
 </script>
+
 {% endblock %}

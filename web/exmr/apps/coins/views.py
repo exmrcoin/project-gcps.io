@@ -308,7 +308,7 @@ class RefundClaimView(LoginRequiredMixin, TemplateView):
 
         return HttpResponse(json.dumps({"success": True}), content_type='application/json') 
 
-class NewCoinAddView(LoginRequiredMixin, FormView):
+class NewCoinAddView(FormView):
     template_name = "coins/public_coin_add.html"
     form_class = NewCoinForm
     success_url = reverse_lazy('public coin vote')
@@ -318,8 +318,7 @@ class NewCoinAddView(LoginRequiredMixin, FormView):
         return super().form_valid(form)
 
     def form_invalid(self, form):
-        print(form.errors)
-        return super(ConvertCoinsView, self).form_invalid(form)
+        return super(NewCoinAddView, self).form_invalid(form)
 
 
 

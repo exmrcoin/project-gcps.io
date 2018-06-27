@@ -1,0 +1,168 @@
+{% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
+<div></div>
+{% load transaction_status %} {% block dashboard_heading %}
+<div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">PAY BY NAME
+        </div>
+    </div>
+</div>
+{% endblock %} {% block dashboard_wrapper_content %}
+
+<div class="dashboard-wrapper">
+    <div class="dasboard-head pad10">
+        <div class="img-dashboard">
+            <img src="{% static '/images/recevied.png' %} ">
+        </div>
+        <span class="font-h3">{% trans 'Get Your Personalised PaymentID' %}</span>
+    </div>
+
+</div>
+
+
+<div class="col-xs-12 col-md-6 ">
+    <div class="dashboard-wrapper-width ">
+        <div class="dasboard-head pad10 my-1 col-xs-12 col-md-6">
+            <span class="font-h3  col-xs-4">
+                Item#
+            </span>
+            <span class="font-h3  col-xs-8 ">
+                Item
+            </span>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-12 border-btm-line my-1">
+                <span class="col-xs-4">
+                    Item#
+                </span>
+                <span class="col-xs-8 ">
+                    Item
+                </span>
+            </div>
+            <div class="col-xs-12 border-btm-line my-1">
+                <span class="col-xs-4">
+                    Item#
+                </span>
+                <span class="col-xs-8 ">
+                    Item
+                </span>
+            </div>
+            <div class="col-xs-12 border-btm-line my-1">
+                <span class="col-xs-4">
+                    Item#
+                </span>
+                <span class="col-xs-8 ">
+                    Item
+                </span>
+            </div>
+            <div class="col-xs-12 border-btm-line my-1">
+                <span class="col-xs-4">
+                    Item#
+                </span>
+                <span class="col-xs-8 ">
+                    Item
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xs-12 col-md-6 ">
+    <div class="dashboard-wrapper-width ">
+        <div class="dasboard-head pad10 my-1 col-xs-12 col-md-6">
+            <span class="font-h3  col-xs-4">
+                Price/Unit
+            </span>
+            <span class="font-h3  col-xs-4 ">
+                Quantity
+            </span>
+            <span class="font-h3  col-xs-4 ">
+                Price
+            </span>
+        </div>
+        <div class="col-xs-12">
+            <div class="col-xs-12 border-btm-line my-1">
+                <span class="col-xs-4">
+                    Item#
+                </span>
+                <span class="col-xs-4 ">
+                    Item
+                </span>
+                <span class="col-xs-4 ">
+                    Item
+                </span>
+            </div>
+            <div class="col-xs-12 border-btm-line my-1">
+                <span class="col-xs-4">
+                    Item#
+                </span>
+                <span class="col-xs-4 ">
+                    Item
+                </span>
+                <span class="col-xs-4 ">
+                    Item
+                </span>
+            </div>
+            <div class="col-xs-12 border-btm-line my-1">
+                <span class="col-xs-4">
+                    Item#
+                </span>
+                <span class="col-xs-4 ">
+                    Item
+                </span>
+                <span class="col-xs-4 ">
+                    Item
+                </span>
+            </div>
+            <div class="col-xs-12 border-btm-line my-1">
+                <span class="col-xs-4">
+                    Item#
+                </span>
+                <span class="col-xs-4 ">
+                    Item
+                </span>
+                <span class="col-xs-4 ">
+                    Item
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-xs-12 col-md-6 ">
+    <div class="dashboard-wrapper-width ">
+        <div class="dasboard-head pad10 my-1 col-xs-12 col-md-6">
+            <span class="font-h3 ">
+                Buyer/Shipping Information
+            </span>
+        </div>
+        <div class="col-xs-12 text-center px-1">
+                <div class=" col-xs-12 col-md-6">
+                    <input type="text" class="input-text-exmr">
+                </div>
+                <div class=" col-xs-12 col-md-6">
+                    <input type="text" class="input-text-exmr">
+                </div>
+                <div class=" col-xs-12 px-2">
+                    <input type="text" class="input-text-exmr col-xs-12">
+                </div>
+                <form action="https://www.coinpayments.net/index.php" method="post">
+                    <input type="hidden" name="cmd" value="_pay">
+                    <input type="hidden" name="reset" value="1">
+                    <input type="hidden" name="merchant" value="448e5ddcb3032f0c76fbc877a5d1941b">
+                    <input type="hidden" name="item_name" value="testanand">
+                    <input type="hidden" name="item_number" value="1222">
+                    <input type="hidden" name="invoice" value="inv-321">
+                    <input type="hidden" name="currency" value="USD">
+                    <input type="hidden" name="amountf" value="10.00000000">
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="allow_quantity" value="0">
+                    <input type="hidden" name="want_shipping" value="0">
+                    <input type="hidden" name="success_url" value="javblog.site">
+                    <input type="hidden" name="cancel_url" value="javblog.site">
+                    <input type="hidden" name="allow_extra" value="1">
+                    <input type="image" src="https://www.coinpayments.net/images/pub/buynow-wide-blue.png" alt="Buy Now with CoinPayments.net">
+                </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

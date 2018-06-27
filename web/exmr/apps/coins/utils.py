@@ -5,7 +5,7 @@ from decimal import Decimal
 
 from bitcoinrpc.authproxy import AuthServiceProxy
 from apps.coins.models import Wallet, WalletAddress, Coin
-
+from apps.apiapp import views as apiview
 
 def create_BTC_connection():
     """
@@ -30,6 +30,9 @@ def create_BCH_connection():
     access = AuthServiceProxy("http://anand:anandkrishnan@13.58.70.247:18332")
     return access
 
+def create_DASH_connection():
+    return apiview.create_DASH_connection()
+
 
 def create_wallet(user, currency):
     """
@@ -39,6 +42,8 @@ def create_wallet(user, currency):
         return XRP(user).create_xrp_wallet()
     if currency in ['ETH']:
         return Eth(user).create_eth_wallet()
+    elif currency in ['DASH']:
+        return globals()['create_'+currency+'_wallet'](user,currency)
     else:
         coin = Coin.objects.get(code=currency)
         wallet_username = user.username + "_exmr"
@@ -218,3 +223,21 @@ class Eth():
             return {"error": result.get("error").get("message")}
         else:
             return True
+def create_DASH_wallet(user,currency):
+    coin = Coin.objects.get(code=currency)
+    wallet_username = user.username + "_exmr"
+    try:
+        import pdb ; pdb.set_trace()
+        addr = apiview.createaddr(wallet_username,coin)
+        # addr = False
+        # raise Exception
+    except:
+        addr = ''
+    wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
+    if created:
+        print(addr)
+        wallet.addresses.add(WalletAddress.objects.create(address=addr))
+        wallet.save()
+    else:
+        pub_address = wallet.addresses.all()[0].address
+    return addr

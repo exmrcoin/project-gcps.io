@@ -191,6 +191,9 @@ footer {
     border-bottom: none !important;
 }
 
+.border-btm-line {
+    border-bottom: 1px solid #f0f0f0;
+}
 .btn-noline>a {
     padding: 10px !important;
 }
@@ -596,6 +599,44 @@ footer {
 
 .mt-5 {
     margin-top: 4rem;
+}
+.my-1 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.my-2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.my-3 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.my-4 {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+}
+.my-5 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+.mx-1{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+.mx-2{
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.mx-3{
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+.mw250{
+    max-width: 250px;;
 }
 
 .dollar-btn {
@@ -1046,7 +1087,14 @@ footer {
     box-shadow: 0 1px 16px 2px #dedede;
     margin-bottom: 1.5rem;
 }
-
+.dashboard-wrapper-width {
+    margin-top: 1.5rem;
+    background-color: #fff;
+    height: auto;
+    float: left;
+    box-shadow: 0 1px 16px 2px #dedede;
+    margin-bottom: 1.5rem;
+}
 input[type="radio"] {
     margin-right: 10px;
 }
@@ -1632,4 +1680,81 @@ tbody .dropdown-menu{
     border-color: rgba(255, 1, 1, 0.8) !important;
     box-shadow: 0 1px 1px rgba(255, 0, 0, 0.075) inset, 0 0 8px rgba(255, 0, 0, 0.6) !important;
     outline: 0 none !important;
+}
+
+
+.input-text-exmr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 40px;
+    border-radius: 4px;
+    border: solid 1px #d7d7d7 !important;
+    box-shadow: inset 4px 0px 0px #e75d14 !important;
+    padding-left: 10px;
+}
+
+.pb-0 {
+    padding-bottom: 0;
+}
+
+.pt-0 {
+    padding-top: 0rem;
+}
+.pt-1 {
+    padding-top: 1.5rem;
+}
+
+.pt-2 {
+    padding-top: 2rem;
+}
+
+.pt-3 {
+    padding-top: 3rem;
+}
+
+.pt-4 {
+    padding-top: 3.5rem;
+}
+
+.pb-4 {
+    padding-bottom: 3.5rem;
+}
+
+.pt-5 {
+    padding-top: 4rem;
+}
+.py-1 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.py-2 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.py-3 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.py-4 {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+}
+.py-5 {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+.px-1{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+.px-2{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+.px-3{
+    padding-left: 3rem;
+    padding-right: 3rem;
 }

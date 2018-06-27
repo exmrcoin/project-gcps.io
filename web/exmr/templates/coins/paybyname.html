@@ -1,0 +1,127 @@
+{% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
+<div></div>
+{% load transaction_status %} {% block dashboard_heading %}
+<div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">PAY BY NAME
+        </div>
+    </div>
+</div>
+{% endblock %} {% block dashboard_wrapper_content %}
+
+<div class="dashboard-wrapper">
+    <div class="dasboard-head pad10">
+        <div class="img-dashboard">
+            <img src="{% static '/images/recevied.png' %} ">
+        </div>
+        <span class="font-h3">{% trans 'Get Your Personalised PaymentID' %}</span>
+    </div>
+    <div class="dashboard-table">
+        <div class="dasboard-head">
+            <div class="card">
+                <div class="card-body">
+
+                    <!--Table-->
+                    <table class="table table-border table-responsive-md table-fixed overflow table-scroll">
+
+                        <!--Table head-->
+                        <thead>
+                            <tr class="table-top">
+
+                                <th>{% trans '$PayByName Tag' %}</th>
+                                <th>{% trans 'Expires' %}</th>
+                                <th>{% trans 'Commands' %}</th>
+
+                            </tr>
+                        </thead>
+                        <tbody class="text-center">
+
+                            {% for obj in '123' %}
+                            <tr class="table-th text-center">
+                                <th>
+                                    <span>$GCP-VipinMohan</span>
+                                </th>
+                                <th>
+                                    <span>23 Oct 2019</span>
+                                </th>
+                                <th style="width: 150px;">
+                                    <div class="btn-group " style="width: 100%;">
+                                        <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="dropdown" aria-expanded="false">{{ obj.name.code }} Options
+                                            <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li>
+                                                <a href="">
+                                                    <span class="glyphicon glyphicon-import"></span> Deposit / Receive</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Send / Withdraw</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i> View Addresses
+                                                    <sup>3</sup>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-space-shuttle" aria-hidden="true"></i> Diversify your Portfolio</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="glyphicon glyphicon-lock"></span> Lock in Vault</a>
+                                            </li>
+                                            <li class="divider"></li>
+                                            <li>
+                                                <a href="">
+                                                    <span class="glyphicon glyphicon-import"></span> Deposit History</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Withdrawal History</a>
+                                            </li>
+                                            <li>
+                                                <a href="">
+                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Transfer History</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </th>
+
+
+
+                                </th>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                        <!--Table body-->
+
+                    </table>
+                    <!--Table-->
+
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="dashboard-wrapper">
+
+    <div class="dashboard-table ">
+        <div class="dasboard-head">
+            <div class="card">
+                <div class="card-body pad10 text-center">
+                    <a href="{% url 'coins:paybyname-payment'%}" class="btn btn-primary mx-1 my-1 col-xs-12 col-sm-6 col-md-4 mw250">Buy 1 PaymentTag for $1.99 USD</a>
+                    <a href="#" class="btn btn-primary mx-1  my-1  col-xs-12 col-sm-6 col-md-4 mw250">5 PaymentTag for $7.99 USD</a>
+                    <a href="#" class="btn btn-primary mx-1  my-1  mb-1 col-xs-12 col-sm-6 col-md-4 mw250">10 PaymentTag for $14.99 USD</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

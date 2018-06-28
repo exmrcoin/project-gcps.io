@@ -84,7 +84,7 @@ class Coin(models.Model):
         'Upload a 35X35 image for better experience'))
 
     coin_hosting_type = models.CharField(
-        max_length=20, choices=COIN_HOSTING, default='RED')
+        max_length=20, choices=COIN_HOSTING, default='HOSTED')
     to_btc = models.DecimalField(
         _('to BTC value'), max_digits=10, decimal_places=8, default=1.00000000)
     fee_percentage = models.DecimalField(

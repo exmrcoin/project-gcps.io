@@ -1,5 +1,6 @@
 from binance.client import Client
-client = Client('rjMaOqUI6zJlBRe2TxTbbN1ThD0k2Gk3QMRFAJDvZ8wkQCZEqehAw77ymHO9fRjI', 'gGanHPMl7gHcSwf0qvYZnZXAji56wubc9QVdEuegHPelddMm6AJEdQujdTQylazF')
+client = Client('rjMaOqUI6zJlBRe2TxTbbN1ThD0k2Gk3QMRFAJDvZ8wkQCZEqehAw77ymHO9fRjI',
+                'gGanHPMl7gHcSwf0qvYZnZXAji56wubc9QVdEuegHPelddMm6AJEdQujdTQylazF')
 
 # get market depth
 # depth = client.get_order_book(symbol='BNBBTC')
@@ -38,12 +39,13 @@ client = Client('rjMaOqUI6zJlBRe2TxTbbN1ThD0k2Gk3QMRFAJDvZ8wkQCZEqehAw77ymHO9fRj
 # get a deposit address for BTC
 # address = client.get_deposit_address(asset='BTC')
 
+
 def getnewaddress(currency):
     try:
-        temp = client.get_deposit_address(asset='BTC')
+        temp = client.get_deposit_address(asset=currency)
         print(temp['address'])
     except:
-        return 'an error occured. Please contact support'
+        temp['address'] = 'an error occured. Please contact support'
     return temp['address']
 
 

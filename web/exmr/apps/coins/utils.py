@@ -223,6 +223,7 @@ class Eth():
             return {"error": result.get("error").get("message")}
         else:
             return True
+
 def create_DASH_wallet(user,currency):
     coin = Coin.objects.get(code=currency)
     wallet_username = user.username + "_exmr"

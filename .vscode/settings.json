@@ -1,0 +1,4 @@
+{
+    "python.linting.pylintEnabled": false,
+    "python.pythonPath": "/home/techversant/development/exmr/venv/bin/python3.5"
+}

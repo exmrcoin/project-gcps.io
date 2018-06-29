@@ -24,6 +24,8 @@ urlpatterns = [
     path('sendconfirm/<slug:slug>/', coin_views.SendConfirmView.as_view(), name='sendconfirm'),
     path('vote-details/<str:currency>/', coin_views.VoteDetailsView.as_view(), name='vote-details'),
     path('refund-claim/<slug:slug>/', coin_views.RefundClaimView.as_view(), name='refund-claim'),
-    path('add-public-coin/', coin_views.NewCoinAddView.as_view(), name='add-public-coin' )
+    path('add-public-coin/', coin_views.NewCoinAddView.as_view(), name='add-public-coin' ),
+    path('paybyname/', coin_views.PayByNameView.as_view(), name='paybyname' ),
+    path('paybyname-payment/', coin_views.PayByNamePayView.as_view(), name='paybyname-payment' )
 
 ]

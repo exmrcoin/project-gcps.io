@@ -61,7 +61,9 @@ INSTALLED_APPS = [
     'apps.accounts',
     'apps.store',
     'apps.common',
-    'apps.coins'
+    'apps.coins',
+    'apps.apiapp',
+    'apps.merchant_tools'
 ]
 
 MIDDLEWARE = [

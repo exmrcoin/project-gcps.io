@@ -31,7 +31,7 @@
 
                                 <th>{% trans 'Time' %}</th>
                                 <th>{% trans 'Received / Sent Name' %}</th>
-                                <th>{% trans 'Coin' %}</th>
+                                <th style="padding-left: 8%;">{% trans 'Coin' %}</th>
                                 <th>{% trans 'Amount' %}</th>
                                 <th>{% trans 'Status' %}</th>
 
@@ -42,7 +42,7 @@
                                 <tr>
                                     <td>{% now "jS F Y H:i" %}</td>
                                     <td>{{transaction.transaction_to}}</td>
-                                    <td>{{transaction.currency}}</td>
+                                    <td style="padding-left: 8%;">{{transaction.currency}}</td>
                                     <td>{{transaction.amount}}</td>
                                     <td>_</td>
                                 </tr>

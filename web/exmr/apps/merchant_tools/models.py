@@ -20,7 +20,7 @@ class ButtonMaker(models.Model):
     shipping_cost_add = models.CharField(max_length=128, null=False)
     success_url_link = models.CharField(max_length=128, null=False)
     cancel_url_link = models.CharField(max_length=128, null=False)
-    ipn_url_linl = models.CharField(max_length=128, null=False)
+    ipn_url_link = models.CharField(max_length=128, null=False)
     btn_image = models.ForeignKey('ButtonImage', on_delete=models.CASCADE)
     allow_buyer_note = models.BooleanField(default=False)
 

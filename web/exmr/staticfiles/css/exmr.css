@@ -194,6 +194,7 @@ footer {
 .border-btm-line {
     border-bottom: 1px solid #f0f0f0;
 }
+
 .btn-noline>a {
     padding: 10px !important;
 }
@@ -245,7 +246,6 @@ footer {
         border-radius: 20px;
     }
 }
-
 
 /*============== footer start ========*/
 
@@ -600,6 +600,7 @@ footer {
 .mt-5 {
     margin-top: 4rem;
 }
+
 .my-1 {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
@@ -619,24 +620,30 @@ footer {
     margin-top: 3.5rem;
     margin-bottom: 3.5rem;
 }
+
 .my-5 {
     margin-top: 4rem;
     margin-bottom: 4rem;
 }
-.mx-1{
+
+.mx-1 {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
 }
-.mx-2{
+
+.mx-2 {
     margin-left: 2rem;
     margin-right: 2rem;
 }
-.mx-3{
+
+.mx-3 {
     margin-left: 3rem;
     margin-right: 3rem;
 }
-.mw250{
-    max-width: 250px;;
+
+.mw250 {
+    max-width: 250px;
+    ;
 }
 
 .dollar-btn {
@@ -1087,6 +1094,7 @@ footer {
     box-shadow: 0 1px 16px 2px #dedede;
     margin-bottom: 1.5rem;
 }
+
 .dashboard-wrapper-width {
     margin-top: 1.5rem;
     background-color: #fff;
@@ -1095,6 +1103,7 @@ footer {
     box-shadow: 0 1px 16px 2px #dedede;
     margin-bottom: 1.5rem;
 }
+
 input[type="radio"] {
     margin-right: 10px;
 }
@@ -1565,17 +1574,15 @@ input[type="email"] {
     color: white;
 }
 
-
 .dash-icon {
-        font-size: 25px;
-        margin-right: 20px;
-        margin-top: 5px;
-    }
-    
-.d-inline { 
-    display: inline-block;
- }
+    font-size: 25px;
+    margin-right: 20px;
+    margin-top: 5px;
+}
 
+.d-inline {
+    display: inline-block;
+}
 
 .v-mid {
     vertical-align: middle;
@@ -1649,16 +1656,19 @@ tbody tr:nth-child(even) {
     background-color: white;
     color: #383a41;
 }
-tbody tr:nth-child(even) .dropdown-menu{
+
+tbody tr:nth-child(even) .dropdown-menu {
     background: whitesmoke;
     border: 1px solid rgb(219, 219, 219);
 }
-tbody .dropdown-menu{
+
+tbody .dropdown-menu {
     border-radius: 20px;
     margin-top: 2px;
     background: white;
     padding: 15px 5px;
 }
+
 .table-top {
     background-color: #fff;
 }
@@ -1682,7 +1692,6 @@ tbody .dropdown-menu{
     outline: 0 none !important;
 }
 
-
 .input-text-exmr {
     margin-top: 10px;
     margin-bottom: 10px;
@@ -1690,7 +1699,6 @@ tbody .dropdown-menu{
     border-radius: 4px;
     border: solid 1px #d7d7d7 !important;
     box-shadow: inset 4px 0px 0px #e75d14 !important;
-    padding-left: 10px;
 }
 
 .pb-0 {
@@ -1700,6 +1708,7 @@ tbody .dropdown-menu{
 .pt-0 {
     padding-top: 0rem;
 }
+
 .pt-1 {
     padding-top: 1.5rem;
 }
@@ -1723,6 +1732,7 @@ tbody .dropdown-menu{
 .pt-5 {
     padding-top: 4rem;
 }
+
 .py-1 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
@@ -1742,19 +1752,28 @@ tbody .dropdown-menu{
     padding-top: 3.5rem;
     padding-bottom: 3.5rem;
 }
+
 .py-5 {
     padding-top: 4rem;
     padding-bottom: 4rem;
 }
-.px-1{
+
+.px-1 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
 }
-.px-2{
+
+.px-2 {
     padding-left: 2rem;
     padding-right: 2rem;
 }
-.px-3{
+
+.px-3 {
     padding-left: 3rem;
     padding-right: 3rem;
+}
+
+.code-font {
+    font-size: 12pt;
+    font-weight: 600;
 }

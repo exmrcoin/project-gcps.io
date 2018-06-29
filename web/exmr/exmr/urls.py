@@ -43,6 +43,7 @@ urlpatterns += i18n_patterns(
     path('coins/', include('apps.coins.urls')),
     path('store/', include('apps.store.urls')),
     path('common/', include('apps.common.urls')),
+    path('merchant_tools/', include('apps.merchant_tools.urls')),
     path('', HomeView.as_view(), name='home'),
     path('login/', LoginView.as_view(template_name="accounts/login.html"), name='signin'),
     path('sign-up/', TemplateView.as_view(template_name='accounts/signup.html'),

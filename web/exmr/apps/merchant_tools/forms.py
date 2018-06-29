@@ -3,20 +3,11 @@ from django import forms
 from apps.merchant_tools.models import ButtonMaker
 
 
-class ConvertRequestForm(forms.ModelForm):
-    """
-    Form used to save the coin requests
-    """
-    wallet_from = forms.CharField()
-    wallet_to = forms.CharField()
-
+class ButtonMakerForm(forms.ModelForm):
     class Meta:
-        model = CoinConvertRequest
-        fields = ('wallet_from', 'wallet_to')
+        model = ButtonMaker
+        exclude = ['']
 
-
-class NewCoinForm(forms.ModelForm):
-
-	class Meta:
-		model = NewCoin
-		exclude = ['']
+    def __init__(self, *args, **kwargs):
+        super(ButtonMakerForm, self).__init__(*args, **kwargs)
+        self.fields['merchant_id'].disabled = True

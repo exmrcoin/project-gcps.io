@@ -53,10 +53,11 @@ def create_wallet(user, currency):
             addr = access.getnewaddress(wallet_username)
             # addr = False
             # raise Exception
+            wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
+            wallet.addresses.add(WalletAddress.objects.create(address=addr))
         except:
             addr = ''
-        wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
-        # wallet.addresses.add(WalletAddress.objects.create(address=addr))
+        
     return addr
 
 
@@ -187,7 +188,7 @@ class Eth():
         serialized_data = json.dumps(message)
 
         headers = {'Content-type': 'application/json'}
-        response = requests.post("http://35.196.180.11:8545",headers=headers, data=serialized_data)
+        response = requests.post("http://104.196.190.224:8545",headers=headers, data=serialized_data)
         return response.json()
 
     def create_eth_wallet(self):

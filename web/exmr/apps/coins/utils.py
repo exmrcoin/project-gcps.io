@@ -12,7 +12,6 @@ def create_BTC_connection():
     create connetion to bitcoin fullnode
     """
     access = AuthServiceProxy("http://exmr:MKDNdksjfDNsjkN@104.196.190.224:8332")
-
     return access
 
 
@@ -69,7 +68,17 @@ def get_balance(user, currency):
     print (currency)
     if currency == "XRPTest":
         balance = XRP(user).balance()
-    else:
+    elif currency == "BTC":
+        wallet_username = user.username + "_exmr"
+        access = globals()['create_'+currency+'_connection']()
+        balance = access.getreceivedbyaccount(wallet_username)
+
+        transaction = Transaction.objects.filter(
+            user__username=user, currency=currency)
+        if transaction:
+            balance = balance - sum([Decimal(obj.amount)for obj in transaction])
+    elif currency == "ETH":
+        balance = Eth(user).get_eth_balance(user)
         # wallet_username = user.username + "_exmr"
         # access = globals()['create_'+currency+'_connection']()
         # balance = access.getreceivedbyaccount(wallet_username)
@@ -202,9 +211,9 @@ class Eth():
             address = wallet.addresses.all()[0].address
         return address
 
-    def get_eth_balance(user):
+    def get_eth_balance(self, user):
         user_addr = Wallet.objects.get(
-            user=user, name='eth').addresses.all()[0].address
+            user=user, name__code='ETH').addresses.all()[0].address
         params = [user_addr, "latest"]
         balance = get_results("eth_getBalance", params)['result']
         return balance

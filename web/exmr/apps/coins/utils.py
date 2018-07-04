@@ -11,7 +11,8 @@ def create_BTC_connection():
     """
     create connetion to bitcoin fullnode
     """
-    access = AuthServiceProxy("http://anand:anandkrishnan@18.218.176.0:18332")
+    access = AuthServiceProxy("http://exmr:MKDNdksjfDNsjkN@104.196.190.224:8332")
+
     return access
 
 

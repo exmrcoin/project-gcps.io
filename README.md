@@ -19,7 +19,7 @@
 ➥Krishna<br>
 
 # Milestone<br>
-⌘ Alpha Version this June 2018<br>
-⌘ Beta Version this July 2018<br>
-⌘ Official Launch this August 2018<br>
+⌘ Alpha Version this July 2018<br>
+⌘ Beta Version this Augus 2018<br>
+⌘ Official Launch this September 2018<br>
 ⌘ First dividends this September 2018 <br>

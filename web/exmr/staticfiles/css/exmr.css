@@ -341,6 +341,14 @@ footer {
     }
 }
 
+.h50px {
+    height: 50px;
+}
+
+.h50pxi {
+    height: 50px !important;
+}
+
 .w100p {
     width: 100%;
 }
@@ -1701,8 +1709,76 @@ tbody .dropdown-menu {
     box-shadow: inset 4px 0px 0px #e75d14 !important;
 }
 
+.pl-0 {
+    padding-left: 0rem;
+}
+
+.pl-1 {
+    padding-left: 1.5rem;
+}
+
+.pl-2 {
+    padding-left: 2rem;
+}
+
+.pl-3 {
+    padding-left: 3rem;
+}
+
+.pl-4 {
+    padding-left: 3.5rem;
+}
+
+.pl-5 {
+    padding-left: 4rem;
+}
+
+.pr-0 {
+    padding-right: 0rem;
+}
+
+.pr-1 {
+    padding-right: 1.5rem;
+}
+
+.pr-2 {
+    padding-right: 2rem;
+}
+
+.pr-3 {
+    padding-right: 3rem;
+}
+
+.pr-4 {
+    padding-right: 3.5rem;
+}
+
+.pr-5 {
+    padding-right: 4rem;
+}
+
 .pb-0 {
     padding-bottom: 0;
+}
+
+.pb-1 {
+    padding-bottom: 1.5rem;
+}
+
+.pb-2 {
+    padding-bottom: 2rem;
+}
+
+.pb-3 {
+    padding-bottom: 3rem;
+}
+
+.pb-4 {
+    padding-bottom: 3.5rem;
+}
+
+.pb-5 {
+    padding-bottom: 4rem;
 }
 
 .pt-0 {
@@ -1725,12 +1801,32 @@ tbody .dropdown-menu {
     padding-top: 3.5rem;
 }
 
-.pb-4 {
-    padding-bottom: 3.5rem;
-}
-
 .pt-5 {
     padding-top: 4rem;
+}
+
+.p-0 {
+    padding: 0rem;
+}
+
+.p-1 {
+    padding: 1.5rem;
+}
+
+.p-2 {
+    padding: 2rem;
+}
+
+.p-3 {
+    padding: 3rem;
+}
+
+.p-4 {
+    padding: 3.5rem;
+}
+
+.p-5 {
+    padding: 4rem;
 }
 
 .py-1 {
@@ -1758,6 +1854,11 @@ tbody .dropdown-menu {
     padding-bottom: 4rem;
 }
 
+.px-0 {
+    padding-left: 0rem;
+    padding-right: 0rem;
+}
+
 .px-1 {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
@@ -1773,7 +1874,265 @@ tbody .dropdown-menu {
     padding-right: 3rem;
 }
 
+.px-4 {
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+}
+
+.px-5 {
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+
 .code-font {
     font-size: 12pt;
     font-weight: 600;
+}
+
+@media screen and (min-width:992px) {
+    .text-md-right {
+        text-align: right;
+    }
+    .pl-md-0 {
+        padding-left: 0rem;
+    }
+    .pl-md-1 {
+        padding-left: 1.5rem;
+    }
+    .pl-md-2 {
+        padding-left: 2rem;
+    }
+    .pl-md-3 {
+        padding-left: 3rem;
+    }
+    .pl-md-4 {
+        padding-left: 3.5rem;
+    }
+    .pl-md-5 {
+        padding-left: 4rem;
+    }
+    .pr-md-0 {
+        padding-right: 0rem;
+    }
+    .pr-md-1 {
+        padding-right: 1.5rem;
+    }
+    .pr-md-2 {
+        padding-right: 2rem;
+    }
+    .pr-md-3 {
+        padding-right: 3rem;
+    }
+    .pr-md-4 {
+        padding-right: 3.5rem;
+    }
+    .pr-md-5 {
+        padding-right: 4rem;
+    }
+    .pb-md-0 {
+        padding-bottom: 0;
+    }
+    .pb-md-1 {
+        padding-bottom: 1.5rem;
+    }
+    .pb-md-2 {
+        padding-bottom: 2rem;
+    }
+    .pb-md-3 {
+        padding-bottom: 3rem;
+    }
+    .pb-md-4 {
+        padding-bottom: 3.5rem;
+    }
+    .pb-md-5 {
+        padding-bottom: 4rem;
+    }
+    .pt-md-0 {
+        padding-top: 0rem;
+    }
+    .pt-md-1 {
+        padding-top: 1.5rem;
+    }
+    .pt-md-2 {
+        padding-top: 2rem;
+    }
+    .pt-md-3 {
+        padding-top: 3rem;
+    }
+    .pt-md-4 {
+        padding-top: 3.5rem;
+    }
+    .pt-md-5 {
+        padding-top: 4rem;
+    }
+    .p-md-0 {
+        padding: 0rem;
+    }
+    .p-md-1 {
+        padding: 1.5rem;
+    }
+    .p-md-2 {
+        padding: 2rem;
+    }
+    .p-md-3 {
+        padding: 3rem;
+    }
+    .p-md-4 {
+        padding: 3.5rem;
+    }
+    .p-md-5 {
+        padding: 4rem;
+    }
+    .py-md-1 {
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+    .py-md-2 {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .py-3 {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    .py-md-4 {
+        padding-top: 3.5rem;
+        padding-bottom: 3.5rem;
+    }
+    .py-md-5 {
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    .px-md-0 {
+        padding-left: 0rem;
+        padding-right: 0rem;
+    }
+    .px-md-1 {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    .px-md-2 {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .px-md-3 {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+    .px-md-4 {
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+    }
+    .px-md-5 {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
+
+.orange-shadow-box {
+    border: 1px solid bisque;
+    background: antiquewhite;
+}
+
+.bg-white {
+    background: white;
+}
+
+/**************************************/
+
+label {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+}
+
+.btnrad:hover {
+    cursor: pointer !important;
+}
+
+.btnrad:active {
+    /* box-shadow: 0 1px #666 !important; */
+    transform: translateY(2px) !important;
+}
+
+.btnrad {
+    font-size: 15px;
+    font-weight: bold;
+    height: 35px;
+    width: 100px;
+    /* box-shadow: 0 3px #999; */
+    text-align: center;
+}
+
+.btnrad-sık {
+    transition: all 0.2s ease;
+    background-color: white;
+    border: 1px solid #ffa65e !important;
+    /* box-shadow: 0 3px #ff843c !important; */
+    min-width: 150px;
+}
+
+btnrad-sık::selection {
+    background: green;
+}
+
+input[type="radio"] {
+    position: absolute;
+    visibility: hidden;
+}
+
+input[type="radio"]+div {
+    position: relative;
+}
+
+input[type="radio"]:checked+div {
+    background-color: #ef8a50;
+}
+
+input[type="radio"]:checked+div>span {
+    color: white;
+}
+
+/* input[type="radio"] + div>span {
+position: relative;
+top: 25%;} */
+
+.crypto-btn-image {
+    padding: 0px;
+    width: 22px;
+    height: 22px;
+}
+
+.crypto-payment-btn {
+    min-width: 280px;
+    width: 100%;
+    padding: 10px;
+    height: 50px;
+}
+
+.crypto-textarea {
+    resize: none;
+    overflow-y: hidden;
+    max-height: 200px;
+    min-height: 120px;
+}
+
+.pos-top-mid {
+    position: absolute;
+    top: 20vh;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.post-payment-display {
+    background: white;
+    min-height: 200px;
+    border-radius: 15px;
+}
+
+.address-box {
+    padding: 10px;
+    background: #f8f8f8;
+    border-radius: 5px;
+    border: 2px dotted #e8e8e8;
 }

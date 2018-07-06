@@ -1,0 +1,233 @@
+ {% load staticfiles %} {% load i18n %} {% get_available_languages as languages %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> {% block meta %} {% endblock %}
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
+    <!-- favicon -->
+    <title>GetCryptoPayments | {% block title %}{% endblock %}</title>
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/exmr.css' %}"> {% block style %}{% endblock style %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet"> {% block fonts %} {% endblock %}
+    <!-- style -->
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center my-2">
+                <img src="{% static 'images/logo.png' %}" class="img-responsive" style="margin:0 auto;">
+            </div>
+            <div class="col-xs-12 orange-shadow-box my-1 p-2">
+                <div class="col-xs-12 col-md-6 mt-1">
+                    Sold by
+                    <a class="merchant-link" href="#" target="_blank">{{merchant_name}}</a>
+                    <br />Feedback:
+                    <a class="merchant-link" href="#" target="_blank">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <span class="star-icons">(No Ratings)</span>
+                    </a>
+                </div>
+                <div class="col-xs-12 col-md-6 text-center text-md-right ">
+                    <a type="button" class="btn btn-lg btn-default mt-1" href="#" target="_blank">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> View Profile</a>
+                    <a type="button" class="btn btn-lg btn-primary mt-1" href="#" target="_blank">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> View Profile</a>
+                </div>
+
+            </div>
+            <form action="{% url 'mtools:payprocess' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="merchant_id" value="{{merchant_id}}"  />
+                <input type="hidden" name="unique_id" value="{{unique_id}}"  />
+                <input type="hidden" name="item_name" value="{{item_name}}" maxlength="128" id="id_item_name" required />
+                <input type="hidden" name="item_amount" value="{{item_amount}}" maxlength="128" id="id_item_amount" required />
+                <input type="hidden" name="invoice_number" value="{{invoice_number}}" maxlength="128" id="id_invoice_number" required />
+                <input type="hidden" name="item_qty" value="{{item_qty}}" maxlength="128" id="id_item_qty" required />
+                <input type="hidden" name="item_number" value="{{item_number}}" maxlength="128" id="id_item_number" required />
+                <input type="hidden" name="tax_amount" value="{{tax_amount}}" maxlength="128" id="id_tax_amount" required />
+                <input type="hidden" name="shipping_cost" value="{{shipping_cost}}" maxlength="128" id="id_shipping_cost" required />
+                <div class="col-xs-12 col-md-6 pl-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <div class="col-xs-6">
+                            <h5 class="">ITEM #</h5>
+                        </div>
+                        <div class="col-xs-6">
+                            <h5 class="">ITEM</h5>
+                        </div>
+                        <div class="col-xs-12 bg-white px-0 text-center py-2">
+                            <div class="col-xs-6">
+                                <span class="">1</span>
+                            </div>
+                            <div class="col-xs-6">
+                                <span class="">{{item_name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-12 col-md-6 pr-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <div class="col-xs-4">
+                            <h5 class="">RATE</h5>
+                        </div>
+                        <div class="col-xs-4">
+                            <h5 class="">QTY</h5>
+                        </div>
+                        <div class="col-xs-4">
+                            <h5 class="">PRICE</h5>
+                        </div>
+                        <div class="col-xs-12 bg-white px-0 text-center py-2">
+                            <div class="col-xs-4">
+                                <span class="">1</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <span class="">{{item_name}}</span>
+                            </div>
+                            <div class="col-xs-4">
+                                <span class="">{{item_name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-12 col-md-6 pl-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <h5>
+                            <span class="glyphicon glyphicon-user"></span> Buyer/Shipping Information
+                        </h5>
+                        <div class="col-12 px-0 bg-white">
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-left">
+                                <span>Already a member of getcryptopayments.org? Click here to log in and save time filling out
+                                    this form...
+                                </span>
+                            </div>
+                            <div class="col-xs-12 bg-white border-btm-line p-1">
+                                <input type="text" class="input-group col-xs-12 mt-1 " name="first_name" placeholder="First Name">
+                                <input type="text" class="input-group col-xs-12 mt-1 " name="last_name" placeholder="Last Name">
+                                <input type="text" class="input-group col-xs-12 mt-1 " name="email_addr" placeholder="Email Address">
+                            </div>
+
+                            <div class="col-xs-12  orange-shadow-box " style="padding-left: -15px; padding-right:-15px;">
+                                <h4>Shipping Details</h4>
+                            </div>
+                            <div class="col-xs-12 bg-white border-btm-line p-1">
+                                <input type="text" class="input-group col-xs-12 mt-1 " name="addr_line_1" placeholder="Address Line 1">
+                                <input type="text" class="input-group col-xs-12 mt-1 " name="addr_line_2" placeholder="Address Line 2">
+                                <input type="text" class="input-group col-xs-12 mt-1 " name="country" placeholder="Country">
+                                <input type="text" class="input-group col-xs-12 mt-1 " name="city" placeholder="City">
+                                <input type="text" class="input-group col-xs-12 mt-1 " name="state" placeholder="State/Province">
+                                <input type="text" class="input-group col-xs-12 mt-1 " name="zipcode" placeholder="Zipcode">
+                                <input type="text" class="input-group col-xs-12 mt-1 " name="phone" placeholder="Phone Number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 pr-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <h5>
+                            <span class="glyphicon glyphicon-tags"></span>Totals
+                        </h5>
+                        <div class="col-12 px-0 bg-white">
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
+                                <div class="col-xs-6">
+                                    <span class="">1</span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <span class="">{{item_name}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6 pr-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <h5>
+                            <span class="glyphicon glyphicon-tags"></span>Additional Notes
+                        </h5>
+                        <div class="col-12 px-0 bg-white">
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
+                                <div class="col-xs-12">
+                                    <textarea class="col-xs-12 crypto-textarea" name="buyer_notes"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 pr-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <h5>
+                            <span class="glyphicon glyphicon-check"></span>Choose Your Coin
+                        </h5>
+                        <div class="col-12 px-0 bg-white">
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
+                                <form>
+                                    <label>
+                                        <input type="radio" checked name="selected_coin" value="BTC">
+                                        <div class="btn btnrad btnrad-sık">
+                                            <img src="{% static 'images/coins/BTC.png' %}" class="crypto-btn-image col-xs-3">
+                                            <span class="col-xs-9">Bitcoin</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="selected_coin" value="LTC">
+                                        <div class="btn btnrad btnrad-sık">
+                                            <img src="{% static 'images/coins/LTC.png' %}" class="crypto-btn-image col-xs-3">
+                                            <span>Litecoin</span>
+                                        </div>
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="selected_coin" value="ETH">
+                                        <div class=" btn btnrad btnrad-sık">
+                                            <img src="{% static 'images/coins/ETH.png' %}" class="crypto-btn-image col-xs-3">
+                                            <span>Ethereum</span>
+                                        </div>
+                                    </label>
+
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 px-0">
+                        <input type="submit" class="btn btn-success crypto-payment-btn" id="btnCheckout" value="Complete Checkout">
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <!-- <script> -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/notify.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+    <!-- </script> -->
+</body>
+
+</html>

@@ -2,7 +2,7 @@ from django.contrib import admin
 from sorl.thumbnail import get_thumbnail
 from django.template.loader import render_to_string
 # Register your models here.
-from apps.merchant_tools.models import ButtonImage, ButtonMaker
+from apps.merchant_tools.models import ButtonImage, ButtonMaker, CryptoPaymentRec
 
 
 class ButtonImageAdmin(admin.ModelAdmin):
@@ -18,3 +18,4 @@ class ButtonImageAdmin(admin.ModelAdmin):
 
 admin.site.register(ButtonMaker)
 admin.site.register(ButtonImage, ButtonImageAdmin)
+admin.site.register(CryptoPaymentRec)

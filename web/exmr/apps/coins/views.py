@@ -320,7 +320,6 @@ class NewCoinAddView(FormView):
     def form_invalid(self, form):
         return super(NewCoinAddView, self).form_invalid(form)
 
-
 class PayByNameView(LoginRequiredMixin, TemplateView):
     template_name = "coins/paybyname.html"
 

@@ -1,8 +1,12 @@
 from django.db import models
+from ckeditor.fields import RichTextField, RichTextFormField
+from ckeditor_uploader.fields import RichTextUploadingField
 
+from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from apps.coins.models import Coin
+
 # Create your models here.
 
 
@@ -69,3 +73,33 @@ class CryptoPaymentRec(models.Model):
 
     def __str__(self):
         return self.item_name
+
+    
+
+class MercSidebarTopic(models.Model):
+    """
+    Model to save frequently asked questions
+    """
+    merc_side_topic = models.CharField(max_length=512)
+
+    def __str__(self):
+        return self.merc_side_topic
+
+
+class MercSidebarSubTopic(models.Model):
+    """
+    Model to save help sidebar topics and their answers
+    """
+    main_topic = models.ForeignKey(MercSidebarTopic, on_delete=models.CASCADE)
+    sub_topic = models.CharField(max_length=64)
+    help_answer = RichTextUploadingField()
+    order_index = models.IntegerField()
+    slug = models.SlugField(default=slugify(sub_topic))
+    
+    def __str__(self):
+        return self.sub_topic
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.sub_topic)
+        super(MercSidebarSubTopic, self).save(*args, **kwargs)
+

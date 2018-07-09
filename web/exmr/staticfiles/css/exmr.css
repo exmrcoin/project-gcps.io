@@ -608,6 +608,44 @@ footer {
 .mt-5 {
     margin-top: 4rem;
 }
+.my-1 {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.my-2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.my-3 {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.my-4 {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+}
+.my-5 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+.mx-1{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+.mx-2{
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.mx-3{
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+.mw250{
+    max-width: 250px;;
+}
 
 .my-1 {
     margin-top: 1.5rem;
@@ -1755,6 +1793,7 @@ tbody .dropdown-menu {
 
 .pr-5 {
     padding-right: 4rem;
+    padding-left: 10px;
 }
 
 .pb-0 {
@@ -1785,6 +1824,9 @@ tbody .dropdown-menu {
     padding-top: 0rem;
 }
 
+.pt-0 {
+    padding-top: 0rem;
+}
 .pt-1 {
     padding-top: 1.5rem;
 }
@@ -1829,6 +1871,13 @@ tbody .dropdown-menu {
     padding: 4rem;
 }
 
+.pb-4 {
+    padding-bottom: 3.5rem;
+}
+
+.pt-5 {
+    padding-top: 4rem;
+}
 .py-1 {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;

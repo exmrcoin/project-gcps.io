@@ -9,7 +9,7 @@ from apps.accounts.models import Profile
 from apps.coins.models import Coin, WalletAddress
 from apps.coins.utils import *
 from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm
-from apps.merchant_tools.models import ButtonImage, ButtonMaker, CryptoPaymentRec
+from apps.merchant_tools.models import ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.crypto import get_random_string
@@ -177,3 +177,12 @@ class PaymentFormSubmitView(View):
         context['crypto_address'] = crypto_address
         context['unique_id']=self.request.POST['unique_id']
         return render(request, 'merchant_tools/postpayment.html', context)
+
+
+class MercDocs(TemplateView):
+    template_name = 'merchant_tools/merc-help.html'
+
+    def get_context_data(self):
+        context = super().get_context_data();
+        context['merc_sidebar_topic'] = MercSidebarTopic.objects.all()
+        return context

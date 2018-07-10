@@ -15,6 +15,76 @@
 <meta property="og:description"   content="GetCryptoPayments" />
 <meta property="og:image"         content="{% if coin.logo_url %}{{ coin.logo_url }}{% endif %}" />
 
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    console.log('statusChangeCallback');
+    console.log(response);
+    // The response object is returned with a status field that lets the
+    // app know the current login status of the person.
+    // Full docs on the response object can be found in the documentation
+    // for FB.getLoginStatus().
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+      testAPI();
+    } else {
+      // The person is not logged into your app or we are unable to tell.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1762173497227077',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.8' // use graph api version 2.8
+    });
+
+    // Now that we've initialized the JavaScript SDK, we call 
+    // FB.getLoginStatus().  This function gets the state of the
+    // person visiting this page and can return one of three states to
+    // the callback you provide.  They can be:
+    //
+    // 1. Logged into your app ('connected')
+    // 2. Logged into Facebook, but not your app ('not_authorized')
+    // 3. Not logged into Facebook and can't tell if they are logged into
+    //    your app or not.
+    //
+    // These three cases are handled in the callback function.
+
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  }
+</script>
+
+
 <div id="fb-root"></div>
   <script>(function(d, s, id) {
     var js, fjs = d.getElementsByTagName(s)[0];
@@ -49,6 +119,13 @@
 
                     <p>{% trans 'Before Voting, Please Read The Mechanics Here' %}</p>
                 </div>
+          <div id="shareBtn" class="btn btn-success clearfix">Share</div>
+
+<p style="margin-top: 50px">
+  <hr />
+  <a class="btn btn-small"  href="https://developers.facebook.com/docs/sharing/reference/share-dialog">Share Dialog Documentation</a>
+</p>
+
             </div>
             <div class="col-sm-4">
                 <div class="st-right" align="center">
@@ -94,7 +171,7 @@
     data-layout="button_count" id="id_share_facebook">
   </div>
 
-      <a href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=https%3A%2F%2Fwww.getcryptopayments.org%2Fcoins%2Fvote-details%2FAKK&display=popup&ref=plugin&src=share_button" target="_blank"  class="social-a social-share{%if 'facebook' in votes_share%} btn-is-disabled{%endif%}"  id="id_share_facebook"  data-layout="button_count"><i class="fab fa-facebook-square"></i> Share</a>
+      <a href="#"  class="social-a social-share{%if 'facebook' in votes_share%} btn-is-disabled{%endif%}"  id="fbShareBtn"  data-layout="button_count"><i class="fab fa-facebook-square"></i> Share</a>
 
       <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&title=The+Coin+Listing+Competition&ro=false&summary=&source=&counter=horizontal" class="social-a social-share{%if 'linkedin' in votes_share%} btn-is-disabled{%endif%}" target="_blank" id="id_share_linkedin"><i class="fab fa-linkedin"></i> Post</a>
       
@@ -181,6 +258,24 @@ function copyBtn(link) {
   var copyText = document.getElementById("referalLink");
   copyText.select();
   document.execCommand("copy");
+}
+</script>
+
+
+<script>
+document.getElementById('fbShareBtn').onclick = function() {
+  FB.ui({
+    method: 'share',
+    mobile_iframe: true,
+    href: 'https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}',
+  }, function(response){
+    if (!response['error_code'])
+    {
+      source = 'facebook'
+      coinVote(source,'share')
+      $("#fbShareBtn").addClass('btn-is-disabled')
+    }
+  });
 }
 </script>
 

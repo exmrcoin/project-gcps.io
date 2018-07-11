@@ -63,7 +63,7 @@ class PluginDownloadView(TemplateView):
 class Update(View):
     def get(self, *args, **kwargs):
         try:
-            out = os.system("bash ~/webapps/update")
-            return HttpResponse("Success "+str(out))
+            os.system("bash ../../../update")
+            return HttpResponse("Success ")
         except:
             return HttpResponse("Error")

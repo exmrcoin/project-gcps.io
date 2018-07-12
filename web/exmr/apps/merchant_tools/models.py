@@ -103,3 +103,22 @@ class MercSidebarSubTopic(models.Model):
         self.slug = slugify(self.sub_topic)
         super(MercSidebarSubTopic, self).save(*args, **kwargs)
 
+
+class URLMaker(models.Model):
+    merchant_id = models.CharField(
+        verbose_name=_('merchant id'), max_length=128)
+    unique_id = models.CharField(max_length=128, null=False, unique=True)
+    item_name = models.CharField(max_length=128, null=False)
+    item_desc = models.CharField(max_length=512, null=False)
+    item_amount = models.CharField(max_length=128, null=False)
+    item_number = models.CharField(max_length=128, null=False)
+    item_qty = models.CharField(max_length=128, null=False)
+    invoice_number = models.CharField(max_length=128, null=False)
+    tax_amount = models.CharField(max_length=128, null=False)
+    shipping_cost = models.CharField(max_length=128, null=False)
+    ipn_url_link = models.CharField(max_length=128, null=False)
+    URL_link = models.CharField(max_length=256, null=False)
+
+    def __str__(self):
+        return self.item_name
+

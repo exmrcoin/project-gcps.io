@@ -1,4 +1,5 @@
 import time
+from django.utils import six
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -8,12 +9,14 @@ from django.contrib.sites.models import Site
 from apps.accounts.models import Profile
 from apps.coins.models import Coin, WalletAddress
 from apps.coins.utils import *
-from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm
-from apps.merchant_tools.models import ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic
+from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm
+from apps.merchant_tools.models import ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic, URLMaker
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.crypto import get_random_string
 from django.utils import timezone
+
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 # Create your views here.
 
 
@@ -171,7 +174,6 @@ class PaymentFormSubmitView(View):
         )
         temp_obj.save()
         context = {}
-        # import pdb ; pdb.set_trace()
         merchant_id = self.request.POST['merchant_id']
         context['merchant_name'] = Profile.objects.get(merchant_id=merchant_id)
         context['crypto_address'] = crypto_address
@@ -183,6 +185,84 @@ class MercDocs(TemplateView):
     template_name = 'merchant_tools/merc-help.html'
 
     def get_context_data(self):
-        context = super().get_context_data();
+        context = super().get_context_data()
         context['merc_sidebar_topic'] = MercSidebarTopic.objects.all()
+        return context
+
+
+
+class URLMakerView(FormView):
+
+    template_name = 'merchant_tools/urlmaker.html'
+    form_class = URLMakerForm
+
+    def get_success_url(self):
+        success_url = self.request.path_info
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['merchant_id'] = Profile.objects.get(
+            user=self.request.user).merchant_id
+        return initial
+
+    def form_valid(self, form):
+        """If the form is valid, redirect to the supplied URL."""
+        obj = form.save(commit=False)
+        context = super(URLMakerView, self).get_context_data()
+        merchant_id = form.cleaned_data['merchant_id']
+        item_name = form.cleaned_data['item_name']
+        item_amount = form.cleaned_data['item_amount']
+        item_number = form.cleaned_data['item_number']
+        item_qty = form.cleaned_data['item_qty']
+        invoice_number = form.cleaned_data['invoice_number']
+        tax_amount = form.cleaned_data['tax_amount']
+        shipping_cost = form.cleaned_data['shipping_cost']
+        ipn_url_link = form.cleaned_data['ipn_url_link']
+        domain = self.request.get_host()
+
+        mydate = timezone.now()
+        context = super(URLMakerView, self).get_context_data()
+        merchant = Profile.objects.get(merchant_id = merchant_id).user
+        context['unique_id'] = account_activation_token.make_token(user = merchant)
+        token = context['unique_id']
+        html_url = domain+reverse('mtools:urlmakerinvoice', kwargs={'token':token})                     
+        context['html_url'] = html_url
+        obj.URL_link = html_url
+        obj.unique_id = token
+        obj.save()
+        return render(self.request, 'merchant_tools/urlmaker.html', context)
+
+
+class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
+    """ Overriding default Password reset token generator for email confirmation"""
+
+    def _make_hash_value(self, user, timestamp):
+        return (six.text_type(user.pk) + six.text_type(timestamp)) + six.text_type(user.is_active)
+
+
+account_activation_token = AccountActivationTokenGenerator()
+
+class URLMakerInvoiceView(TemplateView):
+    template_name = 'merchant_tools/payincrypto.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data()
+        token = self.kwargs['token']
+        temp_obj = URLMaker.objects.get(unique_id = token)
+
+
+        context['unique_id'] = temp_obj.unique_id
+
+        context['merchant_id'] = temp_obj.merchant_id
+        context['item_name'] = temp_obj.item_name
+        context['item_amount'] = temp_obj.item_amount
+        context['item_number'] = temp_obj.item_number
+        context['item_qty'] = temp_obj.item_qty
+        context['item_total'] = int(temp_obj.item_qty) * int(temp_obj.item_amount)
+        context['invoice_number'] = temp_obj.invoice_number
+        context['tax_amount'] = temp_obj.tax_amount
+        context['shipping_cost'] = temp_obj.shipping_cost
+        context['ipn_url_link'] = temp_obj.ipn_url_link
+        context['merchant_name'] = Profile.objects.get(merchant_id=temp_obj.merchant_id)
+        
         return context

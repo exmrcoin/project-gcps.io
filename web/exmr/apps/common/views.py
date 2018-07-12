@@ -6,7 +6,7 @@ from django.views.generic import View, TemplateView, FormView
 
 from apps.accounts.models import Profile
 from apps.common.forms import CoinRequestForm
-from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload
+from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload, StaticPage
 
 class HomeView(TemplateView):
     template_name = 'common/index.html'
@@ -67,3 +67,15 @@ class Update(View):
             return HttpResponse("Success ")
         except:
             return HttpResponse("Error")
+
+class StaticPageView(TemplateView):
+    template_name = 'common/staticpage.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        try:
+            slug = self.kwargs['slug']
+            context['staticpage'] = StaticPage.objects.get(page_name=slug)
+        except:
+            pass
+        return context

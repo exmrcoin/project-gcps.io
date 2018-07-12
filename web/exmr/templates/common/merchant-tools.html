@@ -43,7 +43,7 @@
                 </div>
                 <h5 class=" shopping-headline">{% trans 'INVOICE BUILDER' %}</h5>
                 <ul>
-                    <li>{% trans 'Payment Request invoice maker' %}</li>
+                    <li><a href="{% url 'mtools:urlmaker' %}">{% trans 'Payment Request invoice maker' %}</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-md-3 text-center merch-box">
@@ -52,7 +52,7 @@
                 </div>
                 <h5 class=" shopping-headline">{% trans 'POINT OF SALE(POS) INTERFACE' %}</h5>
                 <ul>
-                    <li>{% trans 'HTML URL/ POST Fields' %}</li>
+                    <li><a href="{% url 'common:staticpage' slug='mtools_pos_html_post' %}">{% trans 'HTML URL/ POST Fields' %}</a></li>
                     <li>{% trans 'Post link QR Code Generator' %}</li>
                     <li>{% trans 'POS Examle' %}</li>
                 </ul>

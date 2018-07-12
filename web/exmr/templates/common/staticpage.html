@@ -1,0 +1,17 @@
+{% extends 'exmr.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
+<section>
+    <div class="dark-page-header text-center">
+        <h1>{{staticpage.topic}}</h1>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 my-1">
+                    {% autoescape off %} {{staticpage.content}} {% endautoescape %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %} {% block script %}{% endblock %}

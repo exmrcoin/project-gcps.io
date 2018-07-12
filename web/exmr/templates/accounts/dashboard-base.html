@@ -7,48 +7,42 @@
         <div class="dashboard-wrapper top-sec">
             <div class="col-xs-12 padx0">
                 <div class="col-xs-4 col-sm-2 dashboard-component box-0">
-                    <a href="{% url 'accounts:profile' %}" class="v-mid ">
-
-                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
-                            <p class="">
-                                <i class="fas fa-tachometer-alt dash-icon"></i> {% trans 'Home' %}</p>
-                        </span>
+                    <a href="{% url 'accounts:profile' %}" class="v-mid text-center col-xs-12 px-0 py-1">
+                        <span class="fas fa-tachometer-alt fa-2x col-xs-12 col-sm-6"></span>
+                        <span class="dashboard-span hidden-xs col-sm-6 col-md-6 wallet-menu">{% trans 'Home' %}</span>
                     </a>
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-1">
-                    <a href="{% url 'coins:wallets' %}">
-
+                    <a href="{% url 'coins:wallets' %}" class="v-mid text-center col-xs-12 px-0 py-1">
+                        <i class="fas fa-2x fa-wallet col-xs-12 col-sm-6"></i>
                         <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
-
-                            <p class="">
-                                <i class="fas fa-wallet dash-icon"></i> {% trans 'Your Wallet' %} </p>
+                            {% trans 'Your Wallet' %}
                         </span>
                     </a>
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-2">
-                    <p class="">
-                        <a href="{% url 'coins:coin-settings' %}">
-                            <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
-                                <i class="fas fa-coins dash-icon"></i>{% trans 'Coin Settings' %}</span>
-                        </a>
-                    </p>
+                    <a href="{% url 'coins:coin-settings' %}" class="v-mid text-center col-xs-12 px-0 py-1">
+                        <i class="fas fa-coins  fa-2x col-xs-12 col-sm-6"></i>
+                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
+                            {% trans 'Coin Settings' %}</span>
+                    </a>
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-3">
-                    <a href="{% url 'accounts:transaction-history' %}">
-                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
-                            <i class="fas fa-receipt dash-icon"></i> {% trans 'Transaction History' %}</span>
+                    <a href="{% url 'accounts:transaction-history' %}" class="v-mid text-center col-xs-12 px-0 py-1">
+                        <i class="fas fa-receipt  fa-2x col-xs-12 col-sm-6"></i>
+                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">{% trans 'Transactions' %}</span>
                     </a>
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-4">
-                    <p class="">
-                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
-                            <i class="fas fa-shopping-cart dash-icon"></i> {% trans 'Quick POS' %}</span>
-                    </p>
+                    <a href="{% url 'accounts:transaction-history' %}" class="v-mid text-center col-xs-12 px-0 py-1">
+                        <i class="fas fa-shopping-cart  fa-2x col-xs-12 col-sm-6"></i>
+                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"> {% trans 'Quick POS' %}</span>
+                    </a>
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-5">
-                    <a href="{% url 'coins:paybyname' %}">
-                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
-                            <i class="fas fa-user-tie dash-icon"></i> {% trans '$PayByName' %}</span>
+                    <a href="{% url 'coins:paybyname' %}" class="v-mid text-center col-xs-12 px-0 py-1">
+                        <i class="fas fa-user-tie  fa-2x col-xs-12 col-sm-6"></i>
+                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">{% trans '$PayByName' %}</span>
                     </a>
                 </div>
             </div>

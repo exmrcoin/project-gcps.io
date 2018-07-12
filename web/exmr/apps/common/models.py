@@ -12,6 +12,7 @@ AUTH_TYPE = (
     ('N/A', _('N/A')),
 )
 
+
 class Currency(models.Model):
     """
     Model to save different currencies
@@ -74,13 +75,14 @@ class HelpSidebar(models.Model):
     help_answer = RichTextUploadingField()
     order_index = models.IntegerField()
     slug = models.SlugField(default=slugify(help_topic))
-    
+
     def __str__(self):
         return self.help_topic
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.help_topic)
         super(HelpSidebar, self).save(*args, **kwargs)
+
 
 class LegalSidebar(models.Model):
     """
@@ -90,7 +92,7 @@ class LegalSidebar(models.Model):
     help_answer = RichTextUploadingField()
     order_index = models.IntegerField()
     slug = models.SlugField(default=slugify(help_topic))
-    
+
     def __str__(self):
         return self.help_topic
 
@@ -110,5 +112,16 @@ class PluginDownload(models.Model):
     zero_confirm = models.BooleanField(blank=True)
     video_url = models.URLField(_('Video URL'))
 
-    # def __str__(self):
-    #     return download_url
+
+class StaticPage(models.Model):
+    page_name = models.CharField(max_length=128, unique=True)
+    topic = models.CharField(max_length=128)
+    content = RichTextUploadingField()
+    slug = models.SlugField(default=slugify(page_name))
+
+    def __str__(self):
+        return self.page_name
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.page_name)
+        super(StaticPage, self).save(*args, **kwargs)

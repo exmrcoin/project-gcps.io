@@ -18,15 +18,11 @@
 <script>
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
+    // console.log('statusChangeCallback');
+    // console.log(response);
+    
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
-      testAPI();
     } else {
       // The person is not logged into your app or we are unable to tell.
       document.getElementById('status').innerHTML = 'Please log ' +
@@ -52,17 +48,7 @@
       version    : 'v2.8' // use graph api version 2.8
     });
 
-    // Now that we've initialized the JavaScript SDK, we call 
-    // FB.getLoginStatus().  This function gets the state of the
-    // person visiting this page and can return one of three states to
-    // the callback you provide.  They can be:
-    //
-    // 1. Logged into your app ('connected')
-    // 2. Logged into Facebook, but not your app ('not_authorized')
-    // 3. Not logged into Facebook and can't tell if they are logged into
-    //    your app or not.
-    //
-    // These three cases are handled in the callback function.
+    
 
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
@@ -156,14 +142,10 @@
   <div align="center">
 
     
-      <a href="https://twitter.com/intent/tweet?text=%F0%9F%94%A5%F0%9F%94%A5+Help+Needed%21+The+community+needs+your+support+to+get+{% coin_code_to_name view.kwargs.currency %} official+listed+via+%40GetCryptoPayments+Exchange.+Support+{% coin_code_to_name view.kwargs.currency %}++%28{{view.kwargs.currency}}%29+and+vote+here%3A+https%3A%2F%2Fwww.getcryptopayments.com%2Fpublic-coin-votes%2F{{view.kwargs.currency}}+&redirect_uri=https://www.getcryptopayments.com/public-coin-votes/{{view.kwargs.currency}}&hashtags=Exchange,Cryptocurrency,ethereum,cryptoexchange,bitcoin&related=GCryptoPayments" class="social-a social-share{%if 'twitter' in votes_share %} btn-is-disabled{%endif%}" target="_blank" id="id_share_twitter"><i class="fab fa-twitter"></i> Tweet</a>
+      <a href="javascript:void(0)" class="social-a social-share{%if 'twitter' in votes_share %} btn-is-disabled{%endif%}"  id="twitterShareBtn"><i class="fab fa-twitter"></i> Tweet</a>
 
-
-
-<div class="fb-share-button" style="display:none;" 
-    data-href="https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}" 
-    data-layout="button_count" id="id_share_facebook">
-  </div>
+      <div class="fb-share-button" style="display:none;" 
+      data-href="https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}" data-layout="button_count" id="id_share_facebook"></div>
 
       <a href="#"  class="social-a social-share{%if 'facebook' in votes_share%} btn-is-disabled{%endif%}"  id="fbShareBtn"  data-layout="button_count"><i class="fab fa-facebook-square"></i> Share</a>
 
@@ -225,11 +207,13 @@
 <script type="text/javascript">
 $(".social-share").click(function(event){
   source = event.target.id.split("_")[2]
-  coinVote(source,'share')
+  if (source)
+    coinVote(source,'share')
 })
 $(".social-follow").click(function(event){
   source = event.target.id.split("_")[2]
-  coinVote(source,'follow')
+  if (source)
+    coinVote(source,'follow')
 })
 function coinVote(source,type){
     $.ajax({
@@ -270,6 +254,47 @@ document.getElementById('fbShareBtn').onclick = function() {
     }
   });
 }
+</script>
+
+
+<script type="text/javascript">
+
+
+document.getElementById('twitterShareBtn').addEventListener('click', function(e) {
+
+    e.preventDefault();
+    e.stopPropagation(); //this should do in case you don't want to unlink twitter widgets api
+
+    var width  = 575,
+        height = 400,
+        left   = (screen.width  - width)  / 2,
+        top    = (screen.height - height) / 2,
+        url    = "https://twitter.com/intent/tweet?text=%F0%9F%94%A5%F0%9F%94%A5+Help+Needed%21+The+community+needs+your+support+to+get+{% coin_code_to_name view.kwargs.currency %} official+listed+via+%40GetCryptoPayments+Exchange.+Support+{% coin_code_to_name view.kwargs.currency %}++%28{{view.kwargs.currency}}%29+and+vote+here%3A+https%3A%2F%2Fwww.getcryptopayments.com%2Fpublic-coin-votes%2F{{view.kwargs.currency}}+&redirect_uri=https://www.getcryptopayments.com/public-coin-votes/{{view.kwargs.currency}}&hashtags=Exchange,Cryptocurrency,ethereum,cryptoexchange,bitcoin&related=GCryptoPayments",
+        opts   = 'status=1' +
+                 ',width='  + width  +
+                 ',height=' + height +
+                 ',top='    + top    +
+                 ',left='   + left;
+
+    var win = window.open(url, 'twitter_share', opts);
+
+    var timer = setInterval(checkWin, 500);
+
+    function checkWin() {
+
+        if (win.closed) {
+            //just assume the user tweeted (he could just close the window without tweeting)
+            source = 'twitter'
+            coinVote(source,'share')
+            $("#twitterShareBtn").addClass('btn-is-disabled') 
+            clearInterval(timer);
+
+        }
+
+    }
+
+});
+
 </script>
 
 {% endblock %}

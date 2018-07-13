@@ -271,7 +271,7 @@ class VoteDetailsView(LoginRequiredMixin, TemplateView):
         coin = NewCoin.objects.get(code=currency_code)
         obj,created = CoinVote.objects.get_or_create(user=request.user,\
                       coin=coin,type=vote_type,source=vote_source)
-        coin.vote_count += int(1)
+        coin.vote_count += int(10)
         coin.save()
 
         return HttpResponse(json.dumps({"success": True}), content_type='application/json') 

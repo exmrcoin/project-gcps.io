@@ -22,4 +22,4 @@
 ⌘ Alpha Version this July 2018<br>
 ⌘ Beta Version this August 2018<br>
 ⌘ Official Launch this September 2018<br>
-⌘ First dividends this September 2018 <br>
+⌘ First dividends December 2018 <br>

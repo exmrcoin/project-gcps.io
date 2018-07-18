@@ -268,3 +268,17 @@ class PaybyName(models.Model):
         temp = re.sub(r'\s+', '', temp)
         paybyname= "$PayTo-"+temp
         super(PaybyName, self).save(*args, **kwargs)
+
+
+class CoPromotionURL(models.Model):
+    url = models.URLField(_('copromotion url'))
+
+    def __str__(self):
+        return self.url
+
+class CoPromotion(models.Model):
+    coin = models.ForeignKey(NewCoin, verbose_name=_('Coin name'), on_delete=models.CASCADE)
+    urls = models.ManyToManyField(CoPromotionURL, verbose_name=_('CoPromotion URL'))
+
+    def __str__(self):
+        return self.coin.code

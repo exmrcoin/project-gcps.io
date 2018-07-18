@@ -323,3 +323,12 @@ text-decoration: none;}
     margin-top: 20px;
     text-align: center;
     }
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    padding: 10px;
+    border-radius: 7px;
+    border: solid 1px;
+    margin-bottom: 20px;
+}

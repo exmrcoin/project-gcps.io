@@ -1,6 +1,7 @@
 import random
 import string
 
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
 from django.template import RequestContext
@@ -14,7 +15,7 @@ from apps.coins.utils import *
 from apps.accounts.models import User
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
-                              CoinVote, ClaimRefund, NewCoin
+                              CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL
 from django.shortcuts import render
 
 CURRENCIES = ['BTC','LTC', 'BCH', 'XRP']
@@ -325,3 +326,40 @@ class PayByNameView(LoginRequiredMixin, TemplateView):
 
 class PayByNamePayView(LoginRequiredMixin, TemplateView):
     template_name = "coins/paybyname-payment.html"
+
+
+class CopromotionView(TemplateView):
+    template_name = "coins/copromotion-form.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['coins'] = NewCoin.objects.filter(approved=True)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        coin = NewCoin.objects.filter(id = request.POST.get('coin_id'), approved=True)
+        total = int(request.POST.get('total'))
+        if coin and request.POST.get('urls1') and request.POST.get('urls2') and\
+        request.POST.get('urls3'):
+            copromo_obj = CoPromotion.objects.create(coin=coin.first())
+            for i in range(1,total+1):
+                if request.POST.get('urls'+str(i)):
+                    obj = CoPromotionURL.objects.create(url = request.POST.get('urls'+str(i)))
+                    copromo_obj.urls.add(obj)
+            copromo_obj.save()
+            messages.add_message(request, messages.INFO, 'Success')
+            return redirect(reverse_lazy('coins:copromotion-form'))
+        else:
+            return redirect(reverse_lazy('coins:copromotion-form'))
+
+class BalanceView(View):
+    def get(self, request, *args, **kwargs):
+        currency_code = self.request.GET.get('code')
+        try:
+            balance = get_balance(self.request.user, currency_code)
+        except:
+            balance = 0
+        if not balance:
+            balance = 0
+        data = {'balance':str(balance),'code':currency_code}
+        return HttpResponse(json.dumps(data), content_type="application/json")

@@ -28,5 +28,6 @@ urlpatterns = [
     path('paybyname/', coin_views.PayByNameView.as_view(), name='paybyname' ),
     path('paybyname-payment/', coin_views.PayByNamePayView.as_view(), name='paybyname-payment' ),
     path('copromotion-form/', coin_views.CopromotionView.as_view(), name="copromotion-form"),
+    path('get_balance/', coin_views.BalanceView.as_view(), name="get_balance"),
 
 ]

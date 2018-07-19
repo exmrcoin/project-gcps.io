@@ -351,3 +351,15 @@ class CopromotionView(TemplateView):
             return redirect(reverse_lazy('coins:copromotion-form'))
         else:
             return redirect(reverse_lazy('coins:copromotion-form'))
+
+class BalanceView(View):
+    def get(self, request, *args, **kwargs):
+        currency_code = self.request.GET.get('code')
+        try:
+            balance = get_balance(self.request.user, currency_code)
+        except:
+            balance = 0
+        if not balance:
+            balance = 0
+        data = {'balance':str(balance),'code':currency_code}
+        return HttpResponse(json.dumps(data), content_type="application/json")

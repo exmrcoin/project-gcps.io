@@ -11,7 +11,7 @@ def create_BTC_connection():
     """
     create connetion to bitcoin fullnode
     """
-    access = AuthServiceProxy("http://exmr:MKDNdksjfDNsjkN@104.196.190.224:8332")
+    access = AuthServiceProxy("http://exmr:MKDNdksjfDNsjkN@35.237.231.141:8332")
     return access
 
 
@@ -198,7 +198,7 @@ class Eth():
         serialized_data = json.dumps(message)
 
         headers = {'Content-type': 'application/json'}
-        response = requests.post("http://104.196.190.224:8545",headers=headers, data=serialized_data)
+        response = requests.post("http://35.237.231.141:8545",headers=headers, data=serialized_data)
         return response.json()
 
     def create_eth_wallet(self):
@@ -253,3 +253,4 @@ def create_DASH_wallet(user,currency):
     else:
         pub_address = wallet.addresses.all()[0].address
     return addr
+

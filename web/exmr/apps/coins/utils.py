@@ -44,20 +44,21 @@ def create_wallet(user, currency):
         return Eth(user).create_eth_wallet()
     elif currency in ['DASH']:
         return globals()['create_'+currency+'_wallet'](user,currency)
-    else:
+    elif currency in ['BTC']:
         coin = Coin.objects.get(code=currency)
         wallet_username = user.username + "_exmr"
         access = globals()['create_'+currency+'_connection']()
         print(access)
         try:
             addr = access.getnewaddress(wallet_username)
-            # addr = False
-            # raise Exception
             wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
             wallet.addresses.add(WalletAddress.objects.create(address=addr))
         except:
             addr = ''
-        
+    
+    else:
+        return str(currency)+' server is under maintenance'
+
     return addr
 
 
@@ -239,18 +240,20 @@ def create_DASH_wallet(user,currency):
     coin = Coin.objects.get(code=currency)
     wallet_username = user.username + "_exmr"
     try:
-        import pdb ; pdb.set_trace()
         addr = apiview.createaddr(wallet_username,coin)
         # addr = False
         # raise Exception
     except:
-        addr = ''
-    wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
-    if created:
-        print(addr)
-        wallet.addresses.add(WalletAddress.objects.create(address=addr))
-        wallet.save()
-    else:
-        pub_address = wallet.addresses.all()[0].address
+        return ''
+    try:
+        wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
+        if created:
+            print(addr)
+            wallet.addresses.add(WalletAddress.objects.create(address=addr))
+            wallet.save()
+        else:
+            pub_address = wallet.addresses.all()[0].address
+    except:
+        addr = "Unable to generate address"
     return addr
 

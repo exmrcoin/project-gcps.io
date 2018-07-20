@@ -1,0 +1,16 @@
+{% extends 'exmr.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
+<section>
+    <div class="dark-page-header text-center">
+        <h1>COMING SOON</h1>
+        <h4>This Page is under Active Development, and will be released in Beta Version</h4>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="row">
+            <img class="col-xs-12 col-md-4 col-md-offset-4 img-responsive" src="{% static 'images/loader.gif' %}">
+        </div>
+    </div>
+</section>
+
+{% endblock %} {% block script %}{% endblock %}

@@ -14,4 +14,4 @@ def createaddr(wallet_name, currency):
         addr = getnewaddress(currency.code)
         return addr
     else:
-        pass
+        return None

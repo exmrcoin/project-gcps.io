@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from ckeditor.fields import RichTextField, RichTextFormField
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -6,7 +7,10 @@ from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
 from apps.coins.models import Coin
+from apps.merchant_tools import random_primary
+from datetime import datetime, timedelta
 
+from django.utils import timezone
 # Create your models here.
 
 
@@ -45,6 +49,7 @@ class ButtonImage(models.Model):
 
     image_tag.short_description = 'Image'
 
+
 class CryptoPaymentRec(models.Model):
     merchant_id = models.CharField(
         verbose_name=_('merchant id'), max_length=128)
@@ -54,7 +59,7 @@ class CryptoPaymentRec(models.Model):
     item_qty = models.CharField(max_length=128, null=False)
     invoice_number = models.CharField(max_length=128, null=False)
     unique_id = models.CharField(max_length=128, null=False)
-    
+
     tax_amount = models.CharField(max_length=128, null=False)
     shipping_cost = models.CharField(max_length=128, null=False)
     first_name = models.CharField(max_length=128, null=False)
@@ -66,15 +71,14 @@ class CryptoPaymentRec(models.Model):
     city = models.CharField(max_length=128, null=False)
     state = models.CharField(max_length=128, null=False)
     zipcode = models.CharField(max_length=128, null=False)
-    phone = models.CharField(max_length=128, null=False)    
-    buyer_note = models.CharField(max_length=128, null=True) 
+    phone = models.CharField(max_length=128, null=False)
+    buyer_note = models.CharField(max_length=128, null=True)
     selected_coin = models.ForeignKey(Coin, on_delete=models.CASCADE)
     wallet_address = models.CharField(max_length=128, null=False)
 
     def __str__(self):
         return self.item_name
 
-    
 
 class MercSidebarTopic(models.Model):
     """
@@ -95,7 +99,7 @@ class MercSidebarSubTopic(models.Model):
     help_answer = RichTextUploadingField()
     order_index = models.IntegerField()
     slug = models.SlugField(default=slugify(sub_topic))
-    
+
     def __str__(self):
         return self.sub_topic
 
@@ -121,4 +125,36 @@ class URLMaker(models.Model):
 
     def __str__(self):
         return self.item_name
+
+
+class POSQRMaker(models.Model):
+    
+    def four_hour_hence():
+        return timezone.now() + timezone.timedelta(hours=4)
+
+    merchant_id = models.CharField(
+        verbose_name=_('merchant id'), max_length=128)
+    unique_id = models.CharField(max_length=128, null=False, unique=True)
+    item_desc = models.CharField(max_length=512, null=False)
+    item_amount = models.CharField(max_length=128, null=False)
+    currency = models.ForeignKey(Coin, on_delete=models.CASCADE)
+    invoice_number = models.CharField(max_length=128, null=False)
+    custom_field = models.CharField(max_length=128, null=False)
+    URL_link = models.CharField(max_length=256, null=False)
+    time_limit = models.DateTimeField(default=four_hour_hence)
+
+
+    def __str__(self):
+        return self.item_desc
+
+class MultiPayment(models.Model):
+    paid_in = models.ForeignKey(Coin, on_delete=models.PROTECT)
+    paid_amount = models.CharField(max_length=512, null=False)
+    eq_usd = models.CharField(max_length=512, blank=True, null=True)
+    paid_date = datetime.now()
+    paid_unique_id = models.CharField(max_length=512, blank=True, null=True)
+    transaction_id = models.CharField(max_length=64, null=False)
+
+    def __str__(self):
+        return str(self.paid_in +"_"+ self.paid_date)
 

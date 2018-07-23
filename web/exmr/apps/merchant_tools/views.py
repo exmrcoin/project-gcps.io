@@ -1,7 +1,13 @@
 import time
+import hashlib
+import random
+import string
+import json
+from django_unixdatetimefield import UnixDateTimeField
+from django.core import serializers
 from django.utils import six
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import FormView, TemplateView, CreateView, View
@@ -9,8 +15,9 @@ from django.contrib.sites.models import Site
 from apps.accounts.models import Profile
 from apps.coins.models import Coin, WalletAddress
 from apps.coins.utils import *
-from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm
-from apps.merchant_tools.models import ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic, URLMaker
+from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm, POSQRForm
+from apps.merchant_tools.models import (ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic,
+                                        URLMaker, POSQRMaker)
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.crypto import get_random_string
@@ -177,7 +184,7 @@ class PaymentFormSubmitView(View):
         merchant_id = self.request.POST['merchant_id']
         context['merchant_name'] = Profile.objects.get(merchant_id=merchant_id)
         context['crypto_address'] = crypto_address
-        context['unique_id']=self.request.POST['unique_id']
+        context['unique_id'] = self.request.POST['unique_id']
         return render(request, 'merchant_tools/postpayment.html', context)
 
 
@@ -188,7 +195,6 @@ class MercDocs(TemplateView):
         context = super().get_context_data()
         context['merc_sidebar_topic'] = MercSidebarTopic.objects.all()
         return context
-
 
 
 class URLMakerView(FormView):
@@ -222,10 +228,12 @@ class URLMakerView(FormView):
 
         mydate = timezone.now()
         context = super(URLMakerView, self).get_context_data()
-        merchant = Profile.objects.get(merchant_id = merchant_id).user
-        context['unique_id'] = account_activation_token.make_token(user = merchant)
+        merchant = Profile.objects.get(merchant_id=merchant_id).user
+        context['unique_id'] = account_activation_token.make_token(
+            user=merchant)
         token = context['unique_id']
-        html_url = domain+reverse('mtools:urlmakerinvoice', kwargs={'token':token})                     
+        html_url = domain + \
+            reverse('mtools:urlmakerinvoice', kwargs={'token': token})
         context['html_url'] = html_url
         obj.URL_link = html_url
         obj.unique_id = token
@@ -237,10 +245,11 @@ class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
     """ Overriding default Password reset token generator for email confirmation"""
 
     def _make_hash_value(self, user, timestamp):
-        return (six.text_type(user.pk) + six.text_type(timestamp)) + six.text_type(user.is_active)
+        return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(12))
 
 
 account_activation_token = AccountActivationTokenGenerator()
+
 
 class URLMakerInvoiceView(TemplateView):
     template_name = 'merchant_tools/payincrypto.html'
@@ -248,21 +257,96 @@ class URLMakerInvoiceView(TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
         token = self.kwargs['token']
-        temp_obj = URLMaker.objects.get(unique_id = token)
-
-
+        temp_obj = URLMaker.objects.get(unique_id=token)
         context['unique_id'] = temp_obj.unique_id
-
         context['merchant_id'] = temp_obj.merchant_id
         context['item_name'] = temp_obj.item_name
         context['item_amount'] = temp_obj.item_amount
         context['item_number'] = temp_obj.item_number
         context['item_qty'] = temp_obj.item_qty
-        context['item_total'] = int(temp_obj.item_qty) * int(temp_obj.item_amount)
+        context['item_total'] = int(
+            temp_obj.item_qty) * int(temp_obj.item_amount)
         context['invoice_number'] = temp_obj.invoice_number
         context['tax_amount'] = temp_obj.tax_amount
         context['shipping_cost'] = temp_obj.shipping_cost
         context['ipn_url_link'] = temp_obj.ipn_url_link
-        context['merchant_name'] = Profile.objects.get(merchant_id=temp_obj.merchant_id)
-        
+        context['merchant_name'] = Profile.objects.get(
+            merchant_id=temp_obj.merchant_id)
+
+        return context
+
+
+class POSQRMakerView(FormView):
+    template_name = 'merchant_tools/posqrgenerator.html'
+    form_class = POSQRForm
+
+    def get_success_url(self):
+        success_url = self.request.path_info
+
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['merchant_id'] = Profile.objects.get(
+            user=self.request.user).merchant_id
+        initial['unique_id'] = account_activation_token.make_token(
+            user=self.request.user)
+        return initial
+
+    def form_valid(self, form):
+        """If the form is valid, redirect to the supplied URL."""
+        obj = form.save(commit=False)
+        context = super(POSQRMakerView, self).get_context_data()
+        merchant_id = form.cleaned_data['merchant_id']
+        item_desc = form.cleaned_data['item_desc']
+        item_amount = form.cleaned_data['item_amount']
+        invoice_number = form.cleaned_data['invoice_number']
+        custom_field = form.cleaned_data['custom_field']
+        unique_id = form.cleaned_data['unique_id']
+
+        domain = self.request.get_host()
+        mydate = timezone.now()
+        maxtimer = int(time.mktime(mydate.timetuple())) + 4*60*60
+        print(maxtimer)
+
+        context = super(POSQRMakerView, self).get_context_data()
+        merchant = Profile.objects.get(merchant_id=merchant_id).user
+        token = unique_id
+        html_url = domain+reverse('mtools:pospay', kwargs={'token': token})
+        context['html_url'] = html_url
+        obj.URL_link = html_url
+        obj.unique_id = token
+        obj.save()
+        return render(self.request, 'merchant_tools/posqrgenerator.html', context)
+
+
+class POSQRPayView(TemplateView):
+    template_name = 'merchant_tools/poscoinselect.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data()
+        token = self.kwargs['token']
+        context['pos_sale'] = POSQRMaker.objects.get(unique_id=token)
+        context['available_coins'] = Coin.objects.all()
+        context['unique_id'] = token
+        return context
+
+    def post(self, request, *args, **kwargs):
+        context =  super(POSQRPayView, self).get_context_data()
+        request.session['unique_id'] = request.POST.get('unique_id')
+        request.session['selected_coin'] = request.POST.get('selected_coin')
+        request.session['payable_amt'] = request.POST.get('payable_amt')
+        return HttpResponseRedirect(reverse_lazy('mtools:posqrpay'))
+        # return render(self.request, 'merchant_tools/posqrgenerator.html', context)
+
+
+
+class POSQRCompletePaymentView(TemplateView):
+    template_name = 'merchant_tools/posqrpostpayment.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context= super(POSQRCompletePaymentView, self).get_context_data()
+        superuser = User.objects.get(is_superuser=True)
+        unique_id = self.request.session['unique_id']
+        selected_coin=self.request.session['selected_coin']
+        context['payable_amt']=self.request.session['payable_amt']
+        context['crypto_address'] = create_wallet(superuser, selected_coin)
         return context

@@ -131,7 +131,27 @@
                         <span class="electroinc">50,000 EXMR</span>. For full rule and information
                         <span class="electroinc">click here</span>.
                     </div>
-                    <button class="btn btn-success" onclick="window.location.href='{% url 'coins:add-public-coin'%}'"> Submit Coin </button>
+                    <div class="col-md-12">
+                        <p class="coin-comp-widget-title">Website Embed Widget</p>
+                        <p class="coin-comp-widget"><img class="coin-comp-image" src="{% static '/images/image-729x90.png' %}" width="550"></p>
+                        <p class="coin-comp-widget"><a href="{% static '/compressed/images.zip'%}"> Download Widget Images Here</a></p><br>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p class="link underline-link">
+                                <a class="submit-new-coin-text" href="{% url 'coins:add-public-coin'%}">Submit New Coin Here</a>
+                                <a class="submit-new-coin-text" href="#"> See Winners Here</a>
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <form method="GET" action="" autocomplete="off">
+                                <div class="search-content">
+                                    <input type="text" id="search" name="name" placeholder="Look for your coin" class="search-field" value="">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- <button class="btn btn-success" onclick="window.location.href='{% url 'coins:add-public-coin'%}'"> Submit Coin </button> -->
                     <div id="table_div">
                         <table class="table vote_table">
                             <thead>
@@ -198,9 +218,27 @@ function coinVote(coin_id,count){
                 }
             })
 }
+
 </script>
 {% endblock %}
+{% block script %}
+<script type="text/javascript">
+$("#search").keyup(function () {
+    var value = this.value.toLowerCase().trim();
 
+    $("table tr").each(function (index) {
+        if (!index) return;
+        $(this).find("td").each(function () {
+            var id = $(this).text().toLowerCase().trim();
+            var not_found = (id.indexOf(value) == -1);
+            $(this).closest('tr').toggle(!not_found);
+            return not_found;
+        });
+    });
+});
+</script>
+{% endblock %}
+ 
 
 
 

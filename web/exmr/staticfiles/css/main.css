@@ -332,3 +332,64 @@ text-decoration: none;}
     border: solid 1px;
     margin-bottom: 20px;
 }
+
+p.coin-comp-widget-title {
+    text-align: center;
+    font-family: gothammedium;
+    font-size: 20px;
+    color: #3a3a3a;
+}
+
+p.coin-comp-widget {
+    text-align: center;
+}
+
+p.link.underline-link {
+    text-decoration: none!important;
+    margin-top: 10px!important;
+}
+
+a.submit-new-coin-text {
+    background-image: linear-gradient(0deg,#5F00B2 0,#6938e6 50%,#6938e6)!important;
+    color: #fff!important;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 17px!important;
+}
+
+.search-field {
+    margin-right: 20px;
+    position: absolute;
+    width: 92%!important;
+    padding-left: 20px!important;
+    padding-right: 120px!important;
+    padding-top: 13px!important;
+    padding-bottom: 13px!important;
+    border-radius: 80px!important;
+    border: solid 1px #cdced2!important;
+    font: 16px GothamLight!important;
+    z-index: 1!important;
+    background: #fff!important;
+    box-shadow: 0 3px 5px rgba(0,0,0,.09)!important;
+}
+
+.btn-search {
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    z-index: 2;
+    border: 0;
+    vertical-align: top;
+    padding: 8px 28px;
+    font-size: 17px;
+    background-image: linear-gradient(0deg,#5F00B2 0,#6938e6 50%,#6938e6)!important;
+    font-weight: 700;
+    border-radius: 50px;
+    height: 46px;
+    line-height: 30px;
+    color: #fff!important;
+    background-size: auto 200%;
+    box-shadow: 0 1px 0 rgba(0,0,0,.2878);
+    background-position: 0 100%;
+    outline: 0!important;
+}

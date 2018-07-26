@@ -144,8 +144,8 @@
     <script>
         $(document).ready(function () {
             var eventTime = '{{time_limit}}';
-            var eventTime = '{{time_limit}}';
-            var currentTime = moment().unix();
+            var currentTime = moment().utc();
+            alert(currentTime);
             var leftTime = eventTime - currentTime;
             var duration = moment.duration(leftTime, 'seconds');
             var interval = 1000;

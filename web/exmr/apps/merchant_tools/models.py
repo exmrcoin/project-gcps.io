@@ -135,11 +135,11 @@ class POSQRMaker(models.Model):
     merchant_id = models.CharField(
         verbose_name=_('merchant id'), max_length=128)
     unique_id = models.CharField(max_length=128, null=False, unique=True)
-    item_desc = models.CharField(max_length=512, null=False)
+    item_desc = models.CharField(max_length=512, null=True)
     item_amount = models.CharField(max_length=128, null=False)
     currency = models.ForeignKey(Coin, on_delete=models.CASCADE)
     invoice_number = models.CharField(max_length=128, null=False)
-    custom_field = models.CharField(max_length=128, null=False)
+    custom_field = models.CharField(max_length=128, null=True)
     URL_link = models.CharField(max_length=256, null=False)
     time_limit = models.CharField(max_length=128, null=False)
 

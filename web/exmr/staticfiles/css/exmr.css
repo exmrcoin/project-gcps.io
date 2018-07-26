@@ -957,7 +957,7 @@ footer {
 	Label the data
 	*/
     .vote_table td:nth-of-type(1):before {
-        content: "POSITION:    ";
+        /* content: "POSITION:    "; */
     }
     .vote_table td:nth-of-type(2):before {
         content: "COIN:    ";

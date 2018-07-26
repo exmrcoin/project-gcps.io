@@ -97,20 +97,20 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6">
-                            <p class="link underline-link">
-                                <a class="submit-new-coin-text" href="{% url 'coins:add-public-coin'%}">Submit New Coin Here</a>
-                                <a class="see-winners" href="#"> See Winners Here</a>
-                            </p>
+                            <div class="link underline-link text-center">
+                                <a class="btn submit-new-coin-text w200px mt-1" href="{% url 'coins:add-public-coin'%}">Submit New Coin Here</a>
+                                <a class="btn see-winners w200px mt-1" href="#"> See Winners Here</a>
+                            </div>
                         </div>
                         <div class="col-md-6">
-                                <div class="search-content">
+                                <div class="search-content mt-1">
                                     <input type="text" name="name" id="searchText" placeholder="Look for your coin" class="search-field" value="">
                                     <button type="button" id="search" class="_submit btn btn-search" value="search">Search</button>
                                 </div>
                         </div>
                     </div>
                     <!-- <button class="btn btn-success" onclick="window.location.href='{% url 'coins:add-public-coin'%}'"> Submit Coin </button> -->
-                    <div id="table_div">
+                    <div id="table_div" class=" mt-1 pt-1">
                         <table class="table vote_table">
                             <thead>
                                 <tr class="table-top">
@@ -124,11 +124,11 @@
 
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="py-1">
                                 {% for coin in coins %}
-                                <tr class="table-th">
-                                    <td style="width: 10%;"> {% if coin.logo_url %}
-                                        <img src="{{coin.logo_url}}" style="width: 30%;">{% endif %}</td>
+                                <tr class="table-th pt-1">
+                                    <td > {% if coin.logo_url %}
+                                        <img src="{{coin.logo_url}}" style="width: 30px;">{% endif %}</td>
                                     <td style="font-weight: 700;"> {{coin.name}}</td>
                                     <td>
                                         <B>{{coin.code}}</B>

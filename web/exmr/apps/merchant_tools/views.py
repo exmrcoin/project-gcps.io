@@ -17,7 +17,7 @@ from apps.coins.models import Coin, WalletAddress
 from apps.coins.utils import *
 from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm, POSQRForm
 from apps.merchant_tools.models import (ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic,
-                                        URLMaker, POSQRMaker)
+                                        URLMaker, POSQRMaker, MultiPayment)
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.crypto import get_random_string
@@ -301,7 +301,9 @@ class POSQRMakerView(FormView):
         invoice_number = form.cleaned_data['invoice_number']
         custom_field = form.cleaned_data['custom_field']
         unique_id = form.cleaned_data['unique_id']
-
+        d = timezone.now()
+        time_now = int(time.mktime(d.timetuple()))
+        obj.time_limit = time_now + 4*60*60
         domain = self.request.get_host()
         mydate = timezone.now()
         maxtimer = int(time.mktime(mydate.timetuple())) + 4*60*60
@@ -324,29 +326,63 @@ class POSQRPayView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         token = self.kwargs['token']
-        context['pos_sale'] = POSQRMaker.objects.get(unique_id=token)
+        temp_obj = POSQRMaker.objects.get(unique_id=token)
+        context['pos_sale'] = temp_obj
         context['available_coins'] = Coin.objects.all()
         context['unique_id'] = token
+        check_prepaid = MultiPayment.objects.filter(paid_unique_id=token)
+        if check_prepaid:
+            total_paid = 0;
+            for prepaid in check_prepaid:
+                total_paid = float(prepaid.recieved_usd)
+            print(total_paid)
+        try:
+            context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
+        except:
+            context['amt_remaining'] = float(temp_obj.item_amount)
         return context
 
     def post(self, request, *args, **kwargs):
-        context =  super(POSQRPayView, self).get_context_data()
+        superuser = User.objects.get(is_superuser=True)
         request.session['unique_id'] = request.POST.get('unique_id')
         request.session['selected_coin'] = request.POST.get('selected_coin')
-        request.session['payable_amt'] = request.POST.get('payable_amt')
+        request.session['payable_amt'] = request.POST.get('coin_amt')
+        request.session['payable_amt_usd'] = request.POST.get('payable_amt')
+        d = timezone.now()
+        try:
+            obj = MultiPayment.objects.filter(paid_unique_id=request.session['unique_id'], paid_in=Coin.objects.get(
+                code=request.session['selected_coin']))
+            addr = obj[0].payment_address
+        except:
+            addr = create_wallet(
+                superuser, self.request.session['selected_coin'])
+        request.session['crypto_address'] = addr
+        obj, created = MultiPayment.objects.get_or_create(
+            paid_amount=request.session['payable_amt'],
+            paid_in=Coin.objects.get(code=request.session['selected_coin']),
+            eq_usd=request.session['payable_amt_usd'],
+            paid_unique_id=request.session['unique_id'],
+            transaction_id=account_activation_token.make_token(
+                user=self.request.user),
+            payment_address=addr
+        )
+
         return HttpResponseRedirect(reverse_lazy('mtools:posqrpay'))
         # return render(self.request, 'merchant_tools/posqrgenerator.html', context)
-
 
 
 class POSQRCompletePaymentView(TemplateView):
     template_name = 'merchant_tools/posqrpostpayment.html'
 
     def get_context_data(self, *args, **kwargs):
-        context= super(POSQRCompletePaymentView, self).get_context_data()
-        superuser = User.objects.get(is_superuser=True)
+        context = super(POSQRCompletePaymentView, self).get_context_data()
         unique_id = self.request.session['unique_id']
-        selected_coin=self.request.session['selected_coin']
-        context['payable_amt']=self.request.session['payable_amt']
-        context['crypto_address'] = create_wallet(superuser, selected_coin)
+        obj = POSQRMaker.objects.get(unique_id=unique_id)
+        time_limit = int(obj.time_limit)
+        context['time_limit'] = time_limit
+        context['unique_id'] = unique_id
+        context['payable_amt'] = self.request.session['payable_amt']
+        context['payable_amt_usd'] = self.request.session['payable_amt_usd']
+        context['selected_coin'] = self.request.session['selected_coin']
+        context['crypto_address'] = self.request.session['crypto_address']
         return context

@@ -36,7 +36,7 @@
                 <input type="hidden" name="unique_id" value="{{unique_id}}" />
 
                 <div class="col-xs-12 pr-md-0 text-center">
-                    <h3>Total Amount due: {{pos_sale.item_amount}}</h3>
+                    <h3>Total Amount due: {{amt_remaining}}</h3>
                 </div>
                 <div class="col-xs-12 pr-md-0 text-center">
                     <div class="col-xs-12 col-md-3 text-center">
@@ -69,7 +69,7 @@
                                         <form>
                                             {% for coins in available_coins %}
                                             <label>
-                                                <input type="radio" checked name="selected_coin" value="{{coins.code}}" id="coins_{{coins.code}}" onclick="change_coin('{{coins.code}}')">
+                                                <input type="radio" name="selected_coin" value="{{coins.code}}" id="coins_{{coins.code}}" onclick="change_coin('{{coins.code}}')">
                                                 <div class="btn btnrad btnrad-sık">
                                                     <img src="{{coins.image.url}}" class="crypto-btn-image col-xs-3">
                                                     <span class="col-xs-9">{{coins}}</span>
@@ -107,7 +107,7 @@
                         coin_dict[data[obj].short] = data[obj].price;
 
                         if (data[obj].short == 'BTC') {
-                            amt_payable = parseFloat('{{pos_sale.item_amount}}');
+                            amt_payable = parseFloat('{{amt_remaining}}');
                             document.getElementById("coin_usd").value = data[obj].price.toFixed(2);
                             document.getElementById("coin_amt").value = (amt_payable / data[obj].price).toFixed(
                                 8);

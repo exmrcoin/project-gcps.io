@@ -130,7 +130,7 @@ class URLMaker(models.Model):
 class POSQRMaker(models.Model):
     
     def four_hour_hence():
-        return timezone.now() + timezone.timedelta(hours=4)
+        return timezone.now() + timezone.timedelta(hours=12)
 
     merchant_id = models.CharField(
         verbose_name=_('merchant id'), max_length=128)
@@ -141,20 +141,23 @@ class POSQRMaker(models.Model):
     invoice_number = models.CharField(max_length=128, null=False)
     custom_field = models.CharField(max_length=128, null=False)
     URL_link = models.CharField(max_length=256, null=False)
-    time_limit = models.DateTimeField(default=four_hour_hence)
-
+    time_limit = models.CharField(max_length=128, null=False)
 
     def __str__(self):
         return self.item_desc
 
 class MultiPayment(models.Model):
     paid_in = models.ForeignKey(Coin, on_delete=models.PROTECT)
+    payment_address = models.CharField(max_length=512, null=False)
     paid_amount = models.CharField(max_length=512, null=False)
     eq_usd = models.CharField(max_length=512, blank=True, null=True)
-    paid_date = datetime.now()
+    paid_date = models.DateTimeField(blank=True,null=True)
+    recieved_amount = models.CharField(max_length=512, default=0)
+    recieved_usd = models.CharField(max_length=512, default=0)
+
     paid_unique_id = models.CharField(max_length=512, blank=True, null=True)
     transaction_id = models.CharField(max_length=64, null=False)
 
     def __str__(self):
-        return str(self.paid_in +"_"+ self.paid_date)
+        return str(self.paid_in)
 

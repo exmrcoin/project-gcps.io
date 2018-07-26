@@ -140,15 +140,14 @@
                         <div class="col-md-6">
                             <p class="link underline-link">
                                 <a class="submit-new-coin-text" href="{% url 'coins:add-public-coin'%}">Submit New Coin Here</a>
-                                <a class="submit-new-coin-text" href="#"> See Winners Here</a>
+                                <a class="see-winners" href="#"> See Winners Here</a>
                             </p>
                         </div>
                         <div class="col-md-6">
-                            <form method="GET" action="" autocomplete="off">
                                 <div class="search-content">
-                                    <input type="text" id="search" name="name" placeholder="Look for your coin" class="search-field" value="">
+                                    <input type="text" name="name" id="searchText" placeholder="Look for your coin" class="search-field" value="">
+                                    <button type="button" id="search" class="_submit btn btn-search" value="search">Search</button>
                                 </div>
-                            </form>
                         </div>
                     </div>
                     <!-- <button class="btn btn-success" onclick="window.location.href='{% url 'coins:add-public-coin'%}'"> Submit Coin </button> -->
@@ -156,8 +155,7 @@
                         <table class="table vote_table">
                             <thead>
                                 <tr class="table-top">
-                                    <th>POSITION</th>
-
+                                    <th></th>
                                     <th>COIN</th>
                                     <th>CODE</th>
                                     <th>VOTES</th>
@@ -170,8 +168,9 @@
                             <tbody>
                                 {% for coin in coins %}
                                 <tr class="table-th">
-                                    <td>{{forloop.counter}}st</td>
-                                    <td> {{coin.name}}</td>
+                                    <td style="width: 10%;"> {% if coin.logo_url %}
+                                        <img src="{{coin.logo_url}}" style="width: 30%;">{% endif %}</td>
+                                    <td style="font-weight: 700;"> {{coin.name}}</td>
                                     <td>
                                         <B>{{coin.code}}</B>
                                     </td>
@@ -223,8 +222,8 @@ function coinVote(coin_id,count){
 {% endblock %}
 {% block script %}
 <script type="text/javascript">
-$("#search").keyup(function () {
-    var value = this.value.toLowerCase().trim();
+$("#search").click(function () {
+    var value = $("#searchText").val().toLowerCase().trim();
 
     $("table tr").each(function (index) {
         if (!index) return;
@@ -236,6 +235,11 @@ $("#search").keyup(function () {
         });
     });
 });
+$("#searchText").keyup(function(e){
+    if(e.keyCode === 13){
+        $("#search").trigger('click');
+    }
+})
 </script>
 {% endblock %}
  

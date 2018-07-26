@@ -357,6 +357,14 @@ a.submit-new-coin-text {
     font-size: 17px!important;
 }
 
+a.see-winners {
+    background-image: linear-gradient(0deg,#16b101 0,#16b101 50%,#16b101)!important;
+    color: #fff!important;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 17px!important;
+}
+
 .search-field {
     margin-right: 20px;
     position: absolute;
@@ -382,7 +390,7 @@ a.submit-new-coin-text {
     vertical-align: top;
     padding: 8px 28px;
     font-size: 17px;
-    background-image: linear-gradient(0deg,#5F00B2 0,#6938e6 50%,#6938e6)!important;
+    background-image: linear-gradient(0deg,#16b101 0,#16b101 50%,#16b101)!important;
     font-weight: 700;
     border-radius: 50px;
     height: 46px;

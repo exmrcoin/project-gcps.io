@@ -33,8 +33,8 @@
                 </div>
                 <h5 class=" shopping-headline">{% trans 'API & IPNs' %}</h5>
                 <ul>
-                    <li>{% trans 'Instant Payment Notification' %}</li>
-                    <li><a href="{% url 'mtools:mercdocs' %}">{% trans 'GETCRYPTOPAYMENTAPI' %}</a></li>
+                    <li><a href="{% url 'common:beta' %}">{% trans 'Instant Payment Notification' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='mtools_ipn_doc' %}">{% trans 'GETCRYPTOPAYMENTAPI' %}</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-md-3 text-center merch-box">
@@ -54,7 +54,7 @@
                 <ul>
                     <li><a href="{% url 'common:staticpage' slug='mtools_pos_html_post' %}">{% trans 'HTML URL/ POST Fields' %}</a></li>
                     <li><a href="{% url 'mtools:posqrmaker' %}">{% trans 'Post link QR Code Generator' %}</a></li>
-                    <li>{% trans 'POS Examle' %}</li>
+                    <li><a href="{% url 'common:staticpage' slug='mtools_pos_example' %}">{% trans 'POS Example' %}</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-md-3 text-center merch-box">
@@ -64,8 +64,8 @@
                 <h5 class=" shopping-headline">{% trans 'SIMPLE BUTTONS' %}</h5>
                 <ul>
                     <li><a href="{% url 'mtools:buttonmaker' %}">{% trans 'Button Maker' %}</a></li>
-                    <li>{% trans 'HTML Post Field' %}</li>
-                    <li>{% trans 'Button Examples' %}</li>
+                    <li><a href="{% url 'common:staticpage' slug='simple_button_html_post' %}">{% trans 'HTML POST Field' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='simple_button_example' %}">{% trans 'Button Examples' %}</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-md-3 text-center merch-box">
@@ -74,9 +74,9 @@
                 </div>
                 <h5 class=" shopping-headline">{% trans 'ADVANCE BUTTONS' %}</h5>
                 <ul>
-                    <li>{% trans 'Button Maker' %}</li>
-                    <li>{% trans 'HTML Post Field' %}</li>
-                    <li>{% trans 'Button Examples' %}</li>
+                    <li><a href="{% url 'mtools:buttonmaker'  %}">{% trans 'Button Maker' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='advanced_button_html_post' %}">{% trans 'HTML Post Field' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='advanced_button_html_post' %}">{% trans 'Button Examples' %}</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-md-3 text-center merch-box">
@@ -85,9 +85,9 @@
                 </div>
                 <h5 class=" shopping-headline">{% trans 'SHOPPING CART BUTTONS' %}</h5>
                 <ul>
-                    <li>{% trans 'HTML Post Field' %}</li>
-                    <li>{% trans 'Button Examples' %}</li>
-                    <li>{% trans 'Button Images' %}</li>
+                    <li><a href="{% url 'common:staticpage' slug='cart_button_html_post' %}">{% trans 'HTML Post Field' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='cart_button_example' %}">{% trans 'Button Examples' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='simple_button_images' %}">{% trans 'Button Images' %}</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-md-3 text-center merch-box">
@@ -96,9 +96,9 @@
                 </div>
                 <h5 class=" shopping-headline">{% trans 'DONATION BUTTONS' %}</h5>
                 <ul>
-                    <li>{% trans 'Button Maker' %}</li>
-                    <li>{% trans 'HTML Post Field' %}</li>
-                    <li>{% trans 'Button Examples' %}</li>
+                    <li><a href="{% url 'mtools:buttonmaker' %}">{% trans 'Button Maker' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='simple_button_html_post' %}">{% trans 'HTML Post Field' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='simple_button_html_post' %}">{% trans 'Button Examples' %}</a></li>
                 </ul>
             </div>
         </div>

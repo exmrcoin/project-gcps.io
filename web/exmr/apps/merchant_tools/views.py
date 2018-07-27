@@ -17,7 +17,7 @@ from apps.coins.models import Coin, WalletAddress
 from apps.coins.utils import *
 from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm, POSQRForm
 from apps.merchant_tools.models import (ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic,
-                                        URLMaker, POSQRMaker, MultiPayment)
+                                        URLMaker, POSQRMaker, MultiPayment, MercSidebarSubTopic)
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.crypto import get_random_string
@@ -194,8 +194,23 @@ class MercDocs(TemplateView):
     def get_context_data(self):
         context = super().get_context_data()
         context['merc_sidebar_topic'] = MercSidebarTopic.objects.all()
+        context['merc_sidebar_sub_topic'] = MercSidebarSubTopic.objects.all()
         return context
 
+class HelpTemplateView(TemplateView):
+    template_name = 'merchant_tools/help-template.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        slug = self.kwargs.get('slug')
+        context['merc_sidebar_topic'] = MercSidebarTopic.objects.all()
+        context['merc_sidebar_sub_topic'] = MercSidebarSubTopic.objects.all() 
+        # context['legal_sidebar'] = LegalSidebar.objects.all() 
+        if (MercSidebarSubTopic.objects.filter(slug=slug)).exists():
+            context['details'] = MercSidebarSubTopic.objects.filter(slug=slug)
+        # else:
+        #     context['details'] = LegalSidebar.objects.filter(slug=slug)
+        return context
 
 class URLMakerView(FormView):
 
@@ -257,6 +272,7 @@ class URLMakerInvoiceView(TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
         token = self.kwargs['token']
+        import pdb; pdb.set_trace()
         temp_obj = URLMaker.objects.get(unique_id=token)
         context['unique_id'] = temp_obj.unique_id
         context['merchant_id'] = temp_obj.merchant_id
@@ -264,14 +280,12 @@ class URLMakerInvoiceView(TemplateView):
         context['item_amount'] = temp_obj.item_amount
         context['item_number'] = temp_obj.item_number
         context['item_qty'] = temp_obj.item_qty
-        context['item_total'] = int(
-            temp_obj.item_qty) * int(temp_obj.item_amount)
+        context['item_total'] = int(temp_obj.item_qty) * int(temp_obj.item_amount)
         context['invoice_number'] = temp_obj.invoice_number
         context['tax_amount'] = temp_obj.tax_amount
         context['shipping_cost'] = temp_obj.shipping_cost
         context['ipn_url_link'] = temp_obj.ipn_url_link
-        context['merchant_name'] = Profile.objects.get(
-            merchant_id=temp_obj.merchant_id)
+        context['merchant_name'] = Profile.objects.get(merchant_id=temp_obj.merchant_id)
 
         return context
 
@@ -328,7 +342,7 @@ class POSQRPayView(TemplateView):
         token = self.kwargs['token']
         temp_obj = POSQRMaker.objects.get(unique_id=token)
         context['pos_sale'] = temp_obj
-        context['available_coins'] = Coin.objects.all()
+        context['available_coins'] = Coin.objects.filter(active=True)
         context['unique_id'] = token
         check_prepaid = MultiPayment.objects.filter(paid_unique_id=token)
         if check_prepaid:

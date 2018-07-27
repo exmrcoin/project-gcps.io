@@ -29,7 +29,7 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         #     coin = Coin.objects.get(code=currency)
         #     if not Wallet.objects.filter(user=self.request.user, name=coin):
         #         create_wallet(self.request.user, currency)
-        context['wallets'] = Coin.objects.all()
+        context['wallets'] = Coin.objects.filter(active=True)
         return context
 
 

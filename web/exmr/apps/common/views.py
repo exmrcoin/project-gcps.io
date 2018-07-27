@@ -1,6 +1,6 @@
 import os
 
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, FormView
 
@@ -71,11 +71,28 @@ class Update(View):
 class StaticPageView(TemplateView):
     template_name = 'common/staticpage.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        # Try to dispatch to the right method; if a method doesn't exist,
+        # defer to the error handler. Also defer to the error handler if the
+        # request method isn't on the approved list.
+        if request.method.lower() in self.http_method_names:
+            handler = getattr(self, request.method.lower(), self.http_method_not_allowed)
+        context = self.get_context_data(**kwargs)
+        try:
+            if context['staticpage']:
+                return handler(request, *args, **kwargs)
+        except:
+            return HttpResponseRedirect(reverse_lazy('common:beta'))
+
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
+        slug = self.kwargs['slug']
         try:
-            slug = self.kwargs['slug']
             context['staticpage'] = StaticPage.objects.get(page_name=slug)
         except:
             pass
         return context
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context)

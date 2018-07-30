@@ -67,7 +67,7 @@ class ButtonMakerView(FormView):
         domain = self.request.get_host()
         temp_html = ['<form action="//'+domain+reverse('mtools:cryptopay') + '" method="POST" >',
                      '<input type="hidden" name="merchant_id" value="'+merchant_id +
-                     '" maxlength="128" disabled id="id_merchant_id" required />',
+                     '" maxlength="128" id="id_merchant_id" required />',
                      '<input type="hidden" name="item_name" value="'+item_name +
                      '" maxlength="128" id="id_item_name" required />',
                      '<input type="hidden" name="item_amount" value="'+item_amount +

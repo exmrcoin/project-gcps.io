@@ -18,18 +18,22 @@ class ButtonMaker(models.Model):
     merchant_id = models.CharField(
         verbose_name=_('merchant id'), max_length=128)
     item_name = models.CharField(max_length=128, null=False)
-    item_amount = models.CharField(max_length=128, null=False)
+    item_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
     item_number = models.CharField(max_length=128, null=False)
-    item_qty = models.CharField(max_length=128, null=False)
+    item_qty = models.DecimalField(max_digits=20, decimal_places=2, null=False)
     buyer_qty_edit = models.BooleanField(default=False)
     invoice_number = models.CharField(max_length=128, null=False)
-    tax_amount = models.CharField(max_length=128, null=False)
+    tax_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
     allow_shipping_cost = models.BooleanField(default=False)
-    shipping_cost = models.CharField(max_length=128, null=False)
-    shipping_cost_add = models.CharField(max_length=128, null=False)
-    success_url_link = models.CharField(max_length=128, null=False)
-    cancel_url_link = models.CharField(max_length=128, null=False)
-    ipn_url_link = models.CharField(max_length=128, null=False)
+    shipping_cost = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
+    shipping_cost_add = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
+    success_url_link = models.URLField(max_length=128, null=False)
+    cancel_url_link = models.URLField(max_length=128, null=False)
+    ipn_url_link = models.URLField(max_length=128, null=False)
     btn_image = models.ForeignKey('ButtonImage', on_delete=models.CASCADE)
     allow_buyer_note = models.BooleanField(default=False)
 
@@ -128,7 +132,7 @@ class URLMaker(models.Model):
 
 
 class POSQRMaker(models.Model):
-    
+
     def four_hour_hence():
         return timezone.now() + timezone.timedelta(hours=12)
 
@@ -146,12 +150,13 @@ class POSQRMaker(models.Model):
     def __str__(self):
         return self.item_desc
 
+
 class MultiPayment(models.Model):
     paid_in = models.ForeignKey(Coin, on_delete=models.PROTECT)
     payment_address = models.CharField(max_length=512, null=False)
     paid_amount = models.CharField(max_length=512, null=False)
     eq_usd = models.CharField(max_length=512, blank=True, null=True)
-    paid_date = models.DateTimeField(blank=True,null=True)
+    paid_date = models.DateTimeField(blank=True, null=True)
     recieved_amount = models.CharField(max_length=512, default=0)
     recieved_usd = models.CharField(max_length=512, default=0)
 
@@ -160,4 +165,3 @@ class MultiPayment(models.Model):
 
     def __str__(self):
         return str(self.paid_in)
-

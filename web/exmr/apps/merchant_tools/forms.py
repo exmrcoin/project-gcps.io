@@ -2,12 +2,15 @@ from django import forms
 
 from apps.coins.models import Coin
 from apps.merchant_tools.models import ButtonMaker, CryptoPaymentRec, URLMaker, POSQRMaker
-
+from django.core.validators import DecimalValidator, URLValidator, ValidationError
 
 class ButtonMakerForm(forms.ModelForm):
     class Meta:
         model = ButtonMaker
         exclude = ['']
+        labels = {
+        "item_amount":"item_price"
+        }
 
     def __init__(self, *args, **kwargs):
         super(ButtonMakerForm, self).__init__(*args, **kwargs)

@@ -35,4 +35,10 @@
 
 </div>
 
-{% endblock %} {% block script %}{% endblock %}
+{% endblock %} {% block script %}
+<script>
+        $(window).on("load",function(){
+            $('#onload').modal('show');
+    })
+</script>
+{% endblock %}

@@ -1,5 +1,4 @@
-{% load staticfiles %} {% load i18n %} {% get_available_languages as languages %}
-{% load helper_tags %}
+{% load staticfiles %} {% load i18n %} {% get_available_languages as languages %} {% load helper_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,24 +32,27 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'images/logo1.png' %}" class="margin-center logoheader" ></a>
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logo1.png' %}" class="margin-center logoheader">
+            </a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-left">
-                    <li>
-                        <a href="{% url 'public coin vote' %}">{% trans 'Public Coin Vote'%}</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'coins:supported_coins' 'Crypto' %}">{% trans 'Supported Coins' %}</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'store:store-directory' %}">{% trans 'Store Directory' %}</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'merchant-tools' %}">{% trans 'Merchant Tools' %}</a>
-                    </li>
+                <li>
+                    <a href="{% url 'public coin vote' %}">{% trans 'Public Coin Vote'%}</a>
+                </li>
+                <li>
+                    <a href="{% url 'coins:supported_coins' 'Crypto' %}">{% trans 'Supported Coins' %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'store:store-directory' %}">{% trans 'Store Directory' %}</a>
+                </li>
+                <li>
+                    <a href="{% url 'merchant-tools' %}">{% trans 'Merchant Tools' %}</a>
+                </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right"> <li class="dropdown">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Contact Us' %}
                         <span class="caret"></span>
                     </a>
@@ -81,7 +83,7 @@
                     <ul class="dropdown-menu drop-down-box">
                         {% for language in languages %}
                         <li class="{% ifequal current_language language.0 %}active{% endifequal %}">
-                            <a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% change_lang language %}"  title="{{ language.1 }}">
+                            <a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% change_lang language %}" title="{{ language.1 }}">
                                 {{ language.1 }}
                             </a>
                         </li>
@@ -119,25 +121,25 @@
             </ul>
         </div>
     </nav>
-        <!-- Modal -->
+    <!-- Modal -->
     <div id="appModal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
+        <div class="modal-dialog">
 
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">APP</h4>
-          </div>
-          <div class="modal-body">
-            <p>In Develop Coming soon.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">APP</h4>
+                </div>
+                <div class="modal-body">
+                    <p>In Develop Coming soon.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
         </div>
-
-      </div>
     </div>
     {% block content %} {% endblock content %}
 
@@ -187,7 +189,7 @@
                             <li>{% trans 'Fees/Pricing' %}</li>
                             <li>{% trans 'Help' %}</li>
                             <li onclick="window.location.href='{% url 'store:add-to-store' %}'">{% trans 'Add Store' %}</li>
-                            <li onclick="window.location.href='{% url 'public coin vote' %}'" >{% trans 'Coin Request' %}</li>
+                            <li onclick="window.location.href='{% url 'public coin vote' %}'">{% trans 'Coin Request' %}</li>
                         </ul>
                     </div>
 
@@ -213,10 +215,14 @@
                     </div>
 
                     <div class="col-xs-12 col-md-6 footer-head-menu buttons-footer-div">
-                        <button type="submit" class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 padx0 xs-floatn xs-margin-center footer-head-menubtn btn-default btn-footer " onclick="window.location.href='{% url 'store:add-to-store' %}'">{% trans 'Add Store' %}</button>
-                        <button type="submit" class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 padx0 img-responsive xs-floatn xs-margin-center btn-default btn-footer coin-payment " onclick="window.location.href='{% url 'public coin vote' %}'">{% trans 'Coin Request' %}</button>
-                        <img class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 img-responsive xs-floatn padx0 xs-margin-center  appstore-icon" src="{% static 'images/apple-icon.png' %}" data-toggle="modal" data-target="#appModal">
-                        <img class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 img-responsive xs-floatn padx0 xs-margin-center  appstore-icon" src="{% static 'images/play-store.png' %}" data-toggle="modal" data-target="#appModal">
+                        <button type="submit" class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 padx0 xs-floatn xs-margin-center footer-head-menubtn btn-default btn-footer "
+                            onclick="window.location.href='{% url 'store:add-to-store' %}'">{% trans 'Add Store' %}</button>
+                        <button type="submit" class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 padx0 img-responsive xs-floatn xs-margin-center btn-default btn-footer coin-payment "
+                            onclick="window.location.href='{% url 'public coin vote' %}'">{% trans 'Coin Request' %}</button>
+                        <img class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 img-responsive xs-floatn padx0 xs-margin-center  appstore-icon" src="{% static 'images/apple-icon.png' %}"
+                            data-toggle="modal" data-target="#appModal">
+                        <img class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 img-responsive xs-floatn padx0 xs-margin-center  appstore-icon" src="{% static 'images/play-store.png' %}"
+                            data-toggle="modal" data-target="#appModal">
 
                     </div>
                 </div>
@@ -225,6 +231,33 @@
 
             </div>
         </div>
+
+ 
+        <div class="modal pos-v-mid fade animated flipInY " tabindex="-1" role="dialog" data-easein="bounceUpIn" aria-labelledby="myLargeModalLabel" aria-hidden="true"
+            id="onload">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content  exmr-modal white-font">
+
+                <img src="{% static 'images/logo1.png' %}" class="margin-center img-responsive exmr-modal-logo">
+                    <div class="modal-header text-center">
+                        <button type="button" class="close" data-dismiss="modal">×</button>
+                        <h4 class="modal-title">
+                            <i class="fa fa-exclamation-circle"></i>GetCryptoPayments is in Alpha Phase!</h4>
+                    </div>
+                    <div class="modal-body text-center">
+                       We are in active development to bring you the best features.
+                       <br> Some functions are still under development. 
+                       <br>We thankyou for your understanding.
+                       <br>
+                       <br>
+                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </footer>
 
     <!-- <script> -->

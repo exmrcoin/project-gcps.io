@@ -9,7 +9,7 @@ class ButtonMakerForm(forms.ModelForm):
         model = ButtonMaker
         exclude = ['']
         labels = {
-        "item_amount":"item_price"
+        "item_amount":"Price in USD $"
         }
 
     def __init__(self, *args, **kwargs):
@@ -27,6 +27,9 @@ class URLMakerForm(forms.ModelForm):
     class Meta:
         model = URLMaker
         exclude = ['unique_id', 'URL_link']
+        labels = {
+        "item_amount":"Price in USD $"
+        }
 
     def __init__(self, *args, **kwargs):
         super(URLMakerForm, self).__init__(*args, **kwargs)

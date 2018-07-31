@@ -75,6 +75,12 @@
                         </li> -->
                     </ul>
                 </li>
+
+                {% if user.is_authenticated %}
+                <li>
+                    <a href="{% url 'accounts:profile' %}">{% trans 'Dashboard' %}</a>
+                </li>
+                {% endif %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                         <img class="language-icon" src="{% static 'images/language.png' %}"> {% trans 'Language' %}
@@ -96,9 +102,9 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu drop-down-box">
-                        <li>
+                        <!-- <li>
                             <a href="{% url 'accounts:profile' %}">{% trans 'Dashboard' %}</a>
-                        </li>
+                        </li> -->
                         <li>
                             <a href="{% url 'accounts:settings' %}">{% trans 'Account Settings' %}</a>
                         </li>
@@ -232,25 +238,26 @@
             </div>
         </div>
 
- 
-        <div class="modal pos-v-mid fade animated flipInY " tabindex="-1" role="dialog" data-easein="bounceUpIn" aria-labelledby="myLargeModalLabel" aria-hidden="true"
-            id="onload">
+
+        <div class="modal pos-v-mid fade animated flipInY " tabindex="-1" role="dialog" data-easein="bounceUpIn" aria-labelledby="myLargeModalLabel"
+            aria-hidden="true" id="onload">
             <div class="modal-dialog">
                 <!-- Modal content-->
                 <div class="modal-content  exmr-modal white-font">
 
-                <img src="{% static 'images/logo1.png' %}" class="margin-center img-responsive exmr-modal-logo">
+                    <img src="{% static 'images/logo1.png' %}" class="margin-center img-responsive exmr-modal-logo">
                     <div class="modal-header text-center">
                         <button type="button" class="close" data-dismiss="modal">×</button>
                         <h4 class="modal-title">
                             <i class="fa fa-exclamation-circle"></i>GetCryptoPayments is in Alpha Phase!</h4>
                     </div>
                     <div class="modal-body text-center">
-                       We are in active development to bring you the best features.
-                       <br> Some functions are still under development. 
-                       <br>We thankyou for your understanding.
-                       <br>
-                       <br>
+                        We are in active development to bring you the best features.
+                        <br>Some functions are still under development.
+                        <br>More Coin support will be added in future.
+                        <br>We thankyou for your understanding.
+                        <br>
+                        <br>
                         <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
                     </div>
                 </div>

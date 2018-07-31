@@ -145,13 +145,16 @@ class CryptoPaymment(FormView):
         context['allow_buyer_note'] = self.request.POST['allow_buyer_note']
         temp_id = context['merchant_id']
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
+        context['available_coins'] = Coin.objects.filter(active=True)
         return render(request, 'merchant_tools/payincrypto.html', context)
 
 
 class PaymentFormSubmitView(View):
     def post(self, request, *args, **kwargs):
-
-        sel_coin = Coin.objects.get(code=self.request.POST['selected_coin'])
+        try:
+            sel_coin = Coin.objects.get(code=self.request.POST['selected_coin'])
+        except:
+            sel_coin = Coin.objects.get(code='ETH')
         superuser = User.objects.get(is_superuser=True)
         crypto_address = create_wallet(superuser, sel_coin.code)
         # crypto_address = '123'
@@ -182,9 +185,14 @@ class PaymentFormSubmitView(View):
         temp_obj.save()
         context = {}
         merchant_id = self.request.POST['merchant_id']
+        context['available_coins'] = Coin.objects.filter(active=True)
         context['merchant_name'] = Profile.objects.get(merchant_id=merchant_id)
         context['crypto_address'] = crypto_address
         context['unique_id'] = self.request.POST['unique_id']
+        context['selected_coin'] = sel_coin
+        item_amount = float(self.request.POST['item_amount'])
+        item_qty = float(self.request.POST['item_qty'])
+        context['amt_payable_usd'] = (item_amount * item_qty)
         return render(request, 'merchant_tools/postpayment.html', context)
 
 
@@ -272,7 +280,6 @@ class URLMakerInvoiceView(TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
         token = self.kwargs['token']
-        import pdb; pdb.set_trace()
         temp_obj = URLMaker.objects.get(unique_id=token)
         context['unique_id'] = temp_obj.unique_id
         context['merchant_id'] = temp_obj.merchant_id
@@ -286,6 +293,7 @@ class URLMakerInvoiceView(TemplateView):
         context['shipping_cost'] = temp_obj.shipping_cost
         context['ipn_url_link'] = temp_obj.ipn_url_link
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_obj.merchant_id)
+        context['available_coins'] = Coin.objects.filter(active=True)
 
         return context
 

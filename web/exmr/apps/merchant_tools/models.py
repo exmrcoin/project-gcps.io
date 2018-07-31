@@ -31,9 +31,9 @@ class ButtonMaker(models.Model):
         max_digits=20, decimal_places=2, null=False)
     shipping_cost_add = models.DecimalField(
         max_digits=20, decimal_places=2, null=False)
-    success_url_link = models.URLField(max_length=128, null=False)
-    cancel_url_link = models.URLField(max_length=128, null=False)
-    ipn_url_link = models.URLField(max_length=128, null=False)
+    success_url_link = models.URLField(max_length=128, blank=True, null=True)
+    cancel_url_link = models.URLField(max_length=128, blank=True, null=True)
+    ipn_url_link = models.URLField(max_length=128, blank=True, null=True)
     btn_image = models.ForeignKey('ButtonImage', on_delete=models.CASCADE)
     allow_buyer_note = models.BooleanField(default=False)
 
@@ -76,7 +76,7 @@ class CryptoPaymentRec(models.Model):
     state = models.CharField(max_length=128, null=False)
     zipcode = models.CharField(max_length=128, null=False)
     phone = models.CharField(max_length=128, null=False)
-    buyer_note = models.CharField(max_length=128, null=True)
+    buyer_note = models.CharField(max_length=128, blank=True, null=True)
     selected_coin = models.ForeignKey(Coin, on_delete=models.CASCADE)
     wallet_address = models.CharField(max_length=128, null=False)
 
@@ -118,13 +118,17 @@ class URLMaker(models.Model):
     unique_id = models.CharField(max_length=128, null=False, unique=True)
     item_name = models.CharField(max_length=128, null=False)
     item_desc = models.CharField(max_length=512, null=False)
-    item_amount = models.CharField(max_length=128, null=False)
+    item_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
     item_number = models.CharField(max_length=128, null=False)
-    item_qty = models.CharField(max_length=128, null=False)
+    item_qty = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
     invoice_number = models.CharField(max_length=128, null=False)
-    tax_amount = models.CharField(max_length=128, null=False)
-    shipping_cost = models.CharField(max_length=128, null=False)
-    ipn_url_link = models.CharField(max_length=128, null=False)
+    tax_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
+    shipping_cost = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
+    ipn_url_link = models.CharField(max_length=128, blank=True, null=True)
     URL_link = models.CharField(max_length=256, null=False)
 
     def __str__(self):
@@ -139,11 +143,11 @@ class POSQRMaker(models.Model):
     merchant_id = models.CharField(
         verbose_name=_('merchant id'), max_length=128)
     unique_id = models.CharField(max_length=128, null=False, unique=True)
-    item_desc = models.CharField(max_length=512, null=True)
+    item_desc = models.CharField(max_length=512, blank=True, null=True)
     item_amount = models.CharField(max_length=128, null=False)
     currency = models.ForeignKey(Coin, on_delete=models.CASCADE)
     invoice_number = models.CharField(max_length=128, null=False)
-    custom_field = models.CharField(max_length=128, null=True)
+    custom_field = models.CharField(max_length=128, blank=True, null=True)
     URL_link = models.CharField(max_length=256, null=False)
     time_limit = models.CharField(max_length=128, null=False)
 

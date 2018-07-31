@@ -661,7 +661,7 @@ footer {
 }
 
 .input-text-index {
-    height: 40px;
+    height: 40px !important;
 }
 
 /* section 3 */

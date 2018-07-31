@@ -67,6 +67,8 @@
                         <input type="text" name="telegram_page" id="id_telegram_page" placeholder="http://t.me/yourcoinspage" value="{{ form.telegram_page.value|default_if_none:"" }}" class="form-control">
                         <label class="mt20">Reddit Page (Optional)</label><span>{{form.errors.reddit_page}}</span>
                         <input type="text" name="reddit_page" id="id_reddit_page" placeholder="http://reddit.com/user/yourcoinspage" value="{{ form.reddit_page.value|default_if_none:"" }}" class="form-control">
+                        
+                        <input class="btn btn-block btn-warning mt20 btn-lg"  type="reset" value="Reset">
                         <button class="btn btn-block btn-success mt20 btn-lg"> Send Request </button>
                         </div>
                     </div>

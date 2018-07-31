@@ -29,7 +29,7 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         #     coin = Coin.objects.get(code=currency)
         #     if not Wallet.objects.filter(user=self.request.user, name=coin):
         #         create_wallet(self.request.user, currency)
-        context['wallets'] = Coin.objects.filter(active=True)
+        context['wallets'] = Coin.objects.all()
         return context
 
 
@@ -115,7 +115,7 @@ class CoinConversionFinalView(TemplateView):
         return context
 
 
-class NewCoinAddr(TemplateView):
+class NewCoinAddr(LoginRequiredMixin, TemplateView):
     template_name = 'coins/deposit.html'
 
     def get_context_data(self, **kwargs):

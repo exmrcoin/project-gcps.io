@@ -10,12 +10,12 @@
 {% endblock %} {% block dashboard_wrapper_content %}
 
 <div class="dashboard-wrapper">
-        <div class="dasboard-head pad10">
-            <div class="img-dashboard">
-                <img src="{% static '/images/recevied.png' %} ">
-            </div>
-            <span class="font-h3">{% trans 'Recent Transaction' %}</span>
+    <div class="dasboard-head pad10">
+        <div class="img-dashboard">
+            <img src="{% static '/images/recevied.png' %} ">
         </div>
+        <span class="font-h3">{% trans 'Recent Transaction' %}</span>
+    </div>
     <div class="dashboard-table">
         <div class="dasboard-head">
             <div class="card">
@@ -43,7 +43,6 @@
 
                             </tr> -->
                             {% for obj in wallets %}
-                            {% if obj.active %}
                             <tr class="table-th text-center">
                                 <th>
                                     <img src="{% static 'images/coins/' %}{{ obj.code}}.png" class="wallets-img">
@@ -52,10 +51,13 @@
                                 <th>
                                     <span>{{ obj.code }}</span>
                                 </th>
-                                <th id="bal_{{obj.code}}"><img id="loading-image_{{obj.code}}" src="{% static 'images/load.gif' %}" style="display:none;height: 20px;"/></th>
+                                <th id="bal_{{obj.code}}">
+                                    <img id="loading-image_{{obj.code}}" src="{% static 'images/load.gif' %}" style="display:none;height: 20px;" />
+                                </th>
                                 <th>Value</th>
                                 <th style="width: 150px;">
                                     <div class="btn-group " style="width: 100%;">
+                                        {% if obj.active %}
                                         <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="dropdown" aria-expanded="false">{{ obj.name.code }} Options
                                             <span class="caret"></span>
                                         </button>
@@ -96,61 +98,49 @@
                                                     <i class="fa fa-paper-plane" aria-hidden="true"></i> Transfer History</a>
                                             </li>
                                         </ul>
+
+                                        {% else %}
+
+                                        <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="modal" data-target="#myModal">{{ obj.name.code }} Options
+                                            <span class="caret"></span>
+                                        </button>
+                                        {% endif %}
                                     </div>
                                 </th>
-
-
-
-                                </th>
-                            </tr>
-                            {% endif %}
-                            {% endfor %}
+                            </tr> {% endfor %}
                         </tbody>
                         <!--Table body-->
 
                     </table>
                     <!--Table-->
-                    <!-- modal -->
-                    <!-- Modal -->
-                    <!-- <div class="modal fade" id="receiveModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h3 class="modal-title text-capitalize" id="LongTitle"> Your
-                                        <span class="text-uppercase" id="coin_name"></span> Wallet Address</h3>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body text-center">
-
-                                    <img id="qr-chart" src="" + class="col-8 img-fluid"></img>
-
-                                    <div class="col-12 wallet-address-span">
-                                        <span class="col-10" style="word-wrap:break-word;" id="coin_addr_input"></span>
-
-                                        <button class="glyphicon glyphicon-copy btn1 btn-empty col-2" data-clipboard-target="#coin_addr_input">
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <span>
-                                        <strong>send only
-                                            <span id="coin_name2" class="text-uppercase"></span>
-                                            to this address.</strong>
-                                        Sending any other altcoin, will result in permanent loss.
-                                    </span>
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-
-                    <!-- modal -->
                 </div>
             </div>
 
+        </div>
+
+    </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content  exmr-modal white-font animated bounceInDown">
+
+            <img src="{% static 'images/logo1.png' %}" class="margin-center img-responsive exmr-modal-logo">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3 class="modal-title">
+                    <i class="fa fa-exclamation-circle"></i>Alpha Version Testnet</h3>
+            </div>
+            <div class="modal-body text-center">
+                We are in active development to bring you the best features.
+                <br>The Coin will be added to be winners in our Coin Listing Competition.
+                <br>More Coin support will be added in future.
+                <br>We thankyou for your understanding.
+                <br>
+                <br>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
         </div>
 
     </div>
@@ -172,7 +162,6 @@
 <script src="{% static 'js/jquery-ui.min.js' %}"></script>
 <script src="{% static 'js/clipboard2.min.js' %}"></script>
 <script>
-
     $('.btn1').tooltip({
         trigger: 'click',
         placement: 'bottom'
@@ -205,27 +194,26 @@
         setTooltip('Failed!');
         hideTooltip(btn);
     });
-$(document).ready(function() { 
-    $('.table > tbody  > tr').each(function() {
-        column = $(this).find('th')[2]
-        
-        $.ajax({
-            type: "GET",
-            url: "{% url 'coins:get_balance' %}",
-            data: {
-                'code': column.id.split('bal_')[1],
-            },
-            beforeSend: function() {
-              $("#loading-image_"+column.id.split('bal_')[1]).show();
-           },
-            success: function (data) {
-                $("#bal_"+data['code']).text(data['balance'])
-                $("#loading-image_"+data['code']).hide();
-                // $(column).text(data);
+    $(document).ready(function () {
+        $('.table > tbody  > tr').each(function () {
+            column = $(this).find('th')[2]
 
-            }
-        })
+            $.ajax({
+                type: "GET",
+                url: "{% url 'coins:get_balance' %}",
+                data: {
+                    'code': column.id.split('bal_')[1],
+                },
+                beforeSend: function () {
+                    $("#loading-image_" + column.id.split('bal_')[1]).show();
+                },
+                success: function (data) {
+                    $("#bal_" + data['code']).text(data['balance'])
+                    $("#loading-image_" + data['code']).hide();
+                    // $(column).text(data);
+
+                }
+            })
+        });
     });
-});
-
 </script> {% endblock %}

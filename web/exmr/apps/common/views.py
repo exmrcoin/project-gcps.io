@@ -7,6 +7,7 @@ from django.views.generic import View, TemplateView, FormView
 from apps.accounts.models import Profile
 from apps.common.forms import CoinRequestForm
 from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload, StaticPage
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 
 class HomeView(TemplateView):
     template_name = 'common/index.html'

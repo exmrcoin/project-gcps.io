@@ -1,4 +1,4 @@
- {% load staticfiles %} {% load i18n %} {% get_available_languages as languages %}
+{% load staticfiles %} {% load i18n %} {% get_available_languages as languages %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +21,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet"> {% block fonts %} {% endblock %}
     <!-- style -->
-
 
 </head>
 
@@ -51,10 +50,10 @@
                 </div>
 
             </div>
-            <form action="{% url 'mtools:payprocess' %}" method="POST">
+            <form action="{% url 'mtools:payprocess' %}" method="POST" id="pay-form">
                 {% csrf_token %}
-                <input type="hidden" name="merchant_id" value="{{merchant_id}}"  />
-                <input type="hidden" name="unique_id" value="{{unique_id}}"  />
+                <input type="hidden" name="merchant_id" value="{{merchant_id}}" />
+                <input type="hidden" name="unique_id" value="{{unique_id}}" />
                 <input type="hidden" name="item_name" value="{{item_name}}" maxlength="128" id="id_item_name" required />
                 <input type="hidden" name="item_amount" value="{{item_amount}}" maxlength="128" id="id_item_amount" required />
                 <input type="hidden" name="invoice_number" value="{{invoice_number}}" maxlength="128" id="id_invoice_number" required />
@@ -95,13 +94,13 @@
                         </div>
                         <div class="col-xs-12 bg-white px-0 text-center py-2">
                             <div class="col-xs-4">
-                                <span class="">{{item_amount}}</span>
+                                <span class="">{{item_amount}} USD</span>
                             </div>
                             <div class="col-xs-4">
-                                <span class="">{{item_qty}}</span>
+                                <span class="">{{item_qty}} USD</span>
                             </div>
                             <div class="col-xs-4">
-                                <span class="">{{item_total}}</span>
+                                <span class="">{{item_total}} USD</span>
                             </div>
                         </div>
                     </div>
@@ -120,22 +119,29 @@
                                 </span>
                             </div>
                             <div class="col-xs-12 bg-white border-btm-line p-1">
-                                <input type="text" class="input-group col-xs-12 mt-1 " name="first_name" placeholder="First Name">
-                                <input type="text" class="input-group col-xs-12 mt-1 " name="last_name" placeholder="Last Name">
-                                <input type="text" class="input-group col-xs-12 mt-1 " name="email_addr" placeholder="Email Address">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
+                                    name="first_name" placeholder="First Name">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
+                                    name="last_name" placeholder="Last Name">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="email" name="email_addr" placeholder="Email Address">
                             </div>
 
                             <div class="col-xs-12  orange-shadow-box " style="padding-left: -15px; padding-right:-15px;">
                                 <h4>Shipping Details</h4>
                             </div>
                             <div class="col-xs-12 bg-white border-btm-line p-1">
-                                <input type="text" class="input-group col-xs-12 mt-1 " name="addr_line_1" placeholder="Address Line 1">
-                                <input type="text" class="input-group col-xs-12 mt-1 " name="addr_line_2" placeholder="Address Line 2">
-                                <input type="text" class="input-group col-xs-12 mt-1 " name="country" placeholder="Country">
-                                <input type="text" class="input-group col-xs-12 mt-1 " name="city" placeholder="City">
-                                <input type="text" class="input-group col-xs-12 mt-1 " name="state" placeholder="State/Province">
-                                <input type="text" class="input-group col-xs-12 mt-1 " name="zipcode" placeholder="Zipcode">
-                                <input type="text" class="input-group col-xs-12 mt-1 " name="phone" placeholder="Phone Number">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
+                                    name="addr_line_1" placeholder="Address Line 1">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
+                                    name="addr_line_2" placeholder="Address Line 2">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="country" name="country" placeholder="Country">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
+                                    name="city" placeholder="City">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
+                                    name="state" placeholder="State/Province">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="number" name="zipcode" placeholder="Zipcode">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="alphanumeric" data-validation-allowing="-_+ " name="phone"
+                                    placeholder="Phone Number">
                             </div>
                         </div>
                     </div>
@@ -159,6 +165,26 @@
                         </div>
                     </div>
                 </div>
+
+
+
+                <!-- <div class="col-xs-12 col-md-6 pr-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <h5>
+                            <span class="glyphicon glyphicon-tags"></span>Remaining Amount
+                        </h5>
+                        <div class="col-12 px-0 bg-white">
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
+                                <div class="col-xs-12">
+                                    <span class="">{{amt_payable}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div> -->
+
+
                 <div class="col-xs-12 col-md-6 pr-md-0">
                     <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
                         <h5>
@@ -182,30 +208,16 @@
                         </h5>
                         <div class="col-12 px-0 bg-white">
                             <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
-                                <form>
-                                    <label>
-                                        <input type="radio" checked name="selected_coin" value="BTC">
-                                        <div class="btn btnrad btnrad-sık">
-                                            <img src="{% static 'images/coins/BTC.png' %}" class="crypto-btn-image col-xs-3">
-                                            <span class="col-xs-9">Bitcoin</span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="selected_coin" value="LTC">
-                                        <div class="btn btnrad btnrad-sık">
-                                            <img src="{% static 'images/coins/LTC.png' %}" class="crypto-btn-image col-xs-3">
-                                            <span>Litecoin</span>
-                                        </div>
-                                    </label>
-                                    <label>
-                                        <input type="radio" name="selected_coin" value="ETH">
-                                        <div class=" btn btnrad btnrad-sık">
-                                            <img src="{% static 'images/coins/ETH.png' %}" class="crypto-btn-image col-xs-3">
-                                            <span>Ethereum</span>
-                                        </div>
-                                    </label>
 
-                                </form>
+                                {% for coins in available_coins %}
+                                <label>
+                                    <input type="radio" name="selected_coin" value="{{coins.code}}" id="coins_{{coins.code}}">
+                                    <div class="btn btnrad btnrad-sık">
+                                        <img src="{{coins.image.url}}" class="crypto-btn-image col-xs-3">
+                                        <span class="col-xs-9">{{coins}}</span>
+                                    </div>
+                                </label>
+                                {% endfor %}
                             </div>
 
                         </div>
@@ -213,7 +225,6 @@
 
                     <div class="col-xs-12 px-0">
                         <input type="submit" class="btn btn-success crypto-payment-btn" id="btnCheckout" value="Complete Checkout">
-
                     </div>
                 </div>
 
@@ -225,6 +236,19 @@
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <script src="{% static 'js/notify.js' %}"></script>
     <script src="{% static 'js/common.js' %}"></script>
+    <script src="{% static 'js/jquery.form-validator.min.js' %}"></script>
+    <script>
+        $(document).ready(function () {
+            $.validate({
+                modules: 'toggleDisabled, location',
+                toggleDisabledForm: '#pay-form',
+                onModulesLoaded: function () {
+                    $('input[name="country"]').suggestCountry();
+                    $('input[name="state"]').suggestState();
+                }
+            });
+        });
+    </script>
     <!-- </script> -->
 </body>
 

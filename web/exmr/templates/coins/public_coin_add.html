@@ -23,8 +23,8 @@
                          <input type="text" name="last_name" id="id_first_name" placeholder="Your Role"  required="" class="form-control" value="{{ form.last_name.value|default_if_none:"" }}">
                          <label class="mt20">Telegram username (Optional) </label><span>{{form.errors.contact_number}}</span>
                          <input type="text" name="contact_number" id="id_contact_number" placeholder="@yourusername"  class="form-control" value="{{ form.contact_number.value|default_if_none:"" }}">
-                         <label class="mt50"> CoinMarketCap Link (Optional)</label><span>{{form.errors.secondary_number}}</span>
-                         <input type="text" name="secondary_number" id="id_secondary_number" placeholder="https://coinmarketcap.com/currencies/yourcoin"  class="form-control" value="{{ form.secondary_number.value|default_if_none:"" }}">
+                         <label class=""> CoinMarketCap Link (Optional)</label><span>{{form.errors.secondary_number}}</span>
+                         <input type="text" name="secondary_number" id="id_secondary_number" placeholder="Example: /yourcoin"  class="form-control" value="{{ form.secondary_number.value|default_if_none:"" }}">
                          <label class="mt30"> Coin Name *</label><span>{{form.errors.name}}</span>
                          <input type="text" name="name" id="id_name" placeholder="Example: YourCoin"  required="" class="form-control" value="{{ form.name.value|default_if_none:"" }}">
                          <label class="mt10"> Coin Sticker *</label><span>{{form.errors.code}}</span>

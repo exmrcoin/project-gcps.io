@@ -15,7 +15,7 @@ from apps.coins.utils import *
 from apps.accounts.models import User
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
-                              CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL
+                              CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, WalletAddress
 from django.shortcuts import render
 
 CURRENCIES = ['BTC','LTC', 'BCH', 'XRP']
@@ -133,7 +133,8 @@ class NewCoinAddr(TemplateView):
         code = kwargs.get('currency')
         address = create_wallet(request.user, code)
         if address:
-            return HttpResponse(json.dumps(address), content_type='application/json')
+            date = str(WalletAddress.objects.get(address=address).date.strftime('%B %d, %Y, %I:%M %p'))
+            return HttpResponse(json.dumps({'address':address,'date':date}), content_type='application/json')
 
 class AddNewCoin(FormView):
     template_name = 'coins/host-coin.html'

@@ -162,7 +162,7 @@ class WalletAddress(models.Model):
     Model to save the coin addresses generated for each user
     """
     address = models.CharField(max_length=500, blank=True, default="")
-
+    date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.address
 

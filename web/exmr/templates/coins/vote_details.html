@@ -90,12 +90,12 @@
             <div class="col-sm-8">
                 <div class="st-left">
                     <h2> <img src="{% if coin.logo_url %}{{ coin.logo_url }}{% endif %}" style="margin-right: 15px; width: 20%;"><b>
-                      {% coin_code_to_name view.kwargs.currency %}({{ view.kwargs.currency }}) </b></h2>
+                      {% coin_code_to_name view.kwargs.currency %}  [{{ view.kwargs.currency }}] </b></h2>
                     <h3>Help us get listed on GetCryptoPayments Gateway</h3>
 
-                    <p>{% trans 'We are participating in Phase 1 The GetCryptoPayments Gateway New Coin Listing Competition' %}</p>
+                    <p>{% trans 'We are participating in the GetCryptoPayments Fiat & Gateway "New Coin Listing Competition"' %}</p>
 
-                    <p>{% trans "If we win we get to list" %} {% coin_code_to_name view.kwargs.currency %}({{ view.kwargs.currency }}){% trans " on GetCryptoPayments Gateway, the world's first integrated Crypto Payments  Gateway" %}</p>
+                    <p>{% trans "If we win we get to list:" %} {% coin_code_to_name view.kwargs.currency %} [{{ view.kwargs.currency }}]{% trans " on GetCryptoPayments Gateway, the world's class integrated Crypto Payments Gateway" %}</p>
 
                     <p>{% trans 'How To Help Us Win.' %}</p>
 
@@ -181,7 +181,7 @@
 </div>
  <div class="d-box col-sm-6 col-sm-offset-3">
     <h4><b>More way to Support  your coin</b></h4>
-    <h5>Bonus Points<br><small>By Overlord secret code, Holders w/ether Wallets with EXMR & H. L. Task</small></h5>
+    <h5>Bonus Points<br><small>By Overlord secret code, Holders w/ether wallets with EXMR & High Leverage Task.</small></h5>
     <a href="{% url 'coins:copromotion-form'%}">Submit high leverage Point here</a>
      <h5>Referral Link</h5>
      <input type="text" value="https://getcryptopayments.org{% url 'coins:vote-details' view.kwargs.currency %}" id="referalLink">
@@ -269,7 +269,7 @@ document.getElementById('twitterShareBtn').addEventListener('click', function(e)
         height = 400,
         left   = (screen.width  - width)  / 2,
         top    = (screen.height - height) / 2,
-        url    = "https://twitter.com/intent/tweet?text=%F0%9F%94%A5%F0%9F%94%A5+Help+Needed%21+The+community+needs+your+support+to+get+{% coin_code_to_name view.kwargs.currency %} official+listed+via+%40GetCryptoPayments+Exchange.+Support+{% coin_code_to_name view.kwargs.currency %}++%28{{view.kwargs.currency}}%29+and+vote+here%3A+https%3A%2F%2Fwww.getcryptopayments.com%2Fpublic-coin-votes%2F{{view.kwargs.currency}}+&redirect_uri=https://www.getcryptopayments.com/public-coin-votes/{{view.kwargs.currency}}&hashtags=Exchange,Cryptocurrency,ethereum,cryptoexchange,bitcoin&related=GCryptoPayments",
+        url    = "https://twitter.com/intent/tweet?text=%F0%9F%94%A5%F0%9F%94%A5+Help+Needed%21+The+community+needs+your+support+to+get+{% coin_code_to_name view.kwargs.currency %} official+listed+via+%40GCryptoPayments+Fiat & Payment gateway.+Support+{% coin_code_to_name view.kwargs.currency %}++%28{{view.kwargs.currency}}%29+and+vote+here%3A+https%3A%2F%2Fwww.getcryptopayments.com%2Fpublic-coin-votes%2F{{view.kwargs.currency}}+&redirect_uri=https://www.getcryptopayments.com/public-coin-votes/{{view.kwargs.currency}}&hashtags=Exchange,Cryptocurrency,ethereum,cryptoexchange,bitcoin&related=GCryptoPayments",
         opts   = 'status=1' +
                  ',width='  + width  +
                  ',height=' + height +

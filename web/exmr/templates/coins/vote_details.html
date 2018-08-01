@@ -13,7 +13,7 @@
 <meta property="og:type"          content="getcryptopayments" />
 <meta property="og:title"         content="GetCryptoPayments.org" />
 <meta property="og:description"   content="GetCryptoPayments" />
-<meta property="og:image"         content="{% if coin.logo_url %}{{ coin.logo_url }}{% endif %}" />
+<meta property="og:image"         content="{% static '/images/facebook_post.jpg' %}" />
 
 <script>
   // This is called with the results from from FB.getLoginStatus().
@@ -154,7 +154,7 @@
       
       <a href="https://telegram.me/share/url?url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&bodytext=Support+and+grow+your+favorite+Cryptocurrency+by+getting+it+listed+on+GetCryptoPayments+Exchange&tags=&text=The+Coin+Listing+Competition" class="social-a social-share{%if 'telegram' in votes_share%} btn-is-disabled{%endif%}" id="id_share_telegram" target="_blank"><i class="fas fa-paper-plane"></i> Share</a>
       
-      <a href="https://www.instagram.com/GetCryptoPayments/" class="social-a social-share{%if 'instagram' in votes_share%} btn-is-disabled{%endif%}" id="id_share_instagram" target="_blank"><i<i class="fab fa-instagram"></i></i> Share</a>
+      <a href="https://www.reddit.com/login?redirect=https://www.reddit.com/submit?url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}" class="social-a social-share{%if 'instagram' in votes_share%} btn-is-disabled{%endif%}" id="id_share_instagram" target="_blank"><i<i class="fab fa-reddit"></i></i> Share</a>
   </div>
 
 
@@ -166,7 +166,7 @@
   <div align="center">
       <a href="https://www.twitter.com/GCryptoPayments" class="social-a social-follow" id="id_follow_twitter" target="_blank"><i class="fab fa-twitter"></i> Follow</a>
       <a href="https://www.facebook.com/GetCryptoPayments" class="social-a social-follow" id="id_follow_facebook" target="_blank"><i class="fab fa-facebook-square"></i> Follow</a>
-      <a href="https://www.linkedin.com/company/getcryptopayments/" class="social-a social-follow" id="id_follow_linkedin" target="_blank"><i class="fab fa-linkedin"></i> Follow</a>
+      <a href="https://www.reddit.com/r/exmr/" class="social-a social-follow" id="id_follow_linkedin" target="_blank"><i class="fab fa-reddit"></i> Follow</a>
       <a href="https://t.me/GetCryptoPayments" class="social-a social-follow" target="_blank" id="id_follow_telegram"><i class="fas fa-paper-plane"></i> Follow</a>
       <a href="https://www.instagram.com/GetCryptoPayments/" class="social-a social-follow" target="_blank" id="id_follow_instagram"><i class="fab fa-instagram"></i> Follow</a>
   </div>

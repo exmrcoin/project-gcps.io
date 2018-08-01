@@ -142,7 +142,7 @@
                                         </div>
                                     </td>
                                     <td class="padx0 text-center">
-                                        <button class="btn-vote-btn2 btn-v2 btn" onclick="window.location.href='{% url 'coins:vote-details' coin.code %}'">Vote</button>
+                                        <button class="btn-vote-btn2 btn-v2 btn" onclick="{% if user.is_authenticated %}window.location.href='{% url 'coins:vote-details' coin.code %}'{% else %} $('#userModal').modal('show') {% endif %}">Vote</button>
                                         
 
                                     </td>

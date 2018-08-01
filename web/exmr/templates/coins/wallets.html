@@ -43,6 +43,7 @@
 
                             </tr> -->
                             {% for obj in wallets %}
+                            {% if obj.display %}
                             <tr class="table-th text-center">
                                 <th>
                                     <img src="{% static 'images/coins/' %}{{ obj.code}}.png" class="wallets-img">
@@ -107,7 +108,7 @@
                                         {% endif %}
                                     </div>
                                 </th>
-                            </tr> {% endfor %}
+                            </tr>{% endif %} {% endfor %}
                         </tbody>
                         <!--Table body-->
 

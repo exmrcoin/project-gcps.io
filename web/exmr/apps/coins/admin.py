@@ -22,8 +22,8 @@ class CoinModelAdmin(ImportExportModelAdmin):
 
     resource_class = CoinResource
     search_fields = ('code', 'coin_name', )
-    list_display = ('coin_name', 'code', 'confirms', 'active')
-    list_editable = ('active', )
+    list_display = ('coin_name', 'code', 'confirms', 'active', 'display')
+    list_editable = ('active','display', )
 
     class Meta:
         model = Coin

@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
+from django.shortcuts import HttpResponse
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
@@ -401,3 +402,11 @@ class FeedbackListView(ListView):
             self.user = get_object_or_404(User,id=slug)
             context['user'] = self.user
             return context
+
+
+class VerifyLoginView(View):
+    def get(self, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return HttpResponse(json.dumps({'success':True}), content_type="application/json")
+        else:
+            return HttpResponse(json.dumps({'success':False}), content_type="application/json")

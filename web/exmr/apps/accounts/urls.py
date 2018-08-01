@@ -32,5 +32,5 @@ urlpatterns = [
     path('verify-2fa/', views.Verify2FAView.as_view(), name='verify_2fa'),
     path('feedback/<slug:slug>/', FeedbackListView.as_view(), name='feedback'),
     path('feedback/', FeedbackListView.as_view(), name='feedbac'),
-
+    path('verify-login/', views.VerifyLoginView.as_view(), name='verify_login'),
 ]

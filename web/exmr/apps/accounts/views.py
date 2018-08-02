@@ -410,3 +410,6 @@ class VerifyLoginView(View):
             return HttpResponse(json.dumps({'success':True}), content_type="application/json")
         else:
             return HttpResponse(json.dumps({'success':False}), content_type="application/json")
+
+def signup_context(request):
+    return {'signup_form':SignUpForm()}

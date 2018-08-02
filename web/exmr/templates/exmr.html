@@ -1,4 +1,4 @@
-{% load staticfiles %} {% load i18n %} {% get_available_languages as languages %} {% load helper_tags %}
+{% load staticfiles widget_tweaks %} {% load i18n %} {% get_available_languages as languages %} {% load helper_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -25,248 +25,369 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-default" role="navigation">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle menu-btn" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{% url 'home' %}">
-                <img src="{% static 'images/logo1.png' %}" class="margin-center logoheader">
-            </a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav navbar-left">
-                <li>
-                    <a href="{% url 'public coin vote' %}">{% trans 'Public Coin Vote'%}</a>
-                </li>
-                <li>
-                    <a href="{% url 'coins:supported_coins' 'Crypto' %}">{% trans 'Supported Coins' %}</a>
-                </li>
-                <li>
-                    <a href="{% url 'store:store-directory' %}">{% trans 'Store Directory' %}</a>
-                </li>
-                <li>
-                    <a href="{% url 'merchant-tools' %}">{% trans 'Merchant Tools' %}</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Contact Us' %}
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu ">
-                        <li>
-                            <a href="{% url 'common:help' %}">Help Topics</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'common:coinhosting' %}">Coin Request</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'store:add-to-store' %}">Add Store to Store Directory</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'contact' %}">Contact Us</a>
-                        </li>
-                        <!-- <li role="separator" class="divider"></li>
-                        <li>
-                            <a href="#">One more separated link</a>
-                        </li> -->
-                    </ul>
-                </li>
-
-                {% if user.is_authenticated %}
-                <li>
-                    <a href="{% url 'accounts:profile' %}">{% trans 'Dashboard' %}</a>
-                </li>
-                {% endif %}
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img class="language-icon" src="{% static 'images/language.png' %}"> {% trans 'Language' %}
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu drop-down-box">
-                        {% for language in languages %}
-                        <li class="{% ifequal current_language language.0 %}active{% endifequal %}">
-                            <a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% change_lang language %}" title="{{ language.1 }}">
-                                {{ language.1 }}
-                            </a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </li>
-                {% if user.is_authenticated %}
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Account' %}
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu drop-down-box">
-                        <!-- <li>
-                            <a href="{% url 'accounts:profile' %}">{% trans 'Dashboard' %}</a>
-                        </li> -->
-                        <li>
-                            <a href="{% url 'accounts:settings' %}">{% trans 'Account Settings' %}</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'accounts:address' %}">{% trans 'AddressBook' %}</a>
-                        </li>
-                        <li>
-                            <a href="{% url 'accounts:logout' %}?next=/">{% trans 'Logout' %}</a>
-                        </li>
-                    </ul>
-                </li>
-
-                {% else%}
-                <li class="btn-noline">
-                    <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-default btn-login">Login</a>
-                </li>
-                <li class="btn-noline">
-                    <a href="{% url 'accounts:signup' %}" type="submit" class="btn btn-default btn-signup">Signup</a>
-                </li>{% endif %}
-            </ul>
-        </div>
-    </nav>
-    <!-- Modal -->
-    <div id="appModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">APP</h4>
-                </div>
-                <div class="modal-body">
-                    <p>In Develop Coming soon.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
+    <div id="preloader" style="display: none;">
+        <div class="loader"></div>
     </div>
-    {% block content %} {% endblock content %}
-
-
-    <footer>
-        <div class="footer-bg footercenter" id="#footer">
-            <div class="container ">
-                <div class="row ">
-                    <div class="col-sm-4">
-                        <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                            <div class="footer-heading-line">
-                            </div>
-                        </div>
-                        <ul>
-                            <li>
-                                <a href="{% url 'coins:supported_coins' 'Crypto' %}">{% trans 'Supported Coins' %}</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'merchant-tools' %}">{% trans 'Merchant Tools' %}</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'public coin vote' %}">{% trans 'Public Coin Vote'%}</a>
-                            </li>
-                            <li>
-                                <a href="{% url 'store:store-directory' %}">{% trans 'Store Directory' %}</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4 ">
-                        <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                            <div class="footer-heading-line">
-                            </div>
-                        </div>
-                        <ul>
-                            <li data-toggle="modal" data-target="#appModal">{% trans 'Get Mobile App' %}</li>
-                            <li>{% trans 'Affiliate Information' %}</li>
-                            <li>{% trans 'Official TOR URL' %}</li>
-                            <li>{% trans 'PGP Key' %}</li>
-                        </ul>
-                    </div>
-                    <div class="col-sm-4 ">
-                        <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                            <div class="footer-heading-line">
-                            </div>
-                        </div>
-                        <ul>
-                            <li onclick="window.location.href='{% url 'common:helptopic' 'feespricing'  %}'">{% trans 'Fees/Pricing' %}</li>
-                            <li onclick="window.location.href='{% url 'common:help' %}'">{% trans 'Help' %}</li>
-                            <li onclick="window.location.href='{% url 'store:add-to-store' %}'">{% trans 'Add Store' %}</li>
-                            <li onclick="window.location.href='{% url 'public coin vote' %}'">{% trans 'Coin Request' %}</li>
-                        </ul>
-                    </div>
-
-                    <div class="col-xs-12 col-sm-4 col-md-2 footer-head-menu">
-                        <a href="{% url 'common:help' %}privacy-policy">{% trans 'Privacy Policy' %}</a>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-2 footer-head-menu">
-                        <a href="{% url 'common:help' %}terms-of-service">{% trans 'Terms of Service' %}</a>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 col-md-2 footer-head-menu">
-                        <a href="https://www.facebook.com/GetCryptoPayments/">
-                            <i class="fab fa-facebook-square fa-2x white-font"></i>
-                        </a>
-                        <a href="https://twitter.com/GCryptoPayments" target="_blank">
-                            <i class="fab fa-twitter-square fa-2x white-font"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/company/getcryptopayments/" target="_blank">
-                            <i class="fab fa-linkedin fa-2x white-font"></i>
-                        </a>
-                        <a href="http://t.me/GetCryptoPayments" target="_blank">
-                            <i class="fab fa-telegram fa-2x white-font"></i>
-                        </a>
-                    </div>
-
-                    <div class="col-xs-12 col-md-6 footer-head-menu buttons-footer-div">
-                        <button type="submit" class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 padx0 xs-floatn xs-margin-center footer-head-menubtn btn-default btn-footer "
-                            onclick="window.location.href='{% url 'store:add-to-store' %}'">{% trans 'Add Store' %}</button>
-                        <button type="submit" class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 padx0 img-responsive xs-floatn xs-margin-center btn-default btn-footer coin-payment "
-                            onclick="window.location.href='{% url 'public coin vote' %}'">{% trans 'Vote for coin' %}</button>
-                        <img class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 img-responsive xs-floatn padx0 xs-margin-center  appstore-icon" src="{% static 'images/apple-icon.png' %}"
-                            data-toggle="modal" data-target="#appModal">
-                        <img class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 img-responsive xs-floatn padx0 xs-margin-center  appstore-icon" src="{% static 'images/play-store.png' %}"
-                            data-toggle="modal" data-target="#appModal">
-
-                    </div>
-                </div>
+    <div id="contentDiv">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle menu-btn" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}">
+                    <img src="{% static 'images/logo1.png' %}" class="margin-center logoheader">
+                </a>
             </div>
-            <div class="pad10">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left">
+                    <li>
+                        <a href="{% url 'public coin vote' %}">{% trans 'Public Coin Vote'%}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'coins:supported_coins' 'Crypto' %}">{% trans 'Supported Coins' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'store:store-directory' %}">{% trans 'Store Directory' %}</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'merchant-tools' %}">{% trans 'Merchant Tools' %}</a>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Contact Us' %}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu ">
+                            <li>
+                                <a href="{% url 'common:help' %}">Help Topics</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'common:coinhosting' %}">Coin Request</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'store:add-to-store' %}">Add Store to Store Directory</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'contact' %}">Contact Us</a>
+                            </li>
+                            <!-- <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="#">One more separated link</a>
+                            </li> -->
+                        </ul>
+                    </li>
 
+                    {% if user.is_authenticated %}
+                    <li>
+                        <a href="{% url 'accounts:profile' %}">{% trans 'Dashboard' %}</a>
+                    </li>
+                    {% endif %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                            <img class="language-icon" src="{% static 'images/language.png' %}"> {% trans 'Language' %}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu drop-down-box">
+                            {% for language in languages %}
+                            <li class="{% ifequal current_language language.0 %}active{% endifequal %}">
+                                <a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% change_lang language %}" title="{{ language.1 }}">
+                                    {{ language.1 }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{% trans 'Account' %}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu drop-down-box">
+                            <!-- <li>
+                                <a href="{% url 'accounts:profile' %}">{% trans 'Dashboard' %}</a>
+                            </li> -->
+                            <li>
+                                <a href="{% url 'accounts:settings' %}">{% trans 'Account Settings' %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'accounts:address' %}">{% trans 'AddressBook' %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'accounts:logout' %}?next=/">{% trans 'Logout' %}</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    {% else%}
+                    <li class="btn-noline">
+                        <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-default btn-login">Login</a>
+                    </li>
+                    <li class="btn-noline">
+                        <a href="{% url 'accounts:signup' %}" type="submit" class="btn btn-default btn-signup">Signup</a>
+                    </li>{% endif %}
+                </ul>
             </div>
-        </div>
-
-
-        <div class="modal pos-v-mid fade animated flipInY " tabindex="-1" role="dialog" data-easein="bounceUpIn" aria-labelledby="myLargeModalLabel"
-            aria-hidden="true" id="onload">
+        </nav>
+        <!-- Modal -->
+        <div id="appModal" class="modal fade" role="dialog">
             <div class="modal-dialog">
-                <!-- Modal content-->
-                <div class="modal-content  exmr-modal white-font">
 
-                    <img src="{% static 'images/logo1.png' %}" class="margin-center img-responsive exmr-modal-logo">
-                    <div class="modal-header text-center">
-                        <button type="button" class="close" data-dismiss="modal">×</button>
-                        <h4 class="modal-title">
-                            <i class="fa fa-exclamation-circle"></i>GetCryptoPayments is in Alpha Phase!</h4>
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">APP</h4>
                     </div>
-                    <div class="modal-body text-center">
-                        We are in active development to bring you the best features.
-                        <br>Some functions are still under development.
-                        <br>More Coin support will be added in future.
-                        <br>We thankyou for your understanding.
-                        <br>
-                        <br>
-                        <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                    <div class="modal-body">
+                        <p>In Develop Coming soon.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% block content %} {% endblock content %}
+        <div class="modal" id="userModal" style="display: none;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div id="loadDiv">
+                    </div>
+                    <div class="vote-site-padding">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul id="tab-menu" class="nav nav-tabs vote-tabs-color">
+                                    <li id="signup-menu" class="active vote-tabs-color"><a href="#signup" data-toggle="tab">Sign Up</a></li>
+                                    <li id="signin-menu"><a href="#login" data-toggle="tab">Login</a></li>
+                                </ul>
+
+                                <div class="tab-content ">
+                                    <div class="tab-pane active" id="signup">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <br>
+                                                <br>
+                                                <p class="error error-signup" style="display: none;"></p>
+                                                <p class="success" style="display: none;"></p>
+                                                <form id="signupForm" method="post" novalidate class="pad20 col-xs-12">{% csrf_token %}
+                                                    <div class=" form-group">
+                                                        {% render_field signup_form.username class="form-control username-log" placeholder="Username" %}
+                                                        <span class="error"></span>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-md-12 padx0">
+                                                            <div class="col-md-6 form-group">
+                                                                {% render_field signup_form.email class="form-control username-log" placeholder="Email" %}
+                                                                <span class="error"></span>
+                                                            </div>
+                                                            <div class="col-md-6 form-group">
+                                                                {% render_field signup_form.confirm_email class="form-control username-log" placeholder="Confirm Email" %}
+                                                                <span class="error"></span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-12 padx0">
+                                                            <div class="col-md-6 form-group">
+                                                                {% render_field signup_form.password1 class="form-control username-log" placeholder="Password" %}
+                                                                <span class="error"></span>
+                                                            </div>
+                                                            <div class="col-md-6 form-group">
+                                                                {% render_field signup_form.password2 class="form-control username-log" placeholder="Confirm Password" %}
+                                                                <span class="error"></span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <p class="text-left text-info">{% blocktrans %} Please make it at least 10 characters long and include letters, numbers, and
+                                                        special characters. {% endblocktrans %}</p>
+                                                    <h5 class="text-left">{% trans "Timezone" %}</h5>
+                                                    <div class=" form-group">
+
+                                                        {% render_field signup_form.timezone class="selectpicker picker-signup form-control" placeholder="Confirm Password" %}
+                                                        <span class="error"></span>
+                                                    </div>
+                                                    <div class="text-left form-group">
+                                                        <div class="checkbox signup-ceckbox col-xs-12">
+                                                            {{ signup_form.need_newsletter }}
+                                                            <label for="checkbox1  " class="label-sign">
+                                                                {% trans 'Send newsletters and other relevant information to my provided e-mail.' %}
+                                                            </label>
+                                                        </div>
+                                                        <span class="error"></span>
+                                                    </div>
+                                                    <div class="text-left form-group">
+                                                        <div class="checkbox signup-ceckbox col-xs-12">
+                                                            {{ signup_form.accept_terms_and_conditions }}
+                                                            <label for="checkbox1  " class="label-sign">
+                                                                {% trans 'Have read and agree to the' %}
+                                                                <span class="terms">{% trans 'Terms of Service.' %}</span>
+                                                            </label>
+                                                        </div>
+                                                        <span class="error"></span>
+                                                    </div>
+
+                                                    <button type="button" onclick="signup();" class="btn- btn-default btn-log sign-button">{% trans 'Signup' %}</button>
+                                                </form>
+                                                <br>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane" id="login">
+                                        <div class="row">
+                                            <div class="col-md-1"></div>
+                                            <div class="col-md-10">
+                                                <br>
+                                                <br>
+                                                <p class="error error-login" style="display: none;"></p>
+                                                <form id="loginForm" novalidate method="post">{% csrf_token %}
+                                                    <center>
+                                                        <h3 class="vote-head-text">Login and Unlock Points</h3></center>
+                                                    <br>
+                                                    <div class="form-group col-xs-12">
+                                                        <input type="text" name="username" class="form-control username-log" required="" maxlength="254" placeholder="Username/Email" autofocus="" id="username">
+                                                    </div>
+                                                    <div class="form-group col-xs-12">
+                                                        <input type="password" name="password" placeholder="Password" id="id_password" class="form-control username-log" required="">
+                                                    
+                                                    
+                                                </div>
+                                                    <button type="button" class="btn btn-default btn-login mt-4 floatl" onclick="login();">{% trans 'Login' %}</button>
+                                                </form>
+                                                <br>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <a href="#close-modal" rel="modal:close" class="close-modal ">Close</a></div>
+        <footer>
+            <div class="footer-bg footercenter" id="#footer">
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-sm-4">
+                            <div class="footer-head-menu">GETCRYPTOPAYMENTS
+                                <div class="footer-heading-line">
+                                </div>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a href="{% url 'coins:supported_coins' 'Crypto' %}">{% trans 'Supported Coins' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'merchant-tools' %}">{% trans 'Merchant Tools' %}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'public coin vote' %}">{% trans 'Public Coin Vote'%}</a>
+                                </li>
+                                <li>
+                                    <a href="{% url 'store:store-directory' %}">{% trans 'Store Directory' %}</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 ">
+                            <div class="footer-head-menu">GETCRYPTOPAYMENTS
+                                <div class="footer-heading-line">
+                                </div>
+                            </div>
+                            <ul>
+                                <li data-toggle="modal" data-target="#appModal">{% trans 'Get Mobile App' %}</li>
+                                <li>{% trans 'Affiliate Information' %}</li>
+                                <li>{% trans 'Official TOR URL' %}</li>
+                                <li>{% trans 'PGP Key' %}</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 ">
+                            <div class="footer-head-menu">GETCRYPTOPAYMENTS
+                                <div class="footer-heading-line">
+                                </div>
+                            </div>
+                            <ul>
+                                <li onclick="window.location.href='{% url 'common:helptopic' 'feespricing'  %}'">{% trans 'Fees/Pricing' %}</li>
+                                <li onclick="window.location.href='{% url 'common:help' %}'">{% trans 'Help' %}</li>
+                                <li onclick="window.location.href='{% url 'store:add-to-store' %}'">{% trans 'Add Store' %}</li>
+                                <li onclick="window.location.href='{% url 'public coin vote' %}'">{% trans 'Coin Request' %}</li>
+                            </ul>
+                        </div>
 
-    </footer>
+                        <div class="col-xs-12 col-sm-4 col-md-2 footer-head-menu">
+                            <a href="{% url 'common:help' %}privacy-policy">{% trans 'Privacy Policy' %}</a>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 footer-head-menu">
+                            <a href="{% url 'common:help' %}terms-of-service">{% trans 'Terms of Service' %}</a>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 col-md-2 footer-head-menu">
+                            <a href="https://www.facebook.com/GetCryptoPayments/">
+                                <i class="fab fa-facebook-square fa-2x white-font"></i>
+                            </a>
+                            <a href="https://twitter.com/GCryptoPayments" target="_blank">
+                                <i class="fab fa-twitter-square fa-2x white-font"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/getcryptopayments/" target="_blank">
+                                <i class="fab fa-linkedin fa-2x white-font"></i>
+                            </a>
+                            <a href="http://t.me/GetCryptoPayments" target="_blank">
+                                <i class="fab fa-telegram fa-2x white-font"></i>
+                            </a>
+                        </div>
 
+                        <div class="col-xs-12 col-md-6 footer-head-menu buttons-footer-div">
+                            <button type="submit" class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 padx0 xs-floatn xs-margin-center footer-head-menubtn btn-default btn-footer "
+                                onclick="window.location.href='{% url 'store:add-to-store' %}'">{% trans 'Add Store' %}</button>
+                            <button type="submit" class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 padx0 img-responsive xs-floatn xs-margin-center btn-default btn-footer coin-payment "
+                                onclick="window.location.href='{% url 'public coin vote' %}'">{% trans 'Vote for coin' %}</button>
+                            <img class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 img-responsive xs-floatn padx0 xs-margin-center  appstore-icon" src="{% static 'images/apple-icon.png' %}"
+                                data-toggle="modal" data-target="#appModal">
+                            <img class="col-xs-12 col-sm-5 col-md-2 sm-marginx5 img-responsive xs-floatn padx0 xs-margin-center  appstore-icon" src="{% static 'images/play-store.png' %}"
+                                data-toggle="modal" data-target="#appModal">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="pad10">
+
+                </div>
+            </div>
+
+
+            <div class="modal pos-v-mid fade animated flipInY " tabindex="-1" role="dialog" data-easein="bounceUpIn" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true" id="onload">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content  exmr-modal white-font">
+
+                        <img src="{% static 'images/logo1.png' %}" class="margin-center img-responsive exmr-modal-logo">
+                        <div class="modal-header text-center">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <h4 class="modal-title">
+                                <i class="fa fa-exclamation-circle"></i>GetCryptoPayments is in Alpha Phase!</h4>
+                        </div>
+                        <div class="modal-body text-center">
+                            We are in active development to bring you the best features.
+                            <br>Some functions are still under development.
+                            <br>More Coin support will be added in future.
+                            <br>We thankyou for your understanding.
+                            <br>
+                            <br>
+                            <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </footer>
+    <div>
     <!-- <script> -->
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -276,6 +397,91 @@
     <!-- </script> -->
     {% block script %} {% endblock %}
 
+    <script type="text/javascript">
+    function login(){
+        var data = new FormData($('#loginForm'));
+
+        $.ajax({
+          type: 'POST',
+          url: '{% url "accounts:login" %}',
+          data: $('#loginForm').serialize(),
+          // cache: false,
+          // processData: false,
+          // contentType: false,
+          beforeSend: function() {
+                  $("#contentDiv").addClass('contentDiv')
+                  $("#preloader").show()
+          },
+          success: function(data) {
+            console.log(data);
+            verifyUser();
+            $("#contentDiv").removeClass('contentDiv')
+            $("#preloader").hide()
+          },
+          error: function() {
+            console.log("Signup was unsuccessful");
+          }
+        })
+    };
+
+    function verifyUser(){
+        $.ajax({
+              type: 'GET',
+              url: '{% url "accounts:verify_login" %}',
+              data: {},
+              // processData: false,
+              // contentType: false,
+              success: function(data) {
+                if(data['success']){
+                    location.reload();
+                }
+                else{
+                   $("#errorMsg").text("Please check username/password!")
+                    $("#contentDiv").removeClass('contentDiv')
+                    $("#preloader").hide()
+
+                }
+              },
+            })
+
+    }
+    function signup(){
+        var data = new FormData($('#signupForm'));
+
+        $.ajax({
+          type: 'POST',
+          url: '{% url "accounts:signup" %}',
+          data: $('#signupForm').serialize(),
+          // cache: false,
+          // processData: false,
+          // contentType: false,
+          beforeSend: function() {
+                  $("#contentDiv").addClass('contentDiv')
+                  $("#preloader").show()
+          },
+          success: function(data) {
+            console.log(data);
+            if (data['msg']){
+                console.log("success")
+                $("#signup").html("<h3 class='text-center'>"+data['msg']+"</h3>");  
+                $("#contentDiv").removeClass('contentDiv')
+                $("#preloader").hide()  
+            }
+            else{
+                $.each(data,function(index,value){ 
+                    console.log(index)
+                    $("#id_"+index).next().text(value)
+                })
+            $("#contentDiv").removeClass('contentDiv')
+            $("#preloader").hide()
+            }
+          },
+          error: function() {
+            console.log("Signup was unsuccessful");
+          }
+        })
+    };
+</script>
 </body>
 
 </html>

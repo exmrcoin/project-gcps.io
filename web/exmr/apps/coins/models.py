@@ -219,6 +219,13 @@ class ClaimRefund(models.Model):
         return self.transaction.user.username
 
 
+class Phases(models.Model):
+    phase = models.CharField(verbose_name=_('Voting_phase'), max_length=128, null=False)
+    time_start = models.DateField(auto_now=False, auto_now_add=False)
+    time_stop = models.DateField(auto_now=False, auto_now_add=False)
+    def __str__(self):
+        return self.phase
+
 class NewCoin(models.Model):
     email = models.EmailField(verbose_name=_('email'))
     company_email = models.EmailField(verbose_name=_('comapny email'))
@@ -244,6 +251,8 @@ class NewCoin(models.Model):
     vote_count = models.IntegerField(
         _('vote count'), default=0, null=True, blank=True)
     approved = models.BooleanField(default=False)
+    phase = models.ForeignKey(Phases, verbose_name=_(
+        'voting_phase'), on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -251,7 +260,7 @@ class NewCoin(models.Model):
 
 class CoinVote(models.Model):
     user = models.ForeignKey(User, verbose_name=_(
-        'user'), on_delete=models.CASCADE)
+        'user'), on_delete=models.CASCADE, null=True)
     coin = models.ForeignKey(NewCoin, verbose_name=_(
         'coin'), on_delete=models.CASCADE)
     type = models.CharField(choices=SOCIAL_TYPE, max_length=20, default='')
@@ -284,3 +293,9 @@ class CoPromotion(models.Model):
 
     def __str__(self):
         return self.coin.code
+
+
+class WinnerCoins(models.Model):
+    phase_name = models.CharField(max_length=64, unique=True);
+    winner_coins = models.ForeignKey(NewCoin, verbose_name=_(
+        'coin'), on_delete=models.CASCADE)

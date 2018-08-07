@@ -1,6 +1,8 @@
 import random
 import string
+import datetime
 
+from datetime import datetime
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
@@ -15,7 +17,8 @@ from apps.coins.utils import *
 from apps.accounts.models import User
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
-                              CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, WalletAddress
+                              CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, WalletAddress,\
+                              Phases
 from django.shortcuts import render
 
 CURRENCIES = ['BTC','LTC', 'BCH', 'XRP']
@@ -364,3 +367,16 @@ class BalanceView(View):
             balance = 0
         data = {'balance':str(balance),'code':currency_code}
         return HttpResponse(json.dumps(data), content_type="application/json")
+
+class VoteWinners(TemplateView):
+    template_name = 'coins/winners.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        phases = Phases.objects.filter(time_stop__lt = datetime.now())
+        context['phases'] = phases
+        for phase in phases:
+            print(phase)
+            # import pdb; pdb.set_trace()
+            context['newcoins'].append(NewCoin.objects.filter(phase = phase.id))
+        return context

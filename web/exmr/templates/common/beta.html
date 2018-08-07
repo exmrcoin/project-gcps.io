@@ -10,7 +10,24 @@
         <div class="row">
             <img class="col-xs-12 col-md-4 col-md-offset-4 img-responsive" src="{% static 'images/loader.gif' %}">
         </div>
-
+        <form action="//127.0.0.1:8000/en/merchant_tools/make-payment/" method="POST" >
+            <input type="hidden" name="merchant_id" value="T9ygMYhhHsalhxU4Rqn5smwC8meWkGrG" maxlength="128" id="id_merchant_id" required />
+            <input type="hidden" name="item_name" value="buyexmr" maxlength="128" id="id_item_name" required />
+            <input type="hidden" name="item_amount" value="500" maxlength="128" id="id_item_amount" required />
+            <input type="hidden" name="item_number" value="item1" maxlength="128" id="id_item_number" required />
+            <input type="hidden" name="item_qty" value="1" maxlength="128" id="id_item_qty" required />
+            <input type="hidden" name="buyer_qty_edit" value="true" id="id_buyer_qty_edit" />
+            <input type="hidden" name="invoice_number" value="INV231" maxlength="128" id="id_invoice_number" required />
+            <input type="hidden" name="tax_amount" value="10" maxlength="128" id="id_tax_amount" required />
+            <input type="hidden" name="allow_shipping_cost" value="true"id="id_allow_shipping_cost" />
+            <input type="hidden" name="shipping_cost" value="12" maxlength="128" id="id_shipping_cost" required />
+            <input type="hidden" name="shipping_cost_add" value="8" maxlength="128" id="id_shipping_cost_add" required />
+            <input type="hidden" name="success_url_link" value="j" maxlength="128" id="id_success_url_link" required />
+            <input type="hidden" name="cancel_url_link" value="j" maxlength="128" id="id_cancel_url_link" required />
+            <input type="hidden" name="ipn_url_link" value="j" maxlength="128" id="id_ipn_url_linl" required />
+            <input type="hidden" name="allow_buyer_note" value="true"id="id_allow_buyer_note" />
+            <input type="hidden" name="btn_image" value="1"id="id_btn_image" />
+            <input type="image" src="http://127.0.0.1:8000/media/button_maker/buybtn.png" alt="Buy Now with CoinPayments.net"></form>
     </div>
 </section>
 

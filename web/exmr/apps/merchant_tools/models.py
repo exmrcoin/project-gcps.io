@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from apps.coins.models import Coin
 from apps.merchant_tools import random_primary
 from datetime import datetime, timedelta
+from apps.accounts.models import User, Profile
 
 from django.utils import timezone
 # Create your models here.
@@ -81,7 +82,7 @@ class CryptoPaymentRec(models.Model):
     wallet_address = models.CharField(max_length=128, null=False)
 
     def __str__(self):
-        return self.item_name
+        return self.item_name +"_"+ Profile.objects.get(merchant_id = self.merchant_id).user.username
 
 
 class MercSidebarTopic(models.Model):

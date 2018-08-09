@@ -9,15 +9,24 @@
     <div class="container">
         <div class="row">
             {% for phase in phases %}
-            <div class="col-xs-12 py-3">
+            <div class="col-xs-12 py-3 text-center">
+                <div class="col-xs-12 text-center">
+                        <h2>These are the Winners of {{phase}} </h2>
+
+                </div>
+
+                <div class="col-xs-12 text-center">
                 {% for coin in newcoins %}
+                {% if coin.phase == phase %}
                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 my-1">
                     <div class="col-xs-12 vote-winner  py-3 ">
                         <img src="{{coin.logo_url}}" class="img-responsive w60px margin-center">
                         <h4>{{coin.name}} ({{coin.code}})</h4>
                     </div>
                 </div>
+                {% endif %}
                 {% endfor %}
+                </div>
             </div>
             {% endfor %}
 

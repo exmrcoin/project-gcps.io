@@ -375,8 +375,9 @@ class VoteWinners(TemplateView):
         context = super().get_context_data(**kwargs)
         phases = Phases.objects.filter(time_stop__lt = datetime.now())
         context['phases'] = phases
+        temp_list =[]
         for phase in phases:
-            print(phase)
-            # import pdb; pdb.set_trace()
-            context['newcoins'].append(NewCoin.objects.filter(phase = phase.id))
+            for temp in NewCoin.objects.filter(phase = phase.id):
+                temp_list.append(temp)
+        context['newcoins'] = temp_list
         return context

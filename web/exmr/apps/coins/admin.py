@@ -4,7 +4,8 @@ from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
 from apps.coins.models import Coin, CoinSetting, CoinConvertRequest, Wallet, Transaction,\
-                              ClaimRefund, NewCoin, CoinVote, CoPromotion, CoPromotionURL
+                              ClaimRefund, NewCoin, CoinVote, CoPromotion, CoPromotionURL,\
+                              Phases
 
 
 class CoinResource(resources.ModelResource):
@@ -30,6 +31,7 @@ class CoinModelAdmin(ImportExportModelAdmin):
 
 
 admin.site.register(Coin, CoinModelAdmin)
+admin.site.register(Phases)
 admin.site.register(CoinSetting)
 admin.site.register(CoinConvertRequest)
 admin.site.register(Wallet)

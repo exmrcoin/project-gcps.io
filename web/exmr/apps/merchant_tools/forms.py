@@ -14,7 +14,8 @@ class ButtonMakerForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(ButtonMakerForm, self).__init__(*args, **kwargs)
-        self.fields['merchant_id'].disabled = True
+        if self.fields['merchant_id']:
+            self.fields['merchant_id'].disabled = True
 
 
 class CryptoPaymentForm(forms.Form):

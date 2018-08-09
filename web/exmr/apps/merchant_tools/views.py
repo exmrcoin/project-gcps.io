@@ -37,8 +37,11 @@ class ButtonMakerView(FormView):
 
     def get_initial(self):
         initial = super(ButtonMakerView, self).get_initial()
-        initial['merchant_id'] = Profile.objects.get(
-            user=self.request.user).merchant_id
+        try:
+            initial['merchant_id'] = Profile.objects.get(
+                user=self.request.user).merchant_id
+        except:
+            pass
         initial['btn_image'] = 1
         return initial
 

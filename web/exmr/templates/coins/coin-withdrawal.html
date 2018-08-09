@@ -71,7 +71,7 @@ function sendConfirm(){
     amount = $(".amount").val();
     $.ajax({
         type: "POST",
-        url: "{% url 'coins:send' coin.code %}",
+        url: "{% if coin.code %}{% url 'coins:send' coin.code %}{% else %}{% url 'coins:send' coin.contract_symbol %}{% endif%}",
         data: {
             'to': address,
             'amount': amount,

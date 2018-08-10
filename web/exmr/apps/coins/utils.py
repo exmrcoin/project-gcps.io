@@ -1,11 +1,19 @@
 import json
+import web3
 import requests
 
 from decimal import Decimal
+from solc import compile_source
+from web3.contract import ConciseContract
+from web3 import Web3, HTTPProvider, TestRPCProvider
+
 
 from bitcoinrpc.authproxy import AuthServiceProxy
-from apps.coins.models import Wallet, WalletAddress, Coin
+from apps.coins.models import Wallet, WalletAddress, Coin, EthereumToken, EthereumTokenWallet
 from apps.apiapp import views as apiview
+
+
+w3 = Web3(HTTPProvider('http://35.237.231.141:8545'))
 
 def create_BTC_connection():
     """
@@ -38,6 +46,9 @@ def create_wallet(user, currency):
     """
     create an account name in full node
     """
+    erc = EthereumToken.objects.filter(contract_symbol=currency)
+    if erc:
+        return EthereumTokens(user=user, code=currency).create_erc_wallet()
     if currency in ['XRPTest']:
         return XRP(user).create_xrp_wallet()
     if currency in ['ETH']:
@@ -66,7 +77,9 @@ def get_balance(user, currency):
     """
     Retrive specified user wallet balance.
     """
-    print (currency)
+    erc = EthereumToken.objects.filter(contract_symbol=currency)
+    if erc:
+        balance = EthereumTokens(user=user, code=currency).balance()
     if currency == "XRPTest":
         balance = XRP(user).balance()
     elif currency == "BTC":
@@ -257,3 +270,38 @@ def create_DASH_wallet(user,currency):
         addr = "Unable to generate address"
     return addr
 
+class EthereumTokens():
+    def __init__(self, user, code):
+        self.user = user
+        self.code = code
+        obj = EthereumToken.objects.get(contract_symbol=code)
+        self.contract = w3.eth.contract(address=obj.contract_address, abi=obj.contract_abi)
+
+    def create_erc_wallet(self):
+        coin = EthereumToken.objects.get(contract_symbol=self.code)
+        wallet, created = EthereumTokenWallet.objects.get_or_create(user=self.user, name=coin)
+        if created:
+            address = w3.personal.newAccount("passphrase")
+            if address:
+                wallet.addresses.add(WalletAddress.objects.create(address=address))
+        else:
+            address = wallet.addresses.all()[0].address
+        return address
+
+    def balance(self):
+        user_addr = EthereumTokenWallet.objects.get(
+            user=self.user, name__contract_symbol=self.code).addresses.all()[0].address
+        #balance = w3.fromWei(w3.eth.getBalance(w3.toChecksumAddress(user_addr)),"ether")
+        balance = self.contract.call().balanceOf(user_addr)/pow(10,self.contract.call().decimals())
+        return balance
+
+    def send(self, to_addr, amount):
+        user_addr = EthereumTokenWallet.objects.get(
+            user=self.user, name__contract_symbol=self.code).addresses.all()[0].address
+        amt = int(amount)*pow(10,self.contract.call().decimals())
+        w3.personal.unlockAccount(user_addr,"passphrase")
+        try:
+            tx_id = self.contract.transact({"from": Web3.toChecksumAddress(user_addr)}).transfer(Web3.toChecksumAddress(to_addr), amt)
+            return tx_id.title().hex()
+        except:
+            return {"error": "insufficient funds for gas * price + value"}

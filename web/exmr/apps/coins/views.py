@@ -17,8 +17,8 @@ from apps.coins.utils import *
 from apps.accounts.models import User
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
-                              CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, WalletAddress,\
-                              Phases
+                              CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, \
+                              WalletAddress, EthereumToken, Phases
 from django.shortcuts import render
 
 CURRENCIES = ['BTC','LTC', 'BCH', 'XRP']
@@ -33,6 +33,7 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         #     if not Wallet.objects.filter(user=self.request.user, name=coin):
         #         create_wallet(self.request.user, currency)
         context['wallets'] = Coin.objects.all()
+        context["erc_wallet"] = EthereumToken.objects.all()
         return context
 
 
@@ -124,11 +125,19 @@ class NewCoinAddr(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(NewCoinAddr, self).get_context_data(**kwargs)
         code = kwargs.get('currency')
-        try:
-            context['wallets']=Wallet.objects.get(user=self.request.user,  name__code=code).addresses.all()
-        except:
-            create_wallet(self.request.user, code)
-            context['wallets']=Wallet.objects.get(user=self.request.user,  name__code=code).addresses.all()
+        erc = EthereumToken.objects.filter(contract_symbol=code)
+        if not erc:
+            try:
+                context['wallets'] = Wallet.objects.get(user=self.request.user,  name__code=code).addresses.all()
+            except:
+                create_wallet(self.request.user, code)
+                context['wallets']=Wallet.objects.get(user=self.request.user,  name__code=code).addresses.all()
+        else:
+            try:
+                context['wallets'] = EthereumTokenWallet.objects.get(user=self.request.user,  name__contract_symbol=code).addresses.all()
+            except:
+                create_wallet(self.request.user, code)
+                context['wallets']=EthereumTokenWallet.objects.get(user=self.request.user,  name__contract_symbol=code).addresses.all()
         context['code'] = code
         return context
 
@@ -173,8 +182,13 @@ class CoinWithdrawal(TemplateView):
     template_name = 'coins/coin-withdrawal.html'
 
     def get_context_data(self, *args, **kwargs):
+        currency = self.kwargs['code']
+        erc = EthereumToken.objects.filter(contract_symbol=currency)
         context = super().get_context_data(**kwargs)
-        context['coin'] = Coin.objects.get(code=self.kwargs['code'])
+        if erc:
+            context['coin'] = EthereumToken.objects.get(contract_symbol=currency)
+        else:
+            context['coin'] = Coin.objects.get(code=currency)
         return context
 
 
@@ -188,7 +202,8 @@ class SendView(LoginRequiredMixin, View):
         address = request.POST.get('to')
         currency = kwargs.get('slug')
         amount = Decimal(request.POST.get('amount'))
-        if currency not in ('eth', 'xlm', 'xmr','XRPTest', 'ada'):
+        erc = EthereumToken.objects.filter(contract_symbol=currency)
+        if currency not in ('eth', 'xlm', 'xmr','XRPTest') and not erc:
             access = getattr(apps.coins.utils, 'create_' +
                              currency+'_connection')()
             valid = access.sendtoaddress(address, amount)
@@ -217,6 +232,27 @@ class SendView(LoginRequiredMixin, View):
             email.send()
 
             return HttpResponse(json.dumps({"success": True}), content_type='application/json')
+        elif erc:
+            obj = EthereumTokens(self.request.user,currency)
+            balance = obj.balance()
+            code = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase) for _ in range(12))
+            trans_obj =Transaction.objects.create(user=self.request.user, currency=currency,
+                                       balance=balance, amount=amount, transaction_to=address,
+                                       activation_code=code)
+
+            self.request.session['transaction'] = trans_obj.system_tx_id
+            slug = trans_obj.system_tx_id+"-"+code
+            context = {
+                'slug_val': slug,
+                'host': self.request.get_host(),
+                'scheme': self.request.scheme,
+                'transaction': trans_obj,
+                'type': currency,
+            }
+            response_data = render_to_string('coins/transfer-confirmed-email.html', context, )
+            email = EmailMessage('Getcryptopayments.org Withdrawal Confirmation', response_data, to=[self.request.user.email])
+            email.send()
+            return HttpResponse(json.dumps({"success": True}), content_type='application/json')
 
         return HttpResponse(json.dumps(valid), content_type='application/json')
 
@@ -239,13 +275,23 @@ class SendConfirmView(TemplateView):
         token = kwargs.get('slug').split('-')[1]
         t_obj = Transaction.objects.filter(system_tx_id=tx_id, activation_code=token).first()
         if t_obj:
-            obj = XRP(self.request.user)
-            valid = obj.send(t_obj.transaction_to, str(t_obj.amount))
-            balance = obj.balance()
-            t_obj.approved=True
-            t_obj.balance = balance
-            t_obj.transaction_id=valid
-            t_obj.save()
+            erc = EthereumToken.objects.filter(contract_symbol=t_obj.currency)
+            if t_obj.currency == 'XRPTest':
+                obj = XRP(self.request.user)
+                valid = obj.send(t_obj.transaction_to, str(t_obj.amount))
+                balance = obj.balance()
+                t_obj.approved=True
+                t_obj.balance = balance
+                t_obj.transaction_id=valid
+                t_obj.save()
+            elif erc:
+                obj = EthereumTokens(self.request.user,t_obj.currency)
+                valid = obj.send(t_obj.transaction_to, str(t_obj.amount))
+                balance = obj.balance()
+                t_obj.approved=True
+                t_obj.balance = balance
+                t_obj.transaction_id=valid
+                t_obj.save()
             context['status'] = True
         else:
             context['status'] = False
@@ -378,7 +424,7 @@ class VoteWinners(TemplateView):
         temp_list =[]
         for phase in phases:
             for temp in NewCoin.objects.filter(phase = phase.id):
-                if temp.vote_count >= 35000:
+                if temp.vote_count >=35000:
                     temp_list.append(temp)
         context['newcoins'] = temp_list
         return context

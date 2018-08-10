@@ -2,8 +2,9 @@ import re
 import random
 
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+from django.contrib.postgres.fields import JSONField
+from django.utils.translation import ugettext_lazy as _
 
 from apps.common.models import Currency
 
@@ -294,8 +295,31 @@ class CoPromotion(models.Model):
     def __str__(self):
         return self.coin.code
 
-
 class WinnerCoins(models.Model):
     phase_name = models.CharField(max_length=64, unique=True);
     winner_coins = models.ForeignKey(NewCoin, verbose_name=_(
         'coin'), on_delete=models.CASCADE)
+class EthereumToken(models.Model):
+    contract_symbol = models.CharField(max_length=30)
+    contract_address = models.CharField(max_length=100)
+    contract_abi = JSONField()
+
+    def __str__(self):
+        return self.contract_symbol
+
+
+class EthereumTokenWallet(models.Model):
+    """
+    Model to save the coin wallet for each user
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.ForeignKey(EthereumToken, on_delete=models.CASCADE)
+    addresses = models.ManyToManyField(WalletAddress)
+    private = models.CharField(max_length=500, blank=True, default="")
+    public = models.CharField(max_length=500, blank=True, default="")
+    words = models.CharField(max_length=500, blank=True, default="")
+    paymentid = models.CharField(max_length=500, blank=True, default="")
+
+    def __str__(self):
+        return self.user.username + '_' + self.name.contract_symbol
+

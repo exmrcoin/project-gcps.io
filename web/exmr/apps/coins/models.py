@@ -251,7 +251,7 @@ class NewCoin(models.Model):
     vote_count = models.IntegerField(
         _('vote count'), default=0, null=True, blank=True)
     approved = models.BooleanField(default=False)
-    phase = models.ForeignKey(Phases, verbose_name=_(
+    phase = models.ForeignKey(Phases, blank=True, null=True,verbose_name=_(
         'voting_phase'), on_delete=models.CASCADE)
 
     def __str__(self):

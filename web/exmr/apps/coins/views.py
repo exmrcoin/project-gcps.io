@@ -424,7 +424,7 @@ class VoteWinners(TemplateView):
         temp_list =[]
         for phase in phases:
             for temp in NewCoin.objects.filter(phase = phase.id):
-                if temp.vote_count >= 35000:
+                if temp.vote_count >=35000:
                     temp_list.append(temp)
         context['newcoins'] = temp_list
         return context

@@ -300,9 +300,14 @@ class WinnerCoins(models.Model):
     winner_coins = models.ForeignKey(NewCoin, verbose_name=_(
         'coin'), on_delete=models.CASCADE)
 class EthereumToken(models.Model):
+    coin_name = models.CharField(_('coin name'), max_length=255, blank=True)
     contract_symbol = models.CharField(max_length=30)
     contract_address = models.CharField(max_length=100)
     contract_abi = JSONField()
+    image = models.ImageField(_('image'), help_text=_(
+        'Upload a 35X35 image for better experience'), blank=True)
+    display = models.BooleanField(
+        default=False, help_text=_('Show/Hide this coin anytime'))
 
     def __str__(self):
         return self.contract_symbol

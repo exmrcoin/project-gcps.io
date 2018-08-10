@@ -16,19 +16,19 @@
             <p><b>{% trans 'Send/Withdrawal Amount' %} : </b</p>
             <p><b>{% trans 'Transation Fee (est.)' %}' : </b</p>
             <p><b>{% trans 'Total Withdrawal' %} : </b</p>
-             <p>{{coin.name}} {% trans 'Testnet address or $payByName to send to' %} : </p>
+             <p>{{coin.name}} {% trans 'Address or $payByName to send to' %} : </p>
              <p>{% trans 'Optional Note (Only Viewable by you)' %}' </p>
           </div>
           <div class="col-sm-6 lh40" align="right">
-            <p>00020000 {{ coin.code }}</p>
-            <p>{% get_bal_coin coin.code request.user %} {{ coin.code }}</p>
+            <p>00010 {% if coin.code %}{{coin.code}}{% else %}{{ coin.contract_symbol }}{% endif %}</p>
+            <p>{% get_bal_coin coin.code request.user %} {% if coin.code %}{{coin.code}}{% else %}{{ coin.contract_symbol }}{% endif %}</p>
             <div class="row m0 mb20">
               <div class="col-sm-6 ">
                 <div class="input-group">
                   <input id="msg" type="text" class="form-control amount"  >
                   <span class="input-group-addon p5">
                   <select >
-                  <option>{{ coin.code }} </option>	
+                  <option>{% if coin.code %}{{coin.code}}{% else %}{{ coin.contract_symbol }}{% endif %} </option>	
                   </select></span> </div>
               </div>
               
@@ -43,7 +43,7 @@
                   </select></span> </div>
               </div>
             </div>
-            <p>00000001 {{ coin.code }}</p>
+            <p>00000000 {{ coin.code }}</p>
             <p id="id_amount">00000000 {{ coin.code }}</p>
             <input type="text" class="form-control form-group wallet-send-coin-addr" />
             <input type="text" class="form-control form-group" />
@@ -60,9 +60,9 @@
 <script type="text/javascript">
 $(".amount").keyup(function(){
   if ($(".amount").val())
-    $("#id_amount").text(parseInt($(".amount").val())+00000001)
+    $("#id_amount").text(parseInt($(".amount").val())+00000000)
   else
-    $("#id_amount").text(00000001)
+    $("#id_amount").text(00000000)
 })
 
 function sendConfirm(){

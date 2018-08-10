@@ -47,7 +47,7 @@
                             <tr class="table-th text-center">
                                 <th>
                                     <img src="{% static 'images/coins/' %}{{ obj.code}}.png" class="wallets-img">
-                                    <span>{{ obj.name }}</span>
+                                    <span>{{ obj.coin_name }}</span>
                                 </th>
                                 <th>
                                     <span>{{ obj.code }}</span>
@@ -111,9 +111,10 @@
                             </tr>{% endif %} 
                             {% endfor %}
                             {% for erc in erc_wallet %}
+                            {% if erc.display %}
                             <tr class="table-th text-center">
                                 <th>
-                                    <img src="{% static 'images/coins/' %}{{ erc.contract_symbol}}.png" class="wallets-img">
+                                    <img src="{{ erc.image.url }}" class="wallets-img">
                                     <span>{{ erc.contract_symbol }}</span>
                                 </th>
                                 <th>
@@ -171,7 +172,7 @@
                                         
                                     </div>
                                 </th>
-                            </tr>{% endfor %}
+                            </tr>{% endif %}{% endfor %}
                         </tbody>
                         <!--Table body-->
 

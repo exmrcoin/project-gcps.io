@@ -166,6 +166,7 @@ class WalletAddress(models.Model):
     """
     address = models.CharField(max_length=500, blank=True, default="")
     date = models.DateTimeField(auto_now_add=True)
+
     def __str__(self):
         return self.address
 
@@ -221,11 +222,14 @@ class ClaimRefund(models.Model):
 
 
 class Phases(models.Model):
-    phase = models.CharField(verbose_name=_('Voting_phase'), max_length=128, null=False)
+    phase = models.CharField(verbose_name=_(
+        'Voting_phase'), max_length=128, null=False)
     time_start = models.DateField(auto_now=False, auto_now_add=False)
     time_stop = models.DateField(auto_now=False, auto_now_add=False)
+
     def __str__(self):
         return self.phase
+
 
 class NewCoin(models.Model):
     email = models.EmailField(verbose_name=_('email'))
@@ -252,7 +256,7 @@ class NewCoin(models.Model):
     vote_count = models.IntegerField(
         _('vote count'), default=0, null=True, blank=True)
     approved = models.BooleanField(default=False)
-    phase = models.ForeignKey(Phases, blank=True, null=True,verbose_name=_(
+    phase = models.ForeignKey(Phases, blank=True, null=True, verbose_name=_(
         'voting_phase'), on_delete=models.CASCADE)
 
     def __str__(self):
@@ -272,13 +276,14 @@ class CoinVote(models.Model):
 
 
 class PaybyName(models.Model):
-    user = models.ForeignKey(User, verbose_name=_('user paybyname'), on_delete=models.CASCADE)
-    label = models.CharField(max_length=64, unique=True);
+    user = models.ForeignKey(User, verbose_name=_(
+        'user paybyname'), on_delete=models.CASCADE)
+    label = models.CharField(max_length=64, unique=True)
 
     def save(self, *args, **kwargs):
         temp = self.label
         temp = re.sub(r'\s+', '', temp)
-        paybyname= "$PayTo-"+temp
+        paybyname = "$PayTo-"+temp
         super(PaybyName, self).save(*args, **kwargs)
 
 
@@ -288,17 +293,23 @@ class CoPromotionURL(models.Model):
     def __str__(self):
         return self.url
 
+
 class CoPromotion(models.Model):
-    coin = models.ForeignKey(NewCoin, verbose_name=_('Coin name'), on_delete=models.CASCADE)
-    urls = models.ManyToManyField(CoPromotionURL, verbose_name=_('CoPromotion URL'))
+    coin = models.ForeignKey(NewCoin, verbose_name=_(
+        'Coin name'), on_delete=models.CASCADE)
+    urls = models.ManyToManyField(
+        CoPromotionURL, verbose_name=_('CoPromotion URL'))
 
     def __str__(self):
         return self.coin.code
 
+
 class WinnerCoins(models.Model):
-    phase_name = models.CharField(max_length=64, unique=True);
+    phase_name = models.CharField(max_length=64, unique=True)
     winner_coins = models.ForeignKey(NewCoin, verbose_name=_(
         'coin'), on_delete=models.CASCADE)
+
+
 class EthereumToken(models.Model):
     coin_name = models.CharField(_('coin name'), max_length=255, blank=True)
     contract_symbol = models.CharField(max_length=30)
@@ -327,4 +338,3 @@ class EthereumTokenWallet(models.Model):
 
     def __str__(self):
         return self.user.username + '_' + self.name.contract_symbol
-

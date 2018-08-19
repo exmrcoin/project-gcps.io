@@ -30,5 +30,6 @@ urlpatterns = [
     path('copromotion-form/', coin_views.CopromotionView.as_view(), name="copromotion-form"),
     path('get_balance/', coin_views.BalanceView.as_view(), name="get_balance"),
     path('coin-vote-winners/', coin_views.VoteWinners.as_view(), name="winners"),
+    path('coin-convert/<str:currency>', coin_views.CoinConvertView.as_view(), name="convert_select"),
 
 ]

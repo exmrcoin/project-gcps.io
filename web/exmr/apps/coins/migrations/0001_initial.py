@@ -71,21 +71,6 @@ class Migration(migrations.Migration):
             ],
         ),
         migrations.CreateModel(
-            name='CoinConvertRequest',
-            fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('wallet_from', models.CharField(blank=True, max_length=255, null=True, verbose_name='wallet from address')),
-                ('wallet_to', models.CharField(blank=True, max_length=255, null=True, verbose_name='wallet to address')),
-                ('convert_from', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='from_conversions', to='coins.Coin', verbose_name='convert from coin')),
-                ('convert_to', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='to_conversions', to='coins.Coin', verbose_name='convert to coin')),
-                ('user', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='user_conversion_requests', to=settings.AUTH_USER_MODEL, verbose_name='user')),
-            ],
-            options={
-                'verbose_name_plural': 'Coin Conversion Requests',
-                'verbose_name': 'Coin Conversion Request',
-            },
-        ),
-        migrations.CreateModel(
             name='CoinRequest',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),

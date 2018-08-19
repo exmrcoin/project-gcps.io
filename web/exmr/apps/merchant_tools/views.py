@@ -73,23 +73,23 @@ class ButtonMakerView(FormView):
                      '" maxlength="128" id="id_merchant_id" required />',
                      '<input type="hidden" name="item_name" value="'+item_name +
                      '" maxlength="128" id="id_item_name" required />',
-                     '<input type="hidden" name="item_amount" value="'+item_amount +
+                     '<input type="hidden" name="item_amount" value="'+str(item_amount) +
                      '" maxlength="128" id="id_item_amount" required />',
                      '<input type="hidden" name="item_number" value="'+item_number +
                      '" maxlength="128" id="id_item_number" required />',
-                     '<input type="hidden" name="item_qty" value="'+item_qty +
+                     '<input type="hidden" name="item_qty" value="'+str(item_qty) +
                      '" maxlength="128" id="id_item_qty" required />',
-                     '<input type="hidden" name="buyer_qty_edit" value="' +
-                     buyer_qty_edit+'" id="id_buyer_qty_edit" />',
+                     '<input type="hidden" name="buyer_qty_edit" value="' +  buyer_qty_edit+
+                     '" id="id_buyer_qty_edit" />',
                      '<input type="hidden" name="invoice_number" value="'+invoice_number +
                      '" maxlength="128" id="id_invoice_number" required />',
-                     '<input type="hidden" name="tax_amount" value="'+tax_amount +
+                     '<input type="hidden" name="tax_amount" value="'+str(tax_amount) +
                      '" maxlength="128" id="id_tax_amount" required />',
-                     '<input type="hidden" name="allow_shipping_cost" value="' +
-                     allow_shipping_cost+'"id="id_allow_shipping_cost" />',
-                     '<input type="hidden" name="shipping_cost" value="'+shipping_cost +
+                     '<input type="hidden" name="allow_shipping_cost" value="' +allow_shipping_cost+
+                     '"id="id_allow_shipping_cost" />',
+                     '<input type="hidden" name="shipping_cost" value="'+str(shipping_cost) +
                      '" maxlength="128" id="id_shipping_cost" required />',
-                     '<input type="hidden" name="shipping_cost_add" value="'+shipping_cost_add +
+                     '<input type="hidden" name="shipping_cost_add" value="'+str(shipping_cost_add) +
                      '" maxlength="128" id="id_shipping_cost_add" required />',
                      '<input type="hidden" name="success_url_link" value="'+success_url_link +
                      '" maxlength="128" id="id_success_url_link" required />',
@@ -97,15 +97,15 @@ class ButtonMakerView(FormView):
                      '" maxlength="128" id="id_cancel_url_link" required />',
                      '<input type="hidden" name="ipn_url_link" value="'+ipn_url_link +
                      '" maxlength="128" id="id_ipn_url_linl" required />',
-                     '<input type="hidden" name="allow_buyer_note" value="' +
-                     allow_buyer_note+'"id="id_allow_buyer_note" />',
+                     '<input type="hidden" name="allow_buyer_note" value="' +allow_buyer_note+
+                     '"id="id_allow_buyer_note" />',
                      '<input type="hidden" name="btn_image" value="1"id="id_btn_image" />',
                      ]
 
         img_temp = ButtonImage.objects.get(label=btn_image)
         img_src = str(domain+img_temp.btn_img.url)
         link_html = '<input type="image" src="'+img_src + \
-            '" alt="Buy Now with CoinPayments.net"></form>'
+            '" alt="Buy Now with GetCryptoPayments.org"></form>'
         context['btn_code'] = temp_html
         context['submit_image'] = link_html
         return render(self.request, 'merchant_tools/buttonmaker.html', context)

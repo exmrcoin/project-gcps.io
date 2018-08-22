@@ -203,8 +203,7 @@ footer {
     .navbar-header {
         float: none;
     }
-    .navbar-left,
-    .navbar-right {
+    .navbar-left, .navbar-right {
         float: none !important;
     }
     .navbar-toggle {
@@ -523,10 +522,7 @@ footer {
     text-align: center;
 }
 
-.scroll-btn>*:hover,
-.scroll-btn>*:focus,
-.scroll-btn>*:active,
-.scroll-btn>*.active {
+.scroll-btn>*:hover, .scroll-btn>*:focus, .scroll-btn>*:active, .scroll-btn>*.active {
     opacity: 0.8;
     filter: alpha(opacity=80);
 }
@@ -857,8 +853,7 @@ footer {
     transition: transform 2s ease, -webkit-transform 2s ease;
 }
 
-@media all and (transform-3d),
-(-webkit-transform-3d) {
+@media all and (transform-3d), (-webkit-transform-3d) {
     .carousel-inner>.item {
         -webkit-transition: -webkit-transform .6s ease-in-out;
         -o-transition: -o-transform .6s ease-in-out;
@@ -868,23 +863,19 @@ footer {
         -webkit-perspective: 1000px;
         perspective: 1000px;
     }
-    .carousel-inner>.item.next,
-    .carousel-inner>.item.active.right {
+    .carousel-inner>.item.next, .carousel-inner>.item.active.right {
         left: 0;
         -webkit-transform: translate3d(100%, 0, 0);
         transform: translate3d(100%, 0, 0);
         transition-delay: 600ms;
     }
-    .carousel-inner>.item.prev,
-    .carousel-inner>.item.active.left {
+    .carousel-inner>.item.prev, .carousel-inner>.item.active.left {
         left: 0;
         -webkit-transform: translate3d(-100%, 0, 0);
         transform: translate3d(-100%, 0, 0);
         transition-delay: 600ms;
     }
-    .carousel-inner>.item.next.left,
-    .carousel-inner>.item.prev.right,
-    .carousel-inner>.item.active {
+    .carousel-inner>.item.next.left, .carousel-inner>.item.prev.right, .carousel-inner>.item.active {
         left: 0;
         -webkit-transform: translate3d(0, 0, 0);
         transform: translate3d(0, 0, 0);
@@ -929,15 +920,9 @@ footer {
     padding: 2rem;
 }
 
-@media only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
     /* Force table to not be like tables anymore */
-    table,
-    thead,
-    tbody,
-    th,
-    td,
-    tr {
+    table, thead, tbody, th, td, tr {
         display: block;
     }
     /* Hide table headers (but not display: none;, for accessibility) */
@@ -1120,22 +1105,15 @@ input[type="radio"] {
     margin-right: 10px;
 }
 
-label,
-input {
+label, input {
     display: inline-block;
     vertical-align: middle;
     font-size: 15px;
 }
 
-@media only screen and (max-width: 760px),
-(min-device-width: 768px) and (max-device-width: 1024px) {
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
     /* Force table to not be like tables anymore */
-    table,
-    thead,
-    tbody,
-    th,
-    td,
-    tr {
+    table, thead, tbody, th, td, tr {
         display: block;
     }
     /* Hide table headers (but not display: none;, for accessibility) */
@@ -1469,9 +1447,7 @@ select:-moz-focusring * {
 
 /*****************add to store************/
 
-.form-orange input[type="text"],
-input[type="url"],
-input[type="email"] {
+.form-orange input[type="text"], input[type="url"], input[type="email"] {
     width: 100% !important;
     margin: 0 auto;
     margin-top: 0px;
@@ -2177,9 +2153,33 @@ top: 25%;} */
 }
 
 .vote-winner {
-    border-top: solid 5px  rgba(255, 108, 10, 1);
+    border-top: solid 5px rgba(255, 108, 10, 1);
     text-align: center;
     -webkit-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
     -moz-box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
     box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.75);
+}
+
+.selectable_div input[type="radio"] {
+    display: none;
+}
+
+.available_coin {
+    border: 2px solid #d4d9dd;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: block;
+    border-radius: 5px;
+    min-height: 135px;
+}
+
+.available_coin:hover {
+    border: 2px solid #41ad0f;
+    transform: scale(1.005);
+    -webkit-transition: transform 2s ease-in-out;
+}
+
+.selectable_div input[type="radio"]:checked+ .available_coin {
+    border: 2px solid #2e770b;
+    background-color: transparent;
 }

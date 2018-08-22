@@ -19,6 +19,8 @@ from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
                               CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, \
                               WalletAddress, EthereumToken, Phases
+from apps.apiapp import shapeshift
+from apps.coins import coinlist
 from django.shortcuts import render
 
 CURRENCIES = ['BTC','LTC', 'BCH', 'XRP']
@@ -34,6 +36,28 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         #         create_wallet(self.request.user, currency)
         context['wallets'] = Coin.objects.all()
         context["erc_wallet"] = EthereumToken.objects.all()
+        return context
+
+class CoinConvertView(LoginRequiredMixin, TemplateView):
+    template_name = 'coins/convert-select.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(CoinConvertView, self).get_context_data(**kwargs)
+        sel_coin = self.kwargs.get('currency')
+        shapehift_available_coin = shapeshift.get_coins()
+        image_path_list = {}
+        exmr_list = coinlist.get_all_active_coin_code()
+        available_coins = filter(lambda x:x in list(shapehift_available_coin),exmr_list)
+        print(available_coins)
+        for coin in list(shapehift_available_coin):
+            for coin in exmr_list:
+                if not coin == sel_coin:
+                    image_path_list[coin] = shapehift_available_coin[coin]['image']
+                else:
+                    shapehift_available_coin.pop(coin,0)
+
+        context['coin_images'] = image_path_list
+        context['avbl_coins']=list(available_coins)
         return context
 
 

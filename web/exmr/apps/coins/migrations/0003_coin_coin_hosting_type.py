@@ -10,9 +10,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='coin',
-            name='coin_hosting_type',
-            field=models.CharField(choices=[('HOSTED', 'HOSTED'), ('POLONEIX', 'poloneix'), ('BINANCE', 'binance'), ('OKEX', 'okex')], default='HOSTED', max_length=20),
-        ),
     ]

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-06-02 14:02+0530\n"
+"POT-Creation-Date: 2018-08-28 18:12+0530\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,28 +19,28 @@ msgstr ""
 
 #: apps/accounts/admin.py:17
 msgid "Basic Details"
-msgstr "Basic Details"
+msgstr "基本的な詳細"
 
 #: apps/accounts/admin.py:20 templates/accounts/settings.html:24
 #: templates/accounts/settings.html:163
 msgid "Public Info"
-msgstr "Public Info"
+msgstr "公的情報"
 
 #: apps/accounts/admin.py:23
 msgid "Login Security"
-msgstr "Login Security"
+msgstr "ログインセキュリティ"
 
 #: apps/accounts/forms.py:25 apps/accounts/models.py:24
 msgid "Male"
-msgstr "Male"
+msgstr "男性"
 
 #: apps/accounts/forms.py:26 apps/accounts/models.py:25
 msgid "Female"
-msgstr "Female"
+msgstr "女性"
 
 #: apps/accounts/forms.py:27 apps/accounts/models.py:26
 msgid "Other/Prefer Not to say"
-msgstr "Other/Prefer Not to say"
+msgstr "その他/回答を避ける"
 
 #: apps/accounts/forms.py:31
 msgid "02-10-2018"
@@ -60,125 +60,128 @@ msgstr "02:00:00"
 
 #: apps/accounts/forms.py:59
 msgid "Emails doesn't match"
-msgstr "Emails doesn't match"
+msgstr "メールが一致しません"
 
 #: apps/accounts/forms.py:70
 msgid "Please accept the terms and conditions"
-msgstr "Please accept the terms and conditions"
+msgstr "利用規約に同意してください"
 
 #: apps/accounts/forms.py:133
 msgid "Invalid mobile number."
-msgstr "Invalid mobile number."
+msgstr "モバイル番号が無効です。"
 
 #: apps/accounts/forms.py:171 apps/store/forms.py:21
 msgid "Either username or email needs to be provided"
-msgstr "Either username or email needs to be provided"
+msgstr "ユーザー名または電子メールのどちらかを入力する必要があります"
 
 #: apps/accounts/forms.py:176 apps/store/forms.py:26
 msgid "User not found"
-msgstr "User not found"
+msgstr "ユーザーが見つかりません"
 
 #: apps/accounts/models.py:38
 msgid "Buyer"
-msgstr "Buyer"
+msgstr "買い手"
 
 #: apps/accounts/models.py:39
 msgid "Seller"
-msgstr "Seller"
+msgstr "売り手"
 
 #: apps/accounts/models.py:43
 msgid "Email"
-msgstr "Email"
+msgstr "Eメール"
 
 #: apps/accounts/models.py:44
 msgid "Trezor Login"
-msgstr "Trezor Login"
+msgstr "Trezorログイン"
 
 #: apps/accounts/models.py:45
 msgid "2FA Account"
-msgstr "2FA Account"
+msgstr "2FAアカウント"
 
 #: apps/accounts/models.py:46
 msgid "None"
-msgstr "None"
+msgstr "なし"
 
 #: apps/accounts/models.py:54 apps/accounts/models.py:139
 #: apps/accounts/models.py:183 apps/accounts/models.py:208
-#: apps/coins/models.py:66 apps/coins/models.py:83 apps/store/models.py:34
+#: apps/coins/models.py:122 apps/coins/models.py:144 apps/coins/models.py:268
+#: apps/store/models.py:34
 msgid "user"
-msgstr "user"
+msgstr "ユーザー"
 
 #: apps/accounts/models.py:55
 msgid "gender"
-msgstr "gender"
+msgstr "性別"
 
 #: apps/accounts/models.py:56
 msgid "user type"
-msgstr "user type"
+msgstr "ユーザータイプ"
 
 #: apps/accounts/models.py:57
 msgid "timezone"
-msgstr "timezone"
+msgstr "タイムゾーン"
 
 #: apps/accounts/models.py:58
 msgid "public name"
-msgstr "public name"
+msgstr "一般名"
 
 #: apps/accounts/models.py:59
 msgid "public email"
-msgstr "public email"
+msgstr "公開メール"
 
 #: apps/accounts/models.py:60
 msgid "public URL"
-msgstr "public URL"
+msgstr "公開URL"
 
-#: apps/accounts/models.py:61
+#: apps/accounts/models.py:61 apps/merchant_tools/models.py:20
+#: apps/merchant_tools/models.py:60 apps/merchant_tools/models.py:118
+#: apps/merchant_tools/models.py:145
 msgid "merchant id"
-msgstr "merchant id"
+msgstr "販売者ID"
 
 #: apps/accounts/models.py:62
 msgid "date format"
-msgstr "date format"
+msgstr "日付形式"
 
 #: apps/accounts/models.py:63
 msgid "time format"
-msgstr "time format"
+msgstr "時間形式"
 
 #: apps/accounts/models.py:64
 msgid "use gravatar"
-msgstr "use gravatar"
+msgstr "グラビアを使う"
 
 #: apps/accounts/models.py:65
 msgid "PGP/GPG public key"
-msgstr "PGP/GPG public key"
+msgstr "PGP / GPG公開鍵"
 
 #: apps/accounts/models.py:66
 msgid "2FA authentication"
-msgstr "2FA authentication"
+msgstr "2FA認証"
 
 #: apps/accounts/models.py:68
 msgid "email confirmation send/withdrawal"
-msgstr "email confirmation send/withdrawal"
+msgstr "電子メール確認の送信/取り消し"
 
 #: apps/accounts/models.py:69
 msgid "is subscribed"
-msgstr "is subscribed"
+msgstr "購読されている"
 
 #: apps/accounts/models.py:70
 msgid "reference count"
-msgstr "reference count"
+msgstr "参照カウント"
 
 #: apps/accounts/models.py:74 templates/accounts/settings.html:287
 msgid "IPN Secret"
-msgstr "IPN Secret"
+msgstr "IPN秘密"
 
 #: apps/accounts/models.py:75
 msgid ""
 "This is used to verify that an IPN is from us, use a good random string "
 "nobody can guess."
 msgstr ""
-"This is used to verify that an IPN is from us, use a good random string "
-"nobody can guess."
+"これは、私たちがIPNであることを確認するために使用され、誰も推測できない無作為"
+"な文字列を使用します。"
 
 #: apps/accounts/models.py:77 templates/accounts/settings.html:293
 msgid "IPN URL"
@@ -186,344 +189,489 @@ msgstr "IPN URL"
 
 #: apps/accounts/models.py:78
 msgid "When a user submits a new payment to you"
-msgstr "When a user submits a new payment to you"
+msgstr "ユーザーが新しい支払いをあなたに提出すると"
 
 #: apps/accounts/models.py:79
 msgid "When funds have been received by us for a payment to you."
-msgstr "When funds have been received by us for a payment to you."
+msgstr "あなたへの支払いのために私達によって資金が受け取られたとき。"
 
 #: apps/accounts/models.py:80
 msgid "When funds for a payment have been sent to you."
-msgstr "When funds for a payment have been sent to you."
+msgstr "支払いのための資金があなたに送られたとき。"
 
 #: apps/accounts/models.py:81
 msgid "When a deposit is received on one of your deposit addresses."
-msgstr "When a deposit is received on one of your deposit addresses."
+msgstr "預金口座の1つに預金が届いたとき。"
 
 #: apps/accounts/models.py:82
 msgid "When positive feedback has been left for you."
-msgstr "When positive feedback has been left for you."
+msgstr "あなたに肯定的なフィードバックが残っているとき。"
 
 #: apps/accounts/models.py:83
 msgid "status notification email"
-msgstr "status notification email"
+msgstr "ステータス通知メール"
 
 #: apps/accounts/models.py:84
 msgid "receive SMS text when funds are received"
-msgstr "receive SMS text when funds are received"
+msgstr "資金が受け取られたときにSMSテキストを受信する"
 
 #: apps/accounts/models.py:85
 msgid "SMS phone number"
-msgstr "SMS phone number"
+msgstr "SMS電話番号"
 
 #: apps/accounts/models.py:88
 msgid "Profile"
-msgstr "Profile"
+msgstr "プロフィール"
 
 #: apps/accounts/models.py:89
 msgid "Profiles"
-msgstr "Profiles"
+msgstr "プロフィール"
 
 #: apps/accounts/models.py:149
 msgid "Account Activation Link"
-msgstr "Account Activation Link"
+msgstr "アカウントアクティベーションリンク"
 
 #: apps/accounts/models.py:175
 msgid "Profile Activation"
-msgstr "Profile Activation"
+msgstr "プロファイルの有効化"
 
 #: apps/accounts/models.py:176
 msgid "Profile Activations"
-msgstr "Profile Activations"
+msgstr "プロファイルのアクティブ化"
 
 #: apps/accounts/models.py:184
 msgid "saved address name"
-msgstr "saved address name"
+msgstr "保存された住所の名前"
 
 #: apps/accounts/models.py:185
 msgid "is default"
-msgstr "is default"
+msgstr "デフォルトです"
 
-#: apps/accounts/models.py:186
+#: apps/accounts/models.py:186 apps/coins/models.py:237
 msgid "first name"
-msgstr "first name"
+msgstr "ファーストネーム"
 
-#: apps/accounts/models.py:187
+#: apps/accounts/models.py:187 apps/coins/models.py:238
 msgid "last name"
-msgstr "last name"
+msgstr "苗字"
 
 #: apps/accounts/models.py:188
 msgid "address line 1"
-msgstr "address line 1"
+msgstr "住所1"
 
 #: apps/accounts/models.py:189
 msgid "address line 2"
-msgstr "address line 2"
+msgstr "住所2"
 
 #: apps/accounts/models.py:190
 msgid "country"
-msgstr "country"
+msgstr "国"
 
 #: apps/accounts/models.py:191
 msgid "city"
-msgstr "city"
+msgstr "シティ"
 
 #: apps/accounts/models.py:192
 msgid "state"
-msgstr "state"
+msgstr "状態"
 
 #: apps/accounts/models.py:193
 msgid "postal code"
-msgstr "postal code"
+msgstr "郵便番号"
 
 #: apps/accounts/models.py:194
 msgid "phone_number"
-msgstr "phone_number"
+msgstr "電話番号"
 
 #: apps/accounts/models.py:197
 msgid "Address"
-msgstr "Address"
+msgstr "住所"
 
 #: apps/accounts/models.py:198
 msgid "Addresses"
-msgstr "Addresses"
+msgstr "アドレス"
 
 #: apps/accounts/models.py:209
 msgid "rating"
-msgstr "rating"
+msgstr "評価"
 
 #: apps/accounts/models.py:210
 msgid "comment"
-msgstr "comment"
+msgstr "コメント"
 
 #: apps/accounts/models.py:212
 msgid "left by"
-msgstr "left by"
+msgstr "去った"
 
 #: apps/accounts/models.py:214
 msgid "buyer or seller"
-msgstr "buyer or seller"
+msgstr "買い手または売り手"
 
 #: apps/accounts/models.py:217 apps/accounts/models.py:218
 msgid "Feedback"
-msgstr "Feedback"
+msgstr "フィードバック"
 
 #: apps/accounts/models.py:228
 msgid "subject"
-msgstr "subject"
+msgstr "主題"
 
 #: apps/accounts/models.py:230
 msgid "content"
-msgstr "content"
+msgstr "コンテンツ"
 
 #: apps/accounts/models.py:253 templates/accounts/verify_2fa.html:18
 msgid "Authentication Code"
-msgstr "Authentication Code"
+msgstr "認証コード"
 
-#: apps/accounts/views.py:49
+#: apps/accounts/views.py:51
 msgid "Activation mail sent"
-msgstr "Activation mail sent"
+msgstr "送信されたアクティベーションメール"
 
-#: apps/accounts/views.py:172
+#: apps/accounts/views.py:179
 msgid "Account details updated successfully"
-msgstr "Account details updated successfully"
+msgstr "アカウントの詳細を正常に更新しました"
 
-#: apps/accounts/views.py:184 apps/accounts/views.py:209
-#: apps/accounts/views.py:213 apps/accounts/views.py:232
+#: apps/accounts/views.py:191 apps/accounts/views.py:216
+#: apps/accounts/views.py:220 apps/accounts/views.py:239
 msgid "Information updated successfully"
-msgstr "Information updated successfully"
+msgstr "情報が正常に更新された"
 
-#: apps/accounts/views.py:203
+#: apps/accounts/views.py:210
 msgid "Current password is incorrect"
-msgstr "Current password is incorrect"
+msgstr "このパスワードは間違っています"
 
-#: apps/accounts/views.py:205
+#: apps/accounts/views.py:212
 msgid "Passwords doesn't match"
-msgstr "Passwords doesn't match"
+msgstr "パスワードが一致しません"
 
-#: apps/accounts/views.py:248
+#: apps/accounts/views.py:255
 msgid "Invalid account activation link"
-msgstr "Invalid account activation link"
-
-#: apps/accounts/views.py:251
-msgid "Account activation link expired"
-msgstr "Account activation link expired"
+msgstr "アカウントの有効化リンクが無効です"
 
 #: apps/accounts/views.py:258
+msgid "Account activation link expired"
+msgstr "アカウントの有効化リンクが切れた"
+
+#: apps/accounts/views.py:265
 msgid "Account activated <br><p>Please <a href=/login>login</a><p>"
-msgstr "Account activated <br><p>Please <a href=/login>login</a><p>"
+msgstr ""
+"アカウントが有効になっています<br> <p> <a href=/login>ログイン</a>してくださ"
+"い<p>"
 
-#: apps/coins/models.py:13
+#: apps/coins/models.py:17
 msgid "Crypto"
-msgstr "Crypto"
+msgstr "暗号"
 
-#: apps/coins/models.py:14
+#: apps/coins/models.py:18
 msgid "Ripple"
-msgstr "Ripple"
+msgstr "リップル"
 
-#: apps/coins/models.py:15
+#: apps/coins/models.py:19
 msgid "Ether tokens"
-msgstr "Ether tokens"
+msgstr "エーテルトークン"
 
-#: apps/coins/models.py:16
+#: apps/coins/models.py:20
 msgid "Fiat"
-msgstr "Fiat"
-
-#: apps/coins/models.py:26
-msgid "To Balance"
-msgstr "To Balance"
-
-#: apps/coins/models.py:27
-msgid "ASAP"
-msgstr "ASAP"
-
-#: apps/coins/models.py:28
-msgid "Nightly"
-msgstr "Nightly"
-
-#: apps/coins/models.py:29
-msgid "To Balance + Convert"
-msgstr "To Balance + Convert"
+msgstr "フィアット"
 
 #: apps/coins/models.py:30
+msgid "To Balance"
+msgstr "バランスを取る"
+
+#: apps/coins/models.py:31
+msgid "ASAP"
+msgstr "できるだけ速くに"
+
+#: apps/coins/models.py:32
+msgid "Nightly"
+msgstr "ナイトリー"
+
+#: apps/coins/models.py:33
+msgid "To Balance + Convert"
+msgstr "バランスをとる+変換する"
+
+#: apps/coins/models.py:34
 msgid "ASAP + Convert"
-msgstr "ASAP + Convert"
+msgstr "即時+変換"
 
 #: apps/coins/models.py:38
-msgid "coin name"
-msgstr "coin name"
+msgid "follow"
+msgstr ""
 
 #: apps/coins/models.py:39
-msgid "coin site URL"
-msgstr "coin site URL"
+msgid "share"
+msgstr ""
 
 #: apps/coins/models.py:40
-msgid "code"
-msgstr "code"
-
-#: apps/coins/models.py:41
-msgid "confirms"
-msgstr "confirms"
-
-#: apps/coins/models.py:42 apps/common/models.py:106 apps/store/models.py:14
-msgid "image"
-msgstr "image"
-
-#: apps/coins/models.py:42
-msgid "Upload a 35X35 image for better experience"
-msgstr "Upload a 35X35 image for better experience"
-
-#: apps/coins/models.py:43
-msgid "to BTC value"
-msgstr "to BTC value"
+msgid "token"
+msgstr ""
 
 #: apps/coins/models.py:44
-msgid "fee percentage"
-msgstr "fee percentage"
+msgid "facebook"
+msgstr ""
 
 #: apps/coins/models.py:45
-msgid "type"
-msgstr "type"
+msgid "twitter"
+msgstr ""
 
 #: apps/coins/models.py:46
-msgid "can convert coin to another"
-msgstr "can convert coin to another"
+#, fuzzy
+#| msgid "link"
+msgid "linkedin"
+msgstr "リンク"
 
 #: apps/coins/models.py:47
-msgid "can explore coins"
-msgstr "can explore coins"
+msgid "telegram"
+msgstr ""
 
 #: apps/coins/models.py:48
-msgid "can donate coins"
-msgstr "can donate coins"
+msgid "reddit"
+msgstr ""
 
 #: apps/coins/models.py:49
-msgid "Disable this coin anytime"
-msgstr "Disable this coin anytime"
+msgid "youtube"
+msgstr ""
+
+#: apps/coins/models.py:50
+msgid "medium"
+msgstr ""
+
+#: apps/coins/models.py:51
+msgid "steemit"
+msgstr ""
 
 #: apps/coins/models.py:52
-msgid "vote count"
-msgstr "vote count"
+msgid "instagram"
+msgstr ""
 
-#: apps/coins/models.py:55 templates/accounts/dashboard.html:34
-msgid "Coin"
-msgstr "Coin"
+#: apps/coins/models.py:80 apps/coins/models.py:242 apps/coins/models.py:314
+msgid "coin name"
+msgstr "コイン名"
 
-#: apps/coins/models.py:56
-msgid "Coins"
-msgstr "Coins"
+#: apps/coins/models.py:81
+msgid "coin site URL"
+msgstr "コインサイトのURL"
 
-#: apps/coins/models.py:67
-msgid "coin"
-msgstr "coin"
+#: apps/coins/models.py:82
+msgid "code"
+msgstr "コード"
 
-#: apps/coins/models.py:68
-msgid "enabled"
-msgstr "enabled"
+#: apps/coins/models.py:83
+msgid "confirms"
+msgstr "確認する"
 
-#: apps/coins/models.py:69
-msgid "payment address"
-msgstr "payment address"
+#: apps/coins/models.py:84 apps/coins/models.py:318 apps/common/models.py:108
+#: apps/store/models.py:14
+msgid "image"
+msgstr "画像"
 
-#: apps/coins/models.py:70
-msgid "payment mode"
-msgstr "payment mode"
-
-#: apps/coins/models.py:71
-msgid "discount field"
-msgstr "discount field"
-
-#: apps/coins/models.py:72
-msgid "maximum per transaction"
-msgstr "maximum per transaction"
-
-#: apps/coins/models.py:73
-msgid "currency"
-msgstr "currency"
-
-#: apps/coins/models.py:85
-msgid "convert from coin"
-msgstr "convert from coin"
-
-#: apps/coins/models.py:87
-msgid "convert to coin"
-msgstr "convert to coin"
-
-#: apps/coins/models.py:89
-msgid "wallet from address"
-msgstr "wallet from address"
+#: apps/coins/models.py:85 apps/coins/models.py:319
+msgid "Upload a 35X35 image for better experience"
+msgstr "より良い体験のために35X35画像をアップロードする"
 
 #: apps/coins/models.py:90
-msgid "wallet to address"
-msgstr "wallet to address"
+msgid "to BTC value"
+msgstr "BTC値"
+
+#: apps/coins/models.py:92
+msgid "fee percentage"
+msgstr "手数料率"
+
+#: apps/coins/models.py:94
+msgid "type"
+msgstr "タイプ"
 
 #: apps/coins/models.py:96
-msgid "Coin Conversion Request"
-msgstr "Coin Conversion Request"
+msgid "can convert coin to another"
+msgstr "硬貨を別のものに変換することができます"
 
 #: apps/coins/models.py:97
-msgid "Coin Conversion Requests"
-msgstr "Coin Conversion Requests"
+msgid "can explore coins"
+msgstr "コインを探索することができます"
 
-#: apps/coins/models.py:125 apps/common/models.py:19 apps/store/models.py:11
-msgid "name"
-msgstr "name"
+#: apps/coins/models.py:98
+msgid "can donate coins"
+msgstr "コインを寄付することができます"
+
+#: apps/coins/models.py:100
+msgid "Disable this coin anytime"
+msgstr "いつでもこのコインを無効にする"
+
+#: apps/coins/models.py:102 apps/coins/models.py:321
+#, fuzzy
+#| msgid "Disable this coin anytime"
+msgid "Show/Hide this coin anytime"
+msgstr "いつでもこのコインを無効にする"
+
+#: apps/coins/models.py:107 apps/coins/models.py:257
+msgid "vote count"
+msgstr "投票数"
+
+#: apps/coins/models.py:110 templates/accounts/dashboard.html:34
+msgid "Coin"
+msgstr "コイン"
+
+#: apps/coins/models.py:111
+msgid "Coins"
+msgstr "コイン"
+
+#: apps/coins/models.py:124 apps/coins/models.py:270 apps/coins/models.py:310
+msgid "coin"
+msgstr "コイン"
+
+#: apps/coins/models.py:125
+msgid "enabled"
+msgstr "有効"
 
 #: apps/coins/models.py:126
-msgid "email"
-msgstr "email"
-
-#: apps/coins/models.py:127
-msgid "coin website"
-msgstr "coin website"
+msgid "payment address"
+msgstr "お支払い住所"
 
 #: apps/coins/models.py:128
+msgid "payment mode"
+msgstr "支払いモード"
+
+#: apps/coins/models.py:130
+msgid "discount field"
+msgstr "割引フィールド"
+
+#: apps/coins/models.py:132
+msgid "maximum per transaction"
+msgstr "1トランザクションあたりの最大値"
+
+#: apps/coins/models.py:134
+msgid "currency"
+msgstr "通貨"
+
+#: apps/coins/models.py:146
+msgid "convert from coin"
+msgstr "コインから変換する"
+
+#: apps/coins/models.py:148
+msgid "convert to coin"
+msgstr "コインに変換する"
+
+#: apps/coins/models.py:151
+msgid "wallet from address"
+msgstr "アドレスからの財布"
+
+#: apps/coins/models.py:153
+msgid "wallet to address"
+msgstr "アドレスするウォレット"
+
+#: apps/coins/models.py:159
+msgid "Coin Conversion Request"
+msgstr "コイン変換依頼"
+
+#: apps/coins/models.py:160
+msgid "Coin Conversion Requests"
+msgstr "コイン変換要求"
+
+#: apps/coins/models.py:192 apps/common/models.py:20 apps/store/models.py:11
+msgid "name"
+msgstr "名"
+
+#: apps/coins/models.py:193 apps/coins/models.py:235
+msgid "email"
+msgstr "Eメール"
+
+#: apps/coins/models.py:195
+msgid "coin website"
+msgstr "コインウェブサイト"
+
+#: apps/coins/models.py:197
 msgid "coin url"
-msgstr "coin url"
+msgstr "コインのURL"
+
+#: apps/coins/models.py:226
+msgid "Voting_phase"
+msgstr ""
+
+#: apps/coins/models.py:236
+#, fuzzy
+#| msgid "Account Email"
+msgid "comapny email"
+msgstr "アカウントメール"
+
+#: apps/coins/models.py:240
+#, fuzzy
+#| msgid "Phone number"
+msgid "contact number"
+msgstr "電話番号"
+
+#: apps/coins/models.py:244
+#, fuzzy
+#| msgid "Pincode"
+msgid "coin code"
+msgstr "ピンコード"
+
+#: apps/coins/models.py:246
+#, fuzzy
+#| msgid "coin site URL"
+msgid "website URL"
+msgstr "コインサイトのURL"
+
+#: apps/coins/models.py:248
+msgid "logo_url"
+msgstr ""
+
+#: apps/coins/models.py:249
+msgid "hash tags"
+msgstr ""
+
+#: apps/coins/models.py:250
+msgid "twitter handle"
+msgstr ""
+
+#: apps/coins/models.py:251
+msgid "facebook page"
+msgstr ""
+
+#: apps/coins/models.py:252
+msgid "twitter page"
+msgstr ""
+
+#: apps/coins/models.py:253
+msgid "linkedin page"
+msgstr ""
+
+#: apps/coins/models.py:254
+msgid "telegram page"
+msgstr ""
+
+#: apps/coins/models.py:255
+msgid "reddit page"
+msgstr ""
+
+#: apps/coins/models.py:260
+msgid "voting_phase"
+msgstr ""
+
+#: apps/coins/models.py:280
+#, fuzzy
+#| msgid "user type"
+msgid "user paybyname"
+msgstr "ユーザータイプ"
+
+#: apps/coins/models.py:291
+#, fuzzy
+#| msgid "coin url"
+msgid "copromotion url"
+msgstr "コインのURL"
+
+#: apps/coins/models.py:299
+#, fuzzy
+#| msgid "coin name"
+msgid "Coin name"
+msgstr "コイン名"
+
+#: apps/coins/models.py:301
+msgid "CoPromotion URL"
+msgstr ""
 
 #: apps/common/models.py:10
 msgid "HTTP Auth"
-msgstr "HTTP Auth"
+msgstr "HTTP認証"
 
 #: apps/common/models.py:11
 msgid "HMAC"
@@ -531,220 +679,232 @@ msgstr "HMAC"
 
 #: apps/common/models.py:12
 msgid "N/A"
-msgstr "N/A"
-
-#: apps/common/models.py:25
-msgid "Currency"
-msgstr "Currency"
+msgstr "N / A"
 
 #: apps/common/models.py:26
+msgid "Currency"
+msgstr "通貨"
+
+#: apps/common/models.py:27
 msgid "Currencies"
-msgstr "Currencies"
+msgstr "通貨"
 
-#: apps/common/models.py:33
+#: apps/common/models.py:34
 msgid "provider"
-msgstr "provider"
+msgstr "プロバイダ"
 
-#: apps/common/models.py:34 apps/common/models.py:108
+#: apps/common/models.py:35 apps/common/models.py:110
 msgid "link"
-msgstr "link"
-
-#: apps/common/models.py:38
-msgid "Social Link"
-msgstr "Social Link"
+msgstr "リンク"
 
 #: apps/common/models.py:39
-msgid "Social Links"
-msgstr "Social Links"
+msgid "Social Link"
+msgstr "ソーシャルリンク"
 
-#: apps/common/models.py:111
+#: apps/common/models.py:40
+msgid "Social Links"
+msgstr "ソーシャルリンク"
+
+#: apps/common/models.py:113
 msgid "Video URL"
-msgstr "Video URL"
+msgstr "動画のURL"
 
 #: apps/store/models.py:12
 msgid "publish"
-msgstr "publish"
+msgstr "公開する"
 
 #: apps/store/models.py:13
 msgid "slug"
-msgstr "slug"
+msgstr "スラグ"
 
 #: apps/store/models.py:18
 msgid "Category"
-msgstr "Category"
+msgstr "カテゴリー"
 
 #: apps/store/models.py:19
 msgid "Categories"
-msgstr "Categories"
+msgstr "カテゴリー"
 
 #: apps/store/models.py:35
 msgid "store name"
-msgstr "store name"
+msgstr "店名"
 
 #: apps/store/models.py:36
 msgid "store url"
-msgstr "store url"
+msgstr "ストアURL"
 
 #: apps/store/models.py:37
 msgid "category"
-msgstr "category"
+msgstr "カテゴリー"
 
 #: apps/store/models.py:38
 msgid "crypto processor"
-msgstr "crypto processor"
+msgstr "暗号プロセッサ"
 
 #: apps/store/models.py:39
 msgid "store email"
-msgstr "store email"
+msgstr "店舗の電子メール"
 
 #: apps/store/models.py:40
 msgid "keywords"
-msgstr "keywords"
+msgstr "キーワード"
 
 #: apps/store/models.py:41
 msgid "banner image url"
-msgstr "banner image url"
+msgstr "バナー画像のURL"
 
 #: apps/store/models.py:42
 msgid "is approved"
-msgstr "is approved"
+msgstr "承認されました"
 
 #: apps/store/models.py:45
 msgid "Store"
-msgstr "Store"
+msgstr "格納"
 
 #: apps/store/models.py:46
 msgid "Stores"
-msgstr "Stores"
+msgstr "店舗"
 
-#: exmr/settings/base.py:155
+#: exmr/settings/base.py:194
 msgid "English"
-msgstr "English"
+msgstr "英語"
 
-#: exmr/settings/base.py:156
+#: exmr/settings/base.py:195
 msgid "Spanish"
-msgstr "Spanish"
+msgstr "スペイン語"
 
-#: exmr/settings/base.py:157
+#: exmr/settings/base.py:196
 msgid "Deutsche"
-msgstr "Deutsche"
+msgstr "ドイツ"
 
-#: exmr/settings/base.py:158
+#: exmr/settings/base.py:197
 msgid "हिन्दी"
 msgstr "हिन्दी"
 
-#: exmr/settings/base.py:159
+#: exmr/settings/base.py:198
 msgid "Français"
-msgstr "Français"
+msgstr "フランス語"
 
-#: exmr/settings/base.py:160
+#: exmr/settings/base.py:199
 msgid "Italiano"
-msgstr "Italiano"
+msgstr "イタリア語"
 
-#: exmr/settings/base.py:161
+#: exmr/settings/base.py:200
 msgid "Magyar"
-msgstr "Magyar"
+msgstr "マジョール"
 
-#: exmr/settings/base.py:162
+#: exmr/settings/base.py:201
 msgid "Português"
 msgstr "Português"
 
-#: exmr/settings/base.py:163
+#: exmr/settings/base.py:202
 msgid "русский"
 msgstr "русский"
 
-#: exmr/settings/base.py:164
+#: exmr/settings/base.py:203
 msgid "فارسی"
 msgstr "فارسی"
 
-#: exmr/settings/base.py:165
+#: exmr/settings/base.py:204
 msgid "中文"
 msgstr "中文"
 
-#: exmr/settings/base.py:166
+#: exmr/settings/base.py:205
 msgid "日本語"
 msgstr "日本語"
 
-#: exmr/settings/base.py:167
+#: exmr/settings/base.py:206
 msgid "한국어"
 msgstr "한국어"
 
 #: templates/accounts/2fa_account.html:17
 msgid "Add Google Authenticator"
-msgstr "Add Google Authenticator"
+msgstr "Google認証システムを追加する"
 
 #: templates/accounts/2fa_account.html:23
 msgid "2FA Accounts"
-msgstr "2FA Accounts"
+msgstr "2FAアカウント"
 
 #: templates/accounts/2fa_account.html:45
 #: templates/accounts/2fa_account_list.html:34
 msgid "Date"
-msgstr "Date"
+msgstr "日付"
 
 #: templates/accounts/2fa_account.html:46
 #: templates/accounts/2fa_account.html:92
 #: templates/accounts/2fa_account_list.html:35
 msgid "Account Name"
-msgstr "Account Name"
+msgstr "アカウント名"
 
 #: templates/accounts/2fa_account.html:47
 #: templates/accounts/2fa_account_list.html:36
 msgid "Account Type"
-msgstr "Account Type"
+msgstr "口座の種類"
 
 #: templates/accounts/2fa_account.html:48
 #: templates/accounts/2fa_account_list.html:37
 #: templates/accounts/address-book.html:59
 msgid "Action"
-msgstr "Action"
+msgstr "アクション"
 
 #: templates/accounts/2fa_account.html:64
 msgid "No devices Found"
-msgstr "No devices Found"
+msgstr "デバイスが見つかりません"
 
 #: templates/accounts/2fa_account.html:88
 msgid "Secret Key"
-msgstr "Secret Key"
+msgstr "秘密鍵"
 
 #: templates/accounts/2fa_account.html:97
 msgid "Activation Code"
-msgstr "Activation Code"
+msgstr "アクティベーションコード"
 
 #: templates/accounts/2fa_account.html:105
 msgid "Add"
-msgstr "Add"
+msgstr "追加"
 
 #: templates/accounts/2fa_account_list.html:20
 msgid "Two Factor Authentication List"
-msgstr "Two Factor Authentication List"
+msgstr "2因子認証リスト"
 
 #: templates/accounts/activation_email.html:6
+#: templates/email_extras/activation_email.txt:6
 msgid "registration"
-msgstr "registration"
+msgstr "登録"
 
 #: templates/accounts/activation_email.html:11
-#, python-format
+#: templates/email_extras/activation_email.txt:11
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "    You (or someone pretending to be you) have asked to register an "
+#| "account at\n"
+#| "    and your address will be removed from our records.\n"
+#| "    "
 msgid ""
 "\n"
-"    You (or someone pretending to be you) have asked to register an account at\n"
+"    You (or someone pretending to be you) have asked to register an account "
+"at\n"
+"    %(site_name)s.  If this wasn't you, please ignore this email\n"
 "    and your address will be removed from our records.\n"
 "    "
 msgstr ""
 "\n"
-"You (or someone pretending to be you) have asked to register an account at\n"
-"    and your address will be removed from our records."
+"あなた（またはあなたであると思われる人）は、\n"
+"    あなたの住所は当社の記録から削除されます。"
 
 #: templates/accounts/activation_email.html:18
+#: templates/email_extras/activation_email.txt:18
 msgid ""
 "\n"
 "    To activate this account, please click the following link\n"
 "    "
 msgstr ""
 "\n"
-"To activate this account, please click the following link"
+"このアカウントを有効にするには、次のリンクをクリックしてください"
 
 #: templates/accounts/activation_email.html:29
+#: templates/email_extras/activation_email.txt:29
 #, python-format
 msgid ""
 "\n"
@@ -753,19 +913,25 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"Sincerely,\n"
-"    %(site_name)s Management"
+"敬具、\n"
+"    %(site_name)s 管理"
 
 #: templates/accounts/activation_email.txt:2
-#, python-format
+#, fuzzy, python-format
+#| msgid ""
+#| "\n"
+#| "You (or someone pretending to be you) have asked to register an account "
+#| "at\n"
+#| "and your address will be removed from our records.\n"
 msgid ""
 "\n"
 "You (or someone pretending to be you) have asked to register an account at\n"
+"%(site_name)s.  If this wasn't you, please ignore this email\n"
 "and your address will be removed from our records.\n"
 msgstr ""
 "\n"
-"You (or someone pretending to be you) have asked to register an account at\n"
-"and your address will be removed from our records.\n"
+"あなた（またはあなたであると思われる人）は、\n"
+"あなたの住所は当社の記録から削除されます。\n"
 
 #: templates/accounts/activation_email.txt:7
 msgid ""
@@ -773,7 +939,7 @@ msgid ""
 "To activate this account, please click the following link:\n"
 msgstr ""
 "\n"
-"To activate this account, please click the following link:\n"
+"このアカウントを有効にするには、次のリンクをクリックしてください：\n"
 
 #: templates/accounts/activation_email.txt:13
 #, python-format
@@ -783,472 +949,556 @@ msgid ""
 "%(site_name)s Management\n"
 msgstr ""
 "\n"
-"Sincerely,\n"
-"%(site_name)s Management\n"
+"敬具、\n"
+"%(site_name)s 管理\n"
 
 #: templates/accounts/address-book.html:22
 msgid "Add New Address"
-msgstr "Add New Address"
+msgstr "新しいアドレスを追加"
 
 #: templates/accounts/address-book.html:27
 msgid "Saved Address"
-msgstr "Saved Address"
+msgstr "保存された住所"
 
 #: templates/accounts/address-book.html:50
 msgid "Address Name"
-msgstr "Address Name"
+msgstr "住所の名前"
 
 #: templates/accounts/address-book.html:51
 msgid "First Name"
-msgstr "First Name"
+msgstr "ファーストネーム"
 
 #: templates/accounts/address-book.html:52
 msgid "Last Name"
-msgstr "Last Name"
+msgstr "苗字"
 
 #: templates/accounts/address-book.html:53
 msgid "Address Line 1"
-msgstr "Address Line 1"
+msgstr "住所1"
 
 #: templates/accounts/address-book.html:54
 msgid "Address Line 2"
-msgstr "Address Line 2"
+msgstr "住所2"
 
 #: templates/accounts/address-book.html:55
 msgid "Country"
-msgstr "Country"
+msgstr "国"
 
 #: templates/accounts/address-book.html:56
 msgid "State/province"
-msgstr "State/province"
+msgstr "州/州"
 
 #: templates/accounts/address-book.html:57
 msgid "Pincode"
-msgstr "Pincode"
+msgstr "ピンコード"
 
 #: templates/accounts/address-book.html:58
 msgid "Phone number"
-msgstr "Phone number"
+msgstr "電話番号"
 
 #: templates/accounts/address-book.html:83
 msgid "No Address Found"
-msgstr "No Address Found"
+msgstr "住所が見つかりません"
 
-#: templates/accounts/dashboard-base.html:16
+#: templates/accounts/dashboard-base.html:12
+#: templates/admin/coins/copromotion/change_form.html:18
+#: templates/admin/coins/copromotion/read_view.html:17
 msgid "Home"
-msgstr "Home"
+msgstr "ホーム"
 
-#: templates/accounts/dashboard-base.html:24
+#: templates/accounts/dashboard-base.html:19
 msgid "Your Wallet"
-msgstr "Your Wallet"
+msgstr "あなたの財布"
 
-#: templates/accounts/dashboard-base.html:31
+#: templates/accounts/dashboard-base.html:27
 msgid "Coin Settings"
-msgstr "Coin Settings"
+msgstr "コイン設定"
 
-#: templates/accounts/dashboard-base.html:37
-msgid "Transaction History"
-msgstr "Transaction History"
+#: templates/accounts/dashboard-base.html:33
+#, fuzzy
+#| msgid "Transaction History"
+msgid "Transactions"
+msgstr "取引履歴"
 
-#: templates/accounts/dashboard-base.html:42
+#: templates/accounts/dashboard-base.html:39
 msgid "Quick POS"
-msgstr "Quick POS"
+msgstr "クイックPOS"
 
-#: templates/accounts/dashboard-base.html:47 templates/common/index.html:67
-msgid "$PayByName"
-msgstr "$PayByName"
+#: templates/accounts/dashboard-base.html:45
+#, fuzzy
+#| msgid "$PayByName"
+msgid "PayByName"
+msgstr "$ PayByName"
 
 #: templates/accounts/dashboard.html:18 templates/coins/wallets.html:17
 msgid "Recent Transaction"
-msgstr "Recent Transaction"
+msgstr "最近の取引"
 
 #: templates/accounts/dashboard.html:32
 msgid "Time"
-msgstr "Time"
+msgstr "時間"
 
 #: templates/accounts/dashboard.html:33
 msgid "Received / Sent Name"
-msgstr "Received / Sent Name"
+msgstr "受信/送信名"
 
 #: templates/accounts/dashboard.html:35
 msgid "Amount"
-msgstr "Amount"
+msgstr "量"
 
 #: templates/accounts/dashboard.html:36
 msgid "Status"
-msgstr "Status"
+msgstr "状態"
 
-#: templates/accounts/dashboard.html:70 templates/coins/wallets.html:42
+#: templates/accounts/dashboard.html:51 templates/coins/wallets.html:42
 msgid "No Payment Found"
-msgstr "No Payment Found"
+msgstr "支払が見つかりません"
 
 #: templates/accounts/forgot-password.html:14
 #: templates/accounts/forgot_password.html:13
 msgid "Forgot Password"
-msgstr "Forgot Password"
+msgstr "パスワードをお忘れですか"
 
 #: templates/accounts/forgot-password.html:15
 #: templates/accounts/forgot_password.html:14
 msgid "To reset your password, enter your username or email address below"
-msgstr "To reset your password, enter your username or email address below"
+msgstr ""
+"パスワードをリセットするには、下記のユーザー名またはメールアドレスを入力して"
+"ください"
 
 #: templates/accounts/forgot-password.html:25
 #: templates/accounts/forgot_password.html:24
 #: templates/accounts/verify_2fa.html:25
 msgid "Submit"
-msgstr "Submit"
+msgstr "提出する"
 
 #: templates/accounts/forgot_password_done.html:8
 msgid "Instructions has been sent"
-msgstr "Instructions has been sent"
+msgstr "指示が送信されました"
 
 #: templates/accounts/forgot_password_done.html:9
 msgid "to your mail"
-msgstr "to your mail"
+msgstr "あなたのメールに"
 
 #: templates/accounts/login.html:15 templates/accounts/signup.html:17
 msgid "Welcome!"
-msgstr "Welcome!"
+msgstr "ようこそ！"
 
 #: templates/accounts/login.html:16 templates/accounts/signup.html:18
 msgid "Sign in by entering the information below"
-msgstr "Sign in by entering the information below"
+msgstr "下記の情報を入力してサインインしてください"
 
-#: templates/accounts/login.html:26
+#: templates/accounts/login.html:26 templates/exmr.html:259
 msgid "Login"
-msgstr "Login"
+msgstr "ログイン"
 
-#: templates/accounts/login.html:28 templates/accounts/signup.html:95
-#: templates/store/add-or-update.html:112
+#: templates/accounts/login.html:28 templates/accounts/signup.html:77
+#: templates/exmr.html:233 templates/store/add-or-update.html:112
 msgid "Signup"
-msgstr "Signup"
+msgstr "サインアップ"
 
 #: templates/accounts/login.html:38
 msgid "Forgot Password?"
-msgstr "Forgot Password?"
+msgstr "パスワードをお忘れですか？"
 
 #: templates/accounts/login.html:43
 msgid "Don't have an account?"
-msgstr "Don't have an account?"
+msgstr "アカウントを持っていないのですか？"
 
 #: templates/accounts/payment-history.html:22
 #: templates/accounts/payment-history.html:23
 #: templates/accounts/payment-history.html:24
 #: templates/accounts/payment-history.html:25
 msgid "Deposit History"
-msgstr "Deposit History"
+msgstr "預金履歴"
 
 #: templates/accounts/payment-history.html:32
 msgid "Incoming Payment HIstory"
-msgstr "Incoming Payment HIstory"
+msgstr "入金HIstory"
 
 #: templates/accounts/payment-history.html:36
 msgid "History Search & Export"
-msgstr "History Search & Export"
+msgstr "履歴検索とエクスポート"
 
 #: templates/accounts/settings.html:11
 msgid "Settings"
-msgstr "Settings"
+msgstr "設定"
 
 #: templates/accounts/settings.html:19
 msgid "Basic Settings"
-msgstr "Basic Settings"
+msgstr "基本設定"
 
 #: templates/accounts/settings.html:30 templates/accounts/settings.html:212
 msgid "Login & Security"
-msgstr "Login & Security"
+msgstr "ログイン＆セキュリティ"
 
 #: templates/accounts/settings.html:35 templates/accounts/settings.html:278
 msgid "Merchant Settings"
-msgstr "Merchant Settings"
+msgstr "販売者の設定"
 
-#: templates/accounts/settings.html:42 templates/exmr.html:101
+#: templates/accounts/settings.html:42 templates/exmr.html:113
 msgid "Account Settings"
-msgstr "Account Settings"
+msgstr "アカウント設定"
 
 #: templates/accounts/settings.html:47
 msgid "Your Merchant ID:"
-msgstr "Your Merchant ID:"
+msgstr "あなたの加盟店ID："
 
 #: templates/accounts/settings.html:56
 msgid "Affiliate URL:"
-msgstr "Affiliate URL:"
+msgstr "アフィリエイトURL："
 
 #: templates/accounts/settings.html:57
 msgid ""
 "Want to earn some crypto? Give this URL to new users and when they sign up "
 "you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:"
 msgstr ""
-"Want to earn some crypto? Give this URL to new users and when they sign up "
-"you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:"
+"いくつかの暗号を取得したいですか？新規ユーザーにこのURLを渡してください。登録"
+"すると、GETCRYPTOPAYMENTSの取引手数料の一部が獲得されます："
 
 #: templates/accounts/settings.html:69
 msgid "Share/Save"
-msgstr "Share/Save"
+msgstr "共有/保存"
 
 #: templates/accounts/settings.html:113
 msgid "Account Email"
-msgstr "Account Email"
+msgstr "アカウントメール"
 
 #: templates/accounts/settings.html:119
 msgid "Confirm Email"
-msgstr "Confirm Email"
+msgstr "Eメール確認"
 
 #: templates/accounts/settings.html:126
 msgid "Gender"
-msgstr "Gender"
+msgstr "性別"
 
 #: templates/accounts/settings.html:133
 msgid "Time Zone"
-msgstr "Time Zone"
+msgstr "タイムゾーン"
 
 #: templates/accounts/settings.html:139
 msgid "Date Format"
-msgstr "Date Format"
+msgstr "日付形式"
 
 #: templates/accounts/settings.html:147
 msgid "Time Format"
-msgstr "Time Format"
+msgstr "時間形式"
 
 #: templates/accounts/settings.html:154
 msgid "Update Account"
-msgstr "Update Account"
+msgstr "アカウントを更新する"
 
 #: templates/accounts/settings.html:172
 msgid "Public Name"
-msgstr "Public Name"
+msgstr "公開名"
 
 #: templates/accounts/settings.html:178
 msgid "Public Email"
-msgstr "Public Email"
+msgstr "パブリックメール"
 
 #: templates/accounts/settings.html:185
 msgid "Public URL"
-msgstr "Public URL"
+msgstr "公開URL"
 
 #: templates/accounts/settings.html:202 templates/accounts/settings.html:268
 #: templates/accounts/settings.html:367
 msgid "Update"
-msgstr "Update"
+msgstr "更新"
 
 #: templates/accounts/settings.html:221
 msgid "Current Password"
-msgstr "Current Password"
+msgstr "現在のパスワード"
 
 #: templates/accounts/settings.html:227
 msgid "New Password"
-msgstr "New Password"
+msgstr "新しいパスワード"
 
 #: templates/accounts/settings.html:234
 msgid "Confirm Password"
-msgstr "Confirm Password"
+msgstr "パスワードを認証する"
 
 #: templates/accounts/settings.html:240
 msgid "2 Factor Authentication"
-msgstr "2 Factor Authentication"
+msgstr "2因子認証"
 
 #: templates/accounts/settings.html:244
 msgid ""
 "Email: You will be prompted for a code at the time of login which will be "
 "sent to your provided email ID."
 msgstr ""
-"Email: You will be prompted for a code at the time of login which will be "
-"sent to your provided email ID."
+"電子メール：ログイン時にコードを入力するように指示され、提供された電子メール"
+"IDに送信されます。"
 
 #: templates/accounts/settings.html:245
 msgid ""
 "Linked 2FA Accounts: Link authenticators supporting TOTP such as Google "
 "Authenticator, Authy, FreeOTP, etc. You can edit your linked devices"
 msgstr ""
-"Linked 2FA Accounts: Link authenticators supporting TOTP such as Google "
-"Authenticator, Authy, FreeOTP, etc. You can edit your linked devices"
+"リンクされた2FAアカウント：Google Authenticator、Authy、FreeOTPなどのTOTPをサ"
+"ポートする認証オーソライザをリンクします。リンクされたデバイスを編集すること"
+"ができます"
 
 #: templates/accounts/settings.html:252
 msgid "Email Confirmations for Sends/Withdrawals"
-msgstr "Email Confirmations for Sends/Withdrawals"
+msgstr "差出/引落の電子メール確認"
 
 #: templates/accounts/settings.html:259
 msgid "PGP/GPG Public Key"
-msgstr "PGP/GPG Public Key"
+msgstr "PGP / GPG公開鍵"
 
 #: templates/accounts/settings.html:339
 msgid ""
 "\n"
-"                                                Payment status email will be sent to this email.\n"
-"                                                If not provided, notofications will be sent to the primary email\n"
+"                                                Payment status email will be "
+"sent to this email.\n"
+"                                                If not provided, "
+"notofications will be sent to the primary email\n"
 "                                            "
 msgstr ""
 "\n"
-"Payment status email will be sent to this email.\n"
-"                                                If not provided, notofications will be sent to the primary email"
+"支払いステータスのメールがこのメールに送信されます。\n"
+"                                                提供されていない場合は、通知"
+"がメインのメールに送信されます"
 
 #: templates/accounts/signup.html:49
+#, fuzzy
+#| msgid ""
+#| " Please make it at least 10 characters long and include letters, "
+#| "numbers,\n"
+#| "                                 and special characters. "
 msgid ""
-" Please make it at least 10 characters long and include letters, numbers,\n"
-"                                 and special characters. "
+" Please make it at least 10 characters long and include letters, numbers, "
+"and\n"
+"                                special characters. "
 msgstr ""
-"Please make it at least 10 characters long and include letters, numbers,\n"
-"                                 and special characters."
+"少なくとも10文字以上の長さにし、文字、数字、\n"
+"                                 と特殊文字。"
 
-#: templates/accounts/signup.html:51
+#: templates/accounts/signup.html:51 templates/exmr.html:207
 msgid "Timezone"
-msgstr "Timezone"
+msgstr "タイムゾーン"
 
-#: templates/accounts/signup.html:61
+#: templates/accounts/signup.html:61 templates/exmr.html:217
 msgid "Send newsletters and other relevant information to my provided e-mail."
-msgstr ""
-"Send newsletters and other relevant information to my provided e-mail."
+msgstr "提供された電子メールにニュースレターやその他の関連情報を送信します。"
 
-#: templates/accounts/signup.html:70
+#: templates/accounts/signup.html:70 templates/exmr.html:226
 msgid "Have read and agree to the"
-msgstr "Have read and agree to the"
+msgstr "読んで同意する"
 
-#: templates/accounts/signup.html:71
+#: templates/accounts/signup.html:71 templates/exmr.html:227
 msgid "Terms of Service."
-msgstr "Terms of Service."
-
-#: templates/accounts/signup.html:85
-msgid " 'Type the characters you see in the image above:' "
-msgstr "'Type the characters you see in the image above:'"
+msgstr "利用規約。"
 
 #: templates/accounts/signup_complete.html:6
 msgid "An activation link has been sent"
-msgstr "An activation link has been sent"
+msgstr "アクティベーションリンクが送信されました"
 
 #: templates/accounts/signup_complete.html:7
 msgid "Please check your mail"
-msgstr "Please check your mail"
+msgstr "あなたのメールをチェックしてください"
 
 #: templates/accounts/verify_2fa.html:18
 msgid "Enter"
-msgstr "Enter"
+msgstr "入る"
 
-#: templates/base.html:76 templates/exmr.html:44 templates/exmr.html:136
+#: templates/admin/coins/copromotion/change_form.html:21
+#, python-format
+msgid "Add %(name)s"
+msgstr ""
+
+#: templates/admin/coins/copromotion/change_form.html:33
+#: templates/admin/coins/copromotion/read_view.html:31
+#, fuzzy
+#| msgid "Deposit History"
+msgid "History"
+msgstr "預金履歴"
+
+#: templates/admin/coins/copromotion/change_form.html:35
+msgid "View on site"
+msgstr ""
+
+#: templates/admin/coins/copromotion/change_form.html:47
+msgid "Please correct the error below."
+msgstr ""
+
+#: templates/admin/coins/copromotion/change_form.html:47
+msgid "Please correct the errors below."
+msgstr ""
+
+#: templates/base.html:76 templates/exmr.html:49 templates/exmr.html:285
 msgid "Supported Coins"
-msgstr "Supported Coins"
+msgstr "サポートされているコイン"
 
-#: templates/base.html:79 templates/exmr.html:50 templates/exmr.html:139
+#: templates/base.html:79 templates/exmr.html:55 templates/exmr.html:288
 msgid "Merchant Tools"
-msgstr "Merchant Tools"
+msgstr "マーチャントツール"
 
-#: templates/base.html:82 templates/exmr.html:41 templates/exmr.html:142
+#: templates/base.html:82 templates/exmr.html:46 templates/exmr.html:291
 msgid "Public Coin Vote"
-msgstr "Public Coin Vote"
+msgstr "公開コインの投票"
 
-#: templates/base.html:85 templates/exmr.html:47 templates/exmr.html:145
+#: templates/base.html:85 templates/exmr.html:52 templates/exmr.html:294
 msgid "Store Directory"
-msgstr "Store Directory"
+msgstr "ストアディレクトリ"
 
-#: templates/base.html:95 templates/exmr.html:155
+#: templates/base.html:95 templates/exmr.html:304
 msgid "Get Mobile App"
-msgstr "Get Mobile App"
+msgstr "モバイルアプリを入手する"
 
-#: templates/base.html:96 templates/exmr.html:156
+#: templates/base.html:96 templates/exmr.html:305
 msgid "Affiliate Information"
-msgstr "Affiliate Information"
+msgstr "アフィリエイト情報"
 
-#: templates/base.html:97 templates/exmr.html:157
+#: templates/base.html:97 templates/exmr.html:306
 msgid "Official TOR URL"
-msgstr "Official TOR URL"
+msgstr "公式のTOR URL"
 
-#: templates/base.html:98 templates/exmr.html:158
+#: templates/base.html:98 templates/exmr.html:307
 msgid "PGP Key"
-msgstr "PGP Key"
+msgstr "PGPキー"
 
-#: templates/base.html:107 templates/exmr.html:167
+#: templates/base.html:107 templates/exmr.html:316
 msgid "Fees/Pricing"
-msgstr "Fees/Pricing"
+msgstr "料金/料金"
 
-#: templates/base.html:108 templates/exmr.html:168
+#: templates/base.html:108 templates/exmr.html:317
 msgid "Help"
-msgstr "Help"
+msgstr "助けて"
 
-#: templates/base.html:109 templates/base.html:144 templates/exmr.html:169
-#: templates/exmr.html:196
+#: templates/base.html:109 templates/base.html:144 templates/exmr.html:318
+#: templates/exmr.html:346
 msgid "Add Store"
-msgstr "Add Store"
+msgstr "ストアを追加"
 
-#: templates/base.html:110 templates/base.html:145 templates/exmr.html:170
-#: templates/exmr.html:197
+#: templates/base.html:110 templates/base.html:145 templates/exmr.html:319
 msgid "Coin Request"
-msgstr "Coin Request"
+msgstr "コインリクエスト"
 
-#: templates/base.html:139 templates/exmr.html:175
+#: templates/base.html:139 templates/exmr.html:324
 msgid "Privacy Policy"
-msgstr "Privacy Policy"
+msgstr "個人情報保護方針"
 
-#: templates/base.html:140 templates/exmr.html:178
+#: templates/base.html:140 templates/exmr.html:327
 msgid "Terms of Service"
-msgstr "Terms of Service"
+msgstr "利用規約"
 
-#: templates/coins/coin-withdrawal.html:8
+#: templates/coins/coin-withdrawal.html:10
 msgid "Coin Withdrawal"
-msgstr "Coin Withdrawal"
-
-#: templates/coins/coin-withdrawal.html:12
-msgid "Minimum Withdrawal"
-msgstr "Minimum Withdrawal"
-
-#: templates/coins/coin-withdrawal.html:13
-msgid "Current Bal"
-msgstr "Current Bal"
+msgstr "コイン引き出し"
 
 #: templates/coins/coin-withdrawal.html:14
-msgid "Send/Withdrawal Amount"
-msgstr "Send/Withdrawal Amount"
+msgid "Minimum Withdrawal"
+msgstr "最小引き落とし"
 
 #: templates/coins/coin-withdrawal.html:15
-msgid "Transation Fee (est.)"
-msgstr "Transation Fee (est.)"
+msgid "Current Bal"
+msgstr "現在のバラ"
 
 #: templates/coins/coin-withdrawal.html:16
-msgid "Total Withdrawal"
-msgstr "Total Withdrawal"
+msgid "Send/Withdrawal Amount"
+msgstr "送金/引き落とし金額"
 
 #: templates/coins/coin-withdrawal.html:17
-msgid "Litecoin Testnet address or $payByName to send to"
-msgstr "Litecoin Testnet address or $payByName to send to"
+msgid "Transation Fee (est.)"
+msgstr "移行手数料（試算）"
 
 #: templates/coins/coin-withdrawal.html:18
-msgid "Optional Note (Only Viewable by you)"
-msgstr "Optional Note (Only Viewable by you)"
+msgid "Total Withdrawal"
+msgstr "総離脱"
 
-#: templates/coins/coin-withdrawal.html:48
+#: templates/coins/coin-withdrawal.html:19
+#, fuzzy
+#| msgid "Litecoin Testnet address or $payByName to send to"
+msgid "Address or $payByName to send to"
+msgstr "Litecoin Testnetアドレスまたは$ payByNameに送信する"
+
+#: templates/coins/coin-withdrawal.html:20
+msgid "Optional Note (Only Viewable by you)"
+msgstr "オプションの注釈（あなただけが閲覧可能）"
+
+#: templates/coins/coin-withdrawal.html:50
 msgid "Request Withdrawal/Send"
-msgstr "Request Withdrawal/Send"
+msgstr "リクエストの引き出し/送信"
 
 #: templates/coins/coin_conversion.html:8
 msgid "Coin Conversion"
-msgstr "Coin Conversion"
+msgstr "コイン変換"
 
 #: templates/coins/coin_conversion.html:22
 msgid ""
-"If you log in the fields below will be prepopulated with your Wallet deposit"
-" addresses."
+"If you log in the fields below will be prepopulated with your Wallet deposit "
+"addresses."
 msgstr ""
-"If you log in the fields below will be prepopulated with your Wallet deposit"
-" addresses."
+"ログインすると、以下のフィールドにウォレットの預託先住所が入力されます。"
 
 #: templates/coins/coin_conversion.html:42
 #: templates/common/support-coins.html:258
 msgid "Convert"
-msgstr "Convert"
+msgstr "変換"
 
 #: templates/coins/coin_conversion_final.html:8
 msgid "Coin Conversion Requested"
-msgstr "Coin Conversion Requested"
+msgstr "コインの変換が要求されました"
+
+#: templates/coins/coin_refund_claim.html:19
+msgid "Claim  Refund"
+msgstr ""
+
+#: templates/coins/coin_refund_claim.html:23
+#, fuzzy
+#| msgid "payment mode"
+msgid "Payment ID"
+msgstr "支払いモード"
+
+#: templates/coins/coin_refund_claim.html:24
+#, fuzzy
+#| msgid "Amount"
+msgid "Refund Amount"
+msgstr "量"
+
+#: templates/coins/coin_refund_claim.html:25
+msgid "Send Refund To"
+msgstr ""
+
+#: templates/coins/coin_refund_claim.html:34
+msgid "Claim Refund"
+msgstr ""
+
+#: templates/coins/convert-select.html:17
+#: templates/coins/supported-coins.html:87
+msgid "Convert Coin"
+msgstr "コインを変換する"
+
+#: templates/coins/paybyname-payment.html:17 templates/coins/paybyname.html:17
+msgid "Get Your Personalised PaymentID"
+msgstr ""
+
+#: templates/coins/paybyname.html:31
+#, fuzzy
+#| msgid "$PayByName"
+msgid "$PayByName Tag"
+msgstr "$ PayByName"
+
+#: templates/coins/paybyname.html:32
+msgid "Expires"
+msgstr ""
+
+#: templates/coins/paybyname.html:33 templates/coins/wallets.html:35
+msgid "Commands"
+msgstr "コマンド"
 
 #: templates/coins/supported-coins.html:4
 msgid "SUPPORTED COINS"
-msgstr "SUPPORTED COINS"
+msgstr "サポートされているコイン"
 
 #: templates/coins/supported-coins.html:7
 msgid ""
-"Instant get crypto payments checkout with easy to use cart plugin, advanced,"
-" invoice buillder and API for custom integration"
+"Instant get crypto payments checkout with easy to use cart plugin, advanced, "
+"invoice buillder and API for custom integration"
 msgstr ""
-"Instant get crypto payments checkout with easy to use cart plugin, advanced,"
-" invoice buillder and API for custom integration"
+"即座にカートのプラグイン、高度な、請求書のビルダーとカスタム統合のAPIを使用し"
+"て簡単に暗号支払いの支払いを得る"
 
 #: templates/coins/supported-coins.html:33
 msgid "COIN NAME"
@@ -1256,102 +1506,154 @@ msgstr "COIN NAME"
 
 #: templates/coins/supported-coins.html:34
 msgid "COD"
-msgstr "COD"
+msgstr "代金引換"
 
 #: templates/coins/supported-coins.html:35
 msgid "FEE"
-msgstr "FEE"
+msgstr "費用"
 
 #: templates/coins/supported-coins.html:38
 msgid "CONFIRMS"
-msgstr "CONFIRMS"
+msgstr "確認"
 
 #: templates/coins/supported-coins.html:39
 msgid "TO BTC"
-msgstr "TO BTC"
+msgstr "TO BTCへ"
 
 #: templates/coins/supported-coins.html:42
 msgid "EXPLORE"
 msgstr "EXPLORE"
 
-#: templates/coins/supported-coins.html:87
-msgid "Convert Coin"
-msgstr "Convert Coin"
-
 #: templates/coins/supported-coins.html:104
 #: templates/common/support-coins.html:273
 msgid "Close"
-msgstr "Close"
+msgstr "閉じる"
+
+#: templates/coins/vote_details.html:96
+msgid ""
+"We are participating in the GetCryptoPayments Fiat & Gateway \"New Coin "
+"Listing Competition\""
+msgstr ""
+
+#: templates/coins/vote_details.html:98
+msgid "If we win we get to list:"
+msgstr ""
+
+#: templates/coins/vote_details.html:98
+msgid ""
+" on GetCryptoPayments Gateway, the world's class integrated Crypto Payments "
+"Gateway"
+msgstr ""
+
+#: templates/coins/vote_details.html:100
+msgid "How To Help Us Win."
+msgstr ""
+
+#: templates/coins/vote_details.html:102
+msgid "Option 1. Place this coin on top over 70,000 points scored."
+msgstr ""
+
+#: templates/coins/vote_details.html:104
+msgid "Option 2. Get an instant listing scoring 100,000 points"
+msgstr ""
+
+#: templates/coins/vote_details.html:106
+msgid "Before Voting, Please Read The Mechanics "
+msgstr ""
+
+#: templates/coins/vote_details.html:113
+msgid "TIME REMAINING"
+msgstr ""
+
+#: templates/coins/vote_details.html:115
+msgid "Points"
+msgstr ""
+
+#: templates/coins/vote_details.html:116
+#, fuzzy
+#| msgid "Current Bal"
+msgid "Current place"
+msgstr "現在のバラ"
+
+#: templates/coins/vote_details.html:130
+msgid "Instant Listing Progress"
+msgstr ""
+
+#: templates/coins/vote_details.html:131
+#, python-format
+msgid ""
+"Once we reach 100%% we get an instant listing on GetCryptoPayments Gateway!"
+msgstr ""
 
 #: templates/coins/wallets.html:31
 msgid "Coin Name"
-msgstr "Coin Name"
+msgstr "コイン名"
 
 #: templates/coins/wallets.html:32
 msgid "Code"
-msgstr "Code"
+msgstr "コード"
 
 #: templates/coins/wallets.html:33
 msgid "Balance"
-msgstr "Balance"
+msgstr "バランス"
 
 #: templates/coins/wallets.html:34
 msgid "Value"
-msgstr "Value"
-
-#: templates/coins/wallets.html:35
-msgid "Commands"
-msgstr "Commands"
+msgstr "値"
 
 #: templates/common/index.html:23
-msgid "Accept over 140 altcoins now for only 0.50"
-msgstr "Accept over 140 altcoins now for only 0.50"
+msgid "Developers of an important project"
+msgstr ""
 
 #: templates/common/index.html:25
-msgid ""
-"Integrated payment gateway for cryptocurrencies such as Bitcoin and Litecoin"
+msgid "Now you can add your coin or token to our voting competition system."
 msgstr ""
-"Integrated payment gateway for cryptocurrencies such as Bitcoin and Litecoin"
 
 #: templates/common/index.html:26
-msgid "Get Start"
-msgstr "Get Start"
+#, fuzzy
+#| msgid "Submit"
+msgid "Submit Coin"
+msgstr "提出する"
 
 #: templates/common/index.html:36
 msgid "scroll me"
-msgstr "scroll me"
+msgstr "私をスクロールする"
 
 #: templates/common/index.html:53
 msgid "Running an ICO?"
-msgstr "Running an ICO?"
+msgstr "ICOを実行していますか？"
 
 #: templates/common/index.html:54
 msgid "Let GetCryptoPayments help with:"
-msgstr "Let GetCryptoPayments help with:"
+msgstr "GetCryptoPaymentsが以下をサポートするようにします。"
 
 #: templates/common/index.html:56
 msgid "Accepting payments from over 140 different coins"
-msgstr "Accepting payments from over 140 different coins"
+msgstr "140種類以上の硬貨からの支払いを受け入れる"
 
 #: templates/common/index.html:57
 msgid "All New GetCryptoPayments ICO Marketplace"
-msgstr "All New GetCryptoPayments ICO Marketplace"
+msgstr "すべての新しいGetCryptoPayments ICO Marketplace"
 
 #: templates/common/index.html:59
 msgid "Find Out More"
-msgstr "Find Out More"
+msgstr "もっと見る"
+
+#: templates/common/index.html:67
+msgid "$PayByName"
+msgstr "$ PayByName"
 
 #: templates/common/index.html:68
 msgid "One unique $tag to receive payments from all coins."
-msgstr "One unique $tag to receive payments from all coins."
+msgstr "すべてのコインからの支払いを受け取るユニークな$タグ。"
 
 #: templates/common/index.html:69
 msgid "Example Profile"
-msgstr "Example Profile"
+msgstr "プロファイルの例"
 
 #: templates/common/index.html:102
 msgid "Shopping Cart Plugins"
-msgstr "Shopping Cart Plugins"
+msgstr "ショッピングカートのプラグイン"
 
 #: templates/common/index.html:105
 msgid ""
@@ -1359,305 +1661,375 @@ msgid ""
 "install a plugin to set up GetCryptoPayments with your new or pre-existing "
 "checkout"
 msgstr ""
-"Offering plugins for all the popular webcarts used today. Register and "
-"install a plugin to set up GetCryptoPayments with your new or pre-existing "
-"checkout"
+"今日使用されているすべての一般的なwebcarts用のプラグインを提供します。新規ま"
+"たは既存のチェックアウトでGetCryptoPaymentsを設定するプラグインを登録してイン"
+"ストールする"
 
 #: templates/common/index.html:196
 msgid "Payment Features"
-msgstr "Payment Features"
+msgstr "支払い機能"
 
 #: templates/common/index.html:198
 msgid "Here some ways GetCryptoPayments can help you process payments."
-msgstr "Here some ways GetCryptoPayments can help you process payments."
+msgstr "ここでGetCryptoPaymentsが支払い処理に役立ついくつかの方法があります。"
 
 #: templates/common/index.html:206
 msgid "BitGo™ Instant"
-msgstr "BitGo™ Instant"
+msgstr "BitGo™インスタント"
 
 #: templates/common/index.html:207
 msgid ""
-"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster than\n"
+"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster "
+"than\n"
 "                                ever before. "
 msgstr ""
-"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster than\n"
-"                                ever before."
+"GetCryptoPaymentsはBitGo Instantをサポートしています。\n"
+"                                これまで。"
 
 #: templates/common/index.html:219
 msgid "Vault"
-msgstr "Vault"
+msgstr "ボールト"
 
 #: templates/common/index.html:220
 msgid ""
-"Protect your coins in the vault, requiring a time amount you specify before being\n"
+"Protect your coins in the vault, requiring a time amount you specify before "
+"being\n"
 "                                able to spend them."
 msgstr ""
-"Protect your coins in the vault, requiring a time amount you specify before being\n"
-"                                able to spend them."
+"ボールト内のコインを保護してください。\n"
+"                                それらを費やすことができます。"
 
 #: templates/common/index.html:232
 msgid "Fiat Settlements"
-msgstr "Fiat Settlements"
+msgstr "フィアット決済"
 
 #: templates/common/index.html:233
 msgid ""
-"United States and Euro merchants now have fiat settlements directly to their\n"
+"United States and Euro merchants now have fiat settlements directly to "
+"their\n"
 "                                bank accounts. "
 msgstr ""
-"United States and Euro merchants now have fiat settlements directly to their\n"
-"                                bank accounts."
+"米国とユーロの商人は現在、\n"
+"                                銀行口座。"
 
 #: templates/common/index.html:245
 msgid "Point of Sale (POS)"
-msgstr "Point of Sale (POS)"
+msgstr "POS（Point of Sale）"
 
 #: templates/common/index.html:246
 msgid "Simple interface for in person transactions. "
-msgstr "Simple interface for in person transactions."
+msgstr "個人取引のための簡単なインターフェース。"
+
+#: templates/common/index.html:263
+msgid "Secured with BitGo"
+msgstr "BitGoでセキュリティ保護されている"
 
 #: templates/common/index.html:264
-msgid "Secured with BitGo"
-msgstr "Secured with BitGo"
-
-#: templates/common/index.html:265
 msgid "Our hot wallet is secured by BitGo - meaning 100 "
-msgstr "Our hot wallet is secured by BitGo - meaning 100"
+msgstr "私たちのホットウォレットはBitGoによって保護されています - 意味は100"
+
+#: templates/common/index.html:264
+msgid ""
+"of\n"
+"                                our funds are protected by multi-signature "
+"technology."
+msgstr ""
+
+#: templates/common/index.html:276
+msgid "Mobile Apps"
+msgstr "モバイルアプリ"
 
 #: templates/common/index.html:277
-msgid "Mobile Apps"
-msgstr "Mobile Apps"
-
-#: templates/common/index.html:278
 msgid ""
-"Access your account, accept payments in person, and convert coins anywhere with\n"
+"Access your account, accept payments in person, and convert coins anywhere "
+"with\n"
 "                                our mobile apps for Android and iOS."
 msgstr ""
-"Access your account, accept payments in person, and convert coins anywhere with\n"
-"                                our mobile apps for Android and iOS."
+"あなたのアカウントにアクセスし、直接支払いを受け入れ、どこでもコインを変換す"
+"る\n"
+"                                AndroidとiOS向けのモバイルアプリ。"
+
+#: templates/common/index.html:289
+msgid "Auto Coin Conversion"
+msgstr "自動コイン変換"
 
 #: templates/common/index.html:290
-msgid "Auto Coin Conversion"
-msgstr "Auto Coin Conversion"
-
-#: templates/common/index.html:291
 msgid ""
-"Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
+"Auto convert for some of our coins, saving you the trouble of moving funds, "
+"wasting\n"
 "                                time and fees."
 msgstr ""
-"Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
-"                                time and fees."
+"私たちのコインの一部を自動変換し、資金を移動する手間を省き、無駄にする\n"
+"                                時間と手数料。"
+
+#: templates/common/index.html:302
+msgid "Multi-Coin Wallet"
+msgstr "マルチコインウォレット"
 
 #: templates/common/index.html:303
-msgid "Multi-Coin Wallet"
-msgstr "Multi-Coin Wallet"
-
-#: templates/common/index.html:304
 msgid "Optionally store your coins in our secure online wallet."
-msgstr "Optionally store your coins in our secure online wallet."
+msgstr "オプションで、安全なオンラインウォレットにコインを保管してください。"
+
+#: templates/common/index.html:321
+msgid ""
+"Our goal is to exceed more than 1,000,000 vendors across 182 different "
+"countries"
+msgstr "私たちの目標は182ヶ国の100万人以上のベンダーを超えることです"
 
 #: templates/common/index.html:322
 msgid ""
-"Our goal is to exceed more than 1,000,000 vendors across 182 different "
-"countries"
-msgstr ""
-"Our goal is to exceed more than 1,000,000 vendors across 182 different "
-"countries"
-
-#: templates/common/index.html:323
-msgid ""
-"GetCryptoPayments is the first and largest payment processor of over 150 cryptocurrencies\n"
-"                    "
-msgstr ""
 "GetCryptoPayments is the first and largest payment processor of over 150 "
-"cryptocurrencies"
+"cryptocurrencies\n"
+"                    "
+msgstr "GetCryptoPaymentsは、150以上の暗号化された通貨のうち、"
 
-#: templates/common/index.html:349
+#: templates/common/index.html:348
 msgid ""
-"Thank you GetCryptoPayments for taking Tron coin into consideration to belong to the list of your ERC-20\n"
-"                        tokens portfolio. I know you will have many successes."
+"Thank you GetCryptoPayments for taking Tron coin into consideration to "
+"belong to the list of your ERC-20\n"
+"                        tokens portfolio. I know you will have many "
+"successes."
 msgstr ""
-"Thank you GetCryptoPayments for taking Tron coin into consideration to belong to the list of your ERC-20\n"
-"                        tokens portfolio. I know you will have many successes."
+"TronコインをあなたのERC-20のリストに入れることを考慮したGetCryptoPaymentsをあ"
+"りがとうございます\n"
+"                        トークンポートフォリオ。私はあなたが多くの成功を収め"
+"ることを知っています。"
 
-#: templates/common/index.html:351
+#: templates/common/index.html:350
 msgid "Justin Sun CEO Tronix Coin"
-msgstr "Justin Sun CEO Tronix Coin"
+msgstr "ジャスティン・サンのCEOトロイア・コイン"
 
-#: templates/common/index.html:359
+#: templates/common/index.html:358
 msgid ""
-"We wanted to accept Stellar coin payments so we starting developing. Then we realized GetCryptoPayments\n"
-"                        could do the hard work for us and accept all payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we only\n"
+"We wanted to accept Stellar coin payments so we starting developing. Then we "
+"realized GetCryptoPayments\n"
+"                        could do the hard work for us and accept all "
+"payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we "
+"only\n"
 "                        need to develop  with one API now."
 msgstr ""
-"We wanted to accept Stellar coin payments so we starting developing. Then we realized GetCryptoPayments\n"
-"                        could do the hard work for us and accept all payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we only\n"
-"                        need to develop  with one API now."
+"私たちはステラのコインの支払いを受け入れて、開発を開始したかったのです。その"
+"後、GetCryptoPaymentsを実現しました\n"
+"                        私たちのために努力し、すべての支払いを受け取り、"
+"Bitcoinでお金を受け取ることができます。ありがとうGetCryptoPayments、我々だ"
+"け\n"
+"                        今すぐ1つのAPIで開発する必要があります。"
 
-#: templates/common/index.html:362
+#: templates/common/index.html:361
 msgid "Jed McCaleb CEO stellar.org"
 msgstr "Jed McCaleb CEO stellar.org"
 
 #: templates/common/merchant-tools.html:7 templates/store/add-or-update.html:5
 msgid "MERCHANT TOOLS"
-msgstr "MERCHANT TOOLS"
+msgstr "商人のツール"
 
-#: templates/common/merchant-tools.html:9
-#: templates/common/merchant-tools.html:16
-#: templates/store/add-or-update.html:7
-msgid ""
-"If you would like to be updated about new API or changes to existing Apis"
-msgstr ""
-"If you would like to be updated about new API or changes to existing Apis"
+#: templates/common/merchant-tools.html:8
+#, fuzzy
+#| msgid "Coin Conversion"
+msgid "Coming Soon in Beta Version"
+msgstr "コイン変換"
 
 #: templates/common/merchant-tools.html:10
-#: templates/common/merchant-tools.html:17
-#: templates/store/add-or-update.html:8
+#: templates/common/merchant-tools.html:17 templates/store/add-or-update.html:7
+msgid ""
+"If you would like to be updated about new API or changes to existing Apis"
+msgstr "新しいAPIや既存のAPIへの変更について更新したい場合"
+
+#: templates/common/merchant-tools.html:11
+#: templates/common/merchant-tools.html:18 templates/store/add-or-update.html:8
 msgid "click here"
-msgstr "click here"
+msgstr "ここをクリック"
 
-#: templates/common/merchant-tools.html:25
+#: templates/common/merchant-tools.html:26
 msgid "SHOPPING CART PLUGIN"
-msgstr "SHOPPING CART PLUGIN"
+msgstr "ショッピングカート"
 
-#: templates/common/merchant-tools.html:27
+#: templates/common/merchant-tools.html:28
 msgid "Plugin Downloads"
-msgstr "Plugin Downloads"
+msgstr "プラグインのダウンロード"
 
-#: templates/common/merchant-tools.html:34
+#: templates/common/merchant-tools.html:35
 msgid "API & IPNs"
-msgstr "API & IPNs"
-
-#: templates/common/merchant-tools.html:36
-msgid "Instant Payment Notification"
-msgstr "Instant Payment Notification"
+msgstr "APIとIPN"
 
 #: templates/common/merchant-tools.html:37
+msgid "Instant Payment Notification"
+msgstr "即時支払い通知"
+
+#: templates/common/merchant-tools.html:38
 msgid "GETCRYPTOPAYMENTAPI"
 msgstr "GETCRYPTOPAYMENTAPI"
 
-#: templates/common/merchant-tools.html:44
+#: templates/common/merchant-tools.html:45
 msgid "INVOICE BUILDER"
-msgstr "INVOICE BUILDER"
+msgstr "インフォメーションビルダー"
 
-#: templates/common/merchant-tools.html:46
+#: templates/common/merchant-tools.html:47
 msgid "Payment Request invoice maker"
-msgstr "Payment Request invoice maker"
+msgstr "支払い請求請求書作成者"
 
-#: templates/common/merchant-tools.html:53
+#: templates/common/merchant-tools.html:54
 msgid "POINT OF SALE(POS) INTERFACE"
-msgstr "POINT OF SALE(POS) INTERFACE"
-
-#: templates/common/merchant-tools.html:55
-msgid "HTML URL/ POST Fields"
-msgstr "HTML URL/ POST Fields"
+msgstr "セールスポイント（POS）インターフェース"
 
 #: templates/common/merchant-tools.html:56
-msgid "Post link QR Code Generator"
-msgstr "Post link QR Code Generator"
+msgid "HTML URL/ POST Fields"
+msgstr "HTML URL / POSTフィールド"
 
 #: templates/common/merchant-tools.html:57
-msgid "POS Examle"
-msgstr "POS Examle"
+msgid "Post link QR Code Generator"
+msgstr "ポストリンクQRコードジェネレータ"
 
-#: templates/common/merchant-tools.html:64
+#: templates/common/merchant-tools.html:58
+#, fuzzy
+#| msgid "POS Examle"
+msgid "POS Example"
+msgstr "POS試験"
+
+#: templates/common/merchant-tools.html:65
 msgid "SIMPLE BUTTONS"
-msgstr "SIMPLE BUTTONS"
-
-#: templates/common/merchant-tools.html:66
-#: templates/common/merchant-tools.html:77
-#: templates/common/merchant-tools.html:99
-msgid "Button Maker"
-msgstr "Button Maker"
+msgstr "簡単なボタン"
 
 #: templates/common/merchant-tools.html:67
 #: templates/common/merchant-tools.html:78
-#: templates/common/merchant-tools.html:88
 #: templates/common/merchant-tools.html:100
-msgid "HTML Post Field"
-msgstr "HTML Post Field"
+msgid "Button Maker"
+msgstr "ボタンメーカー"
 
 #: templates/common/merchant-tools.html:68
+#, fuzzy
+#| msgid "HTML URL/ POST Fields"
+msgid "HTML POST Field"
+msgstr "HTML URL / POSTフィールド"
+
+#: templates/common/merchant-tools.html:69
+#: templates/common/merchant-tools.html:80
+#: templates/common/merchant-tools.html:90
+#: templates/common/merchant-tools.html:102
+msgid "Button Examples"
+msgstr "ボタンの例"
+
+#: templates/common/merchant-tools.html:76
+msgid "ADVANCE BUTTONS"
+msgstr "アドバンスボタン"
+
 #: templates/common/merchant-tools.html:79
 #: templates/common/merchant-tools.html:89
 #: templates/common/merchant-tools.html:101
-msgid "Button Examples"
-msgstr "Button Examples"
+msgid "HTML Post Field"
+msgstr "HTML投稿フィールド"
 
-#: templates/common/merchant-tools.html:75
-msgid "ADVANCE BUTTONS"
-msgstr "ADVANCE BUTTONS"
-
-#: templates/common/merchant-tools.html:86
+#: templates/common/merchant-tools.html:87
 msgid "SHOPPING CART BUTTONS"
-msgstr "SHOPPING CART BUTTONS"
+msgstr "ショッピングカートのボタン"
 
-#: templates/common/merchant-tools.html:90
+#: templates/common/merchant-tools.html:91
 msgid "Button Images"
-msgstr "Button Images"
+msgstr "ボタン画像"
 
-#: templates/common/merchant-tools.html:97
+#: templates/common/merchant-tools.html:98
 msgid "DONATION BUTTONS"
-msgstr "DONATION BUTTONS"
+msgstr "寄付ボタン"
 
 #: templates/common/support-coins.html:258
 msgid "BITCOIN"
-msgstr "BITCOIN"
+msgstr "ビトコイン"
 
-#: templates/exmr.html:54
+#: templates/exmr.html:60
 msgid "Contact Us"
-msgstr "Contact Us"
+msgstr "お問い合わせ"
 
-#: templates/exmr.html:78
-msgid "Language"
-msgstr "Language"
-
-#: templates/exmr.html:93
-msgid "Account"
-msgstr "Account"
-
-#: templates/exmr.html:98
+#: templates/exmr.html:85 templates/exmr.html:110
 msgid "Dashboard"
-msgstr "Dashboard"
+msgstr "ダッシュボード"
 
-#: templates/exmr.html:104
+#: templates/exmr.html:90
+msgid "Language"
+msgstr "言語"
+
+#: templates/exmr.html:105
+msgid "Account"
+msgstr "アカウント"
+
+#: templates/exmr.html:116
 msgid "AddressBook"
-msgstr "AddressBook"
+msgstr "住所録"
 
-#: templates/exmr.html:107
+#: templates/exmr.html:119
 msgid "Logout"
-msgstr "Logout"
+msgstr "ログアウト"
+
+#: templates/exmr.html:205
+#, fuzzy
+#| msgid ""
+#| " Please make it at least 10 characters long and include letters, "
+#| "numbers,\n"
+#| "                                 and special characters. "
+msgid ""
+" Please make it at least 10 characters long and include letters, numbers, "
+"and\n"
+"                                                        special characters. "
+msgstr ""
+"少なくとも10文字以上の長さにし、文字、数字、\n"
+"                                 と特殊文字。"
+
+#: templates/exmr.html:348
+#, fuzzy
+#| msgid "convert from coin"
+msgid "Vote for coin"
+msgstr "コインから変換する"
+
+#: templates/merchant_tools/buttonmaker.html:15
+#: templates/merchant_tools/posqrgenerator.html:15
+#: templates/merchant_tools/urlmaker.html:15
+#, fuzzy
+#| msgid "Button Maker"
+msgid "Advanced Button Maker"
+msgstr "ボタンメーカー"
 
 #: templates/registration/password_reset_complete.html:6
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr "Your password has been set.  You may go ahead and log in now."
+msgstr "パスワードが設定されています。今すぐにログインしてください。"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Log in"
-msgstr "Log in"
+msgstr "ログイン"
 
 #: templates/registration/password_reset_confirm.html:45
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
-"The password reset link was invalid, possibly because it has already been "
-"used.  Please request a new password reset."
+"すでにパスワードが使用されている可能性があるため、パスワードリセットリンクが"
+"無効でした。新しいパスワードリセットをリクエストしてください。"
 
 #: templates/store/add-or-update.html:102
 msgid "Type the characters you see in the image above:"
-msgstr "Type the characters you see in the image above:"
+msgstr "上記の画像に表示されている文字を入力してください："
 
-#: templates/store/store_categories.html:5
-#: templates/store/store_listing.html:5
+#: templates/store/store_categories.html:5 templates/store/store_listing.html:5
 msgid "STORE DIRECTORY"
-msgstr "STORE DIRECTORY"
+msgstr "店舗ディレクトリ"
 
-#: templates/store/store_categories.html:7
-#: templates/store/store_listing.html:7
+#: templates/store/store_categories.html:7 templates/store/store_listing.html:7
 msgid "Largest directory of merchants accepting multiple cryptocurrencies"
-msgstr "Largest directory of merchants accepting multiple cryptocurrencies"
+msgstr "複数のcryptocurrenciesを受け入れる商人の最大のディレクトリ"
 
 #: templates/store/store_categories.html:15
 #: templates/store/store_listing.html:15
 msgid "Search"
-msgstr "Search"
+msgstr "サーチ"
+
+#~ msgid " 'Type the characters you see in the image above:' "
+#~ msgstr "'上の画像に表示されている文字を入力してください：'"
+
+#~ msgid "Accept over 140 altcoins now for only 0.50"
+#~ msgstr "140以上のaltcoinsを今すぐ0.50だけ受け入れる"
+
+#~ msgid ""
+#~ "Integrated payment gateway for cryptocurrencies such as Bitcoin and "
+#~ "Litecoin"
+#~ msgstr "BitcoinやLitecoinなどの暗号化通貨の統合支払いゲートウェイ"
+
+#~ msgid "Get Start"
+#~ msgstr "スタートを切る"

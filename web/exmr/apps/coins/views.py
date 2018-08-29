@@ -1,6 +1,7 @@
 import random
 import string
 import datetime
+import apps.coins.utils
 
 from datetime import datetime
 from django.contrib import messages
@@ -227,38 +228,26 @@ class SendView(LoginRequiredMixin, View):
         currency = kwargs.get('slug')
         amount = Decimal(request.POST.get('amount'))
         erc = EthereumToken.objects.filter(contract_symbol=currency)
-        if currency not in ('eth', 'xlm', 'xmr','XRPTest') and not erc:
-            access = getattr(apps.coins.utils, 'create_' +
-                             currency+'_connection')()
-            valid = access.sendtoaddress(address, amount)
-            balance = get_balance(request.user.username, currency)
-            balance = balance - amount
+        obj = None
+        if currency not in ('ETH', 'xlm', 'xmr','XRPTest') and not erc:
+            access = getattr(apps.coins.utils, 'create_' +currency+'_connection')()
+            valid = access.validateaddress(address)
+            # balance = get_balance(request.user.username, currency)
+            # balance = balance - amount
+            return HttpResponse(json.dumps({"success": True}), content_type='application/json')
+
         elif currency == 'XRPTest':
             obj = XRP(self.request.user)
             # valid = obj.send(address, str(amount))
             balance = obj.balance()
-            code = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase) for _ in range(12))
-            trans_obj =Transaction.objects.create(user=self.request.user, currency=currency,
-                                       balance=balance, amount=amount, transaction_to=address,
-                                       activation_code=code)
-
-            self.request.session['transaction'] = trans_obj.system_tx_id
-            slug = trans_obj.system_tx_id+"-"+code
-            context = {
-                'slug_val': slug,
-                'host': self.request.get_host(),
-                'scheme': self.request.scheme,
-                'transaction': trans_obj,
-                'type': currency,
-            }
-            response_data = render_to_string('coins/transfer-confirmed-email.html', context, )
-            email = EmailMessage('Getcryptopayments.org Withdrawal Confirmation', response_data, to=[self.request.user.email])
-            email.send()
-
-            return HttpResponse(json.dumps({"success": True}), content_type='application/json')
         elif erc:
             obj = EthereumTokens(self.request.user,currency)
             balance = obj.balance()
+
+        elif currency == 'ETH':
+            obj = Eth(self.request.user)
+            balance = obj.balance(self.request.user)
+        if obj:
             code = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase) for _ in range(12))
             trans_obj =Transaction.objects.create(user=self.request.user, currency=currency,
                                        balance=balance, amount=amount, transaction_to=address,
@@ -302,20 +291,18 @@ class SendConfirmView(TemplateView):
             erc = EthereumToken.objects.filter(contract_symbol=t_obj.currency)
             if t_obj.currency == 'XRPTest':
                 obj = XRP(self.request.user)
-                valid = obj.send(t_obj.transaction_to, str(t_obj.amount))
-                balance = obj.balance()
-                t_obj.approved=True
-                t_obj.balance = balance
-                t_obj.transaction_id=valid
-                t_obj.save()
-            elif erc:
+            elif erc:       
                 obj = EthereumTokens(self.request.user,t_obj.currency)
-                valid = obj.send(t_obj.transaction_to, str(t_obj.amount))
-                balance = obj.balance()
-                t_obj.approved=True
-                t_obj.balance = balance
-                t_obj.transaction_id=valid
-                t_obj.save()
+            elif t_obj.currency == 'BTC':
+                obj = BTC(self.request.user,t_obj.currency)
+            elif t_obj.currency == 'ETH':
+                obj = Eth(self.request.user)
+            valid = obj.send(t_obj.transaction_to, str(t_obj.amount))
+            balance = obj.balance()
+            t_obj.approved=True
+            t_obj.balance = balance
+            t_obj.transaction_id=valid
+            t_obj.save()
             context['status'] = True
         else:
             context['status'] = False

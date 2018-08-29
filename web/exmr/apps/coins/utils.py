@@ -92,7 +92,7 @@ def get_balance(user, currency):
         if transaction:
             balance = balance - sum([Decimal(obj.amount)for obj in transaction])
     elif currency == "ETH":
-        balance = Eth(user).get_eth_balance(user)
+        balance = Eth(user).balance()
         # wallet_username = user.username + "_exmr"
         # access = globals()['create_'+currency+'_connection']()
         # balance = access.getreceivedbyaccount(wallet_username)
@@ -101,6 +101,7 @@ def get_balance(user, currency):
         #     user__username=user, currency=currency)
         # if transaction:
         #     balance = balance - sum([Decimal(obj.amount)for obj in transaction])
+    else:
         balance = 0
 
     return balance
@@ -196,6 +197,8 @@ class XRP():
             pub_address = wallet.addresses.all()[0].address
         return pub_address
 
+def float_to_hex(f):
+    return hex(struct.unpack('<I', struct.pack('<f', f))[0])
 
 class Eth():
     def __init__(self, user):
@@ -225,29 +228,22 @@ class Eth():
             address = wallet.addresses.all()[0].address
         return address
 
-    def get_eth_balance(self, user):
+    def balance(self):
         user_addr = Wallet.objects.get(
-            user=user, name__code='ETH').addresses.all()[0].address
+            user=self.user, name__code='ETH').addresses.all()[0].address
         params = [user_addr, "latest"]
-        balance = get_results("eth_getBalance", params)['result']
+        balance = float(w3.fromWei(w3.eth.getBalance(Web3.toChecksumAddress(user_addr)), "ether"))
         return balance
 
-    def send_eth_transaction(self, user, amount, to_addr):
+    def send(self, to_addr, amount):
         user_addr = Wallet.objects.get(
-            user=user, name='eth').addresses.all()[0].address
-        params = [
-            {
-                "from": user_addr,
-                "to": to_addr,
-                "value": float_to_hex(amount)
-            },
-            "psalm"
-        ]
-        result = get_results("personal_sendTransaction", params)
-        if result.get("error"):
-            return {"error": result.get("error").get("message")}
-        else:
-            return True
+            user=self.user, name__code='ETH').addresses.all()[0].address
+        try:
+            result = w3.personal.sendTransaction({"from":Web3.toChecksumAddress(user_addr), "to":Web3.toChecksumAddress(to_addr), "value": Web3.toWei(amount, "ether")},passphrase="passphrase")
+            return result.title().hex()
+        except:
+            return {"error": "insufficient funds for gas * price + value"}
+        
 
 def create_DASH_wallet(user,currency):
     coin = Coin.objects.get(code=currency)
@@ -305,3 +301,19 @@ class EthereumTokens():
             return tx_id.title().hex()
         except:
             return {"error": "insufficient funds for gas * price + value"}
+
+class BTC():
+    def __init__(self, user, currency):
+        self.user = user
+        self.currency = currency
+        self.coin = Coin.objects.get(code=currency)
+
+    def send(self, address, amount):
+        access = getattr(apps.coins.utils, 'create_' +
+                             currency+'_connection')()
+        valid = access.sendtoaddress(address, amount)
+        return valid
+    
+    def balance(self):
+        balance = get_balance(self.user, self.currency)
+        return balance

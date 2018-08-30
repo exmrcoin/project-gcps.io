@@ -3,6 +3,8 @@ from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 
+from apps.coins.models import Coin
+
 
 class StoreCategory(models.Model):
     """
@@ -47,3 +49,21 @@ class Store(models.Model):
 
     def __str__(self):
         return self.store_name
+
+class StorePaymentRec(models.Model):
+    store_id = models.CharField(max_length=10, null=False)
+    item_amount = models.CharField(max_length=128, null=False)
+    
+    unique_id = models.CharField(max_length=128, null=False)
+
+    
+    first_name = models.CharField(max_length=128, null=False)
+    last_name = models.CharField(max_length=128, null=False)
+    email_addr = models.CharField(max_length=128, null=False)
+    
+    selected_coin = models.ForeignKey(Coin, on_delete=models.CASCADE)
+    wallet_address = models.CharField(max_length=128, null=False)
+
+    def __str__(self):
+        return self.item_name +"_"+ Profile.objects.get(merchant_id = self.merchant_id).user.username
+

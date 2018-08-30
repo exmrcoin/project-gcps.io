@@ -125,3 +125,12 @@ class StaticPage(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.page_name)
         super(StaticPage, self).save(*args, **kwargs)
+
+class ContactUs(models.Model):
+    name = models.CharField(null=False, max_length=100)
+    email = models.EmailField(null=False)
+    category = models.CharField(max_length=30, null=True)
+    message = models.TextField()
+    
+    def __str__(self):
+        return self.name

@@ -24,7 +24,7 @@ from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfir
     PasswordResetCompleteView
 
 from apps.coins.views import PublicCoinVote
-from apps.common.views import HomeView
+from apps.common.views import HomeView, ContactView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -52,8 +52,7 @@ urlpatterns += i18n_patterns(
     path('public-coin-votes/', PublicCoinVote.as_view(), name='public coin vote'),
     path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'),
          name='forgot-password'),
-    path('contact/', TemplateView.as_view(template_name='common/contact.html'),
-         name='contact'),
+    path('contact/', ContactView.as_view(), name='contact'),
          path('ckeditor/',include('ckeditor_uploader.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

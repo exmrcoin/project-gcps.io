@@ -212,7 +212,7 @@
                                 <label>
                                     <input type="radio" name="selected_coin" value="{{coins.code}}" id="coins_{{coins.code}}">
                                     <div class="btn btnrad btnrad-sık">
-                                        <img src="" class="crypto-btn-image col-xs-3">
+                                        {% if coins.image %}<img src="{{coins.image.url}}" class="crypto-btn-image col-xs-3">{% endif %}
                                         <span class="col-xs-9">{{coins}}</span>
                                     </div>
                                 </label>

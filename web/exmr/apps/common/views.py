@@ -5,7 +5,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, FormView
 
 from apps.accounts.models import Profile
-from apps.common.forms import CoinRequestForm
+from apps.common.forms import CoinRequestForm, ContactForm
 from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload, StaticPage
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 
@@ -97,3 +97,12 @@ class StaticPageView(TemplateView):
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(**kwargs)
         return self.render_to_response(context)
+
+class ContactView(FormView):
+    template_name = 'common/contact.html'
+    form_class  = ContactForm
+    success_url = reverse_lazy('home')
+
+    def form_valid(self,form):
+        form.save()
+        return HttpResponseRedirect(self.success_url)

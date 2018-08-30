@@ -7,58 +7,69 @@
 </section>
 <section>
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 mt-3 alert alert-warning">
-                <strong>Warning!</strong> Indicates a warning that might need attention.
-            </div>
-            <div class="col-xs-12 mt-1 alert alert-danger">
-                <strong>
-                    <span class="font-h3">What we can't help you with!</span>
-                </strong>
-            </div>
-            <ol>
-                <li>Questions about how Bitcoin or other cryptocurrencies work.</li>
-                <li>How to purchase Bitcoins with your credit card or bank account - there are many exchanges and methods available
-                    for this and we are unable to recommend particular ones.</li>
-                <li>Problems with 3rd party services/merchants.</li>
-                <li>Refunds for completed transactions - all transactions are final and cannot be refunded.</li>
-                <li>How to buy/sell coins.</li>
-                <li>Account Deletions - EXMR accounts cannot be deleted, however you can discontinue using them at any
-                    time with no notice to us.</li>
-            </ol>
-
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Support Wizard</h3>
-                </div>
+        <div class="page-row" style="height: 25px;"></div>
+        <div class="page-row page-row-expanded">
+            <div class="container">
+            <style>
+                p { padding:0px; margin:0px; }
+            </style>
+                <div class="panel panel-default">
+                <div class="panel-heading">Contact Us</div>
                 <div class="panel-body">
-                    <h3 class="supwiz-heading">To get started, what can we help you with?</h3>
-                    <div class="list-group">
-                        <a href="" class="list-group-item">
-                            <h4 class="list-group-item-heading">Conversions</h4>
-                            <p class="list-group-item-text">I have a problem with a conversion in the EXMR system.</p>
-                        </a>
-                        <a href="" class="list-group-item">
-                            <h4 class="list-group-item-heading">Wallet Issues</h4>
-                            <p class="list-group-item-text">I have a problem in my wallet such as a withdrawal, deposit, or transfer.</p>
-                        </a>
-                        <a href="" class="list-group-item">
-                            <h4 class="list-group-item-heading">Login/2FA Issues</h4>
-                            <p class="list-group-item-text">Problems logging in or with your 2FA devices/apps.</p>
-                        </a>
-                        <a href="" class="list-group-item">
-                            <h4 class="list-group-item-heading">As a Buyer</h4>
-                            <p class="list-group-item-text">Problems with an order you made through EXMR including refunds.</p>
-                        </a>
-                        <a href="" class="list-group-item">
-                            <h4 class="list-group-item-heading">As a Merchant</h4>
-                            <p class="list-group-item-text">Problems with an order a buyer made from you, API and integration questions, etc.</p>
-                        </a>
+              
+                        <h4>This form is not for support requests! All support requests must be via the <a href="{% url 'common:help' %}">Support Ticket</a> system. Any support requests sent via this form will be ignored.</h4>
+                        <h4>If you want to add your coin to GetCryptoPayments, <a href="{% url 'coins:add-public-coin' %}">click here</a>.</h4>
+                        
+                        <form action="." method="POST">
+                            {% csrf_token %}
+                            <table class="table table-bordered table-condensed">
+                                <thead>
+                                    <tr><th class="center" colspan="3"><h3>Submit Message</h3></th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span style="font-size:large;">Your Name</span></td>
+                                        <td><input type="text" id="id_name" class="form-control" name="name" value="" required=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span style="font-size:large;">Your Email</span></td>
+                                        <td><input type="email" id="id_email" class="form-control" name="email" value="" required=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span style="font-size:large;">Category</span></td>
+                                        <td><select id="id_category" class="form-control" name="category" required=""><option value="Sales">Sales</option><option value="ICO Services">ICO Services</option><option value="Partnership Requests">Partnership Requests</option><option value="Other">Other</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span style="font-size:large;">Message</span></td>
+                                        <td><textarea name="message" id="id_message" class="form-control" rows="10" required=""></textarea></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td colspan="2" class="text-center"><button class="btn btn-primary">Submit Message</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <input type="hidden" name="screen_res" value="1366x768">
+                        </form>           
                     </div>
                 </div>
-            </div>
+            </div>   
+
+
+
         </div>
     </div>
 </section>
 
-{% endblock %} {% block script %}{% endblock %}
+{% endblock %} {% block script %}
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LfNl2cUAAAAAKoPIBFAyyN9tF9hgCKBIrX2n_bo', {
+                action: 'action_name'
+            })
+            .then(function (token) {
+                captchaResult = true;
+            });
+    });
+</script>
+{% endblock %}

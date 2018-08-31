@@ -254,7 +254,7 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_USERNAME_REQUIRED = False
 
 LOGIN_URL= '/login/'
-LOGIN_REDIRECT_URL = '/profile/'
+LOGIN_REDIRECT_URL = '/login-notice/'
 
 
 SITE_ID = 1

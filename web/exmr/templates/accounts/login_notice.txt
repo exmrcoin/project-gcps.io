@@ -1,0 +1,9 @@
+Hello {{ first_name }},
+
+This email confirms you have logged in to your Getcryptopayments.org account from {{ ip }} at this time.
+
+If you did not log in you should change your Getcryptopayments.org password immediately since whoever did this has your correct password. You should also check for any changes to your Coin Acceptance settings and/or coin balances in your CoinPayments Wallet.
+
+Thank you,
+Getcryptopayments.org
+Support is available at: https://www.getcryptopayments.org/common/help/

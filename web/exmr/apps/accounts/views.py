@@ -7,13 +7,14 @@ from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
-from django.shortcuts import HttpResponse
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
+from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.sites.shortcuts import get_current_site
+from django.shortcuts import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.views.generic import CreateView, TemplateView, FormView, UpdateView
@@ -413,3 +414,32 @@ class VerifyLoginView(View):
 
 def signup_context(request):
     return {'signup_form':SignUpForm()}
+
+class LoginNoticeView(View):
+    def get(self, request, *args, **kwargs):
+        status = self.send_login_notice(request)
+        return HttpResponseRedirect(reverse("accounts:profile"))
+
+    def send_login_notice(self, request):
+        
+        context = {
+                   "ip": self.get_client_ip(request),
+                   "first_name": request.user.first_name
+                   }
+        msg_plain = render_to_string('accounts/login_notice.txt', context)
+        send_mail(
+                    'Login Notice',
+                    msg_plain,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [request.user.email],
+                    fail_silently=False
+                )
+        return True
+
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip

@@ -246,7 +246,7 @@ class SendView(LoginRequiredMixin, View):
 
         elif currency == 'ETH':
             obj = Eth(self.request.user)
-            balance = obj.balance(self.request.user)
+            balance = obj.balance()
         if obj:
             code = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase) for _ in range(12))
             trans_obj =Transaction.objects.create(user=self.request.user, currency=currency,

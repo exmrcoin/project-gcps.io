@@ -1,6 +1,7 @@
 import json
 import web3
 import requests
+import subprocess
 
 from decimal import Decimal
 from solc import compile_source
@@ -9,7 +10,8 @@ from web3 import Web3, HTTPProvider, TestRPCProvider
 
 
 from bitcoinrpc.authproxy import AuthServiceProxy
-from apps.coins.models import Wallet, WalletAddress, Coin, EthereumToken, EthereumTokenWallet
+from apps.coins.models import Wallet, WalletAddress, Coin, EthereumToken, EthereumTokenWallet,\
+                              Transaction
 from apps.apiapp import views as apiview
 
 
@@ -48,25 +50,17 @@ def create_wallet(user, currency):
     """
     erc = EthereumToken.objects.filter(contract_symbol=currency)
     if erc:
-        return EthereumTokens(user=user, code=currency).create_erc_wallet()
+        return EthereumTokens(user=user, code=currency).generate()
     if currency in ['XRPTest']:
-        return XRP(user).create_xrp_wallet()
-    if currency in ['ETH']:
-        return Eth(user).create_eth_wallet()
+        return XRPTest(user).generate()
+    elif currency in ['ETH']:
+        return Eth(user).generate()
+    if currency in ['XRP']:
+        return XRP(user).generate()
     elif currency in ['DASH']:
         return globals()['create_'+currency+'_wallet'](user,currency)
     elif currency in ['BTC']:
-        coin = Coin.objects.get(code=currency)
-        wallet_username = user.username + "_exmr"
-        access = globals()['create_'+currency+'_connection']()
-        print(access)
-        try:
-            addr = access.getnewaddress(wallet_username)
-            wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
-            wallet.addresses.add(WalletAddress.objects.create(address=addr))
-        except:
-            addr = ''
-    
+        return BTC(user, currency).generate()   
     else:
         return str(currency)+' server is under maintenance'
 
@@ -81,7 +75,7 @@ def get_balance(user, currency):
     if erc:
         balance = EthereumTokens(user=user, code=currency).balance()
     if currency == "XRPTest":
-        balance = XRP(user).balance()
+        balance = XRPTest(user).balance()
     elif currency == "BTC":
         wallet_username = user.username + "_exmr"
         access = globals()['create_'+currency+'_connection']()
@@ -93,6 +87,8 @@ def get_balance(user, currency):
             balance = balance - sum([Decimal(obj.amount)for obj in transaction])
     elif currency == "ETH":
         balance = Eth(user).balance()
+    elif currency == "XRP":
+        balance = XRP(user).balance()
         # wallet_username = user.username + "_exmr"
         # access = globals()['create_'+currency+'_connection']()
         # balance = access.getreceivedbyaccount(wallet_username)
@@ -121,7 +117,7 @@ def wallet_info(currency):
 
 
 
-class XRP():
+class XRPTest():
     def __init__(self, user):
         self.user = user
 
@@ -177,7 +173,7 @@ class XRP():
         except:
             return result['result']['error']
 
-    def create_xrp_wallet(self):
+    def generate(self):
         # address_process = subprocess.Popen(
         #     ['node', '../ripple-wallet/test.js'], stdout=subprocess.PIPE)
         # address_data, err = address_process.communicate()
@@ -197,8 +193,7 @@ class XRP():
             pub_address = wallet.addresses.all()[0].address
         return pub_address
 
-def float_to_hex(f):
-    return hex(struct.unpack('<I', struct.pack('<f', f))[0])
+
 
 class Eth():
     def __init__(self, user):
@@ -218,7 +213,7 @@ class Eth():
         response = requests.post("http://35.237.231.141:8545",headers=headers, data=serialized_data)
         return response.json()
 
-    def create_eth_wallet(self):
+    def generate(self):
         coin = Coin.objects.get(code='ETH')
         wallet, created = Wallet.objects.get_or_create(user=self.user, name=coin)
         if created:
@@ -273,7 +268,7 @@ class EthereumTokens():
         obj = EthereumToken.objects.get(contract_symbol=code)
         self.contract = w3.eth.contract(address=obj.contract_address, abi=obj.contract_abi)
 
-    def create_erc_wallet(self):
+    def generate(self):
         coin = EthereumToken.objects.get(contract_symbol=self.code)
         wallet, created = EthereumTokenWallet.objects.get_or_create(user=self.user, name=coin)
         if created:
@@ -307,13 +302,103 @@ class BTC():
         self.user = user
         self.currency = currency
         self.coin = Coin.objects.get(code=currency)
+        self.access =  globals()['create_' +currency+'_connection']()
 
     def send(self, address, amount):
-        access = getattr(apps.coins.utils, 'create_' +
-                             currency+'_connection')()
-        valid = access.sendtoaddress(address, amount)
+        valid = self.access.sendtoaddress(address, amount)
         return valid
     
     def balance(self):
-        balance = get_balance(self.user, self.currency)
-        return balance
+        wallet_username = self.user.username + "_exmr"
+        balance = self.access.getreceivedbyaccount(wallet_username)
+        transaction = Transaction.objects.filter(
+            user__username=self.user, currency=self.currency)
+        if transaction:
+            balance = balance - sum([Decimal(obj.amount)for obj in transaction])
+        return float(balance)
+
+    def generate(self):
+        coin = Coin.objects.get(code=self.currency)
+        wallet_username = self.user.username + "_exmr"
+        access = globals()['create_'+self.currency+'_connection']()
+        try:
+            addr = access.getnewaddress(wallet_username)
+            wallet, created = Wallet.objects.get_or_create(user=self.user, name=coin)
+            wallet.addresses.add(WalletAddress.objects.create(address=addr))
+        except:
+            addr = ''
+        return addr
+
+
+class XRP():
+    def __init__(self, user):
+        self.user = user
+
+    def balance(self):
+        wallet = Wallet.objects.get(user=self.user, name__code="XRP")
+        secret = wallet.private
+        address = wallet.addresses.all().first().address
+        params =    {
+                        "method": "account_info",
+                        "params": [
+                            {
+                                "account": address,
+                                "strict": True,
+                                "ledger_index": "validated"
+                            }
+                        ]
+                    }
+        result = json.loads(requests.post("http://s1.ripple.com:51234/",json=params).text)
+        try:
+            return Decimal(result['result']['account_data']['Balance'])/Decimal(1000000)
+        except:
+            return "0"
+
+    def send(self, destination, amount):
+        wallet = Wallet.objects.get(user=self.user, name__code="XRP")
+        secret = wallet.private
+        address = wallet.addresses.all().first().address
+        params =    { "method" : "sign",
+                      "params" : [ 
+                                    { 
+                                        "secret" : secret,
+                                        "tx_json" : {
+                                                        "TransactionType":"Payment",
+                                                        "Account":address,
+                                                        "Amount":str(int(amount)*1000000),
+                                                        "Destination":destination
+                                                    }
+                                    } 
+                                ] 
+                    }
+        result = json.loads(requests.post("http://s1.ripple.com:51234/",json=params).text)
+        params = {
+                    "method": "submit",
+                    "params": [
+                        {
+                            "tx_blob": result['result']['tx_blob']
+                        }
+                    ]
+                }
+        submit = json.loads(requests.post("http://s1.ripple.com:51234/",json=params).text)
+        try:
+            return result['result']['tx_json']['hash']
+        except:
+            return result['result']['error']
+
+    def generate(self):
+        coin = Coin.objects.get(code='XRP')
+        address_process = subprocess.Popen(
+            ['node', '../ripple-wallet/ripple.js'], stdout=subprocess.PIPE)
+        address_data, err = address_process.communicate()
+        addresses = address_data.decode("utf-8") .replace("\n", "")
+        pub_address = addresses.split("{ address: '")[1].split("'")[0]
+        priv_address = addresses.split("secret: '")[-1].replace("' }", "")
+        wallet, created = Wallet.objects.get_or_create(user=self.user, name=coin)
+        if created:
+            wallet.addresses.add(WalletAddress.objects.create(address=pub_address))
+            wallet.private=priv_address
+            wallet.save()
+        else:
+            pub_address = wallet.addresses.all()[0].address
+        return pub_address

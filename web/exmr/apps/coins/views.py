@@ -229,24 +229,42 @@ class SendView(LoginRequiredMixin, View):
         amount = Decimal(request.POST.get('amount'))
         erc = EthereumToken.objects.filter(contract_symbol=currency)
         obj = None
-        if currency not in ('ETH', 'xlm', 'xmr','XRPTest') and not erc:
+        if currency in ('BTC') and not erc:
             access = getattr(apps.coins.utils, 'create_' +currency+'_connection')()
             valid = access.validateaddress(address)
             # balance = get_balance(request.user.username, currency)
             # balance = balance - amount
+            obj = BTC(self.request.user,currency)
+            balance = obj.balance()
+            if float(amount) > balance:
+                return HttpResponse(json.dumps({"error": "Insufficient Funds"}), content_type='application/json')
             return HttpResponse(json.dumps({"success": True}), content_type='application/json')
 
-        elif currency == 'XRPTest':
+        elif currency == 'XRP':
             obj = XRP(self.request.user)
             # valid = obj.send(address, str(amount))
             balance = obj.balance()
+            if float(amount) > balance:
+                return HttpResponse(json.dumps({"error": "Insufficient Funds"}), content_type='application/json')
+
+        elif currency == 'XRPTest':
+            obj = XRPTest(self.request.user)
+            # valid = obj.send(address, str(amount))
+            balance = obj.balance()
+            if float(amount) > balance:
+                return HttpResponse(json.dumps({"error": "Insufficient Funds"}), content_type='application/json')
+        
         elif erc:
             obj = EthereumTokens(self.request.user,currency)
             balance = obj.balance()
+            if float(amount) > balance:
+                return HttpResponse(json.dumps({"error": "Insufficient Funds"}), content_type='application/json')
 
         elif currency == 'ETH':
             obj = Eth(self.request.user)
             balance = obj.balance()
+            if float(amount) > balance:
+                return HttpResponse(json.dumps({"error": "Insufficient Funds"}), content_type='application/json')
         if obj:
             code = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase) for _ in range(12))
             trans_obj =Transaction.objects.create(user=self.request.user, currency=currency,
@@ -290,6 +308,8 @@ class SendConfirmView(TemplateView):
         if t_obj:
             erc = EthereumToken.objects.filter(contract_symbol=t_obj.currency)
             if t_obj.currency == 'XRPTest':
+                obj = XRPTest(self.request.user)
+            elif t_obj.currency == 'XRP':
                 obj = XRP(self.request.user)
             elif erc:       
                 obj = EthereumTokens(self.request.user,t_obj.currency)

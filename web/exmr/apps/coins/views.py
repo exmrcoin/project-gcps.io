@@ -18,13 +18,14 @@ from apps.coins.utils import *
 from apps.accounts.models import User
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
-                              CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, \
-                              WalletAddress, EthereumToken, Phases
+    CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, \
+    WalletAddress, EthereumToken, Phases, ConvertTransaction
 from apps.apiapp import shapeshift
 from apps.coins import coinlist
 from django.shortcuts import render
 
-CURRENCIES = ['BTC','LTC', 'BCH', 'XRP']
+CURRENCIES = ['BTC', 'LTC', 'BCH', 'XRP']
+
 
 class WalletsView(LoginRequiredMixin, TemplateView):
     template_name = 'coins/wallets.html'
@@ -39,6 +40,7 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         context["erc_wallet"] = EthereumToken.objects.all()
         return context
 
+
 class CoinConvertView(LoginRequiredMixin, TemplateView):
     template_name = 'coins/convert-select.html'
 
@@ -48,17 +50,130 @@ class CoinConvertView(LoginRequiredMixin, TemplateView):
         shapehift_available_coin = shapeshift.get_coins()
         image_path_list = {}
         exmr_list = coinlist.get_all_active_coin_code()
-        available_coins = filter(lambda x:x in list(shapehift_available_coin),exmr_list)
+        available_coins = filter(lambda x: x in list(
+            shapehift_available_coin), exmr_list)
         print(available_coins)
         for coin in list(shapehift_available_coin):
             for coin in exmr_list:
                 if not coin == sel_coin:
-                    image_path_list[coin] = shapehift_available_coin[coin]['image']
+                    try:
+                        image_path_list[coin] = shapehift_available_coin[coin]['image']
+                    except:
+                        pass
                 else:
-                    shapehift_available_coin.pop(coin,0)
+                    try:
+                        shapehift_available_coin.pop(coin, 0)
+                    except:
+                        pass
 
         context['coin_images'] = image_path_list
-        context['avbl_coins']=list(available_coins)
+        context['avbl_coins'] = list(available_coins)
+        context['sel_coin'] = sel_coin
+        return context
+
+
+class CoinConvertView2(LoginRequiredMixin, TemplateView):
+    template_name = 'coins/convert-select.html'
+
+    def post(self, request, *args, **kwargs):
+        context = super(CoinConvertView2, self).get_context_data()
+        sel_coin = request.POST.get('sel_coin')
+        output_coin = request.POST.get('coin_radio')
+        shapehift_available_coin = shapeshift.get_coins()
+        for coin in list(shapehift_available_coin):
+            if coin == output_coin:
+                context['output_coin_img'] = shapehift_available_coin[coin]['image']
+            elif coin == sel_coin:
+                context['input_coin_img'] = shapehift_available_coin[coin]['image']
+        context['input_coin'] = sel_coin
+        context['output_coin'] = output_coin
+        pair = None
+        try:
+            limit_json = shapeshift.get_market_info(sel_coin, output_coin)
+            pair = limit_json['pair']
+            context['rate_json'] = limit_json['rate']
+            context['min_limit'] = round(1.3 * limit_json['minimum'], 8)
+            context['max_limit'] = round(0.75 * limit_json['limit'], 8)
+            print(limit_json['minimum'])
+            print(limit_json['limit'])
+            try:
+                balance = get_balance(self.request.user, sel_coin)
+            except:
+                balance = 0
+            if not balance:
+                balance = 0
+            context['balance'] = balance
+            context['miner_fee'] = limit_json['minerFee']
+        except:
+            pass
+        try:
+            addr = get_primary_address(
+                user=self.request.user, currency=output_coin)
+            ret_addr = get_primary_address(
+                user=self.request.user, currency=sel_coin)
+            # ret_addr = 'LXA3i9eEAVDbgDqkThCa4D6BUJ3SEULkEr'
+
+            transaction_details = shapeshift.create_normal_tx(
+                addr, sel_coin, output_coin, ret_addr, None, None, None)
+            print(transaction_details)
+            request.session['deposit_address'] = transaction_details['deposit']
+            request.session['recieve_from'] = transaction_details['withdrawal']
+
+        except Exception as e:
+            raise e
+        obj = ConvertTransaction.objects.create(
+            user=self.request.user,
+            input_coin=sel_coin,
+            output_coin=output_coin,
+            transaction_id=transaction_details['orderId'],
+            address_from=ret_addr,
+            address_to=transaction_details['deposit'],
+            receive_address=transaction_details['withdrawal'],
+            status=False,
+        )
+        obj.save()
+        return render(request, 'coins/convert-select-confirm.html', context)
+
+
+class CoinConvertView3(TemplateView):
+    template_name = 'coins/convert-select-finished.html'
+
+    def post(self, request, *args, **kwargs):
+        context = super(CoinConvertView3, self).get_context_data()
+        input_coin_value = request.POST.get('input_coin_value')
+        try:
+            convert_address = request.session['deposit_address']
+        except:
+            return HttpResponse(status=500)
+        valid = Eth.send(self.request, convert_address, input_coin_value)
+        if not valid['error']:
+            context['result'] = "Success. Your account will be credited with 12 Hours. If not please contact support."
+        else:
+            context['result'] = "Transaction failed. "
+            context['result1'] = "Retry after some time. If your account has been deducted please contact support."
+            context['result2'] = " Message: insufficient funds for value and transaction charges"
+
+        return render(request, 'coins/convert-select-finished.html', context)
+
+
+class CoinConversionFinalView(TemplateView):
+    """
+    View that renders after coin conversion request is submitted
+    Initiates conversion request
+    Send mail
+
+    """
+    template_name = 'coins/coin_conversion_final.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CoinConversionFinalView,
+                        self).get_context_data(**kwargs)
+        coin_request_id = self.request.session.get('coin_request_id')
+        context['coin_request'] = get_object_or_404(
+            CoinConvertRequest, id=coin_request_id)
+
+        if self.request.session.get('coin_request_id'):
+            del self.request.session['coin_request_id']
         return context
 
 
@@ -70,7 +185,8 @@ class SupportedCoinView(ListView):
 
     def get_queryset(self, *args, **kwargs):
         type_dict = dict(TYPE_CHOICES)
-        self.coin_type = dict(zip(type_dict.values(),type_dict.keys())).get(self.kwargs['type'],0)
+        self.coin_type = dict(zip(type_dict.values(), type_dict.keys())).get(
+            self.kwargs['type'], 0)
         return self.queryset.filter(type=self.coin_type, active=True)
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -123,27 +239,6 @@ class ConvertCoinsView(FormView):
         return super(ConvertCoinsView, self).form_invalid(form)
 
 
-class CoinConversionFinalView(TemplateView):
-    """
-    View that renders after coin conversion request is submitted
-    Initiates conversion request
-    Send mail
-
-    """
-    template_name = 'coins/coin_conversion_final.html'
-
-    def get_context_data(self, **kwargs):
-        context = super(CoinConversionFinalView,
-                        self).get_context_data(**kwargs)
-        coin_request_id = self.request.session.get('coin_request_id')
-        context['coin_request'] = get_object_or_404(
-            CoinConvertRequest, id=coin_request_id)
-
-        if self.request.session.get('coin_request_id'):
-            del self.request.session['coin_request_id']
-        return context
-
-
 class NewCoinAddr(LoginRequiredMixin, TemplateView):
     template_name = 'coins/deposit.html'
 
@@ -153,16 +248,20 @@ class NewCoinAddr(LoginRequiredMixin, TemplateView):
         erc = EthereumToken.objects.filter(contract_symbol=code)
         if not erc:
             try:
-                context['wallets'] = Wallet.objects.get(user=self.request.user,  name__code=code).addresses.all()
+                context['wallets'] = Wallet.objects.get(
+                    user=self.request.user,  name__code=code).addresses.all()
             except:
                 create_wallet(self.request.user, code)
-                context['wallets']=Wallet.objects.get(user=self.request.user,  name__code=code).addresses.all()
+                context['wallets'] = Wallet.objects.get(
+                    user=self.request.user,  name__code=code).addresses.all()
         else:
             try:
-                context['wallets'] = EthereumTokenWallet.objects.get(user=self.request.user,  name__contract_symbol=code).addresses.all()
+                context['wallets'] = EthereumTokenWallet.objects.get(
+                    user=self.request.user,  name__contract_symbol=code).addresses.all()
             except:
                 create_wallet(self.request.user, code)
-                context['wallets']=EthereumTokenWallet.objects.get(user=self.request.user,  name__contract_symbol=code).addresses.all()
+                context['wallets'] = EthereumTokenWallet.objects.get(
+                    user=self.request.user,  name__contract_symbol=code).addresses.all()
         context['code'] = code
         return context
 
@@ -170,19 +269,23 @@ class NewCoinAddr(LoginRequiredMixin, TemplateView):
         code = kwargs.get('currency')
         address = create_wallet(request.user, code)
         if address:
-            date = str(WalletAddress.objects.get(address=address).date.strftime('%B %d, %Y, %I:%M %p'))
-            return HttpResponse(json.dumps({'address':address,'date':date}), content_type='application/json')
+            date = str(WalletAddress.objects.get(
+                address=address).date.strftime('%B %d, %Y, %I:%M %p'))
+            return HttpResponse(json.dumps({'address': address, 'date': date}), content_type='application/json')
+
 
 class AddNewCoin(FormView):
     template_name = 'coins/host-coin.html'
     form_class = ConvertRequestForm
+
 
 class PublicCoinVote(TemplateView):
     template_name = 'coins/public-coin-vote.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super(PublicCoinVote, self).get_context_data(**kwargs)
-        context['coins'] = NewCoin.objects.filter(approved=True).order_by('-vote_count')
+        context['coins'] = NewCoin.objects.filter(
+            approved=True).order_by('-vote_count')
         return context
 
     def post(self, request, *args, **kwargs):
@@ -193,15 +296,15 @@ class PublicCoinVote(TemplateView):
             obj.vote_count += int(count)
             obj.save()
             context = {
-                'coins':Coin.objects.all(),
+                'coins': Coin.objects.all(),
             }
             response_data = render_to_string('coins/vote.html', context, )
-            return HttpResponse(json.dumps(response_data), content_type='application/json') 
-
+            return HttpResponse(json.dumps(response_data), content_type='application/json')
 
 
 class CoinSettings(TemplateView):
     template_name = 'coins/coin_settings.html'
+
 
 class CoinWithdrawal(TemplateView):
     template_name = 'coins/coin-withdrawal.html'
@@ -211,11 +314,11 @@ class CoinWithdrawal(TemplateView):
         erc = EthereumToken.objects.filter(contract_symbol=currency)
         context = super().get_context_data(**kwargs)
         if erc:
-            context['coin'] = EthereumToken.objects.get(contract_symbol=currency)
+            context['coin'] = EthereumToken.objects.get(
+                contract_symbol=currency)
         else:
             context['coin'] = Coin.objects.get(code=currency)
         return context
-
 
 
 class SendView(LoginRequiredMixin, View):
@@ -229,8 +332,9 @@ class SendView(LoginRequiredMixin, View):
         amount = Decimal(request.POST.get('amount'))
         erc = EthereumToken.objects.filter(contract_symbol=currency)
         obj = None
-        if currency not in ('ETH', 'xlm', 'xmr','XRPTest') and not erc:
-            access = getattr(apps.coins.utils, 'create_' +currency+'_connection')()
+        if currency not in ('ETH', 'xlm', 'xmr', 'XRPTest') and not erc:
+            access = getattr(apps.coins.utils, 'create_' +
+                             currency+'_connection')()
             valid = access.validateaddress(address)
             # balance = get_balance(request.user.username, currency)
             # balance = balance - amount
@@ -241,17 +345,18 @@ class SendView(LoginRequiredMixin, View):
             # valid = obj.send(address, str(amount))
             balance = obj.balance()
         elif erc:
-            obj = EthereumTokens(self.request.user,currency)
+            obj = EthereumTokens(self.request.user, currency)
             balance = obj.balance()
 
         elif currency == 'ETH':
             obj = Eth(self.request.user)
-            balance = obj.balance(self.request.user)
+            balance = obj.balance()
         if obj:
-            code = ''.join(random.choice(string.ascii_lowercase + string.ascii_uppercase) for _ in range(12))
-            trans_obj =Transaction.objects.create(user=self.request.user, currency=currency,
-                                       balance=balance, amount=amount, transaction_to=address,
-                                       activation_code=code)
+            code = ''.join(random.choice(string.ascii_lowercase +
+                                         string.ascii_uppercase) for _ in range(12))
+            trans_obj = Transaction.objects.create(user=self.request.user, currency=currency,
+                                                   balance=balance, amount=amount, transaction_to=address,
+                                                   activation_code=code)
 
             self.request.session['transaction'] = trans_obj.system_tx_id
             slug = trans_obj.system_tx_id+"-"+code
@@ -262,67 +367,77 @@ class SendView(LoginRequiredMixin, View):
                 'transaction': trans_obj,
                 'type': currency,
             }
-            response_data = render_to_string('coins/transfer-confirmed-email.html', context, )
-            email = EmailMessage('Getcryptopayments.org Withdrawal Confirmation', response_data, to=[self.request.user.email])
+            response_data = render_to_string(
+                'coins/transfer-confirmed-email.html', context, )
+            email = EmailMessage('Getcryptopayments.org Withdrawal Confirmation', response_data, to=[
+                                 self.request.user.email])
             email.send()
             return HttpResponse(json.dumps({"success": True}), content_type='application/json')
 
         return HttpResponse(json.dumps(valid), content_type='application/json')
 
+
 class SendSuccessView(TemplateView):
     template_name = 'coins/send-money-success.html'
 
-
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['transaction'] = self.request.session['transaction'] 
+        context['transaction'] = self.request.session['transaction']
         return context
+
 
 class SendConfirmView(TemplateView):
     template_name = 'coins/send-money-confirm.html'
-
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         tx_id = kwargs.get('slug').split('-')[0]
         token = kwargs.get('slug').split('-')[1]
-        t_obj = Transaction.objects.filter(system_tx_id=tx_id, activation_code=token).first()
+        t_obj = Transaction.objects.filter(
+            system_tx_id=tx_id, activation_code=token).first()
         if t_obj:
             erc = EthereumToken.objects.filter(contract_symbol=t_obj.currency)
             if t_obj.currency == 'XRPTest':
                 obj = XRP(self.request.user)
-            elif erc:       
-                obj = EthereumTokens(self.request.user,t_obj.currency)
+            elif erc:
+                obj = EthereumTokens(self.request.user, t_obj.currency)
             elif t_obj.currency == 'BTC':
-                obj = BTC(self.request.user,t_obj.currency)
+                obj = BTC(self.request.user, t_obj.currency)
             elif t_obj.currency == 'ETH':
                 obj = Eth(self.request.user)
             valid = obj.send(t_obj.transaction_to, str(t_obj.amount))
             balance = obj.balance()
-            t_obj.approved=True
+            t_obj.approved = True
             t_obj.balance = balance
-            t_obj.transaction_id=valid
+            t_obj.transaction_id = valid
             t_obj.save()
             context['status'] = True
         else:
             context['status'] = False
         return context
 
+
 class VoteDetailsView(LoginRequiredMixin, TemplateView):
     template_name = 'coins/vote_details.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        coin_code = kwargs.get('currency') 
-        coin_obj = NewCoin.objects.get(code = coin_code)
-        coin_votes = CoinVote.objects.filter(coin__code = coin_code)
+        coin_code = kwargs.get('currency')
+        coin_obj = NewCoin.objects.get(code=coin_code)
+        coin_votes = CoinVote.objects.filter(coin__code=coin_code)
         if coin_votes:
-            context['total_coins'] = NewCoin.objects.filter(approved=True).count()
-            context['position'] = [obj.id for obj in NewCoin.objects.filter(approved=True).order_by('-vote_count')].index(coin_obj.id)+1
-            context['votes_share_completed'] = coin_votes.filter(type="share" ).count()
-            context['votes_follow_completed'] = coin_votes.filter(type="follow" ).count()
-            context['votes_share'] = [source['source'] for source in  coin_votes.filter(user=self.request.user, type="share" ).values('source')]
-            context['votes_follow'] = [source['source'] for source in  coin_votes.filter(user=self.request.user, type="follow").values('source')]
+            context['total_coins'] = NewCoin.objects.filter(
+                approved=True).count()
+            context['position'] = [obj.id for obj in NewCoin.objects.filter(
+                approved=True).order_by('-vote_count')].index(coin_obj.id)+1
+            context['votes_share_completed'] = coin_votes.filter(
+                type="share").count()
+            context['votes_follow_completed'] = coin_votes.filter(
+                type="follow").count()
+            context['votes_share'] = [source['source'] for source in coin_votes.filter(
+                user=self.request.user, type="share").values('source')]
+            context['votes_follow'] = [source['source'] for source in coin_votes.filter(
+                user=self.request.user, type="follow").values('source')]
         context['coin'] = coin_obj
         return context
 
@@ -331,12 +446,13 @@ class VoteDetailsView(LoginRequiredMixin, TemplateView):
         vote_source = request.POST.get('source')
         vote_type = request.POST.get('type')
         coin = NewCoin.objects.get(code=currency_code)
-        obj,created = CoinVote.objects.get_or_create(user=request.user,\
-                      coin=coin,type=vote_type,source=vote_source)
+        obj, created = CoinVote.objects.get_or_create(user=request.user,
+                                                      coin=coin, type=vote_type, source=vote_source)
         coin.vote_count += int(10)
         coin.save()
 
-        return HttpResponse(json.dumps({"success": True}), content_type='application/json') 
+        return HttpResponse(json.dumps({"success": True}), content_type='application/json')
+
 
 class RefundClaimView(LoginRequiredMixin, TemplateView):
     template_name = 'coins/coin_refund_claim.html'
@@ -345,20 +461,23 @@ class RefundClaimView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         transaction_id = kwargs.get('slug')
-        transaction_obj = self.validate_transaction_id(transaction_id) 
+        transaction_obj = self.validate_transaction_id(transaction_id)
         context['transaction_obj'] = transaction_obj
         context['msgs'] = self.msgs
         return context
-    
-    def validate_transaction_id(self, transaction_id:str):
-        trasaction_obj = get_object_or_404(Transaction, system_tx_id=transaction_id)
+
+    def validate_transaction_id(self, transaction_id: str):
+        trasaction_obj = get_object_or_404(
+            Transaction, system_tx_id=transaction_id)
         # check if the user is already made a claim request
         if ClaimRefund.objects.filter(transaction__system_tx_id=transaction_id).exists():
-            self.msgs.append({'text':"Already Applied for refund", 'class':'alert-danger'})
-        
+            self.msgs.append(
+                {'text': "Already Applied for refund", 'class': 'alert-danger'})
+
         return trasaction_obj
-    def post (self, *args, **kwargs):
-        
+
+    def post(self, *args, **kwargs):
+
         transaction_id = self.request.POST.get('transation_id', None)
         transaction_obj = self.validate_transaction_id(transaction_id)
         send_addr = self.request.POST.get('send_addr', None)
@@ -368,7 +487,8 @@ class RefundClaimView(LoginRequiredMixin, TemplateView):
         obj.send_addr = send_addr
         obj.save()
 
-        return HttpResponse(json.dumps({"success": True}), content_type='application/json') 
+        return HttpResponse(json.dumps({"success": True}), content_type='application/json')
+
 
 class NewCoinAddView(FormView):
     template_name = "coins/public_coin_add.html"
@@ -382,8 +502,10 @@ class NewCoinAddView(FormView):
     def form_invalid(self, form):
         return super(NewCoinAddView, self).form_invalid(form)
 
+
 class PayByNameView(LoginRequiredMixin, TemplateView):
     template_name = "coins/paybyname.html"
+
 
 class PayByNamePayView(LoginRequiredMixin, TemplateView):
     template_name = "coins/paybyname-payment.html"
@@ -398,20 +520,23 @@ class CopromotionView(TemplateView):
         return context
 
     def post(self, request, *args, **kwargs):
-        coin = NewCoin.objects.filter(id = request.POST.get('coin_id'), approved=True)
+        coin = NewCoin.objects.filter(
+            id=request.POST.get('coin_id'), approved=True)
         total = int(request.POST.get('total'))
         if coin and request.POST.get('urls1') and request.POST.get('urls2') and\
-        request.POST.get('urls3'):
+                request.POST.get('urls3'):
             copromo_obj = CoPromotion.objects.create(coin=coin.first())
-            for i in range(1,total+1):
+            for i in range(1, total+1):
                 if request.POST.get('urls'+str(i)):
-                    obj = CoPromotionURL.objects.create(url = request.POST.get('urls'+str(i)))
+                    obj = CoPromotionURL.objects.create(
+                        url=request.POST.get('urls'+str(i)))
                     copromo_obj.urls.add(obj)
             copromo_obj.save()
             messages.add_message(request, messages.INFO, 'Success')
             return redirect(reverse_lazy('coins:copromotion-form'))
         else:
             return redirect(reverse_lazy('coins:copromotion-form'))
+
 
 class BalanceView(View):
     def get(self, request, *args, **kwargs):
@@ -422,20 +547,21 @@ class BalanceView(View):
             balance = 0
         if not balance:
             balance = 0
-        data = {'balance':str(balance),'code':currency_code}
+        data = {'balance': str(balance), 'code': currency_code}
         return HttpResponse(json.dumps(data), content_type="application/json")
+
 
 class VoteWinners(TemplateView):
     template_name = 'coins/winners.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        phases = Phases.objects.filter(time_stop__lt = datetime.now())
+        phases = Phases.objects.filter(time_stop__lt=datetime.now())
         context['phases'] = phases
-        temp_list =[]
+        temp_list = []
         for phase in phases:
-            for temp in NewCoin.objects.filter(phase = phase.id):
-                if temp.vote_count >=35000:
+            for temp in NewCoin.objects.filter(phase=phase.id):
+                if temp.vote_count >= 35000:
                     temp_list.append(temp)
         context['newcoins'] = temp_list
         return context

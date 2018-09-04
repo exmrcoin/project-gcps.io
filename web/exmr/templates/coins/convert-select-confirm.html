@@ -1,0 +1,206 @@
+{% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
+<div></div>
+{% load transaction_status %} {% block dashboard_heading %}
+<div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">WALLETS
+        </div>
+    </div>
+</div>
+{% endblock %} {% block dashboard_wrapper_content %}
+
+<div class="dashboard-wrapper">
+    <div class="dasboard-head pad10">
+        <div class="img-dashboard">
+            <img src="{% static '/images/recevied.png' %} ">
+        </div>
+        <span class="font-h3">{% trans 'Convert Coin' %}</span>
+    </div>
+    <div class="dashboard-table">
+        <div class="dasboard-head">
+            <div class="card">
+                <div class="card-body selectable_div">
+                    <div class=" col-xs-12 col-md-8 col-md-offset-2">
+                        <div class="col-xs-12 p-3 text-center">
+                            <h4 class="border-btm-line">Current Market Rate</h4>
+
+                            <div class="col-xs-12 col-md-4 ">
+                                <div class="col-xs-12">
+                                    <img src="{{input_coin_img}}" class="img-responsive w60px margin-center ">
+                                </div>
+                                <div class="col-xs-12">
+                                    <h3> {{input_coin}}</h3>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <div class="col-xs-12">
+                                    <h4>1 {{input_coin}}</h4>
+                                </div>
+                                <div class="col-xs-12">
+                                    <i class="fas fa-exchange" style="font-size: 30px"></i>
+                                </div>
+                                <div class="col-xs-12">
+                                    <h4>{{rate_json}} {{output_coin}}</h4>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-md-4 ">
+                                <div class="col-xs-12">
+                                    <img src="{{output_coin_img}}" class="img-responsive w60px margin-center ">
+                                </div>
+                                <div class="col-xs-12">
+                                    <h3>{{output_coin}}</h3>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 p-3">
+                                <span>Estimated Miner Fees: {{miner_fee}} {{output_coin}}</span>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <form method="POST" action="{% url 'coins:convert_select_finish'%}" class="text-center" style="position: relative;" id="convert_form">
+                            {% csrf_token %}
+                            <h3 class="border-btm-line">Convert Your Coin</h3>
+
+                            <div class="col-xs-12 col-md-6 text-center">
+                                <div class="col-xs-12 text-center">
+                                    <div class="col-xs-12 col-md-4 floatr">
+                                        <img src="{{input_coin_img}}" class="img-responsive w60px margin-center ">
+                                    </div>
+                                    <div class="col-xs-12 col-md-8 floatl cryptowrapper">
+                                        <input type="text" value="{{min_limit}}" onkeyup="setTimeout(calculate_input(),2000)" name="input_coin_value" id="input_coin_value"
+                                            class="cryptoinput">
+                                        <br>
+                                    </div>
+                                    <div class="col-xs-12">
+                                        <span>Min: {{min_limit}}<br> Max: {{max_limit}}<br> Available: {{balance}}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-12 col-md-6 text-center">
+                                <div class="col-xs-12 text-center">
+                                    <div class="col-xs-12 col-md-4 floatl">
+                                        <img src="{{output_coin_img}}" class="img-responsive w60px margin-center ">
+                                    </div>
+                                    <div class="col-xs-12 col-md-8 floatr cryptowrapper">
+                                        <input type="text" value="0" onkeyup="setTimeout(calculate_output(),2000)" name="output_coin_value" id="output_coin_value"
+                                            class="cryptoinput">
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" value="{{sel_coin}}" name="sel_coin">
+                            <div class="col-xs-12 my-2">
+                                <input type="submit" value="Exchange Now" id="cryptosubmit" class="btn btn-success">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+
+
+
+            <!--  -->
+        </div>
+
+    </div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content  exmr-modal white-font animated bounceInDown">
+
+            <img src="{% static 'images/logo1.png' %}" class="margin-center img-responsive exmr-modal-logo">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3 class="modal-title">
+                    <i class="fa fa-exclamation-circle"></i>Alpha Version Testnet</h3>
+            </div>
+            <div class="modal-body text-center">
+                We are in active development to bring you the best features.
+                <br>The Coin will be added to be winners in our Coin Listing Competition.
+                <br>More Coin support will be added in future.
+                <br>We thankyou for your understanding.
+                <br>
+                <br>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %} {% block script %}
+<script>
+</script>
+<script>
+    var min_value = parseFloat("{{min_limit}}");
+    var max_value = parseFloat("{{max_limit}}");
+    var rate = parseFloat("{{rate_json}}");
+
+    function validate_submit() {
+        document.getElementById('cryptosubmit').setAttribute('disabled', 'disabled');
+        var input1 = parseFloat(document.getElementById("input_coin_value").value);
+        if ((input1 >= min_value) && (input1 <= max_value)) {
+            document.getElementById('cryptosubmit').value = "Exchange Now";
+            document.getElementById('cryptosubmit').classList.remove("btn-warning");
+            document.getElementById('cryptosubmit').classList.add("btn-success");
+            document.getElementById('cryptosubmit').removeAttribute('disabled');
+        } else {
+            document.getElementById('cryptosubmit').setAttribute('disabled', 'disabled');
+            document.getElementById('cryptosubmit').classList.add("btn-warning");
+            document.getElementById('cryptosubmit').classList.remove("btn-success");
+            document.getElementById('cryptosubmit').value = "Check Values";
+        }
+
+    }
+
+    function calculate_input() {
+        input_value = parseFloat(document.getElementById("input_coin_value").value);
+        if ((input_value >= min_value) && (input_value <= max_value)) {
+            if ((input_value * rate) > 0) {
+                document.getElementById("output_coin_value").value = (input_value * rate).toFixed(8);
+                validate_submit();
+            } else {
+                document.getElementById("output_coin_value").value = 0;
+                validate_submit();
+            }
+        }
+        else{
+            validate_submit();
+        }
+    }
+
+    function calculate_output() {
+        output_value = parseFloat(document.getElementById("output_coin_value").value);
+        rate = parseFloat("{{rate_json}}");
+        input_value = parseFloat((output_value / rate)).toFixed(8)
+        res = parseFloat((output_value / rate)).toFixed(8);
+        if ((min_value <= res) && (max_value >= res)) {
+            document.getElementById("input_coin_value").value = res;
+            validate_submit();
+        } else if (res < min_value) {
+            document.getElementById("output_coin_value").value = parseFloat(min_value * rate).toFixed(8);
+            validate_submit();
+        } else {
+            document.getElementById("output_coin_value").value = parseFloat(max_value * rate).toFixed(8);
+            validate_submit();
+        }
+    }
+</script>
+<script>
+    $(window).on("load", function () {
+        document.getElementById('convert_form').reset();
+        document.getElementById('cryptosubmit').setAttribute('disabled', 'disabled');
+        calculate_output();
+    });
+</script>
+
+
+
+{% endblock %}

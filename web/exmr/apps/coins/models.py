@@ -338,3 +338,25 @@ class EthereumTokenWallet(models.Model):
 
     def __str__(self):
         return self.user.username + '_' + self.name.contract_symbol
+
+class ConvertTransaction(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,blank = True,null=True)
+    amount = models.CharField(blank=False, max_length=200)
+    input_coin = models.CharField(blank=True, max_length=20)
+    output_coin = models.CharField(blank=True, max_length=20)
+    txn_date = models.DateTimeField(auto_now_add=True)
+    transaction_id = models.CharField(blank=True, max_length=200)
+    address_from = models.CharField(blank=True, max_length=200)
+    address_to = models.CharField(blank=True, max_length=200)
+    receive_address = models.CharField(blank=True, max_length=200)
+    message = models.CharField(blank=True, max_length=300)
+    system_tx_id = models.CharField(max_length=50, default=get_random)
+    activation_code = models.CharField(max_length=20, blank=True)
+    status = models.BooleanField(default=False)
+
+    def __str__(self):
+        try:
+            temp=self.user.username +"_"+self.input_coin+"_"+self.output_coin+"_"+ str(self.txn_date)
+        except:
+            temp=self.input_coin+"_"+self.output_coin+"_"+ str(self.txn_date)
+        return temp

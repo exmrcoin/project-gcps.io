@@ -402,3 +402,41 @@ class XRP():
         else:
             pub_address = wallet.addresses.all()[0].address
         return pub_address
+
+
+def create_transaction(user,currency,amount, address):
+    if currency in ['BTC','LTC']:
+        currency = Coin.objects.get(code=currency)
+        try:
+            wallet_username = user.username + "_exmr"
+        except:
+            wallet_username = user + "_exmr"
+        access = globals()['create_'+currency+'_connection']()
+        valid = access.sendtoaddress(address, amount)
+    elif currency == "eth":
+            valid = Eth.send(self.request.user, amount, address)
+
+
+def get_primary_address(user, currency):
+    erc = EthereumToken.objects.filter(contract_symbol=currency)
+    if erc:
+        return EthereumTokens(user=user, code=currency).create_erc_wallet()
+    if currency in ['XRPTest']:
+        return XRP(user).create_xrp_wallet()
+    if currency in ['ETH']:
+        return Eth(user).create_eth_wallet()
+    elif currency in ['DASH']:
+        return globals()['create_'+currency+'_wallet'](user,currency)
+    elif currency in ['BTC','LTC']:
+        coin = Coin.objects.get(code=currency)
+        try:
+            wallet = Wallet.objects.get(user=user, name=coin)
+            addr = wallet.addresses.all()[0].address
+        except:
+            return create_wallet(user, currency)
+        return addr
+    
+    else:
+        return str(currency)+' server is under maintenance'
+
+    return addr

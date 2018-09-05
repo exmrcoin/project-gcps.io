@@ -54,6 +54,15 @@ def _shapeshift_post_request(url_path, payload):
 def create_normal_tx(withdrawal_address, input_coin, output_coin,
          return_address=None, destination_tag=None, 
          rs_address=None, api_key=None):
+    """withdrawal     = the address for resulting coin to be sent to
+    pair       = what coins are being exchanged in the form [input coin]_[output coin]  ie btc_ltc
+    returnAddress  = (Optional) address to return deposit to if anything goes wrong with exchange
+    destTag    = (Optional) Destination tag that you want appended to a Ripple payment to you
+    rsAddress  = (Optional) For new NXT accounts to be funded, you supply this on NXT payment to you
+    apiKey     = (Optional) Your affiliate PUBLIC KEY, for volume tracking, affiliate payments, split-shifts, etc...
+
+    example data: {"withdrawal":"AAAAAAAAAAAAA", "pair":"btc_ltc", returnAddress:"BBBBBBBBBBB"}"""
+ 
     url_path = "shift"     
     payload = {
         'withdrawal': withdrawal_address,

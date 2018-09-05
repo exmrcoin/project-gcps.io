@@ -24,8 +24,6 @@ from apps.apiapp import shapeshift
 from apps.coins import coinlist
 from django.shortcuts import render
 
-CURRENCIES = ['BTC', 'LTC', 'BCH', 'XRP']
-
 
 class WalletsView(LoginRequiredMixin, TemplateView):
     template_name = 'coins/wallets.html'
@@ -331,67 +329,32 @@ class SendView(LoginRequiredMixin, View):
         currency = kwargs.get('slug')
         amount = Decimal(request.POST.get('amount'))
         erc = EthereumToken.objects.filter(contract_symbol=currency)
-        obj = None
-        if currency in ('BTC') and not erc:
-            access = getattr(apps.coins.utils, 'create_' +currency+'_connection')()
-            valid = access.validateaddress(address)
-            # balance = get_balance(request.user.username, currency)
-            # balance = balance - amount
-            obj = BTC(self.request.user,currency)
-            balance = obj.balance()
-            if float(amount) > balance:
-                return HttpResponse(json.dumps({"error": "Insufficient Funds"}), content_type='application/json')
-            return HttpResponse(json.dumps({"success": True}), content_type='application/json')
+        balance = get_balance(request.user, currency)
+        if float(amount) > balance or amount<=0:
+            return HttpResponse(json.dumps({"error": "Insufficient Funds"}), content_type='application/json')
+    
+        code = ''.join(random.choice(string.ascii_lowercase +
+                                     string.ascii_uppercase) for _ in range(12))
+        trans_obj = Transaction.objects.create(user=self.request.user, currency=currency,
+                                               balance=balance, amount=amount, transaction_to=address,
+                                               activation_code=code)
 
-        elif currency == 'XRP':
-            obj = XRP(self.request.user)
-            # valid = obj.send(address, str(amount))
-            balance = obj.balance()
-            if float(amount) > balance:
-                return HttpResponse(json.dumps({"error": "Insufficient Funds"}), content_type='application/json')
+        self.request.session['transaction'] = trans_obj.system_tx_id
+        slug = trans_obj.system_tx_id+"-"+code
+        context = {
+            'slug_val': slug,
+            'host': self.request.get_host(),
+            'scheme': self.request.scheme,
+            'transaction': trans_obj,
+            'type': currency,
+        }
+        response_data = render_to_string(
+            'coins/transfer-confirmed-email.html', context, )
+        email = EmailMessage('Getcryptopayments.org Withdrawal Confirmation', response_data, to=[
+                             self.request.user.email])
+        email.send()
+        return HttpResponse(json.dumps({"success": True}), content_type='application/json')
 
-        elif currency == 'XRPTest':
-            obj = XRPTest(self.request.user)
-            # valid = obj.send(address, str(amount))
-            balance = obj.balance()
-            if float(amount) > balance:
-                return HttpResponse(json.dumps({"error": "Insufficient Funds"}), content_type='application/json')
-        
-        elif erc:
-            obj = EthereumTokens(self.request.user, currency)
-            balance = obj.balance()
-            if float(amount) > balance:
-                return HttpResponse(json.dumps({"error": "Insufficient Funds"}), content_type='application/json')
-
-        elif currency == 'ETH':
-            obj = Eth(self.request.user)
-            balance = obj.balance()
-            if float(amount) > balance:
-                return HttpResponse(json.dumps({"error": "Insufficient Funds"}), content_type='application/json')
-        if obj:
-            code = ''.join(random.choice(string.ascii_lowercase +
-                                         string.ascii_uppercase) for _ in range(12))
-            trans_obj = Transaction.objects.create(user=self.request.user, currency=currency,
-                                                   balance=balance, amount=amount, transaction_to=address,
-                                                   activation_code=code)
-
-            self.request.session['transaction'] = trans_obj.system_tx_id
-            slug = trans_obj.system_tx_id+"-"+code
-            context = {
-                'slug_val': slug,
-                'host': self.request.get_host(),
-                'scheme': self.request.scheme,
-                'transaction': trans_obj,
-                'type': currency,
-            }
-            response_data = render_to_string(
-                'coins/transfer-confirmed-email.html', context, )
-            email = EmailMessage('Getcryptopayments.org Withdrawal Confirmation', response_data, to=[
-                                 self.request.user.email])
-            email.send()
-            return HttpResponse(json.dumps({"success": True}), content_type='application/json')
-
-        return HttpResponse(json.dumps(valid), content_type='application/json')
 
 
 class SendSuccessView(TemplateView):

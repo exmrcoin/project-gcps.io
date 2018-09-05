@@ -89,18 +89,11 @@ def get_balance(user, currency):
         balance = Eth(user).balance()
     elif currency == "XRP":
         balance = XRP(user).balance()
-        # wallet_username = user.username + "_exmr"
-        # access = globals()['create_'+currency+'_connection']()
-        # balance = access.getreceivedbyaccount(wallet_username)
-
-        # transaction = Transaction.objects.filter(
-        #     user__username=user, currency=currency)
-        # if transaction:
-        #     balance = balance - sum([Decimal(obj.amount)for obj in transaction])
     else:
         balance = 0
 
     return balance
+
 
 
 def wallet_info(currency):
@@ -137,9 +130,9 @@ class XRPTest():
                     }
         result = json.loads(requests.post("https://s.altnet.rippletest.net:51234",json=params).text)
         try:
-            return Decimal(result['result']['account_data']['Balance'])/Decimal(1000000)
+            return float(Decimal(result['result']['account_data']['Balance'])/Decimal(1000000))
         except:
-            return "0"
+            return 0.0
 
     def send(self, destination, amount):
         wallet = Wallet.objects.get(user=self.user, name__code="XRPTest")
@@ -283,7 +276,7 @@ class EthereumTokens():
         user_addr = EthereumTokenWallet.objects.get(
             user=self.user, name__contract_symbol=self.code).addresses.all()[0].address
         #balance = w3.fromWei(w3.eth.getBalance(w3.toChecksumAddress(user_addr)),"ether")
-        balance = self.contract.call().balanceOf(user_addr)/pow(10,self.contract.call().decimals())
+        balance = float(self.contract.call().balanceOf(user_addr)/pow(10,self.contract.call().decimals()))
         return balance
 
     def send(self, to_addr, amount):
@@ -350,9 +343,9 @@ class XRP():
                     }
         result = json.loads(requests.post("http://s1.ripple.com:51234/",json=params).text)
         try:
-            return Decimal(result['result']['account_data']['Balance'])/Decimal(1000000)
+            return float(Decimal(result['result']['account_data']['Balance'])/Decimal(1000000))
         except:
-            return "0"
+            return 0.0
 
     def send(self, destination, amount):
         wallet = Wallet.objects.get(user=self.user, name__code="XRP")

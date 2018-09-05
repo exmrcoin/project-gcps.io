@@ -69,29 +69,34 @@ function sendConfirm(){
     $("#confirm_Send").modal("hide");
     address = $(".wallet-send-coin-addr").val();
     amount = $(".amount").val();
-    $.ajax({
-        type: "POST",
-        url: "{% if coin.code %}{% url 'coins:send' coin.code %}{% else %}{% url 'coins:send' coin.contract_symbol %}{% endif%}",
-        data: {
-            'to': address,
-            'amount': amount,
-            csrfmiddlewaretoken: '{{ csrf_token }}',
-            beforeSend: function() {
-              $(".btn-signup").hide();
-              $("#loading-image").show();
-           },
-        },
-        success: function (data) {
-            if (data['success']){
-                window.location.href = "{% url 'coins:send-success' %}"
-            }     
-            else{
-              alert(data['error']);
-           }
-           $(".btn-signup").show();
-           $("#loading-image").hide();
-        }
-    });
+    if(address && amount){
+      $.ajax({
+          type: "POST",
+          url: "{% if coin.code %}{% url 'coins:send' coin.code %}{% else %}{% url 'coins:send' coin.contract_symbol %}{% endif%}",
+          data: {
+              'to': address,
+              'amount': amount,
+              csrfmiddlewaretoken: '{{ csrf_token }}',
+              beforeSend: function() {
+                $(".btn-signup").hide();
+                $("#loading-image").show();
+             },
+          },
+          success: function (data) {
+              if (data['success']){
+                  window.location.href = "{% url 'coins:send-success' %}"
+              }     
+              else{
+                alert(data['error']);
+             }
+             $(".btn-signup").show();
+             $("#loading-image").hide();
+          }
+      });
+    }
+    else{
+      alert("Please verify the details not empty.")
+    }
 }
 </script>
 {% endblock %}

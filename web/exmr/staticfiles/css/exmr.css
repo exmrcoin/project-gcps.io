@@ -2197,8 +2197,10 @@ top: 25%;} */
     font-size: 18px;
     height: 50px;
     padding: 10px 0px;
-    width: 200px;
+    width: 80%;
     position: relative;
+    margin: 0 auto;
+    text-align: center;
   }
   .cryptoinput:focus {
     outline: none;  
@@ -2207,3 +2209,6 @@ top: 25%;} */
     transition: all 0.2s linear;
   }
   
+.margin-center{
+    margin: 0 auto;
+}

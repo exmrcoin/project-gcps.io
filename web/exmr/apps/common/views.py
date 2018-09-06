@@ -3,11 +3,19 @@ import os
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
 from django.views.generic import View, TemplateView, FormView
-
+from django.shortcuts import render
 from apps.accounts.models import Profile
 from apps.common.forms import CoinRequestForm, ContactForm
 from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload, StaticPage
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+
+
+def error_404_view(request, exception):
+    data = {"name": "EXMR"}
+    return render(request,'error/error404.html', data)
+def error_500_view(request):
+    data = {"name": "EXMR"}
+    return render(request,'error/error500.html', data)
 
 class HomeView(TemplateView):
     template_name = 'common/index.html'
@@ -106,3 +114,5 @@ class ContactView(FormView):
     def form_valid(self,form):
         form.save()
         return HttpResponseRedirect(self.success_url)
+
+

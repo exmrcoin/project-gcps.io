@@ -13,6 +13,7 @@ from django.template.loader import render_to_string
 from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.views.generic import ListView, FormView, TemplateView, DetailView, View
+from django.http import HttpResponseNotFound, HttpResponseServerError
 
 from apps.coins.utils import *
 from apps.accounts.models import User
@@ -110,26 +111,29 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
             ret_addr = get_primary_address(
                 user=self.request.user, currency=sel_coin)
             # ret_addr = 'LXA3i9eEAVDbgDqkThCa4D6BUJ3SEULkEr'
-
             transaction_details = shapeshift.create_normal_tx(
                 addr, sel_coin, output_coin, ret_addr, None, None, None)
             print(transaction_details)
-            request.session['deposit_address'] = transaction_details['deposit']
-            request.session['recieve_from'] = transaction_details['withdrawal']
+            try:
+                request.session['deposit_address'] = transaction_details['deposit']
+                request.session['recieve_from'] = transaction_details['withdrawal']
+
+                obj = ConvertTransaction.objects.create(
+                    user=self.request.user,
+                    input_coin=sel_coin,
+                    output_coin=output_coin,
+                    transaction_id=transaction_details['orderId'],
+                    address_from=ret_addr,
+                    address_to=transaction_details['deposit'],
+                    receive_address=transaction_details['withdrawal'],
+                    status=False,
+                )
+                obj.save()
+            except:
+                return HttpResponse(status_code = 500)
 
         except Exception as e:
             raise e
-        obj = ConvertTransaction.objects.create(
-            user=self.request.user,
-            input_coin=sel_coin,
-            output_coin=output_coin,
-            transaction_id=transaction_details['orderId'],
-            address_from=ret_addr,
-            address_to=transaction_details['deposit'],
-            receive_address=transaction_details['withdrawal'],
-            status=False,
-        )
-        obj.save()
         return render(request, 'coins/convert-select-confirm.html', context)
 
 

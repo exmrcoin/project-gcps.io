@@ -30,6 +30,8 @@ from apps.common.views import HomeView, ContactView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
+    path('', HomeView.as_view(), name='home'),
+
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

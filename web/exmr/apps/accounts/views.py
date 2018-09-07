@@ -421,7 +421,6 @@ class LoginNoticeView(View):
         return HttpResponseRedirect(reverse("accounts:profile"))
 
     def send_login_notice(self, request):
-        
         context = {
                    "ip": self.get_client_ip(request),
                    "first_name": request.user.first_name

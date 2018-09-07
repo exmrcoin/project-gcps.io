@@ -6,7 +6,6 @@ from import_export.admin import ImportExportModelAdmin
 from apps.coins.models import Coin, CoinSetting, CoinConvertRequest, Wallet, Transaction,\
                               ClaimRefund, NewCoin, CoinVote, CoPromotion, CoPromotionURL,\
                               EthereumToken, EthereumTokenWallet, Phases, ConvertTransaction
-
 class CoinResource(resources.ModelResource):
 
     class Meta:
@@ -43,3 +42,4 @@ admin.site.register(CoPromotionURL)
 admin.site.register(EthereumToken)
 admin.site.register(EthereumTokenWallet)
 admin.site.register(ConvertTransaction)
+

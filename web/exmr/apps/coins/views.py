@@ -1,6 +1,7 @@
 import random
 import string
 import datetime
+import requests
 import apps.coins.utils
 
 from datetime import datetime
@@ -35,7 +36,7 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         #     coin = Coin.objects.get(code=currency)
         #     if not Wallet.objects.filter(user=self.request.user, name=coin):
         #         create_wallet(self.request.user, currency)
-        context['wallets'] = Coin.objects.all()
+        context["wallets"] = Coin.objects.all()
         context["erc_wallet"] = EthereumToken.objects.all()
         return context
 
@@ -527,13 +528,23 @@ class CopromotionView(TemplateView):
 class BalanceView(View):
     def get(self, request, *args, **kwargs):
         currency_code = self.request.GET.get('code')
+        if not self.request.session.get("rates"):
+            data = json.loads(requests.get("http://coincap.io/front").text)
+            rates = {rate['short']:rate['price'] for rate in data}
+            self.request.session["rates"] = rates
+        if 'Test' in currency_code:
+            new_currency_code = currency_code.strip("Test")
+        else:
+            new_currency_code = currency_code
+        rate = self.request.session["rates"][new_currency_code]
         try:
             balance = get_balance(self.request.user, currency_code)
         except:
             balance = 0
         if not balance:
             balance = 0
-        data = {'balance': str(balance), 'code': currency_code}
+        value = balance*rate
+        data = {'balance': str(balance), 'code': currency_code, 'value': value}
         return HttpResponse(json.dumps(data), content_type="application/json")
 
 
@@ -551,3 +562,17 @@ class VoteWinners(TemplateView):
                     temp_list.append(temp)
         context['newcoins'] = temp_list
         return context
+
+
+class ConversionView(View):
+    def get(self, request, *args, **kwargs):
+        convert_to = self.request.GET.get("to")
+        if convert_to != "USD":
+            val = float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q=USD_"+\
+               convert_to+"&compact=y&callback=json").text.split(":")[-1].strip("}});"))
+        else:
+            val = 1
+
+        return HttpResponse(json.dumps({"value": val}), content_type="application/json")
+
+

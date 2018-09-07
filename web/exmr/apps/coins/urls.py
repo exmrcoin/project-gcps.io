@@ -33,5 +33,6 @@ urlpatterns = [
     path('coin-convert/<str:currency>', coin_views.CoinConvertView.as_view(), name="convert_select"),
     path('coin-convert-confirmation/', coin_views.CoinConvertView2.as_view(), name="convert_select_confirm"),
     path('coin-convert-complete/', coin_views.CoinConvertView3.as_view(), name="convert_select_finish"),
+    path('currency-convert/', coin_views.ConversionView.as_view(), name="currency_convert"),
 
 ]

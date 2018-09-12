@@ -124,8 +124,7 @@
                                     <span>{{ erc.contract_symbol }}</span>
                                 </th>
                                 <th>
-                                    <span>{{ erc.contract_symbol }}</span>
-                                    {% get_bal_coin erc.contract_symbol request.user %}
+                                    <span>{{ erc.contract_symbol }} ETH: {% get_eth_balance erc.contract_symbol request.user %}</span>
                                 </th>
                                 <th id="bal_{{ erc.contract_symbol }}">
                                     <img id="loading-image_{{obj.contract_symbol}}" src="{% static 'images/load.gif' %}" style="display:none;height: 20px;" />

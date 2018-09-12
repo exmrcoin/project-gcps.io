@@ -5,7 +5,7 @@ import datetime
 from django import template
 
 from apps.coins.utils import *
-from apps.coins.models import Coin, NewCoin
+from apps.coins.models import Coin, NewCoin, EthereumTokenWallet
 register = template.Library()
 
 
@@ -53,3 +53,10 @@ def percentage(count):
 @register.simple_tag
 def coin_code_to_name(code):
     return NewCoin.objects.get(code=code).name
+
+@register.simple_tag
+def get_eth_balance(symbol, user):
+    address = EthereumTokenWallet.objects.get(
+            user=user, name__contract_symbol=symbol).addresses.all()[0].address
+    return float(w3.fromWei(w3.eth.getBalance(Web3.toChecksumAddress(address)), "ether"))
+

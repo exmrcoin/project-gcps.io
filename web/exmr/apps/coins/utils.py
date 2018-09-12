@@ -7,6 +7,16 @@ from decimal import Decimal
 from solc import compile_source
 from web3.contract import ConciseContract
 from web3 import Web3, HTTPProvider, TestRPCProvider
+from stellar_base.asset import Asset
+from stellar_base.memo import TextMemo
+from stellar_base.address import Address
+from stellar_base.keypair import Keypair
+from stellar_base.operation import CreateAccount, Payment
+from stellar_base.horizon import horizon_livenet, horizon_testnet
+from stellar_base.transaction_envelope import TransactionEnvelope as Te
+from stellar_base.builder import Builder
+
+
 
 
 from bitcoinrpc.authproxy import AuthServiceProxy
@@ -60,7 +70,9 @@ def create_wallet(user, currency):
     elif currency in ['DASH']:
         return globals()['create_'+currency+'_wallet'](user,currency)
     elif currency in ['BTC']:
-        return BTC(user, currency).generate()   
+        return BTC(user, currency).generate()
+    elif currency in ['XLM']:
+        return XLM(user, currency).generate()   
     else:
         return str(currency)+' server is under maintenance'
 
@@ -74,7 +86,7 @@ def get_balance(user, currency):
     erc = EthereumToken.objects.filter(contract_symbol=currency)
     if erc:
         balance = EthereumTokens(user=user, code=currency).balance()
-    if currency == "XRPTest":
+    elif currency == "XRPTest":
         balance = XRPTest(user).balance()
     elif currency == "BTC":
         wallet_username = user.username + "_exmr"
@@ -89,6 +101,8 @@ def get_balance(user, currency):
         balance = Eth(user).balance()
     elif currency == "XRP":
         balance = XRP(user).balance()
+    elif currency == "XLM":
+        balance = XLM(user,"XLM").balance()
     else:
         balance = 0
 
@@ -433,3 +447,45 @@ def get_primary_address(user, currency):
         return str(currency)+' server is under maintenance'
 
     return addr
+
+class XLM():
+    def __init__(self, user, currency):
+        self.user = user
+        self.currency = currency
+        self.coin = Coin.objects.get(code=currency)
+ 
+    def generate(self):
+        wallet, created = Wallet.objects.get_or_create(user=self.user, name=self.coin)
+        if created:
+            kp = Keypair.random()
+            address = kp.address().decode()
+            # requests.get('https://friendbot.stellar.org/?addr=' + address)
+            wallet.addresses.add(WalletAddress.objects.create(address=address))
+            wallet.private = kp.seed().decode()
+            wallet.save()
+        else:
+            address = wallet.addresses.all()[0].address
+            # requests.get('https://friendbot.stellar.org/?addr=' + address)
+        return address
+
+    def balance(self):
+        user_addr = Wallet.objects.get(user=self.user, name=self.coin).addresses.all()[0].address
+        address = Address(address=user_addr)
+        try:
+            address.get()
+            return float(Decimal(address.balances[0]['balance']))
+        except:
+            return None
+            
+    def send(self, destination, amount):
+        wallet = Wallet.objects.get(user=self.user, name=self.coin)
+        try:
+            builder = Builder(secret=wallet.private)
+            builder.add_text_memo("EXMR, Stellar!").append_payment_op(destination=destination, amount=str(amount), asset_code='XLM')
+            builder.sign()
+            response = builder.submit()
+            return response["hash"]
+        except:
+            return {"error": "insufficient funds"}
+
+

@@ -35,12 +35,14 @@
                <div class="col-sm-6 p0">
                
                 <div class="input-group width80per">
-					<div class="divid"></div>
+					       <div class="divid"></div>
                   <input id="msg" type="text" class="form-control amount"  >
                   <span class="input-group-addon p5">
-                  <select >
-                  <option>USD</option>	
-                  </select></span> </div>
+                    <select name="dispcoin" id="dispcoin">
+                      <option value="BTC">BTC</option><option value="USD" selected="">USD</option><option value="CAD">CAD</option><option value="EUR">EUR</option><option value="ARS">ARS</option><option value="AUD">AUD</option><option value="AZN">AZN</option><option value="BGN">BGN</option><option value="BRL">BRL</option><option value="BYN">BYN</option><option value="CHF">CHF</option><option value="CLP">CLP</option><option value="CNY">CNY</option><option value="COP">COP</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="GBP">GBP</option><option value="GEL">GEL</option><option value="GIP">GIP</option><option value="HKD">HKD</option><option value="HUF">HUF</option><option value="IDR">IDR</option><option value="ILS">ILS</option><option value="INR">INR</option><option value="IRR">IRR</option><option value="IRT">IRT</option><option value="ISK">ISK</option><option value="JPY">JPY</option><option value="KRW">KRW</option><option value="LAK">LAK</option><option value="MKD">MKD</option><option value="MXN">MXN</option><option value="MYR">MYR</option><option value="NGN">NGN</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PEN">PEN</option><option value="PHP">PHP</option><option value="PKR">PKR</option><option value="PLN">PLN</option><option value="RON">RON</option><option value="RUB">RUB</option><option value="SEK">SEK</option><option value="SGD">SGD</option><option value="THB">THB</option><option value="TRY">TRY</option><option value="TWD">TWD</option><option value="UAH">UAH</option><option value="VND">VND</option><option value="ZAR">ZAR</option>
+                    </select>
+                  </span> 
+                </div>
               </div>
             </div>
             <p>00000000 {{ coin.code }}</p>
@@ -58,45 +60,47 @@
 
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script type="text/javascript">
-$(".amount").keyup(function(){
-  if ($(".amount").val())
-    $("#id_amount").text(parseInt($(".amount").val())+00000000)
-  else
-    $("#id_amount").text(00000000)
-})
+  $(".amount").keyup(function(){
+    if ($(".amount").val())
+      $("#id_amount").text(parseInt($(".amount").val())+00000000)
+    else
+      $("#id_amount").text(00000000)
+  })
 
-function sendConfirm(){
-    $("#confirm_Send").modal("hide");
-    address = $(".wallet-send-coin-addr").val();
-    amount = $(".amount").val();
-    if(address && amount){
-      $.ajax({
-          type: "POST",
-          url: "{% if coin.code %}{% url 'coins:send' coin.code %}{% else %}{% url 'coins:send' coin.contract_symbol %}{% endif%}",
-          data: {
-              'to': address,
-              'amount': amount,
-              csrfmiddlewaretoken: '{{ csrf_token }}',
-              beforeSend: function() {
-                $(".btn-signup").hide();
-                $("#loading-image").show();
-             },
-          },
-          success: function (data) {
-              if (data['success']){
-                  window.location.href = "{% url 'coins:send-success' %}"
-              }     
-              else{
-                alert(data['error']);
-             }
-             $(".btn-signup").show();
-             $("#loading-image").hide();
-          }
-      });
-    }
-    else{
-      alert("Please verify the details not empty.")
-    }
-}
+  function sendConfirm(){
+      $("#confirm_Send").modal("hide");
+      address = $(".wallet-send-coin-addr").val();
+      amount = $(".amount").val();
+      if(address && amount){
+        $.ajax({
+            type: "POST",
+            url: "{% if coin.code %}{% url 'coins:send' coin.code %}{% else %}{% url 'coins:send' coin.contract_symbol %}{% endif%}",
+            data: {
+                'to': address,
+                'amount': amount,
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                beforeSend: function() {
+                  $(".btn-signup").hide();
+                  $("#loading-image").show();
+               },
+            },
+            success: function (data) {
+                if (data['success']){
+                    window.location.href = "{% url 'coins:send-success' %}"
+                }     
+                else{
+                  alert(data['error']);
+               }
+               $(".btn-signup").show();
+               $("#loading-image").hide();
+            }
+        });
+      }
+      else{
+        alert("Please verify the details not empty.")
+      }
+  }
+
+
 </script>
 {% endblock %}

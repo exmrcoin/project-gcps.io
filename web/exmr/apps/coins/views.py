@@ -392,6 +392,8 @@ class SendConfirmView(TemplateView):
                 obj = BTC(self.request.user, t_obj.currency)
             elif t_obj.currency == 'ETH':
                 obj = Eth(self.request.user)
+            elif t_obj.currency == 'XLM':
+                obj = XLM(self.request.user, "XLM")
             valid = obj.send(t_obj.transaction_to, str(t_obj.amount))
             balance = obj.balance()
             t_obj.approved = True

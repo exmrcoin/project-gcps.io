@@ -98,6 +98,7 @@ def get_balance(user, currency):
     """
     Retrive specified user wallet balance.
     """
+
     erc = EthereumToken.objects.filter(contract_symbol=currency)
     if erc:
         balance = EthereumTokens(user=user, code=currency).balance()
@@ -288,7 +289,8 @@ class EthereumTokens():
         self.user = user
         self.code = code
         obj = EthereumToken.objects.get(contract_symbol=code)
-        self.contract = w3.eth.contract(address=obj.contract_address, abi=obj.contract_abi)
+        self.contract = w3.eth.contract(address=Web3.toChecksumAddress(obj.contract_address),\
+         abi=obj.contract_abi)
 
     def generate(self):
         coin = EthereumToken.objects.get(contract_symbol=self.code)
@@ -305,7 +307,7 @@ class EthereumTokens():
         user_addr = EthereumTokenWallet.objects.get(
             user=self.user, name__contract_symbol=self.code).addresses.all()[0].address
         #balance = w3.fromWei(w3.eth.getBalance(w3.toChecksumAddress(user_addr)),"ether")
-        balance = float(self.contract.call().balanceOf(user_addr)/pow(10,self.contract.call().decimals()))
+        balance = float(self.contract.call().balanceOf(Web3.toChecksumAddress(user_addr))/pow(10,self.contract.call().decimals()))
         return balance
 
     def send(self, to_addr, amount):

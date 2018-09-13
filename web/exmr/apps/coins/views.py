@@ -244,7 +244,7 @@ class ConvertCoinsView(FormView):
 
 class NewCoinAddr(LoginRequiredMixin, TemplateView):
     template_name = 'coins/deposit.html'
-
+    
     def get_context_data(self, **kwargs):
         context = super(NewCoinAddr, self).get_context_data(**kwargs)
         code = kwargs.get('currency')

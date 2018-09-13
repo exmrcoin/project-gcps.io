@@ -39,7 +39,14 @@ def create_LTC_connection():
     """
     create connetion to litecoin fullnode
     """
-    access = AuthServiceProxy("http://anand:anandkrishnan@18.218.176.0:19332")
+    access = AuthServiceProxy("http://litecoinrpc:12345678@47.88.59.35:2300")
+    return access
+
+def create_XVG_connection():
+    """
+    create connetion to litecoin fullnode
+    """
+    access = AuthServiceProxy("http://verge:12345678@47.88.59.130:2300")
     return access
 
 
@@ -47,7 +54,14 @@ def create_BCH_connection():
     """
     create connetion to bitcoin cash fullnode
     """
-    access = AuthServiceProxy("http://anand:anandkrishnan@13.58.70.247:18332")
+    access = AuthServiceProxy("http://bitcoincashrpc:12345678@39.104.231.49:2300")
+    return access
+
+def create_XMR_connection():
+    """
+    create connetion to bitcoin cash fullnode
+    """
+    access = AuthServiceProxy("http://litecointestrpc:12345678@13.127.41.179:2300")
     return access
 
 def create_DASH_connection():
@@ -58,6 +72,7 @@ def create_wallet(user, currency):
     """
     create an account name in full node
     """
+    
     erc = EthereumToken.objects.filter(contract_symbol=currency)
     if erc:
         return EthereumTokens(user=user, code=currency).generate()
@@ -69,10 +84,10 @@ def create_wallet(user, currency):
         return XRP(user).generate()
     elif currency in ['DASH']:
         return globals()['create_'+currency+'_wallet'](user,currency)
-    elif currency in ['BTC']:
+    elif currency in ['BTC', 'LTC', 'XVG', 'BCH']:
         return BTC(user, currency).generate()
     elif currency in ['XLM']:
-        return XLM(user, currency).generate()   
+        return XLM(user, currency).generate()
     else:
         return str(currency)+' server is under maintenance'
 
@@ -88,7 +103,7 @@ def get_balance(user, currency):
         balance = EthereumTokens(user=user, code=currency).balance()
     elif currency == "XRPTest":
         balance = XRPTest(user).balance()
-    elif currency == "BTC":
+    elif currency == ["BTC", "LTC", "XVG", "BCH"]:
         wallet_username = user.username + "_exmr"
         access = globals()['create_'+currency+'_connection']()
         balance = access.getreceivedbyaccount(wallet_username)
@@ -323,7 +338,6 @@ class BTC():
         if transaction:
             balance = balance - sum([Decimal(obj.amount)for obj in transaction])
         return float(balance)
-
     def generate(self):
         coin = Coin.objects.get(code=self.currency)
         wallet_username = self.user.username + "_exmr"
@@ -335,7 +349,6 @@ class BTC():
         except:
             addr = ''
         return addr
-
 
 class XRP():
     def __init__(self, user):

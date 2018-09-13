@@ -1,4 +1,11 @@
-{% extends 'base.html' %}
+
+
+
+class ConvertCoinsView(FormView):
+
+template_name = 'coins/coin_conversion.html'
+form_class = ConvertRequestForm
+success_url ={% extends 'base.html' %}
 {% load staticfiles %}
 {% block content %}
     {% load i18n widget_tweaks %}

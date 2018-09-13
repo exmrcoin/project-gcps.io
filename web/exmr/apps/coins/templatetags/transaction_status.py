@@ -56,7 +56,10 @@ def coin_code_to_name(code):
 
 @register.simple_tag
 def get_eth_balance(symbol, user):
-    address = EthereumTokenWallet.objects.get(
-            user=user, name__contract_symbol=symbol).addresses.all()[0].address
-    return float(w3.fromWei(w3.eth.getBalance(Web3.toChecksumAddress(address)), "ether"))
+    try:
+        address = EthereumTokenWallet.objects.get(
+                user=user, name__contract_symbol=symbol).addresses.all()[0].address
+        return float(w3.fromWei(w3.eth.getBalance(Web3.toChecksumAddress(address)), "ether"))
+    except:
+        return 0.0
 

@@ -530,6 +530,7 @@ class CopromotionView(TemplateView):
 class BalanceView(View):
     def get(self, request, *args, **kwargs):
         currency_code = self.request.GET.get('code')
+        value = None
         if not self.request.session.get("rates"):
             data = json.loads(requests.get("http://coincap.io/front").text)
             rates = {rate['short']:rate['price'] for rate in data}
@@ -538,14 +539,17 @@ class BalanceView(View):
             new_currency_code = currency_code.strip("Test")
         else:
             new_currency_code = currency_code
-        rate = self.request.session["rates"][new_currency_code]
         try:
             balance = get_balance(self.request.user, currency_code)
         except:
             balance = 0
         if not balance:
             balance = 0
-        value = balance*rate
+        if self.request.session["rates"].get(new_currency_code):
+            rate = self.request.session["rates"][new_currency_code]
+            value = balance*rate
+        else:
+            value = "NA"
         data = {'balance': str(balance), 'code': currency_code, 'value': value}
         return HttpResponse(json.dumps(data), content_type="application/json")
 

@@ -446,7 +446,7 @@ def get_primary_address(user, currency):
     if currency in ['XRPTest']:
         return XRP(user).create_xrp_wallet()
     if currency in ['ETH']:
-        return Eth(user).create_eth_wallet()
+        return Eth(user).generate()
     elif currency in ['DASH']:
         return globals()['create_'+currency+'_wallet'](user,currency)
     elif currency in ['BTC','LTC']:

@@ -90,6 +90,13 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
         pair = None
         try:
             limit_json = shapeshift.get_market_info(sel_coin, output_coin)
+            try:
+                cur_bal = get_balance(self.request.user, sel_coin)
+                if cur_bal < limit_json['minimum']:
+                    context['has_balance'] = False
+                    # return redirect(reverse_lazy('coins:low-balance'))
+            except:
+                pass
             pair = limit_json['pair']
             context['rate_json'] = limit_json['rate']
             context['min_limit'] = round(1.3 * limit_json['minimum'], 8)

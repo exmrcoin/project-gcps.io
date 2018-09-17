@@ -60,5 +60,3 @@ urlpatterns += i18n_patterns(
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
-handler404 = 'apps.common.views.error_404_view'
-handler500 = 'apps.common.views.error_500_view'

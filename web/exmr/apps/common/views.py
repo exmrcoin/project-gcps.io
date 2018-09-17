@@ -10,13 +10,6 @@ from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload, S
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 
 
-def error_404_view(request, exception):
-    data = {"name": "EXMR"}
-    return render(request,'error/error404.html', data)
-def error_500_view(request):
-    data = {"name": "EXMR"}
-    return render(request,'error/error500.html', data)
-
 class HomeView(TemplateView):
     template_name = 'common/index.html'
 

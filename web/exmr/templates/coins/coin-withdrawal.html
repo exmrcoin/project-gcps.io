@@ -21,7 +21,7 @@
           </div>
           <div class="col-sm-6 lh40" align="right">
             <p>00010 {% if coin.code %}{{coin.code}}{% else %}{{ coin.contract_symbol }}{% endif %}</p>
-            <p>{% get_bal_coin coin.code request.user %} {% if coin.code %}{{coin.code}}{% else %}{{ coin.contract_symbol }}{% endif %}</p>
+            <p>{% get_bal_coin coin.code request.user %} {% if coin.code %}{{coin.code}}{% else %}{% get_bal_coin coin.contract_symbol request.user %}{{coin.contract_symbol}}{% endif %}</p>
             <div class="row m0 mb20">
               <div class="col-sm-6 ">
                 <div class="input-group">

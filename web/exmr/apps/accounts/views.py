@@ -343,7 +343,6 @@ class Verify2FAView(LoginRequiredMixin, View):
             request.session['email_otp'] = get_pin()
 
             if not request.session.get('email_send', False):
-
                 send_mail(
                     'Verification Code',
                     'Your verification code is %s' % request.session['email_otp'],
@@ -417,8 +416,11 @@ def signup_context(request):
 
 class LoginNoticeView(View):
     def get(self, request, *args, **kwargs):
-        status = self.send_login_notice(request)
-        return HttpResponseRedirect(reverse("accounts:profile"))
+        try:
+            status = self.send_login_notice(request)
+        except:
+            pass
+        return redirect(reverse("accounts:profile"))
 
     def send_login_notice(self, request):
         context = {

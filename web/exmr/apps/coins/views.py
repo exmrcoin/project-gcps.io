@@ -88,6 +88,7 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
         context['input_coin'] = sel_coin
         context['output_coin'] = output_coin
         pair = None
+        context['has_balance'] = True
         try:
             limit_json = shapeshift.get_market_info(sel_coin, output_coin)
             try:

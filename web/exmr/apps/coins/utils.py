@@ -104,15 +104,8 @@ def get_balance(user, currency):
         balance = EthereumTokens(user=user, code=currency).balance()
     elif currency == "XRPTest":
         balance = XRPTest(user).balance()
-    elif currency == ["BTC", "LTC", "XVG", "BCH"]:
-        wallet_username = user.username + "_exmr"
-        access = globals()['create_'+currency+'_connection']()
-        balance = access.getreceivedbyaccount(wallet_username)
-
-        transaction = Transaction.objects.filter(
-            user__username=user, currency=currency)
-        if transaction:
-            balance = balance - sum([Decimal(obj.amount)for obj in transaction])
+    elif currency in ["BTC", "LTC", "XVG", "BCH"]:
+        balance = BTC(user, currency).balance()
     elif currency == "ETH":
         balance = Eth(user).balance()
     elif currency == "XRP":

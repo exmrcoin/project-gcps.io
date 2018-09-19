@@ -23,7 +23,7 @@
                     <div class="card-body">
 
                         <!--Table-->
-                        <table class="table table-border table-responsive-md table-fixed">
+                        <table class="table table-border table-responsive-md">
 
                             <!--Table head-->
                             <thead>
@@ -31,10 +31,8 @@
 
                                 <th>{% trans 'Time' %}</th>
                                 <th>{% trans 'Received / Sent Name' %}</th>
-                                <th style="padding-left: 8%;">{% trans 'Coin' %}</th>
+                                <th >{% trans 'Coin' %}</th>
                                 <th>{% trans 'Amount' %}</th>
-                                <th>{% trans 'Status' %}</th>
-
                             </tr>
                             </thead>
                             <tbody>
@@ -44,11 +42,10 @@
                                     <td>{{transaction.transaction_to}}</td>
                                     <td style="padding-left: 8%;">{{transaction.currency}}</td>
                                     <td>{{transaction.amount}}</td>
-                                    <td>_</td>
                                 </tr>
                                 {% endfor %}
                             <tr>
-                                <td class="table-style" colspan="5">{% trans 'No Payment Found' %}</td>
+                                <td class="table-style" colspan="4">{% trans 'No Payment Found' %}</td>
 
                             </tr>
                             </tbody>

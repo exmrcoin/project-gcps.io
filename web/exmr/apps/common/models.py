@@ -1,10 +1,8 @@
 from ckeditor.fields import RichTextField, RichTextFormField
 from ckeditor_uploader.fields import RichTextUploadingField
-
 from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
-
 
 AUTH_TYPE = (
     ('HTTP Auth', _('HTTP Auth')),
@@ -54,7 +52,9 @@ class CoinRequest(models.Model):
     coin_url = models.CharField(max_length=128)
     coin_algorithm = models.CharField(max_length=255)
     coin_source_url = models.CharField(max_length=128)
-
+    
+    def __str__(self):
+        return self.coin_name
 
 class FAQ(models.Model):
     """

@@ -39,4 +39,5 @@ urlpatterns = [
     path('paypal-verify/', coin_views.PayPalVerifyView.as_view(), name="paypal_verify"),
     path('buy-coin/<str:currency>/',coin_views.BuyCryptoView.as_view(), name="buy_coin"),
 
+
 ]

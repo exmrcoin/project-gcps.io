@@ -8,7 +8,10 @@ from apps.accounts.models import Profile
 from apps.common.forms import CoinRequestForm, ContactForm
 from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload, StaticPage
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
-
+from django.core.mail import send_mail
+from django.core.mail import mail_admins
+from django.conf import settings
+from django.template.loader import render_to_string
 
 class HomeView(TemplateView):
     template_name = 'common/index.html'
@@ -28,6 +31,32 @@ class CoinRequestView(FormView):
     template_name = 'common/coin-hosting.html'
     form_class  = CoinRequestForm
     success_url = reverse_lazy('home')
+ 
+    def form_valid(self,form):
+        form.save()
+        self.coin_request_notice(self.request)
+        self.admin_coin_request_notice(self.request)
+        return HttpResponseRedirect(self.success_url)
+
+    def coin_request_notice(self, request):
+        msg_plain = render_to_string('common/coin_request_email.txt')
+        send_mail(
+                    'Coin Request Notice',
+                    msg_plain,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [request.user.email],
+                    fail_silently=True
+                )
+        return True
+
+    def admin_coin_request_notice(self, request):
+        msg_plain = render_to_string('common/coin_request_email.txt')
+        mail_admins(
+                    'Coin Request Notice',
+                    msg_plain,
+                    fail_silently=False
+                )
+        return True
 
 class HelpView(TemplateView):
     template_name='common/help-topic.html'

@@ -170,6 +170,13 @@ class WalletAddress(models.Model):
     def __str__(self):
         return self.address
 
+class MoneroPaymentid(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=50, blank = True, default="")
+    paymentid = models.CharField(max_length=500, blank=True, default="")
+
+    def __str__(self):
+        return self.user.username+"_"+ self.paymentid
 
 class Wallet(models.Model):
     """

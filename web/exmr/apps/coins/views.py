@@ -93,9 +93,9 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
             limit_json = shapeshift.get_market_info(sel_coin, output_coin)
             try:
                 cur_bal = get_balance(self.request.user, sel_coin)
-                if cur_bal < limit_json['minimum']:
+                if cur_bal < (limit_json['minimum'] * 1.3):
                     context['has_balance'] = False
-                    # return redirect(reverse_lazy('coins:low-balance'))
+                    
             except:
                 pass
             pair = limit_json['pair']
@@ -126,6 +126,7 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
             try:
                 request.session['deposit_address'] = transaction_details['deposit']
                 request.session['recieve_from'] = transaction_details['withdrawal']
+                request.session['input_coin'] = sel_coin
 
                 obj = ConvertTransaction.objects.create(
                     user=self.request.user,
@@ -139,7 +140,7 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
                 )
                 obj.save()
             except:
-                return HttpResponse(status_code = 500)
+                return HttpResponseServerError()
 
         except Exception as e:
             raise e
@@ -154,11 +155,20 @@ class CoinConvertView3(TemplateView):
         input_coin_value = request.POST.get('input_coin_value')
         try:
             convert_address = request.session['deposit_address']
+            coin = request.session['input_coin']
         except:
-            return HttpResponse(status=500)
-        valid = Eth.send(self.request, convert_address, input_coin_value)
-        if not valid['error']:
+            return HttpResponseServerError()
+        valid = False
+        balance = get_balance(request.user, coin)
+        valid =getattr(apps.coins.utils,coin)(self.request.user, coin).send( convert_address, input_coin_value)
+
+        # valid = {'error':'test error'}
+        if valid:
             context['result'] = "Success. Your account will be credited with 12 Hours. If not please contact support."
+
+            trans_obj = Transaction.objects.create(user=self.request.user, currency=coin,
+                                               balance=balance, amount=input_coin_value, transaction_to=convert_address,
+                                               activation_code='coin convert')
         else:
             context['result'] = "Transaction failed. "
             context['result1'] = "Retry after some time. If your account has been deducted please contact support."
@@ -399,9 +409,11 @@ class SendConfirmView(TemplateView):
             elif t_obj.currency == 'BTC':
                 obj = BTC(self.request.user, t_obj.currency)
             elif t_obj.currency == 'ETH':
-                obj = Eth(self.request.user)
+                obj = ETH(self.request.user, "ETH")
             elif t_obj.currency == 'XLM':
                 obj = XLM(self.request.user, "XLM")
+            elif t_obj.currency == 'XMR':
+                obj = XMR(self.request.user, "XMR")
             valid = obj.send(t_obj.transaction_to, str(t_obj.amount))
             balance = obj.balance()
             t_obj.approved = True

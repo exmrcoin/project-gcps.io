@@ -91,11 +91,11 @@ class ButtonMakerView(FormView):
                      '" maxlength="128" id="id_shipping_cost" required />',
                      '<input type="hidden" name="shipping_cost_add" value="'+str(shipping_cost_add) +
                      '" maxlength="128" id="id_shipping_cost_add" required />',
-                     '<input type="hidden" name="success_url_link" value="'+success_url_link +
+                     '<input type="hidden" name="success_url_link" value="'+str(success_url_link) +
                      '" maxlength="128" id="id_success_url_link" required />',
-                     '<input type="hidden" name="cancel_url_link" value="'+cancel_url_link +
+                     '<input type="hidden" name="cancel_url_link" value="'+str(cancel_url_link) +
                      '" maxlength="128" id="id_cancel_url_link" required />',
-                     '<input type="hidden" name="ipn_url_link" value="'+ipn_url_link +
+                     '<input type="hidden" name="ipn_url_link" value="'+str(ipn_url_link) +
                      '" maxlength="128" id="id_ipn_url_linl" required />',
                      '<input type="hidden" name="allow_buyer_note" value="' +allow_buyer_note+
                      '"id="id_allow_buyer_note" />',

@@ -35,5 +35,6 @@ urlpatterns = [
     path('coin-convert-complete/', coin_views.CoinConvertView3.as_view(), name="convert_select_finish"),
     path('currency-convert/', coin_views.ConversionView.as_view(), name="currency_convert"),
     path('insufficient/', TemplateView.as_view(template_name='coins/no-money.html'), name="low-balance"),
+    path('test/', TemplateView.as_view(template_name='coins/buycrypto-1.html'), name="test"),
 
 ]

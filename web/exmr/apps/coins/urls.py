@@ -35,5 +35,8 @@ urlpatterns = [
     path('coin-convert-complete/', coin_views.CoinConvertView3.as_view(), name="convert_select_finish"),
     path('currency-convert/', coin_views.ConversionView.as_view(), name="currency_convert"),
     path('insufficient/', TemplateView.as_view(template_name='coins/no-money.html'), name="low-balance"),
+    path('paypal-checkout/', coin_views.PayPalCheckoutView.as_view(), name="paypal_checkout"),
+    path('paypal-verify/', coin_views.PayPalVerifyView.as_view(), name="paypal_verify"),
+    path('buy-coin/<str:currency>/',coin_views.BuyCryptoView.as_view(), name="buy_coin"),
 
 ]

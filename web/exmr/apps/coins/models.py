@@ -367,3 +367,14 @@ class ConvertTransaction(models.Model):
         except:
             temp=self.input_coin+"_"+self.output_coin+"_"+ str(self.txn_date)
         return temp
+
+class PaypalTransaction(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,blank = True,null=True)
+    amount = models.CharField(blank=False, max_length=200)
+    coin_amount = models.CharField(blank=False, max_length=200)
+    coin = models.ForeignKey(Coin, verbose_name=_('coin'), on_delete=models.CASCADE)
+    paypal_txid = models.CharField(blank=False, max_length=200)
+    tx_status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username+"  "+self.amount

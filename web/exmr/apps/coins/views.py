@@ -3,8 +3,10 @@ import string
 import datetime
 import requests
 import apps.coins.utils
+import paypalrestsdk
 
 from datetime import datetime
+from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
@@ -21,7 +23,7 @@ from apps.accounts.models import User
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
     CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, \
-    WalletAddress, EthereumToken, Phases, ConvertTransaction
+    WalletAddress, EthereumToken, Phases, ConvertTransaction, PaypalTransaction
 from apps.apiapp import shapeshift
 from apps.coins import coinlist
 from django.shortcuts import render
@@ -36,6 +38,9 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         #     coin = Coin.objects.get(code=currency)
         #     if not Wallet.objects.filter(user=self.request.user, name=coin):
         #         create_wallet(self.request.user, currency)
+        data = json.loads(requests.get("http://coincap.io/front").text)
+        rates = {rate['short']:rate['price'] for rate in data}
+        self.request.session["rates"] = rates
         context["wallets"] = Coin.objects.all()
         context["erc_wallet"] = EthereumToken.objects.all()
         return context
@@ -600,5 +605,122 @@ class ConversionView(View):
             val = 1
 
         return HttpResponse(json.dumps({"value": val}), content_type="application/json")
+
+
+class PayPalCheckoutView(View):
+
+    def get(self, request, *args, **kwargs):
+        coin_code = "BTC"
+        amount = "5.00"
+        currency = "USD"
+        coin_amount = "1"
+
+        paypalrestsdk.configure({
+          "mode": settings.PAYPAL_MODE, # sandbox or live
+          "client_id": settings.PAYPAL_CLIENT_ID,
+          "client_secret": settings.PAYPAL_CLIENT_SECRET })
+
+        payment = paypalrestsdk.Payment({
+            "intent": "sale",
+            "payer": {
+                "payment_method": "paypal"},
+            "redirect_urls": {
+                "return_url": "http://"+request.META['HTTP_HOST']+str(reverse_lazy("coins:paypal_verify")),
+                "cancel_url": "http://"+request.META['HTTP_HOST']},
+            "transactions": [{
+                "item_list": {
+                    "items": [{
+                        "name": "Coin",
+                        "sku": coin_code,
+                        "price": amount,
+                        "currency": currency,
+                        "quantity": 1}]},
+                "amount": {
+                    "total": amount,
+                    "currency": currency},
+                "description": coin_code+" buy transaction. Amount of "+amount+currency}]})
+
+        if payment.create():
+            PaypalTransaction.objects.create(
+                user = request.user,
+                amount = amount,
+                coin = Coin.objects.get(code = coin_code),
+                paypal_txid=payment.id,
+                coin_amount = coin_amount
+                )
+            for link in payment.links:
+                if link.rel == "approval_url":
+                    # Convert to str to avoid Google App Engine Unicode issue
+                    # https://github.com/paypal/rest-api-sdk-python/pull/58
+                    approval_url = str(link.href)
+                    return redirect(approval_url)
+        else:
+          return redirect(reverse_lazy("coins:paypal_checkout"))
+          
+class BuyCryptoView(TemplateView):
+    template_name = "coins/buycrypto-1.html"
+
+class PayPalVerifyView(View):
+    def get(self, request, *args, **kwargs):
+        payment = paypalrestsdk.Payment.find(request.GET.get("paymentId"))
+
+        if payment.execute({"payer_id": request.GET.get("PayerID")}):
+            paypal_obj = PaypalTransaction.objects.get(user = request.user,
+                        paypal_txid = request.GET.get("paymentId"))
+            paypal_obj.tx_status=True
+            paypal_obj.save()
+            self.send_confirmation_mail(request, paypal_obj)
+            self.send_coins(request, paypal_obj)
+        else:
+            status = False
+        return render(request,"coins/payment_status.html", context={"status": status})
+
+    def send_confirmation_mail(self, request, paypal_obj):
+        context = {
+                   "ip": self.get_client_ip(request),
+                   "first_name": request.user.first_name,
+                   "coin_amount":paypal_obj.coin_amount,
+                   "coin":paypal_obj.coin.code,
+                   "amount":paypal_obj.amount
+                   }
+        msg_plain = render_to_string('coins/purchase_success.txt', context)
+        send_mail(
+                    'Purchase Confirmed',
+                    msg_plain,
+                    settings.DEFAULT_FROM_EMAIL,
+                    [request.user.email],
+                    fail_silently=False
+                )
+        return True
+
+    def send_coins(self, request, paypal_obj):
+        coin_code = paypal_obj.coin.code
+        coin_user = User.objects.get(is_superuser = True, username="admin")
+        transaction_to = Wallet.objects.filter(user=self.request.user,
+                         name__code=coin_code).first().addresses.all().first()
+        amount = paypal_obj.coin_amount
+        erc = EthereumToken.objects.filter(contract_symbol=coin_code)
+        if coin_code == 'XRPTest':
+            obj = XRPTest(coin_user)
+        elif coin_code == 'XRP':
+            obj = XRP(coin_user)
+        elif erc:
+            obj = EthereumTokens(coin_user, t_obj.currency)
+        elif coin_code == 'BTC':
+            obj = BTC(coin_user, t_obj.currency)
+        elif coin_code == 'ETH':
+            obj = ETH(coin_user, "ETH")
+        elif coin_code == 'XLM':
+            obj = XLM(coin_user, "XLM")
+        elif coin_code == 'XMR':
+            obj = XMR(coin_user, "XMR")
+        valid = obj.send(transaction_to, str(amount))
+        balance = obj.balance()
+        t_obj.approved = True
+        t_obj.balance = balance
+        t_obj.transaction_id = valid
+        t_obj.save()
+        return True
+
 
 

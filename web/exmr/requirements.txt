@@ -89,3 +89,4 @@ zope.interface==4.5.0
 web3==4.4.1
 py-solc==3.1.0
 stellar-base==0.1.9.1
+paypalrestsdk==1.13.1

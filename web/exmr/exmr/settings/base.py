@@ -139,7 +139,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+PAYPAL_MODE = "live"
+PAYPAL_CLIENT_ID = "AYew04VYluXOAYc5GS8TFAdGmSkHj7BDuN6_3GFVVQpOdTHS67p1ad4ZoR9CR376o77mIjKD7lD37aGJ"
+PAYPAL_CLIENT_SECRET = "EH0zGIachEUuzwqn65EBQURDNfn6sPAglOsW5S6i8xXomqpt7XRoKDxTq30yPKyVrkJiht__B0YLacJO"
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 

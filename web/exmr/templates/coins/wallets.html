@@ -104,6 +104,10 @@
                                                 <a href="">
                                                     <i class="fa fa-paper-plane" aria-hidden="true"></i> Transfer History</a>
                                             </li>
+                                            <li>
+                                                <a href="{% url 'coins:buy_coin' obj.code %}">
+                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Buy </a>
+                                            </li>
                                         </ul>
 
                                         {% else %}

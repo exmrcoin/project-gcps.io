@@ -552,14 +552,14 @@ class XRP():
                           "tx_json": {
                               "TransactionType": "Payment",
                               "Account": address,
-                              "Amount": str(int(amount)*1000000),
+                              "Amount": str(float(amount)*1000000),
                               "Destination": destination
                           }
                       }
                   ]
                   }
         result = json.loads(requests.post(
-            "http://s1.ripple.com:51234/", json=params).text)
+            "http://35.237.231.141:5005/", json=params).text)
         params = {
             "method": "submit",
             "params": [
@@ -569,11 +569,11 @@ class XRP():
             ]
         }
         submit = json.loads(requests.post(
-            "http://s1.ripple.com:51234/", json=params).text)
+            "http://35.237.231.141:5005/", json=params).text)
         try:
             return result['result']['tx_json']['hash']
         except:
-            return result['result']['error']
+            return result['result']['error_message']
 
     def generate(self):
         coin = Coin.objects.get(code='XRP')

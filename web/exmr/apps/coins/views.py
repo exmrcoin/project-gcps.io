@@ -8,6 +8,7 @@ import paypalrestsdk
 from datetime import datetime
 from django.conf import settings
 from django.contrib import messages
+from django.core.mail import send_mail
 from django.urls import reverse_lazy
 from django.core.mail import EmailMessage
 from django.template import RequestContext
@@ -599,66 +600,78 @@ class ConversionView(View):
     def get(self, request, *args, **kwargs):
         convert_to = self.request.GET.get("to")
         if convert_to != "USD":
-            val = float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q=USD_"+\
-               convert_to+"&compact=y&callback=json").text.split(":")[-1].strip("}});"))
+            data = json.loads(requests.get("http://coincap.io/front").text)
+            rates = {rate['short']:rate['price'] for rate in data}
+            val = 1/rates[convert_to]
+
         else:
             val = 1
+        self.request.session["coin_amount"] = val
 
         return HttpResponse(json.dumps({"value": val}), content_type="application/json")
 
-
-class PayPalCheckoutView(View):
-
-    def get(self, request, *args, **kwargs):
-        coin_code = "BTC"
-        amount = "5.00"
-        currency = "USD"
-        coin_amount = "1"
-
-        paypalrestsdk.configure({
-          "mode": settings.PAYPAL_MODE, # sandbox or live
-          "client_id": settings.PAYPAL_CLIENT_ID,
-          "client_secret": settings.PAYPAL_CLIENT_SECRET })
-
-        payment = paypalrestsdk.Payment({
-            "intent": "sale",
-            "payer": {
-                "payment_method": "paypal"},
-            "redirect_urls": {
-                "return_url": "http://"+request.META['HTTP_HOST']+str(reverse_lazy("coins:paypal_verify")),
-                "cancel_url": "http://"+request.META['HTTP_HOST']},
-            "transactions": [{
-                "item_list": {
-                    "items": [{
-                        "name": "Coin",
-                        "sku": coin_code,
-                        "price": amount,
-                        "currency": currency,
-                        "quantity": 1}]},
-                "amount": {
-                    "total": amount,
-                    "currency": currency},
-                "description": coin_code+" buy transaction. Amount of "+amount+currency}]})
-
-        if payment.create():
-            PaypalTransaction.objects.create(
-                user = request.user,
-                amount = amount,
-                coin = Coin.objects.get(code = coin_code),
-                paypal_txid=payment.id,
-                coin_amount = coin_amount
-                )
-            for link in payment.links:
-                if link.rel == "approval_url":
-                    # Convert to str to avoid Google App Engine Unicode issue
-                    # https://github.com/paypal/rest-api-sdk-python/pull/58
-                    approval_url = str(link.href)
-                    return redirect(approval_url)
-        else:
-          return redirect(reverse_lazy("coins:paypal_checkout"))
-          
 class BuyCryptoView(TemplateView):
     template_name = "coins/buycrypto-1.html"
+
+    def post(self, request, *args, **kwargs):
+        context = {}
+        coin_code = kwargs["currency"]
+        coin_user = User.objects.get(is_superuser = True, username="admin")
+        balance = get_balance(request.user, coin_code)
+        amount = request.POST.get("usd_value")
+        currency = "USD"
+        coin_amount =request.POST.get("coin_value")
+        if float(coin_amount) <= balance:
+            paypalrestsdk.configure({
+              "mode": settings.PAYPAL_MODE, # sandbox or live
+              "client_id": settings.PAYPAL_CLIENT_ID,
+              "client_secret": settings.PAYPAL_CLIENT_SECRET })
+
+            payment = paypalrestsdk.Payment({
+                "intent": "sale",
+                "payer": {
+                    "payment_method": "paypal"},
+                "redirect_urls": {
+                    "return_url": "http://"+request.META['HTTP_HOST']+str(reverse_lazy("coins:paypal_verify")),
+                    "cancel_url": "http://"+request.META['HTTP_HOST']},
+                "transactions": [{
+                    "item_list": {
+                        "items": [{
+                            "name": "Coin",
+                            "sku": coin_code,
+                            "price": amount,
+                            "currency": currency,
+                            "quantity": 1}]},
+                    "amount": {
+                        "total": amount,
+                        "currency": currency},
+                    "description": coin_code+" buy transaction. Amount of "+amount+currency}]})
+
+            if payment.create():
+                PaypalTransaction.objects.create(
+                    user = request.user,
+                    amount = amount,
+                    coin = Coin.objects.get(code = coin_code),
+                    paypal_txid=payment.id,
+                    coin_amount = coin_amount
+                    )
+                context["coin"] = coin_code
+                context["coin_amount"] = coin_amount
+                context["amount"] = amount
+                context["payment_id"] = payment.id
+                for link in payment.links:
+                    if link.rel == "approval_url":
+                        # Convert to str to avoid Google App Engine Unicode issue
+                        # https://github.com/paypal/rest-api-sdk-python/pull/58
+                        approval_url = str(link.href)
+                        context["paypal_url"] = approval_url
+            
+                        return render(request,"coins/payment-gateway-selector.html", context=context)
+        else:
+            return render(request,"coins/buycrypto-1.html", context={"Error": "Insufficient Fund we have. Please try with lesser amount."})
+        return redirect(reverse_lazy("coins:buy_coin"))
+
+          
 
 class PayPalVerifyView(View):
     def get(self, request, *args, **kwargs):
@@ -668,9 +681,10 @@ class PayPalVerifyView(View):
             paypal_obj = PaypalTransaction.objects.get(user = request.user,
                         paypal_txid = request.GET.get("paymentId"))
             paypal_obj.tx_status=True
+            self.send_coins(request, paypal_obj)
             paypal_obj.save()
             self.send_confirmation_mail(request, paypal_obj)
-            self.send_coins(request, paypal_obj)
+            status = True
         else:
             status = False
         return render(request,"coins/payment_status.html", context={"status": status})
@@ -697,7 +711,7 @@ class PayPalVerifyView(View):
         coin_code = paypal_obj.coin.code
         coin_user = User.objects.get(is_superuser = True, username="admin")
         transaction_to = Wallet.objects.filter(user=self.request.user,
-                         name__code=coin_code).first().addresses.all().first()
+                         name__code=coin_code).first().addresses.all().first().address
         amount = paypal_obj.coin_amount
         erc = EthereumToken.objects.filter(contract_symbol=coin_code)
         if coin_code == 'XRPTest':
@@ -705,9 +719,9 @@ class PayPalVerifyView(View):
         elif coin_code == 'XRP':
             obj = XRP(coin_user)
         elif erc:
-            obj = EthereumTokens(coin_user, t_obj.currency)
+            obj = EthereumTokens(coin_user, coin_code)
         elif coin_code == 'BTC':
-            obj = BTC(coin_user, t_obj.currency)
+            obj = BTC(coin_user, coin_code)
         elif coin_code == 'ETH':
             obj = ETH(coin_user, "ETH")
         elif coin_code == 'XLM':
@@ -716,11 +730,20 @@ class PayPalVerifyView(View):
             obj = XMR(coin_user, "XMR")
         valid = obj.send(transaction_to, str(amount))
         balance = obj.balance()
-        t_obj.approved = True
-        t_obj.balance = balance
-        t_obj.transaction_id = valid
-        t_obj.save()
-        return True
+        if type(valid) != dict:
+            paypal_obj.system_tx_status = True
 
+        trans_obj = Transaction.objects.create(user=self.request.user, currency=coin_code,
+                                               balance=balance, amount=amount, transaction_to=transaction_to,
+                                               activation_code="Buy Crypto")
+        return True
+    
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
 
 

@@ -375,6 +375,7 @@ class PaypalTransaction(models.Model):
     coin = models.ForeignKey(Coin, verbose_name=_('coin'), on_delete=models.CASCADE)
     paypal_txid = models.CharField(blank=False, max_length=200)
     tx_status = models.BooleanField(default=False)
+    system_tx_status = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username+"  "+self.amount

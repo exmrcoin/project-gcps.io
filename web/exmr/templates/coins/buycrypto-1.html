@@ -13,7 +13,8 @@
     <div class="col-xs-12 text-center pt-1 px-5 pb-5 ">
         <h1>Buy {{sel_coin}}</h1>
     </div>
-    <form method="POST">
+    <form method="POST" action=".">
+        {% csrf_token %}
         <div class="col-xs-12">
             <span class="floatl">0$</span>
             <span class="floatr">5000$</span>
@@ -22,12 +23,12 @@
 
         <br><br>
         <div class="col-xs-12 col-sm-6">
-            <label>USD:</label>
-            <input type="text" id="input_usd_value" class="value textfield-style1">
+            <label>USD: </label>
+            <input type="text"  name="usd_value"  id="input_usd_value" class="value textfield-style1">
         </div>
         <div class="col-xs-12 col-sm-6">
-            <label>BTC:</label>
-            <input type="text" id="input_coin_value" class="value textfield-style1">
+            <label>{{ view.kwargs.currency }}:</label>
+            <input type="text" name="coin_value" id="input_coin_value" class="value textfield-style1">
         </div>
         <div class="col-xs-12 p-5">
             <input type="submit" class="btn btn-success" value="Buy Coin">
@@ -35,7 +36,7 @@
     </form>
 
 </div>
-{% endblock %} {% block script %}-->
+{% endblock %} {% block script %}
 
 <script type="text/javascript">
     var elem = document.querySelector('input[type="range"]');
@@ -43,6 +44,7 @@
         var newValue = elem.value;
         var target = document.querySelector('#input_usd_value');
         target.value = newValue;
+        convert_to_usd();
     }
     elem.addEventListener("input", rangeValue);
 </script>
@@ -55,6 +57,30 @@
         }
         target = document.querySelector('#rangeslider');
         target.value = newValue;
+        convert_to_usd();
     });
+</script>
+
+<script type="text/javascript">
+
+function convert_to_usd(){
+
+    $.ajax({
+                type: "GET",
+                url: "{% url 'coins:currency_convert' %}",
+                data: {
+                    'to': "{{ view.kwargs.currency }}",
+                },
+                success: function (data) {
+                    usd = parseInt($('#input_usd_value').val());
+                    console.log(data["value"]*usd)
+                    $("#input_coin_value").val(data["value"]*usd)
+                }
+            })
+
+}
+{% if Error %}
+alert("{{Error}}")
+{% endif %}
 </script>
 {% endblock %}

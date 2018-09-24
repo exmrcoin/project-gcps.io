@@ -10,7 +10,7 @@
             <h5>All transactions are secured and encrypted.</h5>
             <div class="col-xs-12 p-0">
                 <div class="col-xs-12 pl-0 ">
-                    <a href="#">
+                    <a href="{{ paypal_url }}">
                         <img src="{% static 'images/paypal.png' %}" class="img-responsive w200px">
                     </a>
                 </div>
@@ -24,15 +24,15 @@
             <div class="col-xs-12 text-center rounded-border">
                 <div class="col-xs-12 text-center py-2 rounded-border-bottom">
                     <h4>Order Id</h4>
-                    <h4>erwr</h4>
+                    <h4>{{ payment_id }}</h4>
                 </div>
                 <div class="col-xs-12 text-center py-2 rounded-border-bottom">
-                    <h4>Order Id</h4>
-                    <h4>ewrwer</h4>
+                    <h4>{{ coin }} Amount</h4>
+                    <h4>{{ coin_amount }}</h4>
                 </div>
                 <div class="col-xs-12 text-center py-2 rounded-border-bottom">
-                    <h4>Order Id</h4>
-                    <h4>ewrwe</h4>
+                    <h4>USD amount</h4>
+                    <h4>{{ amount }}</h4>
                 </div>
             </div>
         </div>

@@ -60,7 +60,8 @@
                             <td>
                                 {% if coin.can_convert %}
                                 <button type="button" class="btn btn-default white-font orange-bg  btn-ex" data-coin-id="{{ coin.code }}" data-toggle="modal"
-                                    data-coin-id="" data-target="#myModal">
+                                    data-coin-id="" onclick="show_coin_selector('{{coin.code}}')">
+                                    <!-- data-target="#myModal" -->
                                     <img class="w20px" src={% static 'images/arrows.svg' %}>
                                     <span>Converter</span>
                                 </button>
@@ -126,4 +127,23 @@
         window.location.replace(url_mask);
     })
 
-</script> {% endblock %}
+</script> 
+{% endblock %}
+{% block script %}
+
+<script>
+        function show_coin_selector(cur_coin){
+        $.ajax({
+                    type: "GET",
+                    url: "{% url 'coins:displaysupportedcoins'%}",
+                    data: {
+                        'code': cur_coin,
+                    },
+                    success: function (data) {
+                        alert(data['BTC'][]);
+                    }
+                })
+        }
+    </script>
+
+{% endblock %}

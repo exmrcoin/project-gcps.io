@@ -18,7 +18,7 @@ from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.views.generic import ListView, FormView, TemplateView, DetailView, View
 from django.http import HttpResponseNotFound, HttpResponseServerError
-
+from django.core import serializers
 from apps.coins.utils import *
 from apps.accounts.models import User
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
@@ -221,6 +221,7 @@ class SupportedCoinView(ListView):
             object_list=None, **kwargs)
         context['coin_types'] = TYPE_CHOICES
         context['selected_coin_type'] = self.coin_type
+        context['active_coins'] = coinlist.get_supported_coin()
         return context
 
 
@@ -746,4 +747,16 @@ class PayPalVerifyView(View):
             ip = request.META.get('REMOTE_ADDR')
         return ip
 
-
+class DisplaySupportedCoins(View):
+    def get(self, request, *args, **kwargs):
+        currency_code = self.request.GET.get('code')
+        coin_dict = coinlist.get_supported_coin()
+        temp_list = list(coin_dict.keys())
+        for coin in temp_list:
+            if coin == currency_code:
+                temp_list.remove(coin)
+        print(temp_list)
+        final_dict = { key: coin_dict[key] for key in temp_list }
+        print(final_dict)
+        data = final_dict
+        return HttpResponse(json.dumps(data), content_type="application/json")

@@ -37,6 +37,7 @@ urlpatterns = [
     path('insufficient/', TemplateView.as_view(template_name='coins/no-money.html'), name="low-balance"),
     path('paypal-verify/', coin_views.PayPalVerifyView.as_view(), name="paypal_verify"),
     path('buy-coin/<str:currency>/',coin_views.BuyCryptoView.as_view(), name="buy_coin"),
+    path('displaysupportedcoins/',coin_views.DisplaySupportedCoins.as_view(), name="displaysupportedcoins"),
 
 
 ]

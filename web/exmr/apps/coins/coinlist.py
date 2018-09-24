@@ -1,5 +1,6 @@
 import itertools
 from apps.coins.models import Coin, NewCoin, EthereumToken
+from itertools import chain
 
 
 def get_all_coin_code():
@@ -17,3 +18,15 @@ def get_all_active_coin_code():
     eth_tokens = list(EthereumToken.objects.filter(display=True).values_list('contract_symbol',flat=True) )
     coin_list = main_coins+new_coins+eth_tokens
     return list(set(coin_list))
+
+
+def get_supported_coin():
+    main_coins = Coin.objects.all()
+    eth_tokens = EthereumToken.objects.all()
+    temp_coin = {}
+    for coins in main_coins:
+        temp_coin[coins.code] = {'coin_name':coins.coin_name,'coin_code': coins.code,'image': '/'+coins.image.url}   
+    for coins in eth_tokens:
+        temp_coin[coins.contract_symbol] = {'coin_name':coins.coin_name,'coin_code': coins.contract_symbol,'image': '/'+coins.image.url}         
+    print(temp_coin)
+    return temp_coin

@@ -121,7 +121,7 @@ class StaticPageView(TemplateView):
         try:
             context['staticpage'] = StaticPage.objects.get(page_name=slug)
         except:
-            pass
+            return HttpResponseRedirect(reverse_lazy('common:beta'))
         return context
 
     def get(self, request, *args, **kwargs):

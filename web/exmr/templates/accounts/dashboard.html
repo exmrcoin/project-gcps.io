@@ -23,25 +23,25 @@
                     <div class="card-body">
 
                         <!--Table-->
-                        <table class="table table-border table-responsive-md">
+                        <table class="table table-border table-responsive-md" style="table-layout: fixed">
 
                             <!--Table head-->
                             <thead>
                             <tr class="table-top">
 
-                                <th>{% trans 'Time' %}</th>
-                                <th>{% trans 'Received / Sent Name' %}</th>
-                                <th >{% trans 'Coin' %}</th>
-                                <th>{% trans 'Amount' %}</th>
+                                <th class="text-center">{% trans 'Time' %}</th>
+                                <th class="text-center">{% trans 'Received / Sent Name' %}</th>
+                                <th class="text-center">{% trans 'Coin' %}</th>
+                                <th class="text-center">{% trans 'Amount' %}</th>
                             </tr>
                             </thead>
                             <tbody>
                                 {% for transaction in transactions %}
                                 <tr>
-                                    <td>{% now "jS F Y H:i" %}</td>
-                                    <td>{{transaction.transaction_to}}</td>
-                                    <td style="padding-left: 8%;">{{transaction.currency}}</td>
-                                    <td>{{transaction.amount}}</td>
+                                    <td align="center">{% now "jS F Y H:i" %}</td>
+                                    <td align="center" style="word-wrap: break-word">{{transaction.transaction_to}}</td>
+                                    <td align="center">{{transaction.currency}}</td>
+                                    <td align="center">{{transaction.amount}}</td>
                                 </tr>
                                 {% endfor %}
                             <tr>

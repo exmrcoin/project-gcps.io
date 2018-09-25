@@ -34,7 +34,7 @@
                 </div>
                 <h5 class=" shopping-headline">{% trans 'API & IPNs' %}</h5>
                 <ul>
-                    <li><a href="{% url 'common:beta' %}">{% trans 'Instant Payment Notification' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='mtools_inst_payment_Notfctn' %}">{% trans 'Instant Payment Notification' %}</a></li>
                     <li><a href="{% url 'common:staticpage' slug='mtools_ipn_doc' %}">{% trans 'GETCRYPTOPAYMENTAPI' %}</a></li>
                 </ul>
             </div>
@@ -77,7 +77,8 @@
                 <ul>
                     <li><a href="{% url 'mtools:buttonmaker'  %}">{% trans 'Button Maker' %}</a></li>
                     <li><a href="{% url 'common:staticpage' slug='advanced_button_html_post' %}">{% trans 'HTML Post Field' %}</a></li>
-                    <li><a href="{% url 'common:staticpage' slug='advanced_button_html_post' %}">{% trans 'Button Examples' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='advanced_button_html_example' %}">{% trans 'Button Examples' %}</a></li>
+
                 </ul>
             </div>
             <div class="col-sm-6 col-md-3 text-center merch-box">

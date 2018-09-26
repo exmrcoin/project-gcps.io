@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome-all.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet"> {% block fonts %} {% endblock %}
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet"> {% block fonts %} {%  endblock %}
     <!-- style -->
 
 </head>
@@ -55,12 +55,17 @@
                 <input type="hidden" name="merchant_id" value="{{merchant_id}}" />
                 <input type="hidden" name="unique_id" value="{{unique_id}}" />
                 <input type="hidden" name="item_name" value="{{item_name}}" maxlength="128" id="id_item_name" required />
-                <input type="hidden" name="item_amount" value="{{item_amount}}" maxlength="128" id="id_item_amount" required />
-                <input type="hidden" name="invoice_number" value="{{invoice_number}}" maxlength="128" id="id_invoice_number" required />
+                <input type="hidden" name="item_amount" value="{{item_amount}}" maxlength="128" id="id_item_amount"
+                    required />
+                <input type="hidden" name="invoice_number" value="{{invoice_number}}" maxlength="128" id="id_invoice_number"
+                    required />
                 <input type="hidden" name="item_qty" value="{{item_qty}}" maxlength="128" id="id_item_qty" required />
-                <input type="hidden" name="item_number" value="{{item_number}}" maxlength="128" id="id_item_number" required />
-                <input type="hidden" name="tax_amount" value="{{tax_amount}}" maxlength="128" id="id_tax_amount" required />
-                <input type="hidden" name="shipping_cost" value="{{shipping_cost}}" maxlength="128" id="id_shipping_cost" required />
+                <input type="hidden" name="item_number" value="{{item_number}}" maxlength="128" id="id_item_number"
+                    required />
+                <input type="hidden" name="tax_amount" value="{{tax_amount}}" maxlength="128" id="id_tax_amount"
+                    required />
+                <input type="hidden" name="shipping_cost" value="{{shipping_cost}}" maxlength="128" id="id_shipping_cost"
+                    required />
                 <div class="col-xs-12 col-md-6 pl-md-0">
                     <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
                         <div class="col-xs-6">
@@ -114,34 +119,43 @@
                         </h5>
                         <div class="col-12 px-0 bg-white">
                             <div class="col-xs-12 bg-white border-btm-line p-1 text-left">
-                                <span>Already a member of getcryptopayments.org? Click here to log in and save time filling out
+                                <span>Already a member of getcryptopayments.org? Click here to log in and save time
+                                    filling out
                                     this form...
                                 </span>
                             </div>
                             <div class="col-xs-12 bg-white border-btm-line p-1">
-                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
-                                    name="first_name" placeholder="First Name">
-                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
-                                    name="last_name" placeholder="Last Name">
-                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="email" name="email_addr" placeholder="Email Address">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric"
+                                    data-validation-length="min4" name="first_name" placeholder="First Name">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric"
+                                    data-validation-length="min4" name="last_name" placeholder="Last Name">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="email" name="email_addr"
+                                    placeholder="Email Address">
                             </div>
 
                             <div class="col-xs-12  orange-shadow-box " style="padding-left: -15px; padding-right:-15px;">
                                 <h4>Shipping Details</h4>
                             </div>
                             <div class="col-xs-12 bg-white border-btm-line p-1">
-                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
-                                    name="addr_line_1" placeholder="Address Line 1">
-                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
-                                    name="addr_line_2" placeholder="Address Line 2">
-                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="country" name="country" placeholder="Country">
-                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
-                                    name="city" placeholder="City">
-                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
-                                    name="state" placeholder="State/Province">
-                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="number" name="zipcode" placeholder="Zipcode">
-                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="alphanumeric" data-validation-allowing="-_+ " name="phone"
-                                    placeholder="Phone Number">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length custom"  data-sanitize="trim" data-validation-regexp="^([a-zA-Z0-9,. ]+)$"
+                                    data-validation-length="min4" name="addr_line_1" placeholder="Address Line 1">
+                                <input type="text" class="input-group-append col-xs-12 mt-1 " data-validation="length custom"  data-sanitize="trim" data-validation-regexp="^([a-zA-Z0-9,. ]+)$"
+                                    data-validation-length="min4" name="addr_line_2" placeholder="Address Line 2">
+                                <div class="col-xs-12 px-0 py-1">
+                                    <select id="country" name="country" class="input-group  form-control col-xs-12 "></select>
+                                    <select name="state" id="state" class="input-group  form-control col-xs-12 mt-1"></select>
+
+                                </div>
+
+                                <!-- <input type="text" class="input-group col-xs-12 mt-1 " data-validation="country" name="country" placeholder="Country"> -->
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric"
+                                    data-validation-length="min4" name="city" placeholder="City">
+                                <!-- <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
+                                    name="state" placeholder="State/Province"> -->
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="number" name="zipcode"
+                                    placeholder="Zipcode">
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="alphanumeric"
+                                    data-validation-allowing="-_+ " name="phone" placeholder="Phone Number">
                             </div>
                         </div>
                     </div>
@@ -166,23 +180,6 @@
                     </div>
                 </div>
 
-
-
-                <!-- <div class="col-xs-12 col-md-6 pr-md-0">
-                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
-                        <h5>
-                            <span class="glyphicon glyphicon-tags"></span>Remaining Amount
-                        </h5>
-                        <div class="col-12 px-0 bg-white">
-                            <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
-                                <div class="col-xs-12">
-                                    <span class="">{{amt_payable}}</span>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div> -->
 
 
                 <div class="col-xs-12 col-md-6 pr-md-0">
@@ -215,8 +212,11 @@
                                     <div class="btn btnrad btnrad-sık">
                                         <img src="{{coins.image.url}}" class="crypto-btn-image col-xs-3">
                                         <span class="col-xs-9">{{coins}}</span>
+
                                     </div>
+
                                 </label>
+
                                 {% endfor %}
                             </div>
 
@@ -236,20 +236,22 @@
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <script src="{% static 'js/notify.js' %}"></script>
     <script src="{% static 'js/common.js' %}"></script>
+    <script src="{% static 'js/countries.js' %}"></script>
     <script src="{% static 'js/jquery.form-validator.min.js' %}"></script>
     <script>
         $(document).ready(function () {
             $.validate({
-                modules: 'toggleDisabled, location',
+                modules: 'toggleDisabled, sanitize',
                 toggleDisabledForm: '#pay-form',
-                onModulesLoaded: function () {
-                    $('input[name="country"]').suggestCountry();
-                    $('input[name="state"]').suggestState();
-                }
             });
         });
     </script>
     <!-- </script> -->
+
+    <script language="javascript">
+        populateCountries("country", "state"); // first parameter is id of country drop-down and second parameter is id of state drop-down
+        populateCountries("country2");
+    </script>
 </body>
 
 </html>

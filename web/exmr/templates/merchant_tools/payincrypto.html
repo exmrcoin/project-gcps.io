@@ -125,9 +125,9 @@
                                 </span>
                             </div>
                             <div class="col-xs-12 bg-white border-btm-line p-1">
-                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric"
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length custom"  data-sanitize="trim" data-validation-regexp="^([a-zA-Z. ]+)$"
                                     data-validation-length="min4" name="first_name" placeholder="First Name">
-                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric"
+                                <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length custom"  data-sanitize="trim" data-validation-regexp="^([a-zA-Z. ]+)$"
                                     data-validation-length="min4" name="last_name" placeholder="Last Name">
                                 <input type="text" class="input-group col-xs-12 mt-1 " data-validation="email" name="email_addr"
                                     placeholder="Email Address">
@@ -139,7 +139,7 @@
                             <div class="col-xs-12 bg-white border-btm-line p-1">
                                 <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length custom"  data-sanitize="trim" data-validation-regexp="^([a-zA-Z0-9,. ]+)$"
                                     data-validation-length="min4" name="addr_line_1" placeholder="Address Line 1">
-                                <input type="text" class="input-group-append col-xs-12 mt-1 " data-validation="length custom"  data-sanitize="trim" data-validation-regexp="^([a-zA-Z0-9,. ]+)$"
+                                <input type="text" class="input-group-append col-xs-12 mt-1 pl-0" data-validation="length custom"  data-sanitize="trim" data-validation-regexp="^([a-zA-Z0-9,. ]+)$"
                                     data-validation-length="min4" name="addr_line_2" placeholder="Address Line 2">
                                 <div class="col-xs-12 px-0 py-1">
                                     <select id="country" name="country" class="input-group  form-control col-xs-12 "></select>
@@ -169,10 +169,26 @@
                         <div class="col-12 px-0 bg-white">
                             <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
                                 <div class="col-xs-6">
-                                    <span class="">1</span>
+                                    <span class="">Shipping</span>
                                 </div>
                                 <div class="col-xs-6">
-                                    <span class="">{{item_name}}</span>
+                                    <span class="">{{shipping_cost}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
+                                <div class="col-xs-6">
+                                    <span class="">Tax</span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <span class="">{{tax_amount}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
+                                <div class="col-xs-6">
+                                    <span class="">Total Payable</span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <span class="">{{payable}}</span>
                                 </div>
                             </div>
 
@@ -205,13 +221,12 @@
                         </h5>
                         <div class="col-12 px-0 bg-white">
                             <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
-
-                                {% for coins in available_coins %}
+                                {% for coins,vcoin in available_coins.items %}
                                 <label>
-                                    <input type="radio" name="selected_coin" value="{{coins.code}}" id="coins_{{coins.code}}">
+                                    <input type="radio" name="selected_coin" value="{{vcoin.coin_code}}" id="coins_{{vcoin.coin_code}}">
                                     <div class="btn btnrad btnrad-sık">
-                                        <img src="{{coins.image.url}}" class="crypto-btn-image col-xs-3">
-                                        <span class="col-xs-9">{{coins}}</span>
+                                        <img src="{{vcoin.image}}" class="crypto-btn-image col-xs-3">
+                                        <span class="col-xs-9">{{vcoin.coin_name}}</span>
 
                                     </div>
 

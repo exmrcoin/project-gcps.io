@@ -15,6 +15,7 @@ from django.contrib.sites.models import Site
 from apps.accounts.models import Profile
 from apps.coins.models import Coin, WalletAddress
 from apps.coins.utils import *
+from apps.coins import coinlist
 from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm, POSQRForm
 from apps.merchant_tools.models import (ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic,
                                         URLMaker, POSQRMaker, MultiPayment, MercSidebarSubTopic)
@@ -104,7 +105,7 @@ class ButtonMakerView(FormView):
 
         img_temp = ButtonImage.objects.get(label=btn_image)
         img_src = str(domain+img_temp.btn_img.url)
-        link_html = '<input type="image" src="'+img_src + \
+        link_html = '<input type="image" src="//'+img_src + \
             '" alt="Buy Now with GetCryptoPayments.org"></form>'
         context['btn_code'] = temp_html
         context['submit_image'] = link_html
@@ -148,16 +149,18 @@ class CryptoPaymment(FormView):
         context['allow_buyer_note'] = self.request.POST['allow_buyer_note']
         temp_id = context['merchant_id']
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
-        context['available_coins'] = Coin.objects.filter(active=True)
+        context['available_coins'] = coinlist.get_supported_coin()
         return render(request, 'merchant_tools/payincrypto.html', context)
 
 
 class PaymentFormSubmitView(View):
     def post(self, request, *args, **kwargs):
+        print(self.request.POST['selected_coin'])
         try:
+            print(self.request.POST['selected_coin'])
             sel_coin = Coin.objects.get(code=self.request.POST['selected_coin'])
         except:
-            sel_coin = Coin.objects.get(code='ETH')
+            sel_coin = EthereumToken.objects.get(contract_symbol=self.request.POST['selected_coin'])
         superuser = User.objects.get(is_superuser=True)
         crypto_address = create_wallet(superuser, sel_coin.code)
         # crypto_address = '123'
@@ -294,10 +297,10 @@ class URLMakerInvoiceView(TemplateView):
         context['invoice_number'] = temp_obj.invoice_number
         context['tax_amount'] = temp_obj.tax_amount
         context['shipping_cost'] = temp_obj.shipping_cost
+        context['payable'] = (int(temp_obj.item_qty) * int(temp_obj.item_amount))+ temp_obj.shipping_cost + temp_obj.tax_amount
         context['ipn_url_link'] = temp_obj.ipn_url_link
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_obj.merchant_id)
-        context['available_coins'] = Coin.objects.filter(active=True)
-
+        context['available_coins'] = coinlist.get_supported_coin()
         return context
 
 
@@ -356,6 +359,7 @@ class POSQRPayView(TemplateView):
         context['available_coins'] = Coin.objects.filter(active=True)
         context['unique_id'] = token
         check_prepaid = MultiPayment.objects.filter(paid_unique_id=token)
+        total_paid = 0;
         if check_prepaid:
             total_paid = 0;
             for prepaid in check_prepaid:
@@ -365,6 +369,13 @@ class POSQRPayView(TemplateView):
             context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
         except:
             context['amt_remaining'] = float(temp_obj.item_amount)
+        attempted = 0
+        try:
+            for prepaid in check_prepaid:
+                attempted = attempted + float(prepaid.attempted_usd) 
+                context['attempted'] = attempted
+        except:
+            pass
         return context
 
     def post(self, request, *args, **kwargs):
@@ -387,6 +398,7 @@ class POSQRPayView(TemplateView):
             paid_in=Coin.objects.get(code=request.session['selected_coin']),
             eq_usd=request.session['payable_amt_usd'],
             paid_unique_id=request.session['unique_id'],
+            attempted_usd = request.session['payable_amt_usd'],
             transaction_id=account_activation_token.make_token(
                 user=self.request.user),
             payment_address=addr

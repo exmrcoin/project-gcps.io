@@ -144,7 +144,7 @@
     <script>
         $(document).ready(function () {
             var eventTime = '{{time_limit}}';
-            var currentTime = moment().utc();
+            var currentTime = moment().utcOffset(330).format()
             alert(currentTime);
             var leftTime = eventTime - currentTime;
             var duration = moment.duration(leftTime, 'seconds');

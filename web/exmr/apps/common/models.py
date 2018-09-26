@@ -134,3 +134,50 @@ class ContactUs(models.Model):
     
     def __str__(self):
         return self.name
+
+
+
+class API(models.Model):
+    """
+    Model to save frequently asked questions
+    """
+    api_question = models.CharField(max_length=512)
+    api_answer = models.TextField()
+
+    def __str__(self):
+        return self.api_question
+
+
+class InformationalSidebar(models.Model):
+    """
+    Model to save help sidebar topics and their answers
+    """
+    inform_topic = models.CharField(max_length=64)
+    inform_answer = RichTextUploadingField()
+    order_index = models.IntegerField()
+    slug = models.SlugField(default=slugify(inform_topic))
+
+    def __str__(self):
+        return self.inform_topic
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.inform_topic)
+        super(InformationalSidebar, self).save(*args, **kwargs)
+
+
+class ReceivingSidebar(models.Model):
+    """
+    Model to save help sidebar topics and their answers
+    """
+    receive_topic = models.CharField(max_length=64)
+    receive_answer = RichTextUploadingField()
+    order_index = models.IntegerField()
+    slug = models.SlugField(default=slugify(receive_topic))
+
+    def __str__(self):
+        return self.receive_topic
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.receive_topic)
+        super(ReceivingSidebar, self).save(*args, **kwargs)
+

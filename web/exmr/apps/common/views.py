@@ -6,7 +6,7 @@ from django.views.generic import View, TemplateView, FormView
 from django.shortcuts import render
 from apps.accounts.models import Profile
 from apps.common.forms import CoinRequestForm, ContactForm
-from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload, StaticPage
+from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload, StaticPage, API, InformationalSidebar, ReceivingSidebar
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.core.mail import send_mail
 from django.core.mail import mail_admins
@@ -136,5 +136,30 @@ class ContactView(FormView):
     def form_valid(self,form):
         form.save()
         return HttpResponseRedirect(self.success_url)
+    
 
 
+class ApiView(TemplateView):
+    template_name='common/inform-topic.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['api'] =  API.objects.all()
+        context['inform_sidebar'] = InformationalSidebar.objects.all() 
+        context['receive_sidebar'] = ReceivingSidebar.objects.all() 
+        return context
+
+
+class ApiTemplateView(TemplateView):
+    template_name = 'common/inform-template.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        slug = self.kwargs.get('slug')
+        context['inform_sidebar'] = InformationalSidebar.objects.all() 
+        context['receive_sidebar'] = ReceivingSidebar.objects.all() 
+        if (InformationalSidebar.objects.filter(slug=slug)).exists():
+            context['details'] = InformationalSidebar.objects.filter(slug=slug)
+        else:
+            context['details1'] = ReceivingSidebar.objects.filter(slug=slug)
+        return context

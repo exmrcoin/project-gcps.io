@@ -29,6 +29,12 @@ from apps.apiapp import shapeshift
 from apps.coins import coinlist
 from django.shortcuts import render
 
+paypalrestsdk.configure({
+              "mode": settings.PAYPAL_MODE, # sandbox or live
+              "client_id": settings.PAYPAL_CLIENT_ID,
+              "client_secret": settings.PAYPAL_CLIENT_SECRET 
+              })
+
 
 class WalletsView(LoginRequiredMixin, TemplateView):
     template_name = 'coins/wallets.html'
@@ -619,15 +625,10 @@ class BuyCryptoView(TemplateView):
         coin_code = kwargs["currency"]
         coin_user = User.objects.get(is_superuser = True, username="admin")
         balance = get_balance(request.user, coin_code)
-        amount = request.POST.get("usd_value")
+        amount = str(round(float(request.POST.get("usd_value")),4))
         currency = "USD"
-        coin_amount =request.POST.get("coin_value")
+        coin_amount = round(float(request.session["coin_amount"])*float(amount),4)
         if float(coin_amount) <= balance:
-            paypalrestsdk.configure({
-              "mode": settings.PAYPAL_MODE, # sandbox or live
-              "client_id": settings.PAYPAL_CLIENT_ID,
-              "client_secret": settings.PAYPAL_CLIENT_SECRET })
-
             payment = paypalrestsdk.Payment({
                 "intent": "sale",
                 "payer": {
@@ -669,8 +670,8 @@ class BuyCryptoView(TemplateView):
             
                         return render(request,"coins/payment-gateway-selector.html", context=context)
         else:
-            return render(request,"coins/buycrypto-1.html", context={"Error": "Insufficient Fund we have. Please try with lesser amount."})
-        return redirect(reverse_lazy("coins:buy_coin"))
+            return redirect(reverse_lazy("coins:buy_coin",kwargs={'currency': coin_code})+"?error=true")
+        
 
           
 
@@ -686,6 +687,7 @@ class PayPalVerifyView(View):
             paypal_obj.save()
             self.send_confirmation_mail(request, paypal_obj)
             status = True
+            del request.session["coin_amount"]
         else:
             status = False
         return render(request,"coins/payment_status.html", context={"status": status})

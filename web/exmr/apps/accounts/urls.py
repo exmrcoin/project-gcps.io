@@ -34,4 +34,5 @@ urlpatterns = [
     path('feedback/', FeedbackListView.as_view(), name='feedbac'),
     path('verify-login/', views.VerifyLoginView.as_view(), name='verify_login'),
     path('login-notice/', views.LoginNoticeView.as_view(), name='login_notice'),
+    path('kyc/', views.KYCView.as_view(), name='kyc'),
 ]

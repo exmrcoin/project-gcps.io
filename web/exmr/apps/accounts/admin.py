@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.utils.translation import ugettext_lazy as _
 
-from apps.accounts.models import Profile, Address, Feedback, ProfileActivation, NewsLetter
+from apps.accounts.models import Profile, Address, Feedback, ProfileActivation, NewsLetter, KYC
 from exmr import settings
 
 
@@ -73,6 +73,7 @@ class NewsletterAdmin(admin.ModelAdmin):
     actions = [send_newsletter, ]
 
 admin.site.register(NewsLetter, NewsletterAdmin)
+admin.site.register(KYC)
 
 
 

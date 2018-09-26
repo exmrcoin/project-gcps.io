@@ -7,6 +7,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.core.mail import send_mail
+from django.forms import formset_factory
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
 from django.views.generic.edit import DeleteView
@@ -19,13 +20,13 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.views.generic import CreateView, TemplateView, FormView, UpdateView
 
-from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, Address, Feedback
+from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, Address, Feedback, KYC
 from apps.accounts.decorators import check_2fa
 from apps.coins.utils import *
 from apps.coins.models import Coin, Wallet, Transaction
 from apps.common.utils import generate_key, JSONResponseMixin, get_pin
 from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm, IPNSettingsForm, \
-    AddressForm
+    AddressForm, KYCForm
 
 
 
@@ -444,3 +445,23 @@ class LoginNoticeView(View):
         else:
             ip = request.META.get('REMOTE_ADDR')
         return ip
+
+class KYCView(View):
+    template_name = "accounts/kyc.html"
+    FormSet = formset_factory(KYCForm, extra=3)
+    success_url = reverse_lazy('public coin vote')
+
+    def get(self, request, *args, **kwargs):    
+        formset = self.FormSet()
+        return render(request, self.template_name, {'formset': formset} )
+    
+    def post(self, request, *args, **kwargs):
+        formset = self.FormSet(request.POST, request.FILES)
+        if formset.is_valid():
+            kyc_obj,created = KYC.objects.get_or_create(user=request.user)
+            for form in formset:
+                obj = form.save()
+                kyc_obj.documents.add(obj)
+            return redirect(reverse_lazy("home"))
+        else:
+            return render(request, self.template_name, {'formset': formset} )

@@ -12,7 +12,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
 from django.db.models import Q
 
-from apps.accounts.models import Profile, Address
+from apps.accounts.models import Profile, Address, UserDocuments
 
 CHOICES = [(pytz.timezone(tz), tz) for tz in pytz.common_timezones]
 
@@ -224,3 +224,10 @@ class CustomPasswordResetForm(PasswordResetForm):
                     subject_template_name, email_template_name, context, from_email,
                     email, html_email_template_name=html_email_template_name,
                 )
+
+
+class KYCForm(forms.ModelForm):
+
+    class Meta:
+        model = UserDocuments
+        fields = ['document_name', 'document']

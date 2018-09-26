@@ -49,6 +49,9 @@
             <p id="id_amount">00000000 {{ coin.code }}</p>
             <input type="text" class="form-control form-group wallet-send-coin-addr" />
             <input type="text" class="form-control form-group" />
+            {% if not coin.code %}
+            <p>Important: You must have some ETH in the same address as your EXMR in order to pay the gas to send it. Not just in your account balance but in the same address; if needed you can do a withdrawal of ETH to your EXMR address.</p>
+            {% endif %}
             <button class="btn btn-signup" onclick="sendConfirm();"> {% trans 'Request Withdrawal/Send' %} </button>
             <img id="loading-image" src="{% static 'images/load.gif' %}" style="display:none;height: 60px;"/>
           </div>

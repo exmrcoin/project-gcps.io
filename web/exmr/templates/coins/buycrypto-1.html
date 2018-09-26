@@ -79,8 +79,14 @@ function convert_to_usd(){
             })
 
 }
-{% if Error %}
-alert("{{Error}}")
-{% endif %}
+
+$.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    return results[1] || 0;
+}
+
+
+if ($.urlParam('error'))
+    alert("Currently we have insufficient funds. Please try with lesser amount.")
 </script>
 {% endblock %}

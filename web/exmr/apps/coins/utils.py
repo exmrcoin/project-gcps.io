@@ -662,7 +662,7 @@ class XLM():
             address.get()
             return float(Decimal(address.balances[0]['balance']))
         except:
-            return None
+            return 0.0
 
     def send(self, destination, amount):
         wallet = Wallet.objects.get(user=self.user, name=self.coin)

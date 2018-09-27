@@ -34,6 +34,7 @@
                         </tr>
                         </thead>
                         <tbody>
+                            {% if transactions %}
                             {% for transaction in transactions %}
                             {% if not transaction.approved %}
                             <tr>
@@ -43,12 +44,13 @@
                                 <td align="center">{{transaction.amount}}</td>
                                 <td align="center">{% trans 'Pending' %}</td>
                             </tr>
+                           {% endif %}
+                            {% endfor %}
                             {% else %}
                             <tr>
                                 <td align="center" colspan="5">{% trans 'No Pending Transactions Found' %}</td>
                             </tr>
                             {% endif %}
-                            {% endfor %}
                         
                         </tbody>
                         <!--Table body-->

@@ -1,0 +1,25 @@
+{% extends 'exmr.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load i18n widget_tweaks %}
+<div class="container">
+	<div class="row">
+		<div class="col-xs-12 text-center">
+             <h2>KYC</h2>
+		</div>
+		<div class="col-xs-12  col-md-6 col-md-offset-3 text-center my-2">
+			<form class="form-horizontal" method="POST" action="." enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ formset.management_form }}
+			{% for form in formset.forms %}
+			      <table class='no_error'>
+			        {{ form.as_table }}
+			      </table>
+			      <br>
+			      <br> {% endfor %}
+			<input type="submit" ></input>
+			</form>
+	</div>
+	</div>
+</div>
+{% endblock %}

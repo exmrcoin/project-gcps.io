@@ -231,3 +231,8 @@ class KYCForm(forms.ModelForm):
     class Meta:
         model = UserDocuments
         fields = ['document_name', 'document']
+
+    def __init__(self, *args, **kwargs):
+        super(KYCForm, self).__init__(*args, **kwargs)
+        self.fields['document_name'].widget.attrs['class'] = 'form-control'
+        self.fields['document'].widget.attrs['class'] = 'form-control'

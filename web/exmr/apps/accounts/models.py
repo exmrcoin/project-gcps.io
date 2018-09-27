@@ -263,7 +263,7 @@ class UserDocuments(models.Model):
     document = models.ImageField(upload_to='kyc/')
     
     def __str__(self):
-        return self.document_name
+        return self.document.url+"&&&"+self.document_name
 
 class KYC(models.Model):
     """
@@ -271,6 +271,7 @@ class KYC(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     documents = models.ManyToManyField(UserDocuments)
+    aprroved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

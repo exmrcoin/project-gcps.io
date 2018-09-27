@@ -1,13 +1,10 @@
 {% extends 'accounts/dashboard-base.html' %}
-{% load staticfiles %}
-{% block content %}
-{% load i18n widget_tweaks %}
+{% load staticfiles widget_tweaks i18n %}
 
 
-
-
+{% block dashboard_wrapper_content %}
+<div class="clearfix"></div>
 <div class="deposit-wrap">
-    <div class="container">
         <div class="deposit-content">
             <div class="row m0 divid-b">
                 <div class="col-sm-7">
@@ -45,8 +42,9 @@
             <button class="btn btn-signup mt20 mb20" onclick="newAddress()"><i class="fas fa-plus-circle"></i> Add New Deposit Address</button>
             
         </div>
-    </div>
 </div>
+{% endblock %}
+
 <script type="text/javascript">
 function newAddress(){
     $.ajax({
@@ -64,7 +62,6 @@ function newAddress(){
 
 </script>
 
-{% endblock %}
 {% block script %}
 <script type="text/javascript">
 function copy_password(btn_id) {

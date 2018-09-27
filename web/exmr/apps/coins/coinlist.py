@@ -38,3 +38,16 @@ def get_supported_coin():
         temp_coin[coins.contract_symbol] = {
             'coin_name': coins.coin_name, 'coin_code': coins.contract_symbol, 'image':'//'+current_site.domain+coins.image.url}    
     return temp_coin
+
+def payment_gateway_coins():
+    main_coins = Coin.objects.filter(active=True)
+    eth_tokens = EthereumToken.objects.filter(display=True, payment_transaction_allowed = True)
+    temp_coin = {}
+    current_site = Site.objects.get_current()
+    for coins in main_coins:
+        temp_coin[coins.code] = {'coin_name': coins.coin_name,
+                                 'coin_code': coins.code, 'image': '//'+current_site.domain+coins.image.url}
+    for coins in eth_tokens:
+        temp_coin[coins.contract_symbol] = {
+            'coin_name': coins.coin_name, 'coin_code': coins.contract_symbol, 'image':'//'+current_site.domain+coins.image.url}    
+    return temp_coin

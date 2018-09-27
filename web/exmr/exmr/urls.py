@@ -57,6 +57,7 @@ urlpatterns += i18n_patterns(
          name='forgot-password'),
     path('contact/', ContactView.as_view(), name='contact'),
          path('ckeditor/',include('ckeditor_uploader.urls')),
+    path('select2/', include('django_select2.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

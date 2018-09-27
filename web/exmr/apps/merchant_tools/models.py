@@ -26,12 +26,12 @@ class ButtonMaker(models.Model):
     buyer_qty_edit = models.BooleanField(default=False)
     invoice_number = models.CharField(max_length=128, null=False)
     tax_amount = models.DecimalField(
-        max_digits=20, decimal_places=2, null=False)
+        max_digits=20, decimal_places=2, null=True, default = 0)
     allow_shipping_cost = models.BooleanField(default=False)
     shipping_cost = models.DecimalField(
-        max_digits=20, decimal_places=2, null=False)
+        max_digits=20, decimal_places=2,  null=True, default = 0)
     shipping_cost_add = models.DecimalField(
-        max_digits=20, decimal_places=2, null=False)
+        max_digits=20, decimal_places=2,  null=True, default = 0)
     success_url_link = models.URLField(max_length=128, blank=True, null=True)
     cancel_url_link = models.URLField(max_length=128, blank=True, null=True)
     ipn_url_link = models.URLField(max_length=128, blank=True, null=True)
@@ -126,9 +126,9 @@ class URLMaker(models.Model):
         max_digits=20, decimal_places=2, null=False)
     invoice_number = models.CharField(max_length=128, null=False)
     tax_amount = models.DecimalField(
-        max_digits=20, decimal_places=2, null=False)
+        max_digits=20, decimal_places=2, null=True, default = 0)
     shipping_cost = models.DecimalField(
-        max_digits=20, decimal_places=2, null=False)
+        max_digits=20, decimal_places=2, null=True, default= 0)
     ipn_url_link = models.CharField(max_length=128, blank=True, null=True)
     URL_link = models.CharField(max_length=256, null=False)
 

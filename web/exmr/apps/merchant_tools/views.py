@@ -149,7 +149,7 @@ class CryptoPaymment(FormView):
         context['allow_buyer_note'] = self.request.POST['allow_buyer_note']
         temp_id = context['merchant_id']
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
-        context['available_coins'] = coinlist.get_supported_coin()
+        context['available_coins'] = coinlist.payment_gateway_coins()
         return render(request, 'merchant_tools/payincrypto.html', context)
 
 
@@ -300,7 +300,7 @@ class URLMakerInvoiceView(TemplateView):
         context['payable'] = (int(temp_obj.item_qty) * int(temp_obj.item_amount))+ temp_obj.shipping_cost + temp_obj.tax_amount
         context['ipn_url_link'] = temp_obj.ipn_url_link
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_obj.merchant_id)
-        context['available_coins'] = coinlist.get_supported_coin()
+        context['available_coins'] = coinlist.payment_gateway_coins()
         return context
 
 

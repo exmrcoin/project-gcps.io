@@ -326,6 +326,10 @@ class EthereumToken(models.Model):
         'Upload a 35X35 image for better experience'), blank=True)
     display = models.BooleanField(
         default=False, help_text=_('Show/Hide this coin anytime'))
+    payment_transaction_allowed = models.BooleanField(
+        default=False, help_text=_('Show/Hide on payment gateway'))
+    swap_allowed = models.BooleanField(
+        default=False, help_text=_('Show/Hide on coin convert page'))
 
     def __str__(self):
         return self.contract_symbol

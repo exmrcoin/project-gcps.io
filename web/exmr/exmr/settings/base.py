@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'import_export',
     'autotranslate',
+    'django_select2',
 
     # Project apps
     'apps.accounts',

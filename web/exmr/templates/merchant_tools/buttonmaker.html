@@ -36,6 +36,7 @@
 </div>
 
 {% endblock %} {% block script %}
+{{ form.media.js }}
 <script>
         $(window).on("load",function(){
             $('#onload').modal('show');

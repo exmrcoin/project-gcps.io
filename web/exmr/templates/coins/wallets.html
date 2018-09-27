@@ -11,6 +11,61 @@
 
 <div class="dashboard-wrapper">
     <div class="dasboard-head pad10">
+        
+        <span class="font-h3"><i class="fas fa-paper-plane"></i>{% trans 'Pending Transactions' %}</span>
+    </div>
+    <div class="dashboard-table">
+        <div class="dasboard-head">
+            <div class="card">
+                <div class="card-body">
+
+                    <!--Table-->
+                    <table class="table table-border table-responsive-md" style="table-layout: fixed">
+
+                        <!--Table head-->
+                        <thead>
+                        <tr class="table-top">
+
+                            <th class="text-center">{% trans 'Time' %}</th>
+                            <th class="text-center">{% trans 'Received / Sent Name' %}</th>
+                            <th class="text-center">{% trans 'Coin' %}</th>
+                            <th class="text-center">{% trans 'Amount' %}</th>
+                            <th class="text-center">{% trans 'Status' %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {% for transaction in transactions %}
+                            {% if not transaction.approved %}
+                            <tr>
+                                <td align="center">{% now "jS F Y H:i" %}</td>
+                                <td align="center" style="word-wrap: break-word">{{transaction.transaction_to}}</td>
+                                <td align="center">{{transaction.currency}}</td>
+                                <td align="center">{{transaction.amount}}</td>
+                                <td align="center">{% trans 'Pending' %}</td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td align="center" colspan="5">{% trans 'No Pending Transactions Found' %}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        
+                        </tbody>
+                        <!--Table body-->
+
+                    </table>
+                    <!--Table-->
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="dashboard-wrapper">
+    <div class="dasboard-head pad10">
         <div class="img-dashboard">
             <img src="{% static '/images/recevied.png' %} ">
         </div>
@@ -22,7 +77,7 @@
                 <div class="card-body">
 
                     <!--Table-->
-                    <table class="table table-border table-responsive-md table-fixed overflow table-scroll">
+                    <table class="table table_2 table-border table-responsive-md table-fixed overflow table-scroll">
 
                         <!--Table head-->
                         <thead>
@@ -274,9 +329,10 @@
         hideTooltip(btn);
     });
     $(document).ready(function () {
-        $('.table > tbody  > tr').each(function () {
+        $('.table_2 > tbody  > tr').each(function () {
             column = $(this).find('th')[2]
-
+            
+            
             $.ajax({
                 type: "GET",
                 url: "{% url 'coins:get_balance' %}",

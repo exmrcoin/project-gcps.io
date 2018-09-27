@@ -50,6 +50,7 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         self.request.session["rates"] = rates
         context["wallets"] = Coin.objects.all()
         context["erc_wallet"] = EthereumToken.objects.all()
+        context['transactions'] = Transaction.objects.filter(user=self.request.user)
         return context
 
 

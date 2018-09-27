@@ -271,7 +271,7 @@ class KYC(models.Model):
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     documents = models.ManyToManyField(UserDocuments)
-    aprroved = models.BooleanField(default=False)
+    approved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

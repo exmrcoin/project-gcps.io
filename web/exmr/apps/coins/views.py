@@ -2,32 +2,35 @@ import random
 import string
 import datetime
 import requests
-import apps.coins.utils
 import paypalrestsdk
+import apps.coins.utils
 
 from datetime import datetime
 from django.conf import settings
 from django.contrib import messages
-from django.core.mail import send_mail
+from django.core import serializers
 from django.urls import reverse_lazy
+from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
-from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
-from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
-from django.views.generic import ListView, FormView, TemplateView, DetailView, View
+from django.utils.decorators import method_decorator
 from django.http import HttpResponseNotFound, HttpResponseServerError
-from django.core import serializers
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
+from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
+from django.views.generic import ListView, FormView, TemplateView, DetailView, View
+
 from apps.coins.utils import *
-from apps.accounts.models import User
+from apps.coins import coinlist
+from apps.apiapp import shapeshift
+from apps.accounts.models import User, KYC
+from apps.accounts.decorators import check_2fa
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
     CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, \
     WalletAddress, EthereumToken, Phases, ConvertTransaction, PaypalTransaction
-from apps.apiapp import shapeshift
-from apps.coins import coinlist
-from django.shortcuts import render
+
 
 paypalrestsdk.configure({
               "mode": settings.PAYPAL_MODE, # sandbox or live
@@ -35,7 +38,7 @@ paypalrestsdk.configure({
               "client_secret": settings.PAYPAL_CLIENT_SECRET 
               })
 
-
+@method_decorator(check_2fa, name='dispatch')
 class WalletsView(LoginRequiredMixin, TemplateView):
     template_name = 'coins/wallets.html'
 
@@ -355,7 +358,7 @@ class CoinWithdrawal(TemplateView):
             context['coin'] = Coin.objects.get(code=currency)
         return context
 
-
+@method_decorator(check_2fa, name='dispatch')
 class SendView(LoginRequiredMixin, View):
     """
     For sending coins to given address
@@ -393,7 +396,7 @@ class SendView(LoginRequiredMixin, View):
         return HttpResponse(json.dumps({"success": True}), content_type='application/json')
 
 
-
+@method_decorator(check_2fa, name='dispatch')
 class SendSuccessView(TemplateView):
     template_name = 'coins/send-money-success.html'
 
@@ -402,7 +405,7 @@ class SendSuccessView(TemplateView):
         context['transaction'] = self.request.session['transaction']
         return context
 
-
+@method_decorator(check_2fa, name='dispatch')
 class SendConfirmView(TemplateView):
     template_name = 'coins/send-money-confirm.html'
 
@@ -620,6 +623,14 @@ class ConversionView(View):
 
 class BuyCryptoView(TemplateView):
     template_name = "coins/buycrypto-1.html"
+    
+    @method_decorator(check_2fa)
+    def dispatch(self, request, *args, **kwargs):
+        kyc_status = KYC.objects.filter(user=self.request.user,approved=True)
+        if not kyc_status:
+            return redirect(reverse_lazy("accounts:kyc"))
+        else:
+            return super().get(request,**kwargs)
 
     def post(self, request, *args, **kwargs):
         context = {}
@@ -675,7 +686,7 @@ class BuyCryptoView(TemplateView):
         
 
           
-
+@method_decorator(check_2fa, name='dispatch')
 class PayPalVerifyView(View):
     def get(self, request, *args, **kwargs):
         payment = paypalrestsdk.Payment.find(request.GET.get("paymentId"))

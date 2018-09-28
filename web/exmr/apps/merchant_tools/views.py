@@ -105,8 +105,7 @@ class ButtonMakerView(FormView):
 
         img_temp = ButtonImage.objects.get(label=btn_image)
         img_src = str(domain+img_temp.btn_img.url)
-        link_html = '<input type="image" src="//'+img_src + \
-            '" alt="Buy Now with GetCryptoPayments.org"></form>'
+        link_html = '<input type="image" src="//"'+img_src+ ' alt="Buy Now with GetCryptoPayments.org"></form>'
         context['btn_code'] = temp_html
         context['submit_image'] = link_html
         return render(self.request, 'merchant_tools/buttonmaker.html', context)

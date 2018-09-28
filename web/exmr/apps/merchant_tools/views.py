@@ -162,7 +162,10 @@ class PaymentFormSubmitView(View):
         except:
             sel_coin = EthereumToken.objects.get(contract_symbol=self.request.POST['selected_coin'])
         superuser = User.objects.get(is_superuser=True)
-        crypto_address = create_wallet(superuser, sel_coin.code)
+        try:
+            crypto_address = create_wallet(superuser, sel_coin.code)
+        except:
+            crypto_address = create_wallet(superuser, sel_coin.contract_symbol)
         # crypto_address = '123'
         print(crypto_address)
         temp_obj = CryptoPaymentRec.objects.create(

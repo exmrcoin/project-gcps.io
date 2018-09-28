@@ -386,9 +386,15 @@ class POSQRPayView(TemplateView):
         request.session['payable_amt_usd'] = request.POST.get('payable_amt')
         d = timezone.now()
         try:
-            obj = MultiPayment.objects.filter(paid_unique_id=request.session['unique_id'], paid_in=Coin.objects.get(
-                code=request.session['selected_coin']))
-            addr = obj[0].payment_address
+            try:
+                obj = MultiPayment.objects.filter(paid_unique_id=request.session['unique_id'], paid_in=Coin.objects.get(
+                    code=request.session['selected_coin']))
+                addr = obj[0].payment_address
+            except:
+                obj = MultiPayment.objects.filter(paid_unique_id=request.session['unique_id'], paid_in=EthereumToken.objects.get(
+                    contract_symbol=request.session['selected_coin']))
+                addr = obj[0].payment_address
+
         except:
             addr = create_wallet(
                 superuser, self.request.session['selected_coin'])

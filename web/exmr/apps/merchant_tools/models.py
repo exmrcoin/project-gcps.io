@@ -6,7 +6,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
-from apps.coins.models import Coin
+from apps.coins.models import Coin, EthereumToken
 from apps.merchant_tools import random_primary
 from datetime import datetime, timedelta
 from apps.accounts.models import User, Profile
@@ -78,7 +78,8 @@ class CryptoPaymentRec(models.Model):
     zipcode = models.CharField(max_length=128, null=False)
     phone = models.CharField(max_length=128, null=False)
     buyer_note = models.CharField(max_length=128, blank=True, null=True)
-    selected_coin = models.ForeignKey(Coin, on_delete=models.CASCADE)
+    selected_coin = models.ForeignKey(Coin, on_delete=models.CASCADE, null = True)
+    selected_erc_token = models.ForeignKey(EthereumToken, on_delete=models.CASCADE, null = True)
     wallet_address = models.CharField(max_length=128, null=False)
 
     def __str__(self):

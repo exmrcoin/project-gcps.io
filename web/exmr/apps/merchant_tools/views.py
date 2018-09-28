@@ -168,29 +168,56 @@ class PaymentFormSubmitView(View):
             crypto_address = create_wallet(superuser, sel_coin.contract_symbol)
         # crypto_address = '123'
         print(crypto_address)
-        temp_obj = CryptoPaymentRec.objects.create(
-            merchant_id=self.request.POST['merchant_id'],
-            item_name=self.request.POST['item_name'],
-            item_amount=self.request.POST['item_amount'],
-            item_number=self.request.POST['item_number'],
-            item_qty=self.request.POST['item_qty'],
-            invoice_number=self.request.POST['invoice_number'],
-            unique_id=self.request.POST['unique_id'],
-            tax_amount=self.request.POST['tax_amount'],
-            shipping_cost=self.request.POST['shipping_cost'],
-            first_name=self.request.POST['first_name'],
-            last_name=self.request.POST['last_name'],
-            email_addr=self.request.POST['email_addr'],
-            addr_l1=self.request.POST['addr_line_1'],
-            addr_l2=self.request.POST['addr_line_2'],
-            country=self.request.POST['country'],
-            city=self.request.POST['city'],
-            zipcode=self.request.POST['zipcode'],
-            phone=self.request.POST['phone'],
-            selected_coin=sel_coin,
-            wallet_address=crypto_address,
-            buyer_note=self.request.POST['buyer_notes']
-        )
+        try:
+            temp_obj = CryptoPaymentRec.objects.create(
+                merchant_id=self.request.POST['merchant_id'],
+                item_name=self.request.POST['item_name'],
+                item_amount=self.request.POST['item_amount'],
+                item_number=self.request.POST['item_number'],
+                item_qty=self.request.POST['item_qty'],
+                invoice_number=self.request.POST['invoice_number'],
+                unique_id=self.request.POST['unique_id'],
+                tax_amount=self.request.POST['tax_amount'],
+                shipping_cost=self.request.POST['shipping_cost'],
+                first_name=self.request.POST['first_name'],
+                last_name=self.request.POST['last_name'],
+                email_addr=self.request.POST['email_addr'],
+                addr_l1=self.request.POST['addr_line_1'],
+                addr_l2=self.request.POST['addr_line_2'],
+                country=self.request.POST['country'],
+                city=self.request.POST['city'],
+                zipcode=self.request.POST['zipcode'],
+                phone=self.request.POST['phone'],
+                selected_coin=sel_coin,
+                wallet_address=crypto_address,
+                buyer_note=self.request.POST['buyer_notes']
+            )
+        except:
+            temp_obj = CryptoPaymentRec.objects.create(
+                merchant_id=self.request.POST['merchant_id'],
+                item_name=self.request.POST['item_name'],
+                item_amount=self.request.POST['item_amount'],
+                item_number=self.request.POST['item_number'],
+                item_qty=self.request.POST['item_qty'],
+                invoice_number=self.request.POST['invoice_number'],
+                unique_id=self.request.POST['unique_id'],
+                tax_amount=self.request.POST['tax_amount'],
+                shipping_cost=self.request.POST['shipping_cost'],
+                first_name=self.request.POST['first_name'],
+                last_name=self.request.POST['last_name'],
+                email_addr=self.request.POST['email_addr'],
+                addr_l1=self.request.POST['addr_line_1'],
+                addr_l2=self.request.POST['addr_line_2'],
+                country=self.request.POST['country'],
+                city=self.request.POST['city'],
+                zipcode=self.request.POST['zipcode'],
+                phone=self.request.POST['phone'],
+                selected_erc_token = sel_coin, 
+                wallet_address=crypto_address,
+                buyer_note=self.request.POST['buyer_notes']
+            )
+
+
         temp_obj.save()
         context = {}
         merchant_id = self.request.POST['merchant_id']

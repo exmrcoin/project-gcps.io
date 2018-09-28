@@ -336,17 +336,21 @@ class TwoFactorAccountList(LoginRequiredMixin, ListView):
 class Verify2FAView(LoginRequiredMixin, View):
     """ verifying 2fa password"""
     template_name = 'accounts/verify_2fa.html'
-
     def get(self, request, *args, **kwargs):
         if request.user.get_profile.two_factor_auth == 0 or \
                 not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
             two_factor_type = 'Email'
             request.session['email_otp'] = get_pin()
-
             if not request.session.get('email_send', False):
+                context = {
+                   "ip": self.get_client_ip(request),
+                   "username": request.user.username,
+                   "otp": request.session['email_otp'],
+                   }
+                msg_plain = render_to_string('common/2_fact_auth_code.txt', context)
                 send_mail(
                     'Verification Code',
-                    'Your verification code is %s' % request.session['email_otp'],
+                    msg_plain,
                     settings.DEFAULT_FROM_EMAIL,
                     [request.user.email],
                     fail_silently=False
@@ -388,6 +392,14 @@ class Verify2FAView(LoginRequiredMixin, View):
         }
 
         return render(request, self.template_name, context)
+
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
 
 
 class FeedbackListView(ListView):

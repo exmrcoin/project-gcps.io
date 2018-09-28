@@ -36,6 +36,7 @@
                             </tr>
                             </thead>
                             <tbody>
+                                {% if transactions %}
                                 {% for transaction in transactions %}
                                 <tr>
                                     <td align="center">{% now "jS F Y H:i" %}</td>
@@ -44,10 +45,12 @@
                                     <td align="center">{{transaction.amount}}</td>
                                 </tr>
                                 {% endfor %}
+                                {% else %}
                             <tr>
                                 <td class="table-style" colspan="4">{% trans 'No Payment Found' %}</td>
 
                             </tr>
+                                {% endif %}
                             </tbody>
                             <!--Table body-->
 

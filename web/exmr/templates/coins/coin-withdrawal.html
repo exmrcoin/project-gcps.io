@@ -25,7 +25,7 @@
             <div class="row m0 mb20">
               <div class="col-sm-6 ">
                 <div class="input-group">
-                  <input id="msg" type="text" class="form-control amount"  >
+                  <input id="coin_amount" type="text" class="form-control amount"  >
                   <span class="input-group-addon p5">
                   <select >
                   <option>{% if coin.code %}{{coin.code}}{% else %}{{ coin.contract_symbol }}{% endif %} </option>	
@@ -36,7 +36,7 @@
                
                 <div class="input-group width80per">
 					       <div class="divid"></div>
-                  <input id="msg" type="text" class="form-control amount"  >
+                  <input id="converted_amount" type="text" class="form-control amount"  >
                   <span class="input-group-addon p5">
                     <select name="dispcoin" id="dispcoin">
                       <option value="BTC">BTC</option><option value="USD" selected="">USD</option><option value="CAD">CAD</option><option value="EUR">EUR</option><option value="ARS">ARS</option><option value="AUD">AUD</option><option value="AZN">AZN</option><option value="BGN">BGN</option><option value="BRL">BRL</option><option value="BYN">BYN</option><option value="CHF">CHF</option><option value="CLP">CLP</option><option value="CNY">CNY</option><option value="COP">COP</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="GBP">GBP</option><option value="GEL">GEL</option><option value="GIP">GIP</option><option value="HKD">HKD</option><option value="HUF">HUF</option><option value="IDR">IDR</option><option value="ILS">ILS</option><option value="INR">INR</option><option value="IRR">IRR</option><option value="IRT">IRT</option><option value="ISK">ISK</option><option value="JPY">JPY</option><option value="KRW">KRW</option><option value="LAK">LAK</option><option value="MKD">MKD</option><option value="MXN">MXN</option><option value="MYR">MYR</option><option value="NGN">NGN</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PEN">PEN</option><option value="PHP">PHP</option><option value="PKR">PKR</option><option value="PLN">PLN</option><option value="RON">RON</option><option value="RUB">RUB</option><option value="SEK">SEK</option><option value="SGD">SGD</option><option value="THB">THB</option><option value="TRY">TRY</option><option value="TWD">TWD</option><option value="UAH">UAH</option><option value="VND">VND</option><option value="ZAR">ZAR</option>
@@ -103,6 +103,23 @@
         alert("Please verify the details not empty.")
       }
   }
+$("#coin_amount").keyup(function(){
+  if ($("#coin_amount").val()){
+    
+    $.ajax({
+                type: "GET",
+                url: "{% url 'coins:currency_convert' %}",
+                data: {
+                    'to': "{% if coin.code %}{{coin.code}}{% else %}{{ coin.contract_symbol }}{% endif %}",
+                },
+                success: function (data) {
+                    usd = parseInt($("#coin_amount").val());
+                    console.log(data["value"]*usd)
+                    $("#converted_amount").val(data["value"]*usd)
+                }
+            })
+  }
+});
 
 
 </script>

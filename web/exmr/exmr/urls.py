@@ -30,6 +30,7 @@ from apps.common.views import HomeView, ContactView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
+    path('s9tjjy6e8w6paimpmoxa4sfa651n6j.html/', TemplateView.as_view(template_name='s9tjjy6e8w6paimpmoxa4sfa651n6j.html'), name="facebook html"),
     path('', HomeView.as_view(), name='home'),
 
 ]
@@ -56,8 +57,6 @@ urlpatterns += i18n_patterns(
     path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'),
          name='forgot-password'),
     path('contact/', ContactView.as_view(), name='contact'),
-         path('ckeditor/',include('ckeditor_uploader.urls')),
     path('select2/', include('django_select2.urls')),
+    path('ckeditor/',include('ckeditor_uploader.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-

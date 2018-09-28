@@ -17,7 +17,8 @@
         <tr>
           <td><img src="{{ plugin.shopping_cart_logo.url}}" width="40px"></td>
           <td>{{ plugin.last_update }}</td>
-          <td><button class="btn btn-success" onclick="window.location.href='{{ plugin.download_url }}'"> <i class="fas fa-download"></i> Download</button></td>
+          <td><button class="btn btn-success" onclick="modalshow()"> <i class="fas fa-download"></i> Download</button></td>
+          <!-- onclick="window.location.href='{{ plugin.download_url }}'" -->
           <td>{{ plugin.auth_type }}</td>
           <td></td>
           <td><a href="{{ plugin.video_url }}"><i class="fa fa-play" aria-hidden="true"></i></td>
@@ -27,4 +28,11 @@
   </table>
   </div>
 </div>
+{% endblock %}
+{% block script %}
+<script>
+  function modalshow(){
+    $('#onload').modal('toggle');
+  }
+</script>
 {% endblock %}

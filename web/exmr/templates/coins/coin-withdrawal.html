@@ -110,16 +110,17 @@ $("#coin_amount").keyup(function(){
                 type: "GET",
                 url: "{% url 'coins:currency_convert' %}",
                 data: {
+                    'from': $("#dispcoin").val(),
                     'to': "{% if coin.code %}{{coin.code}}{% else %}{{ coin.contract_symbol }}{% endif %}",
                 },
                 success: function (data) {
                     usd = parseInt($("#coin_amount").val());
-                    console.log(data["value"]*usd)
-                    $("#converted_amount").val(data["value"]*usd)
+                    $("#converted_amount").val(usd/data["value"])
                 }
             })
   }
 });
+
 
 
 </script>

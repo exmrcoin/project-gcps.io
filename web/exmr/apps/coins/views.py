@@ -610,13 +610,14 @@ class VoteWinners(TemplateView):
 class ConversionView(View):
     def get(self, request, *args, **kwargs):
         convert_to = self.request.GET.get("to")
-        if convert_to != "USD":
-            data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']:rate['price'] for rate in data}
-            val = 1/rates[convert_to]
-
-        else:
-            val = 1
+        convert_from = self.request.GET.get("from")
+        if not convert_from:
+            convert_from = "USD"
+        try:
+            val = (float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q="+convert_from+"_"+\
+            convert_to+"&compact=y&callback=json").text.split(":")[-1].strip("}});")))
+        except:
+            val = None
         self.request.session["coin_amount"] = val
 
         return HttpResponse(json.dumps({"value": val}), content_type="application/json")

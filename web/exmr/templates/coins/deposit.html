@@ -44,7 +44,7 @@
         </div>
 </div>
 {% endblock %}
-
+{% block script %}
 <script type="text/javascript">
 function newAddress(){
     $.ajax({
@@ -62,7 +62,7 @@ function newAddress(){
 
 </script>
 
-{% block script %}
+
 <script type="text/javascript">
 function copy_password(btn_id) {
 var temp = $('#'+btn_id+'').prev('span');

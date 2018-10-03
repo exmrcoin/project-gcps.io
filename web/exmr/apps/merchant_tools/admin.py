@@ -3,7 +3,7 @@ from sorl.thumbnail import get_thumbnail
 from django.template.loader import render_to_string
 # Register your models here.
 from apps.merchant_tools.models import (ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic,
-                                        MercSidebarSubTopic, URLMaker, POSQRMaker, MultiPayment)
+                                        MercSidebarSubTopic, URLMaker, POSQRMaker, MultiPayment, DonationButtonMaker)
 
 
 class ButtonImageAdmin(admin.ModelAdmin):
@@ -25,3 +25,4 @@ admin.site.register(MercSidebarSubTopic)
 admin.site.register(URLMaker)
 admin.site.register(POSQRMaker)
 admin.site.register(MultiPayment)
+admin.site.register(DonationButtonMaker)

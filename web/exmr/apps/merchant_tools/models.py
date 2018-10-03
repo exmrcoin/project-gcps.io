@@ -41,6 +41,28 @@ class ButtonMaker(models.Model):
     def __str__(self):
         return self.item_name
 
+class DonationButtonMaker(models.Model):
+    merchant_id = models.CharField(
+        verbose_name=_('merchant id'), max_length=128)
+    donation_name = models.CharField(max_length=128, null=False)
+    donation_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=True)
+    item_number = models.CharField(max_length=128, null=False)
+    allow_donator_to_adjust_amount = models.BooleanField(default=False)
+    invoice_number = models.CharField(max_length=128, null=False)
+    tax_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=True, default = 0)
+    collect_shipping_address = models.BooleanField(default=False)
+    shipping_cost = models.DecimalField(
+        max_digits=20, decimal_places=2,  null=True, default = 0)
+    success_url_link = models.URLField(max_length=128, blank=True, null=True)
+    cancel_url_link = models.URLField(max_length=128, blank=True, null=True)
+    ipn_url_link = models.URLField(max_length=128, blank=True, null=True)
+    btn_image = models.ForeignKey('ButtonImage', on_delete=models.CASCADE)
+    allow_donor_note = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.donation_name
 
 class ButtonImage(models.Model):
     label = models.CharField(max_length=128, null=False)

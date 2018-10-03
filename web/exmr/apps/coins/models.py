@@ -1,7 +1,9 @@
 import re
 import random
+import datetime
 
 from django.db import models
+from datetime import datetime
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField
 from django.utils.translation import ugettext_lazy as _
@@ -215,6 +217,7 @@ class Transaction(models.Model):
     system_tx_id = models.CharField(max_length=50, default=get_random)
     activation_code = models.CharField(max_length=20, blank=True)
     approved = models.BooleanField(default=False)
+    date = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.user.username

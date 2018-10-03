@@ -16,7 +16,7 @@ from apps.accounts.models import Profile
 from apps.coins.models import Coin, WalletAddress
 from apps.coins.utils import *
 from apps.coins import coinlist
-from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm, POSQRForm
+from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm, POSQRForm, DonationButtonMakerForm
 from apps.merchant_tools.models import (ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic,
                                         URLMaker, POSQRMaker, MultiPayment, MercSidebarSubTopic)
 from django.utils.decorators import method_decorator
@@ -110,6 +110,81 @@ class ButtonMakerView(FormView):
         context['submit_image'] = link_html
         return render(self.request, 'merchant_tools/buttonmaker.html', context)
 
+class DonationButtonMakerView(FormView):
+
+    template_name = 'merchant_tools/donationbuttonmaker.html'
+    form_class = DonationButtonMakerForm
+
+    def get_success_url(self):
+        success_url = self.request.path_info
+
+    def get_initial(self):
+        initial = super(DonationButtonMakerView, self).get_initial()
+        try:
+            initial['merchant_id'] = Profile.objects.get(
+                user=self.request.user).merchant_id
+        except:
+            pass
+        initial['btn_image'] = 1
+        return initial
+
+    def form_valid(self, form):
+        """If the form is valid, redirect to the supplied URL."""
+        form.save()
+        context = super(DonationButtonMakerView, self).get_context_data()
+        merchant_id = form.cleaned_data['merchant_id']
+        donation_name = form.cleaned_data['donation_name']
+        donation_amount = form.cleaned_data['donation_amount']
+        item_number = form.cleaned_data['item_number']
+        allow_donator_to_adjust_amount = str(form.cleaned_data['allow_donator_to_adjust_amount']).lower()
+        invoice_number = form.cleaned_data['invoice_number']
+        tax_amount = form.cleaned_data['tax_amount']
+        collect_shipping_address = str(
+            form.cleaned_data['collect_shipping_address']).lower()
+        shipping_cost = form.cleaned_data['shipping_cost']
+        success_url_link = form.cleaned_data['success_url_link']
+        cancel_url_link = form.cleaned_data['cancel_url_link']
+        ipn_url_link = form.cleaned_data['ipn_url_link']
+        btn_image = form.cleaned_data['btn_image']
+        allow_donor_note = str(form.cleaned_data['allow_donor_note']).lower()
+        # domain =  Site.objects.get_current()
+        domain = self.request.get_host()
+        temp_html = ['<form action="//'+domain+reverse('mtools:cryptopay') + '" method="POST" >',
+                     '<input type="hidden" name="merchant_id" value="'+merchant_id +
+                     '" maxlength="128" id="id_merchant_id" required />',
+                     '<input type="hidden" name="item_name" value="'+donation_name +
+                     '" maxlength="128" id="id_item_name" required />',
+                     '<input type="hidden" name="item_amount" value="'+str(donation_amount) +
+                     '" maxlength="128" id="id_item_amount" required />',
+                     '<input type="hidden" name="item_number" value="'+item_number +
+                     '" maxlength="128" id="id_item_number" required />',
+                     '<input type="hidden" name="item_qty" value="'+str(1) +
+                     '" maxlength="128" id="id_item_qty" required />',
+                     '<input type="hidden" name="buyer_qty_edit" value="' +  allow_donator_to_adjust_amount+
+                     '" id="id_buyer_qty_edit" />',
+                     '<input type="hidden" name="invoice_number" value="'+invoice_number +
+                     '" maxlength="128" id="id_invoice_number" required />',
+                     '<input type="hidden" name="tax_amount" value="'+str(tax_amount) +
+                     '" maxlength="128" id="id_tax_amount" required />',
+                     '<input type="hidden" name="allow_shipping_cost" value="' +collect_shipping_address+
+                     '"id="id_allow_shipping_cost" />',
+                     '<input type="hidden" name="shipping_cost" value="'+str(shipping_cost) +
+                     '" maxlength="128" id="id_shipping_cost" required />',
+                     '<input type="hidden" name="shipping_cost_add" value="'+str(1) +
+                     '" maxlength="128" id="id_shipping_cost_add" required />',
+                     '<input type="hidden" name="success_url_link" value="'+str(success_url_link) +
+                     '" maxlength="128" id="id_success_url_link" required />',
+                     '<input type="hidden" name="cancel_url_link" value="'+str(cancel_url_link) +
+                     '" maxlength="128" id="id_cancel_url_link" required />',
+                     '<input type="hidden" name="ipn_url_link" value="'+str(ipn_url_link) +
+                     '" maxlength="128" id="id_ipn_url_linl" required />',
+                     '<input type="hidden" name="allow_buyer_note" value="' +allow_donor_note+
+                     '"id="id_allow_buyer_note" />',
+                     '<input type="hidden" name="btn_image" value="1"id="id_btn_image" />',
+                     '<input type="image" src="//'+str(domain+(ButtonImage.objects.get(label=btn_image)).btn_img.url)+ '" alt="Buy Now with GetCryptoPayments.org"></form>'
+                     ]
+        context['btn_code'] = temp_html
+        return render(self.request, 'merchant_tools/donationbuttonmaker.html', context)
 
 class CryptoPaymment(FormView):
     template_name = 'merchant_tools/payincrypto.html'

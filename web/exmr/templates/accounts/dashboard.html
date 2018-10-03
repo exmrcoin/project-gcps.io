@@ -39,7 +39,7 @@
                                 {% if transactions %}
                                 {% for transaction in transactions %}
                                 <tr>
-                                    <td align="center">{% now "jS F Y H:i" %}</td>
+                                    <td align="center">{{ transaction.date }}</td>
                                     <td align="center" style="word-wrap: break-word">{{transaction.transaction_to}}</td>
                                     <td align="center">{{transaction.currency}}</td>
                                     <td align="center">{{transaction.amount}}</td>

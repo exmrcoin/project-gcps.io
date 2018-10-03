@@ -1,7 +1,7 @@
 from django import forms
 
 from apps.coins.models import Coin
-from apps.merchant_tools.models import ButtonMaker, CryptoPaymentRec, URLMaker, POSQRMaker
+from apps.merchant_tools.models import ButtonMaker, CryptoPaymentRec, URLMaker, POSQRMaker, DonationButtonMaker
 from django.core.validators import DecimalValidator, URLValidator, ValidationError
 
 class ButtonMakerForm(forms.ModelForm):
@@ -17,6 +17,18 @@ class ButtonMakerForm(forms.ModelForm):
         if self.fields['merchant_id']:
             self.fields['merchant_id'].disabled = True
 
+class DonationButtonMakerForm(forms.ModelForm):
+    class Meta:
+        model = DonationButtonMaker
+        exclude = []
+        labels = {
+        "item_amount":"Price in USD $"
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(DonationButtonMakerForm, self).__init__(*args, **kwargs)
+        if self.fields['merchant_id']:
+            self.fields['merchant_id'].disabled = True
 
 class CryptoPaymentForm(forms.Form):
     class Meta:

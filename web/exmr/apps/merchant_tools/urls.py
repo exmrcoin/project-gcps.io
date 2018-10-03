@@ -3,12 +3,13 @@ from django.views.generic import TemplateView
 
 from apps.merchant_tools.views import (ButtonMakerView, CryptoPaymment, PaymentFormSubmitView, MercDocs,
                                        URLMakerView, URLMakerInvoiceView, POSQRMakerView, POSQRPayView, POSQRCompletePaymentView,
-                                       HelpTemplateView)
+                                       HelpTemplateView, DonationButtonMakerView)
 
 app_name = 'mtools'
 
 urlpatterns = [
     path('buttonmaker/', ButtonMakerView.as_view(),  name='buttonmaker'),
+    path('donationbuttonmaker/', DonationButtonMakerView.as_view(),  name='donationbuttonmaker'),
     path('urlmaker/', URLMakerView.as_view(),  name='urlmaker'),
     path('invoice/<token>/', URLMakerInvoiceView.as_view(),  name='urlmakerinvoice'),
     path('make-payment/', CryptoPaymment.as_view(),  name='cryptopay'), 

@@ -1,0 +1,60 @@
+{% extends 'exmr.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
+<section>
+    <div class="dark-page-header text-center">
+        <h1>MERCHANT TOOLS</h1>
+        <h4>Button Maker</h4>
+    </div>
+</section>
+ 
+    
+<div class="col-xs-12 col-md-10 col-md-offset-1 pad20">
+    <div class="dasboard-head col-xs-12 pad10">
+        <div class="img-dashboard">
+            <img src="{% static '/images/recevied.png' %} ">
+        </div>
+        <span class="font-h3">{% trans 'Donation Button Maker' %}</span>
+    </div>
+    <div class="dasboard-head col-xs-12 pad10 text-center">
+        <form method="post" novalidate>
+            {% csrf_token %} {% include 'exmr_form.html' with form=form %}
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<div class="col-xs-12 col-md-10 col-md-offset-1 pad20">
+    
+    <div class="dasboard-head col-xs-12 col-md-8" >
+        <a id="cp_btn" class="floatr" onclick="copy_password(this.id);"><i class="far fa-copy" style="font-size: 30px; padding: 10px"></i></a>
+        <div id="pwd_span">   
+        {% for item in btn_code %}
+
+        <span class="code-font" id="pwd_span"> {{item}}</span>
+         {% endfor %} 
+        </div>   
+    </div>
+</div>
+<div class="clearfix">
+
+</div>
+
+{% endblock %} {% block script %}
+{{ form.media.js }}
+<script>
+        $(window).on("load",function(){
+            $('#onload').modal('show');
+    })
+</script>
+
+<script type="text/javascript">
+    function copy_password(btn_id) {
+    var temp = $('#'+btn_id+'').next('div');
+    var textArea = document.createElement("textarea");
+    textArea.value = temp.text();
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand("Copy");
+    textArea.remove();
+    }
+    </script>
+{% endblock %}

@@ -10,6 +10,30 @@
     {% endblock %}
     {% block dashboard_head_title %}{% trans 'Settings' %}{% endblock %}
     {% block dashboard_wrapper_content %}
+    {% if messages %}
+    <div class="django-message-alert ">
+        {% for message in messages %}
+
+        <script>
+
+            window.setTimeout(function () {
+                $.notify({
+                    icon: 'fa fa-warning-sign',
+                    title: '',
+                    message: "{{ message }}"
+                }, {
+                        animate: {
+                            enter: 'animated fadeInRight',
+                            exit: 'animated fadeOutRight'
+                        },
+
+                        type: '{{ message.tags }}'
+
+                    });
+            }, {{forloop.counter}}000);
+        </script> {% endfor %}
+    </div>
+    {% endif %}
         <div class="dashboard-wrapper top-sec">
             <div class="bs-example bs-example-tabs examble-tab" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs nav-tabs-responsive multiple-tab" role="tablist">
@@ -112,33 +136,33 @@
                                     <div class="form-group col-md-6">
                                         <label for="first_name">{% trans 'Account Email' %}</label>
                                         {{ form.email }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ form.errors.email }}</span>
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="last_name">{% trans 'Confirm Email' %}</label>
                                         {{ form.confirm_email }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ form.errors.confirm_email }}</span>
                                     </div>
 
 
                                     <div class="form-group col-md-6">
                                         <label for="password">{% trans 'Gender' %}</label>
                                         {{ form.gender }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ form.errors.gender }}</span>
 
                                     </div>
 
                                     <div class="form-group col-md-6">
                                         <label for="confirm_password">{% trans 'Time Zone' %}</label>
                                         {{ form.timezone }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ form.errors.timezone }}</span>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <div class=" date-pick">
                                             <label for="password">{% trans 'Date Format' %}</label>
                                             {{ form.date_format }}
-                                            <span class="error"></span>
+                                            <span class="error">{{ form.errors.date_format }}</span>
                                         </div>
 
                                     </div>
@@ -146,7 +170,7 @@
                                     <div class="form-group col-md-6">
                                         <label for="confirm_password">{% trans 'Time Format' %}</label>
                                         {{ form.time_format }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ form.errors.time_format }}</span>
                                     </div>
 
                                     <div class="form-group col-md-6">
@@ -171,27 +195,27 @@
                                     <div class="form-group col-md-12">
                                         <label for="first_name">{% trans 'Public Name' %}</label>
                                         {{ public_info_form.public_name|add_class:'form-control text-view' }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ public_info_form.errors.public_name }}</span>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label for="first_name">{% trans 'Public Email' %}</label>
                                         {{ public_info_form.public_email|add_class:'form-control text-view' }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ public_info_form.errors.public_email }}</span>
                                     </div>
 
 
                                     <div class="form-group col-md-12">
                                         <label for="first_name">{% trans 'Public URL' %}</label>
                                         {{ public_info_form.public_url|add_class:'form-control text-view' }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ public_info_form.errors.public_url }}</span>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label for="confirm_password">Use <a href="https://en.gravatar.com/"
                                                                              target="_blank">Gravatar</a></label>
                                         {{ public_info_form.use_gravatar }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ public_info_form.errors.use_gravatar }}</span>
 
                                     </div>
 
@@ -220,26 +244,26 @@
                                     <div class="form-group col-md-12">
                                         <label for="current_password">{% trans 'Current Password' %}</label>
                                         {{ security_form.current_password|add_class:'form-control text-view' }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ security_form.errors.current_password }}</span>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label for="password">{% trans 'New Password' %}</label>
                                         {{ security_form.password|add_class:'form-control text-view' }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ security_form.errors.password }}</span>
                                     </div>
 
 
                                     <div class="form-group col-md-12">
                                         <label for="confirm_password">{% trans 'Confirm Password' %}</label>
                                         {{ security_form.confirm_password|add_class:'form-control text-view' }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ security_form.errors.confirm_password }}</span>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label for="two_factor_auth">{% trans '2 Factor Authentication' %}</label>
                                         {{ security_form.two_factor_auth|add_class:'form-control text-view' }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ security_form.errors.two_factor_auth }}</span>
                                         <small class="form-text text-muted">
                                             {% trans 'Email: You will be prompted for a code at the time of login which will be sent to your provided email ID.' %}
                                             {% trans 'Linked 2FA Accounts: Link authenticators supporting TOTP such as Google Authenticator, Authy, FreeOTP, etc. You can edit your linked devices' %}
@@ -251,14 +275,14 @@
                                     <div class="form-group col-md-12">
                                         <label for="two_factor_auth">{% trans 'Email Confirmations for Sends/Withdrawals' %}</label>
                                         {{ security_form.email_confirmation_transaction }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ security_form.errors.email_confirmation_transaction }}</span>
 
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label for="pgp_gpg_public_key">{% trans 'PGP/GPG Public Key' %}</label>
                                         {{ security_form.pgp_gpg_public_key|add_class:'form-control text-view' }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ security_form.errors.pgp_gpg_public_key }}</span>
 
                                     </div>
 
@@ -279,57 +303,57 @@
                         <div class="account-setting-wrap pt20">
 
                             <form role="form" method="post" id="merchantSettingsForm"
-                                  action="{% url 'accounts:save_security_info' %}" novalidate>
+                                  action="{% url 'accounts:save_ipn_settings' %}" novalidate>
                                 {% csrf_token %}
                                 <fieldset class="setting-form form-settings">
 
                                     <div class="form-group col-md-12">
                                         <label for="ipn_secret">{% trans 'IPN Secret' %}</label>
                                         {{ ipn_form.ipn_secret|add_class:'form-control text-view' }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ ipn_form.errors.ipn_secret }}</span>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label for="ipn_url">{% trans 'IPN URL' %}</label>
                                         {{ ipn_form.ipn_url|add_class:'form-control text-view' }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ ipn_form.errors.ipn_url }}</span>
                                     </div>
                                     <label for="confirm_password">Email Notifications</label>
 
                                     <div class="form-group col-md-12">
                                         <label for="confirm_password">{{ ipn_form.mail_on_new_payment_init.label }}</label>
                                         {{ ipn_form.mail_on_new_payment_init }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ ipn_form.errors.mail_on_new_payment_init }}</span>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label for="confirm_password">{{ ipn_form.mail_on_new_fund_receive.label }}</label>
                                         {{ ipn_form.mail_on_new_fund_receive }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ ipn_form.errors.mail_on_new_fund_receive }}</span>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label for="confirm_password">{{ ipn_form.mail_on_fund_sent.label }}</label>
                                         {{ ipn_form.mail_on_fund_sent }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ ipn_form.errors.mail_on_fund_sent }}</span>
                                     </div>
 
                                     {#                                    <div class="form-group col-md-12">#}
                                     {#                                        <label for="confirm_password">{{ ipn_form.mail_on_new_payment_init.label }}</label>#}
                                     {#                                        {{ ipn_form.mail_on_new_payment_init }}#}
-                                    {#                                        <span class="error"></span>#}
+                                    {#                                        <span class="error">{{ ipn_form.errors.mail_on_new_payment_init }}</span>#}
                                     {#                                    </div>#}
 
                                     <div class="form-group col-md-12">
                                         <label for="confirm_password">{{ ipn_form.mail_on_deposit_receive.label }}</label>
                                         {{ ipn_form.mail_on_deposit_receive }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ ipn_form.errors.mail_on_deposit_receive }}</span>
                                     </div>
 
                                     <div class="form-group col-md-12">
                                         <label for="confirm_password">{{ ipn_form.mail_on_positive_feedback.label }}</label>
                                         {{ ipn_form.mail_on_positive_feedback }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ ipn_form.errors.mail_on_positive_feedback }}</span>
                                     </div>
 
                                     <div class="form-group col-md-12">
@@ -341,7 +365,7 @@
                                                 If not provided, notofications will be sent to the primary email
                                             {% endblocktrans %}
                                         </small>
-                                        <span class="error"></span>
+                                        <span class="error">{{ ipn_form.errors.status_email }}</span>
 
                                     </div>
 
@@ -349,7 +373,7 @@
                                         <label for="two_factor_auth">{{ ipn_form.receive_sms.label }}</label>
                                         {{ ipn_form.receive_sms }}
 
-                                        <span class="error"></span>
+                                        <span class="error">{{ ipn_form.errors.receive_sms }}</span>
 
                                     </div>
 
@@ -357,7 +381,7 @@
                                     <div class="form-group col-md-12">
                                         <label for="pgp_gpg_public_key">{{ ipn_form.phone.label }}</label>
                                         {{ ipn_form.phone|add_class:'form-control text-view' }}
-                                        <span class="error"></span>
+                                        <span class="error">{{ ipn_form.errors.phone }}</span>
 
                                     </div>
 

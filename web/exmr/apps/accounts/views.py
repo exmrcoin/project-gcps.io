@@ -157,8 +157,10 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
             self.request.META['HTTP_HOST'] + "?ref=" + self.object.merchant_id
         return context
 
-    def form_invalid(self, form):
-        return self.render_to_json_response(form.errors)
+    def form_invalid(self, form, *args, **kwargs):
+        self.context = self.get_context_data(**kwargs)
+        self.context.update({'form': form})
+        return self.render_to_response(self.context)
 
     def form_valid(self, form):
         user = self.request.user
@@ -176,11 +178,12 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
         user_profile.gender = form.cleaned_data['gender']
         user_profile.timezone = form.cleaned_data['timezone']
         user_profile.save()
-        super(AccountSettings, self).form_valid(form)
-        return self.render_to_json_response({'msg': _('Account details updated successfully')})
+
+        return super(AccountSettings, self).form_valid(form)
+        
 
 
-class PublicInfoSave(JSONResponseMixin, UpdateView):
+class PublicInfoSave(AccountSettings, UpdateView):
 
     form_class = PublicInfoForm
 
@@ -189,13 +192,16 @@ class PublicInfoSave(JSONResponseMixin, UpdateView):
 
     def form_valid(self, form):
         form.save()
-        return self.render_to_json_response({'msg': _('Information updated successfully')})
+        return super(AccountSettings, self).form_valid(form)
 
-    def form_invalid(self, form):
-        return self.render_to_json_response(form.errors)
+    def form_invalid(self, form, *args, **kwargs):
+        self.context = self.get_context_data(**kwargs)
+        self.context.update({'public_info_form': form})
+        messages.add_message(self.request, messages.WARNING, form.errors)
+        return self.render_to_response(self.context)
 
 
-class SecurityInfoSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
+class SecurityInfoSave( AccountSettings, UpdateView):
     form_class = LoginSecurityForm
 
     def get_object(self, queryset=None):
@@ -220,10 +226,13 @@ class SecurityInfoSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
             form.save()
             response.update({'msg': _('Information updated successfully')})
 
-        return self.render_to_json_response(response)
+        return super(AccountSettings, self).form_valid(form)
 
-    def form_invalid(self, form):
-        return self.render_to_json_response(form.errors)
+    def form_invalid(self, form, *args, **kwargs):
+        self.context = super().get_context_data(**kwargs)
+        self.context.update({'security_form': form})
+        messages.add_message(self.request, messages.WARNING, form.errors)
+        return self.render_to_response(self.context)
 
 
 class IPNSettingsSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
@@ -240,8 +249,11 @@ class IPNSettingsSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
         response.update({'msg': _('Information updated successfully')})
         return self.render_to_json_response(response)
 
-    def form_invalid(self, form):
-        return self.render_to_json_response(form.errors)
+    def form_invalid(self, form, *args, **kwargs):
+        self.context = super().get_context_data(**kwargs)
+        self.context.update({'ipn_form': form})
+        messages.add_message(self.request, messages.WARNING, form.errors)
+        return self.render_to_response(self.context)
 
 
 class ProfileActivationView(TemplateView):

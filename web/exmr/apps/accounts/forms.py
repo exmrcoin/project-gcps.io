@@ -3,6 +3,7 @@ import re
 import pytz
 
 from django import forms
+from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm, PasswordResetForm
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -146,11 +147,30 @@ class LoginSecurityForm(forms.ModelForm):
                   'two_factor_auth', 'email_confirmation_transaction']
 
     def clean_two_factor_auth(self):
-
         auth_method = self.cleaned_data.get('two_factor_auth')
         if not self.instance.user.get_user_2fa.exists():
             raise forms.ValidationError('Please add a 2FA device to enable this method')
         return auth_method
+
+    def clean_current_password(self):
+        pswd = self.cleaned_data.get('current_password')
+        if self.cleaned_data.get('current_password') or \
+         self.cleaned_data.get('current_password') or \
+         self.cleaned_data.get('password'): 
+            if not authenticate(username=self.instance.user.username, password=pswd):
+                raise forms.ValidationError('Please enter valid current password')
+        return pswd
+
+    def clean_confirm_password(self):
+        cpswd = self.cleaned_data.get('confirm_password')
+        if self.cleaned_data.get('current_password') or \
+         self.cleaned_data.get('current_password') or \
+         self.cleaned_data.get('password'):
+            pswd = self.cleaned_data.get('password')
+            if cpswd != pswd:
+                raise forms.ValidationError('Passwords you entered are not matching ')
+        return cpswd
+
 
 
 class IPNSettingsForm(forms.ModelForm):

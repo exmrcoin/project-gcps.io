@@ -178,6 +178,7 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
         user_profile.gender = form.cleaned_data['gender']
         user_profile.timezone = form.cleaned_data['timezone']
         user_profile.save()
+        messages.add_message(self.request, messages.SUCCESS, 'Information updated successfully')
 
         return super(AccountSettings, self).form_valid(form)
         
@@ -192,6 +193,7 @@ class PublicInfoSave(AccountSettings, UpdateView):
 
     def form_valid(self, form):
         form.save()
+        messages.add_message(self.request, messages.SUCCESS, 'Information updated successfully')
         return super(AccountSettings, self).form_valid(form)
 
     def form_invalid(self, form, *args, **kwargs):
@@ -224,6 +226,7 @@ class SecurityInfoSave( AccountSettings, UpdateView):
         else:
             self.request.session['2fa_verified'] = True
             form.save()
+            messages.add_message(self.request, messages.SUCCESS, 'Information updated successfully')
             response.update({'msg': _('Information updated successfully')})
 
         return super(AccountSettings, self).form_valid(form)
@@ -246,6 +249,7 @@ class IPNSettingsSave(LoginRequiredMixin, JSONResponseMixin, UpdateView):
 
         response = dict()
         form.save()
+        messages.add_message(self.request, messages.SUCCESS, 'Information updated successfully')
         response.update({'msg': _('Information updated successfully')})
         return self.render_to_json_response(response)
 

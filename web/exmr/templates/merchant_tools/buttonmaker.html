@@ -16,7 +16,8 @@
     </div>
     <div class="dasboard-head col-xs-12 pad10 text-center">
         <form method="post" novalidate>
-            {% csrf_token %} {% include 'exmr_form.html' with form=form %}
+            {% csrf_token %} 
+            {% include 'exmr_form.html' with form=form %}
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -38,8 +39,8 @@
 {% endblock %} {% block script %}
 {{ form.media.js }}
 <script>
-        $(window).on("load",function(){
-            $('#onload').modal('show');
-    })
+    //     $(window).on("load",function(){
+    //         $('#onload').modal('show');
+    // })
 </script>
 {% endblock %}

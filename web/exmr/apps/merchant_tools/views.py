@@ -222,6 +222,19 @@ class CryptoPaymment(FormView):
         context['btn_image'] = self.request.POST['btn_image']
         context['allow_buyer_note'] = self.request.POST['allow_buyer_note']
         temp_id = context['merchant_id']
+
+        tax_amount = self.request.POST['tax_amount']
+        shipping_cost_add = self.request.POST['shipping_cost_add']
+        shipping_cost = self.request.POST['shipping_cost']
+        item_amount = self.request.POST['item_amount']
+        item_qty = self.request.POST['item_qty']
+        if float(shipping_cost_add) > 1:
+            total_shipping = float(shipping_cost) + (float(shipping_cost_add) * float(item_qty))
+        else:
+            total_shipping = float(shipping_cost)
+        
+        context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
+        context['item_total'] = round((float(item_qty) * float(item_amount)),2)
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
         context['available_coins'] = coinlist.payment_gateway_coins()
         return render(request, 'merchant_tools/payincrypto.html', context)
@@ -533,3 +546,20 @@ class POSQRCompletePaymentView(TemplateView):
         context['selected_coin'] = self.request.session['selected_coin']
         context['crypto_address'] = self.request.session['crypto_address']
         return context
+
+
+
+
+class ButtonMakerContinuePayment(View):
+    def post(self, request, *args, **kwargs):
+        unique_id = self.request.POST.get('u_id')
+        coin_dict = coinlist.get_supported_coin()
+        temp_list = list(coin_dict.keys())
+        for coin in temp_list:
+            if coin == currency_code:
+                temp_list.remove(coin)
+        print(temp_list)
+        final_dict = { key: coin_dict[key] for key in temp_list }
+        print(final_dict)
+        data = final_dict
+        return HttpResponse(json.dumps(data), content_type="application/json")

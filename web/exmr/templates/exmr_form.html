@@ -13,12 +13,12 @@
 
     <div class="col-xs-12 col-md-8 text-left">
       {% if form.is_bound %} {% if field.errors %} 
-      {% render_field field class="form-control is-invalid" %} {% for error in field.errors %}
+      {% render_field field class="form-control-group is-invalid" %} {% for error in field.errors %}
       <div class="invalid-feedback">
         {{ error }}
       </div>
-      {% endfor %} {% else %} {% render_field field class="form-control is-valid" %} {% endif %} 
-      {% else %} {% render_field field class="form-control" %} 
+      {% endfor %} {% else %} {% render_field field class="form-control-group is-valid" %} {% endif %} 
+      {% else %} {% render_field field class="form-group" %} 
       {% endif %} {% if field.help_text %}
       <small class="form-text text-muted">{{ field.help_text }}</small>
       {% endif %}

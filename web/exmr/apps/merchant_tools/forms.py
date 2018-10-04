@@ -9,7 +9,7 @@ from django.forms import Select
 class CustomChoiceField(forms.ModelChoiceField):
     
     def label_from_instance(self, obj):
-        return mark_safe("<img class='img-responsive w100px floatr ' style='margin-left: 30px;' src='%s'/> <br>" % obj.btn_img.url)
+        return mark_safe("<span> &emsp;&emsp;   %s</span><img class='img-responsive w100px floatr ' style='margin-left: 30px;' src='%s'/> <br>"% (str(obj.label), obj.btn_img.url))
 
 
 class ButtonMakerForm(forms.ModelForm):

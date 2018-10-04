@@ -2073,7 +2073,6 @@ btnrad-sık::selection {
 
 input[type="radio"] {
     position: absolute;
-    /* visibility: hidden; */
     list-style: none;
 }
 

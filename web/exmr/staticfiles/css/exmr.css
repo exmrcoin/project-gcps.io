@@ -2064,14 +2064,16 @@ label {
     /* box-shadow: 0 3px #ff843c !important; */
     min-width: 150px;
 }
-
+ul li{
+    list-style: none;
+}
 btnrad-sık::selection {
     background: green;
 }
 
 input[type="radio"] {
     position: absolute;
-    visibility: hidden;
+    list-style: none;
 }
 
 input[type="radio"]+div {

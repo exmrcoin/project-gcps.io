@@ -489,6 +489,38 @@
         })
     };
 </script>
+<script>
+    var count = 0;
+
+    function raisenotify(title, message, err_type, delay) {
+        delay = delay || 500;
+        alert(err_type);
+        if (err_type=="ERROR"){
+            alert(err_type);
+            err_type='danger';
+        }
+        if (count > 0) {
+            mul = 100 + 200 * count;
+            delay = delay + mul;
+        }
+        alert('type2'+ err_type);
+        window.setTimeout(function () {
+            $.notify({
+                icon: 'fa fa-exclamation-circle',
+                title: title,
+                message: message,
+            }, {
+                animate: {
+                    enter: 'animated fadeInDown',
+                    exit: 'animated fadeOutRight'
+                },
+                type: err_type
+            });
+        }, delay);
+        count++;
+        console.log(count);
+    }
+</script>
 </body>
 
 </html>

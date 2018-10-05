@@ -5,10 +5,10 @@ Username: {{ username }}
 Code: {{ otp }} 
 This code is case sensitive!
 
-If you did not make this login attempt you should change your CoinPayments.net password immediately since whoever made this request has your correct password.
+If you did not make this login attempt you should change your GetCryptoPayments.org password immediately since whoever made this request has your correct password.
 
 Thank you,
-CoinPayments.net
+GetCryptoPayments.org
 Support is available at: https://www.getcryptopayments.org/common/help/
 
 Login request was made from IP: {{ip}}

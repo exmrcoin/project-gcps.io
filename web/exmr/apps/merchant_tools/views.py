@@ -186,6 +186,7 @@ class DonationButtonMakerView(FormView):
         context['btn_code'] = temp_html
         return render(self.request, 'merchant_tools/donationbuttonmaker.html', context)
 
+@method_decorator(csrf_exempt, name='dispatch')
 class CryptoPaymment(FormView):
     template_name = 'merchant_tools/payincrypto.html'
     form_class = CryptoPaymentForm
@@ -196,7 +197,7 @@ class CryptoPaymment(FormView):
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
         return super(CryptoPaymment, self).dispatch(request, *args, **kwargs)
-
+    
     @csrf_exempt
     def post(self, request, *args, **kwargs):
         mydate = timezone.now()

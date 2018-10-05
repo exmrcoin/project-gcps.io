@@ -2074,6 +2074,13 @@ btnrad-sık::selection {
 input[type="radio"] {
     position: absolute;
     list-style: none;
+    height: 15px;
+}
+
+input.form-control-group[type="radio"] {
+    position: absolute;
+    list-style: none;
+    height: 15px;
 }
 
 input[type="radio"]+div {

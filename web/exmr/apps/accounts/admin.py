@@ -3,7 +3,8 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.utils.translation import ugettext_lazy as _
 
-from apps.accounts.models import Profile, Address, Feedback, ProfileActivation, NewsLetter, KYC
+from apps.accounts.models import Profile, Address, Feedback, ProfileActivation, NewsLetter, KYC,\
+                                 TwoFactorAccount
 from exmr import settings
 
 
@@ -72,6 +73,7 @@ send_newsletter.short_description = 'Send newsletters'
 class NewsletterAdmin(admin.ModelAdmin):
     actions = [send_newsletter, ]
 
+admin.site.register(TwoFactorAccount)
 admin.site.register(NewsLetter, NewsletterAdmin)
 admin.site.register(KYC)
 

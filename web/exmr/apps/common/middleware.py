@@ -10,7 +10,8 @@ class LocationBlock(MiddlewareMixin):
         ip = request.META['REMOTE_ADDR']
         g = GeoIP2()
         try:
-            city = g.city(ip).get("region")
+            city = g.city(ip)["region"]
+            print(g.city(ip))
         except:
         	city = None
         print(city)

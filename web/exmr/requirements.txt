@@ -50,6 +50,7 @@ eth-utils==1.0.3
 futures==3.1.1
 goslate==1.5.1
 gunicorn==19.7.1
+geoip2==2.9.0
 hexbytes==0.1.0
 hyperlink==18.0.0
 idna==2.6

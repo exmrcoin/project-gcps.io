@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_social_share',
+    'django.contrib.gis',
     'ckeditor',
     'ckeditor_uploader',
 
@@ -76,6 +77,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'apps.common.middleware.LocationBlock',
 ]
 
 AUTHENTICATION_BACKENDS = [
@@ -145,6 +147,7 @@ PAYPAL_CLIENT_ID = "AYew04VYluXOAYc5GS8TFAdGmSkHj7BDuN6_3GFVVQpOdTHS67p1ad4ZoR9C
 PAYPAL_CLIENT_SECRET = "EH0zGIachEUuzwqn65EBQURDNfn6sPAglOsW5S6i8xXomqpt7XRoKDxTq30yPKyVrkJiht__B0YLacJO"
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
+GEOIP_PATH = "geo_ip/GeoLite2-City.mmdb"
 
 LANGUAGE_CODE = 'en'
 

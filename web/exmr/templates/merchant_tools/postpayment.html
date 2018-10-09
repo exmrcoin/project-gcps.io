@@ -55,8 +55,7 @@
                     </div>
                     <div class="col-xs-12 address-box">
                         <span class="col-xs-10" id="pwd_span" style="word-wrap: break-word"> {{crypto_address}}</span>
-                        <a id="cp_btn{{forloop.counter}}" onclick="copy_password(this.id);"><i class="far fa-copy"
-                                style="font-size: 30px; padding: 10px"></i></a>
+                        <a id="cp_btn{{forloop.counter}}" class="js-tooltip" data-toggle="tooltip" title="copy" onclick="copy_password(this.id);"><i class="far fa-copy" style="font-size: 30px; padding: 10px"></i></a>
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-3 col-md-3">
@@ -176,12 +175,35 @@
 function copy_password(btn_id) {
 var temp = $('#'+btn_id+'').prev('span');
 var textArea = document.createElement("textarea");
+var elOriginalText = $('#'+btn_id+'').attr('data-original-title');
 textArea.value = temp.text();
 document.body.appendChild(textArea);
 textArea.select();
-document.execCommand("Copy");
+try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'Copied!' : 'Whoops, not copied!';
+      $('#'+btn_id+'').attr('data-original-title', msg).tooltip('show');
+    //   el.attr('data-original-title', msg).tooltip('show');
+    } catch (err) {
+      console.log('Oops, unable to copy');
+    }
 textArea.remove();
+$('#'+btn_id+'').attr('data-original-title', elOriginalText);
 }
+
+$(document).ready(function() {
+  // Initialize
+  // ---------------------------------------------------------------------
+
+  // Tooltips
+  // Requires Bootstrap 3 for functionality
+  $('.js-tooltip').tooltip();
+
+  // Copy to clipboard
+  // Grab any text in the attribute 'data-copy' and pass it to the 
+  // copy function
+  
+});
 </script>
 {% endblock %}
 

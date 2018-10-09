@@ -30,6 +30,8 @@ class ButtonMakerForm(forms.ModelForm):
         
 
 class DonationButtonMakerForm(forms.ModelForm):
+    btn_image = CustomChoiceField(widget=forms.RadioSelect, queryset=ButtonImage.objects.all(), empty_label=None)
+    
     class Meta:
         model = DonationButtonMaker
         exclude = []

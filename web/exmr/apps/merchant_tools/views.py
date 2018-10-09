@@ -101,13 +101,9 @@ class ButtonMakerView(FormView):
                      '<input type="hidden" name="allow_buyer_note" value="' +allow_buyer_note+
                      '"id="id_allow_buyer_note" />',
                      '<input type="hidden" name="btn_image" value="1"id="id_btn_image" />',
+                     '<input type="image" src="https://'+str(domain+(ButtonImage.objects.get(label=btn_image)).btn_img.url)+'" alt="Buy Now with GetCryptoPayments.org"></form>'
                      ]
-
-        img_temp = ButtonImage.objects.get(label=btn_image)
-        img_src = str(domain+img_temp.btn_img.url)
-        link_html = '<input type="image" src="https://'+img_src+'" alt="Buy Now with GetCryptoPayments.org"></form>'
         context['btn_code'] = temp_html
-        context['submit_image'] = link_html
         return render(self.request, 'merchant_tools/buttonmaker.html', context)
 
 class DonationButtonMakerView(FormView):

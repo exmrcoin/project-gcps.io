@@ -7,7 +7,7 @@ BLOCK_REGION = ["NY"]
 class LocationBlock(MiddlewareMixin):
 
     def process_request(self, request):
-        ip = request.META['REMOTE_ADDR']
+        ip = request.META.get('HTTP_X_FORWARDED_FOR')
         g = GeoIP2()
         try:
             city = g.city(ip)["region"]

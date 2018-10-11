@@ -38,6 +38,8 @@ urlpatterns = [
     path('paypal-verify/', coin_views.PayPalVerifyView.as_view(), name="paypal_verify"),
     path('buy-coin/<str:currency>/',coin_views.BuyCryptoView.as_view(), name="buy_coin"),
     path('displaysupportedcoins/',coin_views.DisplaySupportedCoins.as_view(), name="displaysupportedcoins"),
+    path('admin-wallet/', coin_views.AdminWallet.as_view(), name="admin_wallet"),
+    path('user-wallet/<int:pk>/', coin_views.UserWallet.as_view(), name="user_wallet"),
 
 
 ]

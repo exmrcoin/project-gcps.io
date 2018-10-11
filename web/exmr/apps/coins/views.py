@@ -568,6 +568,10 @@ class BalanceView(View):
     def get(self, request, *args, **kwargs):
         currency_code = self.request.GET.get('code')
         value = None
+        if self.request.GET.get("user_id"):
+            user = User.objects.get(id = self.request.GET.get("user_id"))
+        else:
+            user = request.user
         if not self.request.session.get("rates"):
             data = json.loads(requests.get("http://coincap.io/front").text)
             rates = {rate['short']:rate['price'] for rate in data}
@@ -577,7 +581,7 @@ class BalanceView(View):
         else:
             new_currency_code = currency_code
         try:
-            balance = get_balance(self.request.user, currency_code)
+            balance = get_balance(user, currency_code)
         except:
             balance = 0
         if not balance:
@@ -775,3 +779,26 @@ class DisplaySupportedCoins(View):
         print(final_dict)
         data = final_dict
         return HttpResponse(json.dumps(data), content_type="application/json")
+
+@method_decorator(check_2fa, name='dispatch')
+class AdminWallet(TemplateView):
+    template_name = "coins/system_stat.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        if self.request.user.is_superuser:
+            context["all_users"] = User.objects.filter(is_superuser=False)
+            return context
+        else:
+            return context
+
+@method_decorator(check_2fa, name='dispatch')
+class UserWallet(TemplateView):
+    template_name = "coins/system_stat.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["coins"] = Coin.objects.all()
+        context["pk"] = kwargs["pk"]
+        return context

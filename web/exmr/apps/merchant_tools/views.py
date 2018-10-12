@@ -17,7 +17,7 @@ from apps.coins.models import Coin, WalletAddress
 from apps.coins.utils import *
 from apps.coins import coinlist
 from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm, POSQRForm, DonationButtonMakerForm
-from apps.merchant_tools.models import (ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic,
+from apps.merchant_tools.models import (ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic, ButtonInvoice,
                                         URLMaker, POSQRMaker, MultiPayment, MercSidebarSubTopic)
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
@@ -69,7 +69,7 @@ class ButtonMakerView(FormView):
         allow_buyer_note = str(form.cleaned_data['allow_buyer_note']).lower()
         # domain =  Site.objects.get_current()
         domain = self.request.get_host()
-        temp_html = ['<form action="https://'+domain+reverse('mtools:cryptopay') + '" method="POST" >',
+        temp_html = ['<form action="https://'+domain+reverse('mtools:cryptopayV2') + '" method="POST" >',
                      '<input type="hidden" name="merchant_id" value="'+merchant_id +
                      '" maxlength="128" id="id_merchant_id" required />',
                      '<input type="hidden" name="item_name" value="'+item_name +
@@ -105,6 +105,7 @@ class ButtonMakerView(FormView):
                      ]
         context['btn_code'] = temp_html
         return render(self.request, 'merchant_tools/buttonmaker.html', context)
+
 
 class DonationButtonMakerView(FormView):
 
@@ -184,7 +185,7 @@ class DonationButtonMakerView(FormView):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CryptoPaymment(FormView):
-    template_name = 'merchant_tools/payincrypto.html'
+    template_name = 'merchant_tools/payincryptobtnmaker.html'
     form_class = CryptoPaymentForm
 
     def get_success_url(self):
@@ -235,7 +236,36 @@ class CryptoPaymment(FormView):
         context['item_total'] = round((float(item_qty) * float(item_amount)),2)
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
         context['available_coins'] = coinlist.payment_gateway_coins()
-        return render(request, 'merchant_tools/payincrypto.html', context)
+        return render(request, 'merchant_tools/payincryptobtnmaker.html', context)
+
+
+
+class ResumeCryptoPaymment(FormView):
+    template_name = 'merchant_tools/payincrypto.html'
+    form_class = CryptoPaymentForm
+
+    def get_success_url(self):
+        success_url = self.request.path_info
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(ResumeCryptoPaymment, self).dispatch(request, *args, **kwargs)
+
+    @csrf_exempt
+    def post(self, request, *args, **kwargs):
+        u_id = self.request.POST['unique_id']
+
+        try:
+            temp_obj = CryptoPaymentRec.objects.filter(unique_id = u_id)
+            for payobj in temp_obj:
+                pass
+
+
+        except Exception as e:
+            raise e
+
+
+
 
 
 class PaymentFormSubmitView(View):
@@ -506,7 +536,7 @@ class POSQRPayView(TemplateView):
                     code=request.session['selected_coin']))
                 addr = obj[0].payment_address
             except:
-                obj = MultiPayment.objects.filter(paid_unique_id=request.session['unique_id'], paid_in=EthereumToken.objects.get(
+                obj = MultiPayment.objects.filter(paid_unique_id=request.session['unique_id'], paid_in_erc=EthereumToken.objects.get(
                     contract_symbol=request.session['selected_coin']))
                 addr = obj[0].payment_address
 
@@ -514,16 +544,29 @@ class POSQRPayView(TemplateView):
             addr = create_wallet(
                 superuser, self.request.session['selected_coin'])
         request.session['crypto_address'] = addr
-        obj, created = MultiPayment.objects.get_or_create(
-            paid_amount=request.session['payable_amt'],
-            paid_in=Coin.objects.get(code=request.session['selected_coin']),
-            eq_usd=request.session['payable_amt_usd'],
-            paid_unique_id=request.session['unique_id'],
-            attempted_usd = request.session['payable_amt_usd'],
-            transaction_id=account_activation_token.make_token(
-                user=self.request.user),
-            payment_address=addr
-        )
+        try:
+            obj, created = MultiPayment.objects.get_or_create(
+                paid_amount=request.session['payable_amt'],
+                paid_in=Coin.objects.get(code=request.session['selected_coin']),
+                eq_usd=request.session['payable_amt_usd'],
+                paid_unique_id=request.session['unique_id'],
+                attempted_usd = request.session['payable_amt_usd'],
+                transaction_id=account_activation_token.make_token(
+                    user=self.request.user),
+                payment_address=addr
+            )
+        except:
+            obj, created = MultiPayment.objects.get_or_create(
+                paid_amount=request.session['payable_amt'],
+                paid_in_erc=EthereumToken.objects.get(contract_symbol=request.session['selected_coin']),
+                eq_usd=request.session['payable_amt_usd'],
+                paid_unique_id=request.session['unique_id'],
+                attempted_usd = request.session['payable_amt_usd'],
+                transaction_id=account_activation_token.make_token(
+                    user=self.request.user),
+                payment_address=addr
+            )
+
 
         return HttpResponseRedirect(reverse_lazy('mtools:posqrpay'))
         # return render(self.request, 'merchant_tools/posqrgenerator.html', context)
@@ -561,3 +604,277 @@ class ButtonMakerContinuePayment(View):
         print(final_dict)
         data = final_dict
         return HttpResponse(json.dumps(data), content_type="application/json")
+
+
+@method_decorator(csrf_exempt, name='dispatch')
+class CryptoPaymmentV2(FormView):
+    template_name = 'merchant_tools/payincryptobtnmaker.html'
+    form_class = CryptoPaymentForm
+
+    def get_success_url(self):
+        success_url = self.request.path_info
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(CryptoPaymmentV2, self).dispatch(request, *args, **kwargs)
+    
+    @csrf_exempt
+    def post(self, request, *args, **kwargs):
+        mydate = timezone.now()
+        context = super(CryptoPaymmentV2, self).get_context_data()
+        
+        #unique_id is now deprecated
+        context['unique_id'] = get_random_string(
+            length=32) + str(int(time.mktime(mydate.timetuple())*1000))
+
+        context['merchant_id'] = self.request.POST['merchant_id']
+        context['item_name'] = self.request.POST['item_name']
+        context['item_amount'] = self.request.POST['item_amount']
+        context['item_number'] = self.request.POST['item_number']
+        context['item_qty'] = self.request.POST['item_qty']
+        context['buyer_qty_edit'] = str(
+            self.request.POST['buyer_qty_edit']).lower()
+        context['invoice_number'] = self.request.POST['invoice_number']
+        context['tax_amount'] = self.request.POST['tax_amount']
+        context['allow_shipping_cost'] = str(
+            self.request.POST['allow_shipping_cost']).lower()
+        context['shipping_cost'] = self.request.POST['shipping_cost']
+        context['shipping_cost_add'] = self.request.POST['shipping_cost_add']
+        context['success_url_link'] = self.request.POST['success_url_link']
+        context['cancel_url_link'] = self.request.POST['cancel_url_link']
+        context['ipn_url_link'] = self.request.POST['ipn_url_link']
+        context['btn_image'] = self.request.POST['btn_image']
+        context['allow_buyer_note'] = self.request.POST['allow_buyer_note']
+        temp_id = context['merchant_id']
+
+        tax_amount = self.request.POST['tax_amount']
+        shipping_cost_add = self.request.POST['shipping_cost_add']
+        shipping_cost = self.request.POST['shipping_cost']
+        item_amount = self.request.POST['item_amount']
+        item_qty = self.request.POST['item_qty']
+        if float(shipping_cost_add) > 1:
+            total_shipping = float(shipping_cost) + (float(shipping_cost_add) * float(item_qty))
+        else:
+            total_shipping = float(shipping_cost)
+        
+        context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
+        context['item_total'] = round((float(item_qty) * float(item_amount)),2)
+        context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
+        context['available_coins'] = coinlist.payment_gateway_coins()
+        return render(request, 'merchant_tools/payincryptobtnmaker.html', context)
+
+#revised button maker
+class ButtonMakerInvoice(TemplateView):
+    template_name = 'merchant_tools/btncoinselect.html'
+
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            self.invoice_url = self.kwargs['token']
+        except:
+            self.invoice_url = False
+        return super(ButtonMakerInvoice, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+        domain = self.request.get_host()
+        context = super().get_context_data()
+        if self.invoice_url:
+            temp_obj = ButtonInvoice.objects.get(URL_link__icontains = self.invoice_url)
+            #
+            shipping_cost_add = 0
+            #
+            temp_id = temp_obj.merchant_id
+            tax_amount = temp_obj.tax_amount
+            unique_id = temp_obj.unique_id
+            
+            # shipping_cost_add = self.request.POST['shipping_cost_add']
+            shipping_cost = temp_obj.shipping_cost
+            item_amount = temp_obj.item_amount
+            item_qty = temp_obj.item_qty
+            if float(shipping_cost_add) > 1:
+                total_shipping = float(shipping_cost) + (float(shipping_cost_add) * float(item_qty))
+            else:
+                total_shipping = float(shipping_cost)
+            
+            context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
+            context['item_total'] = round((float(item_qty) * float(item_amount)),2)
+            context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
+            context['available_coins'] = coinlist.payment_gateway_coins()
+
+            #attempt payment
+            check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
+            total_paid = 0;
+            if check_prepaid:
+                total_paid = 0;
+                for prepaid in check_prepaid:
+                    total_paid = float(prepaid.recieved_usd)
+                print(total_paid)
+            try:
+                context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
+            except:
+                context['amt_remaining'] = float(temp_obj.item_amount)
+            attempted = 0
+            try:
+                for prepaid in check_prepaid:
+                    attempted = attempted + float(prepaid.attempted_usd) 
+                    
+            except:
+                pass
+            context['attempted'] = attempted
+            #attempt payment
+
+            context['url'] = temp_obj.URL_link
+
+            context['unique_id'] = temp_obj.unique_id
+            context['available_coins'] = coinlist.payment_gateway_coins()
+            return context
+
+
+    def post(self, request, *args, **kwargs):
+        context = super().get_context_data()
+        mydate = timezone.now()
+        token = account_activation_token.make_token(
+            user=self.request.user)
+        
+        domain = self.request.get_host()
+        html_url = domain + \
+            reverse('mtools:btnpay2', kwargs={'token': token})
+        if not self.invoice_url:
+            try:
+                temp_obj, created = ButtonInvoice.objects.get_or_create(
+                    merchant_id = self.request.POST['merchant_id'],
+                    unique_id = self.request.POST['unique_id'],
+                    invoice_number = self.request.POST['invoice_number'],
+                    item_name=self.request.POST['item_name'],
+                    item_amount=self.request.POST['item_amount'],
+                    item_number=self.request.POST['item_number'],
+                    item_qty=self.request.POST['item_qty'],
+                    tax_amount=self.request.POST['tax_amount'],
+                    shipping_cost=self.request.POST['shipping_cost'],
+                    first_name=self.request.POST['first_name'],
+                    last_name=self.request.POST['last_name'],
+                    email_addr=self.request.POST['email_addr'],
+                    addr_l1=self.request.POST['addr_line_1'],
+                    addr_l2=self.request.POST['addr_line_2'],
+                    country=self.request.POST['country'],
+                    city=self.request.POST['city'],
+                    zipcode=self.request.POST['zipcode'],
+                    phone=self.request.POST['phone'],
+                    buyer_note=self.request.POST['buyer_notes'],
+                    URL_link = html_url
+                )
+                if created:
+                    temp_obj.save()  
+            except:
+                temp_obj = ButtonInvoice.objects.get(unique_id = self.request.POST['unique_id'])  
+        else:
+            try:
+                self.invoice_url = domain + reverse('mtools:btnpay2', kwargs={'token': self.invoice_url})
+                temp_obj = ButtonInvoice.objects.get(URL_link = self.invoice_url)
+            except:
+                pass
+        #
+        shipping_cost_add = 0
+        #
+        temp_id = temp_obj.merchant_id
+        tax_amount = temp_obj.tax_amount
+        unique_id = temp_obj.unique_id
+        shipping_cost_add = self.request.POST['shipping_cost_add']
+        shipping_cost = temp_obj.shipping_cost
+        item_amount = temp_obj.item_amount
+        item_qty = temp_obj.item_qty
+        if float(shipping_cost_add) > 1:
+            total_shipping = float(shipping_cost) + (float(shipping_cost_add) * float(item_qty))
+        else:
+            total_shipping = float(shipping_cost)
+        
+        context['unique_id'] = unique_id
+        context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
+        context['item_total'] = round((float(item_qty) * float(item_amount)),2)
+        context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
+        context['available_coins'] = coinlist.payment_gateway_coins()
+        print("testing uniqueness" + ','+ unique_id)
+        #attempt payment
+        check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
+        total_paid = 0;
+        if check_prepaid:
+            total_paid = 0;
+            for prepaid in check_prepaid:
+                total_paid = float(prepaid.recieved_usd)
+            print(total_paid)
+        try:
+            context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
+        except:
+            context['amt_remaining'] = float(temp_obj.item_amount)
+        attempted = 0
+        try:
+            for prepaid in check_prepaid:
+                attempted = attempted + float(prepaid.attempted_usd) 
+                
+        except:
+            pass
+        context['attempted'] = attempted
+        #attempt payment
+
+        context['url'] = temp_obj.URL_link
+
+        context['available_coins'] = coinlist.payment_gateway_coins()
+        return self.render_to_response(context)
+
+class ButtonMakerPayView(TemplateView):
+    template_name = 'merchant_tools/btnqrgenerator.html'
+
+    def post(self, request, *args, **kwargs):
+        context = super().get_context_data()
+        superuser = User.objects.get(is_superuser=True)
+        unique_id = request.POST.get('unique_id')
+        selected_coin = request.POST.get('selected_coin')
+        payable_amt = request.POST.get('coin_amt')
+        payable_amt_usd = request.POST.get('payable_amt')
+        
+        print( unique_id + ','+ selected_coin + ','+payable_amt + ','+payable_amt_usd)
+        try:
+            try:
+                obj = MultiPayment.objects.filter(paid_unique_id=unique_id, paid_in=Coin.objects.get(
+                    code=selected_coin))
+                addr = obj[0].payment_address
+            except:
+                obj = MultiPayment.objects.filter(paid_unique_id=unique_id, paid_in_erc=EthereumToken.objects.get(
+                    contract_symbol=selected_coin))
+                addr = obj[0].payment_address
+
+        except:
+            addr = create_wallet(superuser, selected_coin)
+        request.session['crypto_address'] = addr
+        try:
+            obj, created = MultiPayment.objects.get_or_create(
+                paid_amount=payable_amt,
+                paid_in=Coin.objects.get(code=selected_coin),
+                eq_usd=payable_amt_usd,
+                paid_unique_id=unique_id,
+                attempted_usd = payable_amt_usd,
+                transaction_id=account_activation_token.make_token(
+                    user=self.request.user),
+                payment_address=addr
+            )
+        except:
+            obj, created = MultiPayment.objects.get_or_create(
+                paid_amount=request.session['payable_amt'],
+                paid_in_erc=EthereumToken.objects.get(contract_symbol=selected_coin),
+                eq_usd=request.session['payable_amt_usd'],
+                paid_unique_id=request.session['unique_id'],
+                attempted_usd = request.session['payable_amt_usd'],
+                transaction_id=account_activation_token.make_token(
+                    user=self.request.user),
+                payment_address=addr
+            )
+
+        # context['time_limit'] = time_limit
+        context['unique_id'] = unique_id
+        context['payable_amt'] = payable_amt
+        context['payable_amt_usd'] = payable_amt_usd
+        context['selected_coin'] = selected_coin
+        context['crypto_address'] = addr
+
+        return render(request, 'merchant_tools/btnqrgenerator.html', context)

@@ -180,7 +180,8 @@ class POSQRMaker(models.Model):
 
 
 class MultiPayment(models.Model):
-    paid_in = models.ForeignKey(Coin, on_delete=models.PROTECT)
+    paid_in = models.ForeignKey(Coin, on_delete=models.PROTECT, null = True)
+    paid_in_erc = models.ForeignKey(EthereumToken, on_delete=models.PROTECT, null = True)
     payment_address = models.CharField(max_length=512, null=False)
     paid_amount = models.CharField(max_length=512, null=False)
     eq_usd = models.CharField(max_length=512, blank=True, null=True)
@@ -194,3 +195,34 @@ class MultiPayment(models.Model):
 
     def __str__(self):
         return str(self.paid_in)
+
+
+class ButtonInvoice(models.Model):
+    merchant_id = models.CharField(
+        verbose_name=_('merchant id'), max_length=128)
+    invoice_number = models.CharField(max_length=128, null=False)
+    unique_id = models.CharField(max_length=128, null=False, unique=True)
+    item_name = models.CharField(max_length=128, null=False)
+    item_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
+    item_number = models.CharField(max_length=128, null=False)
+    item_qty = models.DecimalField(max_digits=20, decimal_places=2, null=False)
+    tax_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=True, default = 0)
+    shipping_cost = models.DecimalField(
+        max_digits=20, decimal_places=2,  null=True, default = 0)
+    buyer_note = models.CharField(max_length=128, null=True)
+    first_name = models.CharField(max_length=128, null=False)
+    last_name = models.CharField(max_length=128, null=False)
+    email_addr = models.CharField(max_length=128, null=False)
+    addr_l1 = models.CharField(max_length=128, null=False)
+    addr_l2 = models.CharField(max_length=128, null=False)
+    country = models.CharField(max_length=128, null=False)
+    city = models.CharField(max_length=128, null=False)
+    state = models.CharField(max_length=128, null=False)
+    zipcode = models.CharField(max_length=128, null=False)
+    phone = models.CharField(max_length=128, null=False)
+    URL_link = models.CharField(max_length=256, null=False)
+
+    def __str__(self):
+        return self.item_name + "_"+ self.unique_id

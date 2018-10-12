@@ -31,6 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('rosetta/', include('rosetta.urls')),
     path('s9tjjy6e8w6paimpmoxa4sfa651n6j.html/', TemplateView.as_view(template_name='s9tjjy6e8w6paimpmoxa4sfa651n6j.html'), name="facebook html"),
+    path("zohoverify/verifyforzoho.html", TemplateView.as_view(template_name="verifyforzoho.html"), name="zoho"),
     path('', HomeView.as_view(), name='home'),
 
 ]

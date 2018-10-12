@@ -53,14 +53,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for obj in wallets %}
                             <tr>
                                 <td>
                                     <input type="checkbox" name="">
                                 </td>
                                 <td>
                                     <p>
-                                        <img src="{% static 'images/coins/' %}{{ obj.code}}.png" class="wallets-img" width="30px"><span>{{ obj.coin_name }}</span></p>
+                                        <img src="{% static 'images/coins/' %}{{ ripple.code}}.png" class="wallets-img" width="30px"><span>{{ ripple.coin_name }}</span></p>
                                 </td>
                                 <td>
                                     <input type="text" class="form-control" />
@@ -85,11 +84,11 @@
                                     </div>
                                 </td>
                             </tr>
-                            {% endfor %}
 
                         </tbody>
                     </table>
                 </div>
+
                 <button class="btn btn-signup text-center" >Select</button>
             </div>
         </div>

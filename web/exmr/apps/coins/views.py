@@ -343,6 +343,42 @@ class PublicCoinVote(TemplateView):
 class CoinSettings(TemplateView):
     template_name = 'coins/coin_settings.html'
 
+    def get_context_data(self, *args, **kwargs):
+        context = super(CoinSettings, self).get_context_data(**kwargs)
+        # for currency in CURRENCIES:
+        #     coin = Coin.objects.get(code=currency)
+        #     if not Wallet.objects.filter(user=self.request.user, name=coin):
+        #         create_wallet(self.request.user, currency)
+        data = json.loads(requests.get("http://coincap.io/front").text)
+        rates = {rate['short']:rate['price'] for rate in data}
+        self.request.session["rates"] = rates
+        context["wallets"] = Coin.objects.all()
+        context["erc_wallet"] = EthereumToken.objects.all()
+        context['transactions'] = Transaction.objects.filter(user=self.request.user)
+        return context
+
+class SettingSetUp(TemplateView):
+    template_name = 'coins/setting_setup.html'
+
+class OMiniView(TemplateView):
+    template_name = 'coins/omini.html'
+
+class RippleView(TemplateView):
+    template_name = 'coins/ripple.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(RippleView, self).get_context_data(**kwargs)
+        # for currency in CURRENCIES:
+        #     coin = Coin.objects.get(code=currency)
+        #     if not Wallet.objects.filter(user=self.request.user, name=coin):
+        #         create_wallet(self.request.user, currency)
+        data = json.loads(requests.get("http://coincap.io/front").text)
+        rates = {rate['short']:rate['price'] for rate in data}
+        self.request.session["rates"] = rates
+        context["ripple"] = Coin.objects.get(code='XRPTest')
+        context["erc_wallet"] = EthereumToken.objects.all()
+        context['transactions'] = Transaction.objects.filter(user=self.request.user)
+        return context
 
 class CoinWithdrawal(TemplateView):
     template_name = 'coins/coin-withdrawal.html'

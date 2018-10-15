@@ -71,7 +71,6 @@ def create_wallet(user, currency):
     """
     create an account name in full node
     """
-
     erc = EthereumToken.objects.filter(contract_symbol=currency)
     if erc:
         return EthereumTokens(user=user, code=currency).generate()
@@ -358,6 +357,7 @@ def create_DASH_wallet(user, currency):
 
 class EthereumTokens():
     def __init__(self, user, code):
+        import pdb; pdb.set_trace()
         self.user = user
         self.code = code
         obj = EthereumToken.objects.get(contract_symbol=code)

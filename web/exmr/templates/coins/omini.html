@@ -11,7 +11,7 @@
 
 <div class="dashboard-wrapper">
     <div class="dasboard-head ">
-        <div class="panel panel-default">
+        <div class="panel panel-default" style="text-align: center;">
             <div class=" dasboard-head pad10">
                 <ul class="nav nav-pills">
                     <li class="active">
@@ -39,7 +39,7 @@
             </div>
             <div class="panel-body" style="text-align: center;">
                 <div class="accept-table-wrap">
-                    <table class="table table-border table-responsive-md">
+                    <table class="table">
                         <thead>
                             <tr>
                                 <th>Enabled</th>
@@ -53,45 +53,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {% for obj in wallets %}
                             <tr>
-                                <td>
-                                    <input type="checkbox" name="">
-                                </td>
-                                <td>
-                                    <p>
-                                        <img src="{% static 'images/coins/' %}{{ obj.code}}.png" class="wallets-img" width="30px"><span>{{ obj.coin_name }}</span></p>
-                                </td>
-                                <td>
-                                    <input type="text" class="form-control" />
-                                </td>
-                                <td>
-                                    <select class="form-control">
-                                        <option>To balance</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <input type="text" name="" value="0%" class="form-control">
-                                </td>
-                                <td>
-                                    <div class="input-group">
-
-                                        <input type="text" class="form-control" name="msg" value="0">
-                                        <span class="input-group-addon p0 ">
-                                            <select>
-                                                <option>USD</option>
-                                            </select>
-                                        </span>
-                                    </div>
-                                </td>
+                                <td class="table-style" colspan="6">{% trans 'No Omini coins to be displayed ' %}</td>
                             </tr>
-                            {% endfor %}
 
                         </tbody>
                     </table>
                 </div>
-                <button class="btn btn-signup text-center" >Select</button>
             </div>
+            <button class="btn btn-signup text-center" >Select</button>
         </div>
     </div>
 </div>

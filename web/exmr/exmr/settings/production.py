@@ -40,5 +40,6 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 ADMINS = (
    ('ME', 'anandkrishnan.techversant@gmail.com'),
+   ('ADMIN', 'vipin.mohan@techversantinc.com'),
 )
 MANAGERS = ADMINS

@@ -357,7 +357,6 @@ def create_DASH_wallet(user, currency):
 
 class EthereumTokens():
     def __init__(self, user, code):
-        import pdb; pdb.set_trace()
         self.user = user
         self.code = code
         obj = EthereumToken.objects.get(contract_symbol=code)
@@ -432,6 +431,10 @@ class BTC():
             addr = ''
         return addr
 
+    def get_transactions(self):
+        result = self.access.listtransactions(self.user.username+"_exmr")
+        return result
+
 
 class LTC():
     def __init__(self, user, currency):
@@ -445,6 +448,9 @@ class LTC():
 
     def generate(self):
         self.temp.balance()
+
+    def get_transactions(self):
+        self.temp.get_transactions()
 
 
 class XMR():

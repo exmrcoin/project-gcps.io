@@ -26,7 +26,7 @@ from apps.coins.models import Wallet, WalletAddress, Coin, EthereumToken, Ethere
 from apps.apiapp import views as apiview
 
 
-w3 = Web3(HTTPProvider('http://35.229.83.7:8545'))
+w3 = Web3(HTTPProvider('http://35.185.10.253:8545'))
 
 
 def create_BTC_connection():
@@ -34,7 +34,7 @@ def create_BTC_connection():
     create connetion to bitcoin fullnode
     """
     access = AuthServiceProxy(
-        "http://exmr:MKDNdksjfDNsjkN@35.229.83.7:8332")
+        "http://exmr:MKDNdksjfDNsjkN@35.185.10.253:8332")
     return access
 
 
@@ -230,7 +230,7 @@ class ETH():
 
         headers = {'Content-type': 'application/json'}
         response = requests.post(
-            "http://35.229.83.7:8545", headers=headers, data=serialized_data)
+            "http://35.185.10.253:8545", headers=headers, data=serialized_data)
         return response.json()
 
     def generate(self):
@@ -565,7 +565,7 @@ class XRP():
                   ]
                   }
         result = json.loads(requests.post(
-            "http://35.229.83.7:5005/", json=params).text)
+            "http://35.185.10.253:5005/", json=params).text)
         params = {
             "method": "submit",
             "params": [
@@ -575,7 +575,7 @@ class XRP():
             ]
         }
         submit = json.loads(requests.post(
-            "http://35.229.83.7:5005/", json=params).text)
+            "http://35.185.10.253:5005/", json=params).text)
         try:
             return result['result']['tx_json']['hash']
         except:

@@ -255,23 +255,29 @@ class TwoFactorAccount(models.Model):
     def __str__(self):
         return self.account_name
 
-class UserDocuments(models.Model):
-    """
-        For Kyc each document
-    """
-    document_name = models.CharField(max_length=200)
-    document = models.ImageField(upload_to='kyc/')
-    
-    def __str__(self):
-        return self.document.url+"&&&"+self.document_name
 
 class KYC(models.Model):
     """
         For saving kyc deatls of user
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    documents = models.ManyToManyField(UserDocuments)
+    full_name = models.CharField(max_length=100)
+    address_line_1 = models.CharField(max_length=100)
+    address_line_2 = models.CharField(max_length=100) 
+    id_number = models.CharField(max_length=100)
+    id_proof = models.ImageField(upload_to='kyc/')
+    selfie = models.ImageField(upload_to='kyc/')
     approved = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.user.username
+
+class KYC_terms(models.Model):
+    """
+        For saving tems an condition acceptance
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    flag = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.username

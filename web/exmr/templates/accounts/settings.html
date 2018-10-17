@@ -10,30 +10,6 @@
     {% endblock %}
     {% block dashboard_head_title %}{% trans 'Settings' %}{% endblock %}
     {% block dashboard_wrapper_content %}
-    {% if messages %}
-    <div class="django-message-alert ">
-        {% for message in messages %}
-
-        <script>
-
-            window.setTimeout(function () {
-                $.notify({
-                    icon: 'fa fa-warning-sign',
-                    title: '',
-                    message: '{{ message }}'
-                }, {
-                        animate: {
-                            enter: 'animated fadeInRight',
-                            exit: 'animated fadeOutRight'
-                        },
-
-                        type: '{{ message.tags }}'
-
-                    });
-            }, {{forloop.counter}}000);
-        </script> {% endfor %}
-    </div>
-    {% endif %}
         <div class="dashboard-wrapper top-sec">
             <div class="bs-example bs-example-tabs examble-tab" role="tabpanel" data-example-id="togglable-tabs">
                 <ul id="myTab" class="nav nav-tabs nav-tabs-responsive multiple-tab" role="tablist">

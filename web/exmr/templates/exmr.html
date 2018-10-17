@@ -395,6 +395,31 @@
 
         </footer>
     <div>
+
+{% if messages %}
+    <div class="django-message-alert ">
+        {% for message in messages %}
+
+        <script>
+
+            window.setTimeout(function () {
+                $.notify({
+                    icon: 'fa fa-warning-sign',
+                    title: '',
+                    message: '{{ message }}'
+                }, {
+                        animate: {
+                            enter: 'animated fadeInRight',
+                            exit: 'animated fadeOutRight'
+                        },
+
+                        type: '{{ message.tags }}'
+
+                    });
+            }, {{forloop.counter}}000);
+        </script> {% endfor %}
+    </div>
+{% endif %}
     <!-- <script> -->
 
     <script src="{% static 'js/jquery.min.js' %}"></script>

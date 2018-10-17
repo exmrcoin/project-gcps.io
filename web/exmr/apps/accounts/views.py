@@ -474,22 +474,32 @@ class LoginNoticeView(View):
             ip = request.META.get('REMOTE_ADDR')
         return ip
 
-class KYCView(View):
+class KYCView(FormView):
     template_name = "accounts/kyc.html"
-    FormSet = formset_factory(KYCForm, extra=3)
+    form_class = KYCForm
     success_url = reverse_lazy('public coin vote')
 
-    def get(self, request, *args, **kwargs):    
-        formset = self.FormSet()
-        return render(request, self.template_name, {'formset': formset} )
-    
-    def post(self, request, *args, **kwargs):
-        formset = self.FormSet(request.POST, request.FILES)
-        if formset.is_valid():
-            kyc_obj,created = KYC.objects.get_or_create(user=request.user)
-            for form in formset:
-                obj = form.save()
-                kyc_obj.documents.add(obj)
-            return redirect(reverse_lazy("home"))
-        else:
-            return render(request, self.template_name, {'formset': formset} )
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["status"] = KYC.objects.filter(approved=True)
+        return context
+
+    def form_valid(self,form):
+        temp_form = form.save(commit=False)
+        temp_form.user_id = self.request.user.id
+        temp_form.save()
+        messages.add_message(self.request, messages.INFO,
+                             'Added KYC successfully, wait for some time to get approvel.')
+        return redirect(reverse_lazy("home"))
+
+class KYCAcceptanceView(View):
+
+    def post(self, *args, **kwargs):
+        status = self.request.POST.get('status')
+        obj, created = KYC_terms.objects.get_or_create(user= user)
+        obj.flag = status
+        obj.save()
+        if status:
+            return HttpResponse(json.dumps({"status": True}))
+        return HttpResponse(json.dumps({"status": False}))
+

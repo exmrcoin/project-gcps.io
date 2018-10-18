@@ -18,7 +18,7 @@ from apps.coins.utils import *
 from apps.coins import coinlist
 from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm, POSQRForm, DonationButtonMakerForm
 from apps.merchant_tools.models import (ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic, ButtonInvoice,
-                                        URLMaker, POSQRMaker, MultiPayment, MercSidebarSubTopic)
+                                        URLMaker, POSQRMaker, MultiPayment, MercSidebarSubTopic, DonationButtonInvoice)
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.crypto import get_random_string
@@ -185,7 +185,7 @@ class DonationButtonMakerView(FormView):
 
 @method_decorator(csrf_exempt, name='dispatch')
 class CryptoPaymment(FormView):
-    template_name = 'merchant_tools/payincryptobtnmaker.html'
+    template_name = 'merchant_tools/payincryptobtnmaker1.html'
     form_class = CryptoPaymentForm
 
     def get_success_url(self):
@@ -236,7 +236,7 @@ class CryptoPaymment(FormView):
         context['item_total'] = round((float(item_qty) * float(item_amount)),2)
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
         context['available_coins'] = coinlist.payment_gateway_coins()
-        return render(request, 'merchant_tools/payincryptobtnmaker.html', context)
+        return render(request, 'merchant_tools/payincryptobtnmaker1.html', context)
 
 
 
@@ -821,6 +821,165 @@ class ButtonMakerInvoice(TemplateView):
 
         context['available_coins'] = coinlist.payment_gateway_coins()
         return self.render_to_response(context)
+
+class DonationButtonMakerInvoice(TemplateView):
+    template_name = 'merchant_tools/btncoinselect.html'
+
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            self.invoice_url = self.kwargs['token']
+        except:
+            self.invoice_url = False
+        return super(DonationButtonMakerInvoice, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+        domain = self.request.get_host()
+        context = super().get_context_data()
+        if self.invoice_url:
+            temp_obj = DonationButtonInvoice.objects.get(URL_link__icontains = self.invoice_url)
+            #
+            shipping_cost_add = 0
+            #
+            temp_id = temp_obj.merchant_id
+            tax_amount = temp_obj.tax_amount
+            unique_id = temp_obj.unique_id
+            
+            # shipping_cost_add = self.request.POST['shipping_cost_add']
+            shipping_cost = temp_obj.shipping_cost
+            item_amount = temp_obj.item_amount
+            item_qty = temp_obj.item_qty
+            if float(shipping_cost_add) > 1:
+                total_shipping = float(shipping_cost) + (float(shipping_cost_add) * float(item_qty))
+            else:
+                total_shipping = float(shipping_cost)
+            
+            context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
+            context['item_total'] = round((float(item_qty) * float(item_amount)),2)
+            context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
+            context['available_coins'] = coinlist.payment_gateway_coins()
+
+            #attempt payment
+            check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
+            total_paid = 0;
+            if check_prepaid:
+                total_paid = 0;
+                for prepaid in check_prepaid:
+                    total_paid = float(prepaid.recieved_usd)
+                print(total_paid)
+            try:
+                context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
+            except:
+                context['amt_remaining'] = float(temp_obj.item_amount)
+            attempted = 0
+            try:
+                for prepaid in check_prepaid:
+                    attempted = attempted + float(prepaid.attempted_usd) 
+                    
+            except:
+                pass
+            context['attempted'] = attempted
+            #attempt payment
+
+            context['url'] = temp_obj.URL_link
+
+            context['unique_id'] = temp_obj.unique_id
+            context['available_coins'] = coinlist.payment_gateway_coins()
+            return context
+
+
+    def post(self, request, *args, **kwargs):
+        context = super().get_context_data()
+        mydate = timezone.now()
+        token = account_activation_token.make_token(
+            user=self.request.user)
+        domain = self.request.get_host()
+        html_url = domain + \
+            reverse('mtools:donorbtnpay2', kwargs={'token': token})
+        
+        if not self.invoice_url:
+            try:
+                temp_obj, created = DonationButtonInvoice.objects.get_or_create(
+                    merchant_id = self.request.POST['merchant_id'],
+                    unique_id = self.request.POST['unique_id'],
+                    invoice_number = self.request.POST['invoice_number'],
+                    item_name=self.request.POST['item_name'],
+                    item_amount=self.request.POST['item_amount'],
+                    item_number=self.request.POST['item_number'],
+                    item_qty=self.request.POST['item_qty'],
+                    tax_amount=self.request.POST['tax_amount'],
+                    shipping_cost=self.request.POST['shipping_cost'],
+                    first_name=self.request.POST.get('first_name', ''),
+                    last_name=self.request.POST.get('last_name', ''),
+                    email_addr=self.request.POST.get('email_addr', ''),
+                    addr_l1=self.request.POST.get('addr_l1', ''),
+                    addr_l2=self.request.POST.get('addr_l2', ''),
+                    country=self.request.POST.get('country', ''),
+                    city=self.request.POST.get('city', ''),
+                    zipcode=self.request.POST.get('zipcode', ''),
+                    phone=self.request.POST.get('phone', ''),
+                    buyer_note=self.request.POST.get('buyer_note', ''),
+                    URL_link = html_url
+                )
+                if created:
+                    temp_obj.save()  
+            except:
+                temp_obj = DonationButtonInvoice.objects.get(unique_id = self.request.POST['unique_id'])  
+        else:
+            try:
+                self.invoice_url = domain + reverse('mtools:btnpay2', kwargs={'token': self.invoice_url})
+                temp_obj = DonationButtonInvoice.objects.get(URL_link = self.invoice_url)
+            except:
+                pass
+        #
+        shipping_cost_add = 0
+        #
+        temp_id = temp_obj.merchant_id
+        tax_amount = temp_obj.tax_amount
+        unique_id = temp_obj.unique_id
+        shipping_cost_add = self.request.POST['shipping_cost_add']
+        shipping_cost = temp_obj.shipping_cost
+        item_amount = temp_obj.item_amount
+        item_qty = temp_obj.item_qty
+        if float(shipping_cost_add) > 1:
+            total_shipping = float(shipping_cost) + (float(shipping_cost_add) * float(item_qty))
+        else:
+            total_shipping = float(shipping_cost)
+        
+        context['unique_id'] = unique_id
+        context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
+        context['item_total'] = round((float(item_qty) * float(item_amount)),2)
+        context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
+        context['available_coins'] = coinlist.payment_gateway_coins()
+        print("testing uniqueness" + ','+ unique_id)
+        #attempt payment
+        check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
+        total_paid = 0;
+        if check_prepaid:
+            total_paid = 0;
+            for prepaid in check_prepaid:
+                total_paid = float(prepaid.recieved_usd)
+            print(total_paid)
+        try:
+            context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
+        except:
+            context['amt_remaining'] = float(temp_obj.item_amount)
+        attempted = 0
+        try:
+            for prepaid in check_prepaid:
+                attempted = attempted + float(prepaid.attempted_usd) 
+                
+        except:
+            pass
+        context['attempted'] = attempted
+        #attempt payment
+
+        context['url'] = temp_obj.URL_link
+
+        context['available_coins'] = coinlist.payment_gateway_coins()
+        return self.render_to_response(context)
+
 
 class ButtonMakerPayView(TemplateView):
     template_name = 'merchant_tools/btnqrgenerator.html'

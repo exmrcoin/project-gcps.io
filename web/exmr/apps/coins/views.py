@@ -219,8 +219,9 @@ class SupportedCoinView(ListView):
     template_name = 'coins/supported-coins.html'
     queryset = Coin.objects.filter(active=True)
     context_object_name = 'coins'
-
+    
     def get_queryset(self, *args, **kwargs):
+        
         type_dict = dict(TYPE_CHOICES)
         self.coin_type = dict(zip(type_dict.values(), type_dict.keys())).get(
             self.kwargs['type'], 0)
@@ -232,6 +233,8 @@ class SupportedCoinView(ListView):
         context['coin_types'] = TYPE_CHOICES
         context['selected_coin_type'] = self.coin_type
         context['active_coins'] = coinlist.get_supported_coin()
+        context['tokens'] = EthereumToken.objects.filter(display=True)
+        context["ripples"] = Coin.objects.filter(code__icontains='XRP')
         return context
 
 

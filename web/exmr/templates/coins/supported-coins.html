@@ -13,8 +13,9 @@
         <div class="container">
             <div class="header-dark-bg mt-2 col-xs-12">
                 <ul class="pad10 custom-ul col-xs-12 mb-0">
+                    
                     {% for coin_type in coin_types %}
-
+                    
                     <li class="col-xs-12 col-sm-3">
                         <label for="checkbox1" class="mt0">
                             {{ coin_type.1 }}
@@ -43,8 +44,9 @@
 
                         </tr>
                     </thead>
+                   
                     <tbody>
-
+                       
                         {% for coin in coins %}
                         <tr>
                             <td>
@@ -69,8 +71,64 @@
                             </td>
                         </tr>
                         {% endfor %}
-
+                        {% if selected_coin_type is 1 %}
+                        {% for ripple in ripples %}
+                        <tr>
+                            
+                            <td>
+                                {% if ripple.coin.image %}
+                                <img class="coin-icon-support wallets-img" src={{ riiple.image.url }}> {% endif %}
+                                <span class="coin-name">{% if ripple.coin_url %}
+                                    <a href="{{ coin.coin_url }}">{{ ripple.coin_name }}</a>{% else %}{{ ripple.coin_name }}{% endif %}</span>
+                            </td>
+                            <td>{{ ripple.code }}</td>
+                            <td>{{ ripple.fee_percentage }}%</td>
+                            <td>{{ ripple.confirms }}</td>
+                            <td>{{ ripple.to_btc }}</td>
+                            <td>
+                                {% if ripple.can_convert %}
+                                <button type="button" class="btn btn-default white-font orange-bg  btn-ex" data-coin-id="{{ coin.code }}" data-toggle="modal"
+                                    data-coin-id="" onclick="show_coin_selector('{{coin.code}}')">
+                                    <!-- data-target="#myModal" -->
+                                    <img class="w20px" src={% static 'images/arrows.svg' %}>
+                                    <span>Converter</span>
+                                </button>
+                                {% endif %}
+                            </td>
+                            
+                        </tr>
+                        {% endfor %}
+                        {% elif selected_coin_type is 2 %}
+                        {% for token in tokens %}
+                        <tr>
+                            
+                            <td>
+                                {% if token.image %}
+                                <img class="coin-icon-support wallets-img" src={{ token.image.url }}> {% endif %}
+                                <span class="coin-name">{% if token.coin_url %}
+                                    <a href="{{ coin.coin_url }}">{{ token.coin_name }}</a>{% else %}{{ token.coin_name }}{% endif %}</span>
+                            </td>
+                            <td>{{ token.contract_symbol }}</td>
+                            <td>{% trans '0.05%' %}</td>
+                            <td>{% trans '1' %}</td>
+                            <td>{% trans '1.00000' %}</td>
+                            <td>
+                                
+                                <button type="button" class="btn btn-default white-font orange-bg  btn-ex" data-coin-id="{{ token.contract_symbol }}" data-toggle="modal"
+                                    data-coin-id="" onclick="show_coin_selector('{{coin.code}}')">
+                                    <!-- data-target="#myModal" -->
+                                    <img class="w20px" src={% static 'images/arrows.svg' %}>
+                                    <span>Converter</span>
+                                </button>
+                                
+                            </td>
+                            
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
                     </tbody>
+                  
+                    
                 </table>
             </div>
         </div>

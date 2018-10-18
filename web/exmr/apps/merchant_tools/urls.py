@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 
 from apps.merchant_tools.views import (ButtonMakerView, CryptoPaymment, PaymentFormSubmitView, MercDocs,
                                        URLMakerView, URLMakerInvoiceView, POSQRMakerView, POSQRPayView, POSQRCompletePaymentView,ButtonMakerPayView,
-                                       HelpTemplateView, DonationButtonMakerView,ButtonMakerContinuePayment, ButtonMakerInvoice, CryptoPaymmentV2)
+                                       HelpTemplateView, DonationButtonMakerView,ButtonMakerContinuePayment, ButtonMakerInvoice, CryptoPaymmentV2, DonationButtonMakerInvoice)
 app_name = 'mtools'
 
 urlpatterns = [
@@ -20,7 +20,9 @@ urlpatterns = [
     path('POSQRCompletePayment/', POSQRCompletePaymentView.as_view(),  name='posqrpay'),
     path('update-btn-form/', ButtonMakerContinuePayment.as_view(),  name='updatebtnmaker'),
     path('button-payment/', CryptoPaymmentV2.as_view(),  name='cryptopayV2'),
+    path('donation-button-invoice-generate/', DonationButtonMakerInvoice.as_view(),  name='donorbtnpay'),
     path('button-invoice-generate/', ButtonMakerInvoice.as_view(),  name='btnpay'),
     path('button-invoice-generate/<token>/', ButtonMakerInvoice.as_view(),  name='btnpay2'),
+    path('donation-button-invoice-generate/<token>/', DonationButtonMakerInvoice.as_view(),  name='donorbtnpay2'),
     path('button-invoice-payment/', ButtonMakerPayView.as_view(),  name='btnqrcode'),
 ]

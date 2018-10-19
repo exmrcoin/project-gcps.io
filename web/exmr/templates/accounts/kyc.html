@@ -16,46 +16,61 @@
 	</div>
 	</div>
 </div>
+
+
 <!-- Modal -->
-<div id="accept" class="modal fade material-modal" role="dialog">
-  <div class="modal-dialog">
+<div class="modal fade" id="accept" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-white" style="border-radius: 0px;">
+            <div class="modal-body col-xs-12 bg-white">
+                <div class="col-xs-12">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                </div>
+                <div class="col-xs-12 pb-1">
+                    <h3> Terms & Conditions</h3>
+                </div>
+                <div class="col-xs-12 modal-scroll ">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Terms and Contions</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success material-button" data-dismiss="modal">I Agree</button>
-        <button type="button" class="btn btn-default material-button" data-dismiss="modal">I Disagree</button>
-      </div>
-    </div>
+                    Terms & Conditions
+                </div>
+                <div class="col-xs-12 text-center">
+                    <button type="button" class="btn btn-success material-button" onclick="terms(1);">I Agree</button>
+                    <button type="button" class="btn btn-default material-button"  onclick="terms(0);" >I Disagree</button>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-  </div>
-</div>
+
+
+
 
 {% endblock %}
 
 {% block script %}
 <script type="text/javascript">
-    $.ajax({
-                type: "GET",
-                url: "{% url 'accounts:kyc_accept' %}",
-                data: {
-                    'to': $("#dispcoin").val(),
-                },
-                success: function (data) {
+    {% if not kyc_terms %}
+    $("#accept").modal("show");
+    {% endif %}
+    function terms(status)
+    {
+      if (status){
+        $.ajax({
+                    type: "GET",
+                    url: "{% url 'accounts:kyc_accept' %}",
+                    data: {
+                        'status': status,
+                    },
+                    success: function (data) {
 
-                    jQuery('.rateVal').each(function(i,E){
-                        id = E.id
-                        console.log($("."+id))
-                        $(E).text($("."+id).text()*data["value"])
+                         $("#accept").modal("hide");
+                        }
                     })
-                }
-            })
+      }
+      else{
+        window.location.href="/"
+      }
+    }
 </script>
 {% endblock %}

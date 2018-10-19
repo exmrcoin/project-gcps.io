@@ -2343,3 +2343,8 @@ border-radius: 20px;
 }
 
 /******************************************************************/
+
+.modal-scroll{
+    max-height: 300px;
+    overflow-y: scroll;
+}

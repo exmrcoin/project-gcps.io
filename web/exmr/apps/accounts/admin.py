@@ -4,7 +4,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.utils.translation import ugettext_lazy as _
 
 from apps.accounts.models import Profile, Address, Feedback, ProfileActivation, NewsLetter, KYC,\
-                                 TwoFactorAccount
+                                 TwoFactorAccount, KYCTerms
 from exmr import settings
 
 
@@ -76,7 +76,7 @@ class NewsletterAdmin(admin.ModelAdmin):
 admin.site.register(TwoFactorAccount)
 admin.site.register(NewsLetter, NewsletterAdmin)
 admin.site.register(KYC)
-
+admin.site.register(KYCTerms)
 
 
 

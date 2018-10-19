@@ -1,0 +1,66 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% block dashboard_heading %}
+    <div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">TRANSACTION HISTORY
+        </div>
+    </div>
+{% endblock %}
+{% block dashboard_wrapper_content %}
+    <div class="dashboard-bg">
+        <div class="container">
+            <div class="dashboard-wrapper top-sec">
+                <div class="dashboard-wrapper">
+                    <div class="dasboard-head">
+                        <h3 class="trans coin-keys-app" style="text-transform: capitalize;">{{ view.kwargs.type }}</h3>
+                    </div>
+                    <div class="dashboard-table">
+            <div class="dasboard-head">
+                <div class="card">
+                    <div class="card-body">
+
+                        <!--Table-->
+                        <table class="table table-border table-responsive-md" style="table-layout: fixed">
+
+                            <!--Table head-->
+                            <thead>
+                            <tr class="table-top">
+
+                                <th class="text-center">{% trans 'Time' %}</th>
+                                <th class="text-center">{% trans 'Received / Sent Name' %}</th>
+                                <th class="text-center">{% trans 'Coin' %}</th>
+                                <th class="text-center">{% trans 'Amount' %}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                {% if transactions %}
+                                {% for transaction in transactions %}
+                                <tr>
+                                    <td align="center">{{ transaction.date }}</td>
+                                    <td align="center" style="word-wrap: break-word">{{transaction.transaction_to}}</td>
+                                    <td align="center">{{transaction.currency}}</td>
+                                    <td align="center">{{transaction.amount}}</td>
+                                </tr>
+                                {% endfor %}
+                                {% else %}
+                            <tr>
+                                <td class="table-style" colspan="4">{% trans 'No Payment Found' %}</td>
+
+                            </tr>
+                                {% endif %}
+                            </tbody>
+                            <!--Table body-->
+
+                        </table>
+                        <!--Table-->
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+{% endblock %}

@@ -272,7 +272,7 @@ class KYC(models.Model):
     def __str__(self):
         return self.user.username
 
-class KYC_terms(models.Model):
+class KYCTerms(models.Model):
     """
         For saving tems an condition acceptance
     """

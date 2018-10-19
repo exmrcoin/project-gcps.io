@@ -838,3 +838,19 @@ class UserWallet(TemplateView):
         context["coins"] = Coin.objects.all()
         context["pk"] = kwargs["pk"]
         return context
+
+@method_decorator(check_2fa, name='dispatch')
+class TransactionHistoryView(LoginRequiredMixin, TemplateView):
+    template_name = 'coins/payment-history.html'
+
+    
+
+class TransactionDetails(LoginRequiredMixin, TemplateView):
+    template_name = 'coins/transactions.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if kwargs["type"] == 'withdrawal':
+            context["transactions"] = Transaction.objects.filter(user=self.request.user)
+        
+        return context

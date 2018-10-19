@@ -20,13 +20,14 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.views.generic import CreateView, TemplateView, FormView, UpdateView
 
-from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, Address, Feedback, KYC
+from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, Address,\
+                                 Feedback, KYC, KYCTerms
 from apps.accounts.decorators import check_2fa
 from apps.coins.utils import *
 from apps.coins.models import Coin, Wallet, Transaction
 from apps.common.utils import generate_key, JSONResponseMixin, get_pin
-from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm, IPNSettingsForm, \
-    AddressForm, KYCForm
+from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm,\
+                                IPNSettingsForm, AddressForm, KYCForm
 
 
 
@@ -80,12 +81,8 @@ class DashboardView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['transactions'] = Transaction.objects.filter(user=self.request.user)
+        context['transactions'] = Transaction.objects.filter(user=self.request.user)[:10]
         return context
-
-
-class TransactionHistoryView(LoginRequiredMixin, TemplateView):
-    template_name = 'accounts/payment-history.html'
 
 
 @method_decorator(check_2fa, name='dispatch')
@@ -482,6 +479,8 @@ class KYCView(FormView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         context["status"] = KYC.objects.filter(approved=True)
+        
+        context["kyc_terms"] = KYCTerms.objects.filter(user=self.request.user, flag=True)
         return context
 
     def form_valid(self,form):
@@ -494,12 +493,13 @@ class KYCView(FormView):
 
 class KYCAcceptanceView(View):
 
-    def post(self, *args, **kwargs):
-        status = self.request.POST.get('status')
-        obj, created = KYC_terms.objects.get_or_create(user= user)
+    def get(self, *args, **kwargs):
+        status = int(self.request.GET.get('status'))
+        obj, created = KYCTerms.objects.get_or_create(user= self.request.user)
         obj.flag = status
         obj.save()
         if status:
             return HttpResponse(json.dumps({"status": True}))
         return HttpResponse(json.dumps({"status": False}))
 
+ 

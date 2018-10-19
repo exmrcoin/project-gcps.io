@@ -1,0 +1,124 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% block dashboard_heading %}
+    <div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">TRANSACTION HISTORY
+        </div>
+    </div>
+{% endblock %}
+{% block dashboard_wrapper_content %}
+    <div class="dashboard-bg">
+        <div class="container">
+            <div class="dashboard-wrapper top-sec">
+                <div class="dashboard-wrapper">
+                    <div class="dasboard-head">
+                        <h3 class="trans coin-keys-app">GETCRYPTOPAYMENTS Wallet History</h3>
+                    </div>
+                    <div class="app-min-wrap history-wallet">
+                        <div class="btn-history-wrap">
+                            <a href="{% url 'coins:transaction-history-details' 'deposit' %}"><button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/deposit.svg' %}"><span class="icon-wallet-name">{% trans 'Deposit History' %}</span></button></a>
+                            <a href="{% url 'coins:transaction-history-details' 'withdrawal' %}"><button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/withdraw.svg' %}"><span class="icon-wallet-name">{% trans 'Withdrawal History' %}</span></button></a>
+                            <a href="{% url 'coins:transaction-history-details' 'transafter' %}"><button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/arrows (1).svg' %}"><span class="icon-wallet-name">{% trans 'Transfer History' %}</span></button></a>
+                            <a href="{% url 'coins:transaction-history-details' 'conversion' %}"><button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/paper-plane.svg' %}"><span class="icon-wallet-name">{% trans 'Conversion History' %}</span></button></a>
+                            <a href="{% url 'coins:transaction-history-details' 'p2p' %}"><button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/paper-plane.svg' %}"><span class="icon-wallet-name">{% trans 'P2P Exchange History' %}</span></button></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="dashboard-wrapper">
+                    <div class="dasboard-head">
+
+                        <h3 class="trans coin-keys-app">{% trans 'Incoming Payment HIstory' %}</h3>
+
+                    </div>
+                    <div class="app-min-wrap history-wallet">
+                        <form action="acct-history" method="post">
+                        <table id="bstable" class="table table-bordered table-condensed stacktable large-only">
+                            <thead>
+                                <tr>
+                                    <th colspan="2">History Search &amp; Export</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td align="right">Search Dates:</td>
+                                    <td>From
+                                        <input name="start_date" size="12" value="7/21/2018"> to
+                                        <input name="end_date" size="12" value="10/19/2018">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">Search Query:</td>
+                                    <td>
+                                        <input name="q" value=""> in
+                                        <select name="search_type">
+                                            <option value="txn_id" selected="">Payment ID</option>
+                                            <option value="email">Sender's email</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">Amount:</td>
+                                    <td>
+                                        <input name="amount_l" value="0.00000000"> -
+                                        <input name="amount_h" value="0.00000000">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">Incoming/Outgoing:</td>
+                                    <td>
+                                        <select name="fromto">
+                                            <option value="both" selected="">Both</option>
+                                            <option value="incoming">Received</option>
+                                            <option value="outgoing">Sent</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">Completed Only?</td>
+                                    <td>
+                                        <select name="completed">
+                                            <option value="1" selected="">Yes</option>
+                                            <option value="0">No</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">$PayByName Tag:</td>
+                                    <td>
+                                        <select name="pbntag">
+                                            <option value="all">All Payments</option>
+                                            <option value="non">No Tag</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">Export Type:</td>
+                                    <td>
+                                        <select name="export_type">
+                                            <option value="xml">XML</option>
+                                            <option value="csv">CSV</option>
+                                            <option value="json" selected="">JSON</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right">Submit:</td>
+                                    <td>
+                                        <input type="submit" class="btn btn-sm btn-primary" name="action" value="Display">
+                                        <input class="btn btn-sm btn-primary" type="submit" name="action" value="Export">
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <input type="hidden" name="screen_res" value="1366x768">
+                    </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

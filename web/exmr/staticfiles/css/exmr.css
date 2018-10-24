@@ -664,7 +664,7 @@ footer {
     min-width: 50px;
 }
 
-.input-text-index {
+.input-text-index {     
     height: 40px !important;
 }
 
@@ -2343,8 +2343,16 @@ border-radius: 20px;
 }
 
 /******************************************************************/
-
 .modal-scroll{
     max-height: 300px;
     overflow-y: scroll;
+}
+.btn-history-wrap{
+    background: #f0f0f0;
+    border: 1px solid rgb(233, 233, 233);
+    box-shadow: none;
+}
+.wallet-icon{
+    width: 100px;
+    margin: 0 auto;
 }

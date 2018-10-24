@@ -3,38 +3,105 @@
 {% load widget_tweaks %}
 {% load i18n %}
 {% block dashboard_heading %}
-    <div class="dashboard-bg">
+<div class="dashboard-bg">
     <div class="merchant-tools merchant-one coin-payment-head">
         <div class=" container merchant-box">TRANSACTION HISTORY
         </div>
     </div>
-{% endblock %}
-{% block dashboard_wrapper_content %}
+    {% endblock %}
+    {% block dashboard_wrapper_content %}
     <div class="dashboard-bg">
-        <div class="container">
-            <div class="dashboard-wrapper top-sec">
-                <div class="dashboard-wrapper">
-                    <div class="dasboard-head">
-                        <h3 class="trans coin-keys-app">GETCRYPTOPAYMENTS Wallet History</h3>
-                    </div>
-                    <div class="app-min-wrap history-wallet">
-                        <div class="btn-history-wrap">
-                            <a href="{% url 'coins:transaction-history-details' 'deposit' %}"><button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/deposit.svg' %}"><span class="icon-wallet-name">{% trans 'Deposit History' %}</span></button></a>
-                            <a href="{% url 'coins:transaction-history-details' 'withdrawal' %}"><button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/withdraw.svg' %}"><span class="icon-wallet-name">{% trans 'Withdrawal History' %}</span></button></a>
-                            <a href="{% url 'coins:transaction-history-details' 'transafter' %}"><button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/arrows (1).svg' %}"><span class="icon-wallet-name">{% trans 'Transfer History' %}</span></button></a>
-                            <a href="{% url 'coins:transaction-history-details' 'conversion' %}"><button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/paper-plane.svg' %}"><span class="icon-wallet-name">{% trans 'Conversion History' %}</span></button></a>
-                            <a href="{% url 'coins:transaction-history-details' 'p2p' %}"><button type="button" class=" btn-history-wallet"><img class="wallet-icon" src="{% static 'images/paper-plane.svg' %}"><span class="icon-wallet-name">{% trans 'P2P Exchange History' %}</span></button></a>
-                        </div>
-                    </div>
+        <div class="dashboard-wrapper top-sec">
+            <div class="dashboard-wrapper">
+                <div class="dasboard-head">
+                    <h3 class="trans coin-keys-app">GETCRYPTOPAYMENTS Wallet History</h3>
                 </div>
-                <div class="dashboard-wrapper">
-                    <div class="dasboard-head">
+                <div class="app-min-wrap history-wallet p-2">
 
-                        <h3 class="trans coin-keys-app">{% trans 'Incoming Payment HIstory' %}</h3>
+                    <div class="col-xs-12 col-sm-6 col-md-2  p-1">
+                        <a href="{% url 'coins:transaction-history-details' 'deposit' %}">
+                            <div class="btn-history-wrap col-xs-12 text-center p-2">
+                                <div class="col-xs-12 text-center">
+                                    <img class="w60px" src="{% static 'images/deposit.svg' %}">
+                                </div>    
+                                <span class="col-xs-12 icon-wallet-name h50px">{% trans 'Deposit History' %}</span>
 
+                            </div>
+                        </a>
                     </div>
-                    <div class="app-min-wrap history-wallet">
-                        <form action="acct-history" method="post">
+
+
+                    <div class="col-xs-12 col-sm-6 col-md-2  p-1">
+                        <a href="{% url 'coins:transaction-history-details' 'withdrawal' %}">
+                            <div class="btn-history-wrap col-xs-12 text-center p-2">
+                                <div class="col-xs-12 text-center">
+                                    <img class="w60px" src="{% static 'images/withdraw.svg' %}">
+                                </div>    
+                                <span class="col-xs-12 icon-wallet-name h50px">{% trans 'withdraw History' %}</span>
+
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-xs-12 col-sm-6 col-md-2  p-1">
+                        <a href="{% url 'coins:transaction-history-details' 'transafter' %}">
+                            <div class="btn-history-wrap col-xs-12 text-center p-2">
+                                <div class="col-xs-12 text-center">
+                                    <img class="w60px" src="{% static 'images/arrows (1).svg' %}">
+                                </div>    
+                                <span class="col-xs-12 icon-wallet-name h50px">{% trans 'Transfer History' %}</span>
+
+                            </div>
+                        </a>
+                    </div>
+
+
+                    <div class="col-xs-12 col-sm-6 col-md-2  p-1">
+                        <a href="{% url 'coins:transaction-history-details' 'conversion' %}">
+                            <div class="btn-history-wrap col-xs-12 text-center p-2">
+                                <div class="col-xs-12 text-center">
+                                    <img class="w60px" src="{% static 'images/paper-plane.svg' %}">
+                                </div>    
+                                <span class="col-xs-12 icon-wallet-name h50px">{% trans 'Conversion History' %}</span>
+
+                            </div>
+                        </a>
+                    </div>
+
+
+
+                    <div class="col-xs-12 col-sm-6 col-md-2  p-1">
+                        <a href="{% url 'coins:transaction-history-details' 'p2p' %}">
+                            <div class="btn-history-wrap col-xs-12 text-center p-2">
+                                <div class="col-xs-12 text-center">
+                                    <img class="w60px" src="{% static 'images/paper-plane.svg' %}">
+                                </div>    
+                                <span class="col-xs-12 icon-wallet-name h50px">{% trans 'P2P Exchange History' %}</span>
+
+                            </div>
+                        </a>
+                    </div>
+
+
+
+                    <!-- <div class="btn-history-wrap">
+                            <a href="{% url 'coins:transaction-history-details' 'deposit' %}"><div class="co"<button type="button" class=" btn-history-wallet"><img class="col-xs-12 wallet-icon" src="{% static 'images/deposit.svg' %}"><span class="col-xs-12 icon-wallet-name">{% trans 'Deposit History' %}</span></button></a>
+                            <a href="{% url 'coins:transaction-history-details' 'withdrawal' %}"><button type="button" class=" btn-history-wallet"><img class="col-xs-12 wallet-icon" src="{% static 'images/withdraw.svg' %}"><span class="col-xs-12 icon-wallet-name">{% trans 'Withdrawal History' %}</span></button></a>
+                            <a href="{% url 'coins:transaction-history-details' 'transafter' %}"><button type="button" class=" btn-history-wallet"><img class="col-xs-12 wallet-icon" src="{% static 'images/arrows (1).svg' %}"><span class="col-xs-12 icon-wallet-name">{% trans 'Transfer History' %}</span></button></a>
+                            <a href="{% url 'coins:transaction-history-details' 'conversion' %}"><button type="button" class=" btn-history-wallet"><img class="col-xs-12 wallet-icon" src="{% static 'images/paper-plane.svg' %}"><span class="col-xs-12 icon-wallet-name">{% trans 'Conversion History' %}</span></button></a>
+                            <a href="{% url 'coins:transaction-history-details' 'p2p' %}"><button type="button" class=" btn-history-wallet"><img class="col-xs-12 wallet-icon" src="{% static 'images/paper-plane.svg' %}"><span class="col-xs-12 icon-wallet-name">{% trans 'P2P Exchange History' %}</span></button></a>
+                        </div> -->
+                </div>
+            </div>
+            <div class="dashboard-wrapper">
+                <div class="dasboard-head">
+
+                    <h3 class="trans coin-keys-app">{% trans 'Incoming Payment HIstory' %}</h3>
+
+                </div>
+                <div class="app-min-wrap history-wallet">
+                    <form action="acct-history" method="post">
                         <table id="bstable" class="table table-bordered table-condensed stacktable large-only">
                             <thead>
                                 <tr>
@@ -116,9 +183,8 @@
                         <input type="hidden" name="screen_res" value="1366x768">
                     </form>
 
-                    </div>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+    {% endblock %}

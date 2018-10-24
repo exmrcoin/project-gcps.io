@@ -855,5 +855,6 @@ class TransactionDetails(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         if kwargs["type"] == 'withdrawal':
             context["transactions"] = Transaction.objects.filter(user=self.request.user)
-        
+        elif kwargs["type"] == 'deposit':
+            context["transactions"] = get_deposit_transactions(self.request.user)  
         return context

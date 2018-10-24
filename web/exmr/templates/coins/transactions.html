@@ -40,7 +40,7 @@
                                 {% for transaction in transactions %}
                                 <tr>
                                     <td align="center">{{ transaction.date }}</td>
-                                    <td align="center" style="word-wrap: break-word">{{transaction.transaction_to}}</td>
+                                    <td align="center" style="word-wrap: break-word">{{transaction.transaction_to}} {{transaction.transaction_from}}</td>
                                     <td align="center">{{transaction.currency}}</td>
                                     <td align="center">{{transaction.amount}}</td>
                                 </tr>

@@ -256,3 +256,22 @@ class DonationButtonInvoice(models.Model):
 
     def __str__(self):
         return self.item_name + "_"+ self.unique_id
+
+class ButtonItem(models.Model):
+    item_unique_id = models.CharField(max_length=128, null=False, unique=True)
+    item_name = models.CharField(max_length=128, null=False)
+    item_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
+    item_discount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=True, default = 0)
+    merchant_id = models.CharField(
+        verbose_name=_('merchant id'), max_length=128, null = True)
+    item_tax = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False, default= 0)
+    shipping_cost = models.DecimalField(
+        max_digits=20, decimal_places=2,  null=True, default = 0)
+    shipping_cost_add = models.DecimalField(
+        max_digits=20, decimal_places=2,  null=True, default = 0)
+    
+    def __str__(self):
+        return self.item_name

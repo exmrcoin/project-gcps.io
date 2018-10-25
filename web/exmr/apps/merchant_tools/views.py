@@ -7,7 +7,7 @@ from django_unixdatetimefield import UnixDateTimeField
 from django.core import serializers
 from django.utils import six
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseServerError
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import FormView, TemplateView, CreateView, View
@@ -18,7 +18,7 @@ from apps.coins.utils import *
 from apps.coins import coinlist
 from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm, POSQRForm, DonationButtonMakerForm
 from apps.merchant_tools.models import (ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic, ButtonInvoice,
-                                        URLMaker, POSQRMaker, MultiPayment, MercSidebarSubTopic, DonationButtonInvoice)
+                                        URLMaker, POSQRMaker, MultiPayment, MercSidebarSubTopic, DonationButtonInvoice,ButtonItem)
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.crypto import get_random_string
@@ -69,6 +69,17 @@ class ButtonMakerView(FormView):
         allow_buyer_note = str(form.cleaned_data['allow_buyer_note']).lower()
         # domain =  Site.objects.get_current()
         domain = self.request.get_host()
+        item_uid = 'item_' + get_random_string(
+            length=8) +'_' +str(int(time.mktime((timezone.now()).timetuple())))
+        temp_item = ButtonItem.objects.get_or_create(
+            item_unique_id = item_uid,
+            item_name = item_name,
+            item_amount = item_amount,
+            merchant_id = merchant_id,
+            shipping_cost = shipping_cost,
+            shipping_cost_add = shipping_cost_add,
+            tax_amount = tax_amount
+        )
         temp_html = ['<form action="https://'+domain+reverse('mtools:cryptopayV2') + '" method="POST" >',
                      '<input type="hidden" name="merchant_id" value="'+merchant_id +
                      '" maxlength="128" id="id_merchant_id" required />',
@@ -78,6 +89,8 @@ class ButtonMakerView(FormView):
                      '" maxlength="128" id="id_item_amount" required />',
                      '<input type="hidden" name="item_number" value="'+item_number +
                      '" maxlength="128" id="id_item_number" required />',
+                     '<input type="hidden" name="item_unique_id" value="'+item_uid +
+                     '" maxlength="128" id="id_item_uid" required />',
                      '<input type="hidden" name="item_qty" value="'+str(item_qty) +
                      '" maxlength="128" id="id_item_qty" required />',
                      '<input type="hidden" name="buyer_qty_edit" value="' +  buyer_qty_edit+
@@ -227,8 +240,8 @@ class CryptoPaymment(FormView):
         shipping_cost = self.request.POST['shipping_cost']
         item_amount = self.request.POST['item_amount']
         item_qty = self.request.POST['item_qty']
-        if float(shipping_cost_add) > 1:
-            total_shipping = float(shipping_cost) + (float(shipping_cost_add) * float(item_qty))
+        if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+            total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
         else:
             total_shipping = float(shipping_cost)
         
@@ -270,9 +283,7 @@ class ResumeCryptoPaymment(FormView):
 
 class PaymentFormSubmitView(View):
     def post(self, request, *args, **kwargs):
-        print(self.request.POST['selected_coin'])
         try:
-            print(self.request.POST['selected_coin'])
             sel_coin = Coin.objects.get(code=self.request.POST['selected_coin'])
         except:
             sel_coin = EthereumToken.objects.get(contract_symbol=self.request.POST['selected_coin'])
@@ -281,8 +292,6 @@ class PaymentFormSubmitView(View):
             crypto_address = create_wallet(superuser, sel_coin.code)
         except:
             crypto_address = create_wallet(superuser, sel_coin.contract_symbol)
-        # crypto_address = '123'
-        print(crypto_address)
         try:
             temp_obj = CryptoPaymentRec.objects.create(
                 merchant_id=self.request.POST['merchant_id'],
@@ -480,7 +489,6 @@ class POSQRMakerView(FormView):
         domain = self.request.get_host()
         mydate = timezone.now()
         maxtimer = int(time.mktime(mydate.timetuple())) + 4*60*60
-        print(maxtimer)
 
         context = super(POSQRMakerView, self).get_context_data()
         merchant = Profile.objects.get(merchant_id=merchant_id).user
@@ -509,7 +517,6 @@ class POSQRPayView(TemplateView):
             total_paid = 0;
             for prepaid in check_prepaid:
                 total_paid = float(prepaid.recieved_usd)
-            print(total_paid)
         try:
             context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
         except:
@@ -599,9 +606,7 @@ class ButtonMakerContinuePayment(View):
         for coin in temp_list:
             if coin == currency_code:
                 temp_list.remove(coin)
-        print(temp_list)
         final_dict = { key: coin_dict[key] for key in temp_list }
-        print(final_dict)
         data = final_dict
         return HttpResponse(json.dumps(data), content_type="application/json")
 
@@ -631,32 +636,37 @@ class CryptoPaymmentV2(FormView):
         context['item_name'] = self.request.POST['item_name']
         context['item_amount'] = self.request.POST['item_amount']
         context['item_number'] = self.request.POST['item_number']
+        context['item_unique_id'] = self.request.POST['item_unique_id']
         context['item_qty'] = self.request.POST['item_qty']
         context['buyer_qty_edit'] = str(
             self.request.POST['buyer_qty_edit']).lower()
         context['invoice_number'] = self.request.POST['invoice_number']
-        context['tax_amount'] = self.request.POST['tax_amount']
         context['allow_shipping_cost'] = str(
             self.request.POST['allow_shipping_cost']).lower()
-        context['shipping_cost'] = self.request.POST['shipping_cost']
-        context['shipping_cost_add'] = self.request.POST['shipping_cost_add']
         context['success_url_link'] = self.request.POST['success_url_link']
         context['cancel_url_link'] = self.request.POST['cancel_url_link']
         context['ipn_url_link'] = self.request.POST['ipn_url_link']
         context['btn_image'] = self.request.POST['btn_image']
         context['allow_buyer_note'] = self.request.POST['allow_buyer_note']
+        item_code = self.request.POST['item_unique_id']
         temp_id = context['merchant_id']
+        # 
+        item_obj = ButtonItem.objects.get(item_unique_id = item_code)
+        item_amount =  float(item_obj.item_amount)
 
-        tax_amount = self.request.POST['tax_amount']
-        shipping_cost_add = self.request.POST['shipping_cost_add']
-        shipping_cost = self.request.POST['shipping_cost']
-        item_amount = self.request.POST['item_amount']
+        request.session['item_amount'] = item_amount
+        shipping_cost_add = item_obj.shipping_cost_add
+        shipping_cost = item_obj.shipping_cost
+        item_amount =  float(item_obj.item_amount)
+        tax_amount = float(item_obj.item_tax) * float(self.request.POST['item_qty'])
+        context['tax_amount'] = tax_amount
         item_qty = self.request.POST['item_qty']
-        if float(shipping_cost_add) > 1:
-            total_shipping = float(shipping_cost) + (float(shipping_cost_add) * float(item_qty))
+        if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+            total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
         else:
             total_shipping = float(shipping_cost)
-        
+
+        context['shipping_cost'] = total_shipping
         context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
         context['item_total'] = round((float(item_qty) * float(item_amount)),2)
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
@@ -692,8 +702,8 @@ class ButtonMakerInvoice(TemplateView):
             shipping_cost = temp_obj.shipping_cost
             item_amount = temp_obj.item_amount
             item_qty = temp_obj.item_qty
-            if float(shipping_cost_add) > 1:
-                total_shipping = float(shipping_cost) + (float(shipping_cost_add) * float(item_qty))
+            if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+                total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
             else:
                 total_shipping = float(shipping_cost)
             
@@ -704,23 +714,25 @@ class ButtonMakerInvoice(TemplateView):
 
             #attempt payment
             check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
+
             total_paid = 0;
             if check_prepaid:
                 total_paid = 0;
                 for prepaid in check_prepaid:
                     total_paid = float(prepaid.recieved_usd)
-                print(total_paid)
+
             try:
                 context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
             except:
                 context['amt_remaining'] = float(temp_obj.item_amount)
             attempted = 0
+
             try:
                 for prepaid in check_prepaid:
                     attempted = attempted + float(prepaid.attempted_usd) 
-                    
             except:
                 pass
+
             context['attempted'] = attempted
             #attempt payment
 
@@ -729,6 +741,7 @@ class ButtonMakerInvoice(TemplateView):
             context['unique_id'] = temp_obj.unique_id
             context['available_coins'] = coinlist.payment_gateway_coins()
             return context
+        return context
 
 
     def post(self, request, *args, **kwargs):
@@ -741,17 +754,35 @@ class ButtonMakerInvoice(TemplateView):
         html_url = domain + \
             reverse('mtools:btnpay2', kwargs={'token': token})
         if not self.invoice_url:
+            item_uid=self.request.POST.get('item_unique_id',0)
+            btn_item_obj = ButtonItem.objects.get(item_unique_id = item_uid)
+            item_amount = btn_item_obj.item_amount
+
+            item_qty = self.request.POST.get('item_qty',0)
+            shipping_cost_add = btn_item_obj.shipping_cost_add
+            shipping_cost = btn_item_obj.shipping_cost
+            tax_amount = float(btn_item_obj.item_tax)* float(item_qty)
+            print(btn_item_obj.item_tax)
+            if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+                total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
+            else:
+                total_shipping = float(shipping_cost)
+            
+            context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
+            context['item_total'] = round((float(item_qty) * float(item_amount)),2)
+
+
             try:
                 temp_obj, created = ButtonInvoice.objects.get_or_create(
                     merchant_id = self.request.POST['merchant_id'],
                     unique_id = self.request.POST['unique_id'],
                     invoice_number = self.request.POST['invoice_number'],
-                    item_name=self.request.POST['item_name'],
-                    item_amount=self.request.POST['item_amount'],
+                    item_name=btn_item_obj.item_name,
+                    item_amount=context['payable'],
                     item_number=self.request.POST['item_number'],
                     item_qty=self.request.POST['item_qty'],
-                    tax_amount=self.request.POST['tax_amount'],
-                    shipping_cost=self.request.POST['shipping_cost'],
+                    tax_amount=tax_amount,
+                    shipping_cost=total_shipping,
                     first_name=self.request.POST['first_name'],
                     last_name=self.request.POST['last_name'],
                     email_addr=self.request.POST['email_addr'],
@@ -774,27 +805,20 @@ class ButtonMakerInvoice(TemplateView):
                 temp_obj = ButtonInvoice.objects.get(URL_link = self.invoice_url)
             except:
                 pass
-        #
-        shipping_cost_add = 0
-        #
         temp_id = temp_obj.merchant_id
-        tax_amount = temp_obj.tax_amount
         unique_id = temp_obj.unique_id
-        shipping_cost_add = self.request.POST['shipping_cost_add']
-        shipping_cost = temp_obj.shipping_cost
-        item_amount = temp_obj.item_amount
-        item_qty = temp_obj.item_qty
-        if float(shipping_cost_add) > 1:
-            total_shipping = float(shipping_cost) + (float(shipping_cost_add) * float(item_qty))
+        if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+            total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
         else:
             total_shipping = float(shipping_cost)
         
+        print ("1 total shipiing" + str(total_shipping))
+        print("tax amount" + str(tax_amount))
         context['unique_id'] = unique_id
         context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
         context['item_total'] = round((float(item_qty) * float(item_amount)),2)
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
         context['available_coins'] = coinlist.payment_gateway_coins()
-        print("testing uniqueness" + ','+ unique_id)
         #attempt payment
         check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
         total_paid = 0;
@@ -802,7 +826,6 @@ class ButtonMakerInvoice(TemplateView):
             total_paid = 0;
             for prepaid in check_prepaid:
                 total_paid = float(prepaid.recieved_usd)
-            print(total_paid)
         try:
             context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
         except:
@@ -850,8 +873,8 @@ class DonationButtonMakerInvoice(TemplateView):
             shipping_cost = temp_obj.shipping_cost
             item_amount = temp_obj.item_amount
             item_qty = temp_obj.item_qty
-            if float(shipping_cost_add) > 1:
-                total_shipping = float(shipping_cost) + (float(shipping_cost_add) * float(item_qty))
+            if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+                total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
             else:
                 total_shipping = float(shipping_cost)
             
@@ -867,7 +890,6 @@ class DonationButtonMakerInvoice(TemplateView):
                 total_paid = 0;
                 for prepaid in check_prepaid:
                     total_paid = float(prepaid.recieved_usd)
-                print(total_paid)
             try:
                 context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
             except:
@@ -942,8 +964,8 @@ class DonationButtonMakerInvoice(TemplateView):
         shipping_cost = temp_obj.shipping_cost
         item_amount = temp_obj.item_amount
         item_qty = temp_obj.item_qty
-        if float(shipping_cost_add) > 1:
-            total_shipping = float(shipping_cost) + (float(shipping_cost_add) * float(item_qty))
+        if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+            total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
         else:
             total_shipping = float(shipping_cost)
         
@@ -952,7 +974,6 @@ class DonationButtonMakerInvoice(TemplateView):
         context['item_total'] = round((float(item_qty) * float(item_amount)),2)
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
         context['available_coins'] = coinlist.payment_gateway_coins()
-        print("testing uniqueness" + ','+ unique_id)
         #attempt payment
         check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
         total_paid = 0;
@@ -960,7 +981,6 @@ class DonationButtonMakerInvoice(TemplateView):
             total_paid = 0;
             for prepaid in check_prepaid:
                 total_paid = float(prepaid.recieved_usd)
-            print(total_paid)
         try:
             context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
         except:
@@ -976,7 +996,6 @@ class DonationButtonMakerInvoice(TemplateView):
         #attempt payment
 
         context['url'] = temp_obj.URL_link
-
         context['available_coins'] = coinlist.payment_gateway_coins()
         return self.render_to_response(context)
 

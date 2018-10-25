@@ -43,7 +43,7 @@
             <form action="{% url 'mtools:btnqrcode' %}" method="POST">
                 {% csrf_token %}
                 <input type="hidden" name="unique_id" value="{{unique_id}}" />
-                <span>{{unique_id}}</span>
+                
                 <div class="col-xs-12 pr-md-0 text-center">
                     <h3>Total Amount due: {{amt_remaining}}</h3>
                     <h5>Attempted Till Now: {{attempted}}. Please check your Transaction attempts to confirm</h5>

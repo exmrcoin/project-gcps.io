@@ -854,7 +854,14 @@ class TransactionDetails(LoginRequiredMixin, TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         if kwargs["type"] == 'withdrawal':
-            context["transactions"] = Transaction.objects.filter(user=self.request.user)
+            if self.request.GET.get('currency'):
+                context["transactions"] = Transaction.objects.filter(user=self.request.user, currency=self.request.GET.get('currency'))
+            else:
+                context["transactions"] = Transaction.objects.filter(user=self.request.user)
+
         elif kwargs["type"] == 'deposit':
-            context["transactions"] = get_deposit_transactions(self.request.user)  
+                if self.request.GET.get('currency'):
+                    context["transactions"] = DepositTransaction(self.request.user).get_currency_txn(self.request.GET.get('currency'))
+                else:
+                    context["transactions"] = DepositTransaction(self.request.user).get_deposit_transactions()  
         return context

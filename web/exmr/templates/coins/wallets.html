@@ -150,11 +150,11 @@
                                             </li>
                                             <li class="divider"></li>
                                             <li>
-                                                <a href="">
+                                                <a href="{% url 'coins:transaction-history-details' 'deposit' %}?&currency={{ obj.code }}">
                                                     <span class="glyphicon glyphicon-import"></span> Deposit History</a>
                                             </li>
                                             <li>
-                                                <a href="">
+                                                <a href="{% url 'coins:transaction-history-details' 'withdrawal' %}?&currency={{ obj.code }}">
                                                     <i class="fa fa-paper-plane" aria-hidden="true"></i> Withdrawal History</a>
                                             </li>
                                             <li>

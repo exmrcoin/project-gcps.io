@@ -30,8 +30,9 @@
                             <tr class="table-top">
 
                                 <th class="text-center">{% trans 'Time' %}</th>
-                                <th class="text-center">{% trans 'Received / Sent Name' %}</th>
+                                <th class="text-center">{% trans 'Address / TX ID' %}</th>
                                 <th class="text-center">{% trans 'Coin' %}</th>
+                                <th class="text-center">{% trans 'Status' %}</th>
                                 <th class="text-center">{% trans 'Amount' %}</th>
                             </tr>
                             </thead>
@@ -40,8 +41,12 @@
                                 {% for transaction in transactions %}
                                 <tr>
                                     <td align="center">{{ transaction.date }}</td>
-                                    <td align="center" style="word-wrap: break-word">{{transaction.transaction_to}} {{transaction.transaction_from}}</td>
+                                    <td align="center" style="word-wrap: break-word"><p>Address: {{transaction.transaction_to}} {{transaction.transaction_from}}</p>
+                                    <p>Tx Id: {{ transaction.tx_id}}{{ transaction.transaction_id}}</p>
+                                    {% if transaction.system_tx_id %}<p>Withdrawal ID: {{transaction.system_tx_id}}</p>{% endif %}
+                                    </td>
                                     <td align="center">{{transaction.currency}}</td>
+                                    <td align="center">{% if transaction.approved == True %}Complete{% elif transaction.approved == False %}Cancelled{%else%}Complete{% endif %}</td>
                                     <td align="center">{{transaction.amount}}</td>
                                 </tr>
                                 {% endfor %}

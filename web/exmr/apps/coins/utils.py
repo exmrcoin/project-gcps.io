@@ -274,7 +274,7 @@ class ETH():
                  'amount':float(obj["value"])/1000000000000000000,'currency':"ETH" } for obj in result["result"] if obj['to']==address]
             for obj in result["result"]:
                 if obj["to"]=="0x"+address:
-                    data.append({'to': obj["to"], 'transaction_from':obj["from"], 'date':datetime.datetime.fromtimestamp(int(obj["timeStamp"])),'amount':float(obj["value"])/1000000000000000000,'currency':"ETH" })
+                    data.append({'to': obj["to"], 'tx_id': obj["hash"], 'transaction_from':obj["from"], 'date':datetime.datetime.fromtimestamp(int(obj["timeStamp"])),'amount':float(obj["value"])/1000000000000000000,'currency':"ETH" })
 
         except:
             pass
@@ -412,6 +412,22 @@ class EthereumTokens():
         except:
             return {"error": "insufficient funds for gas * price + value"}
 
+    def get_transactions(self):
+        data = []
+        coin = Coin.objects.get(code='ETH')
+        address = Wallet.objects.get(user=self.user, name=coin).addresses.all()[0].address
+        try:
+            result = json.loads(requests.get("http://api.etherscan.io/api?module=account&action=tokentx&address="+web3.Web3.toChecksumAddress(address)+"&startblock=0&endblock=99999999&sort=asc&apikey=K6EH1VDUFQWB8H6CW8U5SUXJK3YHTJ2U7U").text)
+            data = [{'transaction_from':obj["from"], 'date':int(datetime.datetime.fromtimestamp(obj["timeStamp"])),\
+                 'amount':float(obj["value"])/1000000000000000000,'currency':"ETH" } for obj in result["result"] if obj['to']==address]
+            for obj in result["result"]:
+                if obj["to"]=="0x"+address and self.code == obj["tokenSymbol"]:
+                    data.append({'to': obj["to"],'tx_id': obj["hash"], 'transaction_from':obj["from"], 'date':datetime.datetime.fromtimestamp(int(obj["timeStamp"])),'amount':float(obj["value"])/1000000000000000000,'currency':"ETH" })
+
+        except:
+            pass
+        return data
+
 
 class BTC():
     def __init__(self, user, currency):
@@ -449,8 +465,8 @@ class BTC():
 
     def get_transactions(self):
         result = self.access.listtransactions(self.user.username+"_exmr")
-        data = [{'transaction_from':obj["address"], 'date':datetime.datetime.fromtimestamp(obj["blocktime"]),\
-                 'amount':float(obj["amount"]),'currency':"BTC" } for obj in result if obj['category']=='receive']
+        data = [{'transaction_from':obj["address"], 'tx_id':obj["blockhash"], 'date':datetime.datetime.fromtimestamp(obj["blocktime"]),\
+                 'amount':float(obj["amount"]),'currency': self.currency } for obj in result if obj['category']=='receive']
         return data
 
 
@@ -701,33 +717,42 @@ class XLM():
             return {"error": "insufficient funds"}
 
 
-def get_deposit_transactions(user):
-    # erc = EthereumToken.objects.filter(contract_symbol=currency)
-    # if erc:
-    #     return EthereumTokens(user=user, code=currency).generate()
-    data = []
-    wallets = Wallet.objects.filter(user=user)
-    for wallet in wallets:
-        if wallet.name.code == 'BTC':
-            data = data + BTC(user, wallet.name.code).get_transactions()
-        elif wallet.name.code == 'ETH':
-            data = data + ETH(user, wallet.name.code).get_transactions()
-    return data
-    # if currency in ['XRPTest']:
-    #     return XRPTest(user).generate()
-    # elif currency in ['ETH']:
-    #     return ETH(user, currency).generate()
-    # if currency in ['XRP']:
-    #     return XRP(user).generate()
-    # elif currency in ['XMR']:
-    #     return XMR(user, currency).generate()
-    # elif currency in ['DASH']:
-    #     return globals()['create_'+currency+'_wallet'](user, currency)
-    # elif currency in ['BTC', 'LTC', 'XVG', 'BCH']:
-    #     return BTC(user, currency).generate()
-    # elif currency in ['XLM']:
-    #     return XLM(user, currency).generate()
-    # else:
-    #     return str(currency)+' server is under maintenance'
+class DepositTransaction():
 
-# def get_token_transactions(user):
+    def __init__(self, user):
+        self.user = user
+
+    def get_deposit_transactions(self):
+        data = []
+        
+        wallets = Wallet.objects.filter(user=self.user)
+        for wallet in wallets:
+            data = data + self.get_currency_txn(wallet.name.code)
+        return data
+        # if currency in ['XRPTest']:
+        #     return XRPTest(user).generate()
+        # elif currency in ['ETH']:
+        #     return ETH(user, currency).generate()
+        # if currency in ['XRP']:
+        #     return XRP(user).generate()
+        # elif currency in ['XMR']:
+        #     return XMR(user, currency).generate()
+        # elif currency in ['DASH']:
+        #     return globals()['create_'+currency+'_wallet'](user, currency)
+        # elif currency in ['BTC', 'LTC', 'XVG', 'BCH']:
+        #     return BTC(user, currency).generate()
+        # elif currency in ['XLM']:
+        #     return XLM(user, currency).generate()
+        # else:
+        #     return str(currency)+' server is under maintenance'
+
+    def get_currency_txn(self, currency):
+        erc = EthereumToken.objects.filter(contract_symbol=currency)
+        if erc:
+            return EthereumTokens(user=self.user, code=currency).get_transactions()
+        if currency in ['BTC', 'LTC', 'XVG', 'BCH']:
+            return BTC(self.user, currency).get_transactions()
+        elif currency == 'ETH':
+            return ETH(self.user, currency).get_transactions()
+        else:
+            return []

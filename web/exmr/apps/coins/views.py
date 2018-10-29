@@ -1,3 +1,4 @@
+import csv
 import random
 import string
 import datetime
@@ -847,7 +848,7 @@ class TransactionHistoryView(LoginRequiredMixin, TemplateView):
     template_name = 'coins/payment-history.html'
 
     
-
+@method_decorator(check_2fa, name='dispatch')
 class TransactionDetails(LoginRequiredMixin, TemplateView):
     template_name = 'coins/transactions.html'
 
@@ -865,3 +866,20 @@ class TransactionDetails(LoginRequiredMixin, TemplateView):
                 else:
                     context["transactions"] = DepositTransaction(self.request.user).get_deposit_transactions()  
         return context
+
+@method_decorator(check_2fa, name='dispatch')
+class DownloadTxnView(LoginRequiredMixin, View):
+    def get(self, request, *args, **kwargs):
+        txns = reorder_tx_data(DepositTransaction(self.request.user).get_deposit_transactions())
+        if request.GET.get('mode') == "export":
+            response = HttpResponse(content_type='text/csv')
+            response['Content-Disposition'] = 'attachment; filename="export.csv"'
+
+            writer = csv.writer(response)
+            txns = reorder_tx_data(DepositTransaction(self.request.user).get_deposit_transactions())
+            writer.writerow(['Time','Address', 'TX ID','Coin','Amount'])
+            for txn in txns:
+                writer.writerow(txn.values())
+
+            return response
+            

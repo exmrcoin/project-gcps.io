@@ -5,6 +5,7 @@ import requests
 import datetime
 import binascii
 import subprocess
+import collections
 
 
 from decimal import Decimal
@@ -131,6 +132,17 @@ def wallet_info(currency):
     context['wallet_info'] = access.getwalletinfo()
     return context
 
+def reorder_tx_data(data):
+    result = []
+    for item in data:
+        temp = collections.OrderedDict()
+        temp['date'] = item['date']
+        temp['transaction_from'] = item['transaction_from']
+        temp['tx_id'] = item['tx_id']
+        temp['currency'] = item['currency']
+        temp['amount'] = item['amount']
+        result.append(temp)
+    return result
 
 class XRPTest():
     def __init__(self, user):

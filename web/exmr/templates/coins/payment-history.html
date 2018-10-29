@@ -101,7 +101,6 @@
 
                 </div>
                 <div class="app-min-wrap history-wallet">
-                    <form action="acct-history" method="post">
                         <table id="bstable" class="table table-bordered table-condensed stacktable large-only">
                             <thead>
                                 <tr>
@@ -175,13 +174,13 @@
                                     <td align="right">Submit:</td>
                                     <td>
                                         <input type="submit" class="btn btn-sm btn-primary" name="action" value="Display">
-                                        <input class="btn btn-sm btn-primary" type="submit" name="action" value="Export">
+                                        <a href="{% url 'coins:download_txn' %}?mode=export"> <input class="btn btn-sm btn-primary"  type="submit" name="action" value="Export">
+                                        </a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <input type="hidden" name="screen_res" value="1366x768">
-                    </form>
 
                 </div>
             </div>

@@ -173,7 +173,7 @@
                                 <tr>
                                     <td align="right">Submit:</td>
                                     <td>
-                                        <input type="submit" class="btn btn-sm btn-primary" name="action" value="Display">
+                                        <input type="submit" id="id_display" class="btn btn-sm btn-primary" name="action" value="Display">
                                         <a href="{% url 'coins:download_txn' %}?mode=export"> <input class="btn btn-sm btn-primary"  type="submit" name="action" value="Export">
                                         </a>
                                     </td>
@@ -183,7 +183,29 @@
                         <input type="hidden" name="screen_res" value="1366x768">
 
                 </div>
+                <div id="transactionTable"></div>
             </div>
         </div>
     </div>
+    {% endblock %}
+    {% block script %}
+     
+     <script type="text/javascript">
+     $("#id_display").click(function(){
+        $.ajax({
+                    type: "GET",
+                    url: "{% url 'coins:download_txn' %}?mode=display",
+                    data: {
+                    },
+                    success: function (data) {
+
+                         $("#transactionTable").append(data.data)
+                        }
+                    })
+
+     })
+          
+
+     </script>
+
     {% endblock %}

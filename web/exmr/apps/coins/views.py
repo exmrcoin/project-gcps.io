@@ -882,4 +882,7 @@ class DownloadTxnView(LoginRequiredMixin, View):
                 writer.writerow(txn.values())
 
             return response
+        else:
+            response = render_to_string('coins/transaction_table.html',{'transactions': txns})
+            return HttpResponse(json.dumps({'data': response}),content_type="application/json")
             

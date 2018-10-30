@@ -78,7 +78,7 @@ class ButtonMakerView(FormView):
             merchant_id = merchant_id,
             shipping_cost = shipping_cost,
             shipping_cost_add = shipping_cost_add,
-            tax_amount = tax_amount
+            item_tax = tax_amount
         )
         temp_html = ['<form action="https://'+domain+reverse('mtools:cryptopayV2') + '" method="POST" >',
                      '<input type="hidden" name="merchant_id" value="'+merchant_id +
@@ -912,6 +912,7 @@ class DonationButtonMakerInvoice(TemplateView):
 
 
     def post(self, request, *args, **kwargs):
+        
         context = super().get_context_data()
         mydate = timezone.now()
         token = account_activation_token.make_token(
@@ -927,7 +928,7 @@ class DonationButtonMakerInvoice(TemplateView):
                     unique_id = self.request.POST['unique_id'],
                     invoice_number = self.request.POST['invoice_number'],
                     item_name=self.request.POST['item_name'],
-                    item_amount=self.request.POST['item_amount'],
+                    item_amount=self.request.POST.get('item_amount', ''),
                     item_number=self.request.POST['item_number'],
                     item_qty=self.request.POST['item_qty'],
                     tax_amount=self.request.POST['tax_amount'],
@@ -969,6 +970,7 @@ class DonationButtonMakerInvoice(TemplateView):
         else:
             total_shipping = float(shipping_cost)
         
+        context['item_amount'] = item_amount
         context['unique_id'] = unique_id
         context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
         context['item_total'] = round((float(item_qty) * float(item_amount)),2)

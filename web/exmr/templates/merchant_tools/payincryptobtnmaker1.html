@@ -49,8 +49,8 @@
                 <input type="hidden" name="merchant_id" value="{{merchant_id}}" />
                 <input type="hidden" name="unique_id" value="{{unique_id}}" />
                 <input type="hidden" name="item_name" value="{{item_name}}" maxlength="128" id="id_item_name" required />
-                <input type="hidden" name="item_amount" value="{{item_amount}}" maxlength="128" id="id_item_amount"
-                    required />
+                <!-- <input type="hidden" name="item_amount" value="{{item_amount}}" maxlength="128" id="id_item_amount" -->
+                    <!-- required /> -->
                 <input type="hidden" name="invoice_number" value="{{invoice_number}}" maxlength="128" id="id_invoice_number"
                     required />
                 <input type="hidden" name="item_qty" value="{{item_qty}}" maxlength="128" id="id_item_qty" required />
@@ -108,8 +108,12 @@
                         
                         
                         <div class="col-xs-12 bg-white px-0 text-center py-2">
-                            <div >
-                                <span >{{item_amount}} USD</span>
+                            <div class="row">
+                                <div class="col-xs-3 mt-4 "><label for="donation in USD">Donation in USD</label></div>
+                                <div class="col-xs-8 bg-white border-btm-line p-1">
+                                <span><input type="text" class="form-control input-group col-xs-8 mt-1 pl-0 " data-validation="number"
+                                    name="item_amount" id="donation in USD" placeholder="donation in USD" value="{{item_amount}}" ></span>
+                                </div>
                             </div>
                             
                         </div>
@@ -135,12 +139,12 @@
                             <div class="col-xs-12 bg-white border-btm-line p-1">
                                 <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="length custom"
                                     data-sanitize="trim" data-validation-regexp="^([a-zA-Z. ]+)$"
-                                    data-validation-length="min4" name="name" placeholder="First Name">
+                                    data-validation-length="min4" name="first_name" placeholder="First Name">
                                 <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="length custom"
                                     data-sanitize="trim" data-validation-regexp="^([a-zA-Z. ]+)$"
-                                    data-validation-length="min4" name="name" placeholder="Last Name">
+                                    data-validation-length="min4" name="last_name" placeholder="Last Name">
                                 <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="email"
-                                    name="name" placeholder="Email Address">
+                                    name="email_addr" placeholder="Email Address">
                             </div>
 
                             <div class="col-xs-12  orange-shadow-box " style="padding-left: -15px; padding-right:-15px;">
@@ -149,25 +153,25 @@
                             <div class="col-xs-12 bg-white border-btm-line p-1">
                                 <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="length custom"
                                     data-sanitize="trim" data-validation-regexp="^([a-zA-Z0-9,. ]+)$"
-                                    data-validation-length="min4" name="name" placeholder="Address Line 1">
-                                <input type="text" class="input-group-append col-xs-12 mt-1 pl-0" data-validation="length custom"
+                                    data-validation-length="min4" name="addr_l1" placeholder="Address Line 1">
+                                <input type="text" class="form-control input-group col-xs-12 mt-1" data-validation="length custom"
                                     data-sanitize="trim" data-validation-regexp="^([a-zA-Z0-9,. ]+)$"
-                                    data-validation-length="min4" name="name" placeholder="Address Line 2">
+                                    data-validation-length="min4" name="addr_l2" placeholder="Address Line 2">
                                 <div class="col-xs-12 px-0 py-1">
-                                    <select id="country" name="name" class="form-control input-group  form-control col-xs-12 "></select>
-                                    <select name="name" id="state" class="form-control input-group  form-control col-xs-12 mt-1"></select>
+                                    <select id="country" name="country" class="form-control input-group col-xs-12 mt-1 "></select>
+                                    <select name="city" id="state" class="form-control input-group col-xs-12 mt-1"></select>
 
                                 </div>
 
                                 <!-- <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="country" name="country" placeholder="Country"> -->
                                 <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="length alphanumeric"
-                                    data-validation-length="min4" name="name" placeholder="City">
+                                    data-validation-length="min4" name="zipcode" placeholder="City">
                                 <!-- <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
                                     name="state" placeholder="State/Province"> -->
                                 <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="number"
-                                    name="name" placeholder="Zipcode">
+                                    name="phone" placeholder="Zipcode">
                                 <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="alphanumeric"
-                                    data-validation-allowing="-_+ " name="name" placeholder="Phone Number">
+                                    data-validation-allowing="-_+ " name="buyer_note" placeholder="Phone Number">
                             </div>
                         </div>
                     </div>
@@ -300,7 +304,7 @@
     <script>
         function myFunction() {
 
-var elements = document.getElementsByName("name");
+var elements = document.getElementsByClassName("form-control input-group col-xs-12 mt-1");
 var el = document.getElementById("myCheck");
 
 for (var i = 0; i < elements.length; i++) {

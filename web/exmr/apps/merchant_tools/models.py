@@ -41,6 +41,29 @@ class ButtonMaker(models.Model):
     def __str__(self):
         return self.item_name
 
+class SimpleButtonMaker(models.Model):
+    merchant_id = models.CharField(
+        verbose_name=_('merchant id'), max_length=128)
+    item_name = models.CharField(max_length=128, null=False)
+    item_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
+    item_number = models.CharField(max_length=128, null=False)
+    item_description = models.CharField(max_length=500, null=False)
+    invoice_number = models.CharField(max_length=128, null=True)
+    tax_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=True, default = 0)
+    allow_shipping_cost = models.BooleanField(default=False)
+    shipping_cost = models.DecimalField(
+        max_digits=20, decimal_places=2,  null=True, default = 0)
+    success_url_link = models.URLField(max_length=128, blank=True, null=True)
+    cancel_url_link = models.URLField(max_length=128, blank=True, null=True)
+    ipn_url_link = models.URLField(max_length=128, blank=True, null=True)
+    btn_image = models.ForeignKey('ButtonImage', on_delete=models.CASCADE)
+    
+
+    def __str__(self):
+        return self.item_name
+
 class DonationButtonMaker(models.Model):
     merchant_id = models.CharField(
         verbose_name=_('merchant id'), max_length=128)
@@ -257,6 +280,36 @@ class DonationButtonInvoice(models.Model):
     def __str__(self):
         return self.item_name + "_"+ self.unique_id
 
+class SimpleButtonInvoice(models.Model):
+    merchant_id = models.CharField(
+        verbose_name=_('merchant id'), max_length=128)
+    invoice_number = models.CharField(max_length=128, null=False)
+    unique_id = models.CharField(max_length=128, null=False, unique=True)
+    item_name = models.CharField(max_length=128, null=False)
+    item_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
+    item_number = models.CharField(max_length=128, null=False)
+    item_qty = models.DecimalField(max_digits=20, decimal_places=2, null=False)
+    tax_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=True, default = 0)
+    shipping_cost = models.DecimalField(
+        max_digits=20, decimal_places=2,  null=True, default = 0)
+    buyer_note = models.CharField(max_length=128, null=True)
+    first_name = models.CharField(max_length=128, null=True, default='')
+    last_name = models.CharField(max_length=128, null=True)
+    email_addr = models.CharField(max_length=128, null=True)
+    addr_l1 = models.CharField(max_length=128, null=True)
+    addr_l2 = models.CharField(max_length=128, null=True)
+    country = models.CharField(max_length=128, null=True)
+    city = models.CharField(max_length=128, null=True)
+    state = models.CharField(max_length=128, null=True)
+    zipcode = models.CharField(max_length=128, null=True)
+    phone = models.CharField(max_length=128, null=True)
+    URL_link = models.CharField(max_length=256, null=True)
+
+    def __str__(self):
+        return self.item_name + "_"+ self.unique_id
+
 class ButtonItem(models.Model):
     item_unique_id = models.CharField(max_length=128, null=False, unique=True)
     item_name = models.CharField(max_length=128, null=False)
@@ -271,6 +324,23 @@ class ButtonItem(models.Model):
     shipping_cost = models.DecimalField(
         max_digits=20, decimal_places=2,  null=True, default = 0)
     shipping_cost_add = models.DecimalField(
+        max_digits=20, decimal_places=2,  null=True, default = 0)
+    
+    def __str__(self):
+        return self.item_name
+
+class SimpleButtonItem(models.Model):
+    item_unique_id = models.CharField(max_length=128, null=False, unique=True)
+    item_name = models.CharField(max_length=128, null=False)
+    item_amount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False)
+    item_discount = models.DecimalField(
+        max_digits=20, decimal_places=2, null=True, default = 0)
+    merchant_id = models.CharField(
+        verbose_name=_('merchant id'), max_length=128, null = True)
+    item_tax = models.DecimalField(
+        max_digits=20, decimal_places=2, null=False, default= 0)
+    shipping_cost = models.DecimalField(
         max_digits=20, decimal_places=2,  null=True, default = 0)
     
     def __str__(self):

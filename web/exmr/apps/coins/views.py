@@ -407,6 +407,9 @@ class SendView(LoginRequiredMixin, View):
     def post(self, request, *args, **kwargs):
         address = request.POST.get('to')
         currency = kwargs.get('slug')
+        if '$' in address:
+            if not PaybyName.objects.filter(label=address.strip('$')):
+                return HttpResponse(json.dumps({"error": "Paybyname not found"}), content_type='application/json')
         amount = Decimal(request.POST.get('amount'))
         erc = EthereumToken.objects.filter(contract_symbol=currency)
         balance = get_balance(request.user, currency)
@@ -571,6 +574,10 @@ class NewCoinAddView(FormView):
 
 class PayByNameView(LoginRequiredMixin, TemplateView):
     template_name = "coins/paybyname.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
 
 
 class PayByNamePayView(LoginRequiredMixin, TemplateView):

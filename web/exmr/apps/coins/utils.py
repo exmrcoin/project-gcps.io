@@ -24,7 +24,7 @@ from stellar_base.builder import Builder
 
 from bitcoinrpc.authproxy import AuthServiceProxy
 from apps.coins.models import Wallet, WalletAddress, Coin, EthereumToken, EthereumTokenWallet,\
-    Transaction, MoneroPaymentid
+                              Transaction, MoneroPaymentid,PaybyName
 from apps.apiapp import views as apiview
 
 
@@ -170,6 +170,7 @@ class XRPTest():
             return 0.0
 
     def send(self, destination, amount):
+        destination = check_pay_by_name(destination, "XRPTest")
         wallet = Wallet.objects.get(user=self.user, name__code="XRPTest")
         secret = wallet.private
         address = wallet.addresses.all().first().address
@@ -267,6 +268,7 @@ class ETH():
         return balance
 
     def send(self, to_addr, amount):
+        to_addr = check_pay_by_name(to_addr, "ETH")
         user_addr = Wallet.objects.get(
             user=self.user, name__code='ETH').addresses.all()[0].address
         try:
@@ -341,6 +343,7 @@ class XMR():
         return balance
 
     def send(self, destination, amount):
+        destination = check_pay_by_name(destination, "XMR")
         coin = Coin.objects.get(code='XMR')
         wallet = Wallet.objects.get(user=self.user, name=coin)
         param = {
@@ -413,6 +416,12 @@ class EthereumTokens():
         return balance
 
     def send(self, to_addr, amount):
+        to_addr = check_pay_by_name(to_addr, "ETH")
+        if '$' in to_addr:
+            to_user = PaybyName.objects.get(label=to_user.strip('$')).user
+            to_addr = EthereumTokenWallet.objects.get(
+            user=to_user, name__contract_symbol=self.code).addresses.all()[0].address 
+
         user_addr = EthereumTokenWallet.objects.get(
             user=self.user, name__contract_symbol=self.code).addresses.all()[0].address
         amt = int(amount)*pow(10, self.contract.call().decimals())
@@ -449,6 +458,7 @@ class BTC():
         self.access = globals()['create_' + currency+'_connection']()
 
     def send(self, address, amount):
+        address = check_pay_by_name(address, self.currency)
         valid = self.access.sendtoaddress(address, amount)
         return valid
 
@@ -548,6 +558,7 @@ class XMR():
         return balance
 
     def send(self, destination, amount):
+        destination = check_pay_by_name(destination, "XMR")
         coin = Coin.objects.get(code='XMR')
         wallet = Wallet.objects.get(user=self.user, name=coin)
         param = {
@@ -594,6 +605,7 @@ class XRP():
             return 0.0
 
     def send(self, destination, amount):
+        destination = check_pay_by_name(destination, "XRP")
         wallet = Wallet.objects.get(user=self.user, name__code="XRP")
         secret = wallet.private
         address = wallet.addresses.all().first().address
@@ -717,6 +729,7 @@ class XLM():
             return 0.0
 
     def send(self, destination, amount):
+        destination = check_pay_by_name(destination, "XLM")
         wallet = Wallet.objects.get(user=self.user, name=self.coin)
         try:
             builder = Builder(secret=wallet.private)
@@ -768,3 +781,14 @@ class DepositTransaction():
             return ETH(self.user, currency).get_transactions()
         else:
             return []
+
+
+def check_pay_by_name(name, currency):
+    if '$' in name: 
+        try:
+            user = PaybyName.objects.get(label=name.strip('$')).user
+            wallet = Wallet.objects.get(user=user, name__code=currency)
+            return wallet.addresses.all().first().address
+        except:
+            return name
+

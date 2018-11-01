@@ -7,6 +7,9 @@ from apps.coins.models import Coin, CoinSetting, CoinConvertRequest, Wallet, Tra
                               ClaimRefund, NewCoin, CoinVote, CoPromotion, CoPromotionURL,\
                               EthereumToken, EthereumTokenWallet, Phases, ConvertTransaction,\
                               PaypalTransaction, PaybyName
+
+
+admin.site.site_header = 'GetCryptoPayments Admin'
                               
 class CoinResource(resources.ModelResource):
 

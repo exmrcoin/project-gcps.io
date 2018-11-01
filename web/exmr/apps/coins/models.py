@@ -290,11 +290,8 @@ class PaybyName(models.Model):
         'user paybyname'), on_delete=models.CASCADE)
     label = models.CharField(max_length=64, unique=True)
 
-    def save(self, *args, **kwargs):
-        temp = self.label
-        temp = re.sub(r'\s+', '', temp)
-        paybyname = "$PayTo-"+temp
-        super(PaybyName, self).save(*args, **kwargs)
+    def __str__(self):
+        return self.user.username
 
 
 class CoPromotionURL(models.Model):

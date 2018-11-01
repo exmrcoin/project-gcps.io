@@ -16,9 +16,9 @@ from apps.accounts.models import Profile
 from apps.coins.models import Coin, WalletAddress
 from apps.coins.utils import *
 from apps.coins import coinlist
-from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm, POSQRForm, DonationButtonMakerForm
+from apps.merchant_tools.forms import ButtonMakerForm, CryptoPaymentForm, URLMakerForm, POSQRForm, DonationButtonMakerForm, SimpleButtonMakerForm
 from apps.merchant_tools.models import (ButtonImage, ButtonMaker, CryptoPaymentRec, MercSidebarTopic, ButtonInvoice,
-                                        URLMaker, POSQRMaker, MultiPayment, MercSidebarSubTopic, DonationButtonInvoice,ButtonItem)
+                                        URLMaker, POSQRMaker, MultiPayment, MercSidebarSubTopic, DonationButtonInvoice,ButtonItem, SimpleButtonItem, SimpleButtonInvoice)
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.crypto import get_random_string
@@ -119,6 +119,97 @@ class ButtonMakerView(FormView):
         context['btn_code'] = temp_html
         return render(self.request, 'merchant_tools/buttonmaker.html', context)
 
+class SimpleButtonMakerView(FormView):
+
+    template_name = 'merchant_tools/simplebuttonmaker.html'
+    form_class = SimpleButtonMakerForm
+
+    def get_success_url(self):
+        success_url = self.request.path_info
+
+    def get_initial(self):
+        initial = super(SimpleButtonMakerView, self).get_initial()
+        try:
+            initial['merchant_id'] = Profile.objects.get(
+                user=self.request.user).merchant_id
+        except:
+            pass
+        initial['btn_image'] = 1
+        return initial
+
+    def form_valid(self, form):
+        """If the form is valid, redirect to the supplied URL."""
+        form.save()
+        context = super(SimpleButtonMakerView, self).get_context_data()
+        merchant_id = form.cleaned_data['merchant_id']
+        item_name = form.cleaned_data['item_name']
+        item_amount = form.cleaned_data['item_amount']
+        item_number = form.cleaned_data['item_number']
+        item_description = form.cleaned_data['item_description']
+        # item_qty = form.cleaned_data['item_qty']
+        # buyer_qty_edit = str(form.cleaned_data['buyer_qty_edit']).lower()
+        invoice_number = form.cleaned_data['invoice_number']
+        tax_amount = form.cleaned_data['tax_amount']
+        allow_shipping_cost = str(
+            form.cleaned_data['allow_shipping_cost']).lower()
+        shipping_cost = form.cleaned_data['shipping_cost']
+        # shipping_cost_add = form.cleaned_data['shipping_cost_add']
+        success_url_link = form.cleaned_data['success_url_link']
+        cancel_url_link = form.cleaned_data['cancel_url_link']
+        ipn_url_link = form.cleaned_data['ipn_url_link']
+        btn_image = form.cleaned_data['btn_image']
+        # allow_buyer_note = str(form.cleaned_data['allow_buyer_note']).lower()
+        # domain =  Site.objects.get_current()
+        domain = self.request.get_host()
+        item_uid = 'item_' + get_random_string(
+            length=8) +'_' +str(int(time.mktime((timezone.now()).timetuple())))
+        temp_item = SimpleButtonItem.objects.get_or_create(
+            item_unique_id = item_uid,
+            item_name = item_name,
+            item_amount = item_amount,
+            merchant_id = merchant_id,
+            shipping_cost = shipping_cost,
+            # shipping_cost_add = shipping_cost_add,
+            item_tax = tax_amount
+        )
+        temp_html = ['<form action="https://'+domain+reverse('mtools:cryptopaysimple') + '" method="POST" >',
+                     '<input type="hidden" name="merchant_id" value="'+merchant_id +
+                     '" maxlength="128" id="id_merchant_id" required />',
+                     '<input type="hidden" name="item_name" value="'+item_name +
+                     '" maxlength="128" id="id_item_name" required />',
+                     '<input type="hidden" name="item_amount" value="'+str(item_amount) +
+                     '" maxlength="128" id="id_item_amount" required />',
+                     '<input type="hidden" name="item_number" value="'+item_number +
+                     '" maxlength="128" id="id_item_number" required />',
+                     '<input type="hidden" name="item_unique_id" value="'+item_uid +
+                     '" maxlength="128" id="id_item_uid" required />',
+                     '<input type="hidden" name="item_qty" value="'+str(1) +
+                     '" maxlength="128" id="id_item_qty" required />',
+                     '<input type="hidden" name="buyer_qty_edit" value="' +  str(False)+
+                     '" id="id_buyer_qty_edit" />',
+                     '<input type="hidden" name="invoice_number" value="'+invoice_number +
+                     '" maxlength="128" id="id_invoice_number" required />',
+                     '<input type="hidden" name="tax_amount" value="'+str(tax_amount) +
+                     '" maxlength="128" id="id_tax_amount" required />',
+                     '<input type="hidden" name="allow_shipping_cost" value="' +allow_shipping_cost+
+                     '"id="id_allow_shipping_cost" />',
+                     '<input type="hidden" name="shipping_cost" value="'+str(shipping_cost) +
+                     '" maxlength="128" id="id_shipping_cost" required />',
+                     '<input type="hidden" name="shipping_cost_add" value="'+str(1) +
+                     '" maxlength="128" id="id_shipping_cost_add" required />',
+                     '<input type="hidden" name="success_url_link" value="'+str(success_url_link) +
+                     '" maxlength="128" id="id_success_url_link" required />',
+                     '<input type="hidden" name="cancel_url_link" value="'+str(cancel_url_link) +
+                     '" maxlength="128" id="id_cancel_url_link" required />',
+                     '<input type="hidden" name="ipn_url_link" value="'+str(ipn_url_link) +
+                     '" maxlength="128" id="id_ipn_url_linl" required />',
+                     '<input type="hidden" name="allow_buyer_note" value="' +str(False)+
+                     '"id="id_allow_buyer_note" />',
+                     '<input type="hidden" name="btn_image" value="1"id="id_btn_image" />',
+                     '<input type="image" src="https://'+str(domain+(ButtonImage.objects.get(label=btn_image)).btn_img.url)+'" alt="Buy Now with GetCryptoPayments.org"></form>'
+                     ]
+        context['btn_code'] = temp_html
+        return render(self.request, 'merchant_tools/simplebuttonmaker.html', context)
 
 class DonationButtonMakerView(FormView):
 
@@ -673,6 +764,68 @@ class CryptoPaymmentV2(FormView):
         context['available_coins'] = coinlist.payment_gateway_coins()
         return render(request, 'merchant_tools/payincryptobtnmaker.html', context)
 
+@method_decorator(csrf_exempt, name='dispatch')
+class CryptoPaymmentSimple(FormView):
+    template_name = 'merchant_tools/payincryptobtnmaker2.html'
+    form_class = CryptoPaymentForm
+
+    def get_success_url(self):
+        success_url = self.request.path_info
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        return super(CryptoPaymmentSimple, self).dispatch(request, *args, **kwargs)
+    
+    @csrf_exempt
+    def post(self, request, *args, **kwargs):
+        mydate = timezone.now()
+        context = super(CryptoPaymmentSimple, self).get_context_data()
+        
+        #unique_id is now deprecated
+        context['unique_id'] = get_random_string(
+            length=32) + str(int(time.mktime(mydate.timetuple())*1000))
+
+        context['merchant_id'] = self.request.POST['merchant_id']
+        context['item_name'] = self.request.POST['item_name']
+        context['item_amount'] = self.request.POST['item_amount']
+        context['item_number'] = self.request.POST['item_number']
+        context['item_unique_id'] = self.request.POST['item_unique_id']
+        context['item_qty'] = self.request.POST['item_qty']
+        context['buyer_qty_edit'] = str(
+            self.request.POST['buyer_qty_edit']).lower()
+        context['invoice_number'] = self.request.POST['invoice_number']
+        context['allow_shipping_cost'] = str(
+            self.request.POST['allow_shipping_cost']).lower()
+        context['success_url_link'] = self.request.POST['success_url_link']
+        context['cancel_url_link'] = self.request.POST['cancel_url_link']
+        context['ipn_url_link'] = self.request.POST['ipn_url_link']
+        context['btn_image'] = self.request.POST['btn_image']
+        context['allow_buyer_note'] = self.request.POST['allow_buyer_note']
+        item_code = self.request.POST['item_unique_id']
+        temp_id = context['merchant_id']
+        # 
+        item_obj = SimpleButtonItem.objects.get(item_unique_id = item_code)
+        item_amount =  float(item_obj.item_amount)
+
+        request.session['item_amount'] = item_amount
+        # shipping_cost_add = item_obj.shipping_cost_add
+        shipping_cost = item_obj.shipping_cost
+        item_amount =  float(item_obj.item_amount)
+        tax_amount = float(item_obj.item_tax) * float(self.request.POST['item_qty'])
+        context['tax_amount'] = tax_amount
+        item_qty = self.request.POST['item_qty']
+        if (float(item_qty)>=1):
+            total_shipping = float(shipping_cost) * (float(item_qty)-1)
+        else:
+            total_shipping = float(shipping_cost)
+
+        context['shipping_cost'] = total_shipping
+        context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
+        context['item_total'] = round((float(item_qty) * float(item_amount)),2)
+        context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
+        context['available_coins'] = coinlist.payment_gateway_coins()
+        return render(request, 'merchant_tools/payincryptobtnmaker2.html', context)
+
 #revised button maker
 class ButtonMakerInvoice(TemplateView):
     template_name = 'merchant_tools/btncoinselect.html'
@@ -1001,6 +1154,161 @@ class DonationButtonMakerInvoice(TemplateView):
         context['available_coins'] = coinlist.payment_gateway_coins()
         return self.render_to_response(context)
 
+class SimpleButtonMakerInvoice(TemplateView):
+    template_name = 'merchant_tools/btncoinselect.html'
+
+
+    @csrf_exempt
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            self.invoice_url = self.kwargs['token']
+        except:
+            self.invoice_url = False
+        return super(SimpleButtonMakerInvoice, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+        domain = self.request.get_host()
+        context = super().get_context_data()
+        if self.invoice_url:
+            temp_obj = SimpleButtonInvoice.objects.get(URL_link__icontains = self.invoice_url)
+            #
+            shipping_cost_add = 0
+            #
+            temp_id = temp_obj.merchant_id
+            tax_amount = temp_obj.tax_amount
+            unique_id = temp_obj.unique_id
+            
+            # shipping_cost_add = self.request.POST['shipping_cost_add']
+            shipping_cost = temp_obj.shipping_cost
+            item_amount = temp_obj.item_amount
+            item_qty = temp_obj.item_qty
+            if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+                total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
+            else:
+                total_shipping = float(shipping_cost)
+            
+            context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
+            context['item_total'] = round((float(item_qty) * float(item_amount)),2)
+            context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
+            context['available_coins'] = coinlist.payment_gateway_coins()
+
+            #attempt payment
+            check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
+            total_paid = 0;
+            if check_prepaid:
+                total_paid = 0;
+                for prepaid in check_prepaid:
+                    total_paid = float(prepaid.recieved_usd)
+            try:
+                context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
+            except:
+                context['amt_remaining'] = float(temp_obj.item_amount)
+            attempted = 0
+            try:
+                for prepaid in check_prepaid:
+                    attempted = attempted + float(prepaid.attempted_usd) 
+                    
+            except:
+                pass
+            context['attempted'] = attempted
+            #attempt payment
+
+            context['url'] = temp_obj.URL_link
+
+            context['unique_id'] = temp_obj.unique_id
+            context['available_coins'] = coinlist.payment_gateway_coins()
+            return context
+
+
+    def post(self, request, *args, **kwargs):
+        
+        context = super().get_context_data()
+        mydate = timezone.now()
+        token = account_activation_token.make_token(
+            user=self.request.user)
+        domain = self.request.get_host()
+        html_url = domain + \
+            reverse('mtools:simplebtnpay2', kwargs={'token': token})
+        
+        if not self.invoice_url:
+            try:
+                temp_obj, created = SimpleButtonInvoice.objects.get_or_create(
+                    merchant_id = self.request.POST['merchant_id'],
+                    unique_id = self.request.POST['unique_id'],
+                    invoice_number = self.request.POST['invoice_number'],
+                    item_name=self.request.POST['item_name'],
+                    item_amount=self.request.POST.get('item_amount', ''),
+                    item_number=self.request.POST['item_number'],
+                    item_qty=self.request.POST['item_qty'],
+                    tax_amount=self.request.POST['tax_amount'],
+                    shipping_cost=self.request.POST['shipping_cost'],
+                    first_name=self.request.POST.get('first_name', ''),
+                    last_name=self.request.POST.get('last_name', ''),
+                    email_addr=self.request.POST.get('email_addr', ''),
+                    addr_l1=self.request.POST.get('addr_l1', ''),
+                    addr_l2=self.request.POST.get('addr_l2', ''),
+                    country=self.request.POST.get('country', ''),
+                    city=self.request.POST.get('city', ''),
+                    zipcode=self.request.POST.get('zipcode', ''),
+                    phone=self.request.POST.get('phone', ''),
+                    buyer_note=self.request.POST.get('buyer_note', ''),
+                    URL_link = html_url
+                )
+                if created:
+                    temp_obj.save()  
+            except:
+                temp_obj = SimpleButtonInvoice.objects.get(unique_id = self.request.POST['unique_id'])  
+        else:
+            try:
+                self.invoice_url = domain + reverse('mtools:btnpay2', kwargs={'token': self.invoice_url})
+                temp_obj = SimpleButtonMakerInvoice.objects.get(URL_link = self.invoice_url)
+            except:
+                pass
+        #
+        shipping_cost_add = 0
+        #
+        temp_id = temp_obj.merchant_id
+        tax_amount = temp_obj.tax_amount
+        unique_id = temp_obj.unique_id
+        shipping_cost_add = self.request.POST['shipping_cost_add']
+        shipping_cost = temp_obj.shipping_cost
+        item_amount = temp_obj.item_amount
+        item_qty = temp_obj.item_qty
+        if (float(item_qty)>=1):
+            total_shipping = float(shipping_cost) * (float(item_qty)-1)
+        else:
+            total_shipping = float(shipping_cost)
+        
+        context['item_amount'] = item_amount
+        context['unique_id'] = unique_id
+        context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
+        context['item_total'] = round((float(item_qty) * float(item_amount)),2)
+        context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
+        context['available_coins'] = coinlist.payment_gateway_coins()
+        #attempt payment
+        check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
+        total_paid = 0;
+        if check_prepaid:
+            total_paid = 0;
+            for prepaid in check_prepaid:
+                total_paid = float(prepaid.recieved_usd)
+        try:
+            context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
+        except:
+            context['amt_remaining'] = float(temp_obj.item_amount)
+        attempted = 0
+        try:
+            for prepaid in check_prepaid:
+                attempted = attempted + float(prepaid.attempted_usd) 
+                
+        except:
+            pass
+        context['attempted'] = attempted
+        #attempt payment
+
+        context['url'] = temp_obj.URL_link
+        context['available_coins'] = coinlist.payment_gateway_coins()
+        return self.render_to_response(context)
 
 class ButtonMakerPayView(TemplateView):
     template_name = 'merchant_tools/btnqrgenerator.html'

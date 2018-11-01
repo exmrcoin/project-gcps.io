@@ -1,6 +1,6 @@
 from django import forms
 from apps.coins.models import Coin
-from apps.merchant_tools.models import ButtonMaker, CryptoPaymentRec, URLMaker, POSQRMaker, DonationButtonMaker, ButtonImage
+from apps.merchant_tools.models import ButtonMaker, CryptoPaymentRec, URLMaker, POSQRMaker, DonationButtonMaker, ButtonImage, SimpleButtonMaker
 from django.utils.safestring import mark_safe
 from django.core.validators import DecimalValidator, URLValidator, ValidationError
 from django_select2.forms import Select2MultipleWidget
@@ -27,7 +27,22 @@ class ButtonMakerForm(forms.ModelForm):
         if self.fields['merchant_id']:
             self.fields['merchant_id'].disabled = True
         # self.fields['btn_image']=forms.ModelChoiceField(queryset=ButtonImage.objects.all())
-        
+
+class SimpleButtonMakerForm(forms.ModelForm):
+    btn_image = CustomChoiceField(widget=forms.RadioSelect, queryset=ButtonImage.objects.all(), empty_label=None)
+
+    class Meta:
+        model = SimpleButtonMaker
+        exclude = ['']
+        labels = {
+        "item_amount":"Price in USD $"
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(SimpleButtonMakerForm, self).__init__(*args, **kwargs)
+        if self.fields['merchant_id']:
+            self.fields['merchant_id'].disabled = True
+        # self.fields['btn_image']=forms.ModelChoiceField(queryset=ButtonImage.objects.all())        
 
 class DonationButtonMakerForm(forms.ModelForm):
     btn_image = CustomChoiceField(widget=forms.RadioSelect, queryset=ButtonImage.objects.all(), empty_label=None)

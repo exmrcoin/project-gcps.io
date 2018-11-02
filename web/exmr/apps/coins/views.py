@@ -29,7 +29,7 @@ from apps.accounts.models import User, KYC
 from apps.accounts.decorators import check_2fa
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
-    CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, \
+    CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, PayByNamePackage, \
     WalletAddress, EthereumToken, Phases, ConvertTransaction, PaypalTransaction
 
 
@@ -577,11 +577,15 @@ class PayByNameView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
+        context["paybynames"] = PaybyName.objects.filter(user = self.request.user)
+        context["packages"] = PayByNamePackage.objects.all()
         return context
 
 
-class PayByNamePayView(LoginRequiredMixin, TemplateView):
+class PayByNamePayView(LoginRequiredMixin, DetailView):
     template_name = "coins/paybyname-payment.html"
+    model = PayByNamePackage
+
 
 
 class CopromotionView(TemplateView):

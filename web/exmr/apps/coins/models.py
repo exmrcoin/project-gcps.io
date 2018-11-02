@@ -289,6 +289,7 @@ class PaybyName(models.Model):
     user = models.ForeignKey(User, verbose_name=_(
         'user paybyname'), on_delete=models.CASCADE)
     label = models.CharField(max_length=64, unique=True)
+    expiry = models.DateTimeField(default=datetime.now)
 
     def __str__(self):
         return self.user.username
@@ -383,3 +384,11 @@ class PaypalTransaction(models.Model):
 
     def __str__(self):
         return self.user.username+"  "+self.amount
+
+
+class PayByNamePackage(models.Model):
+    number_of_items = models.IntegerField()
+    price = models.FloatField()
+
+    def __str__(self):
+        return str(self.number_of_items)

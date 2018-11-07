@@ -790,5 +790,6 @@ def check_pay_by_name(name, currency):
             wallet = Wallet.objects.get(user=user, name__code=currency)
             return wallet.addresses.all().first().address
         except:
-            return name
+            pass
+    return name
 

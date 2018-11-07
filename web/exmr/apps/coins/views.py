@@ -651,7 +651,7 @@ class VoteWinners(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        phases = Phases.objects.filter(time_stop__lt=datetime.now())
+        phases = Phases.objects.filter(time_stop__lt=datetime.datetime.now())
         context['phases'] = phases
         temp_list = []
         for phase in phases:

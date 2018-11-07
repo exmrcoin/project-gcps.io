@@ -1,6 +1,6 @@
 Hello {{ request.user.first_name }},
 
-We have received a request to withdraw {{ transaction.amount }} {{type}} from your account to {{transaction.system_tx_id}}.
+We have received a request to withdraw {{ transaction.amount }} {{type}} from your account to {{transaction.transaction_to}}.
 
 To acknowledge the request and process the withdrawal, click this link: {{scheme}}://{{host}}{% url 'coins:sendconfirm' slug_val %}
 

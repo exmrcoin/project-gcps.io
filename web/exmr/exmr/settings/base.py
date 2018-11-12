@@ -270,7 +270,10 @@ try:
 except ImportError:
     pass
 
-
+ADMINS = (
+   ('ME', 'anandkrishnan.techversant@gmail.com'),
+   ('ADMIN', 'vipin.mohan@techversantinc.com'),
+)
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -299,6 +302,7 @@ LOGGING = {
         'mail_admins': {
             'level': 'ERROR',
             'class': 'django.utils.log.AdminEmailHandler',
+            
         }
     },
     'loggers': {
@@ -311,9 +315,5 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': False,
         },
-        'exmr.custom': {
-            'handlers': ['console', 'mail_admins'],
-            'level': 'INFO',
-        }
     }
 }

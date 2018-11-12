@@ -65,7 +65,57 @@
 
     </div>
 </div>
+<div class="container">
+        
+      
+        <!-- Modal -->
+        <!-- <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog"> -->
+          
+            <!-- Modal content-->
+            <!-- <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Coin Convert Maintenance Notice</h4>
+              </div>
+              <div class="modal-body">
+                <p>Our Coin Conversion services are under manitenance to take care of updated security features......</p><br>
 
+                <br><p>Sorry for the inconvenience caused.... </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+            
+          </div>
+        </div> -->
+
+        <div class="modal pos-v-mid fade animated flipInY "  role="dialog" data-easein="bounceUpIn" aria-labelledby="myLargeModalLabel"
+                aria-hidden="true" id="myModal" >
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content  exmr-modal white-font">
+
+                        <img src="{% static 'images/logo1.png' %}" class="margin-center img-responsive exmr-modal-logo">
+                        <div class="modal-header text-center">
+                            <button type="button" class="close" data-dismiss="modal">×</button>
+                            <h4 class="modal-title">
+                                <i class="fa fa-exclamation-circle"></i>Coin Convert Maintenance Notice</h4>
+                        </div>
+                        <div class="modal-body text-center">
+                                Our Coin Conversion services are under 
+                            <br>manitenance to take care of updated security features......
+                            
+                            <br>
+                            <br>We thankyou for your understanding.
+                            <br><button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+      </div>
 <div class="dashboard-wrapper">
     <div class="dasboard-head pad10">
         <div class="img-dashboard">
@@ -77,6 +127,8 @@
         <div class="dasboard-head">
             <div class="card">
                 <div class="card-body">
+                        
+                              
 
                     <!--Table-->
                     <table class="table table_2 table-border table-responsive-md table-fixed overflow table-scroll">
@@ -141,7 +193,8 @@
                                                 </a>
                                             </li>
                                             <li>
-                                                <a href="{% url 'coins:convert_select'  obj.code %}">
+                                                <!-- <a href="{% url 'coins:convert_select'  obj.code %}"> -->
+                                                <a href="#" data-toggle="modal" data-target="#myModal">
                                                     <i class="fa fa-space-shuttle" aria-hidden="true"></i> Convert</a>
                                             </li>
                                             <li>

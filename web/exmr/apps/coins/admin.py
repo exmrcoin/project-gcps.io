@@ -6,7 +6,7 @@ from import_export.admin import ImportExportModelAdmin
 from apps.coins.models import Coin, CoinSetting, CoinConvertRequest, Wallet, Transaction,\
                               ClaimRefund, NewCoin, CoinVote, CoPromotion, CoPromotionURL,\
                               EthereumToken, EthereumTokenWallet, Phases, ConvertTransaction,\
-                              PaypalTransaction, PaybyName, PayByNamePackage
+                              PaypalTransaction, PaybyName, PayByNamePackage, PayByNamePurchase
 
 
 admin.site.site_header = 'GetCryptoPayments Admin'
@@ -50,3 +50,4 @@ admin.site.register(ConvertTransaction)
 admin.site.register(PaypalTransaction)
 admin.site.register(PaybyName)
 admin.site.register(PayByNamePackage)
+admin.site.register(PayByNamePurchase)

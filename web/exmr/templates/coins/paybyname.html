@@ -35,6 +35,15 @@
                             </tr>
                         </thead>
                         <tbody class="text-center">
+                            {% if new_paybyname %}
+                                {% for available in new_paybyname %}
+                                    <tr class="table-th text-center">
+                                        <th>
+                                            <span><a href="#" data-toggle="modal" data-target="#payByName">Add New PayByName</a></span>
+                                        </th>
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
 
                             {% for paybyname in paybynames %}
                             <tr class="table-th text-center">
@@ -45,9 +54,12 @@
                                     <span>{{ paybyname.expiry }}</span>
                                 </th>
                                 <th>
-                                <span class="hidden-xs nobr"><a type="button" class="btn btn-xs btn-primary" href="help-paybyname-verify">Get Verified</a> <a type="button" class="btn btn-xs btn-primary" href="index.php?cmd=acct_paybyname&amp;action=edit&amp;tagid=6029691e211c534f562094418d0b702b">Edit Profile</a> <a type="button" class="btn btn-xs btn-success" href="index.php?cmd=acct_paybyname&amp;action=extend&amp;tagid=6029691e211c534f562094418d0b702b">Renew</a> <a type="button" class="btn btn-xs btn-danger" href="index.php?cmd=acct_paybyname&amp;action=delete&amp;tagid=6029691e211c534f562094418d0b702b" onclick="return confirm('Are you sure you want to delete your tag? It will no longer work and someone else may claim it for themselves.');">Delete Tag</a> </span>
-
-
+                                <span class="hidden-xs nobr">
+                                    <!-- <a type="button" class="btn btn-xs btn-primary" href="help-paybyname-verify">Get Verified</a> 
+                                    <a type="button" class="btn btn-xs btn-primary" href="index.php?cmd=acct_paybyname&amp;action=edit&amp;tagid=6029691e211c534f562094418d0b702b">Edit Profile</a> -->
+                                    <a type="button" class="btn btn-xs btn-success" href="{% url 'coins:paybyname_options' paybyname.id  %}?action=renew">Renew</a>
+                                    <a type="button" class="btn btn-xs btn-danger" href="{% url 'coins:paybyname_options' paybyname.id  %}?action=delete" onclick="return confirm('Are you sure you want to delete your tag? It will no longer work and someone else may claim it for themselves.');">Delete Tag</a> 
+                                </span>
 
                                 </th>
                             </tr>
@@ -78,7 +90,7 @@
                         {% if forloop.counter == 1 %}
                             <a href="{% url 'coins:paybyname-payment' package.id %}" class="btn btn-primary mx-1 my-1 col-xs-12 col-sm-6 col-md-4 mw300">Purchase new $PayByName tag for ${{ package.price }} USD</a>
                         {% else %}
-                            <a href="{% url 'coins:paybyname-payment' package.id %}" class="btn btn-primary mx-1  my-1  col-xs-12 col-sm-6 col-md-4 mw250">5 for ${{ package.price }} USD</a>
+                            <a href="{% url 'coins:paybyname-payment' package.id %}" class="btn btn-primary mx-1  my-1  col-xs-12 col-sm-6 col-md-4 mw250">{{ package.number_of_items }} for ${{ package.price }} USD</a>
                         {% endif %}
                     {% endfor %}
                 </div> 
@@ -86,10 +98,47 @@
         </div>
     </div>
 </div>
+<!-- Modal -->
+  <div class="modal fade" id="payByName" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">PayByName</h4>
+        </div>
+        <div class="modal-body">
+          <label>Enter PayByName<input type="text" id="id_paybyname" name="paybyname"></input>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="id_submit" class="btn btn-success">Submit</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}{% block script %}
 <script>
-        $(window).on("load",function(){
+    $(window).on("load",function(){
             $('#onload').modal('show');
     })
+
+    $("#id_submit").click(function(){
+        $.ajax({
+                    type: "POST",
+                    url: "{% url 'coins:paybyname_submit' %}",
+                    data: {
+                        'name': $("#id_paybyname").val(),
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                       },
+                    success: function (data) {
+                        if (data["status"]) 
+                            window.location.href="{% url 'coins:paybyname' %}"
+                        else
+                            alert("Error")
+                        }
+                    })
+
+     })
 </script>
 {% endblock %}

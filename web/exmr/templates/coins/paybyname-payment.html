@@ -81,13 +81,13 @@
         </div>
         <div class="col-xs-12 text-center px-1">
                 <div class=" col-xs-12 col-md-6">
-                    <input type="text" class="input-text-exmr">
+                    <input type="text" placeholder="First Name" class="input-text-exmr">
                 </div>
                 <div class=" col-xs-12 col-md-6">
-                    <input type="text" class="input-text-exmr">
+                    <input type="text" placeholder="Last Name" class="input-text-exmr">
                 </div>
                 <div class=" col-xs-12 px-2">
-                    <input type="text" class="input-text-exmr col-xs-12">
+                    <input type="text" placeholder="E-mail" class="input-text-exmr col-xs-12">
                 </div>
 
         </div>
@@ -104,13 +104,16 @@
         <div class="col-xs-12">
             <div class="col-xs-12 border-btm-line my-1">
                 <span class="col-xs-6">
-                    Item#
+                    Total:
+
                 </span>
                 <span class="col-xs-6 ">
-                    Item
+                    {{ object.price }} USD
                 </span>
             </div>
         </div>
     </div>
 </div>
+
+
 {% endblock %}

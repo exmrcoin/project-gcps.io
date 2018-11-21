@@ -7,6 +7,8 @@ import paypalrestsdk
 import apps.coins.utils
 
 from datetime import datetime
+from datetime import timedelta
+from django.db.models import Q
 from django.conf import settings
 from django.contrib import messages
 from django.core import serializers
@@ -17,10 +19,10 @@ from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
-from django.http import HttpResponseNotFound, HttpResponseServerError
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
 from django.views.generic import ListView, FormView, TemplateView, DetailView, View
+from django.http import HttpResponseNotFound, HttpResponseServerError, JsonResponse,HttpResponseRedirect
 
 from apps.coins.utils import *
 from apps.coins import coinlist
@@ -30,7 +32,8 @@ from apps.accounts.decorators import check_2fa
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
     CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, PayByNamePackage, \
-    WalletAddress, EthereumToken, Phases, ConvertTransaction, PaypalTransaction
+    WalletAddress, EthereumToken, Phases, ConvertTransaction, PaypalTransaction,\
+    PayByNamePurchase
 
 
 paypalrestsdk.configure({
@@ -572,22 +575,6 @@ class NewCoinAddView(FormView):
         return super(NewCoinAddView, self).form_invalid(form)
 
 
-class PayByNameView(LoginRequiredMixin, TemplateView):
-    template_name = "coins/paybyname.html"
-
-    def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context["paybynames"] = PaybyName.objects.filter(user = self.request.user)
-        context["packages"] = PayByNamePackage.objects.all()
-        return context
-
-
-class PayByNamePayView(LoginRequiredMixin, DetailView):
-    template_name = "coins/paybyname-payment.html"
-    model = PayByNamePackage
-
-
-
 class CopromotionView(TemplateView):
     template_name = "coins/copromotion-form.html"
 
@@ -896,4 +883,78 @@ class DownloadTxnView(LoginRequiredMixin, View):
         else:
             response = render_to_string('coins/transaction_table.html',{'transactions': txns})
             return HttpResponse(json.dumps({'data': response}),content_type="application/json")
+
+
+class PayByNameView(LoginRequiredMixin, TemplateView):
+    template_name = "coins/paybyname.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["paybynames"] = PaybyName.objects.filter(user = self.request.user)
+        context["packages"] = PayByNamePackage.objects.all()
+        pay_by_names = PaybyName.objects.filter(user=self.request.user).count()
+        time_threshold =  datetime.datetime.now() - timedelta(days=365)
+        purchases = PayByNamePurchase.objects.filter(Q(user=self.request.user, purchase_status=True, expiry__gt=time_threshold, paybyname=None)|\
+                                                    Q(user=self.request.user, purchase_status=True, expiry=None)).count()
+        if purchases:
+            context['new_paybyname'] = range(purchases)
+        return context
+
+
+class PayByNamePayView(LoginRequiredMixin, DetailView):
+    template_name = "coins/paybyname-payment.html"
+    model = PayByNamePackage
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        for paybyname in range(kwargs['object'].number_of_items):
+            PayByNamePurchase.objects.create(user=self.request.user, package=kwargs['object'], purchase_status=True)
+        
+        return context
+
+
+@method_decorator(check_2fa, name='dispatch')
+class PayByNameSubmit(LoginRequiredMixin, View):
+
+    def post(self, *args, **kwargs):
+        label = self.request.POST.get("name")
+        pay_by_names = PaybyName.objects.filter(user=self.request.user).count()
+        time_threshold =  datetime.datetime.now() - timedelta(days=365)
+        purchases = PayByNamePurchase.objects.filter(Q(user=self.request.user, purchase_status=True, expiry__gt=time_threshold, paybyname=None)|\
+                                                    Q(user=self.request.user, purchase_status=True, expiry=None)).count()
+        if purchases:
+            paybyname_obj = PaybyName.objects.create(user=self.request.user,label=label)
+            non_used_purchases = PayByNamePurchase.objects.filter(user=self.request.user, purchase_status=True, expiry=None)
+            used_purchases = PayByNamePurchase.objects.filter(user=self.request.user, purchase_status=True, paybyname=None)
+            if non_used_purchases:
+                non_used_purchase = non_used_purchases.first()
+                non_used_purchase.expiry = paybyname_obj.expiry
+                non_used_purchase.paybyname = paybyname_obj
+                non_used_purchase.save()
+            else:
+                used_purchase =used_purchases.first()
+                used_purchase.paybyname = paybyname_obj
+                used_purchase.save()
+                paybyname_obj.expiry = used_purchase.expiry
+                paybyname_obj.save()
+
+            return JsonResponse({"status": True})
+        
+        return JsonResponse({"status": False})
+
             
+@method_decorator(check_2fa, name='dispatch')
+class PayByNameOptions(LoginRequiredMixin, View):
+
+    def get(self, *args, **kwargs):
+        obj = PaybyName.objects.filter(id=kwargs['pk'], user=self.request.user)
+        action = self.request.GET.get("action")
+        if action == "delete":
+            obj.delete()
+            messages.add_message(self.request, messages.INFO, 'Success')
+            return HttpResponseRedirect(reverse_lazy("coins:paybyname"))
+        if action == "renew":
+            paybyname = obj.first()
+            expirypaybyname = paybyname.expiry+timedelta(days=365)
+            paybyname.expiry = expirpaybyname
+            return JsonResponse({"status": True})

@@ -46,6 +46,8 @@ urlpatterns = [
     path('transaction-history/', coin_views.TransactionHistoryView.as_view(), name='transaction-history'),
     path('transaction-history/<str:type>/', coin_views.TransactionDetails.as_view(), name='transaction-history-details'),
     path('download-txn/', coin_views.DownloadTxnView.as_view(), name="download_txn"),
+    path('paybyname-submit', coin_views.PayByNameSubmit.as_view(), name="paybyname_submit"),
+    path('paybyname-options/<int:pk>/', coin_views.PayByNameOptions.as_view(), name="paybyname_options"),
 
 
 

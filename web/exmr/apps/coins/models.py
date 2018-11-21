@@ -1,9 +1,12 @@
 import re
+import uuid
 import random
-import datetime
 
 from django.db import models
 from datetime import datetime
+from datetime import timedelta
+
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField
 from django.utils.translation import ugettext_lazy as _
@@ -285,18 +288,8 @@ class CoinVote(models.Model):
         return self.user.username+"_" + self.type+"_"+self.source
 
 
-class PaybyName(models.Model):
-    user = models.ForeignKey(User, verbose_name=_(
-        'user paybyname'), on_delete=models.CASCADE)
-    label = models.CharField(max_length=64, unique=True)
-    expiry = models.DateTimeField(default=datetime.now)
-
-    def __str__(self):
-        return self.user.username
-
-
 class CoPromotionURL(models.Model):
-    url = models.URLField(_('copromotion url'))
+    url  = models.URLField(_('copromotion url'))
 
     def __str__(self):
         return self.url
@@ -392,3 +385,25 @@ class PayByNamePackage(models.Model):
 
     def __str__(self):
         return str(self.number_of_items)
+
+
+class PaybyName(models.Model):
+    user = models.ForeignKey(User, verbose_name=_(
+        'user paybyname'), on_delete=models.CASCADE)
+    label = models.CharField(max_length=64, unique=True)
+    expiry = models.DateTimeField(default=timezone.now()+timedelta(days=365))
+
+    def __str__(self):
+        return self.user.username+" paybyname:"+self.label
+
+class PayByNamePurchase(models.Model):
+    package = models.ForeignKey(PayByNamePackage, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    purchase_status = models.BooleanField(default=False)
+    tx_id =models.CharField(max_length=100, blank=True, unique=True, default=uuid.uuid4)
+    expiry = models.DateTimeField(blank=True, null=True)
+    paybyname = models.ForeignKey(PaybyName, verbose_name=_(
+        'paybyname usage'),related_name='paybyname', on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.user.username+" "+str(self.package.number_of_items)+" "+self.paybyname.label 

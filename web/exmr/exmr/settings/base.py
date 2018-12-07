@@ -30,7 +30,7 @@ SECRET_KEY = 'kyl6$+fkolo)v480b_!0tv2=zf85#h(4nr^dx%y1nqjy=_f_m0'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['*']
-
+SITE_NAME = "getcryptopayments.org"
 
 # Application definition
 
@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'import_export',
     'autotranslate',
     'django_select2',
+    'secure_mail',
 
     # Project apps
     'apps.accounts',
@@ -115,6 +116,22 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = "Asia/Makassar"
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
+
+SECURE_MAIL_SIGNING_KEY_DATA = {
+    'key_type': "RSA",
+    'key_length': 4096,
+    'name_real': "getcryptopayments.org",
+    'name_comment': "Outgoing email server",
+    'name_email': "exmr.test@gmail.com",
+    'expire_date': '2y',
+}
+
+SECURE_MAIL_GNUPG_HOME = "gnupg"
+SECURE_MAIL_GNUPG_ENCODING = "utf-8"
+SECURE_MAIL_KEY_FINGERPRINT = "327E143493B074B105BCBD11382A0EC096A"
+USE_GNUPG = True
+
+EMAIL_BACKEND = 'secure_mail.backends.EncryptingSmtpEmailBackend'
 
 DATABASES = {
     'default': {

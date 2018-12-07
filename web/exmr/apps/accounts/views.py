@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse_lazy
-from django.core.mail import send_mail
+from apps.common.utils import send_mail
 from django.forms import formset_factory
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView

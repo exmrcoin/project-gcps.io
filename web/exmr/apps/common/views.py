@@ -8,7 +8,7 @@ from apps.accounts.models import Profile
 from apps.common.forms import CoinRequestForm, ContactForm
 from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload, StaticPage, API, InformationalSidebar, ReceivingSidebar
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
-from django.core.mail import send_mail
+from apps.common.utils import send_mail
 from django.core.mail import mail_admins
 from django.conf import settings
 from django.template.loader import render_to_string

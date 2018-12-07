@@ -1,12 +1,16 @@
 import random
 import string
+import gnupg
 
 from django.conf import settings
+from django.core.mail import send_mail as send_email_django
+from django.utils.encoding import smart_text
 from django.core.mail import EmailMultiAlternatives
 from django.template import TemplateDoesNotExist
 from django.template.loader import render_to_string
 from django.http import JsonResponse
 
+gpg = gnupg.GPG(gnupghome="gnupg")
 
 def generate_key(length):
     """
@@ -24,6 +28,16 @@ def get_pin(length=6):
 
     return pin
 
+
+def send_mail(subject, message, from_email, recipient_list, fail_silently=False,\
+              auth_user=None, auth_password=None, connection=None, html_message=None):
+    """
+    Send an email utility
+    """
+    message = smart_text(gpg.sign(message))
+    send_email_django(subject, message, from_email, recipient_list, fail_silently,\
+              auth_user, auth_password, connection, html_message)
+    return True
 
 def send_email(subject, ctx_dict, to_email, email_template_txt=None, email_template_html=None, request=None):
     """
@@ -49,6 +63,25 @@ def send_email(subject, ctx_dict, to_email, email_template_txt=None, email_templ
     email_message.attach_alternative(message_html, 'text/html')
 
     email_message.send()
+#     # Email subject *must not* contain newlines
+
+#     if type(to_email) == str:
+#         to_email = [to_email]
+#     subject = ''.join(subject.splitlines())
+
+#     from_email = getattr(settings, 'DEFAULT_FROM_EMAIL')
+#     message_txt = render_to_string(email_template_txt,
+#                                    ctx_dict, request=request)
+
+#     email_message = EmailMultiAlternatives(subject, message_txt,
+#                                            from_email, to_email)
+
+#     message_html = render_to_string(
+#         email_template_html, ctx_dict, request=request)
+
+#     email_message.attach_alternative(message_html, 'text/html')
+
+#     email_message.send()
 
 
 class JSONResponseMixin:

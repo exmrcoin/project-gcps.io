@@ -13,7 +13,7 @@ from django.conf import settings
 from django.contrib import messages
 from django.core import serializers
 from django.urls import reverse_lazy
-from django.core.mail import send_mail
+from apps.common.utils import send_mail
 from django.core.mail import EmailMessage
 from django.template import RequestContext
 from django.shortcuts import get_object_or_404

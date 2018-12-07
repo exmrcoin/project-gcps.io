@@ -26,7 +26,7 @@ from django.http import HttpResponseNotFound, HttpResponseServerError, JsonRespo
 
 from apps.coins.utils import *
 from apps.coins import coinlist
-from apps.apiapp import shapeshift
+from apps.apiapp import shapeshift, coinswitch
 from apps.accounts.models import User, KYC
 from apps.accounts.decorators import check_2fa
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
@@ -67,25 +67,52 @@ class CoinConvertView(LoginRequiredMixin, TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super(CoinConvertView, self).get_context_data(**kwargs)
         sel_coin = self.kwargs.get('currency')
-        shapehift_available_coin = shapeshift.get_coins()
+        shapeshift_available_coin = coinswitch.get_coins()
         image_path_list = {}
         exmr_list = coinlist.get_all_active_coin_code()
-        available_coins = filter(lambda x: x in list(
-            shapehift_available_coin), exmr_list)
-        print(available_coins)
-        for coin in list(shapehift_available_coin):
-            for coin in exmr_list:
-                if not coin == sel_coin:
-                    try:
-                        image_path_list[coin] = shapehift_available_coin[coin]['image']
-                    except:
-                        pass
-                else:
-                    try:
-                        shapehift_available_coin.pop(coin, 0)
-                    except:
-                        pass
-
+        ss_list = []
+        ss_img_dict = {}
+        # try:
+            # available_coins = filter(lambda x: x in list(shapeshift_available_coin), exmr_list)
+        # except:
+        temp_ss_list = shapeshift_available_coin['data']
+        for item in temp_ss_list:
+            ss_list.append((item['symbol']).upper())
+            coin_code = item['symbol'].upper()
+            ss_img_dict[coin_code] = item['logoUrl']
+        available_coins = list(filter(lambda x: x in list(ss_list), exmr_list))
+        try:
+            raise Exception
+            for coin in list(shapeshift_available_coin):
+                for coin in exmr_list:
+                    if not coin == sel_coin:
+                        try:
+                            image_path_list[coin] = shapeshift_available_coin[coin]['image']
+                        except:
+                            pass
+                    else:
+                        try:
+                            shapeshift_available_coin.pop(coin, 0)
+                        except:
+                            pass
+        except:
+            for coin in list(ss_img_dict):
+                for coin in exmr_list:
+                    if not coin == sel_coin:
+                        try:
+                            image_path_list[coin] = ss_img_dict[coin]
+                        except:
+                            pass
+                    else:
+                        try:
+                            ss_img_dict.pop(coin, 0)
+                        except:
+                            del ss_img_dict[coin]
+        try:
+            available_coins.remove(sel_coin)
+        except Exception as e:
+            raise e
+        print(type(available_coins))
         context['coin_images'] = image_path_list
         context['avbl_coins'] = list(available_coins)
         context['sel_coin'] = sel_coin
@@ -99,12 +126,12 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
         context = super(CoinConvertView2, self).get_context_data()
         sel_coin = request.POST.get('sel_coin')
         output_coin = request.POST.get('coin_radio')
-        shapehift_available_coin = shapeshift.get_coins()
-        for coin in list(shapehift_available_coin):
+        shapeshift_available_coin = shapeshift.get_coins()
+        for coin in list(shapeshift_available_coin):
             if coin == output_coin:
-                context['output_coin_img'] = shapehift_available_coin[coin]['image']
+                context['output_coin_img'] = shapeshift_available_coin[coin]['image']
             elif coin == sel_coin:
-                context['input_coin_img'] = shapehift_available_coin[coin]['image']
+                context['input_coin_img'] = shapeshift_available_coin[coin]['image']
         context['input_coin'] = sel_coin
         context['output_coin'] = output_coin
         pair = None

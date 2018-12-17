@@ -463,9 +463,8 @@ class SendView(LoginRequiredMixin, View):
         }
         response_data = render_to_string(
             'coins/transfer-confirmed-email.html', context, )
-        email = EmailMessage('Getcryptopayments.org Withdrawal Confirmation', response_data, to=[
-                             self.request.user.email])
-        email.send()
+        send_mail(self.request.user, 'Getcryptopayments.org Withdrawal Confirmation', response_data,\
+                settings.DEFAULT_FROM_EMAIL,[self.request.user.email])
         return HttpResponse(json.dumps({"success": True}), content_type='application/json')
 
 
@@ -784,6 +783,7 @@ class PayPalVerifyView(View):
                    }
         msg_plain = render_to_string('coins/purchase_success.txt', context)
         send_mail(
+                    request.user,
                     'Purchase Confirmed',
                     msg_plain,
                     settings.DEFAULT_FROM_EMAIL,

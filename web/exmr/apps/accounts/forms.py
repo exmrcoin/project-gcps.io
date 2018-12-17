@@ -241,8 +241,8 @@ class CustomPasswordResetForm(PasswordResetForm):
                 if extra_email_context is not None:
                     context.update(extra_email_context)
                 self.send_mail(
-                    subject_template_name, email_template_name, context, from_email,
-                    email, html_email_template_name=html_email_template_name,
+                    user, subject_template_name, email_template_name, context, 
+                    from_email,email, html_email_template_name=html_email_template_name,
                 )
 
 

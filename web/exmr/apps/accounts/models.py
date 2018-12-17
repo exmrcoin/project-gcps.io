@@ -1,6 +1,6 @@
 from ckeditor.fields import RichTextField
 from django.conf import settings
-from django.core.mail import send_mail
+from apps.common.utils import send_mail
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Avg
@@ -13,7 +13,7 @@ from django.contrib.sites.models import Site
 from timezone_field import TimeZoneField
 from django_countries.fields import CountryField
 
-from apps.common.utils import send_email
+from apps.common.utils import send_mail, gpg
 
 
 MALE = 0
@@ -116,6 +116,14 @@ class Profile(models.Model):
     @property
     def neutral(self):
         return self.user.get_all_feedback.filter(rating=2.5).count()
+
+    def save(self, *args, **kwargs):
+        try:
+            gpg.import_keys(self.pgp_gpg_public_key)
+        except:
+            self.pgp_gpg_public_key = None
+        return super().save(*args, **kwargs)
+
 
 
 @receiver(post_save, sender=Profile, dispatch_uid="update_merchant_id")

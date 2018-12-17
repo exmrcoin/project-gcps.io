@@ -362,6 +362,7 @@ class Verify2FAView(LoginRequiredMixin, View):
                    }
                 msg_plain = render_to_string('common/2_fact_auth_code.txt', context)
                 send_mail(
+                    request.user,
                     'Verification Code',
                     msg_plain,
                     settings.DEFAULT_FROM_EMAIL,

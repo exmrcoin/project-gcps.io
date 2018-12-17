@@ -41,6 +41,7 @@ class CoinRequestView(FormView):
     def coin_request_notice(self, request):
         msg_plain = render_to_string('common/coin_request_email.txt')
         send_mail(
+                    request.user,
                     'Coin Request Notice',
                     msg_plain,
                     settings.DEFAULT_FROM_EMAIL,

@@ -1,31 +1,65 @@
 import requests
+import json
 
 BASE_URL = "https://api.coinswitch.co/%s"
 
 headers = {
-    'x-api-key': "cRbHFJTlL6aSfZ0K2q7nj6MgV5Ih4hbA2fUG0ueO",
-    'x-user-ip': "202.88.246.92"
+    'x-api-key': "5CKbkOiu377JSSWnMdFVP7dVNTU7CLbwJTAjlkG4",
+    'x-user-ip': "202.88.246.92",
+    'content-type': 'application/json'
     }
 
 def _coinswitch_get_request(url_path):
     url = BASE_URL % url_path
     response = requests.request("GET", url, headers=headers)
-    return response.json()  
+    raw_list = response.json()
+    temp_ss_list = raw_list['data']
+    ss_img_dict = {}
+    for item in temp_ss_list:
+            coin_code = item['symbol'].upper()
+            ss_img_dict[coin_code] = {'image':item['logoUrl']}  
+    return ss_img_dict
+
+def _coinswitch_post_request(url_path, payload):
+    url = BASE_URL % url_path
+    print(payload)
+    print("{\"depositCoin\":\"eth\",\"destinationCoin\":\"ltc\"}")
+    # payload = "{\"depositCoin\":\"eth\",\"destinationCoin\":\"ltc\"}"
+    response = requests.post(url, data=payload, headers=headers)
+    raw_list = response.json()
+    temp = raw_list['data']
+
+    json_acceptable_string = payload.replace("'", "\"")
+    payload = json.loads(json_acceptable_string)
+    temp_dict = {}
+    try:
+        temp_dict["pair"] = payload['depositCoin']+"_"+payload['destinationCoin']
+        temp_dict["rate"]= temp['rate']
+        temp_dict["minerFee"]= temp['minerFee']
+        temp_dict["limit"]= temp['limitMaxDepositCoin'] 
+        temp_dict["minimum"]= temp['limitMinDepositCoin']
+        temp_dict["maxLimit"]= temp['limitMaxDepositCoin'] 
+    except:
+        return temp_dict 
+    return temp_dict
+
 
 def get_coins():
     return _coinswitch_get_request('v2/coins')
 
 def get_rate(input_coin, output_coin):
     url_path = "rate/{}_{}".format(input_coin, output_coin)
-    return _coinswitch_get_request(url_path)
+    payload = "{\"depositCoin\":\""+input_coin+"\",\"destinationCoin\":\""+output_coin+"\"}"
+    return _coinswitch_post_request(url_path, payload)
 
 def get_deposit_limit(input_coin, output_coin):
     url_path = "limit/{}_{}".format(input_coin, output_coin)
     return _coinswitch_get_request(url_path)
 
 def get_market_info(input_coin, output_coin):
-    url_path = "marketinfo/{}_{}".format(input_coin, output_coin)
-    return _coinswitch_get_request(url_path)
+    url_path = "v2/rate"
+    payload = "{\"depositCoin\":\""+input_coin.lower()+"\",\"destinationCoin\":\""+output_coin.lower()+"\"}"
+    return _coinswitch_post_request(url_path, payload)
 
 def get_recent_tx_list(max_transactions):
     assert 1<= max_transactions <= 50
@@ -52,10 +86,6 @@ def validate_address(address, coin_symbol):
     url_path = "validateAddress/{}/{}".format(address, coin_symbol)
     return _coinswitch_get_request(url_path)
 
-def _coinswitch_post_request(url_path, payload):
-    url = BASE_URL % url_path
-    response = requests.post(url, data=payload)
-    return response.json()
 
 def create_normal_tx(withdrawal_address, input_coin, output_coin,
          return_address=None, destination_tag=None, 
@@ -69,17 +99,29 @@ def create_normal_tx(withdrawal_address, input_coin, output_coin,
 
     example data: {"withdrawal":"AAAAAAAAAAAAA", "pair":"btc_ltc", returnAddress:"BBBBBBBBBBB"}"""
  
-    url_path = "shift"     
+    url_path = "v2/order"    
+    url = BASE_URL % url_path 
+
+
+    payload = "{\"depositCoin\":\"%s\",\"destinationCoin\":\"%s\",\"depositCoinAmount\":%s,\"destinationAddress\":{\"address\":\"%s\"},\"refundAddress\":{\"address\":\"%s\"}}" % (input_coin, output_coin, depositCoinAmount, destinationAddress, refundAddress )
+
+
     payload = {
-        'withdrawal': withdrawal_address,
-        'pair': "{}_{}".format(input_coin, output_coin),
-        'returnAddress': return_address,
-        'destTag': destination_tag,
-        'rsAddress': rs_address,
-        'apiKey': api_key
-    }
-    payload = {k: v for k,v in payload.items() if v is not None}    
-    return _coinswitch_post_request(url_path, payload)
+        "depositCoin": "btc",
+        "destinationCoin": "eth",
+        "destinationCoinAmount": 12,
+        "destinationAddress": {
+            "address": "0xcc1bf6b0625bc23895a47f4991fdb7862e34a563"
+        },
+        "refundAddress": {
+            "address": "1F1tAaz5x1HUXrCNLbtMDqcw6o5GNn4xqX"
+        }
+    }   
+
+    print(headers)
+    response = requests.request("POST",url, data=payload, headers=headers)
+    raw_list = response.json()
+    return raw_list['data']
 
 def request_email_receipt(email, tx_id):
     url_path = "mail"
@@ -93,18 +135,17 @@ def create_fixed_amount_tx(amount, withdrawal_address, input_coin,
         output_coin, return_address=None, destination_tag=None, 
         rs_address=None, api_key=None):
     
-    url_path = "sendamount"
-    payload = {
-        'amount': amount,
-        'withdrawal': withdrawal_address,
-        'pair': "{}_{}".format(input_coin, output_coin),
-        'returnAddress': return_address,
-        'destTag': destination_tag,
-        'rsAddress': rs_address,
-        'apiKey': api_key
-    }
-    payload = {k: v for k,v in payload.items() if v is not None} 
-    return _coinswitch_post_request(url_path, payload)
+    url_path = "v2/order"    
+    url = BASE_URL % url_path 
+
+    payload = "{\"depositCoin\":\"%s\",\"destinationCoin\":\"%s\",\"depositCoinAmount\":%s,\"destinationAddress\":{\"address\":\"%s\"},\"refundAddress\":{\"address\":\"%s\"}}" % (input_coin.lower(), output_coin.lower(), amount, withdrawal_address, return_address )
+
+    response = requests.request("POST",url, data=payload, headers=headers)
+    raw_list = response.json()
+    print(raw_list)
+    transaction_details = {'orderId': raw_list['data']['orderId'], 'deposit': raw_list['data']['exchangeAddress']['address'], 'withdrawal':return_address}
+    print(transaction_details)
+    return transaction_details 
   
 def cancel_tx(address):
     url_path = "cancelpending"

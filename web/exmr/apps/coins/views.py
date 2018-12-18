@@ -69,45 +69,20 @@ class CoinConvertView(LoginRequiredMixin, TemplateView):
         sel_coin = self.kwargs.get('currency')
         shapeshift_available_coin = coinswitch.get_coins()
         image_path_list = {}
-        exmr_list = coinlist.get_all_active_coin_code()
-        ss_list = []
-        ss_img_dict = {}
-        # try:
-            # available_coins = filter(lambda x: x in list(shapeshift_available_coin), exmr_list)
-        # except:
-        temp_ss_list = shapeshift_available_coin['data']
-        for item in temp_ss_list:
-            ss_list.append((item['symbol']).upper())
-            coin_code = item['symbol'].upper()
-            ss_img_dict[coin_code] = item['logoUrl']
-        available_coins = list(filter(lambda x: x in list(ss_list), exmr_list))
-        try:
-            raise Exception
-            for coin in list(shapeshift_available_coin):
-                for coin in exmr_list:
-                    if not coin == sel_coin:
-                        try:
-                            image_path_list[coin] = shapeshift_available_coin[coin]['image']
-                        except:
-                            pass
-                    else:
-                        try:
-                            shapeshift_available_coin.pop(coin, 0)
-                        except:
-                            pass
-        except:
-            for coin in list(ss_img_dict):
-                for coin in exmr_list:
-                    if not coin == sel_coin:
-                        try:
-                            image_path_list[coin] = ss_img_dict[coin]
-                        except:
-                            pass
-                    else:
-                        try:
-                            ss_img_dict.pop(coin, 0)
-                        except:
-                            del ss_img_dict[coin]
+        exmr_list = coinlist.get_all_active_coin_code()   
+        available_coins = list(filter(lambda x: x in list(shapeshift_available_coin), exmr_list))
+        for coin in list(shapeshift_available_coin):
+            for coin in exmr_list:
+                if not coin == sel_coin:
+                    try:
+                        image_path_list[coin] = shapeshift_available_coin[coin]['image']
+                    except:
+                        pass
+                else:
+                    try:
+                        shapeshift_available_coin.pop(coin, 0)
+                    except:
+                        pass
         try:
             available_coins.remove(sel_coin)
         except Exception as e:
@@ -134,14 +109,17 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
                 context['input_coin_img'] = shapeshift_available_coin[coin]['image']
         context['input_coin'] = sel_coin
         context['output_coin'] = output_coin
-        pair = None
-        context['has_balance'] = True
+        request.session['input_coin'] = sel_coin
+        request.session['output_coin'] = output_coin
+        context['has_balance'] = False
         try:
-            limit_json = shapeshift.get_market_info(sel_coin, output_coin)
+            limit_json = coinswitch.get_market_info(sel_coin, output_coin)
             try:
                 cur_bal = get_balance(self.request.user, sel_coin)
                 if cur_bal < (limit_json['minimum'] * 1.3):
                     context['has_balance'] = False
+                else:
+                    context['has_balance'] = True
                     
             except:
                 pass
@@ -161,20 +139,58 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
             context['miner_fee'] = limit_json['minerFee']
         except:
             pass
+        # try:
+            # addr = get_primary_address(
+            #     user=self.request.user, currency=output_coin)
+            # ret_addr = get_primary_address(
+            #     user=self.request.user, currency=sel_coin)
+            # # ret_addr = 'LXA3i9eEAVDbgDqkThCa4D6BUJ3SEULkEr'
+            # transaction_details = coinswitch.create_normal_tx(
+            #     addr, sel_coin, output_coin, ret_addr, None, None, None)
+            # print(transaction_details)
+            # try:
+            #     request.session['deposit_address'] = transaction_details['deposit']
+            #     request.session['recieve_from'] = transaction_details['withdrawal']
+            #     request.session['input_coin'] = sel_coin
+
+            #     obj = ConvertTransaction.objects.create(
+            #         user=self.request.user,
+            #         input_coin=sel_coin,
+            #         output_coin=output_coin,
+            #         transaction_id=transaction_details['orderId'],
+            #         address_from=ret_addr,
+            #         address_to=transaction_details['deposit'],
+            #         receive_address=transaction_details['withdrawal'],
+            #         status=False,
+            #     )
+            #     obj.save()
+            # except:
+            #     return HttpResponseServerError()
+
+        # except Exception as e:
+        #     raise e
+        return render(request, 'coins/convert-select-confirm.html', context)
+
+
+class CoinConvertView3(TemplateView):
+    template_name = 'coins/convert-select-finished.html'
+
+    def post(self, request, *args, **kwargs):
+        context = super(CoinConvertView3, self).get_context_data()
+        input_coin_value = request.POST.get('input_coin_value')
+        ########################
+        output_coin = request.session['output_coin']
+        sel_coin = request.session['input_coin']
         try:
             addr = get_primary_address(
                 user=self.request.user, currency=output_coin)
             ret_addr = get_primary_address(
                 user=self.request.user, currency=sel_coin)
             # ret_addr = 'LXA3i9eEAVDbgDqkThCa4D6BUJ3SEULkEr'
-            transaction_details = shapeshift.create_normal_tx(
+            transaction_details = coinswitch.create_fixed_amount_tx(input_coin_value,
                 addr, sel_coin, output_coin, ret_addr, None, None, None)
             print(transaction_details)
             try:
-                request.session['deposit_address'] = transaction_details['deposit']
-                request.session['recieve_from'] = transaction_details['withdrawal']
-                request.session['input_coin'] = sel_coin
-
                 obj = ConvertTransaction.objects.create(
                     user=self.request.user,
                     input_coin=sel_coin,
@@ -191,24 +207,22 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
 
         except Exception as e:
             raise e
-        return render(request, 'coins/convert-select-confirm.html', context)
 
 
-class CoinConvertView3(TemplateView):
-    template_name = 'coins/convert-select-finished.html'
+        ############################
 
-    def post(self, request, *args, **kwargs):
-        context = super(CoinConvertView3, self).get_context_data()
-        input_coin_value = request.POST.get('input_coin_value')
+
+
+
         try:
-            convert_address = request.session['deposit_address']
-            coin = request.session['input_coin']
+            convert_address = transaction_details['deposit']
+            coin = sel_coin
         except:
             return HttpResponseServerError()
         valid = False
         balance = get_balance(request.user, coin)
-        valid =getattr(apps.coins.utils,coin)(self.request.user, coin).send( convert_address, input_coin_value)
-
+        # valid =getattr(apps.coins.utils,coin)(self.request.user, coin).send( convert_address, input_coin_value)
+        valid = {'result': 'soccccccccc'}
         # valid = {'error':'test error'}
         if valid:
             context['result'] = "Success. Your account will be credited with 12 Hours. If not please contact support."

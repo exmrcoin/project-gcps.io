@@ -182,6 +182,7 @@ class StoreRateView(LoginRequiredMixin, ListView):
             context['percent'] = rating_percent
             context['owner'] = owner
             context['username'] = user
+            context['voters'] = voters
         elif q:
             context['stores'] = Store.objects.filter(Q(store_name__icontains=q) | Q(category__name__icontains=q))
         return context
@@ -218,7 +219,7 @@ class StoreVote(View):
             Rating.objects.create(user=user, store=store, votes=user_vote, has_voted=True)
             store.votes += int(user_vote)
             store.save()
-        context = {'store': store, 'category': category, 'erc': erc, 'rating': average_rating, 'percent': rating_percent }
+        context = {'store': store, 'voters': voters, 'category': category, 'erc': erc, 'rating': average_rating, 'percent': rating_percent }
 
         return redirect(reverse_lazy('store:store-item-rate', kwargs={'slug': slug, 'pk': pk}))
 

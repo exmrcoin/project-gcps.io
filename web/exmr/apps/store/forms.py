@@ -25,3 +25,13 @@ class AddStoreForm(forms.ModelForm):
             return username_or_merch_id
         raise forms.ValidationError(_('User not found'))
 
+class StoreModelForm(forms.ModelForm):
+    class Meta:
+        model = Store
+        fields =['store_name',
+                'store_url',
+                'category',
+                'crypto_processor',
+                'store_email',
+                'keywords',
+                'banner_image_url']

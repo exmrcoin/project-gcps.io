@@ -3,7 +3,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-from apps.store.models import StoreCategory, Store
+from apps.store.models import StoreCategory, Store, Rating
 
 
 class StoreCategoryResource(resources.ModelResource):
@@ -38,3 +38,5 @@ class StoreAdmin(admin.ModelAdmin):
 
 admin.site.register(StoreCategory, StoreCategoryAdmin)
 admin.site.register(Store, StoreAdmin)
+admin.site.register(Rating)
+

@@ -1,0 +1,34 @@
+<table id="bstable" class="table table-bordered table-condensed">
+    <thead>
+        <tr>
+            <th align="center">Time Submitted</th>
+            <th align="center">Address</th>
+            <th align="center">TX ID</th>
+            <th align="center">Coin</th>
+            <th align="center">Status</th>
+            <th align="center">Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if not transactions %}
+        <tr>
+            <td colspan="6" align="center">- No Matching Payments Found -</td>
+        </tr>
+        {% else %}
+            {% for transaction in transactions %}
+                <tr>
+                    <td align="center">{{ transaction.date }}</td>
+                    <td align="center" style="word-wrap: break-word"><p>Address: {{transaction.transaction_to}} {{transaction.transaction_from}}</p>
+                    <td align="center">Tx Id: {{ transaction.tx_id}}{{ transaction.transaction_id}}</td>
+                    {% if transaction.system_tx_id %}<p>Withdrawal ID: {{transaction.system_tx_id}}</p>{% endif %}
+                    </td>
+                    <td align="center">{{transaction.currency}}</td>
+                    <td align="center">{% if transaction.approved == True %}Complete{% elif transaction.approved == False %}Cancelled{%else%}Complete{% endif %}</td>
+                    <td align="center">{{transaction.amount}}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table>
+
+

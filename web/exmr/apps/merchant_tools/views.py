@@ -1319,7 +1319,7 @@ class ButtonMakerPayView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         context = super().get_context_data()
-        superuser = User.objects.get(is_superuser=True)
+        superuser = User.objects.filter(is_superuser=True).first()
         unique_id = request.POST.get('unique_id')
         selected_coin = request.POST.get('selected_coin')
         payable_amt = request.POST.get('coin_amt')

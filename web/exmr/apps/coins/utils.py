@@ -229,7 +229,7 @@ class XRPTest():
 
 
 class ETH():
-    def __init__(self, user, currency):
+    def __init__(self, user=None, currency="ETH"):
         self.user = user
 
     def get_results(self, method, params):
@@ -293,6 +293,14 @@ class ETH():
         except:
             pass
         return data
+
+    def rcvd_bal(self, address):
+        try:
+            balance = float(w3.fromWei(w3.eth.getBalance(
+            Web3.toChecksumAddress(addresses)), "ether"))
+        except:
+            balance = 0
+        return float(balance)
 
 class XMR():
     def __init__(self, user, currency):
@@ -450,7 +458,7 @@ class EthereumTokens():
         return data
 
 
-class BTC():
+class BTC:
     def __init__(self, user, currency):
         self.user = user
         self.currency = currency
@@ -490,6 +498,14 @@ class BTC():
         data = [{'transaction_from':obj["address"], 'tx_id':obj["blockhash"], 'date':datetime.datetime.fromtimestamp(obj["blocktime"]),\
                  'amount':float(obj["amount"]),'currency': self.currency } for obj in result if obj['category']=='receive']
         return data
+
+    def rcvd_bal(self, address):
+        try:
+            balance = self.access.getreceivedbyaddress(address)
+        except:
+            balance = 0
+        return float(balance)
+
 
 
 class LTC():
@@ -698,7 +714,7 @@ def get_primary_address(user, currency):
 
 
 class XLM():
-    def __init__(self, user, currency):
+    def __init__(self, user=None, currency="XLM"):
         self.user = user
         self.currency = currency
         self.coin = Coin.objects.get(code=currency)
@@ -740,6 +756,15 @@ class XLM():
             return response["hash"]
         except:
             return {"error": "insufficient funds"}
+
+    def rcvd_bal(self, address):
+        addr = Address(address=address)
+        try:
+            addr.get()
+            return float(Decimal(addr.balances[0]['balance']))
+        except:
+            return 0.0
+
 
 
 class DepositTransaction():

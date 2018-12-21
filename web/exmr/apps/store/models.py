@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.shortcuts import reverse
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 
@@ -42,10 +43,15 @@ class Store(models.Model):
     keywords = models.CharField(_('keywords'), max_length=255, null=True, blank=True)
     banner_image_url = models.URLField(_('banner image url'))
     is_approved = models.BooleanField(_('is approved'), default=False)
+    votes = models.IntegerField(default=0)
+    percent = models.IntegerField(default=0)
 
     class Meta:
         verbose_name = _('Store')
         verbose_name_plural = _('Stores')
+
+    def get_absolute_url(self):
+        return reverse('store:store-item', kwargs={'slug': self.category.slug})
 
     def __str__(self):
         return self.store_name
@@ -67,3 +73,12 @@ class StorePaymentRec(models.Model):
     def __str__(self):
         return self.item_name +"_"+ Profile.objects.get(merchant_id = self.merchant_id).user.username
 
+class Rating(models.Model):
+    user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE, null=True)
+    store = models.ForeignKey(Store, related_name='store', on_delete=models.CASCADE, null=True)
+    votes = models.IntegerField()
+    has_voted = models.BooleanField()
+
+
+    def __str__(self):
+        return str(self.votes)

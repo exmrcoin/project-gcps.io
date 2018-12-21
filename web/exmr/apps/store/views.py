@@ -8,18 +8,19 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib.auth.models import User
 from django.db.models import Q
+from django.shortcuts import redirect
 from django.shortcuts import get_object_or_404
 from django.utils import timezone
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.crypto import get_random_string
 from django.utils.decorators import method_decorator
-from django.views.generic import ListView, DetailView, CreateView, TemplateView, View
+from django.views.generic import ListView, DetailView, UpdateView, CreateView, TemplateView, View
 
 from apps.accounts.decorators import check_2fa
 from apps.accounts.models import Profile
 from apps.store.forms import AddStoreForm
-from apps.store.models import StoreCategory, Store, StorePaymentRec
+from apps.store.models import StoreCategory, Store, StorePaymentRec, Rating
 from apps.coins.models import Coin
 from apps.coins.utils import create_wallet
 
@@ -38,6 +39,7 @@ class StoreListView(ListView):
     context_object_name = 'stores'
 
     def get_context_data(self,*args,**kwargs):
+        
         q = self.request.GET.get('q')
         slug = self.kwargs.get('slug')
         context = super(StoreListView, self).get_context_data(**kwargs)
@@ -145,5 +147,114 @@ class PaymentFormSubmitView(View):
         context['amt_payable_usd'] = (item_amount * item_qty)
         return render(request, 'merchant_tools/postpayment.html', context)
 
+class StoreRateView(LoginRequiredMixin, ListView):
+    template_name = 'store/store_rate.html'
+    model = Store
+    context_object_name = 'stores'
+
+    def get_context_data(self,*args,**kwargs):
+        
+        q = self.request.GET.get('q')
+        slug = self.kwargs.get('slug')
+        pk = self.kwargs.get('pk')
+        user = self.request.user
+        store = get_object_or_404(Store, pk=pk)
+        owner = store.user
+        erc = Rating.objects.filter(user=user, store=store)
+        voters = Rating.objects.filter(store=store).count()
+
+        if not voters:
+            average_rating = 0
+            rating_percent = 0
+        else:
+            average_rating = store.votes/voters
+            rating_percent = int((average_rating/5)*100)
+            store.percent = rating_percent
+            store.save()
+        context = super(StoreRateView, self).get_context_data(**kwargs)
+        if slug:
+            
+            self.category = get_object_or_404(StoreCategory, slug=slug)
+            context['store'] = store
+            context['category'] = self.category
+            context['erc'] = erc
+            context['rating'] = average_rating
+            context['percent'] = rating_percent
+            context['owner'] = owner
+            context['username'] = user
+            context['voters'] = voters
+        elif q:
+            context['stores'] = Store.objects.filter(Q(store_name__icontains=q) | Q(category__name__icontains=q))
+        return context
 
 
+class StoreVote(View):
+    
+    def post(self, request, *args, **kwargs):
+        
+        q = self.request.GET.get('q')
+        slug = self.kwargs.get('slug')
+        pk = self.kwargs.get('pk')
+        category = get_object_or_404(StoreCategory, slug=slug)
+        user = self.request.user
+        store = get_object_or_404(Store, pk=pk)
+        owner = store.user
+        erc = Rating.objects.filter(user=user, store=store)
+        voters = Rating.objects.filter(store=store).count()
+
+        if not voters:
+            average_rating = 0
+            rating_percent = 0
+        else:
+            average_rating = store.votes/voters
+            rating_percent = int((average_rating/5)*100)
+            store.percent = rating_percent
+            store.save()
+        
+        if request.method == "POST":
+        # if erc:
+        #     return HttpResponse('<h1>You have already voted<h1>')
+            
+            user_vote = request.POST.get('rate')
+            Rating.objects.create(user=user, store=store, votes=user_vote, has_voted=True)
+            store.votes += int(user_vote)
+            store.save()
+        context = {'store': store, 'voters': voters, 'category': category, 'erc': erc, 'rating': average_rating, 'percent': rating_percent }
+
+        return redirect(reverse_lazy('store:store-item-rate', kwargs={'slug': slug, 'pk': pk}))
+
+# def vote(request, slug, pk):
+        
+#     q = request.GET.get('q')
+#     # slug = self.kwargs.get('slug')
+#     # pk = self. kwargs.get('pk')
+#     category = get_object_or_404(StoreCategory, slug=slug)
+#     store = get_object_or_404(Store, pk=pk)
+#     user = request.user
+#     erc = Rating.objects.filter(user=user, store=store)
+#     voters = Rating.objects.filter(store=store).count()
+
+#     if not voters:
+#         average_rating = 0
+#         rating_percent = 0
+#     else:
+#         average_rating = store.votes/voters
+#         rating_percent = int((average_rating/5)*100)
+#         store.percent = rating_percent
+#         store.save()
+#     if request.method == "POST":
+#         # if erc:
+#         #     return HttpResponse('<h1>You have already voted<h1>')
+            
+#         user_vote = request.POST.get('rate')
+#         Rating.objects.create(user=user, store=store, votes=user_vote, has_voted=True)
+#         store.votes += int(user_vote)
+#         store.save()
+#     context = {'store': store, 'category': category, 'erc': erc, 'rating': average_rating, 'percent': rating_percent }
+
+#     return redirect(reverse_lazy('store:store-item-rate', kwargs={'slug': slug, 'pk': pk}))
+
+class StoreUpdate(UpdateView):
+    model = Store
+    fields = ['store_name','store_url','category','crypto_processor','store_email',
+                  'keywords', 'banner_image_url']

@@ -749,10 +749,11 @@ class DepositTransaction():
 
     def get_deposit_transactions(self):
         data = []
-        
         wallets = Wallet.objects.filter(user=self.user)
+        available_coins = Coin.objects.filter(active=True,display=True)
         for wallet in wallets:
-            data = data + self.get_currency_txn(wallet.name.code)
+            if wallet.name in available_coins:
+                data = data + self.get_currency_txn(wallet.name.code)
         return data
         # if currency in ['XRPTest']:
         #     return XRPTest(user).generate()

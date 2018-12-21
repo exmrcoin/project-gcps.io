@@ -3,6 +3,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
+from django.contrib.auth.models import User
 
 AUTH_TYPE = (
     ('HTTP Auth', _('HTTP Auth')),
@@ -180,4 +181,4 @@ class ReceivingSidebar(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.receive_topic)
         super(ReceivingSidebar, self).save(*args, **kwargs)
-
+        

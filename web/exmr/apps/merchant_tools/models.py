@@ -1,17 +1,21 @@
 import datetime
-from django.db import models
+
+from datetime import datetime, timedelta
+
 from ckeditor.fields import RichTextField, RichTextFormField
 from ckeditor_uploader.fields import RichTextUploadingField
 
+from django.db import models
+from django.utils import timezone
 from django.utils.text import slugify
 from django.utils.translation import ugettext_lazy as _
 from django.contrib.auth.models import User
+
+
 from apps.coins.models import Coin, EthereumToken
 from apps.merchant_tools import random_primary
-from datetime import datetime, timedelta
 from apps.accounts.models import User, Profile
 
-from django.utils import timezone
 # Create your models here.
 
 
@@ -214,7 +218,6 @@ class MultiPayment(models.Model):
     attempted_usd = models.CharField(max_length=512, default=0)
     recieved_amount = models.CharField(max_length=512, default=0)
     recieved_usd = models.CharField(max_length=512, default=0)
-
     paid_unique_id = models.CharField(max_length=512, blank=True, null=True)
     transaction_id = models.CharField(max_length=64, null=False)
 

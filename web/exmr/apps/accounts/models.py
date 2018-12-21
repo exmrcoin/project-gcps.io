@@ -1,6 +1,6 @@
 from ckeditor.fields import RichTextField
 from django.conf import settings
-from apps.common.utils import send_mail
+from apps.common.utils import send_mail,send_email
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Avg

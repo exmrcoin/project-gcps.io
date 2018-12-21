@@ -183,7 +183,7 @@ class URLMaker(models.Model):
 
 
 class POSQRMaker(models.Model):
-
+    
     def four_hour_hence():
         return timezone.now() + timezone.timedelta(hours=12)
 
@@ -203,12 +203,14 @@ class POSQRMaker(models.Model):
 
 
 class MultiPayment(models.Model):
-    paid_in = models.ForeignKey(Coin, on_delete=models.PROTECT, null = True)
-    paid_in_erc = models.ForeignKey(EthereumToken, on_delete=models.PROTECT, null = True)
+    merchant_id = models.CharField(
+        verbose_name=_('merchant id'), max_length=128, null = True, blank=True)
+    paid_in = models.ForeignKey(Coin, on_delete=models.PROTECT, null = True, blank=True)
+    paid_in_erc = models.ForeignKey(EthereumToken, on_delete=models.PROTECT, null = True, blank=True)
     payment_address = models.CharField(max_length=512, null=False)
     paid_amount = models.CharField(max_length=512, null=False)
     eq_usd = models.CharField(max_length=512, blank=True, null=True)
-    paid_date = models.DateTimeField(blank=True, null=True)
+    paid_date = models.DateTimeField(blank=True, null=True, auto_now_add=True, editable = True)
     attempted_usd = models.CharField(max_length=512, default=0)
     recieved_amount = models.CharField(max_length=512, default=0)
     recieved_usd = models.CharField(max_length=512, default=0)

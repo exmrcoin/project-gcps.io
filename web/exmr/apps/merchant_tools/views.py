@@ -580,7 +580,6 @@ class POSQRMakerView(FormView):
         domain = self.request.get_host()
         mydate = timezone.now()
         maxtimer = int(time.mktime(mydate.timetuple())) + 4*60*60
-
         context = super(POSQRMakerView, self).get_context_data()
         merchant = Profile.objects.get(merchant_id=merchant_id).user
         token = unique_id
@@ -599,6 +598,7 @@ class POSQRPayView(TemplateView):
         context = super().get_context_data()
         token = self.kwargs['token']
         temp_obj = POSQRMaker.objects.get(unique_id=token)
+        self.request.session['merchant_id'] =  temp_obj.merchant_id
         context['pos_sale'] = temp_obj
         context['available_coins'] = Coin.objects.filter(active=True)
         context['unique_id'] = token
@@ -623,6 +623,7 @@ class POSQRPayView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         superuser = User.objects.get(is_superuser=True)
+        merchant_id = self.request.session['merchant_id']
         request.session['unique_id'] = request.POST.get('unique_id')
         request.session['selected_coin'] = request.POST.get('selected_coin')
         request.session['payable_amt'] = request.POST.get('coin_amt')
@@ -644,6 +645,7 @@ class POSQRPayView(TemplateView):
         request.session['crypto_address'] = addr
         try:
             obj, created = MultiPayment.objects.get_or_create(
+                merchant_id = merchant_id,
                 paid_amount=request.session['payable_amt'],
                 paid_in=Coin.objects.get(code=request.session['selected_coin']),
                 eq_usd=request.session['payable_amt_usd'],
@@ -655,6 +657,7 @@ class POSQRPayView(TemplateView):
             )
         except:
             obj, created = MultiPayment.objects.get_or_create(
+                merchant_id = merchant_id,
                 paid_amount=request.session['payable_amt'],
                 paid_in_erc=EthereumToken.objects.get(contract_symbol=request.session['selected_coin']),
                 eq_usd=request.session['payable_amt_usd'],
@@ -1321,8 +1324,18 @@ class ButtonMakerPayView(TemplateView):
         selected_coin = request.POST.get('selected_coin')
         payable_amt = request.POST.get('coin_amt')
         payable_amt_usd = request.POST.get('payable_amt')
-        
-        print( unique_id + ','+ selected_coin + ','+payable_amt + ','+payable_amt_usd)
+        try:
+            merchant_id =  (SimpleButtonInvoice.objects.filter(unique_id = unique_id))[0].merchant_id
+        except:
+            try:
+                merchant_id =  (ButtonInvoice.objects.filter(unique_id = unique_id))[0].merchant_id
+            except:
+                try:
+                    merchant_id =  (DonationButtonInvoice.objects.filter(unique_id = unique_id))[0].merchant_id
+                except Exception as e:
+                    raise e
+
+        # print( unique_id + ','+ selected_coin + ','+payable_amt + ','+payable_amt_usd)
         try:
             try:
                 obj = MultiPayment.objects.filter(paid_unique_id=unique_id, paid_in=Coin.objects.get(
@@ -1338,6 +1351,7 @@ class ButtonMakerPayView(TemplateView):
         request.session['crypto_address'] = addr
         try:
             obj, created = MultiPayment.objects.get_or_create(
+                merchant_id = merchant_id,
                 paid_amount=payable_amt,
                 paid_in=Coin.objects.get(code=selected_coin),
                 eq_usd=payable_amt_usd,
@@ -1349,6 +1363,7 @@ class ButtonMakerPayView(TemplateView):
             )
         except:
             obj, created = MultiPayment.objects.get_or_create(
+                merchant_id = merchant_id,
                 paid_amount=request.session['payable_amt'],
                 paid_in_erc=EthereumToken.objects.get(contract_symbol=selected_coin),
                 eq_usd=request.session['payable_amt_usd'],

@@ -778,6 +778,7 @@ class CryptoPaymmentSimple(FormView):
     
     @csrf_exempt
     def post(self, request, *args, **kwargs):
+        
         mydate = timezone.now()
         context = super(CryptoPaymmentSimple, self).get_context_data()
         
@@ -814,7 +815,7 @@ class CryptoPaymmentSimple(FormView):
         tax_amount = float(item_obj.item_tax) * float(self.request.POST['item_qty'])
         context['tax_amount'] = tax_amount
         item_qty = self.request.POST['item_qty']
-        if (float(item_qty)>=1):
+        if (float(item_qty)>1):
             total_shipping = float(shipping_cost) * (float(item_qty)-1)
         else:
             total_shipping = float(shipping_cost)

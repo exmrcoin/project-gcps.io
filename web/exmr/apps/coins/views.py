@@ -221,8 +221,8 @@ class CoinConvertView3(TemplateView):
             return HttpResponseServerError()
         valid = False
         balance = get_balance(request.user, coin)
-        # valid =getattr(apps.coins.utils,coin)(self.request.user, coin).send( convert_address, input_coin_value)
-        valid = {'result': 'soccccccccc'}
+        valid =getattr(apps.coins.utils,coin)(self.request.user, coin).send( convert_address, input_coin_value)
+        # valid = {'result': 'soccccccccc'}
         # valid = {'error':'test error'}
         if valid:
             context['result'] = "Success. Your account will be credited with 12 Hours. If not please contact support."

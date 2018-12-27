@@ -115,7 +115,7 @@ class ButtonMakerView(FormView):
                      '<input type="hidden" name="allow_buyer_note" value="' +allow_buyer_note+
                      '"id="id_allow_buyer_note" />',
                      '<input type="hidden" name="btn_image" value="1"id="id_btn_image" />',
-                     '<input type="image" src="https://'+str(domain+(ButtonImage.objects.get(label=btn_image)).btn_img.url)+'" alt="Buy Now with GetCryptoPayments.org"></form>'
+                     '<input type="image" src="https://'+str(domain+(ButtonImage.objects.get(label=btn_image)).btn_img.url)+'"  alt="Buy Now with GetCryptoPayments.org" style="width: 200px;height: auto;"></form>'
                      ]
         context['btn_code'] = temp_html
         return render(self.request, 'merchant_tools/buttonmaker.html', context)
@@ -207,7 +207,7 @@ class SimpleButtonMakerView(FormView):
                      '<input type="hidden" name="allow_buyer_note" value="' +str(False)+
                      '"id="id_allow_buyer_note" />',
                      '<input type="hidden" name="btn_image" value="1"id="id_btn_image" />',
-                     '<input type="image" src="https://'+str(domain+(ButtonImage.objects.get(label=btn_image)).btn_img.url)+'" alt="Buy Now with GetCryptoPayments.org"></form>'
+                     '<input type="image" src="https://'+str(domain+(ButtonImage.objects.get(label=btn_image)).btn_img.url)+'"  alt="Buy Now with GetCryptoPayments.org" style="width: 200px;height: auto;"></form>'
                      ]
         context['btn_code'] = temp_html
         return render(self.request, 'merchant_tools/simplebuttonmaker.html', context)
@@ -283,7 +283,7 @@ class DonationButtonMakerView(FormView):
                      '<input type="hidden" name="allow_buyer_note" value="' +allow_donor_note+
                      '"id="id_allow_buyer_note" />',
                      '<input type="hidden" name="btn_image" value="1"id="id_btn_image" />',
-                     '<input type="image" src="https://'+str(domain+(ButtonImage.objects.get(label=btn_image)).btn_img.url)+ '" alt="Buy Now with GetCryptoPayments.org"></form>'
+                     '<input type="image" src="https://'+str(domain+(ButtonImage.objects.get(label=btn_image)).btn_img.url)+ '"  alt="Buy Now with GetCryptoPayments.org" style="width: 200px;height: auto;"></form>'
                      ]
         context['btn_code'] = temp_html
         return render(self.request, 'merchant_tools/donationbuttonmaker.html', context)

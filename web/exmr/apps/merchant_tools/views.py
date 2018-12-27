@@ -1376,12 +1376,10 @@ class ButtonMakerPayView(TemplateView):
                     user=self.request.user),
                 payment_address=addr
             )
-        # time_limit = MultiPayment.objects.get(paid_unique_id=unique_id).paid_date 
+            
         time_expiry = MultiPayment.objects.filter(paid_unique_id=unique_id)[0].paid_date + timedelta(hours=8)
         for_js = int(time.mktime(time_expiry.timetuple())) * 1000
-        # context['time_limit'] = for_js
         context['time_expiry'] = for_js
-        # context['time_limit'] = time_limit
         context['unique_id'] = unique_id
         context['payable_amt'] = payable_amt
         context['payable_amt_usd'] = payable_amt_usd

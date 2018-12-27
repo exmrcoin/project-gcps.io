@@ -1385,5 +1385,4 @@ class ButtonMakerPayView(TemplateView):
         context['payable_amt_usd'] = payable_amt_usd
         context['selected_coin'] = selected_coin
         context['crypto_address'] = addr
-
         return render(request, 'merchant_tools/btnqrgenerator.html', context)

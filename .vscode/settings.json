@@ -1,0 +1,5 @@
+{
+    "python.linting.pylintEnabled": true,
+    "python.pythonPath": "/home/techversant/development/exmrv2/venv/bin/python3.5",
+    "python.formatting.provider": "autopep8"
+}

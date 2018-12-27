@@ -3,6 +3,7 @@ import hashlib
 import random
 import string
 import json
+from datetime import timedelta
 from django_unixdatetimefield import UnixDateTimeField
 from django.core import serializers
 from django.utils import six
@@ -1359,6 +1360,7 @@ class ButtonMakerPayView(TemplateView):
                 attempted_usd = payable_amt_usd,
                 transaction_id=account_activation_token.make_token(
                     user=self.request.user),
+                # paid_time=datetime.datetime.now(),
                 payment_address=addr
             )
         except:
@@ -1368,13 +1370,16 @@ class ButtonMakerPayView(TemplateView):
                 paid_in_erc=EthereumToken.objects.get(contract_symbol=selected_coin),
                 eq_usd=request.session['payable_amt_usd'],
                 paid_unique_id=request.session['unique_id'],
+                # paid_time=datetime.datetime.now(),
                 attempted_usd = request.session['payable_amt_usd'],
                 transaction_id=account_activation_token.make_token(
                     user=self.request.user),
                 payment_address=addr
             )
-
-        # context['time_limit'] = time_limit
+            
+        time_expiry = MultiPayment.objects.filter(paid_unique_id=unique_id)[0].paid_date + timedelta(hours=8)
+        for_js = int(time.mktime(time_expiry.timetuple())) * 1000
+        context['time_expiry'] = for_js
         context['unique_id'] = unique_id
         context['payable_amt'] = payable_amt
         context['payable_amt_usd'] = payable_amt_usd

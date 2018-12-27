@@ -11,6 +11,8 @@
 <meta property="og:title" content="GETCRYPTOPAYMENTS" />
 <meta property="og:image" content={{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.png' %} />
 <meta property="og:description" content="GETCRYPTOPAYMENTS" /> {% endblock %}
+
+<canvas id="canvas"></canvas>
 <section>
     <div class="banner-log">
         <div class="container">
@@ -50,13 +52,13 @@
                             <img class="coin-b" src={% static 'images/b-coin.png' %} alt="">
                         </div>
                         <div class="col-xs-12 col-sm-9 col-md-10 font-h4">
-                            <span class="font-h3"> {% trans 'Running an ICO?' %}</span>
+                            <span class="font-h3"> {% trans 'Receive Crypto Payments?' %}</span>
                             <p>{% trans 'Let GetCryptoPayments help with:' %}</p>
                             <ul>
-                                <li> {% trans 'Accepting payments from over 140 different coins' %}</li>
-                                <li> {% trans 'All New GetCryptoPayments ICO Marketplace' %}</li>
+                                <li> {% trans 'Accepting payments from over 100 different coins' %}</li>
+                                <li> {% trans 'By our GetCryptoPayments Merchant Tools' %}</li>
                             </ul>
-                            <button type="submit" class="btn- btn-default btn-get-start">{% trans 'Find Out More' %}</button>
+                            <button type="submit" class="btn- btn-default btn-get-start"><a href="{% url 'merchant-tools' %}" style="color: white;">{% trans 'Find Out More' %}</a></button>
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-6 mt-2">

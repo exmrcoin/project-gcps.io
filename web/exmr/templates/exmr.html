@@ -25,7 +25,14 @@
     {{ form.media.css }}
     <!-- style -->
     <script src='https://www.google.com/recaptcha/api.js?render=6LfNl2cUAAAAAKoPIBFAyyN9tF9hgCKBIrX2n_bo'></script>
-
+    <style>
+    #canvas{
+  position:fixed;
+  height:100vh;
+  width:100vw;
+  z-index: 999999;
+}
+    </style>
 </head>
 
 <body>
@@ -377,13 +384,13 @@
                         <div class="modal-header text-center">
                             <button type="button" class="close" data-dismiss="modal">×</button>
                             <h4 class="modal-title">
-                                <i class="fa fa-exclamation-circle"></i>GetCryptoPayments is in Beta Phase!</h4>
+                                <i class="fa fa-exclamation-circle"></i>GetCryptoPayments is Launching Soon!</h4>
                         </div>
                         <div class="modal-body text-center">
-                            We are in active development to bring you the best features.
-                            <br>Some functions are still under development.
-                            <br>More Coin support will be added in future.
-                            <br>We thankyou for your understanding.
+
+                            We are nearing our launch.
+                            <br>Be the first one's to signup and be part of a revolution!
+                            <br>Please check in regularly for updates.
                             <br>
                             <br>
                             <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
@@ -546,6 +553,293 @@
         console.log(count);
     }
 </script>
+
+<!--  -->
+<script>
+function removeElement(elementId) {
+    // Removes an element from the document
+    var element = document.getElementById(elementId);
+    element.parentNode.removeChild(element);
+}
+var Vector = {
+    x: 0,
+    y: 0,
+    getX: function () {
+        return this.x;
+    },
+    getY: function () {
+        return this.y;
+    },
+    setX: function (x) {
+        this.x = x;
+    },
+    setY: function (y) {
+        this.y = y;
+    },
+    setAngle: function (angle) {
+        var length = this.getLength();
+        this.x = Math.cos(angle) * length;
+        this.y = Math.sin(angle) * length;
+    },
+    setLength: function (length) {
+        var angle = this.getAngle();
+        this.x = Math.cos(angle) * length;
+        this.y = Math.sin(angle) * length;
+    },
+    getAngle: function () {
+        return Math.atan2(this.y, this.x);
+    },
+    getLength: function () {
+        return (Math.sqrt(this.x * this.x + this.y * this.y));
+    },
+    create: function (x, y) {
+        var obj = Object.create(this);
+
+        obj.setX(x);
+        obj.setY(y);
+
+        return obj;
+    },
+    add: function (v2) {
+        var x = this.x + v2.x;
+        var y = this.y + v2.y;
+
+        return this.create(x, y);
+    },
+    addTo: function (v2) {
+        v2.x += this.getX();
+        v2.y += this.getY();
+    },
+    subtract: function (v2) {
+        var x = this.x - v2.x,
+            y = this.y - v2.y;
+
+        var o = this.create(x, y);
+        return o;
+    },
+    subtractFrom: function (v2) {
+        v2.setX(v2.getX() - this.getX());
+        v2.setY(v2.getY() - this.getY());
+    },
+    multiply: function (val) {
+        this.x *= val;
+        this.y *= val;
+    }
+}
+
+
+
+var Particle = {
+    position: null,
+    velocity: null,
+    gravity: null,
+    create: function (x, y, speed, angle, grav) {
+        var obj = Object.create(this);
+
+        obj.position = Vector.create(x, y),
+            obj.velocity = Vector.create(0, 0);
+        obj.gravity = Vector.create(0, grav || 0);
+
+        obj.velocity.setLength(speed);
+        obj.velocity.setAngle(angle);
+
+        return obj;
+    },
+    update: function () {
+        this.velocity.addTo(this.position);
+        this.gravity.addTo(this.velocity);
+    }
+}
+
+window.onload = function () {
+    var canvas = document.getElementById('canvas'),
+        context = canvas.getContext('2d'),
+        w = canvas.width = window.innerWidth,
+        h = canvas.height = window.innerHeight;
+
+    context.fillStyle = 'rgba(5,10,25,0)';
+    context.fillRect(0, 0, w, h);
+
+
+    var x = (window.screen.width * 0.25),
+        y = (window.screen.height * 0.25);
+
+    var particles = [],
+        colors = [],
+        numParticles = 500;
+    for (var i = 0; i < numParticles; i++) {
+        particles.push(Particle.create(0, 0, Math.random() * 10, Math.random() * 2 * Math.PI, 0.1));
+
+        var r = Math.round(Math.random() * 256),
+            g = Math.round(Math.random() * 256),
+            b = Math.round(Math.random() * 256);
+
+        colors[i] = 'rgba(' + r + ',' + g + ',' + b + ',1)';
+    }
+
+    update();
+    context.fillStyle = 'rgba(5,10,25,0)';
+    context.fillRect(0, 0, w, h);
+    var r = 1;
+
+    function update() {
+        context.clearRect(0, 0, w, h);
+        context.save();
+        context.fillStyle = 'rgba(5,10,25,0)';
+        context.fillRect(0, 0, w, h);
+
+        context.translate(x, y);
+        for (var i = 0; i < particles.length; i++) {
+
+            context.fillStyle = colors[i];
+            context.beginPath();
+            context.arc(particles[i].position.getX(), particles[i].position.getY(), Math.round(r), 0, Math.PI * 2);
+            context.fill();
+
+            particles[i].update();
+        }
+
+        context.restore();
+
+        removeExtra();
+        window.requestAnimationFrame(update);
+    }
+
+    function removeExtra() {
+        for (var i = 0; i < particles.length; i++) {
+            if (particles[i].position.x - 50 > w || particles[i].position.x + 50 < -w / 2 || particles[i].position.y - 50 > h || particles[i].position.y + 50 < -h / 2) {
+                particles.splice(i, 1);
+                colors.splice(i, 1);
+            }
+        }
+    }
+
+    ////////////////////////////////////////
+    setTimeout(function () {
+        var x = (window.screen.width * 0.75),
+            y = (window.screen.height * 0.25);
+
+        var particles = [],
+            colors = [],
+            numParticles = 500;
+        for (var i = 0; i < numParticles; i++) {
+            particles.push(Particle.create(0, 0, Math.random() * 10, Math.random() * 2 * Math.PI, 0.1));
+
+            var r = Math.round(Math.random() * 256),
+                g = Math.round(Math.random() * 256),
+                b = Math.round(Math.random() * 256);
+
+            colors[i] = 'rgba(' + r + ',' + g + ',' + b + ',1)';
+        }
+
+        update();
+        context.fillStyle = 'rgba(5,10,25,0)';
+        context.fillRect(0, 0, w, h);
+        var r = 1;
+
+        function update() {
+            context.clearRect(0, 0, w, h);
+            context.save();
+            context.fillStyle = 'rgba(5,10,25,0)';
+            context.fillRect(0, 0, w, h);
+
+            context.translate(x, y);
+            for (var i = 0; i < particles.length; i++) {
+
+                context.fillStyle = colors[i];
+                context.beginPath();
+                context.arc(particles[i].position.getX(), particles[i].position.getY(), Math.round(r), 0, Math.PI * 2);
+                context.fill();
+
+                particles[i].update();
+            }
+
+            context.restore();
+
+            removeExtra();
+            window.requestAnimationFrame(update);
+        }
+
+        function removeExtra() {
+            for (var i = 0; i < particles.length; i++) {
+                if (particles[i].position.x - 50 > w || particles[i].position.x + 50 < -w / 2 || particles[i].position.y - 50 > h || particles[i].position.y + 50 < -h / 2) {
+                    particles.splice(i, 1);
+                    colors.splice(i, 1);
+                }
+            }
+        }
+    }, 1000);
+
+    /////////////////////////////////
+    setTimeout(function () {
+        var x = (window.screen.width * 0.55),
+            y = (window.screen.height * 0.35);
+
+        var particles = [],
+            colors = [],
+            numParticles = 500;
+        for (var i = 0; i < numParticles; i++) {
+            particles.push(Particle.create(0, 0, Math.random() * 10, Math.random() * 2 * Math.PI, 0.1));
+
+            var r = Math.round(Math.random() * 256),
+                g = Math.round(Math.random() * 256),
+                b = Math.round(Math.random() * 256);
+
+            colors[i] = 'rgba(' + r + ',' + g + ',' + b + ',1)';
+        }
+
+        update();
+        context.fillStyle = 'rgba(5,10,25,0)';
+        context.fillRect(0, 0, w, h);
+        var r = 1;
+
+        function update() {
+            context.clearRect(0, 0, w, h);
+            context.save();
+            context.fillStyle = 'rgba(5,10,25,0)';
+            context.fillRect(0, 0, w, h);
+
+            context.translate(x, y);
+            for (var i = 0; i < particles.length; i++) {
+
+                context.fillStyle = colors[i];
+                context.beginPath();
+                context.arc(particles[i].position.getX(), particles[i].position.getY(), Math.round(r), 0, Math.PI * 2);
+                context.fill();
+
+                particles[i].update();
+            }
+
+            context.restore();
+
+            removeExtra();
+            window.requestAnimationFrame(update);
+        }
+
+        function removeExtra() {
+            for (var i = 0; i < particles.length; i++) {
+                if (particles[i].position.x - 50 > w || particles[i].position.x + 50 < -w / 2 || particles[i].position.y - 50 > h || particles[i].position.y + 50 < -h / 2) {
+                    particles.splice(i, 1);
+                    colors.splice(i, 1);
+                }
+            }
+        }
+
+    }, 2000);
+
+    /////////////////////////////////
+    setTimeout(function () {
+        removeElement('canvas');
+    }, 3000);
+    ///////////////
+    
+} //windows onload
+
+
+</script>
+
+
+<!--  -->
 </body>
 
 </html>

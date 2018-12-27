@@ -712,8 +712,10 @@ class BuyCryptoView(TemplateView):
         kyc_status = KYC.objects.filter(user=self.request.user,approved=True)
         if not kyc_status:
             return redirect(reverse_lazy("accounts:kyc"))
-        else:
+        elif request.method=="GET":
             return super().get(request,**kwargs)
+        else:
+            return self.post(request,**kwargs)
 
     def post(self, request, *args, **kwargs):
         context = {}

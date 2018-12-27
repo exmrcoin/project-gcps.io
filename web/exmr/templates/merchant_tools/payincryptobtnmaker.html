@@ -118,10 +118,15 @@
                                 <span class="">{{item_amount}} USD</span>
                             </div>
                             <div class="col-xs-4">
-                                <span class="">{{item_qty}}</span>
+                                <span class=""><input type="text" style="margin-top: -5px;" class="form-control input-group col-xs-8 mt-1 pl-0 " data-validation="number"
+                                    name="item_quantity" id="qty" placeholder="donation in USD" value="{{item_qty}}" >
+                                
+                                
+                                
+                                </span>
                             </div>
                             <div class="col-xs-4">
-                                <span class="">{{item_total}} USD</span>
+                                <span id="total" class="">{{item_total}} USD</span>
                             </div>
                         </div>
                     </div>
@@ -208,7 +213,7 @@
                                     <span class="">Total Payable</span>
                                 </div>
                                 <div class="col-xs-6">
-                                    <span class="">{{payable}}</span>
+                                    <span id="total_payable" class="">{{payable}}</span>
                                 </div>
                             </div>
 
@@ -259,7 +264,7 @@
                     </div>
 
 
-                    <!-- <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                     <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
                         <h5>
                             <span class="glyphicon glyphicon-check"></span>Choose Your Coin
                         </h5>
@@ -396,6 +401,32 @@
             });
 
         });
+    </script>
+    <script>
+        var qty = $("#qty").val();
+        
+        var total = {{item_amount}} * qty;
+        
+        $("#qty").on("change paste keyup", function(){
+            qty = $("#qty").val();
+            tax = {{tax}} * qty;
+            ship_add = {{shipping_add}} * (qty-1);
+            
+            total = {{item_amount}} * qty;
+            total_payable = total + tax + ship_add + {{shipping}};
+           
+            $("#total").text(total + " USD");
+            $("#total_payable").text(total_payable + " USD")
+
+
+    
+
+        });
+
+    
+
+
+
     </script>
 </body>
 

@@ -72,24 +72,68 @@
         
     
         </div>
-        <form action="//127.0.0.1:8000/en/merchant_tools/make-payment/" method="POST" >
-            <input type="hidden" name="merchant_id" value="T9ygMYhhHsalhxU4Rqn5smwC8meWkGrG" maxlength="128" id="id_merchant_id" required />
-            <input type="hidden" name="item_name" value="test item2" maxlength="128" id="id_item_name" required />
+          
+        
+   
+        
+
+        <form action="http://127.0.0.1:8000/en/merchant_tools/simple-button-payment/" method="POST" >
+         
+
+            <input type="hidden" name="merchant_id" value="uSEzqAAJwwA3TVvg0OVxXvuYZhuVwd7k" maxlength="128" id="id_merchant_id" required />
+            
+   
+            <input type="hidden" name="item_name" value="test item 1" maxlength="128" id="id_item_name" required />
+            
+   
             <input type="hidden" name="item_amount" value="100" maxlength="128" id="id_item_amount" required />
-            <input type="hidden" name="item_number" value="q1" maxlength="128" id="id_item_number" required />
-            <input type="hidden" name="item_qty" value="2" maxlength="128" id="id_item_qty" required />
-            <input type="hidden" name="buyer_qty_edit" value="true" id="id_buyer_qty_edit" />
+            
+   
+            <input type="hidden" name="item_number" value="Itemnum1" maxlength="128" id="id_item_number" required />
+            
+   
+            <input type="hidden" name="item_unique_id" value="item_tWuuHz8M_1545199700" maxlength="128" id="id_item_uid" required />
+            
+   
+            <input type="hidden" name="item_qty" value="1" maxlength="128" id="id_item_qty" required />
+            
+   
+            <input type="hidden" name="buyer_qty_edit" value="False" id="id_buyer_qty_edit" />
+            
+   
             <input type="hidden" name="invoice_number" value="qw1" maxlength="128" id="id_invoice_number" required />
-            <input type="hidden" name="tax_amount" value="10" maxlength="128" id="id_tax_amount" required />
+            
+   
+            <input type="hidden" name="tax_amount" value="18" maxlength="128" id="id_tax_amount" required />
+            
+   
             <input type="hidden" name="allow_shipping_cost" value="false"id="id_allow_shipping_cost" />
-            <input type="hidden" name="shipping_cost" value="0" maxlength="128" id="id_shipping_cost" required />
-            <input type="hidden" name="shipping_cost_add" value="0" maxlength="128" id="id_shipping_cost_add" required />
+            
+   
+            <input type="hidden" name="shipping_cost" value="5.95" maxlength="128" id="id_shipping_cost" required />
+            
+   
+            <input type="hidden" name="shipping_cost_add" value="1" maxlength="128" id="id_shipping_cost_add" required />
+            
+   
             <input type="hidden" name="success_url_link" value="None" maxlength="128" id="id_success_url_link" required />
+            
+   
             <input type="hidden" name="cancel_url_link" value="None" maxlength="128" id="id_cancel_url_link" required />
+            
+   
             <input type="hidden" name="ipn_url_link" value="None" maxlength="128" id="id_ipn_url_linl" required />
-            <input type="hidden" name="allow_buyer_note" value="false"id="id_allow_buyer_note" />
+            
+   
+            <input type="hidden" name="allow_buyer_note" value="False"id="id_allow_buyer_note" />
+            
+   
             <input type="hidden" name="btn_image" value="1"id="id_btn_image" />
-            <input type="image" src="//127.0.0.1:8000/media/button_maker/buybtn.png" alt="Buy Now with GetCryptoPayments.org"></form>
+            
+   
+            <input type="image" src="http://127.0.0.1:8000/media/button_maker/buybtn.png" alt="Buy Now with GetCryptoPayments.org"></form>
+             
+           
 </section>
 
 {% endblock %} {% block script %}{% endblock %}

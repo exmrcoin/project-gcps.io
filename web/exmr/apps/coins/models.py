@@ -386,12 +386,14 @@ class PayByNamePackage(models.Model):
     def __str__(self):
         return str(self.number_of_items)
 
+def update_expiry():
+    return timezone.now()+timedelta(days=365)
 
 class PaybyName(models.Model):
     user = models.ForeignKey(User, verbose_name=_(
         'user paybyname'), on_delete=models.CASCADE)
     label = models.CharField(max_length=64, unique=True)
-    expiry = models.DateTimeField(default=timezone.now()+timedelta(days=365))
+    expiry = models.DateTimeField(default=update_expiry)
 
     def __str__(self):
         return self.user.username+" paybyname:"+self.label
@@ -406,4 +408,4 @@ class PayByNamePurchase(models.Model):
         'paybyname usage'),related_name='paybyname', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return self.user.username+" "+str(self.package.number_of_items)+" "+self.paybyname.label 
+        return self.user.username+" "+str(self.package.number_of_items)

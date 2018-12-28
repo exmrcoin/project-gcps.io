@@ -721,7 +721,7 @@ class BuyCryptoView(TemplateView):
         context = {}
         coin_code = kwargs["currency"]
         coin_user = User.objects.get(is_superuser = True, username="admin")
-        balance = get_balance(request.user, coin_code)
+        balance = get_balance(coin_user, coin_code)
         amount = str(round(float(request.POST.get("usd_value")),4))
         currency = "USD"
         coin_amount = round(float(request.session["coin_amount"])*float(amount),4)

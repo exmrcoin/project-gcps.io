@@ -720,6 +720,7 @@ class CryptoPaymmentV2(FormView):
     
     @csrf_exempt
     def post(self, request, *args, **kwargs):
+        
         mydate = timezone.now()
         context = super(CryptoPaymmentV2, self).get_context_data()
         
@@ -755,12 +756,14 @@ class CryptoPaymmentV2(FormView):
         item_amount =  float(item_obj.item_amount)
         tax_amount = float(item_obj.item_tax) * float(self.request.POST['item_qty'])
         context['tax_amount'] = tax_amount
+        context['tax'] = float(item_obj.item_tax)
         item_qty = self.request.POST['item_qty']
         if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
             total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
         else:
             total_shipping = float(shipping_cost)
-
+        context['shipping_add'] = float(shipping_cost_add)
+        context['shipping'] = float(shipping_cost)
         context['shipping_cost'] = total_shipping
         context['payable'] = (float(item_qty) * float(item_amount))+ total_shipping + float(tax_amount)
         context['item_total'] = round((float(item_qty) * float(item_amount)),2)
@@ -903,6 +906,7 @@ class ButtonMakerInvoice(TemplateView):
 
 
     def post(self, request, *args, **kwargs):
+        
         context = super().get_context_data()
         mydate = timezone.now()
         token = account_activation_token.make_token(
@@ -916,7 +920,7 @@ class ButtonMakerInvoice(TemplateView):
             btn_item_obj = ButtonItem.objects.get(item_unique_id = item_uid)
             item_amount = btn_item_obj.item_amount
 
-            item_qty = self.request.POST.get('item_qty',0)
+            item_qty = self.request.POST.get('item_quantity','')
             shipping_cost_add = btn_item_obj.shipping_cost_add
             shipping_cost = btn_item_obj.shipping_cost
             tax_amount = float(btn_item_obj.item_tax)* float(item_qty)

@@ -15,7 +15,6 @@ Our repository is private for security..
 # Developer Team<br>
 ➥pnija<br>
 ➥albertnanita<br>
-➥JulianIsrael<br>
 ➥anand230999<br>
 ➥vipinmohan22<br>
 

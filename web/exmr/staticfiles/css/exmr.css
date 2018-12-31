@@ -337,6 +337,7 @@ footer {
     .buttons-footer-div {
         display: flex;
         justify-content: space-around;
+        max-height: 30px;
     }
 }
 

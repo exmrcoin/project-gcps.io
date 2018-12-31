@@ -88,6 +88,7 @@ class StoreCheckout(TemplateView):
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         mydate = timezone.now()
+        context['store'] = get_object_or_404(Store, pk=self.kwargs.get('pk'))
         context['unique_id'] = get_random_string(
             length=32) + str(int(time.mktime(mydate.timetuple())*1000))
         context['merchant_id'] = self.kwargs.get('pk')

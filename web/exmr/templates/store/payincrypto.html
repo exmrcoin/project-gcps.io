@@ -32,9 +32,9 @@
             </div>
             <div class="col-xs-12 orange-shadow-box my-1 p-2">
                 <div class="col-xs-12 col-md-6 mt-1">
-                    <a class="merchant-link"  target="_blank">EXMR BUMP UP</a>
+                    <a class="merchant-link" href="{% url 'store:store-item-rate' store.category.slug store.pk %}"  target="_blank">EXMR BUMP UP</a>
                     <br />Feedback:
-                    <a class="merchant-link" href="{% url 'common:beta' %}" target="_blank">
+                    <a class="merchant-link" href="{% url 'store:store-item-rate' store.category.slug store.pk %}" target="_blank">
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
                         <i class="fa fa-star" aria-hidden="true"></i>
@@ -44,7 +44,7 @@
                     </a>
                 </div>
                 <div class="col-xs-12 col-md-6 text-center text-md-right ">
-                    <a type="button" class="btn btn-lg btn-default mt-1" href="{% url 'common:beta' %}" target="_blank">
+                    <a type="button" class="btn btn-lg btn-default mt-1" href="{% url 'store:store-item-rate' store.category.slug store.pk %}" target="_blank">
                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span> View Profile</a>
                 </div>
 
@@ -113,9 +113,9 @@
                         </h5>
                         <div class="col-12 px-0 bg-white">
                             <div class="col-xs-12 bg-white border-btm-line p-1 text-left">
-                                <span>Already a member of getcryptopayments.org? <a href="{% url 'accounts:login' %}">Click here</a> to log in and save time filling out
+                                <!-- <span>Already a member of getcryptopayments.org? <a href="{% url 'accounts:login' %}">Click here</a> to log in and save time filling out
                                     this form...
-                                </span>
+                                </span> -->
                             </div>
                             <div class="col-xs-12 bg-white border-btm-line p-1">
                                 <input type="text" class="input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"

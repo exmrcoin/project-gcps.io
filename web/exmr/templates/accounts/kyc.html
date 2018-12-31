@@ -11,7 +11,7 @@
             {% if pending %}
             <h3> Please Wait we are processing your kyc request</h3>
             {% elif approved %}
-            <h3> Successfully verifed your kyc and now you are eligible to user our fiat services.</h3>
+            <h3> Successfully verifed your kyc and now you are eligible to use our fiat services.</h3>
             {% else %}
 			<form class="form-horizontal" method="POST" action="." enctype="multipart/form-data">
     			{% csrf_token %}
@@ -21,7 +21,7 @@
             {% endif %}
 	    </div>
         {% if not peding and not approved %}
-        <p>*Note: KYC this process can take 3 business days.</p>
+        <p>*Note: KYC process can take 3 business days.</p>
         {% endif %}
 	</div>
 </div>

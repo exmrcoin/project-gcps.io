@@ -6,7 +6,7 @@ from django.urls import reverse
 from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse_lazy
-from apps.common.utils import send_mail
+from apps.common.utils import send_mail, send_email
 from django.forms import formset_factory
 from django.contrib.auth.models import User
 from django.views.generic.list import ListView
@@ -479,8 +479,8 @@ class KYCView(FormView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["status"] = KYC.objects.filter(approved=True)
-        
+        context["approved"] = KYC.objects.filter(approved=True, user=self.request.user)
+        context["pending"] = KYC.objects.filter(approved=False, user=self.request.user)
         context["kyc_terms"] = KYCTerms.objects.filter(user=self.request.user, flag=True)
         return context
 

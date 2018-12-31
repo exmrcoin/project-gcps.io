@@ -8,12 +8,21 @@
              <h2>KYC</h2>
 		</div>
 		<div class="col-xs-12  col-md-6 col-md-offset-3 text-center my-2">
+            {% if pending %}
+            <h3> Please Wait we are processing your kyc request</h3>
+            {% elif approved %}
+            <h3> Successfully verifed your kyc and now you are eligible to user our fiat services.</h3>
+            {% else %}
 			<form class="form-horizontal" method="POST" action="." enctype="multipart/form-data">
-			{% csrf_token %}
-			{{form}}
-			<input type="submit" ></input>
+    			{% csrf_token %}
+    			{{form}}
+    			<input type="submit" ></input>
 			</form>
-	</div>
+            {% endif %}
+	    </div>
+        {% if not peding and not approved %}
+        <p>*Note: KYC this process can take 3 business days.</p>
+        {% endif %}
 	</div>
 </div>
 

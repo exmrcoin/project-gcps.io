@@ -250,13 +250,15 @@ class KYCForm(forms.ModelForm):
 
     class Meta:
         model = KYC
-        fields = ['full_name', 'address_line_1', 'address_line_2', 'id_number', 'id_proof', 'selfie']
+        fields = ['full_name', 'address_line_1', 'address_line_2',\
+                  'id_number', 'id_proof', 'selfie', 'ssn']
 
     def __init__(self, *args, **kwargs):
         super(KYCForm, self).__init__(*args, **kwargs)
-        self.fields['full_name'].widget.attrs['class'] = 'form-control'
         self.fields['address_line_1'].widget.attrs['class'] = 'form-control'
         self.fields['address_line_2'].widget.attrs['class'] = 'form-control'
         self.fields['id_number'].widget.attrs['class'] = 'form-control'
+        self.fields['full_name'].widget.attrs['class'] = 'form-control'
         self.fields['id_proof'].widget.attrs['class'] = 'form-control'
         self.fields['selfie'].widget.attrs['class'] = 'form-control'
+        self.fields['ssn'].widget.attrs['class'] = 'form-control'

@@ -276,9 +276,18 @@ class KYC(models.Model):
     id_proof = models.ImageField(upload_to='kyc/')
     selfie = models.ImageField(upload_to='kyc/')
     approved = models.BooleanField(default=False)
+    ssn  = models.CharField(max_length=150)
 
     def __str__(self):
         return self.user.username
+
+    def save(self):
+        if self.approved == True:
+            send_mail(self.user,"KYC Approval",\
+             "Your Kyc request has been successfully approved",\
+             settings.DEFAULT_FROM_EMAIL,
+             [self.user.email])
+        return super().save()
 
 class KYCTerms(models.Model):
     """

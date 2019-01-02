@@ -350,3 +350,12 @@ class SimpleButtonItem(models.Model):
     
     def __str__(self):
         return self.item_name
+
+class MerchantPaymentWallet(models.Model):
+    address = models.CharField(max_length=200, blank=True)
+    private = models.CharField(max_length=200, blank=True)
+    merchant = models.ForeignKey(User, on_delete=models.CASCADE)
+    code = models.CharField(max_length=20, blank=True)
+
+    def __str__(self):
+        return self.merchant.username

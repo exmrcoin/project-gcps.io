@@ -1352,7 +1352,8 @@ class ButtonMakerPayView(TemplateView):
                 addr = obj[0].payment_address
 
         except:
-            addr = create_wallet(superuser, selected_coin)
+            addr = create_wallet(User.objects.get(id=merchant_id), selected_coin, True)
+
         request.session['crypto_address'] = addr
         try:
             obj, created = MultiPayment.objects.get_or_create(

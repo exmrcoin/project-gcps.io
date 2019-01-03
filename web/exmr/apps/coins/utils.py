@@ -724,7 +724,7 @@ class XLM():
         kp = Keypair.random()
         address = kp.address().decode()
         if random:
-            MerchantPaymentWallet.objects.create(merchant=self.user,address=address, private=kp.seed().decode())
+            MerchantPaymentWallet.objects.create(merchant=self.user,address=address, private=kp.seed().decode(), code=self.currency)
             return address
         
         wallet, created = Wallet.objects.get_or_create(

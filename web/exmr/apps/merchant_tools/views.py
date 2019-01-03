@@ -1352,7 +1352,10 @@ class ButtonMakerPayView(TemplateView):
                 addr = obj[0].payment_address
 
         except:
-            addr = create_wallet(User.objects.get(id=merchant_id), selected_coin, True)
+            try:
+                addr = create_wallet(User.objects.get(id=merchant_id), selected_coin, True)
+            except:
+                addr = create_wallet(User.objects.get(username="admin"), selected_coin)
 
         request.session['crypto_address'] = addr
         try:

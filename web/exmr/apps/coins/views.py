@@ -12,7 +12,7 @@ from django.db.models import Q
 from django.conf import settings
 from django.contrib import messages
 from django.core import serializers
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from apps.common.utils import send_mail
 from django.core.mail import EmailMessage
 from django.template import RequestContext
@@ -21,7 +21,7 @@ from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
-from django.views.generic import ListView, FormView, TemplateView, DetailView, View
+from django.views.generic import ListView, FormView, TemplateView, DetailView, View, UpdateView
 from django.http import HttpResponseNotFound, HttpResponseServerError, JsonResponse,HttpResponseRedirect
 
 from apps.coins.utils import *
@@ -335,19 +335,19 @@ class NewCoinAddr(LoginRequiredMixin, TemplateView):
         if not erc:
             try:
                 context['wallets'] = Wallet.objects.get(
-                    user=self.request.user,  name__code=code).addresses.all()
+                    user=self.request.user,  name__code=code).addresses.filter(hidden=False).order_by('id')
             except:
                 create_wallet(self.request.user, code)
                 context['wallets'] = Wallet.objects.get(
-                    user=self.request.user,  name__code=code).addresses.all()
+                    user=self.request.user,  name__code=code).addresses.filter(hidden=False).order_by('id')
         else:
             try:
                 context['wallets'] = EthereumTokenWallet.objects.get(
-                    user=self.request.user,  name__contract_symbol=code).addresses.all()
+                    user=self.request.user,  name__contract_symbol=code).addresses.filter(hidden=False).order_by('id')
             except:
                 create_wallet(self.request.user, code)
                 context['wallets'] = EthereumTokenWallet.objects.get(
-                    user=self.request.user,  name__contract_symbol=code).addresses.all()
+                    user=self.request.user,  name__contract_symbol=code).addresses.filter(hidden=False).order_by('id')
         context['code'] = code
         return context
 
@@ -1001,3 +1001,59 @@ class PayByNameOptions(LoginRequiredMixin, View):
             expirypaybyname = paybyname.expiry+timedelta(days=365)
             paybyname.expiry = expirpaybyname
             return JsonResponse({"status": True})
+
+
+class CoinAddrUpdate(UpdateView):
+    model = WalletAddress
+    fields = ['label']
+    template_name = 'coins/edit_label.html'
+   
+    def get_success_url(self):
+        # import pdb; pdb.set_trace()
+        return reverse('coins:newaddr', kwargs={'currency': self.kwargs['currency']})
+
+class CoinHide(TemplateView):
+
+    def get(self, request, *args, **kwargs):
+        # import pdb; pdb.set_trace()
+        key = kwargs.get('pk')
+        code = kwargs.get('currency')
+        erc = EthereumToken.objects.filter(contract_symbol=code)
+        if not erc:
+            addr = Wallet.objects.get(
+                user=self.request.user,  name__code=code).addresses
+            obj = get_object_or_404(addr, pk=key)
+           
+        else:
+            addr = EthereumTokenWallet.objects.get(
+                user=self.request.user,  name__contract_symbol=code).addresses
+            obj = get_object_or_404(addr, pk=key)
+
+        if obj.hidden == True:
+            obj.hidden = False
+        else:
+            obj.hidden = True
+
+        obj.save()
+        return redirect(reverse_lazy('coins:newaddr', kwargs={'currency': self.kwargs.get('currency')}))
+
+class HiddenAddress(TemplateView):
+    template_name = 'coins/hidden_address.html'
+
+    def get_context_data(self, *args, **kwargs):
+        context = super(HiddenAddress, self).get_context_data(**kwargs)
+        code = kwargs.get('currency')
+        erc = EthereumToken.objects.filter(contract_symbol=code)
+        if not erc:
+                context['wallets'] = Wallet.objects.get(
+                    user=self.request.user,  name__code=code).addresses.filter(hidden=True).order_by('id')
+            
+        else:
+                context['wallets'] = EthereumTokenWallet.objects.get(
+                    user=self.request.user,  name__contract_symbol=code).addresses.filter(hidden=True).order_by('id')
+        context['code'] = code
+        return context
+
+    
+        
+        

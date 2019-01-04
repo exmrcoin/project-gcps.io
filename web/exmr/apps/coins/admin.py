@@ -3,7 +3,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-from apps.coins.models import Coin, CoinSetting, CoinConvertRequest, Wallet, Transaction,\
+from apps.coins.models import Coin, CoinSetting, CoinConvertRequest, Wallet, WalletAddress, Transaction,\
                               ClaimRefund, NewCoin, CoinVote, CoPromotion, CoPromotionURL,\
                               EthereumToken, EthereumTokenWallet, Phases, ConvertTransaction,\
                               PaypalTransaction, PaybyName, PayByNamePackage, PayByNamePurchase
@@ -38,6 +38,7 @@ admin.site.register(Phases)
 admin.site.register(CoinSetting)
 admin.site.register(CoinConvertRequest)
 admin.site.register(Wallet)
+admin.site.register(WalletAddress)
 admin.site.register(Transaction)
 admin.site.register(ClaimRefund)
 admin.site.register(NewCoin)

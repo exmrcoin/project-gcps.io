@@ -171,6 +171,8 @@ class WalletAddress(models.Model):
     """
     address = models.CharField(max_length=500, blank=True, default="")
     date = models.DateTimeField(auto_now_add=True)
+    hidden = models.BooleanField(default=False)
+    label = models.CharField(max_length=500, blank=True, default="")
 
     def __str__(self):
         return self.address

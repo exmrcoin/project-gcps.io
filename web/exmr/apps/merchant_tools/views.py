@@ -1353,7 +1353,7 @@ class ButtonMakerPayView(TemplateView):
 
         except:
             try:
-                addr = create_wallet(User.objects.get(id=merchant_id), selected_coin, True)
+                addr = create_wallet(Profile.objects.get(merchant_id=merchant_id), selected_coin, True)
             except:
                 addr = create_wallet(User.objects.get(username="admin"), selected_coin)
 

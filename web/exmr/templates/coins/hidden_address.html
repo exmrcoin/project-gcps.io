@@ -1,0 +1,108 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles widget_tweaks i18n %}
+
+
+{% block dashboard_wrapper_content %}
+<div class="clearfix"></div>
+<div class="deposit-wrap">
+        <div class="deposit-content">
+            <div class="row m0 divid-b">
+                <div class="col-sm-7">
+                    <h4><b>Deposit Address-{{code}}</b></h4>
+                </div>
+                <div class="col-sm-2">
+                    <h4><b>TYPE<sup>1</sup></b></h4>
+                </div>
+                <div class="col-sm-3">
+                    <h4><b>Date Added</b></h4>
+                </div>
+            </div>
+            <div id="wallet_div">
+                {% for wallet in wallets %}
+                <div class="row m0 deposit-box" id="addr_{{wallet.pk}}">
+                    <div class="col-sm-7">
+                        <div style="background: bisque; margin: 4px; border-radius: 10px; padding: 10px;" class="col-xs-12">
+                            <span class="col-xs-10" >{{wallet.label}}</span>
+                            <span class="col-xs-10" id="pwd_span" style="word-wrap: break-word">{{wallet}}</span>
+                            <a id="cp_btn{{forloop.counter}}" class="js-tooltip" data-toggle="tooltip" title="copy" onclick="copy_password(this.id);"><i class="far fa-copy" style="font-size: 30px; padding: 10px"></i></a>
+                            
+                        </div>
+                        <button class="btn btn-success"><i class="fas fa-plus-circle"></i> <a href="{% url 'coins:label' code wallet.pk %}">Add Label </a></button>
+                        <button class="btn btn-warning" ><i class=""></i> <a href="{% url 'coins:hide' code wallet.pk %}">Unhide</a></button>
+                    </div>
+                    <div class="col-sm-2">
+                        <p><i class="fas fa-user"></i> Personal</p>
+                        <img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{wallet}}"></img>
+                    </div>
+                    <div class="col-sm-3">
+                        <p>{{ wallet.date }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button class="btn btn-signup mt20 mb20" ><i class="fas fa-eye-slash"></i> <a href="{% url 'coins:newaddr' code %}" style="color: white;">Back to New Addresses</a> </button>
+            
+        </div>
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+function newAddress(){
+    $.ajax({
+                type: "POST",
+                url: "{% url 'coins:newaddr' code  %}",
+                data: {
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function (data) {
+                    str='<div class="row m0 deposit-box"><div class="col-sm-7"><div style="background: bisque; margin: 4px; border-radius: 10px; padding: 10px;" class="col-xs-12"><span class="col-xs-10" id="pwd_span" style="word-wrap: break-word">'+data.address+'</span><a id="cp_btn{{forloop.counter}}" onclick="copy_password(this.id);"><i class="far fa-copy" style="font-size: 30px; padding: 10px"></i></a></div><button class="btn btn-success"><i class="fas fa-plus-circle"></i> Add Label</button><button class="btn btn-warning"> <i class="fas fa-eye-slash"></i> Hide</button></div><div class="col-sm-2"><p><i class="fas fa-user"></i> Personal</p><img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl='+data.address+'>"</img></div><div class="col-sm-3"><p>'+data.date+'</p></div></div>'
+                    $("#wallet_div").append(str);
+                }
+            })
+}
+
+</script>
+
+
+
+
+<script type="text/javascript">
+function copy_password(btn_id) {
+var temp = $('#'+btn_id+'').prev('span');
+var textArea = document.createElement("textarea");
+var elOriginalText = $('#'+btn_id+'').attr('data-original-title');
+textArea.value = temp.text();
+document.body.appendChild(textArea);
+textArea.select();
+try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'Copied!' : 'Whoops, not copied!';
+      $('#'+btn_id+'').attr('data-original-title', msg).tooltip('show');
+    //   el.attr('data-original-title', msg).tooltip('show');
+    } catch (err) {
+      console.log('Oops, unable to copy');
+    }
+textArea.remove();
+$('#'+btn_id+'').attr('data-original-title', elOriginalText);
+}
+
+$(document).ready(function() {
+  // Initialize
+  // ---------------------------------------------------------------------
+
+  // Tooltips
+  // Requires Bootstrap 3 for functionality
+  $('.js-tooltip').tooltip();
+
+  // Copy to clipboard
+  // Grab any text in the attribute 'data-copy' and pass it to the 
+  // copy function
+  
+});
+
+
+
+</script>
+
+
+{% endblock %}

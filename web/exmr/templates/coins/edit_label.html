@@ -1,0 +1,31 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles widget_tweaks i18n %}
+
+
+{% block dashboard_wrapper_content %}
+<div class="clearfix"></div>
+<div class="deposit-wrap">
+        <div class="deposit-content">
+            <div class="row m0 divid-b">
+                <div class="col-sm-7">
+                    <h4><b>Edit Address Label</b></h4>
+                </div>
+                
+            </div>
+            <div id="wallet_div">
+                
+                <div class="row m0 deposit-box">
+                    
+                    <form method="post"  enctype="multipart/form-data">{% csrf_token %}
+                        {% include 'exmr_form.html' %}
+                        <input class="btn btn-warning" style="margin: 10px 0px 24px 560px;" type="submit" value="Save">
+                    </form>
+                  
+                </div>
+                
+            </div>
+            
+            
+        </div>
+</div>
+{% endblock %}

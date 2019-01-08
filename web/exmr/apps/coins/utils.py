@@ -76,13 +76,13 @@ def create_wallet(user, currency, random=None):
     """
     erc = EthereumToken.objects.filter(contract_symbol=currency)
     if erc:
-        return EthereumTokens(user=user, code=currency).generate()
+        return EthereumTokens(user=user, code=currency).generate(random)
     if currency in ['XRPTest']:
         return XRPTest(user).generate(random)
     elif currency in ['ETH']:
         return ETH(user, currency).generate(random)
     if currency in ['XRP']:
-        return XRP(user).generate()
+        return XRP(user).generate(random)
     elif currency in ['XMR']:
         return XMR(user, currency).generate(random)
     elif currency in ['DASH']:
@@ -219,6 +219,11 @@ class XRPTest():
         priv_address = addresses["account"]["secret"]
         wallet, created = Wallet.objects.get_or_create(
             user=self.user, name=coin)
+
+        if random:
+            MerchantPaymentWallet.objects.create(merchant=self.user,address=pub_address, private=priv_address, code="XRPTest")
+            return pub_address
+
         if created:
             wallet.addresses.add(
                 WalletAddress.objects.create(address=pub_address))
@@ -258,6 +263,9 @@ class ETH():
             wallet.addresses.add(WalletAddress.objects.create(address=address))
         else:
             address = wallet.addresses.all()[0].address
+        if random:
+            MerchantPaymentWallet.objects.create(merchant=self.user, address=address, code="ETH")
+            return address
         return address
 
     def balance(self):
@@ -303,75 +311,6 @@ class ETH():
             balance = 0
         return float(balance)
 
-class XMR():
-    def __init__(self, user, currency):
-        self.user = user
-
-    def create_XMR_connection(self, method, params):
-        url = "http://47.254.34.85:18083/json_rpc"
-        headers = {'content-type': 'application/json'}
-        data = {"jsonrpc": "2.0", "id": "0",
-                "method": method, "params": params}
-        response = requests.post(url, json=data, headers={
-            'content-type': 'application/json'})
-        return response.json()
-
-    def generate(self, random=None):
-        coin = Coin.objects.get(code='XMR')
-        wallet, created = Wallet.objects.get_or_create(
-            user=self.user, name=coin)
-        paymentid = (binascii.b2a_hex(os.urandom(8))).decode()
-        moneropaymentid = MoneroPaymentid.objects.create(
-            user=self.user, paymentid=paymentid)
-        param = {
-            "payment_id": paymentid
-        }
-        result = self.create_XMR_connection("make_integrated_address", param)
-        address = result["result"]['integrated_address']
-        wallet.addresses.add(WalletAddress.objects.create(address=address))
-        return address
-
-    def balance(self):
-        coin = Coin.objects.get(code='XMR')
-        wallet = Wallet.objects.get(user=self.user, name=coin)
-        if wallet:
-            temp_list = MoneroPaymentid.objects.filter(user=self.user)
-            balance = 0
-            for pids in temp_list:
-                param = {
-                    "payment_id": pids.paymentid
-                }
-                try:
-                    temp_balance = self.create_xmr_connection("get_payments", param)[
-                        "result"]['payments'][0]['amount']
-                except:
-                    temp_balance = 0
-                balance = balance + temp_balance
-        else:
-            balance = 0
-        return balance
-
-    def send(self, destination, amount):
-        destination = check_pay_by_name(destination, "XMR")
-        coin = Coin.objects.get(code='XMR')
-        wallet = Wallet.objects.get(user=self.user, name=coin)
-        param = {
-            "destinations": [
-                {
-                    "amount": amount,
-                    "address": destination
-                }
-            ],
-            "mixin": 4,
-            "get_tx_key": True
-        }
-        result = self.create_XMR_connection("transfer", param)
-        try:
-            return result['result']['tx_hash']
-        except:
-            print(result)
-            return 'error'
-
 
 def create_DASH_wallet(user, currency):
     coin = Coin.objects.get(code=currency)
@@ -414,6 +353,11 @@ class EthereumTokens():
                     WalletAddress.objects.create(address=address))
         else:
             address = wallet.addresses.all()[0].address
+        
+        if random:
+            MerchantPaymentWallet.objects.create(merchant=self.user, address=address, code=self.code)
+            return address
+
         return address
 
     def balance(self):
@@ -492,6 +436,9 @@ class BTC:
             wallet.addresses.add(WalletAddress.objects.create(address=addr))
         except:
             addr = ''
+        if random:
+            MerchantPaymentWallet.objects.create(merchant=self.user, address=addr, code=self.currency)
+            return addr                     
         return addr
 
     def get_transactions(self):
@@ -541,8 +488,6 @@ class XMR():
 
     def generate(self, random=None):
         coin = Coin.objects.get(code='XMR')
-        wallet, created = Wallet.objects.get_or_create(
-            user=self.user, name=coin)
         paymentid = (binascii.b2a_hex(os.urandom(8))).decode()
         moneropaymentid = MoneroPaymentid.objects.create(
             user=self.user, paymentid=paymentid)
@@ -551,6 +496,12 @@ class XMR():
         }
         result = self.create_XMR_connection("make_integrated_address", param)
         address = result["result"]['integrated_address']
+        if random:
+            MerchantPaymentWallet.objects.create(merchant=self.user, address=address, code="XMR")
+            return address
+
+        wallet, created = Wallet.objects.get_or_create(
+            user=self.user, name=coin)
         wallet.addresses.add(WalletAddress.objects.create(address=address))
         return address
 
@@ -664,6 +615,11 @@ class XRP():
         addresses = address_data.decode("utf-8") .replace("\n", "")
         pub_address = addresses.split("{ address: '")[1].split("'")[0]
         priv_address = addresses.split("secret: '")[-1].replace("' }", "")
+
+        if random:
+            MerchantPaymentWallet.objects.create(merchant=self.user,address=pub_address, private=priv_address, code="XRP")
+            return pub_address
+
         wallet, created = Wallet.objects.get_or_create(
             user=self.user, name=coin)
         if created:

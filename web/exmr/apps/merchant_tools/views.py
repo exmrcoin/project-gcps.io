@@ -1352,10 +1352,9 @@ class ButtonMakerPayView(TemplateView):
                 addr = obj[0].payment_address
 
         except:
-            try:
-                addr = create_wallet(Profile.objects.get(merchant_id=merchant_id), selected_coin, True)
-            except:
-                addr = create_wallet(User.objects.get(username="admin"), selected_coin)
+            
+                addr = create_wallet(Profile.objects.get(merchant_id=merchant_id).user, selected_coin, True)
+            
 
         request.session['crypto_address'] = addr
         try:
@@ -1374,12 +1373,12 @@ class ButtonMakerPayView(TemplateView):
         except:
             obj, created = MultiPayment.objects.get_or_create(
                 merchant_id = merchant_id,
-                paid_amount=request.session['payable_amt'],
+                paid_amount=payable_amt,
                 paid_in_erc=EthereumToken.objects.get(contract_symbol=selected_coin),
-                eq_usd=request.session['payable_amt_usd'],
-                paid_unique_id=request.session['unique_id'],
+                eq_usd=payable_amt,
+                paid_unique_id=unique_id,
                 # paid_time=datetime.datetime.now(),
-                attempted_usd = request.session['payable_amt_usd'],
+                attempted_usd = payable_amt,
                 transaction_id=account_activation_token.make_token(
                     user=self.request.user),
                 payment_address=addr

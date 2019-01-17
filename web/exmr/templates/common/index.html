@@ -12,7 +12,7 @@
 <meta property="og:image" content={{ request.scheme }}://{{ request.get_host }}{% static 'images/logo.png' %} />
 <meta property="og:description" content="GETCRYPTOPAYMENTS" /> {% endblock %}
 
-<canvas id="loadercanvas"></canvas>
+<!-- <canvas id="loadercanvas"></canvas> -->
 <section>
     <div class="banner-log">
         <div class="container">
@@ -389,11 +389,11 @@
 
 
 {% endblock %} {% block script %}
-<script>
+<!-- <script>
         $(window).on("load",function(){
             $('#onload').modal('show');
     })
-</script>
+</script> -->
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> -->
 
 <script src="{% static 'js/jquery.tagcanvas.min.js' %}"></script>
@@ -521,189 +521,190 @@ window.onload = function () {
             // something went wrong, hide the canvas container
             document.getElementById('myCanvasContainer').style.display = 'none';
         }
+}
 
-    var loadercanvas = document.getElementById('loadercanvas'),
-        context = loadercanvas.getContext('2d'),
-        w = loadercanvas.width = window.innerWidth,
-        h = loadercanvas.height = window.innerHeight;
+//     var loadercanvas = document.getElementById('loadercanvas'),
+//         context = loadercanvas.getContext('2d'),
+//         w = loadercanvas.width = window.innerWidth,
+//         h = loadercanvas.height = window.innerHeight;
 
-    context.fillStyle = 'rgba(5,10,25,0)';
-    context.fillRect(0, 0, w, h);
+//     context.fillStyle = 'rgba(5,10,25,0)';
+//     context.fillRect(0, 0, w, h);
 
 
-    var x = (window.screen.width * 0.25),
-        y = (window.screen.height * 0.25);
+//     var x = (window.screen.width * 0.25),
+//         y = (window.screen.height * 0.25);
 
-    var particles = [],
-        colors = [],
-        numParticles = 500;
-    for (var i = 0; i < numParticles; i++) {
-        particles.push(Particle.create(0, 0, Math.random() * 10, Math.random() * 2 * Math.PI, 0.1));
+//     var particles = [],
+//         colors = [],
+//         numParticles = 500;
+//     for (var i = 0; i < numParticles; i++) {
+//         particles.push(Particle.create(0, 0, Math.random() * 10, Math.random() * 2 * Math.PI, 0.1));
 
-        var r = Math.round(Math.random() * 256),
-            g = Math.round(Math.random() * 256),
-            b = Math.round(Math.random() * 256);
+//         var r = Math.round(Math.random() * 256),
+//             g = Math.round(Math.random() * 256),
+//             b = Math.round(Math.random() * 256);
 
-        colors[i] = 'rgba(' + r + ',' + g + ',' + b + ',1)';
-    }
+//         colors[i] = 'rgba(' + r + ',' + g + ',' + b + ',1)';
+//     }
 
-    update();
-    context.fillStyle = 'rgba(5,10,25,0)';
-    context.fillRect(0, 0, w, h);
-    var r = 1;
+//     update();
+//     context.fillStyle = 'rgba(5,10,25,0)';
+//     context.fillRect(0, 0, w, h);
+//     var r = 1;
 
-    function update() {
-        context.clearRect(0, 0, w, h);
-        context.save();
-        context.fillStyle = 'rgba(5,10,25,0)';
-        context.fillRect(0, 0, w, h);
+//     function update() {
+//         context.clearRect(0, 0, w, h);
+//         context.save();
+//         context.fillStyle = 'rgba(5,10,25,0)';
+//         context.fillRect(0, 0, w, h);
 
-        context.translate(x, y);
-        for (var i = 0; i < particles.length; i++) {
+//         context.translate(x, y);
+//         for (var i = 0; i < particles.length; i++) {
 
-            context.fillStyle = colors[i];
-            context.beginPath();
-            context.arc(particles[i].position.getX(), particles[i].position.getY(), Math.round(r), 0, Math.PI * 2);
-            context.fill();
+//             context.fillStyle = colors[i];
+//             context.beginPath();
+//             context.arc(particles[i].position.getX(), particles[i].position.getY(), Math.round(r), 0, Math.PI * 2);
+//             context.fill();
 
-            particles[i].update();
-        }
+//             particles[i].update();
+//         }
 
-        context.restore();
+//         context.restore();
 
-        removeExtra();
-        window.requestAnimationFrame(update);
-    }
+//         removeExtra();
+//         window.requestAnimationFrame(update);
+//     }
 
-    function removeExtra() {
-        for (var i = 0; i < particles.length; i++) {
-            if (particles[i].position.x - 50 > w || particles[i].position.x + 50 < -w / 2 || particles[i].position.y - 50 > h || particles[i].position.y + 50 < -h / 2) {
-                particles.splice(i, 1);
-                colors.splice(i, 1);
-            }
-        }
-    }
+//     function removeExtra() {
+//         for (var i = 0; i < particles.length; i++) {
+//             if (particles[i].position.x - 50 > w || particles[i].position.x + 50 < -w / 2 || particles[i].position.y - 50 > h || particles[i].position.y + 50 < -h / 2) {
+//                 particles.splice(i, 1);
+//                 colors.splice(i, 1);
+//             }
+//         }
+//     }
 
-    ////////////////////////////////////////
-    setTimeout(function () {
-        var x = (window.screen.width * 0.75),
-            y = (window.screen.height * 0.25);
+//     ////////////////////////////////////////
+//     setTimeout(function () {
+//         var x = (window.screen.width * 0.75),
+//             y = (window.screen.height * 0.25);
 
-        var particles = [],
-            colors = [],
-            numParticles = 500;
-        for (var i = 0; i < numParticles; i++) {
-            particles.push(Particle.create(0, 0, Math.random() * 10, Math.random() * 2 * Math.PI, 0.1));
+//         var particles = [],
+//             colors = [],
+//             numParticles = 500;
+//         for (var i = 0; i < numParticles; i++) {
+//             particles.push(Particle.create(0, 0, Math.random() * 10, Math.random() * 2 * Math.PI, 0.1));
 
-            var r = Math.round(Math.random() * 256),
-                g = Math.round(Math.random() * 256),
-                b = Math.round(Math.random() * 256);
+//             var r = Math.round(Math.random() * 256),
+//                 g = Math.round(Math.random() * 256),
+//                 b = Math.round(Math.random() * 256);
 
-            colors[i] = 'rgba(' + r + ',' + g + ',' + b + ',1)';
-        }
+//             colors[i] = 'rgba(' + r + ',' + g + ',' + b + ',1)';
+//         }
 
-        update();
-        context.fillStyle = 'rgba(5,10,25,0)';
-        context.fillRect(0, 0, w, h);
-        var r = 1;
+//         update();
+//         context.fillStyle = 'rgba(5,10,25,0)';
+//         context.fillRect(0, 0, w, h);
+//         var r = 1;
 
-        function update() {
-            context.clearRect(0, 0, w, h);
-            context.save();
-            context.fillStyle = 'rgba(5,10,25,0)';
-            context.fillRect(0, 0, w, h);
+//         function update() {
+//             context.clearRect(0, 0, w, h);
+//             context.save();
+//             context.fillStyle = 'rgba(5,10,25,0)';
+//             context.fillRect(0, 0, w, h);
 
-            context.translate(x, y);
-            for (var i = 0; i < particles.length; i++) {
+//             context.translate(x, y);
+//             for (var i = 0; i < particles.length; i++) {
 
-                context.fillStyle = colors[i];
-                context.beginPath();
-                context.arc(particles[i].position.getX(), particles[i].position.getY(), Math.round(r), 0, Math.PI * 2);
-                context.fill();
+//                 context.fillStyle = colors[i];
+//                 context.beginPath();
+//                 context.arc(particles[i].position.getX(), particles[i].position.getY(), Math.round(r), 0, Math.PI * 2);
+//                 context.fill();
 
-                particles[i].update();
-            }
+//                 particles[i].update();
+//             }
 
-            context.restore();
+//             context.restore();
 
-            removeExtra();
-            window.requestAnimationFrame(update);
-        }
+//             removeExtra();
+//             window.requestAnimationFrame(update);
+//         }
 
-        function removeExtra() {
-            for (var i = 0; i < particles.length; i++) {
-                if (particles[i].position.x - 50 > w || particles[i].position.x + 50 < -w / 2 || particles[i].position.y - 50 > h || particles[i].position.y + 50 < -h / 2) {
-                    particles.splice(i, 1);
-                    colors.splice(i, 1);
-                }
-            }
-        }
-    }, 1000);
+//         function removeExtra() {
+//             for (var i = 0; i < particles.length; i++) {
+//                 if (particles[i].position.x - 50 > w || particles[i].position.x + 50 < -w / 2 || particles[i].position.y - 50 > h || particles[i].position.y + 50 < -h / 2) {
+//                     particles.splice(i, 1);
+//                     colors.splice(i, 1);
+//                 }
+//             }
+//         }
+//     }, 1000);
 
-    /////////////////////////////////
-    setTimeout(function () {
-        var x = (window.screen.width * 0.55),
-            y = (window.screen.height * 0.35);
+//     /////////////////////////////////
+//     setTimeout(function () {
+//         var x = (window.screen.width * 0.55),
+//             y = (window.screen.height * 0.35);
 
-        var particles = [],
-            colors = [],
-            numParticles = 500;
-        for (var i = 0; i < numParticles; i++) {
-            particles.push(Particle.create(0, 0, Math.random() * 10, Math.random() * 2 * Math.PI, 0.1));
+//         var particles = [],
+//             colors = [],
+//             numParticles = 500;
+//         for (var i = 0; i < numParticles; i++) {
+//             particles.push(Particle.create(0, 0, Math.random() * 10, Math.random() * 2 * Math.PI, 0.1));
 
-            var r = Math.round(Math.random() * 256),
-                g = Math.round(Math.random() * 256),
-                b = Math.round(Math.random() * 256);
+//             var r = Math.round(Math.random() * 256),
+//                 g = Math.round(Math.random() * 256),
+//                 b = Math.round(Math.random() * 256);
 
-            colors[i] = 'rgba(' + r + ',' + g + ',' + b + ',1)';
-        }
+//             colors[i] = 'rgba(' + r + ',' + g + ',' + b + ',1)';
+//         }
 
-        update();
-        context.fillStyle = 'rgba(5,10,25,0)';
-        context.fillRect(0, 0, w, h);
-        var r = 1;
+//         update();
+//         context.fillStyle = 'rgba(5,10,25,0)';
+//         context.fillRect(0, 0, w, h);
+//         var r = 1;
 
-        function update() {
-            context.clearRect(0, 0, w, h);
-            context.save();
-            context.fillStyle = 'rgba(5,10,25,0)';
-            context.fillRect(0, 0, w, h);
+//         function update() {
+//             context.clearRect(0, 0, w, h);
+//             context.save();
+//             context.fillStyle = 'rgba(5,10,25,0)';
+//             context.fillRect(0, 0, w, h);
 
-            context.translate(x, y);
-            for (var i = 0; i < particles.length; i++) {
+//             context.translate(x, y);
+//             for (var i = 0; i < particles.length; i++) {
 
-                context.fillStyle = colors[i];
-                context.beginPath();
-                context.arc(particles[i].position.getX(), particles[i].position.getY(), Math.round(r), 0, Math.PI * 2);
-                context.fill();
+//                 context.fillStyle = colors[i];
+//                 context.beginPath();
+//                 context.arc(particles[i].position.getX(), particles[i].position.getY(), Math.round(r), 0, Math.PI * 2);
+//                 context.fill();
 
-                particles[i].update();
-            }
+//                 particles[i].update();
+//             }
 
-            context.restore();
+//             context.restore();
 
-            removeExtra();
-            window.requestAnimationFrame(update);
-        }
+//             removeExtra();
+//             window.requestAnimationFrame(update);
+//         }
 
-        function removeExtra() {
-            for (var i = 0; i < particles.length; i++) {
-                if (particles[i].position.x - 50 > w || particles[i].position.x + 50 < -w / 2 || particles[i].position.y - 50 > h || particles[i].position.y + 50 < -h / 2) {
-                    particles.splice(i, 1);
-                    colors.splice(i, 1);
-                }
-            }
-        }
+//         function removeExtra() {
+//             for (var i = 0; i < particles.length; i++) {
+//                 if (particles[i].position.x - 50 > w || particles[i].position.x + 50 < -w / 2 || particles[i].position.y - 50 > h || particles[i].position.y + 50 < -h / 2) {
+//                     particles.splice(i, 1);
+//                     colors.splice(i, 1);
+//                 }
+//             }
+//         }
 
-    }, 2000);
+//     }, 2000);
 
-    /////////////////////////////////
-    setTimeout(function () {
-        removeElement('loadercanvas');
-    }, 3000);
-    ///////////////
+//     /////////////////////////////////
+//     setTimeout(function () {
+//         removeElement('loadercanvas');
+//     }, 3000);
+//     ///////////////
     
-} //windows onload
+// } //windows onload
 
 
 </script>

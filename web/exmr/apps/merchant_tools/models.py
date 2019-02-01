@@ -311,6 +311,7 @@ class SimpleButtonInvoice(models.Model):
     zipcode = models.CharField(max_length=128, null=True)
     phone = models.CharField(max_length=128, null=True)
     URL_link = models.CharField(max_length=256, null=True)
+    payment_status = models.CharField(max_length=256, default="PENDING")
 
     def __str__(self):
         return self.item_name + "_"+ self.unique_id
@@ -356,6 +357,12 @@ class MerchantPaymentWallet(models.Model):
     private = models.CharField(max_length=200, blank=True)
     merchant = models.ForeignKey(User, on_delete=models.CASCADE)
     code = models.CharField(max_length=20, blank=True)
+    initiated_at = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+    timed_out = models.BooleanField(default=False)
+    amount = models.DecimalField(max_digits=20, decimal_places=2, null=False, default= 0)
+    unique_id = models.CharField(max_length=128, null=False)
+    market_rate = models.CharField(max_length=128, default="0")
 
     def __str__(self):
         return self.merchant.username

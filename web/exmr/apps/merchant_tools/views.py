@@ -758,7 +758,7 @@ class CryptoPaymmentV2(FormView):
         context['tax_amount'] = tax_amount
         context['tax'] = float(item_obj.item_tax)
         item_qty = self.request.POST['item_qty']
-        if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+        if ((float(shipping_cost_add)) > 0 and float(item_qty)>1) :
             total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
         else:
             total_shipping = float(shipping_cost)
@@ -785,7 +785,6 @@ class CryptoPaymmentSimple(FormView):
     
     @csrf_exempt
     def post(self, request, *args, **kwargs):
-        
         mydate = timezone.now()
         context = super(CryptoPaymmentSimple, self).get_context_data()
         
@@ -863,7 +862,7 @@ class ButtonMakerInvoice(TemplateView):
             shipping_cost = temp_obj.shipping_cost
             item_amount = temp_obj.item_amount
             item_qty = temp_obj.item_qty
-            if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+            if ((float(shipping_cost_add)) > 0 and float(item_qty)>1) :
                 total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
             else:
                 total_shipping = float(shipping_cost)
@@ -906,7 +905,6 @@ class ButtonMakerInvoice(TemplateView):
 
 
     def post(self, request, *args, **kwargs):
-        
         context = super().get_context_data()
         mydate = timezone.now()
         token = account_activation_token.make_token(
@@ -925,7 +923,7 @@ class ButtonMakerInvoice(TemplateView):
             shipping_cost = btn_item_obj.shipping_cost
             tax_amount = float(btn_item_obj.item_tax)* float(item_qty)
             print(btn_item_obj.item_tax)
-            if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+            if ((float(shipping_cost_add)) > 0 and float(item_qty)>1) :
                 total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
             else:
                 total_shipping = float(shipping_cost)
@@ -969,7 +967,7 @@ class ButtonMakerInvoice(TemplateView):
                 pass
         temp_id = temp_obj.merchant_id
         unique_id = temp_obj.unique_id
-        if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+        if ((float(shipping_cost_add)) > 0 and float(item_qty)>1) :
             total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
         else:
             total_shipping = float(shipping_cost)
@@ -1035,7 +1033,7 @@ class DonationButtonMakerInvoice(TemplateView):
             shipping_cost = temp_obj.shipping_cost
             item_amount = temp_obj.item_amount
             item_qty = temp_obj.item_qty
-            if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+            if ((float(shipping_cost_add)) > 0 and float(item_qty)>1) :
                 total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
             else:
                 total_shipping = float(shipping_cost)
@@ -1127,7 +1125,7 @@ class DonationButtonMakerInvoice(TemplateView):
         shipping_cost = temp_obj.shipping_cost
         item_amount = temp_obj.item_amount
         item_qty = temp_obj.item_qty
-        if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+        if ((float(shipping_cost_add)) > 0 and float(item_qty)>1) :
             total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
         else:
             total_shipping = float(shipping_cost)
@@ -1138,11 +1136,13 @@ class DonationButtonMakerInvoice(TemplateView):
         context['item_total'] = round((float(item_qty) * float(item_amount)),2)
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
         context['available_coins'] = coinlist.payment_gateway_coins()
+        temp_obj.item_amount = context['payable']
+        temp_obj.save()
         #attempt payment
         check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
-        total_paid = 0;
+        total_paid = 0
         if check_prepaid:
-            total_paid = 0;
+            total_paid = 0
             for prepaid in check_prepaid:
                 total_paid = float(prepaid.recieved_usd)
         try:
@@ -1191,7 +1191,7 @@ class SimpleButtonMakerInvoice(TemplateView):
             shipping_cost = temp_obj.shipping_cost
             item_amount = temp_obj.item_amount
             item_qty = temp_obj.item_qty
-            if ((float(shipping_cost_add)) > 0 and float(item_qty)>=1) :
+            if ((float(shipping_cost_add)) > 0 and float(item_qty)>1) :
                 total_shipping = float(shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
             else:
                 total_shipping = float(shipping_cost)
@@ -1230,7 +1230,6 @@ class SimpleButtonMakerInvoice(TemplateView):
 
 
     def post(self, request, *args, **kwargs):
-        
         context = super().get_context_data()
         mydate = timezone.now()
         token = account_activation_token.make_token(
@@ -1283,7 +1282,7 @@ class SimpleButtonMakerInvoice(TemplateView):
         shipping_cost = temp_obj.shipping_cost
         item_amount = temp_obj.item_amount
         item_qty = temp_obj.item_qty
-        if (float(item_qty)>=1):
+        if (float(item_qty)>1):
             total_shipping = float(shipping_cost) * (float(item_qty)-1)
         else:
             total_shipping = float(shipping_cost)
@@ -1294,6 +1293,8 @@ class SimpleButtonMakerInvoice(TemplateView):
         context['item_total'] = round((float(item_qty) * float(item_amount)),2)
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
         context['available_coins'] = coinlist.payment_gateway_coins()
+        temp_obj.item_amount = context['payable']
+        temp_obj.save()
         #attempt payment
         check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
         total_paid = 0;
@@ -1348,12 +1349,12 @@ class ButtonMakerPayView(TemplateView):
                 addr = obj[0].payment_address
             except:
                 obj = MultiPayment.objects.filter(paid_unique_id=unique_id, paid_in_erc=EthereumToken.objects.get(
-                    contract_symbol=selected_coin))
+                    contract_symbol=selected_coin)) 
                 addr = obj[0].payment_address
 
         except:
             
-                addr = create_wallet(Profile.objects.get(merchant_id=merchant_id).user, selected_coin, True)
+                addr = create_wallet(Profile.objects.get(merchant_id=merchant_id).user, selected_coin, unique_id, True)
             
 
         request.session['crypto_address'] = addr

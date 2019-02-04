@@ -1136,8 +1136,8 @@ class DonationButtonMakerInvoice(TemplateView):
         context['item_total'] = round((float(item_qty) * float(item_amount)),2)
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
         context['available_coins'] = coinlist.payment_gateway_coins()
-        temp_obj.item_amount = context['payable']
-        temp_obj.save()
+        # temp_obj.item_amount = context['payable']
+        # temp_obj.save()
         #attempt payment
         check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
         total_paid = 0
@@ -1146,9 +1146,9 @@ class DonationButtonMakerInvoice(TemplateView):
             for prepaid in check_prepaid:
                 total_paid = float(prepaid.recieved_usd)
         try:
-            context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
+            context['amt_remaining'] = context['payable'] - float(total_paid)                                     
         except:
-            context['amt_remaining'] = float(temp_obj.item_amount)
+            context['amt_remaining'] = context['payable']
         attempted = 0
         try:
             for prepaid in check_prepaid:
@@ -1293,8 +1293,8 @@ class SimpleButtonMakerInvoice(TemplateView):
         context['item_total'] = round((float(item_qty) * float(item_amount)),2)
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_id)
         context['available_coins'] = coinlist.payment_gateway_coins()
-        temp_obj.item_amount = context['payable']
-        temp_obj.save()
+        # temp_obj.item_amount = context['payable']
+        # temp_obj.save()
         #attempt payment
         check_prepaid = MultiPayment.objects.filter(paid_unique_id=unique_id)
         total_paid = 0;
@@ -1303,9 +1303,9 @@ class SimpleButtonMakerInvoice(TemplateView):
             for prepaid in check_prepaid:
                 total_paid = float(prepaid.recieved_usd)
         try:
-            context['amt_remaining'] = float(temp_obj.item_amount) - float(total_paid)                                     
+            context['amt_remaining'] = context['payable'] - float(total_paid)                                     
         except:
-            context['amt_remaining'] = float(temp_obj.item_amount)
+            context['amt_remaining'] = context['payable']
         attempted = 0
         try:
             for prepaid in check_prepaid:

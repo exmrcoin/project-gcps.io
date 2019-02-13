@@ -7,6 +7,7 @@ from celery.utils.log import get_task_logger, logger
 from django.core.mail import send_mail
 from django.conf import settings
 from apps.merchant_tools.models import MerchantPaymentWallet, SimpleButtonInvoice
+from apps.accounts.models import Profile
 from django.utils import timezone
 from datetime import timedelta, datetime
 from apps.coins import utils
@@ -77,7 +78,8 @@ def check_multipayment():
     for item in context:
         queryset = MerchantPaymentWallet.objects.filter(unique_id=item)
         invoice = SimpleButtonInvoice.objects.get(unique_id=item)
-        merchant_email = queryset[0].merchant.email
+        # send_mail('subject' + str(queryset) + '   '+ str(invoice) +str(list), '', settings.EMAIL_HOST_USER, ['ebrahimasifismail@gmail.com'], fail_silently=False)
+        merchant_email = Profile.objects.get(merchant_id=invoice.merchant_id).public_email
         details = {
             'merchant_details': queryset,
             'customer_detail': invoice
@@ -92,7 +94,7 @@ def check_multipayment():
             if invoice.item_amount <= total:
                 invoice.payment_status = 'SUCCESS'
                 invoice.save()
-                send_mail('MultiPayment Recieved. Invoice Id: ' + str(invoice.unique_id), rendered, settings.EMAIL_HOST_USER, [merchant_email], fail_silently=False)         
+                send_mail('MultiPayment Recieved. Invoice Id: ' + str(invoice.unique_id) , rendered, settings.EMAIL_HOST_USER, [merchant_email], fail_silently=False)         
 
     
 

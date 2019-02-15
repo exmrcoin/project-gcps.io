@@ -398,9 +398,10 @@
                 },
                 success: function (data) {
                     $("#bal_" + data['code']).text(data['balance'])
-                    $("#val_" + data['code']).text(data['value'])
-                    $(".val_" + data['code']).text(data['value'])
+                    $("#val_" + data['code']).text(parseFloat(data['value']).toFixed(2))
+                    $(".val_" + data['code']).text(parseFloat(data['value']).toFixed(2))
                     $("#loading-image_" + data['code']).hide();
+                    // alert(data['value']);
                     // $(column).text(data);
 
                 }
@@ -419,7 +420,7 @@ $("#dispcoin").change(function(){
                     jQuery('.rateVal').each(function(i,E){
                         id = E.id
                         console.log($("."+id))
-                        $(E).text($("."+id).text()*data["value"])
+                        $(E).text(parseFloat($("."+id).text()*data["value"]).toFixed(2))
                     })
                 }
             })

@@ -3,7 +3,8 @@ from django.views.generic import TemplateView
 
 from apps.merchant_tools.views import (ButtonMakerView, CryptoPaymment, PaymentFormSubmitView, MercDocs,
                                        URLMakerView, URLMakerInvoiceView, POSQRMakerView, POSQRPayView, POSQRCompletePaymentView,ButtonMakerPayView,
-                                       HelpTemplateView, DonationButtonMakerView, SimpleButtonMakerView, ButtonMakerContinuePayment, ButtonMakerInvoice, CryptoPaymmentV2, DonationButtonMakerInvoice, CryptoPaymmentSimple, SimpleButtonMakerInvoice)
+                                       HelpTemplateView, DonationButtonMakerView, SimpleButtonMakerView, ButtonMakerContinuePayment, ButtonMakerInvoice,
+                                       CryptoPaymmentV2, DonationButtonMakerInvoice, CryptoPaymmentSimple, SimpleButtonMakerInvoice, MTest)
 app_name = 'mtools'
 
 urlpatterns = [
@@ -29,4 +30,5 @@ urlpatterns = [
     path('simple-invoice-generate/<token>/', SimpleButtonMakerInvoice.as_view(),  name='simplebtnpay2'),
     path('donation-button-invoice-generate/<token>/', DonationButtonMakerInvoice.as_view(),  name='donorbtnpay2'),
     path('button-invoice-payment/', ButtonMakerPayView.as_view(),  name='btnqrcode'),
+    path('mtest/', MTest.as_view(),  name='mtest'),
 ]

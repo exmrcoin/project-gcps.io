@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<!--
+  Flaticon icon font: Flaticon
+  Creation date: 22/06/2016 15:04
+-->
+<html>
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Flaticon WebFont</title>
+    <link href="http://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="flaticon.css">
+    <meta charset="UTF-8">
+    <style>
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed, 
+    figure, figcaption, footer, header, hgroup, 
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
+    /* HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure, 
+    footer, header, hgroup, menu, nav, section {
+        display: block;
+    }
+    body {
+        line-height: 1;
+    }
+    ol, ul {
+        list-style: none;
+    }
+    blockquote, q {
+        quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+        content: '';
+        content: none;
+    }
+    table {
+        border-collapse: collapse;
+        border-spacing: 0;
+    }
+    body {
+        font-family: 'Varela Round', Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        color: #222;
+    }
+    a {
+        color: #333;
+        border-bottom: 1px solid #a9fd00;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    * {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+    [class^="flaticon-"]:before, [class*=" flaticon-"]:before, [class^="flaticon-"]:after, [class*=" flaticon-"]:after {
+        font-family: Flaticon;
+        font-size: 30px;
+        font-style: normal;
+        margin-left: 20px;
+        color: #333;
+    }
+    .wrapper {
+        max-width: 600px;
+        margin: auto;
+        padding: 0 1em;
+    }
+    .title {
+        font-size: 1.25em;
+        text-align: center;
+        margin-bottom: 1em;
+        text-transform: uppercase;
+    }
+    header {
+        text-align: center;
+        background-color: #222;
+        color: #fff;
+        padding: 1em;
+    }
+    header .logo {
+        width: 210px;
+        height: 38px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 1em;
+        border: none;
+    }
+    header strong {
+        font-size: 1.95em;
+        font-weight: bold;
+        vertical-align: middle;
+        margin-top: 5px;
+        display: inline-block;
+    }
+    .demo {
+        margin: 2em auto;
+        line-height: 1.25em;
+    }
+    .demo ul li {
+        margin-bottom: 1em;
+    }
+    .demo ul li .num {
+        color: #222;
+        border-radius: 20px;
+        display: inline-block;
+        width: 26px;
+        padding: 3px;
+        height: 26px;
+        text-align: center;
+        margin-right: 0.5em;
+        border: 1px solid #222;
+    }
+    .demo ul li code {
+        background-color: #222;
+        border-radius: 4px;
+        padding: 0.25em 0.5em;
+        display: inline-block;
+        color: #fff;
+        font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+        font-weight: lighter;
+        margin-top: 1em;
+        font-size: 0.8em;
+        word-break: break-all;
+    }
+    .demo ul li code.big {
+        padding: 1em;
+        font-size: 0.9em;
+    }
+    .demo ul li code .red {
+        color: #EF3159;
+    }
+    .demo ul li code .green {
+        color: #ACFF65;
+    }
+    .demo ul li code .yellow {
+        color: #FFFF99;
+    }
+    .demo ul li code .blue {
+        color: #99D3FF;
+    }
+    .demo ul li code .purple {
+        color: #A295FF;
+    }
+    .demo ul li code .dots {
+        margin-top: 0.5em;
+        display: block;
+    }
+    #glyphs {
+        border-bottom: 1px solid #ccc;
+        padding: 2em 0;
+        text-align: center;
+    }
+    .glyph {
+        display: inline-block;
+        width: 9em;
+        margin: 1em;
+        text-align: center;
+        vertical-align: top;
+        background: #FFF;
+    }
+    .glyph .glyph-icon {
+        padding: 10px;
+        display: block;
+        font-family:"Flaticon";
+        font-size: 64px;
+        line-height: 1;
+    }
+    .glyph .glyph-icon:before {
+        font-size: 64px;
+        color: #222;
+        margin-left: 0;
+    }
+    .class-name {
+        font-size: 0.65em;
+        background-color: #222;
+        color: #fff;
+        border-radius: 4px 4px 0 0;
+        padding: 0.5em;
+        color: #FFFF99;
+        font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+    }
+    .author-name {
+        font-size: 0.6em;
+        background-color: #fcfcfd;
+        border: 1px solid #DEDEE4;
+        border-top: 0;
+        border-radius: 0 0 4px 4px;
+        padding: 0.5em;
+    }
+    .class-name:last-child {
+        font-size: 10px;
+        color:#888;
+    }
+    .class-name:last-child a {
+        font-size: 10px;
+        color:#555;
+    }
+    .class-name:last-child a:hover {
+        color:#a9fd00;
+    }
+    .glyph > input {
+        display: block;
+        width: 100px;
+        margin: 5px auto;
+        text-align: center;
+        font-size: 12px;
+        cursor: text;
+    }
+    .glyph > input.icon-input {
+        font-family:"Flaticon";
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+    .attribution .title {
+        margin-top: 2em;
+    }
+    .attribution textarea {
+        background-color: #fcfcfd;
+        padding: 1em;
+        border: none;
+        box-shadow: none;
+        border: 1px solid #DEDEE4;
+        border-radius: 4px;
+        resize: none;
+        width: 100%;
+        height: 150px;
+        font-size: 0.8em;
+        font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+        -webkit-appearance: none;
+    }
+    .iconsuse {
+        margin: 2em auto;
+        text-align: center;
+        max-width: 1200px;
+    }
+    .iconsuse:after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+    .iconsuse .image {
+        float: left;
+        width: 25%;
+        padding: 0 1em;
+    }
+    .iconsuse .image p {
+        margin-bottom: 1em;
+    }
+    .iconsuse .image span {
+        display: block;
+        font-size: 0.65em;
+        background-color: #222;
+        color: #fff;
+        border-radius: 4px;
+        padding: 0.5em;
+        color: #FFFF99;
+        margin-top: 1em;
+        font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace;
+    }
+    #footer {
+        text-align: center;
+        background-color: #4C5B5C;
+        color: #7c9192;
+        padding: 1em;
+    }
+    #footer a {
+        border: none;
+        color: #a9fd00;
+        font-weight: normal;
+    }
+    @media (max-width: 960px) {
+        .iconsuse .image {
+            width: 50%;
+        }
+    }
+    @media (max-width: 560px) {
+        .iconsuse .image {
+            width: 100%;
+        }
+    }
+    </style>
+</head>
+
+<body class="characters-off">
+
+    <header>
+        <a href="http://www.flaticon.com" target="_blank" class="logo">
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/" viewBox="0 0 560.875 102.036" enable-background="new 0 0 560.875 102.036" xml:space="preserve">
+                <defs>
+                </defs>
+                <g>
+                    <g class="letters">
+                        <path fill="#ffffff" d="M141.596,29.675c0-3.777,2.985-6.767,6.764-6.767h34.438c3.426,0,6.15,2.728,6.15,6.15
+                        c0,3.43-2.724,6.149-6.15,6.149h-27.674v13.091h23.719c3.429,0,6.151,2.724,6.151,6.15c0,3.43-2.723,6.149-6.151,6.149h-23.719
+                        v17.574c0,3.773-2.986,6.761-6.764,6.761c-3.779,0-6.764-2.989-6.764-6.761V29.675z"></path>
+                        <path fill="#ffffff" d="M193.844,29.149c0-3.781,2.985-6.767,6.764-6.767c3.776,0,6.763,2.985,6.763,6.767v42.957h25.039
+                        c3.426,0,6.149,2.726,6.149,6.153c0,3.425-2.723,6.15-6.149,6.15h-31.802c-3.779,0-6.764-2.986-6.764-6.768V29.149z"></path>
+                        <path fill="#ffffff" d="M241.891,75.71l21.438-48.407c1.492-3.341,4.215-5.357,7.906-5.357h0.792
+                        c3.686,0,6.323,2.017,7.815,5.357l21.439,48.407c0.436,0.967,0.701,1.845,0.701,2.723c0,3.602-2.809,6.501-6.414,6.501
+                        c-3.161,0-5.269-1.845-6.499-4.655l-4.132-9.661h-27.059l-4.301,10.102c-1.144,2.631-3.426,4.214-6.237,4.214
+                        c-3.517,0-6.24-2.81-6.24-6.325C241.1,77.64,241.451,76.677,241.891,75.71z M279.932,58.666l-8.521-20.297l-8.526,20.297H279.932
+                        z"></path>
+                        <path fill="#ffffff" d="M314.864,35.387H301.86c-3.429,0-6.239-2.813-6.239-6.238c0-3.429,2.811-6.24,6.239-6.24h39.533
+                        c3.426,0,6.237,2.811,6.237,6.24c0,3.425-2.811,6.238-6.237,6.238h-13.001v42.785c0,3.773-2.99,6.761-6.764,6.761
+                        c-3.779,0-6.764-2.989-6.764-6.761V35.387z"></path>
+                        <path fill="#A9FD00" d="M352.615,29.149c0-3.781,2.985-6.767,6.767-6.767c3.774,0,6.761,2.985,6.761,6.767v49.024
+                        c0,3.773-2.987,6.761-6.761,6.761c-3.781,0-6.767-2.989-6.767-6.761V29.149z"></path>
+                        <path fill="#A9FD00" d="M374.132,53.836v-0.179c0-17.481,13.178-31.801,32.065-31.801c9.22,0,15.459,2.458,20.557,6.238
+                        c1.402,1.054,2.637,2.985,2.637,5.357c0,3.692-2.985,6.59-6.681,6.59c-1.845,0-3.071-0.702-4.044-1.319
+                        c-3.776-2.813-7.729-4.393-12.562-4.393c-10.364,0-17.831,8.611-17.831,19.154v0.173c0,10.542,7.291,19.329,17.831,19.329
+                        c5.715,0,9.492-1.756,13.359-4.834c1.049-0.874,2.458-1.491,4.039-1.491c3.429,0,6.325,2.813,6.325,6.236
+                        c0,2.106-1.056,3.78-2.282,4.834c-5.539,4.834-12.036,7.733-21.878,7.733C387.572,85.464,374.132,71.493,374.132,53.836z"></path>
+                        <path fill="#A9FD00" d="M433.009,53.836v-0.179c0-17.481,13.79-31.801,32.766-31.801c18.981,0,32.592,14.143,32.592,31.628v0.173
+                        c0,17.483-13.785,31.807-32.769,31.807C446.625,85.464,433.009,71.32,433.009,53.836z M484.224,53.836v-0.179
+                        c0-10.539-7.725-19.326-18.626-19.326c-10.893,0-18.449,8.611-18.449,19.154v0.173c0,10.542,7.73,19.329,18.626,19.329
+                        C476.676,72.986,484.224,64.378,484.224,53.836z"></path>
+                        <path fill="#A9FD00" d="M506.233,29.321c0-3.774,2.99-6.763,6.767-6.763h1.401c3.252,0,5.183,1.583,7.029,3.953l26.093,34.265
+                        V29.059c0-3.692,2.99-6.677,6.681-6.677c3.683,0,6.671,2.985,6.671,6.677v48.934c0,3.78-2.987,6.765-6.764,6.765h-0.436
+                        c-3.257,0-5.188-1.581-7.034-3.953l-27.056-35.492v32.944c0,3.687-2.985,6.676-6.678,6.676c-3.683,0-6.673-2.989-6.673-6.676
+                        V29.321z"></path>
+                    </g>
+                    <g class="insignia">
+                        <path fill="#ffffff" d="M48.372,56.137h12.517l11.156-18.537H37.186L25.688,18.539h57.825L94.668,0H9.271
+                        C5.925,0,2.842,1.801,1.198,4.716c-1.644,2.907-1.593,6.482,0.134,9.343l50.38,83.501c1.678,2.781,4.689,4.476,7.938,4.476
+                        c3.246,0,6.257-1.695,7.935-4.476l2.898-4.804L48.372,56.137z"></path>
+                        <g class="i">
+                            <path fill="#A9FD00" d="M93.575,18.539h0.031v0.004l21.652,0.004l2.705-4.488c1.727-2.861,1.778-6.436,0.133-9.343
+                            C116.454,1.801,113.371,0,110.026,0h-5.294L93.575,18.539z"></path>
+                            <polygon fill="#A9FD00" points="88.291,27.356 64.725,66.486 75.519,84.404 109.942,27.356"></polygon>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </a>
+        <strong>Font Demo</strong>
+    </header>
+
+
+    <section class="demo wrapper">
+
+        <p class="title">Instructions</p>
+
+        <ul>
+            <li>
+                <span class="num">1</span>Copy the "Fonts" files and CSS files to your website CSS folder.
+            </li>
+            <li>
+                <span class="num">2</span>Add the CSS link to your website source code on header.
+                <code class="big">
+                    &lt;<span class="red">head</span>&gt;
+                    <br/><span class="dots">...</span>
+                    <br/>&lt;<span class="red">link</span> <span class="green">rel</span>=<span class="yellow">"stylesheet"</span> <span class="green">type</span>=<span class="yellow">"text/css"</span> <span class="green">href</span>=<span class="yellow">"your_website_domain/css_root/flaticon.css"</span>&gt;
+                    <br/><span class="dots">...</span>
+                    <br/>&lt;/<span class="red">head</span>&gt;
+                </code>
+            </li>
+
+            <li>
+                <p>
+                    <span class="num">3</span>Use the icon class on <code>"<span class="blue">display</span>:<span class="purple"> inline</span>"</code> elements:
+                    <br />
+                    Use example: <code>&lt;<span class="red">i</span> <span class="green">class</span>=<span class="yellow">&quot;flaticon-airplane49&quot;</span>&gt;&lt;/<span class="red">i</span>&gt;</code> or <code>&lt;<span class="red">span</span> <span class="green">class</span>=<span class="yellow">&quot;flaticon-airplane49&quot;</span>&gt;&lt;/<span class="red">span</span>&gt;</code>
+            </li>
+        </ul>
+
+    </section>
+
+
+
+
+   <section id="glyphs">          
+    
+      
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-accept-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-accept-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-accept-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-accepted-here-logo"></div>
+            <div class="class-name">.flaticon-bitcoin-accepted-here-logo</div>
+            <div class="author-name">Author: <a data-file="bitcoin-accepted-here-logo" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-and-laptop-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-and-laptop-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-and-laptop-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-and-users-connections"></div>
+            <div class="class-name">.flaticon-bitcoin-and-users-connections</div>
+            <div class="author-name">Author: <a data-file="bitcoin-and-users-connections" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-ascending-coin"></div>
+            <div class="class-name">.flaticon-bitcoin-ascending-coin</div>
+            <div class="author-name">Author: <a data-file="bitcoin-ascending-coin" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-bag"></div>
+            <div class="class-name">.flaticon-bitcoin-bag</div>
+            <div class="author-name">Author: <a data-file="bitcoin-bag" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-bars-ascendant-graphic-of-increasing-money"></div>
+            <div class="class-name">.flaticon-bitcoin-bars-ascendant-graphic-of-increasing-money</div>
+            <div class="author-name">Author: <a data-file="bitcoin-bars-ascendant-graphic-of-increasing-money" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-bars-graphic-on-laptop-screen"></div>
+            <div class="class-name">.flaticon-bitcoin-bars-graphic-on-laptop-screen</div>
+            <div class="author-name">Author: <a data-file="bitcoin-bars-graphic-on-laptop-screen" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-coin"></div>
+            <div class="class-name">.flaticon-bitcoin-coin</div>
+            <div class="author-name">Author: <a data-file="bitcoin-coin" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-coin-going-down"></div>
+            <div class="class-name">.flaticon-bitcoin-coin-going-down</div>
+            <div class="author-name">Author: <a data-file="bitcoin-coin-going-down" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-connect-up-graphic"></div>
+            <div class="class-name">.flaticon-bitcoin-connect-up-graphic</div>
+            <div class="author-name">Author: <a data-file="bitcoin-connect-up-graphic" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-credit-card"></div>
+            <div class="class-name">.flaticon-bitcoin-credit-card</div>
+            <div class="author-name">Author: <a data-file="bitcoin-credit-card" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-currency-symbol-with-dollar-yens-and-pounds-signs"></div>
+            <div class="class-name">.flaticon-bitcoin-currency-symbol-with-dollar-yens-and-pounds-signs</div>
+            <div class="author-name">Author: <a data-file="bitcoin-currency-symbol-with-dollar-yens-and-pounds-signs" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-digital-currency-logo"></div>
+            <div class="class-name">.flaticon-bitcoin-digital-currency-logo</div>
+            <div class="author-name">Author: <a data-file="bitcoin-digital-currency-logo" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-digital-network-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-digital-network-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-digital-network-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-discount-commercial-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-discount-commercial-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-discount-commercial-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-down-arrow"></div>
+            <div class="class-name">.flaticon-bitcoin-down-arrow</div>
+            <div class="author-name">Author: <a data-file="bitcoin-down-arrow" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-down-line-graphic"></div>
+            <div class="class-name">.flaticon-bitcoin-down-line-graphic</div>
+            <div class="author-name">Author: <a data-file="bitcoin-down-line-graphic" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-electric-symbol-with-a-bolt-shape"></div>
+            <div class="class-name">.flaticon-bitcoin-electric-symbol-with-a-bolt-shape</div>
+            <div class="author-name">Author: <a data-file="bitcoin-electric-symbol-with-a-bolt-shape" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-email-by-mobile-phone"></div>
+            <div class="class-name">.flaticon-bitcoin-email-by-mobile-phone</div>
+            <div class="author-name">Author: <a data-file="bitcoin-email-by-mobile-phone" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-emblem"></div>
+            <div class="class-name">.flaticon-bitcoin-emblem</div>
+            <div class="author-name">Author: <a data-file="bitcoin-emblem" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-exchange-rate"></div>
+            <div class="class-name">.flaticon-bitcoin-exchange-rate</div>
+            <div class="author-name">Author: <a data-file="bitcoin-exchange-rate" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-exchange-rate-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-exchange-rate-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-exchange-rate-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-flower-in-a-pot"></div>
+            <div class="class-name">.flaticon-bitcoin-flower-in-a-pot</div>
+            <div class="author-name">Author: <a data-file="bitcoin-flower-in-a-pot" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-globe-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-globe-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-globe-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-graphic-with-up-arrow"></div>
+            <div class="class-name">.flaticon-bitcoin-graphic-with-up-arrow</div>
+            <div class="author-name">Author: <a data-file="bitcoin-graphic-with-up-arrow" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-id-card-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-id-card-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-id-card-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-in-a-pushcart"></div>
+            <div class="class-name">.flaticon-bitcoin-in-a-pushcart</div>
+            <div class="author-name">Author: <a data-file="bitcoin-in-a-pushcart" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-in-processor"></div>
+            <div class="class-name">.flaticon-bitcoin-in-processor</div>
+            <div class="author-name">Author: <a data-file="bitcoin-in-processor" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-in-science-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-in-science-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-in-science-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-in-science-symbol-on-mobile-phone-screen"></div>
+            <div class="class-name">.flaticon-bitcoin-in-science-symbol-on-mobile-phone-screen</div>
+            <div class="author-name">Author: <a data-file="bitcoin-in-science-symbol-on-mobile-phone-screen" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-inside-a-mail-envelope-outline"></div>
+            <div class="class-name">.flaticon-bitcoin-inside-a-mail-envelope-outline</div>
+            <div class="author-name">Author: <a data-file="bitcoin-inside-a-mail-envelope-outline" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-key-or-password-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-key-or-password-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-key-or-password-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-label-tag"></div>
+            <div class="class-name">.flaticon-bitcoin-label-tag</div>
+            <div class="author-name">Author: <a data-file="bitcoin-label-tag" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-logo"></div>
+            <div class="class-name">.flaticon-bitcoin-logo</div>
+            <div class="author-name">Author: <a data-file="bitcoin-logo" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-love-heart"></div>
+            <div class="class-name">.flaticon-bitcoin-love-heart</div>
+            <div class="author-name">Author: <a data-file="bitcoin-love-heart" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-mechanic-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-mechanic-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-mechanic-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-mobile-phone-connections-graphic"></div>
+            <div class="class-name">.flaticon-bitcoin-mobile-phone-connections-graphic</div>
+            <div class="author-name">Author: <a data-file="bitcoin-mobile-phone-connections-graphic" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-mobile-phone-graphic"></div>
+            <div class="class-name">.flaticon-bitcoin-mobile-phone-graphic</div>
+            <div class="author-name">Author: <a data-file="bitcoin-mobile-phone-graphic" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-mobile-phone-secure-shield"></div>
+            <div class="class-name">.flaticon-bitcoin-mobile-phone-secure-shield</div>
+            <div class="author-name">Author: <a data-file="bitcoin-mobile-phone-secure-shield" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-mobile-phone-with-a-placeholder-symbol-on-screen"></div>
+            <div class="class-name">.flaticon-bitcoin-mobile-phone-with-a-placeholder-symbol-on-screen</div>
+            <div class="author-name">Author: <a data-file="bitcoin-mobile-phone-with-a-placeholder-symbol-on-screen" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-network"></div>
+            <div class="class-name">.flaticon-bitcoin-network</div>
+            <div class="author-name">Author: <a data-file="bitcoin-network" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-network-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-network-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-network-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-not-accepted-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-not-accepted-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-not-accepted-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-not-accepted-symbol-with-a-slash"></div>
+            <div class="class-name">.flaticon-bitcoin-not-accepted-symbol-with-a-slash</div>
+            <div class="author-name">Author: <a data-file="bitcoin-not-accepted-symbol-with-a-slash" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-on-cloud"></div>
+            <div class="class-name">.flaticon-bitcoin-on-cloud</div>
+            <div class="author-name">Author: <a data-file="bitcoin-on-cloud" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-on-cloud-with-down-arrow-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-on-cloud-with-down-arrow-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-on-cloud-with-down-arrow-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-on-cloud-with-up-arrow-on-mobile-phone-screen"></div>
+            <div class="class-name">.flaticon-bitcoin-on-cloud-with-up-arrow-on-mobile-phone-screen</div>
+            <div class="author-name">Author: <a data-file="bitcoin-on-cloud-with-up-arrow-on-mobile-phone-screen" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-on-cloud-with-up-arrow-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-on-cloud-with-up-arrow-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-on-cloud-with-up-arrow-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-placeholder"></div>
+            <div class="class-name">.flaticon-bitcoin-placeholder</div>
+            <div class="author-name">Author: <a data-file="bitcoin-placeholder" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-pocket"></div>
+            <div class="class-name">.flaticon-bitcoin-pocket</div>
+            <div class="author-name">Author: <a data-file="bitcoin-pocket" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-pocket-or-wallet"></div>
+            <div class="class-name">.flaticon-bitcoin-pocket-or-wallet</div>
+            <div class="author-name">Author: <a data-file="bitcoin-pocket-or-wallet" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-pound-currency-exchange-rate"></div>
+            <div class="class-name">.flaticon-bitcoin-pound-currency-exchange-rate</div>
+            <div class="author-name">Author: <a data-file="bitcoin-pound-currency-exchange-rate" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-presentation"></div>
+            <div class="class-name">.flaticon-bitcoin-presentation</div>
+            <div class="author-name">Author: <a data-file="bitcoin-presentation" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-presentation-of-safety-shield"></div>
+            <div class="class-name">.flaticon-bitcoin-presentation-of-safety-shield</div>
+            <div class="author-name">Author: <a data-file="bitcoin-presentation-of-safety-shield" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-presentation-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-presentation-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-presentation-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-presentation-with-bars-graphic"></div>
+            <div class="class-name">.flaticon-bitcoin-presentation-with-bars-graphic</div>
+            <div class="author-name">Author: <a data-file="bitcoin-presentation-with-bars-graphic" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-presentation-with-circular-arrows-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-presentation-with-circular-arrows-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-presentation-with-circular-arrows-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-presentation-with-coins-and-male-businessman"></div>
+            <div class="class-name">.flaticon-bitcoin-presentation-with-coins-and-male-businessman</div>
+            <div class="author-name">Author: <a data-file="bitcoin-presentation-with-coins-and-male-businessman" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-presentation-with-graphs-and-reporter"></div>
+            <div class="class-name">.flaticon-bitcoin-presentation-with-graphs-and-reporter</div>
+            <div class="author-name">Author: <a data-file="bitcoin-presentation-with-graphs-and-reporter" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-presentation-with-money-bag-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-presentation-with-money-bag-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-presentation-with-money-bag-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-presentation-with-reporter"></div>
+            <div class="class-name">.flaticon-bitcoin-presentation-with-reporter</div>
+            <div class="author-name">Author: <a data-file="bitcoin-presentation-with-reporter" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-qr-code-on-mobile-phone-screen"></div>
+            <div class="class-name">.flaticon-bitcoin-qr-code-on-mobile-phone-screen</div>
+            <div class="author-name">Author: <a data-file="bitcoin-qr-code-on-mobile-phone-screen" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-reward-label"></div>
+            <div class="class-name">.flaticon-bitcoin-reward-label</div>
+            <div class="author-name">Author: <a data-file="bitcoin-reward-label" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-sack"></div>
+            <div class="class-name">.flaticon-bitcoin-sack</div>
+            <div class="author-name">Author: <a data-file="bitcoin-sack" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-safe-pig"></div>
+            <div class="class-name">.flaticon-bitcoin-safe-pig</div>
+            <div class="author-name">Author: <a data-file="bitcoin-safe-pig" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-safety-lock-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-safety-lock-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-safety-lock-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-safety-shield-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-safety-shield-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-safety-shield-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-safety-shopping-shield-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-safety-shopping-shield-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-safety-shopping-shield-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-science-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-science-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-science-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-shop"></div>
+            <div class="class-name">.flaticon-bitcoin-shop</div>
+            <div class="author-name">Author: <a data-file="bitcoin-shop" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-sign-in-a-circle-with-two-spots-connect-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-sign-in-a-circle-with-two-spots-connect-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-sign-in-a-circle-with-two-spots-connect-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-sign-in-eye-iris"></div>
+            <div class="class-name">.flaticon-bitcoin-sign-in-eye-iris</div>
+            <div class="author-name">Author: <a data-file="bitcoin-sign-in-eye-iris" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-sign-in-keyhole-shape-on-a-wallet"></div>
+            <div class="class-name">.flaticon-bitcoin-sign-in-keyhole-shape-on-a-wallet</div>
+            <div class="author-name">Author: <a data-file="bitcoin-sign-in-keyhole-shape-on-a-wallet" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-sign-on-cloud-with-down-arrow-download-symbol-on-cellphone-screen"></div>
+            <div class="class-name">.flaticon-bitcoin-sign-on-cloud-with-down-arrow-download-symbol-on-cellphone-screen</div>
+            <div class="author-name">Author: <a data-file="bitcoin-sign-on-cloud-with-down-arrow-download-symbol-on-cellphone-screen" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-sign-on-usb-device"></div>
+            <div class="class-name">.flaticon-bitcoin-sign-on-usb-device</div>
+            <div class="author-name">Author: <a data-file="bitcoin-sign-on-usb-device" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-surrounded-by-a-circle-of-olive-leaves"></div>
+            <div class="class-name">.flaticon-bitcoin-surrounded-by-a-circle-of-olive-leaves</div>
+            <div class="author-name">Author: <a data-file="bitcoin-surrounded-by-a-circle-of-olive-leaves" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-symbol-in-a-speech-bubble"></div>
+            <div class="class-name">.flaticon-bitcoin-symbol-in-a-speech-bubble</div>
+            <div class="author-name">Author: <a data-file="bitcoin-symbol-in-a-speech-bubble" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-symbol-inside-a-timer-variant"></div>
+            <div class="class-name">.flaticon-bitcoin-symbol-inside-a-timer-variant</div>
+            <div class="author-name">Author: <a data-file="bitcoin-symbol-inside-a-timer-variant" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-symbol-inside-circulating-arrows"></div>
+            <div class="class-name">.flaticon-bitcoin-symbol-inside-circulating-arrows</div>
+            <div class="author-name">Author: <a data-file="bitcoin-symbol-inside-circulating-arrows" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-symbol-inside-head"></div>
+            <div class="class-name">.flaticon-bitcoin-symbol-inside-head</div>
+            <div class="author-name">Author: <a data-file="bitcoin-symbol-inside-head" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-symbol-on-mobile-phone-screen"></div>
+            <div class="class-name">.flaticon-bitcoin-symbol-on-mobile-phone-screen</div>
+            <div class="author-name">Author: <a data-file="bitcoin-symbol-on-mobile-phone-screen" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-symbol-on-paper-and-coins"></div>
+            <div class="class-name">.flaticon-bitcoin-symbol-on-paper-and-coins</div>
+            <div class="author-name">Author: <a data-file="bitcoin-symbol-on-paper-and-coins" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-symbol-on-sim-card-chip"></div>
+            <div class="class-name">.flaticon-bitcoin-symbol-on-sim-card-chip</div>
+            <div class="author-name">Author: <a data-file="bitcoin-symbol-on-sim-card-chip" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-symbol-placeholder-in-laptop"></div>
+            <div class="class-name">.flaticon-bitcoin-symbol-placeholder-in-laptop</div>
+            <div class="author-name">Author: <a data-file="bitcoin-symbol-placeholder-in-laptop" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-symbol-with-withdraw-option"></div>
+            <div class="class-name">.flaticon-bitcoin-symbol-with-withdraw-option</div>
+            <div class="author-name">Author: <a data-file="bitcoin-symbol-with-withdraw-option" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-ticket"></div>
+            <div class="class-name">.flaticon-bitcoin-ticket</div>
+            <div class="author-name">Author: <a data-file="bitcoin-ticket" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-to-dollar-exchange-rate-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-to-dollar-exchange-rate-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-to-dollar-exchange-rate-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-trolley"></div>
+            <div class="class-name">.flaticon-bitcoin-trolley</div>
+            <div class="author-name">Author: <a data-file="bitcoin-trolley" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-user-down-line-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-user-down-line-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-user-down-line-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-user-safety-shield-interface-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-user-safety-shield-interface-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-user-safety-shield-interface-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-user-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-user-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-user-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-warning-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-warning-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-warning-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-with-an-up-arrow"></div>
+            <div class="class-name">.flaticon-bitcoin-with-an-up-arrow</div>
+            <div class="author-name">Author: <a data-file="bitcoin-with-an-up-arrow" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-with-olive-leaves-at-both-sides"></div>
+            <div class="class-name">.flaticon-bitcoin-with-olive-leaves-at-both-sides</div>
+            <div class="author-name">Author: <a data-file="bitcoin-with-olive-leaves-at-both-sides" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-with-qr-code-interface-commercial-symbol-of-money"></div>
+            <div class="class-name">.flaticon-bitcoin-with-qr-code-interface-commercial-symbol-of-money</div>
+            <div class="author-name">Author: <a data-file="bitcoin-with-qr-code-interface-commercial-symbol-of-money" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoin-withdraw-symbol"></div>
+            <div class="class-name">.flaticon-bitcoin-withdraw-symbol</div>
+            <div class="author-name">Author: <a data-file="bitcoin-withdraw-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-bitcoins-papers"></div>
+            <div class="class-name">.flaticon-bitcoins-papers</div>
+            <div class="author-name">Author: <a data-file="bitcoins-papers" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+        <div class="glyph"><div class="glyph-icon flaticon-droplet-with-bitcoin-symbol"></div>
+            <div class="class-name">.flaticon-droplet-with-bitcoin-symbol</div>
+            <div class="author-name">Author: <a data-file="droplet-with-bitcoin-symbol" href="http://www.freepik.com">Freepik</a> </div> 
+        </div>        
+        
+
+    </section>
+
+
+
+    <section class="attribution wrapper"   style="text-align:center;">
+
+      <div class="title">License and attribution:</div><div class="attrDiv">Font generated by <a href="http://www.flaticon.com">flaticon.com</a>. <div><p>Under <a href="http://creativecommons.org/licenses/by/3.0/">CC</a>: <a data-file="bitcoin-down-arrow" href="http://www.freepik.com">Freepik</a></p>  </div>
+      </div>
+      <div class="title">Copy the Attribution License:</div>
+
+    <textarea onclick="this.focus();this.select();">Font generated by &lt;a href=&quot;http://www.flaticon.com&quot;&gt;flaticon.com&lt;/a&gt;. <p>Under <a href="http://creativecommons.org/licenses/by/3.0/">CC</a>: <a data-file="bitcoin-down-arrow" href="http://www.freepik.com">Freepik</a></p>  
+     </textarea>
+
+    </section>
+
+    <section class="iconsuse">
+
+          <div class="title">Examples:</div>            
+             
+            <div class="image">
+                <p>
+                    <i class="glyph-icon flaticon-bitcoin-accept-symbol"></i> 
+                    <span>&lt;i class=&quot;flaticon-bitcoin-accept-symbol&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            
+            <div class="image">
+                <p>
+                    <i class="glyph-icon flaticon-bitcoin-accepted-here-logo"></i> 
+                    <span>&lt;i class=&quot;flaticon-bitcoin-accepted-here-logo&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            
+            <div class="image">
+                <p>
+                    <i class="glyph-icon flaticon-bitcoin-and-laptop-symbol"></i> 
+                    <span>&lt;i class=&quot;flaticon-bitcoin-and-laptop-symbol&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+            
+            <div class="image">
+                <p>
+                    <i class="glyph-icon flaticon-bitcoin-and-users-connections"></i> 
+                    <span>&lt;i class=&quot;flaticon-bitcoin-and-users-connections&quot;&gt;&lt;/i&gt;</span>
+                </p>
+            </div>
+                       
+        </div>
+                            
+    </section>
+
+<div id="footer">
+    <div>Generated by <a href="http://www.flaticon.com">flaticon.com</a>
+    </div>
+</div>
+
+
+
+</body>
+</html>

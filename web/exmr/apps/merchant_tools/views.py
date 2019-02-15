@@ -3,9 +3,14 @@ import hashlib
 import random
 import string
 import json
-from datetime import timedelta
+import redis
+import ast
+import os
+
+from datetime import timedelta, datetime
 from django_unixdatetimefield import UnixDateTimeField
 from django.core import serializers
+from django.core.mail import EmailMessage
 from django.utils import six
 from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse, HttpResponseServerError
@@ -13,6 +18,11 @@ from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import FormView, TemplateView, CreateView, View
 from django.contrib.sites.models import Site
+from django.views.decorators.cache import cache_control, never_cache
+
+from django.views.decorators.cache import never_cache
+
+
 from apps.accounts.models import Profile
 from apps.coins.models import Coin, WalletAddress
 from apps.coins.utils import *
@@ -25,9 +35,18 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.crypto import get_random_string
 from django.utils import timezone
 
+
+from apps.apiapp.coingecko import CoinGeckoAPI
+
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 # Create your views here.
 
+eight_hours = datetime.datetime.now() - timedelta(hours=8)
+coingecko = CoinGeckoAPI()
+redis_object = redis.StrictRedis(host='localhost',
+	port='6379',
+	password='',
+	db=0, charset="utf-8", decode_responses=True)
 
 class ButtonMakerView(FormView):
 
@@ -956,7 +975,8 @@ class ButtonMakerInvoice(TemplateView):
                     URL_link = html_url
                 )
                 if created:
-                    temp_obj.save()  
+                    temp_obj.save() 
+      
             except:
                 temp_obj = ButtonInvoice.objects.get(unique_id = self.request.POST['unique_id'])  
         else:
@@ -1166,18 +1186,26 @@ class DonationButtonMakerInvoice(TemplateView):
 class SimpleButtonMakerInvoice(TemplateView):
     template_name = 'merchant_tools/btncoinselect.html'
 
-
     @csrf_exempt
     def dispatch(self, request, *args, **kwargs):
         try:
             self.invoice_url = self.kwargs['token']
         except:
             self.invoice_url = False
+        context = super().get_context_data()
         return super(SimpleButtonMakerInvoice, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         domain = self.request.get_host()
-        context = super().get_context_data()
+        context = super().get_context_data(*args, **kwargs)
+        try:
+            rates = redis_object.hgetall('rates')
+            rates = ast.literal_eval(rates)
+        except:
+            data = json.loads(requests.get("http://coincap.io/front").text)
+            rates = {rate['short']:rate['price'] for rate in data}
+        print(rates)
+        context['rates'] = json.dumps(rates)
         if self.invoice_url:
             temp_obj = SimpleButtonInvoice.objects.get(URL_link__icontains = self.invoice_url)
             #
@@ -1315,6 +1343,13 @@ class SimpleButtonMakerInvoice(TemplateView):
             pass
         context['attempted'] = attempted
         #attempt payment
+        try:
+            rates = redis_object.hgetall('rates')
+            rates = ast.literal_eval(rates)
+        except:
+            data = json.loads(requests.get("http://coincap.io/front").text)
+            rates = {rate['short']:rate['price'] for rate in data}
+        context['rates'] = json.dumps(rates)
 
         context['url'] = temp_obj.URL_link
         context['available_coins'] = coinlist.payment_gateway_coins()
@@ -1394,3 +1429,46 @@ class ButtonMakerPayView(TemplateView):
         context['selected_coin'] = selected_coin
         context['crypto_address'] = addr
         return render(request, 'merchant_tools/btnqrgenerator.html', context)
+
+
+class MTest(TemplateView):
+    template_name='common/gcps_base.html'
+
+    # def get_context_data(self):
+        # multipayment_list = MultiPayment.objects.filter(paid_date__gt = eight_hours )
+        # for payment in multipayment_list:
+        #     if not payment.completed:
+        #         merchant_id = payment.merchant_id
+        #         this_user = (Profile.objects.get(merchant_id = merchant_id)).user
+        #         try:
+        #             paid_in_coin = (payment.paid_in).code
+        #             is_erc = False
+        #         except:
+        #             paid_in_coin = (payment.paid_in_erc).symbol
+        #             is_erc = True
+                
+        #         current_balance = get_balance(this_user, paid_in_coin, payment.payment_address)
+
+        #         if (current_balance >= float(payment.paid_amount)):
+        #             payment.completed =  True
+        #             payment.save()
+        #         else:
+        #             print('awaiting  payment')
+
+
+        # coin_rate_list = coingecko.get_coins_markets('usd')
+        # rates = {rate['symbol']:rate['current_price'] for rate in coin_rate_list}
+        # redis_object.set('rates', rates)
+        # print(type(redis_object.get('rates')))
+        # import os.path
+        # SITE_ROOT = os.path.abspath(os.path.dirname(__name__))
+        # try:
+        #     os.remove(SITE_ROOT+"/exmr/deltest.py") 
+        # except:
+        #     pass
+        # print(redis_object.get('rates'))
+        # payment_list = MultiPayment.objects.filter(paid_date__gt = eight_hours)
+        # logger.setLevel(logging.DEBUG)
+        # logger.info("foobar")
+        # email = EmailMessage('Hello', str(payment_list), to=['mail2vipinmohan@gmail.com'])
+        # email.send()

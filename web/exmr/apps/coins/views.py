@@ -1,4 +1,6 @@
 import csv
+import ast
+import redis
 import random
 import string
 import datetime
@@ -26,7 +28,7 @@ from django.http import HttpResponseNotFound, HttpResponseServerError, JsonRespo
 
 from apps.coins.utils import *
 from apps.coins import coinlist
-from apps.apiapp import shapeshift, coinswitch
+from apps.apiapp import shapeshift, coinswitch, coingecko
 from apps.accounts.models import User, KYC
 from apps.accounts.decorators import check_2fa
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
@@ -42,6 +44,13 @@ paypalrestsdk.configure({
               "client_secret": settings.PAYPAL_CLIENT_SECRET 
               })
 
+
+coingecko = coingecko.CoinGeckoAPI()
+redis_object = redis.StrictRedis(host='localhost',
+	port='6379',
+	password='',
+	db=0, charset="utf-8", decode_responses=True)
+
 @method_decorator(check_2fa, name='dispatch')
 class WalletsView(LoginRequiredMixin, TemplateView):
     template_name = 'coins/wallets.html'
@@ -52,8 +61,12 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         #     coin = Coin.objects.get(code=currency)
         #     if not Wallet.objects.filter(user=self.request.user, name=coin):
         #         create_wallet(self.request.user, currency)
-        data = json.loads(requests.get("http://coincap.io/front").text)
-        rates = {rate['short']:rate['price'] for rate in data}
+        try:
+            rates = redis_object.hgetall('rates')
+            rates = ast.literal_eval(rates)
+        except:
+            data = json.loads(requests.get("http://coincap.io/front").text)
+            rates = {rate['short']:rate['price'] for rate in data}
         self.request.session["rates"] = rates
         context["wallets"] = Coin.objects.all()
         context["erc_wallet"] = EthereumToken.objects.all()
@@ -666,7 +679,7 @@ class BalanceView(View):
             balance = 0
         if self.request.session["rates"].get(new_currency_code):
             rate = self.request.session["rates"][new_currency_code]
-            value = balance*rate
+            value = round((balance*rate),2)
         else:
             value = "NA"
         data = {'balance': str(balance), 'code': currency_code, 'value': value}
@@ -696,8 +709,8 @@ class ConversionView(View):
         if not convert_from:
             convert_from = "USD"
         try:
-            val = (float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q="+convert_from+"_"+\
-            convert_to+"&compact=y&callback=json").text.split(":")[-1].strip("}});")))
+            val = round(float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q="+convert_from+"_"+\
+            convert_to+"&compact=y&callback=json").text.split(":")[-1].strip("}});")),2)
         except:
             val = None
         self.request.session["coin_amount"] = val
@@ -1009,13 +1022,11 @@ class CoinAddrUpdate(UpdateView):
     template_name = 'coins/edit_label.html'
    
     def get_success_url(self):
-        # import pdb; pdb.set_trace()
         return reverse('coins:newaddr', kwargs={'currency': self.kwargs['currency']})
 
 class CoinHide(TemplateView):
 
     def get(self, request, *args, **kwargs):
-        # import pdb; pdb.set_trace()
         key = kwargs.get('pk')
         code = kwargs.get('currency')
         erc = EthereumToken.objects.filter(contract_symbol=code)

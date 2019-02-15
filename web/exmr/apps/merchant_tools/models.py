@@ -214,12 +214,14 @@ class MultiPayment(models.Model):
     payment_address = models.CharField(max_length=512, null=False)
     paid_amount = models.CharField(max_length=512, null=False)
     eq_usd = models.CharField(max_length=512, blank=True, null=True)
-    paid_date = models.DateTimeField(blank=True, null=True, auto_now_add=True, editable = True)
+    paid_date = models.DateTimeField(blank=True, null=True, auto_now_add=True)
+    paid_date.editable = True
     attempted_usd = models.CharField(max_length=512, default=0)
     recieved_amount = models.CharField(max_length=512, default=0)
     recieved_usd = models.CharField(max_length=512, default=0)
     paid_unique_id = models.CharField(max_length=512, blank=True, null=True)
     transaction_id = models.CharField(max_length=64, null=False)
+    completed = models.BooleanField(default = False)
 
     def __str__(self):
         return str(self.paid_in)

@@ -1,0 +1,334 @@
+{% extends 'gcps/base.html' %} {% load staticfiles widget_tweaks i18n %}{% load i18n %}
+        <!-- body -->
+        {% block content %}
+        <div class="col-12 p-0 bg-image">
+            <div class="bg-body col-12 p-0 section-border-top">
+                <div class="col-12 p-md-5 ">
+                    <section>
+                        <div class="container">
+                            <div class="row text-white py-5">
+                                <div class="col-12 col-md-6 p-5">
+                                    <span class="index-text">Welcome to GetCryptoPayments</span>
+                                </div>
+                                <div class="col-12 col-md-6 p-md-5 mt-3 mt-md-0">
+                                    <div class="col-12 col-md-10 offset-md-1 gcps-box text-center">
+                                        <div class="col-12 pt-5 pb-3 border-bottom">
+                                            <h5>Choose Which Assets to Trade</h5>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-5 p-md-5">
+                                                <span class="col-12 my-4">Deposit</span>
+                                                <img src="{% static 'gcps/images/BTC.png' %}" style="max-width: 80px">
+                                            </div>
+                                            <div class="col-2 d-flex align-items-center justify-content-center">
+                                                <i class="fas fa-exchange-alt"></i>
+                                            </div>
+                                            <div class="col-5 p-md-5">
+                                                <span class="col-12 my-4">Receive</span>
+                                                <img src="{% static 'gcps/images/ETH.png' %}" style="max-width: 80px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!--  -->
+                <section>
+                    <div class="container text-white p-md-5">
+                        <div class="col-12 gcps-box animated-box p-2 p-md-5">
+                            <div class="row">
+                                <div class="col-12 col-sm-6 mt-2 row">
+                                    <div class="col-12 col-sm-3 col-md-2">
+                                        <img class="coin-b" src="{% static 'gcps/images/b-coin.png' %}" alt="">
+                                    </div>
+                                    <div class="col-12 col-sm-9 col-md-10 font-h4">
+                                        <h3 class="font-h3"> Receive Crypto Payments?</h3>
+                                        <p>Let GetCryptoPayments help with:</p>
+                                        <ul>
+                                            <li> Accepting payments from over 100 different coins</li>
+                                            <li> By our GetCryptoPayments Merchant Tools</li>
+                                        </ul>
+                                        <button type="submit" class="btn- btn-default btn-get-start"><a href="merchant-tools"
+                                            style="color: white;">Find Out More</a></button>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-6 mt-2 row">
+                                    <div class="col-12 col-sm-3 col-md-2">
+                                        <i class="fas fa-fingerprint fa-3x"></i>
+                                    </div>
+                                    <div class="col-12 col-sm-9 col-md-10 font-h4">
+                                        <h3 class="font-h3"> $PayByName</h3>
+                                        <p>One unique $tag to receive payments from all coins. </p>
+                                        <h1 class="font-h3-orange">Example Profile</h1>
+                                        <div class="co-md-12">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text btn-orange">$</span>
+                                                </div>
+                                                <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text btn-orange">Check</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--  -->
+                <section class="col-12 mt-5 text-white p-md-5" id="">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12 shopping-cart text-center mt-2">
+                                <h2>Shopping Cart Plugins</h2>
+                            </div>
+                            <div class="col-12 shopping text-center">
+                                <h5 class="font-h4">Offering plugins for all the popular webcarts used today. Register and
+                                    install a plugin to set up GetCryptoPayments with your new or pre-existing checkout'
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container-fluid mt-1 procart">
+                        <div class="d-flex justify-content-center flex-wrap">
+                            <div class="card gcps-box-white m-1 m-md-3 col-4 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-offset="50">
+                                <img class="card-img-top" src="{% static 'gcps/images/cart01.png' %}" alt="Card image cap">
+                                <div class="card-body text-dark text-center">
+                                    <h5 class="card-title">Xcart</h5>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card gcps-box-white m-1 m-md-3 col-4 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.3s" data-wow-offset="50">
+                                <img class="card-img-top" src="{% static 'gcps/images/cart02.png' %}" alt="Card image cap">
+                                <div class="card-body text-dark text-center">
+                                    <h5 class="card-title">Xcart</h5>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card gcps-box-white m-1 m-md-3 col-4 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.4s" data-wow-offset="50">
+                                <img class="card-img-top" src="{% static 'gcps/images/cart03.png' %}" alt="Card image cap">
+                                <div class="card-body text-dark text-center">
+                                    <h5 class="card-title">Xcart</h5>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card gcps-box-white m-1 m-md-3 col-4 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.5s" data-wow-offset="50">
+                                <img class="card-img-top" src="{% static 'gcps/images/cart04.png' %}" alt="Card image cap">
+                                <div class="card-body text-dark text-center">
+                                    <h5 class="card-title">Xcart</h5>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card gcps-box-white m-1 m-md-3 col-4 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.6s" data-wow-offset="50">
+                                <img class="card-img-top" src="{% static 'gcps/images/cart05.png' %}" alt="Card image cap">
+                                <div class="card-body text-dark text-center">
+                                    <h5 class="card-title">Xcart</h5>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card gcps-box-white m-1 m-md-3 col-4 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.7s" data-wow-offset="50">
+                                <img class="card-img-top" src="{% static 'gcps/images/cart06.png' %}" alt="Card image cap">
+                                <div class="card-body text-dark text-center">
+                                    <h5 class="card-title">Xcart</h5>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="card gcps-box-white m-1 m-md-3 col-4 col-md-3 col-lg-2 wow fadeInUp" data-wow-delay="0.8s" data-wow-offset="50">
+                                <img class="card-img-top" src="{% static 'gcps/images/cart07.png' %}" alt="Card image cap">
+                                <div class="card-body text-dark text-center">
+                                    <h5 class="card-title">Xcart</h5>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            </section>
+            <!--  -->
+            <section class=" text-white">
+                <div class="container mt-5">
+                    <div class="row mt-2">
+                        <div class="col-sm-12 shopping-cart text-center">
+                            <h1>Payment Features</h1>
+                        </div>
+                        <div class="col-sm-12 shopping text-center font-h4">Here some ways GetCryptoPayments can help you
+                            process payments.
+                        </div>
+                        <div class="col-sm-6 text-right">
+                            <div class="payment-sect ">
+                                <span class="vline"></span>
+                                <div class="pay-setbx  gcps-box my-3 wow rotateInUpRight">
+                                    <div class=" pay-setbx-content right">
+                                        <h3>BitGo™ Instant</h3>
+                                        <p>GetCryptoPayments supports BitGo Instant making Bitcoin payments
+                                            faster than
+                                            ever before.
+                                        </p>
+                                    </div>
+                                    <div class=" pay-setbx-image right">
+                                        <img src="{% static 'gcps/svgs/004.svg' %}" class="w80">
+                                    </div>
+                                </div>
+
+                                <div class="pay-setbx  gcps-box my-3 wow rotateInUpRight">
+                                    <div class=" pay-setbx-content right">
+                                        <h3>Vault</h3>
+                                        <p>{% blocktrans %}Protect your coins in the vault, requiring a time amount you
+                                            specify before being
+                                            able to spend them.{% endblocktrans %}
+                                        </p>
+                                    </div>
+                                    <div class="pay-setbx-image right">
+                                        <img src="{% static 'gcps/svgs/008.svg' %}" class="w80">
+                                    </div>
+                                </div>
+
+                                <div class="pay-setbx gcps-box my-3 wow rotateInUpRight">
+                                    <div class="pay-setbx-content right">
+                                        <h3>Fiat Settlements</h3>
+                                        <p>{% blocktrans %}United States and Euro merchants now have fiat settlements
+                                            directly to their
+                                            bank accounts. {% endblocktrans %}
+                                        </p>
+                                    </div>
+                                    <div class="pay-setbx-image right">
+                                        <img src="{% static 'gcps/svgs/007.svg' %}" class="w80">
+                                    </div>
+                                </div>
+
+                                <div class="pay-setbx gcps-box my-3 wow rotateInUpRight">
+                                    <div class="pay-setbx-content right">
+                                        <h3>Point of Sale (POS)</h3>
+                                        <p>{% blocktrans %}Simple interface for in person transactions. {% endblocktrans %}
+                                        </p>
+                                    </div>
+                                    <div class="pay-setbx-image right">
+                                        <img src="{% static 'gcps/svgs/001.svg' %}" class="w80">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="payment-sect">
+                                <!-- repeat -->
+                                <div class="pay-setbx gcps-box my-3 wow rotateInUpLeft my-3">
+                                    <div class="pay-setbx-content left">
+                                        <h3>Secured with BitGo</h3>
+                                        <p>{%blocktrans%}Our hot wallet is secured by BitGo - meaning 100 
+                                            of
+                                            our funds are protected by multi-signature technology.{% endblocktrans %}
+                                        </p>
+                                    </div>
+                                    <div class="pay-setbx-image left">
+                                        <img src="{% static 'gcps/svgs/009.svg' %}" class="w80">
+                                    </div>
+                                </div>
+                                <!-- repeat end -->
+                                <!-- repeat -->
+                                <div class="pay-setbx gcps-box wow rotateInUpLeft my-3">
+                                    <div class="pay-setbx-content left">
+                                        <h3>Mobile Apps</h3>
+                                        <p>{% blocktrans %}Access your account, accept payments in person, and convert
+                                            coins anywhere with
+                                            our mobile apps for Android and iOS.{% endblocktrans %}
+                                        </p>
+                                    </div>
+                                    <div class="pay-setbx-image left">
+                                        <img src="{% static 'gcps/svgs/005.svg' %}" class="w80">
+                                    </div>
+                                </div>
+                                <!-- repeat end -->
+                                <!-- repeat -->
+                                <div class="pay-setbx gcps-box wow rotateInUpLeft my-3">
+                                    <div class="pay-setbx-content left">
+                                        <h3>Auto Coin Conversion</h3>
+                                        <p>Auto convert for some of our coins, saving you the trouble of moving funds,
+                                            wasting
+                                            time and fees.
+                                        </p>
+                                    </div>
+                                    <div class="pay-setbx-image left">
+                                        <img src="{% static 'gcps/svgs/002.svg' %}" class="w80">
+                                    </div>
+                                </div>
+                                <!-- repeat end -->
+                                <!-- repeat -->
+                                <div class="pay-setbx gcps-box wow rotateInUpLeft my-3">
+                                    <div class="pay-setbx-content left">
+                                        <h3>Multi-Coin Wallet</h3>
+                                        <p>Optionally store your coins in our secure online wallet.</p>
+                                    </div>
+                                    <div class="pay-setbx-image left">
+                                        <img src="{% static 'gcps/svgs/006.svg' %}" class="w80">
+                                    </div>
+                                </div>
+                                <!-- repeat end -->
+                                <!-- repeat -->
+                                <!-- repeat end -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--  -->
+            <section class="text-white">
+                <div class="container">
+                    <div class="row">
+                      <div class="col-12 py-5 mt-5 text-center">
+                        <h1>Announcements</h1>
+                      </div>
+                        <div class="col-md-12">
+                            <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+                                <!-- Carousel Slides / Quotes -->
+                                <div class="carousel-inner text-center">
+                                    <!-- Quote 1 -->
+                                    <div class="carousel-item active">
+                                        <blockquote>
+                                            <div class="row">
+                                                <div class="col-sm-8 offset-sm-2">
+                                                    <p>Recently listed Cloakcoin reached 70K points within the competition. Congratulations to the Cloakcoin developers team</p>
+                                                    <small><a href="https://cloakcoin.com" class="orange-a">More about visit cloakcoin.com</a></small>
+                                                </div>
+                                            </div>
+                                        </blockquote>
+                                    </div>
+                                    <!-- Quote 2 -->
+                                    <div class="carousel-item">
+                                        <blockquote>
+                                            <div class="row">
+                                                <div class="col-sm-8 offset-sm-2">
+                                                    <p>We recently listed USD Coin in our coin portfolio Congratulations to all GCP'S users. USD Coin a stablecoin brought to you now by GetCryptoPayments. </p>
+                                                    <small><a href="https://centre.io" class="orange-a">More about centre.io</a></small>
+                                                </div>
+                                            </div>
+                                        </blockquote>
+                                    </div>
+                                    <!-- Quote 3 -->
+                                    <div class="carousel-item">
+                                        <blockquote>
+                                            <div class="row">
+                                                <div class="col-sm-8 offset-sm-2">
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. .</p>
+                                                    <small><a href="centre.io" class="orange-a">More about centre.io</a></small>
+                                                </div>
+                                            </div>
+                                        </blockquote>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center">
+                                    <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
+                                    <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--  -->
+        </div>
+        {% endblock content %}

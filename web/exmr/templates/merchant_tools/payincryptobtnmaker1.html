@@ -163,15 +163,17 @@
 
                                 </div>
 
+
                                 <!-- <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="country" name="country" placeholder="Country"> -->
-                                <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="length alphanumeric"
-                                    data-validation-length="min4" name="zipcode" placeholder="City">
+                                <input type="text" class="form-control input-group col-xs-12 mt-1 " ddata-validation="length custom"
+                                data-sanitize="trim" data-validation-regexp="^([a-zA-Z0-9,. ]+)$"
+                                data-validation-length="min4" name="city" placeholder="City">
                                 <!-- <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
                                     name="state" placeholder="State/Province"> -->
                                 <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="number"
-                                    name="phone" placeholder="Zipcode">
+                                    name="zipcode" placeholder="Zipcode">
                                 <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="alphanumeric"
-                                    data-validation-allowing="-_+ " name="buyer_note" placeholder="Phone Number">
+                                    data-validation-allowing="-_+ " name="phone" placeholder="Phone Number">
                             </div>
                         </div>
                     </div>

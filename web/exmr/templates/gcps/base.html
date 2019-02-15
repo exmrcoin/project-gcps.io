@@ -1,0 +1,262 @@
+{% load staticfiles widget_tweaks %} {% load i18n %} {% get_available_languages as languages %} {% load helper_tags %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+    <title>GCPS</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'gcps/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="{% static 'gcps/css/gcps.css' %}" rel="stylesheet">
+    <link href="{% static 'gcps/css/all.css' %}" rel="stylesheet">
+    <link href="{% static 'gcps/css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'gcps/css/flaticon.css' %}" rel="stylesheet">
+    {% block style %}
+
+    {% endblock style %}
+</head>
+
+<body class="scrollbar" id="style-6">
+    <nav class="navbar navbar-toggleable-xl navbar-expand-xl navbar-dark bg-dark sticky-top ">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand" href="#"><img src="{% static 'gcps/images/logo.svg' %}" width="80" height="80" class="d-inline-block align-top d-flex justify-content-center"
+            alt=""></a>
+        <div class="collapse navbar-collapse d-xl-flex justify-content-between" id="navbarNav">
+            <ul class="nav navbar-nav navbar-left">
+                <li>
+                    <a href="/en/public-coin-votes/">Public Coin Vote</a>
+                </li>
+                <li>
+                    <a href="/en/coins/supported/Crypto/">Supported Coins</a>
+                </li>
+                <li>
+                    <a href="/en/store/store-directory/">Store Directory</a>
+                </li>
+                <li>
+                    <a href="/en/merchant-tools/">Merchant Tools</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav ">
+                <li class="dropdown pt10 mt-2">
+                    <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">Contact Us
+                    <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu ">
+                        <li>
+                            <a href="/en/common/help/">Help Topics</a>
+                        </li>
+                        <li>
+                            <a href="/en/common/coin-hosting/">Coin Request</a>
+                        </li>
+                        <li>
+                            <a href="/en/store/add-to-store/">Add Store to Store Directory</a>
+                        </li>
+                        <li>
+                            <a href="/en/contact/">Contact Us</a>
+                        </li>
+                        <!-- <li role="separator" class="divider"></li>
+                            <li>
+                                <a href="#">One more separated link</a>
+                            </li> -->
+                    </ul>
+                </li>
+                <li class="dropdown pt10 mt-2">
+                    <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">
+                    <img class="language-icon" src="{% static 'gcps/images/language.png' %}" width="20"> Language
+                    <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu drop-down-box">
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/en/" title="English">
+                            English
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/es/" title="Spanish">
+                            Spanish
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/de/" title="Deutsche">
+                            Deutsche
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/hi/" title="हिन्दी">
+                            हिन्दी
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/fr/" title="Français">
+                            Français
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/it/" title="Italiano">
+                            Italiano
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/hu/" title="Magyar">
+                            Magyar
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/pt/" title="Português">
+                            Português
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/ru/" title="русский">
+                            русский
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/fa/" title="فارسی">
+                            فارسی
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/zh/" title="中文">
+                            中文
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/jp/" title="日本語">
+                            日本語
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="http://www.getcryptopayments.org/ko/" title="한국어">
+                            한국어
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="btn-noline">
+                    <a href="/en/login/" type="" class="btn btn-default btn-login">Login</a>
+                </li>
+                <li class="btn-noline">
+                    <a href="/en/sign-up/" type="" class="btn btn-default btn-signup">Signup</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- end of navbar -->
+    <!-- body -->
+{% block content%}
+
+{% endblock content %}
+     <!-- footer -->
+        <footer id="#footer" class="section-border-top">
+            <div class="footer-bg footercenter p-md-5">
+                <div class="container ">
+                    <div class="row ">
+                        <div class="col-sm-4">
+                            <div class="footer-head-menu">
+                                GETCRYPTOPAYMENTS
+                                <div class="footer-heading-line">
+                                </div>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="coins:supported_coins' 'Crypto" class="a-white">Supported Coins</a>
+                                </li>
+                                <li>
+                                    <a href="merchant-tools" class="a-white">Merchant Tools</a>
+                                </li>
+                                <li>
+                                    <a href="public coin vote" class="a-white">Public Coin Vote</a>
+                                </li>
+                                <li>
+                                    <a href="store:store-directory" class="a-white">Store Directory</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 ">
+                            <div class="footer-head-menu">
+                                GETCRYPTOPAYMENTS
+                                <div class="footer-heading-line">
+                                </div>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li data-toggle="modal" data-target="#appModal">Get Mobile App</li>
+                                <li>Affiliate Information</li>
+                                <li>Official TOR URL</li>
+                                <li>PGP Key</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4 ">
+                            <div class="footer-head-menu">
+                                GETCRYPTOPAYMENTS
+                                <div class="footer-heading-line">
+                                </div>
+                            </div>
+                            <ul class="list-unstyled">
+                                <li onclick="window.location.href='common:helptopic' 'feespricing' '">Fees/Pricing</li>
+                                <li onclick="window.location.href='common:help'">Help</li>
+                                <li onclick="window.location.href='store:add-to-store'">Add Store</li>
+                                <li onclick="window.location.href='public coin vote'">Coin Request</li>
+                            </ul>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-2 footer-head-menu">
+                            <a href="common:helpprivacy-policy">Privacy Policy</a>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-2 footer-head-menu">
+                            <a href="common:helpterms-of-service">Terms of Service</a>
+                        </div>
+                        <div class="col-12 col-sm-4 col-md-2 footer-head-menu">
+                            <a href="https://www.facebook.com/GetCryptoPayments/">
+                            <i class="fab fa-facebook-square fa-2x white-font"></i>
+                            </a>
+                            <a href="https://twitter.com/GCryptoPayments" target="_blank">
+                            <i class="fab fa-twitter-square fa-2x white-font"></i>
+                            </a>
+                            <a href="https://www.linkedin.com/company/getcryptopayments/" target="_blank">
+                            <i class="fab fa-linkedin fa-2x white-font"></i>
+                            </a>
+                            <a href="http://t.me/GetCryptoPayments" target="_blank">
+                            <i class="fab fa-telegram fa-2x white-font"></i>
+                            </a>
+                        </div>
+                        <div class="col-12 col-md-6 footer-head-menu buttons-footer-div d-flex justify-content-between  align-items-stretch flex-wrap">
+                            <button type="submit" class="col-12 col-sm-5 col-md-2 col-lg-1 btn btn-default btn-footer align-self-start" onclick="window.location.href='store:add-to-store'">Add Store</button>
+                            <button type="submit" class="col-12 col-sm-5 col-md-2 px-1 btn-default btn btn-footer coin-payment align-self-start" onclick="window.location.href='public coin vote'">Vote for coin</button>
+                            <img class="col-8 col-sm-5 col-md-3 img-fluid appstore-icon align-self-start"
+                                src="{% static 'gcps/images/apple-icon.png' %}" data-toggle="modal" data-target="#appModal">
+                            <img class="col-8 col-sm-5 col-md-3  img-fluid appstore-icon align-self-start" 
+                                src="{% static 'gcps/images/play-store.png' %}" data-toggle="modal" data-target="#appModal">
+                        </div>
+                    </div>
+                </div>
+                <div class="pad10">
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JavaScript
+            ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{% static 'gcps/js/jquery.min.js' %}"></script>
+        <script src="{% static 'gcps/js/popper.min.js' %}"></script>
+        <script src="{% static 'gcps/js/bootstrap.bundle.js' %}"></script>
+        <script src="{% static 'gcps/js/all.js' %}"></script>
+        <script src="{% static 'gcps/js/wow.min.js' %}"></script>
+        <script>
+            new WOW().init();
+        </script>
+        <!--load all script -->
+
+    {% block script %}
+
+    {% endblock script %}
+    </body>
+</html>

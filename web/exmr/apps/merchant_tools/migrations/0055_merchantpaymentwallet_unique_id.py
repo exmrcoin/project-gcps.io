@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='merchantpaymentwallet',
             name='unique_id',
-            field=models.CharField(default='', max_length=128, unique=True),
+            field=models.CharField(default='', max_length=128),
             preserve_default=False,
         ),
     ]

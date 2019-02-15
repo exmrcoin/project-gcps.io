@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('merchant_tools', '0056_auto_20190122_0812'),
+        ('merchant_tools', '0055_merchantpaymentwallet_unique_id'),
     ]
 
     operations = [

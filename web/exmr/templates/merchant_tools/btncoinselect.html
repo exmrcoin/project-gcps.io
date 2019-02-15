@@ -108,27 +108,24 @@
         <script src="{% static 'js/notify.js' %}"></script>
         <script src="{% static 'js/common.js' %}"></script>
         <script>
-            var coin_dict = {}
-            $.ajax({
-                dataType: "json",
-                url: "https://coincap.io/front",
-                success: function (data) {
-                    for (obj in data) {
-                        coin_dict[data[obj].short] = data[obj].price;
+        var data = {{rates|safe}};
+        var coin_dict ={}
+        for (obj in data) {
+                coin_dict[obj] = data[obj];
+                // if (obj.toUpperCase() == 'BCN'){
+                //     alert("BCN"+" - "+data[obj]);
+                // }
 
-                        if (data[obj].short == 'BTC') {
-                            amt_payable = parseFloat('{{amt_remaining}}');
-                            document.getElementById("coin_usd").value = data[obj].price.toFixed(2);
-                            document.getElementById("coin_amt").value = (amt_payable / data[obj].price).toFixed(
-                                8);
-                            document.getElementById("payable_amt").value = amt_payable.toFixed(2);
-                            document.getElementById("coin_usd_span").innerHTML = "USD/BTC";
-                            document.getElementById("coin_amt_span").innerHTML = "BTC";
-                            document.getElementById("payable_amt_span").innerHTML = "USD";
-                        }
-                    }
+                if (obj.toUpperCase() == 'BTC') {
+                    amt_payable = parseFloat('{{amt_remaining}}');
+                    document.getElementById("coin_usd").value = data[obj].toFixed(8);
+                    document.getElementById("coin_amt").value = (amt_payable / data[obj]).toFixed(8);
+                    document.getElementById("payable_amt").value = amt_payable.toFixed(2);
+                    document.getElementById("coin_usd_span").innerHTML = "USD/BTC";
+                    document.getElementById("coin_amt_span").innerHTML = "BTC";
+                    document.getElementById("payable_amt_span").innerHTML = "USD";
                 }
-            });
+            }
         </script>
         <script>
             function recalculate_amt() {
@@ -140,7 +137,12 @@
         </script>
         <script>
             function change_coin(cur_coin) {
-                document.getElementById("coin_usd").value = coin_dict[cur_coin].toFixed(2);
+                if (cur_coin == 'XRPTest'){
+                    cur_coin = 'XRP';
+                }
+                // alert(cur_coin+ " testing "+coin_dict[cur_coin]);
+                
+                document.getElementById("coin_usd").value = coin_dict[cur_coin].toFixed(8);
                 if (document.getElementById("coin_usd").value) {
                     document.getElementById("coin_amt").disabled = false;
                     document.getElementById("payable_amt").disabled = false;
@@ -162,7 +164,7 @@
             function calculate_amt_coin(){
                     coin_amt_value = parseFloat(document.getElementById("coin_amt").value);
                     coin_usd_value = parseFloat(document.getElementById("coin_usd").value);
-                    document.getElementById("payable_amt").value = (coin_amt_value * coin_usd_value).toFixed(2);
+                    document.getElementById("payable_amt").value = (coin_amt_value * coin_usd_value).toFixed(8);
             }
         </script>
         <!-- </script> -->

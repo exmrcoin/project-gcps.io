@@ -94,34 +94,34 @@ def create_wallet(user, currency, unique_id=None,  random=None):
     else:
         return str(currency)+' server is under maintenance'
 
-    return addr
 
 
 def get_balance(user, currency, addr=None):
     """
     Retrive specified user wallet balance.
     """
+    
     erc = EthereumToken.objects.filter(contract_symbol=currency)
     if erc:
-        balance = EthereumTokens(user=user, code=currency).balance(addr)
+        balance = EthereumTokens(user=user, code=currency, addr=None).balance()
         # balance = 1
     elif currency == "XRPTest":
-        balance = XRPTest(user).balance(addr)
+        balance = XRPTest(user,addr=None).balance()
         # balance = 1
     elif currency in ["BTC", "LTC", "XVG", "BCH"]:
-        balance = BTC(user, currency).balance(addr)
+        balance = BTC(user, currency,addr=None).balance()
         # balance = 1
     elif currency == "ETH":
-        balance = ETH(user, currency).balance(addr)
+        balance = ETH(user, currency, addr=None).balance()
         # balance = 1
     elif currency == "XRP":
-        balance = XRP(user).balance(addr)
+        balance = XRP(user, addr=None).balance()
         # balance = 1
     elif currency == "XLM":
-        balance = XLM(user, "XLM").balance(addr)
+        balance = XLM(user, "XLM", addr=None).balance()
         # balance = 1
     elif currency == "XMR":
-        balance = XLM(user, "XMR").balance(addr)
+        balance = XLM(user, "XMR", addr=None).balance()
         # balance = 1
     else:
         balance = 0
@@ -154,16 +154,17 @@ def reorder_tx_data(data):
     return result
 
 class XRPTest():
-    def __init__(self, user):
+    def __init__(self, user, address=None):
         self.user = user
+        self.address = address
 
-    def balance(self, address=None):
-        if address:
+    def balance(self):
+        if self.address:
             params = {
                 "method": "account_info",
                 "params": [
                     {
-                        "account": address,
+                        "account": self.address,
                         "strict": True,
                         "ledger_index": "validated"
                     }
@@ -189,12 +190,12 @@ class XRPTest():
                     }
                 ]
             }
-            result = json.loads(requests.post(
-                "https://s.altnet.rippletest.net:51234", json=params).text)
-            try:
-                return float(Decimal(result['result']['account_data']['Balance'])/Decimal(1000000))
-            except:
-                return 0.0
+        result = json.loads(requests.post(
+            "https://s.altnet.rippletest.net:51234", json=params).text)
+        try:
+            return (float(Decimal(result['result']['account_data']['Balance'])/Decimal(1000000))-0)
+        except:
+            return 0.0
 
     def send(self, destination, amount):
         destination = check_pay_by_name(destination, "XRPTest")
@@ -224,8 +225,7 @@ class XRPTest():
                 }
             ]
         }
-        submit = json.loads(requests.post(
-            "https://s.altnet.rippletest.net:51234", json=params).text)
+        submit = json.loads(requests.post("https://s.altnet.rippletest.net:51234", json=params).text)
         try:
             return result['result']['tx_json']['hash']
         except:
@@ -261,7 +261,7 @@ class XRPTest():
 
 
 class ETH():
-    def __init__(self, user=None, currency="ETH"):
+    def __init__(self, user=None, currency="ETH", address=None):
         self.user = user
 
     def get_results(self, method, params):
@@ -296,12 +296,9 @@ class ETH():
             return address
         return address
 
-    def balance(self, address=None):
-        if address:
-            user_addr = address
-        else:  
-            user_addr = Wallet.objects.get(
-                user=self.user, name__code='ETH').addresses.all()[0].address
+    def balance(self):
+        user_addr = Wallet.objects.get(
+            user=self.user, name__code='ETH').addresses.all()[0].address
         params = [user_addr, "latest"]
         balance = float(w3.fromWei(w3.eth.getBalance(
             Web3.toChecksumAddress(user_addr)), "ether"))
@@ -366,7 +363,7 @@ def create_DASH_wallet(user, currency):
 
 
 class EthereumTokens():
-    def __init__(self, user, code):
+    def __init__(self, user, code, address=None):
         self.user = user
         self.code = code
         obj = EthereumToken.objects.get(contract_symbol=code)
@@ -397,7 +394,6 @@ class EthereumTokens():
         else:
             user_addr = EthereumTokenWallet.objects.get(
                 user=self.user, name__contract_symbol=self.code).addresses.all()[0].address
-            #balance = w3.fromWei(w3.eth.getBalance(w3.toChecksumAddress(user_addr)),"ether")
         balance = float(self.contract.call().balanceOf(
             Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
         return balance
@@ -438,21 +434,20 @@ class EthereumTokens():
 
 
 class BTC:
-    def __init__(self, user, currency):
+    def __init__(self, user=None, currency='BTC', address=None):
         self.user = user
         self.currency = currency
         self.coin = Coin.objects.get(code=currency)
         self.access = globals()['create_' + currency+'_connection']()
+        self.address = address
 
     def send(self, address, amount):
         address = check_pay_by_name(address, self.currency)
         valid = self.access.sendtoaddress(address, amount)
         return valid
 
-    def balance(self, address=None):
-        if address:
-            balance = self.access.getreceivedbyaddress(address)
-        else:
+    def balance(self):
+        if not self.address:
             wallet_username = self.user.username + "_exmr"
             balance = self.access.getreceivedbyaccount(wallet_username)
             transaction = Transaction.objects.filter(
@@ -460,6 +455,9 @@ class BTC:
             if transaction:
                 balance = balance - sum([Decimal(obj.amount)
                                         for obj in transaction])
+        else:
+            balance = self.access.getreceivedbyaddress(address)
+
         return float(balance)
 
     def generate(self, unique_id, random=None):
@@ -494,14 +492,15 @@ class BTC:
 
 
 class LTC():
-    def __init__(self, user, currency):
+    def __init__(self, user, currency, address=None):
         self.temp = BTC(user, currency)
+        self.address = address
 
     def send(self, address, amount):
         self.temp.send(address, amount)
 
     def balance(self):
-        self.temp.balance()
+        self.temp.balance(self.address)
 
     def generate(self, random=None):
         self.temp.balance()
@@ -511,8 +510,9 @@ class LTC():
 
 
 class XMR():
-    def __init__(self, user, currency):
+    def __init__(self, user, currency, address=None):
         self.user = user
+        self.address = address
 
     def create_XMR_connection(self, method, params):
         url = "http://47.254.34.85:18083/json_rpc"
@@ -533,8 +533,6 @@ class XMR():
         }
         result = self.create_XMR_connection("make_integrated_address", param)
         address = result["result"]['integrated_address']
-        moneropaymentid = MoneroPaymentid.objects.create(
-            user=self.user, paymentid=paymentid, address=address)
         if random:
             MerchantPaymentWallet.objects.create(merchant=self.user, address=address, unique_id=unique_id, code="XMR")
             return address
@@ -544,36 +542,24 @@ class XMR():
         wallet.addresses.add(WalletAddress.objects.create(address=address))
         return address
 
-    def balance(self, address=None):
-        if address:
-            payment_id = MoneroPaymentid.objects.get(address=address).paymentid
-            param = {
-                    "payment_id": payment_id
+    def balance(self):
+        coin = Coin.objects.get(code='XMR')
+        wallet = Wallet.objects.get(user=self.user, name=coin)
+        if wallet:
+            temp_list = MoneroPaymentid.objects.filter(user=self.user)
+            balance = 0
+            for pids in temp_list:
+                param = {
+                    "payment_id": pids.paymentid
                 }
-            try:
-                balance = self.create_xmr_connection("get_payments", param)[
-                    "result"]['payments'][0]['amount']
-            except:
-                balance = 0
-                
+                try:
+                    temp_balance = self.create_xmr_connection("get_payments", param)[
+                        "result"]['payments'][0]['amount']
+                except:
+                    temp_balance = 0
+                balance = balance + temp_balance
         else:
-            coin = Coin.objects.get(code='XMR')
-            wallet = Wallet.objects.get(user=self.user, name=coin)
-            if wallet:
-                temp_list = MoneroPaymentid.objects.filter(user=self.user)
-                balance = 0
-                for pids in temp_list:
-                    param = {
-                        "payment_id": pids.paymentid
-                    }
-                    try:
-                        temp_balance = self.create_xmr_connection("get_payments", param)[
-                            "result"]['payments'][0]['amount']
-                    except:
-                        temp_balance = 0
-                    balance = balance + temp_balance
-            else:
-                balance = 0
+            balance = 0
         return balance
 
     def send(self, destination, amount):
@@ -599,16 +585,17 @@ class XMR():
 
 
 class XRP():
-    def __init__(self, user):
+    def __init__(self, user, address=None):
         self.user = user
+        self.address = address
 
-    def balance(self, address=None):
-        if address:
+    def balance(self):
+        if self.address:
             params = {
                 "method": "account_info",
                 "params": [
                     {
-                        "account": address,
+                        "account": self.address,
                         "strict": True,
                         "ledger_index": "validated"
                     }
@@ -620,7 +607,7 @@ class XRP():
                 return float(Decimal(result['result']['account_data']['Balance'])/Decimal(1000000))
             except:
                 return 0.0
-        else:    
+        else:
             wallet = Wallet.objects.get(user=self.user, name__code="XRP")
             secret = wallet.private
             address = wallet.addresses.all().first().address
@@ -740,7 +727,7 @@ def get_primary_address(user, currency):
 
 
 class XLM():
-    def __init__(self, user=None, currency="XLM"):
+    def __init__(self, user=None, currency="XLM", address=None):
         self.user = user
         self.currency = currency
         self.coin = Coin.objects.get(code=currency)

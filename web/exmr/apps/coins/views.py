@@ -410,8 +410,13 @@ class CoinSettings(TemplateView):
     def post(self, request, *args, **kwargs):
         req = request.POST
         selected = request.POST.getlist('enabled')
-        if selected:
-            for item in selected:
+        coins = Coin.objects.all()
+        code = []
+        for x in coins:
+            code.append(x.code)
+
+        for item in code:
+            if item in selected:
                 try:
                     setting = CoinSetting.objects.get(
                         user=request.user, 
@@ -432,7 +437,23 @@ class CoinSettings(TemplateView):
                     payment_mode=req.get('pay_type_'+item),
                     discount_percentage=float(req.get('discount_'+item)), 
                     maximum_per_transaction=float(req.get('value_'+item)),
-                )                           
+                )     
+            else:
+                try:
+                    setting = CoinSetting.objects.get(
+                        user=request.user, 
+                        coin=Coin.objects.get(code=item), 
+                    )
+                    
+                    setting.enabled=False
+                    setting.save()
+                except:
+                    CoinSetting.objects.create(
+                    user=request.user, 
+                    coin=Coin.objects.get(code=item), 
+                    enabled=False,
+                )
+
         return render(request, self.template_name, {'wallets': Coin.objects.all(), 'erc_wallet': EthereumToken.objects.all(), 'transactions': Transaction.objects.filter(user=self.request.user)})
 
 class SettingSetUp(TemplateView):

@@ -100,28 +100,27 @@ def get_balance(user, currency, addr=None):
     """
     Retrive specified user wallet balance.
     """
-    
     erc = EthereumToken.objects.filter(contract_symbol=currency)
     if erc:
-        balance = EthereumTokens(user=user, code=currency, addr=None).balance()
+        balance = EthereumTokens(user, currency).balance(addr)
         # balance = 1
     elif currency == "XRPTest":
-        balance = XRPTest(user,addr=None).balance()
+        balance = XRPTest(user, addr).balance()
         # balance = 1
     elif currency in ["BTC", "LTC", "XVG", "BCH"]:
-        balance = BTC(user, currency,addr=None).balance()
+        balance = BTC(user, currency, addr).balance()
         # balance = 1
     elif currency == "ETH":
-        balance = ETH(user, currency, addr=None).balance()
+        balance = ETH(user, currency, addr).balance()
         # balance = 1
     elif currency == "XRP":
-        balance = XRP(user, addr=None).balance()
+        balance = XRP(user, addr).balance()
         # balance = 1
     elif currency == "XLM":
-        balance = XLM(user, "XLM", addr=None).balance()
+        balance = XLM(user, "XLM", addr).balance()
         # balance = 1
     elif currency == "XMR":
-        balance = XLM(user, "XMR", addr=None).balance()
+        balance = XLM(user, "XMR", addr).balance()
         # balance = 1
     else:
         balance = 0
@@ -231,7 +230,7 @@ class XRPTest():
         except:
             return result['result']['error']
 
-    def generate(self, unique_id, random=None):
+    def generate(self, unique_id=None, random=None):
         # address_process = subprocess.Popen(
         #     ['node', '../ripple-wallet/test.js'], stdout=subprocess.PIPE)
         # address_data, err = address_process.communicate()
@@ -263,6 +262,7 @@ class XRPTest():
 class ETH():
     def __init__(self, user=None, currency="ETH", address=None):
         self.user = user
+        self.address = address
 
     def get_results(self, method, params):
         message = {
@@ -279,7 +279,7 @@ class ETH():
             "http://35.185.10.253:8545", headers=headers, data=serialized_data)
         return response.json()
 
-    def generate(self, unique_id, random=None):
+    def generate(self, unique_id=None, random=None):
         coin = Coin.objects.get(code='ETH')
         wallet, created = Wallet.objects.get_or_create(
             user=self.user, name=coin)
@@ -296,9 +296,14 @@ class ETH():
             return address
         return address
 
+
     def balance(self):
-        user_addr = Wallet.objects.get(
-            user=self.user, name__code='ETH').addresses.all()[0].address
+        if self.address:
+            user_addr = self.address
+        else:  
+            user_addr = Wallet.objects.get(
+                user=self.user, name__code='ETH').addresses.all()[0].address
+        
         params = [user_addr, "latest"]
         balance = float(w3.fromWei(w3.eth.getBalance(
             Web3.toChecksumAddress(user_addr)), "ether"))
@@ -352,7 +357,7 @@ def create_DASH_wallet(user, currency):
     try:
         wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
         if created:
-            print(addr)
+            # print(addr)
             wallet.addresses.add(WalletAddress.objects.create(address=addr))
             wallet.save()
         else:
@@ -363,14 +368,15 @@ def create_DASH_wallet(user, currency):
 
 
 class EthereumTokens():
-    def __init__(self, user, code, address=None):
+    def __init__(self, user, code):
         self.user = user
         self.code = code
         obj = EthereumToken.objects.get(contract_symbol=code)
         self.contract = w3.eth.contract(address=Web3.toChecksumAddress(obj.contract_address),
                                         abi=obj.contract_abi)
+        
 
-    def generate(self, unique_id, random=None):
+    def generate(self, unique_id=None, random=None):
         coin = EthereumToken.objects.get(contract_symbol=self.code)
         wallet, created = EthereumTokenWallet.objects.get_or_create(
             user=self.user, name=coin)
@@ -456,11 +462,11 @@ class BTC:
                 balance = balance - sum([Decimal(obj.amount)
                                         for obj in transaction])
         else:
-            balance = self.access.getreceivedbyaddress(address)
+            balance = self.access.getreceivedbyaddress(self.address)
 
         return float(balance)
 
-    def generate(self, unique_id, random=None):
+    def generate(self, unique_id=None, random=None):
         coin = Coin.objects.get(code=self.currency)
         wallet_username = self.user.username + "_exmr"
         access = globals()['create_'+self.currency+'_connection']()
@@ -523,7 +529,7 @@ class XMR():
             'content-type': 'application/json'})
         return response.json()
 
-    def generate(self, unique_id, random=None):
+    def generate(self, unique_id=None, random=None):
         coin = Coin.objects.get(code='XMR')
         paymentid = (binascii.b2a_hex(os.urandom(8))).decode()
         moneropaymentid = MoneroPaymentid.objects.create(
@@ -533,6 +539,8 @@ class XMR():
         }
         result = self.create_XMR_connection("make_integrated_address", param)
         address = result["result"]['integrated_address']
+        moneropaymentid = MoneroPaymentid.objects.create(
+            user=self.user, paymentid=paymentid, address=address)
         if random:
             MerchantPaymentWallet.objects.create(merchant=self.user, address=address, unique_id=unique_id, code="XMR")
             return address
@@ -542,24 +550,37 @@ class XMR():
         wallet.addresses.add(WalletAddress.objects.create(address=address))
         return address
 
-    def balance(self):
-        coin = Coin.objects.get(code='XMR')
-        wallet = Wallet.objects.get(user=self.user, name=coin)
-        if wallet:
-            temp_list = MoneroPaymentid.objects.filter(user=self.user)
-            balance = 0
-            for pids in temp_list:
-                param = {
-                    "payment_id": pids.paymentid
+    
+    def balance(self, address=None):
+        if address:
+            payment_id = MoneroPaymentid.objects.get(address=address).paymentid
+            param = {
+                    "payment_id": payment_id
                 }
-                try:
-                    temp_balance = self.create_xmr_connection("get_payments", param)[
-                        "result"]['payments'][0]['amount']
-                except:
-                    temp_balance = 0
-                balance = balance + temp_balance
+            try:
+                balance = self.create_xmr_connection("get_payments", param)[
+                    "result"]['payments'][0]['amount']
+            except:
+                balance = 0
+                
         else:
-            balance = 0
+            coin = Coin.objects.get(code='XMR')
+            wallet = Wallet.objects.get(user=self.user, name=coin)
+            if wallet:
+                temp_list = MoneroPaymentid.objects.filter(user=self.user)
+                balance = 0
+                for pids in temp_list:
+                    param = {
+                        "payment_id": pids.paymentid
+                    }
+                    try:
+                        temp_balance = self.create_xmr_connection("get_payments", param)[
+                            "result"]['payments'][0]['amount']
+                    except:
+                        temp_balance = 0
+                    balance = balance + temp_balance
+            else:
+                balance = 0
         return balance
 
     def send(self, destination, amount):
@@ -580,7 +601,7 @@ class XMR():
         try:
             return result['result']['tx_hash']
         except:
-            print(result)
+            # print(result)
             return 'error'
 
 
@@ -601,8 +622,8 @@ class XRP():
                     }
                 ]
             }
-            result = json.loads(requests.post(
-                "http://s1.ripple.com:51234/", json=params).text)
+            result = json.loads(
+                requests.post("http://s1.ripple.com:51234/", json=params).text)
             try:
                 return float(Decimal(result['result']['account_data']['Balance'])/Decimal(1000000))
             except:
@@ -663,7 +684,7 @@ class XRP():
         except:
             return result['result']['error_message']
 
-    def generate(self, unique_id, random=None):
+    def generate(self, unique_id=None, random=None):
         coin = Coin.objects.get(code='XRP')
         address_process = subprocess.Popen(
             ['node', '../ripple-wallet/ripple.js'], stdout=subprocess.PIPE)
@@ -731,8 +752,9 @@ class XLM():
         self.user = user
         self.currency = currency
         self.coin = Coin.objects.get(code=currency)
+        self.address = address
 
-    def generate(self, unique_id, random=None):
+    def generate(self, unique_id=None, random=None):
         kp = Keypair.random()
         address = kp.address().decode()
         if random:
@@ -751,9 +773,9 @@ class XLM():
             # requests.get('https://friendbot.stellar.org/?addr=' + address)
         return address
 
-    def balance(self,address=None):
-        if address:
-            addr = Address(address=address)
+    def balance(self):
+        if self.address:
+            addr = Address(address=self.address)
             try:
                 addr.get()
                 return float(Decimal(addr.balances[0]['balance']))

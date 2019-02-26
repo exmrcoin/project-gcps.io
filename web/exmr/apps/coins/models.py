@@ -119,28 +119,6 @@ class Coin(models.Model):
         return self.coin_name
 
 
-class CoinSetting(models.Model):
-    """
-    Model to save the coin setting for each user
-    """
-    user = models.ForeignKey(User, verbose_name=_(
-        'user'), related_name='get_user_coin_settings', on_delete=models.CASCADE)
-    coin = models.ForeignKey(Coin, verbose_name=_(
-        'coin'), related_name='get_coin_settings', on_delete=models.CASCADE)
-    enabled = models.BooleanField(_('enabled'), default=False)
-    payment_address = models.CharField(_('payment address'), max_length=64)
-    payment_mode = models.PositiveSmallIntegerField(
-        _('payment mode'), choices=PAYMENT_MODE_CHOICES, default=TO_BALANCE)
-    discount_percentage = models.DecimalField(
-        _('discount field'), max_digits=6, decimal_places=2)
-    maximum_per_transaction = models.DecimalField(
-        _('maximum per transaction'), max_digits=6, decimal_places=2)
-    currency = models.ForeignKey(Currency, verbose_name=_(
-        'currency'), null=True, blank=True, on_delete=models.SET_NULL)
-
-    def __str__(self):
-        return '%s setting for %s' % (self.coin, self.user)
-
 
 class CoinConvertRequest(models.Model):
     """
@@ -412,3 +390,27 @@ class PayByNamePurchase(models.Model):
 
     def __str__(self):
         return self.user.username+" "+str(self.package.number_of_items)
+
+class CoinSetting(models.Model):
+    """
+    Model to save the coin setting for each user
+    """
+    user = models.ForeignKey(User, verbose_name=_(
+        'user'), related_name='get_user_coin_settings', on_delete=models.CASCADE)
+    coin = models.ForeignKey(Coin, verbose_name=_(
+        'coin'), related_name='get_coin_settings', null=True, blank=True, on_delete=models.CASCADE)
+    erc = models.ForeignKey(EthereumToken, verbose_name=_(
+        'erc'), related_name='get_coin_settings', null=True, blank=True, on_delete=models.CASCADE)
+    enabled = models.BooleanField(_('enabled'), default=False)
+    payment_address = models.CharField(_('payment address'), null=True, blank=True, max_length=64)
+    payment_mode = models.PositiveSmallIntegerField(
+        _('payment mode'), choices=PAYMENT_MODE_CHOICES, null=True, blank=True, default=TO_BALANCE)
+    discount_percentage = models.DecimalField(
+        _('discount field'), max_digits=6, null=True, blank=True, decimal_places=2)
+    maximum_per_transaction = models.DecimalField(
+        _('maximum per transaction'), max_digits=6, null=True, blank=True, decimal_places=2)
+    currency = models.ForeignKey(Currency, verbose_name=_(
+        'currency'), null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return '%s setting for %s' % (self.coin, self.user)

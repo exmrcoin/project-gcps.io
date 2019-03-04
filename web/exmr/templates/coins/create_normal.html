@@ -1,0 +1,102 @@
+
+
+{% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
+<div></div>
+{% load transaction_status %} {% block dashboard_heading %}
+<div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">COIN SETTINGS
+        </div>
+    </div>
+</div>
+{% endblock %} {% block dashboard_wrapper_content %}
+
+<div class="dashboard-wrapper">
+    <div class="dasboard-head ">
+        <div class="panel panel-default">
+            <div class=" dasboard-head pad10">
+                <ul class="nav nav-pills">
+                    <li class="active">
+                        <a href="{% url 'coins:setting-setup' %}">Setup Wizard</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'coins:coin-settings' %}">Std.coin</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'coins:omini-coin' %}">Omini coin</a>
+                    </li>
+                    <li>
+                        <a href="{% url 'coins:ripple' %}">Ripple</a>
+                    </li>
+                    <li>
+                        <a href="#">Escrow</a>
+                    </li>
+                    <li>
+                        <a href="#">Paypal/other</a>
+                    </li>
+                    <li>
+                        <a href="#"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-body" style="text-align: center;">
+                <div class="accept-table-wrap">
+                    <table class="table table-border table-responsive-md">
+                        <thead>
+                            <tr>
+                                <th>Enabled</th>
+                                <th>Coin</th>
+                                <th>Your payment Address
+                                    <h6>(only needed for ASAP modes)</h6>
+                                </th>
+                                <th>Payout Mode </th>
+                                <th>Discount</th>
+                                <th>Maximum value per Transaction</th>
+                            </tr>
+                        </thead>
+                        <div class="form-group">
+                        <form  method="POST" action="">
+                                    {% csrf_token %}
+                                {{ formset.management_form }}
+                        
+                        {% for form in formset %}
+                        
+                        <tbody>
+                        <tr>
+                                <td>
+                        
+                                    {{form.enabled}}
+                                </td>
+                                <td>
+                                    {{form.coin}}
+                                        
+                                </td>
+                                <td>
+                                   {{form.payment_address}}
+                                </td>
+                                <td>
+                                    {{form.payment_mode}}
+                                </td>
+                                <td>
+                                    {{form.discount_percentage}}
+                                </td>
+                                <td>                                 
+                                    {{form.maximum_per_transaction}}                                        
+                                </td>
+                            </tr>
+                        {% endfor %}
+                                
+                        </tbody>
+                       
+                    </table> 
+                    <button class="btn btn-primary" type="submit" >Create</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

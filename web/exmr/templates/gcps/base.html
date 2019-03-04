@@ -103,19 +103,11 @@
               </div>
             </li>
             {% if user.is_authenticated %}
-                <li>
-                    <a
-                    class="nav-link dropdown-toggle-down"
-                    href="{% url 'accounts:profile' %}"
-                    id="navbarDropdown2"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                  {% trans 'Dashboard' %}
-                  </a>
-                </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'accounts:profile' %}">
+                {% trans 'Dashboard'%}
+              </a>
+            </li>
             {% endif %}
             <li class="nav-item dropdown">
               <a

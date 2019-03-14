@@ -1,13 +1,14 @@
-{% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
-<section>
+{% extends 'gcps/base.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+<section class="section section-pad">
+    <div class="bx-ash ">
     <div class="dark-page-header text-center">
         <h1 class="pad10 mt-2">
             {% trans 'STORE DIRECTORY' %}</h1>
         <h4 class="mt-2">
             <p>{% trans 'Largest directory of merchants accepting multiple cryptocurrencies' %}
         </h4>
-        <div class="container-fluid mt-5 padx0">
-            <div class="col-xs-12 col-sm-6 col-sm-offset-3 padx0">
+        <div class="container mt-5 padx0">
+            <div class="col-xs-12 col-sm-12 col-sm-offset-3 padx0 ">
                 <form id="searchform" action="{% url 'store:store-search' %}" method="get" accept-charset="utf-8">
                     <div class="input-group">
                         <input type="text" class="form-control search-area h50pxi" placeholder="Search" name="q" id="srch-term">
@@ -19,6 +20,7 @@
             </div>
         </div>
     </div>
+</div>
     <div class="container mt-5">
         <div class="row">
             {% for category in categories %}
@@ -38,7 +40,6 @@
     </div>
 </section>
 {% endblock %}
-
 
 {% block script %}
 

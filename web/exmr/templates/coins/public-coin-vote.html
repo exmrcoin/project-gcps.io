@@ -1,4 +1,4 @@
-{% extends 'exmr.html' %} {% load staticfiles %} {% load transaction_status %} {% block content %} {% load i18n %} {% block page_css %}
+{% extends 'gcps/base.html' %} {% load staticfiles %} {% load transaction_status %} {% block content %} {% load i18n %} {% block page_css %}
 
 <style type="text/css">
     /*
@@ -76,13 +76,16 @@
     }
 </style>
 {% endblock %}
-<section>
+<section class="section section-pad">
+    <div class="bx-ash mb-2">
     <div class="merchant-tools merchant-one exmr-head">
         <h1>Public Coin Vote </h1>
         <h6>"ONGOING"</h6>
         <h4>Period August-October</h4> 
         <h3>GetCryptoPayments Vote for Add Coin </h3>
     </div>
+</div>
+    
     <div class="container-fluid xs-padx1">
         <div class="col-xs-12 xs-padx1">
             <div class="account-setting-wrap coin-support-main-wrap xs-padx1">
@@ -94,7 +97,7 @@
                    
                     <div class="col-md-12">
                         <p class="coin-comp-widget-title">Website Embed Widget</p>
-                        <p class="coin-comp-widget"><img class="coin-comp-image img-responsive margin-center" src="{% static '/images/image-729x90.png' %}" width="550"></p>
+                        <p class="coin-comp-widget"><img class="coin-comp-image img-fluid margin-center" src="{% static '/images/image-729x90.png' %}" width="550"></p>
                         <p class="coin-comp-widget"><a a class="" href="{% static '/compressed/images.zip'%}"> Download Widget Images Here</a></p><br>
                     </div>
                     <div class="row">
@@ -160,6 +163,7 @@
             </div>
         </div>
     </div>
+
 </section>
 
 <script type="text/javascript">

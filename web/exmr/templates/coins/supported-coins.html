@@ -1,18 +1,20 @@
-{% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
-<section>
+{% extends 'gcps/base.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+<section class="section section-pad" >
+<div class="bx-ash ">
     <div class="dark-page-header">
-        <h1 class="pad10 mt-2">{% trans 'SUPPORTED COINS' %}
+        <h1 class="pad10 mt-1">{% trans 'SUPPORTED COINS' %}
         </h1>
-        <h4 class="mt-2">
+        <h5 class="mt-2">
             {% trans 'Instant get crypto payments checkout with easy to use cart plugin, advanced, invoice buillder and API for custom integration' %}
-        </h4>
+        </h5>
     </div>
+</div>
 
-    </div>
-    <div class="dashboard-bg mt">
+  
+    <div class="dashboard-bg body-background mt">
         <div class="container">
             <div class="header-dark-bg mt-2 col-xs-12">
-                <ul class="pad10 custom-ul col-xs-12 mb-0">
+                <ul class="pad10 custom-ul row mb-0">
                     
                     {% for coin_type in coin_types %}
                     

@@ -1,7 +1,8 @@
-{% extends 'exmr.html' %} {% load staticfiles %} 
+{% extends 'gcps/base.html' %} {% load staticfiles %} 
 {% block title %} Merchant Tools{% endblock %} {% block content %} 
 {% load i18n %}
-<section>
+<section class="section section-pad">
+    <div class="bx-ash ">
     <div class="dark-page-header text-center">
         <h1 class="pad10 mt-2">
             {% trans 'MERCHANT TOOLS' %}</h1>
@@ -11,101 +12,141 @@
             <span class="click">{% trans 'click here' %}</span>
         </h4>
     </div>
-    <div class="container">
-        <div class="mt-5">
-            <div class="container">
-                <p>{% trans 'If you would like to be updated about new API or changes to existing Apis' %}
-                    <a href="" class="click">{% trans 'click here' %}</a>
-                </p>
-            </div>
+    </div>
 
-            <div class="col-sm-6 col-md-3 text-center merch-box">
+
+        <!-- Section -->
+                <section class="section section-pad pt-2 pb-5">
+                  <div class="container animatedParent animateOnce" data-sequence="80">
+                 
+                    <p class=" text-white h6 mt-3 center-aligner animated fadeInUpShort" data-id='2'>
+                     {% trans 'If you would like to be updated about new API or changes to existing Apis' %}
+                    <a href="" class="click">{% trans 'click here' %}</a>
+                    </p>
+                    <div class="row mt-5 justify-content-center paybx">
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='3'>
+                        <div class="bx-ash bx-client">
                 <div class="icon-merchant">
                     <img class="merchant-icon" src="{% static 'images/cart.png' %}">
                 </div>
-                <h5 class=" shopping-headline">{% trans 'SHOPPING CART PLUGIN' %}</h5>
-                <ul>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'SHOPPING CART PLUGIN' %}</h5>
+                <ul class="merchant-tools-li">
                     <li><a href={% url 'common:plugin-download' %}>{% trans 'Plugin Downloads' %}</a></li>
+                    
                 </ul>
-            </div>
-            <div class="col-sm-6 col-md-3 text-center merch-box">
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='4'>
+                        <div class="bx-ash bx-client">
                 <div class="icon-merchant">
                     <img class="merchant-icon" src="{% static 'images/api.png' %}">
                 </div>
-                <h5 class=" shopping-headline">{% trans 'API & IPNs' %}</h5>
-                <ul>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'API & IPNs' %}</h5>
+                <ul class="merchant-tools-li">
                     <li><a href="{% url 'common:staticpage' slug='mtools_inst_payment_Notfctn' %}">{% trans 'Instant Payment Notification' %}</a></li>
                     <li><a href="{% url 'common:api' %}">{% trans 'GETCRYPTOPAYMENTAPI' %}</a></li>
                 </ul>
-            </div>
-            <div class="col-sm-6 col-md-3 text-center merch-box">
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='5'>
+                        <div class="bx-ash bx-client">
                 <div class="icon-merchant">
                     <img class="merchant-icon" src="{% static 'images/invoice.png' %}">
                 </div>
-                <h5 class=" shopping-headline">{% trans 'INVOICE BUILDER' %}</h5>
-                <ul>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'INVOICE BUILDER' %}</h5>
+                <ul class="merchant-tools-li">
                     <li><a href="{% url 'mtools:urlmaker' %}">{% trans 'Payment Request invoice maker' %}</a></li>
                 </ul>
-            </div>
-            <div class="col-sm-6 col-md-3 text-center merch-box">
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='6'>
+                        <div class="bx-ash bx-client">
                 <div class="icon-merchant">
-                    <img class="merchant-icon" src="{% static 'images/point.png' %}">
+                    <img class="merchant-icon " src="{% static 'images/point.png' %}">
                 </div>
-                <h5 class=" shopping-headline">{% trans 'POINT OF SALE(POS) INTERFACE' %}</h5>
-                <ul>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'POINT OF SALE(POS) INTERFACE' %}</h5>
+                <ul class="merchant-tools-li">
                     <li><a href="{% url 'common:staticpage' slug='mtools_pos_html_post' %}">{% trans 'HTML URL/ POST Fields' %}</a></li>
                     <li><a href="{% url 'mtools:posqrmaker' %}">{% trans 'Post link QR Code Generator' %}</a></li>
                     <li><a href="{% url 'common:staticpage' slug='mtools_pos_example' %}">{% trans 'POS Example' %}</a></li>
                 </ul>
-            </div>
-            <div class="col-sm-6 col-md-3 text-center merch-box">
-                <div class="icon-merchant">
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='7'>
+                        <div class="bx-ash bx-client">
+                 <div class="icon-merchant">
                     <img class="merchant-icon" src="{% static 'images/simle-button.png' %}">
                 </div>
-                <h5 class=" shopping-headline">{% trans 'SIMPLE BUTTONS' %}</h5>
-                <ul>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'SIMPLE BUTTONS' %}</h5>
+                <ul class="merchant-tools-li">
                     <li><a href="{% url 'mtools:simplebuttonmaker' %}">{% trans 'Button Maker' %}</a></li>
                     <li><a href="{% url 'common:staticpage' slug='simple_button_html_post' %}">{% trans 'HTML POST Field' %}</a></li>
                     <li><a href="{% url 'common:staticpage' slug='simple_button_example' %}">{% trans 'Button Examples' %}</a></li>
                 </ul>
-            </div>
-            <div class="col-sm-6 col-md-3 text-center merch-box">
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='8'>
+                        <div class="bx-ash bx-client">
                 <div class="icon-merchant">
                     <img class="merchant-icon" src="{% static 'images/advance.png' %}">
                 </div>
-                <h5 class=" shopping-headline">{% trans 'ADVANCE BUTTONS' %}</h5>
-                <ul>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'ADVANCE BUTTONS' %}</h5>
+                <ul class="merchant-tools-li">
                     <li><a href="{% url 'mtools:buttonmaker'  %}">{% trans 'Button Maker' %}</a></li>
                     <li><a href="{% url 'common:staticpage' slug='advanced_button_html_post' %}">{% trans 'HTML Post Field' %}</a></li>
                     <li><a href="{% url 'common:staticpage' slug='advanced_button_html_example' %}">{% trans 'Button Examples' %}</a></li>
 
                 </ul>
-            </div>
-            <div class="col-sm-6 col-md-3 text-center merch-box">
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='9'>
+                        <div class="bx-ash bx-client">
                 <div class="icon-merchant">
                     <img class="merchant-icon" src="{% static 'images/shopping-cart.png' %}">
                 </div>
-                <h5 class=" shopping-headline">{% trans 'SHOPPING CART BUTTONS' %}</h5>
-                <ul>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'SHOPPING CART BUTTONS' %}</h5>
+                <ul class="merchant-tools-li">
                     <li><a href="{% url 'common:staticpage' slug='cart_button_html_post' %}">{% trans 'HTML Post Field' %}</a></li>
                     <li><a href="{% url 'common:staticpage' slug='cart_button_example' %}">{% trans 'Button Examples' %}</a></li>
                     <li><a href="{% url 'common:staticpage' slug='simple_button_images' %}">{% trans 'Button Images' %}</a></li>
                 </ul>
-            </div>
-            <div class="col-sm-6 col-md-3 text-center merch-box">
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='10'>
+                        <div class="bx-ash bx-client">
                 <div class="icon-merchant">
                     <img class="merchant-icon" src="{% static 'images/donation.png' %}">
                 </div>
-                <h5 class=" shopping-headline">{% trans 'DONATION BUTTONS' %}</h5>
-                <ul>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'DONATION BUTTONS' %}</h5>
+                <ul class="merchant-tools-li">
                     <li><a href="{% url 'mtools:donationbuttonmaker' %}">{% trans 'Button Maker' %}</a></li>
                     <li><a href="{% url 'common:staticpage' slug='simple_button_html_post' %}">{% trans 'HTML Post Field' %}</a></li>
                     <li><a href="{% url 'common:staticpage' slug='simple_button_html_post' %}">{% trans 'Button Examples' %}</a></li>
                 </ul>
-            </div>
-        </div>
-    </div>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                    </div>
+                  </div>
+                </section>
+                <!-- Section END -->
 </section>
+
 {% endblock %}
 
 

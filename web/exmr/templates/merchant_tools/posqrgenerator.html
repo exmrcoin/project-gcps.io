@@ -12,13 +12,13 @@
 <section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
     <div class="container">
         <div class="bx-ash mb-2">
-            <div class="dasboard-head pad10">
+            <div class="pad10">
                 <div class="img-dashboard">
                     <img src="{% static '/images/recevied.png' %} ">
                 </div>
                 <h4 class="text-theme">{% trans 'Advanced Button Maker' %}</h4>
             </div>
-            <div class="dasboard-head col-12 pad10 text-center">
+            <div class="col-12 pad10 text-center">
                 
                 <form method="post" novalidate>
                     {% csrf_token %} {% include 'exmr_form.html' with form=form %}
@@ -31,7 +31,7 @@
     </div>
     {% if html_url %}
     <div class="col-xs-12 col-md-10 col-md-offset-1 pad20">
-        <div class="dasboard-head col-xs-12 col-md-8 ">
+        <div class="col-xs-12 col-md-8 ">
             <span class="code-font"> {{html_url}}</span>
             <br> 
         </div>

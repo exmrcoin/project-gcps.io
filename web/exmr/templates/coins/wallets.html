@@ -66,16 +66,16 @@
     <div class="container">
         <div class="bx-ash mb-2">
             
-                    <div class="dashboard-wrapper">
+                    <div>
                            
-                            <div class="dasboard-head pad10">
+                            <div>
                                 <div class="img-dashboard">
                                     <img src="{% static '/images/recevied.png' %} ">
                                 </div>
                                 <h4 class="text-theme">{% trans 'Recent Transaction' %}</h4>
                             </div>
-                            <div class="dashboard-table">
-                                <div class="dasboard-head">
+                            <div>
+                                <div>
                                     <div class="card" style="background-color: transparent;">
                                         <div class="card-body" style="word-wrap: normal">
                     
@@ -84,7 +84,7 @@
                     
                                                 <!--Table head-->
                                                 <thead>
-                                                <tr class="table-top">
+                                                <tr class="table-top" style="border: none">
                     
                                                     <th class="text-center">{% trans 'Time' %}</th>
                                                     <th class="text-center">{% trans 'Received / Sent Name' %}</th>
@@ -95,7 +95,7 @@
                                                 <tbody>
                                                     {% if transactions %}
                                                     {% for transaction in transactions %}
-                                                    <tr>
+                                                    <tr style="border: none">
                                                         <td align="center">{{ transaction.date }}</td>
                                                         <td align="center" >{{transaction.transaction_to}}</td>
                                                         <td align="center">{{transaction.currency}}</td>
@@ -179,22 +179,22 @@
 <section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
     <div class="container">
         <div class="bx-ash mb-2">
-            <div class="dashboard-wrapper">
-                    <div class="dasboard-head pad10">
+            <div >
+                    <div class="pad10">
                         <div class="img-dashboard">
                             <img src="{% static '/images/recevied.png' %}">
                         </div>
                         <h4 class="text-theme">{% trans 'Wallets' %}</h4>
                         </div>
-                            <div class="dashboard-table">
-                                <div class="dasboard-head">
+                            <div>
+                                <div>
                                     <div class="card" style="background-color: transparent;">
                                         <div class="card-body" >
                                                                         <!--Table-->
                                             <table class="table table_2 table-border table-responsive-md table-fixed overflow table-scroll" style="table-layout: fixed; color: white">
                                                                             <!--Table head-->
                                                 <thead>
-                                                    <tr class="table-top">
+                                                    <tr class="table-top" style="border: none">
                                                         <th>{% trans 'Coin Name' %}</th>
                                                         <th>{% trans 'Code' %}</th>
                                                         <th>{% trans 'Balance' %}</th>
@@ -214,7 +214,7 @@
                                                         </tr> -->
                                                 {% for obj in wallets %}
                                                 {% if obj.display %}
-                                                <tr class="table-th">
+                                                <tr class="table-th" style="border: none">
                                                     <th>
                                                         <img src="{% static 'images/coins/' %}{{ obj.code}}.png" class="wallets-img">
                                                         <span>{{ obj.coin_name }}</span>
@@ -262,7 +262,7 @@
                                                     {% endfor %}
                                                     {% for erc in erc_wallet %}
                                                     {% if erc.display %}
-                                                <tr class="table-th ">
+                                                <tr class="table-th " style="border: none">
                                                     <th>
                                                         <img src="{{ erc.image.url }}" class="wallets-img">
                                                         <span>{{ erc.contract_symbol }}</span>

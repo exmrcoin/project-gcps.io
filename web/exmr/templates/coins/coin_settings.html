@@ -90,7 +90,7 @@
                 <div class="accept-table-wrap">
                     <table class="table table-border table-responsive-md" style="color: white">
                         <thead>
-                            <tr>
+                            <tr style="border: none">
                                 <th>Enabled</th>
                                 <th>Coin</th>
                                 <th>Your payment Address
@@ -107,7 +107,7 @@
                 <form name="RegForm"  method="post">  
                     {%csrf_token%}
                             {% for obj in wallets %}
-                            <tr>
+                            <tr style="border: none">
                                 <td>
                                     <input type="checkbox" name="enabled" value="{{obj.code}}" style="margin-top: 10px;">
                                 </td>

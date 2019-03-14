@@ -1,119 +1,133 @@
 {% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
 <div></div>
 {% load transaction_status %} {% block dashboard_heading %}
-<div class="dashboard-bg">
-    <div class="merchant-tools merchant-one coin-payment-head">
-        <div class=" container merchant-box">PAY BY NAME
+<section class="section section-pad" style="padding-bottom: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div class="grid-2-bx" style="display: inline">
+                <h4 class="text-theme b-4 dashboard">PAY BY NAME</h4>
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a href="{% url 'accounts:profile' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                            <span class="fas fa-tachometer-alt fa-2x col-xs-12 col-sm-6"></span>
+                            <span class="dashboard-span hidden-xs col-sm-6 col-md-6 wallet-menu">{% trans 'Home' %}</span>
+                        </a>
+                        <!-- <i class="fas fa-2x fa-wallet"></i>
+                        <a class="nav-link" href="{% url 'accounts:profile' %}"></a> -->
+                    </li>
+                    <li class="nav-item">
+                            <a href="{% url 'coins:wallets' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-2x fa-wallet col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
+                                    {% trans 'Your Wallet' %}
+                                </span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:wallets' %}">{% trans 'Your Wallet' %}</a> -->
+                    </li>
+                    <li class="nav-item">
+                            <a href="{% url 'coins:coin-settings' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-coins  fa-2x col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">{% trans 'Coin Settings' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:coin-settings' %}">{% trans 'Coin Settings' %}</a> -->
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'coins:transaction-history' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-receipt  fa-2x col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"> {% trans 'Transactions' %}</span>
+                        </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:transaction-history' %}">{% trans 'Transactions' %}</a> -->
+                    </li>
+                    <li class="nav-item">
+                            <a href="{% url 'mtools:posqrmaker' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-shopping-cart  fa-2x col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"> {% trans 'Quick POS' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'mtools:posqrmaker' %}"> {% trans 'Quick POS' %}</a> -->
+                    </li>
+                    <li class="nav-item">
+                            <a href="{% url 'coins:paybyname' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-user-tie  fa-2x col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">{% trans 'PayByName' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:paybyname' %}"> {% trans 'PayByName' %}</a> -->
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+</section>
 {% endblock %} {% block dashboard_wrapper_content %}
 
-<div class="dashboard-wrapper">
-    <div class="dasboard-head pad10">
-        <div class="img-dashboard">
-            <img src="{% static '/images/recevied.png' %} ">
-        </div>
-        <span class="font-h3">{% trans 'Get Your Personalised PaymentID' %}</span>
-    </div>
-
-</div>
-
-
-<div class="col-xs-12 col-md-6 pl-md-0">
-    <div class="dashboard-wrapper-width col-xs-12 px-0">
-        <div class="dasboard-head pad10 my-1 col-xs-12">
-            <span class="font-h3  col-xs-4">
-                Item#
-            </span>
-            <span class="font-h3  col-xs-8 ">
-                Item
-            </span>
-        </div>
-        <div class="col-xs-12">
-            <div class="col-xs-12 border-btm-line my-1">
-                <span class="col-xs-4">
-                    PBN-{{object.id}}
-                </span>
-                <span class="col-xs-8 ">
-                    $PayByName Tags - 1 Pack
-                </span>
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+        <div class="container">
+            <div class="bx-ash mb-2">
+                <div class="pad10" style="padding-bottom: 1rem;">
+                    <div class="img-dashboard">
+                        <img src="{% static '/images/recevied.png' %} ">
+                    </div>
+                    <h4 class="text-theme">{% trans 'Get Your Personalised PaymentID' %}</h4>
+                </div>
+                <div class="row">
+                    <div class="col-6 mb-2" style="color: white;">
+                        <div class="container" style="border: 1px solid #333; border-radius: 8px; padding: 45px; min-height: 164px;">
+                            <div class="row">
+                                <div class="col-6 mb-3"><h5 class="text-theme">Item#</h5></div>
+                                <div class="col-6 mb-3"><h5 class="text-theme">Item</h5></div>
+                                <span class="col-6">PBN-{{object.id}}</span>
+                                <span class="col-6">$PayByName Tags - 1 Pack</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-2" style="color: white; ">
+                        <div class="container" style="border: 1px solid #333; border-radius: 8px; padding: 45px; min-height: 164px;">
+                            <div class="row">
+                                <div class="col-4 mb-3"><h5 class="text-theme">Price/Unit</h5></div>
+                                <div class="col-4 mb-3"><h5 class="text-theme">Quantity</h5></div>
+                                <div class="col-4 mb-3"><h5 class="text-theme">Price</h5></div>
+                                <span class="col-4">{{ object.price }} USD</span>
+                                <span class="col-4">1</span>
+                                <span class="col-4">{{ object.price }} USD</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-2 mt-5">
+                        <div class="container" style="border: 1px solid #333; border-radius: 8px; padding: 15px; min-height: 164px;">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <h5 class="text-theme">Buyer/Shipping Information</h5>
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" placeholder="First Name" class="form-control col-12 px-2">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" placeholder="Last Name" class="form-control col-12 px-2">
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <input type="text" placeholder="E-mail" class="form-control col-12 px-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6 mb-2 mt-5" style="color: white">
+                        <div class="container" style="padding: 45px; border: 1px solid #333; border-radius: 8px; min-height: 164px;">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <h5 class="text-theme">Total</h5>
+                                </div>
+                                <span class="col-6">Total:</span>
+                                <span class="col-6">{{ object.price }} USD</span>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
         </div>
-    </div>
-</div>
+</section>
 
-<div class="col-xs-12 col-md-6 pr-md-0">
-    <div class="dashboard-wrapper-width ">
-        <div class="dasboard-head pad10 my-1 col-xs-12 col-md-6">
-            <span class="font-h3  col-xs-4">
-                Price/Unit
-            </span>
-            <span class="font-h3  col-xs-4 ">
-                Quantity
-            </span>
-            <span class="font-h3  col-xs-4 ">
-                Price
-            </span>
-        </div>
-        <div class="col-xs-12">
-            <div class="col-xs-12 border-btm-line my-1">
-                <span class="col-xs-4">
-                    {{ object.price }} USD
-                </span>
-                <span class="col-xs-4 ">
-                    1
-                </span>
-                <span class="col-xs-4 ">
-                    {{ object.price }} USD
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="col-xs-12 col-md-6 pl-md-0">
-    <div class="dashboard-wrapper-width ">
-        <div class="dasboard-head pad10 my-1 col-xs-12 col-md-6">
-            <span class="font-h3 ">
-                Buyer/Shipping Information
-            </span>
-        </div>
-        <div class="col-xs-12 text-center px-1">
-                <div class=" col-xs-12 col-md-6">
-                    <input type="text" placeholder="First Name" class="input-text-exmr col-xs-12 px-2">
-                </div>
-                <div class=" col-xs-12 col-md-6">
-                    <input type="text" placeholder="Last Name" class="input-text-exmr col-xs-12 px-2">
-                </div>
-                <div class=" col-xs-12 px-2">
-                    <input type="text" placeholder="E-mail" class="input-text-exmr col-xs-12">
-                </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="col-xs-12 col-md-6 pr-md-0">
-    <div class="dashboard-wrapper-width col-xs-12 px-0">
-        <div class="dasboard-head pad10 my-1 col-xs-12 col-md-6">
-            <span class="font-h3  col-xs-4">
-                Total
-            </span>
-        </div>
-        <div class="col-xs-12">
-            <div class="col-xs-12 border-btm-line my-1">
-                <span class="col-xs-6">
-                    Total:
-
-                </span>
-                <span class="col-xs-6 ">
-                    {{ object.price }} USD
-                </span>
-            </div>
-        </div>
-    </div>
-</div>
 
 
 {% endblock %}

@@ -1,70 +1,129 @@
 {% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
 <div></div>
 {% load transaction_status %} {% block dashboard_heading %}
-<div class="dashboard-bg">
-    <div class="merchant-tools merchant-one coin-payment-head">
-        <div class=" container merchant-box">WALLETS
+<section class="section section-pad" style="padding-bottom: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div class="grid-2-bx" style="display: inline">
+                <h4 class="text-theme b-4 dashboard">WALLET</h4>
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a href="{% url 'accounts:profile' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                            <span class="fas fa-tachometer-alt fa-2x col-xs-12 col-sm-6"></span>
+                            <span class="dashboard-span hidden-xs col-sm-6 col-md-6 wallet-menu">{% trans 'Home' %}</span>
+                        </a>
+                        <!-- <i class="fas fa-2x fa-wallet"></i>
+                        <a class="nav-link" href="{% url 'accounts:profile' %}"></a> -->
+                    </li>
+                    <li class="nav-item">
+                            <a href="{% url 'coins:wallets' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-2x fa-wallet col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
+                                    {% trans 'Your Wallet' %}
+                                </span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:wallets' %}">{% trans 'Your Wallet' %}</a> -->
+                    </li>
+                    <li class="nav-item">
+                            <a href="{% url 'coins:coin-settings' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-coins  fa-2x col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">{% trans 'Coin Settings' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:coin-settings' %}">{% trans 'Coin Settings' %}</a> -->
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'coins:transaction-history' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-receipt  fa-2x col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"> {% trans 'Transactions' %}</span>
+                        </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:transaction-history' %}">{% trans 'Transactions' %}</a> -->
+                    </li>
+                    <li class="nav-item">
+                            <a href="{% url 'mtools:posqrmaker' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-shopping-cart  fa-2x col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"> {% trans 'Quick POS' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'mtools:posqrmaker' %}"> {% trans 'Quick POS' %}</a> -->
+                    </li>
+                    <li class="nav-item">
+                            <a href="{% url 'coins:paybyname' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-user-tie  fa-2x col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">{% trans 'PayByName' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:paybyname' %}"> {% trans 'PayByName' %}</a> -->
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
+</section>
+        
+
+    
 {% endblock %} {% block dashboard_wrapper_content %}
 
-<div class="dashboard-wrapper">
-    <div class="dasboard-head pad10">
-        
-        <span class="font-h3"><i class="fas fa-paper-plane"></i>{% trans 'Pending Transactions' %}</span>
-    </div>
-    <div class="dashboard-table">
-        <div class="dasboard-head">
-            <div class="card">
-                <div class="card-body">
-
-                    <!--Table-->
-                    <table class="table table-border table-responsive-md" style="table-layout: fixed">
-
-                        <!--Table head-->
-                        <thead>
-                        <tr class="table-top">
-
-                            <th class="text-center">{% trans 'Time' %}</th>
-                            <th class="text-center">{% trans 'Received / Sent Name' %}</th>
-                            <th class="text-center">{% trans 'Coin' %}</th>
-                            <th class="text-center">{% trans 'Amount' %}</th>
-                            <th class="text-center">{% trans 'Status' %}</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                            {% if transactions %}
-                            {% for transaction in transactions %}
-                            {% if not transaction.approved %}
-                            <tr>
-                                <td align="center">{{ transaction.date }}</td>
-                                <td align="center" style="word-wrap: break-word">{{transaction.transaction_to}}</td>
-                                <td align="center">{{transaction.currency}}</td>
-                                <td align="center">{{transaction.amount}}</td>
-                                <td align="center">{% trans 'Pending' %}</td>
-                            </tr>
-                           {% endif %}
-                            {% endfor %}
-                            {% else %}
-                            <tr>
-                                <td align="center" colspan="5">{% trans 'No Pending Transactions Found' %}</td>
-                            </tr>
-                            {% endif %}
-                        
-                        </tbody>
-                        <!--Table body-->
-
-                    </table>
-                    <!--Table-->
-
-                </div>
-            </div>
-
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            
+                    <div class="dashboard-wrapper">
+                           
+                            <div class="dasboard-head pad10">
+                                <div class="img-dashboard">
+                                    <img src="{% static '/images/recevied.png' %} ">
+                                </div>
+                                <h4 class="text-theme">{% trans 'Recent Transaction' %}</h4>
+                            </div>
+                            <div class="dashboard-table">
+                                <div class="dasboard-head">
+                                    <div class="card" style="background-color: transparent;">
+                                        <div class="card-body" style="word-wrap: normal">
+                    
+                                            <!--Table-->
+                                            <table class="table table-border table-responsive-md" style="table-layout: fixed; color: white">
+                    
+                                                <!--Table head-->
+                                                <thead>
+                                                <tr class="table-top">
+                    
+                                                    <th class="text-center">{% trans 'Time' %}</th>
+                                                    <th class="text-center">{% trans 'Received / Sent Name' %}</th>
+                                                    <th class="text-center">{% trans 'Coin' %}</th>
+                                                    <th class="text-center">{% trans 'Amount' %}</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% if transactions %}
+                                                    {% for transaction in transactions %}
+                                                    <tr>
+                                                        <td align="center">{{ transaction.date }}</td>
+                                                        <td align="center" >{{transaction.transaction_to}}</td>
+                                                        <td align="center">{{transaction.currency}}</td>
+                                                        <td align="center">{{transaction.amount}}</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                    {% else %}
+                                                <tr>
+                                                    <td class="table-style" colspan="4">{% trans 'No Payment Found' %}</td>
+                    
+                                                </tr>
+                                                    {% endif %}
+                                                </tbody>
+                                                <!--Table body-->
+                    
+                                            </table>
+                                            <!--Table-->
+                    
+                                        </div>
+                                    </div>
+                    
+                                </div>
+                    
+                            </div>
+            
         </div>
-
     </div>
-</div>
+</section>
 <div class="container">
         
       
@@ -116,198 +175,173 @@
             </div>
         
       </div>
-<div class="dashboard-wrapper">
-    <div class="dasboard-head pad10">
-        <div class="img-dashboard">
-            <img src="{% static '/images/recevied.png' %} ">
-        </div>
-        <span class="font-h3">{% trans 'Wallets' %}</span>
-    </div>
-    <div class="dashboard-table">
-        <div class="dasboard-head">
-            <div class="card">
-                <div class="card-body">
+
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div class="dashboard-wrapper">
+                    <div class="dasboard-head pad10">
+                        <div class="img-dashboard">
+                            <img src="{% static '/images/recevied.png' %}">
+                        </div>
+                        <h4 class="text-theme">{% trans 'Wallets' %}</h4>
+                        </div>
+                            <div class="dashboard-table">
+                                <div class="dasboard-head">
+                                    <div class="card" style="background-color: transparent;">
+                                        <div class="card-body" >
+                                                                        <!--Table-->
+                                            <table class="table table_2 table-border table-responsive-md table-fixed overflow table-scroll" style="table-layout: fixed; color: white">
+                                                                            <!--Table head-->
+                                                <thead>
+                                                    <tr class="table-top">
+                                                        <th>{% trans 'Coin Name' %}</th>
+                                                        <th>{% trans 'Code' %}</th>
+                                                        <th>{% trans 'Balance' %}</th>
+                                                        <th>
+                                                            <select style="padding: 5%;" name="dispcoin" id="dispcoin"><option value="BTC">BTC</option><option value="USD" selected="">USD</option><option value="CAD">CAD</option><option value="EUR">EUR</option><option value="ARS">ARS</option><option value="AUD">AUD</option><option value="AZN">AZN</option><option value="BGN">BGN</option><option value="BRL">BRL</option><option value="BYN">BYN</option><option value="CHF">CHF</option><option value="CLP">CLP</option><option value="CNY">CNY</option><option value="COP">COP</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="GBP">GBP</option><option value="GEL">GEL</option><option value="GIP">GIP</option><option value="HKD">HKD</option><option value="HUF">HUF</option><option value="IDR">IDR</option><option value="ILS">ILS</option><option value="INR">INR</option><option value="IRR">IRR</option><option value="IRT">IRT</option><option value="ISK">ISK</option><option value="JPY">JPY</option><option value="KRW">KRW</option><option value="LAK">LAK</option><option value="MKD">MKD</option><option value="MXN">MXN</option><option value="MYR">MYR</option><option value="NGN">NGN</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PEN">PEN</option><option value="PHP">PHP</option><option value="PKR">PKR</option><option value="PLN">PLN</option><option value="RON">RON</option><option value="RUB">RUB</option><option value="SEK">SEK</option><option value="SGD">SGD</option><option value="THB">THB</option><option value="TRY">TRY</option><option value="TWD">TWD</option><option value="UAH">UAH</option><option value="VND">VND</option><option value="ZAR">ZAR</option></select>
+                                                            {% trans 'Value' %}
+                                                        </th>
+                                                        <th>{% trans 'Commands' %}</th>
+                            
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                            
+                                                        <!-- <tr>
+                                                            <td class="table-style" colspan="5">{% trans 'No Payment Found' %}</td>
+                            
+                                                        </tr> -->
+                                                {% for obj in wallets %}
+                                                {% if obj.display %}
+                                                <tr class="table-th">
+                                                    <th>
+                                                        <img src="{% static 'images/coins/' %}{{ obj.code}}.png" class="wallets-img">
+                                                        <span>{{ obj.coin_name }}</span>
+                                                    </th>
+                                                    <th>
+                                                        <span>{{ obj.code }}</span>
+                                                    </th>
+                                                    <th id="bal_{{obj.code}}">
+                                                        <img id="loading-image_{{obj.code}}" src="{% static 'images/load.gif' %}" style="display:none;height: 20px;" />
+                                                    </th>
+                                                    <th>
+                                                        <span id="val_{{obj.code}}" class="rateVal"></span>
+                                                        <span style="display:none;" class="val_{{obj.code}}" class="rateVal"></span>
+                                                    </th>
+                                                    <th style="width: 150px;">
+                                                        <div class="dropdown" style="width: 100%;">
+                                                            {% if obj.active %}
+                                                            <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="dropdown" aria-expanded="false">{{ obj.code }} Options
+                                                            <span class="caret"></span>
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                <a class="dropdown-item" href="{% url 'coins:newaddr' obj.code  %}"><i class="fab fa-get-pocket" style="padding-right: 11px";></i>Deposit / Receive</a>
+                                                                <a class="dropdown-item" href="{% url 'coins:coin-withdrawal' obj.code %}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Send / Withdraw</a>                                                                          
+                                                                <a class="dropdown-item" href="#"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> View Addresses
+                                                                    <sup>3</sup></a></a>
+                                                                <a class="dropdown-item" href="{% url 'coins:convert_select'  obj.code %}"><i class="fa fa-space-shuttle" aria-hidden="true" style="padding-right: 11px";></i> Convert</a>
+                                                                <a class="dropdown-item" href="#"><i class="fas fa-lock" style="padding-right: 11px";></i>Lock in Vault</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item" href="{% url 'coins:transaction-history-details' 'deposit' %}"><i class="fab fa-get-pocket" style="padding-right: 11px";></i>Deposit History</a>
+                                                                <a class="dropdown-item" href="{% url 'coins:transaction-history-details' 'withdrawal' %}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Withdrawal History</a>
+                                                                <a class="dropdown-item" href="{% url 'coins:transaction-history-details' 'transfer' %}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Transfer History</a>
+                                                                <a class="dropdown-item" href="{% url 'coins:buy_coin' obj.code %}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Buy</a>
+                                                            </div>
+                                                                    
+                            
+                                                            {% else %}
+                            
+                                                            <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="modal" data-target="#myModal">{{ obj.name.code }} Options
+                                                                <span class="caret"></span>
+                                                            </button>
+                                                            {% endif %}
+                                                            </div>
+                                                        </th>
+                                                </tr>{% endif %} 
+                                                    {% endfor %}
+                                                    {% for erc in erc_wallet %}
+                                                    {% if erc.display %}
+                                                <tr class="table-th ">
+                                                    <th>
+                                                        <img src="{{ erc.image.url }}" class="wallets-img">
+                                                        <span>{{ erc.contract_symbol }}</span>
+                                                    </th>
+                                                    <th>
+                                                        <span>{{ erc.contract_symbol }} ETH: {% get_eth_balance erc.contract_symbol request.user %}</span>
+                                                    </th>
+                                                    <th id="bal_{{ erc.contract_symbol }}">
+                                                        <img id="loading-image_{{obj.contract_symbol}}" src="{% static 'images/load.gif' %}" style="display:none;height: 20px;" />
+                                                    </th>
+                                                    <th>
+                                                        <span id="val_{{erc.contract_symbol}}" class="rateVal"></span>
+                                                        <span style="display:none;" class="val_{{erc.contract_symbol}}" class="rateVal"></span>
+                                                    </th>
+                                                    <th style="width: 150px;">
+                                                        <div class="btn-group " style="width: 100%;">
+                                                            <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="dropdown" aria-expanded="false">Options
+                                                                <span class="caret"></span>
+                                                            </button>
+                                                            <ul class="dropdown-menu" role="menu">
+                                                                <li>
+                                                                <li>
+                                                                    <a href="{% url 'coins:newaddr' erc.contract_symbol  %}">
+                                                                        <span class="glyphicon glyphicon-import"></span> Deposit / Receive</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="{% url 'coins:coin-withdrawal' erc.contract_symbol %}">
+                                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Send / Withdraw</a>
+                                                                </li>
+                                                                <li>
+                                                                            <a href="">
+                                                                                <i class="fa fa-paper-plane-o" aria-hidden="true"></i> View Addresses
+                                                                                <sup>3</sup>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="">
+                                                                                <i class="fa fa-space-shuttle" aria-hidden="true"></i> Diversify your Portfolio</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="">
+                                                                                <span class="glyphicon glyphicon-lock"></span> Lock in Vault</a>
+                                                                        </li>
+                                                                        <li class="divider"></li>
+                                                                        <li>
+                                                                            <a href="{% url 'coins:transaction-history-details' 'deposit' %}?&currency={{ erc.contract_symbol }}">
+                                                                                <span class="glyphicon glyphicon-import"></span> Deposit History</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="{% url 'coins:transaction-history-details' 'withdrawal' %}?&currency={{ erc.contract_symbol }}">
+                                                                                <i class="fa fa-paper-plane" aria-hidden="true"></i> Withdrawal History</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="{% url 'coins:transaction-history-details' 'transfer' %}">
+                                                                                <i class="fa fa-paper-plane" aria-hidden="true"></i> Transfer History</a>
+                                                                        </li>
+                            
+                                                                    
+                                                                    
+                                                                </div>
+                                                            </th>
+                                                        </tr>{% endif %}{% endfor %}
+                                                    </tbody>
                         
-                              
-
-                    <!--Table-->
-                    <table class="table table_2 table-border table-responsive-md table-fixed overflow table-scroll">
-
-                        <!--Table head-->
-                        <thead>
-                            <tr class="table-top">
-
-                                <th>{% trans 'Coin Name' %}</th>
-                                <th>{% trans 'Code' %}</th>
-                                <th>{% trans 'Balance' %}</th>
-                                <th>
-                                    <select style="padding: 5%;" name="dispcoin" id="dispcoin"><option value="BTC">BTC</option><option value="USD" selected="">USD</option><option value="CAD">CAD</option><option value="EUR">EUR</option><option value="ARS">ARS</option><option value="AUD">AUD</option><option value="AZN">AZN</option><option value="BGN">BGN</option><option value="BRL">BRL</option><option value="BYN">BYN</option><option value="CHF">CHF</option><option value="CLP">CLP</option><option value="CNY">CNY</option><option value="COP">COP</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="GBP">GBP</option><option value="GEL">GEL</option><option value="GIP">GIP</option><option value="HKD">HKD</option><option value="HUF">HUF</option><option value="IDR">IDR</option><option value="ILS">ILS</option><option value="INR">INR</option><option value="IRR">IRR</option><option value="IRT">IRT</option><option value="ISK">ISK</option><option value="JPY">JPY</option><option value="KRW">KRW</option><option value="LAK">LAK</option><option value="MKD">MKD</option><option value="MXN">MXN</option><option value="MYR">MYR</option><option value="NGN">NGN</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PEN">PEN</option><option value="PHP">PHP</option><option value="PKR">PKR</option><option value="PLN">PLN</option><option value="RON">RON</option><option value="RUB">RUB</option><option value="SEK">SEK</option><option value="SGD">SGD</option><option value="THB">THB</option><option value="TRY">TRY</option><option value="TWD">TWD</option><option value="UAH">UAH</option><option value="VND">VND</option><option value="ZAR">ZAR</option></select>
-                                    {% trans 'Value' %}
-                                </th>
-                                <th>{% trans 'Commands' %}</th>
-
-                            </tr>
-                        </thead>
-                        <tbody class="text-center">
-
-                            <!-- <tr>
-                                <td class="table-style" colspan="5">{% trans 'No Payment Found' %}</td>
-
-                            </tr> -->
-                            {% for obj in wallets %}
-                            {% if obj.display %}
-                            <tr class="table-th text-center">
-                                <th>
-                                    <img src="{% static 'images/coins/' %}{{ obj.code}}.png" class="wallets-img">
-                                    <span>{{ obj.coin_name }}</span>
-                                </th>
-                                <th>
-                                    <span>{{ obj.code }}</span>
-                                </th>
-                                <th id="bal_{{obj.code}}">
-                                    <img id="loading-image_{{obj.code}}" src="{% static 'images/load.gif' %}" style="display:none;height: 20px;" />
-                                </th>
-                                <th>
-                                    <span id="val_{{obj.code}}" class="rateVal"></span>
-                                    <span style="display:none;" class="val_{{obj.code}}" class="rateVal"></span>
-                                </th>
-                                <th style="width: 150px;">
-                                    <div class="btn-group " style="width: 100%;">
-                                        {% if obj.active %}
-                                        <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="dropdown" aria-expanded="false">{{ obj.code }} Options
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <a href="{% url 'coins:newaddr' obj.code  %}">
-                                                    <span class="glyphicon glyphicon-import"></span> Deposit / Receive</a>
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'coins:coin-withdrawal' obj.code %}">
-                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Send / Withdraw</a>
-                                            </li>
-                                            <li>
-                                                <a href="">
-                                                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i> View Addresses
-                                                    <sup>3</sup>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'coins:convert_select'  obj.code %}">
-                                                <!-- <a href="#" data-toggle="modal" data-target="#myModal"> -->
-                                                    <i class="fa fa-space-shuttle" aria-hidden="true"></i> Convert</a>
-                                            </li>
-                                            <li>
-                                                <a href="">
-                                                    <span class="glyphicon glyphicon-lock"></span> Lock in Vault</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="{% url 'coins:transaction-history-details' 'deposit' %}?&currency={{ obj.code }}">
-                                                    <span class="glyphicon glyphicon-import"></span> Deposit History</a>
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'coins:transaction-history-details' 'withdrawal' %}?&currency={{ obj.code }}">
-                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Withdrawal History</a>
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'coins:transaction-history-details' 'transfer' %}">
-                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Transfer History</a>
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'coins:buy_coin' obj.code %}">
-                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Buy </a>
-                                            </li>
-                                        </ul>
-
-                                        {% else %}
-
-                                        <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="modal" data-target="#myModal">{{ obj.name.code }} Options
-                                            <span class="caret"></span>
-                                        </button>
-                                        {% endif %}
+                                                </table>
+                                                <!--Table-->
+                        
+                                            </div>
+                                        </div>
+                        
                                     </div>
-                                </th>
-                            </tr>{% endif %} 
-                            {% endfor %}
-                            {% for erc in erc_wallet %}
-                            {% if erc.display %}
-                            <tr class="table-th text-center">
-                                <th>
-                                    <img src="{{ erc.image.url }}" class="wallets-img">
-                                    <span>{{ erc.contract_symbol }}</span>
-                                </th>
-                                <th>
-                                    <span>{{ erc.contract_symbol }} ETH: {% get_eth_balance erc.contract_symbol request.user %}</span>
-                                </th>
-                                <th id="bal_{{ erc.contract_symbol }}">
-                                    <img id="loading-image_{{obj.contract_symbol}}" src="{% static 'images/load.gif' %}" style="display:none;height: 20px;" />
-                                </th>
-
-                                <th>
-                                    <span id="val_{{erc.contract_symbol}}" class="rateVal"></span>
-                                    <span style="display:none;" class="val_{{erc.contract_symbol}}" class="rateVal"></span>
-                                </th>
-                                <th style="width: 150px;">
-                                    <div class="btn-group " style="width: 100%;">
-                                        <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="dropdown" aria-expanded="false">Options
-                                            <span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" role="menu">
-                                            <li>
-                                                <li>
-                                                <a href="{% url 'coins:newaddr' erc.contract_symbol  %}">
-                                                    <span class="glyphicon glyphicon-import"></span> Deposit / Receive</a>
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'coins:coin-withdrawal' erc.contract_symbol %}">
-                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Send / Withdraw</a>
-                                            </li>
-                                            <li>
-                                                <a href="">
-                                                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i> View Addresses
-                                                    <sup>3</sup>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="">
-                                                    <i class="fa fa-space-shuttle" aria-hidden="true"></i> Diversify your Portfolio</a>
-                                            </li>
-                                            <li>
-                                                <a href="">
-                                                    <span class="glyphicon glyphicon-lock"></span> Lock in Vault</a>
-                                            </li>
-                                            <li class="divider"></li>
-                                            <li>
-                                                <a href="{% url 'coins:transaction-history-details' 'deposit' %}?&currency={{ erc.contract_symbol }}">
-                                                    <span class="glyphicon glyphicon-import"></span> Deposit History</a>
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'coins:transaction-history-details' 'withdrawal' %}?&currency={{ erc.contract_symbol }}">
-                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Withdrawal History</a>
-                                            </li>
-                                            <li>
-                                                <a href="{% url 'coins:transaction-history-details' 'transfer' %}">
-                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Transfer History</a>
-                                            </li>
-
-                                        
-                                        
-                                    </div>
-                                </th>
-                            </tr>{% endif %}{% endfor %}
-                        </tbody>
-                        <!--Table body-->
-
-                    </table>
-                    <!--Table-->
-                </div>
+                        
+                                </div>
+                
             </div>
-
         </div>
+    </section>
 
-    </div>
-</div>
+
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
 

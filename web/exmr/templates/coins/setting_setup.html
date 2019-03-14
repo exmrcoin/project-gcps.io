@@ -1,10 +1,96 @@
-{% extends 'exmr.html' %} {% load staticfiles %} 
+{% extends 'gcps/base.html' %} {% load staticfiles %} 
 {% block title %} Merchant Tools{% endblock %} {% block content %} 
 {% load i18n %}
+
+<section class="section section-pad">
+    <div class="container animatedParent animateOnce" data-sequence="80">
+      <h1 class="text-white text-center text-uppercase animated fadeInUpShort" style="padding-bottom: 50px;" data-id='1'>
+            {% trans 'Account' %} <span class="text-theme b-700">{% trans 'Setup Wizard' %}s</span>
+      </h1>  
+      <h3 class="text-white text-center text-uppercase animated fadeInUpShort" data-id='1'>
+            {% trans 'Payments' %} <span class="text-theme b-700">{% trans 'Methods' %}</span>
+      </h3>
+      <p class="text-center text-white h6 mt-3 center-aligner animated fadeInUpShort" data-id='2'>
+            {% trans 'Please select how many coins you want to accept' %}
+      </p>
+      <div class="row mt-5 justify-content-center paybx">
+        <!-- item -->
+        <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='3'>
+          <div class="bx-ash bx-client">
+                <div class="icon-merchant">
+                    <span class="merchant-icon">1</span>
+                </div>
+            <h6 class="text-theme text-center">{% trans 'All 55+ Coins' %}</h6>
+            <div style="height: 68px;">
+                <p class="text-white text-center">
+                    {% trans 'Accept all supported coins' %}
+                </p>
+            </div>
+            <div class="col text-center"><button class="btn btn-normal" style="background-color: rgb(247, 147, 27);">Select</button></div>
+            
+          </div>
+        </div>
+        <!-- item END -->
+        <!-- item -->
+        <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='4'>
+          <div class="bx-ash bx-client">
+                <div class="icon-merchant-alt">
+                    <span class="merchant-icon-alt">2</span>
+                </div>
+            <h6 class="text-theme text-center">{% trans 'Only Coins | Select' %}</h6>
+            <div style="height: 68px;">
+                <p class="text-white text-center">
+                    {% trans 'Recommended' %}
+                    <br>{% trans 'Enable only the coins you want to accept' %}
+                </p>
+            </div>
+            <div class="col text-center"><button class="btn btn-normal" style="background-color: rgb(247, 147, 27);">Select</button></div>
+          </div>
+        </div>
+        <!-- item END -->
+        <!-- item -->
+        <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='5'>
+          <div class="bx-ash bx-client">
+                <div class="icon-merchant">
+                    <span class="merchant-icon">3</span>
+                </div>
+            <h6 class="text-theme text-center">{% trans 'Coins with Auto-convert' %}</h6>
+            <div style="height: 68px;">
+                <p class="text-white text-center">
+                    {% trans 'Coins with auto-convert such as Bitcoin, Litecoin, Ethereum, Dogecoin, and Dash.' %}
+            
+                </p>
+            </div>
+            <div class="col text-center"><button class="btn btn-normal" style="background-color: rgb(247, 147, 27);">Select</button></div>
+          </div>
+        </div>
+        <!-- item END -->
+        <!-- item -->
+        <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='6'>
+          <div class="bx-ash bx-client">
+                <div class="icon-merchant-alt">
+                    <span class="merchant-icon-alt">4</span>
+                </div>
+            <h6 class="text-theme text-center">{% trans 'Fiat Settlement' %}</h6>
+            <div style="height: 68px;">
+                <p class="text-white text-center">
+                    {% trans 'Settle payments to fiat with one of our partners such as Coinbase.' %}
+                </p>
+            </div>
+            <div class="col text-center"><button class="btn btn-normal" style="background-color: rgb(247, 147, 27);">Select</button></div>
+          </div>
+        </div>
+        <!-- item END -->
+        
+      </div>
+    </div>
+  </section>
+
+
 <section>
     <div class="dark-page-header text-center">
         <h1 class="pad10 mt-2">
-            {% trans 'Account Setup Wizard' %}</h1>
+            </h1>
        
                
     </div>
@@ -27,7 +113,7 @@
                 <ul>
                     <li>{% trans 'Accept all supported coins' %}</li>
                 </ul>
-                <br><br><button class="btn btn-signup ">Select</button>
+                <br><br><button class="btn btn-warning">Select</button>
             </div>
             <div class="col-sm-6 col-md-3 text-center merch-box-alt deposit-content-set">
                 <div class="icon-merchant-alt">

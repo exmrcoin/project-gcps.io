@@ -1,15 +1,19 @@
-{% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load widget_tweaks %} {% load i18n %}
-<section>
+{% extends 'gcps/base.html' %} {% load staticfiles %} {% block content %} {% load widget_tweaks %} {% load i18n %}
+
+
     {% block dashboard_heading %} {% endblock %}
     <style>
     </style>
-    <div class="container">
+
+    
+
+    <!-- <div class="container">
         <div class="dashboard-wrapper top-sec">
             <div class="col-xs-12 padx0">
                 <div class="col-xs-4 col-sm-2 dashboard-component box-0">
                     <a href="{% url 'accounts:profile' %}" class="v-mid text-center col-xs-12 px-0 py-1">
                         <span class="fas fa-tachometer-alt fa-2x col-xs-12 col-sm-6"></span>
-                        <span class="dashboard-span hidden-xs col-sm-6 col-md-6 wallet-menu">{% trans 'Home' %}</span>
+                        <span class="dashboard-span hidden-xs col-sm-6 col-md-6 wallet-menu"></span>
                     </a>
                 </div>
                 <div class="col-xs-4 col-sm-2 dashboard-component box-1">
@@ -46,7 +50,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+        </div> -->
         {% block dashboard_wrapper_content %} {% endblock %}
     </div>
     </div>

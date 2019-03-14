@@ -297,7 +297,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
 }
 
 .paybx .bx-client{
-    min-height: 267px;
+    min-height: 320px;
     padding-top: 3em;
 }
 
@@ -484,4 +484,98 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
     .btn-item .btn{
         width: 100%;
     }
+}
+
+/* ------------------------------------------------------------------------------*/
+
+.dashboard{
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.dashboard-nav{
+    color: white;
+}
+
+.img-dashboard{
+    width: 30px;
+    height: 30px;
+    /* padding: 10px 0px 0px 10px; */
+    float: left;
+}
+
+.wallets-img {
+    width: 30px;
+}
+
+.merchant-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 37px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.merchant-icon-alt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 37px;
+    color: rgb(247, 147, 27);
+    font-weight: bold;
+}
+
+.icon-merchant {
+    height: 100px;
+    width: 100px;
+    background-color: rgb(247, 147, 27);
+    border-radius: 50%;
+    margin: 15px auto;
+    /* box-shadow: 0 1px 16px 2px #dedede; */
+    position: relative;
+}
+
+.icon-merchant-alt {
+    height: 100px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 15px auto;
+    /* box-shadow: 0 1px 16px 2px #dedede; */
+    position: relative;
+}
+
+.btn-history-wrap {
+    background: transparent;
+    border: 1px solid rgb(233, 233, 233);
+    box-shadow: none;
+    border-radius: 10px;
+
+}
+
+.w60px {
+    width: 40px;
+}
+
+.h50px {
+    height: 50px;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.btn-orange{
+    background-color: rgb(247, 147, 27);
+    border: none;
+    padding: 8px 8px 8px 8px;
+}
+
+.btn-transparent{
+    background-color: transparent;
+    border: 2px solid #fff;
+    padding: 6px 30px 6px 30px;
+    margin-left: 10px;
+    color: white;
 }

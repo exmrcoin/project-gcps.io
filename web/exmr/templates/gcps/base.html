@@ -12,12 +12,14 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
       rel="stylesheet"
     />
-    <link
+    <!-- <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
       crossorigin="anonymous"
-    />
+    /> -->
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     {% block fonts %} {% endblock %}
     <!-- <link href="assests/Fonts/style.css" rel="stylesheet" /> -->
     <!-- FONT
@@ -53,7 +55,7 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span class="navbar-toggler-icon">MENU</span>
+        <span class="navbar-toggler-icon">MENU</span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav nav-link-list mr-auto">
@@ -290,29 +292,31 @@
 
     <!-- container-fluid END -->
     <!-- JS -->
-    <script
+    <!-- <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"
-    ></script>
-    <script src="{% static 'assests/js/bootstrap.min.js' %}"></script>
+    ></script> -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
     <script
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"
     ></script>
+    <script src="{% static 'assests/js/bootstrap.min.js' %}"></script>
+    
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="{% static 'assests/js/css3-animate-it.js' %}"></script>
     <!-- <script src="assests/js/css3-animate-it.js"></script> -->
     <script type="text/javascript">
       /* nav color change */
 
-    $(window).scroll(function() {
+     $(window).scroll(function() {
 
-        scroll = $(window).scrollTop();
+         scroll = $(window).scrollTop();
 
-        if (scroll >= 70) {
-          //alert();
+         if (scroll >= 70) {
+          //  alert(); 
           $('#navbarCP').addClass("nav-colored");
         } else {
           $('#navbarCP').removeClass("nav-colored");
@@ -456,6 +460,9 @@
         requestAnimationFrame(update);
       };
       requestAnimationFrame(update);
+
+
     </script>
+    {% block script %}{% endblock script %}
   </body>
 </html>

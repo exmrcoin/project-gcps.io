@@ -1,55 +1,105 @@
 {% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
 <div></div>
 {% load transaction_status %} {% block dashboard_heading %}
-<div class="dashboard-bg">
-    <div class="merchant-tools merchant-one coin-payment-head">
-        <div class=" container merchant-box">COIN SETTINGS
-        </div>
-    </div>
-</div>
-{% endblock %} {% block dashboard_wrapper_content %}
-
-<div class="dashboard-wrapper">
-    <div class="dasboard-head ">
-        <div class="panel panel-default">
-            <div class=" dasboard-head pad10">
-                <ul class="nav nav-pills">
-                    <li class="active">
-                        <a href="{% url 'coins:setting-setup' %}">Setup Wizard</a>
+<section class="section section-pad" style="padding-bottom: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div class="grid-2-bx" style="display: inline">
+                <h4 class="text-theme b-4 dashboard">COIN SETTINGS</h4>
+                <ul class="nav nav-pills nav-fill">
+                    <li class="nav-item">
+                        <a href="{% url 'accounts:profile' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                            <span class="fas fa-tachometer-alt fa-2x col-xs-12 col-sm-6"></span>
+                            <span class="dashboard-span hidden-xs col-sm-6 col-md-6 wallet-menu">{% trans 'Home' %}</span>
+                        </a>
+                        <!-- <i class="fas fa-2x fa-wallet"></i>
+                        <a class="nav-link" href="{% url 'accounts:profile' %}"></a> -->
                     </li>
-                    <li>
-                        <a href="{% url 'coins:coin-settings' %}">Std.coin</a>
+                    <li class="nav-item">
+                            <a href="{% url 'coins:wallets' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-2x fa-wallet col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
+                                    {% trans 'Your Wallet' %}
+                                </span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:wallets' %}">{% trans 'Your Wallet' %}</a> -->
                     </li>
-                    <li>
-                        <a href="{% url 'coins:omini-coin' %}">Omini coin</a>
+                    <li class="nav-item">
+                            <a href="{% url 'coins:coin-settings' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-coins  fa-2x col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">{% trans 'Coin Settings' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:coin-settings' %}">{% trans 'Coin Settings' %}</a> -->
                     </li>
-                    <li>
-                        <a href="{% url 'coins:ripple' %}">Ripple</a>
+                    <li class="nav-item">
+                        <a href="{% url 'coins:transaction-history' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-receipt  fa-2x col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"> {% trans 'Transactions' %}</span>
+                        </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:transaction-history' %}">{% trans 'Transactions' %}</a> -->
                     </li>
-                    <li>
-                        <a href="#">Escrow</a>
+                    <li class="nav-item">
+                            <a href="{% url 'mtools:posqrmaker' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-shopping-cart  fa-2x col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"> {% trans 'Quick POS' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'mtools:posqrmaker' %}"> {% trans 'Quick POS' %}</a> -->
                     </li>
-                    <li>
-                        <a href="#">Paypal/other</a>
-                    </li>
-                    <li>
-                        <a href="#"></a>
+                    <li class="nav-item">
+                            <a href="{% url 'coins:paybyname' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                <i class="fas fa-user-tie  fa-2x col-xs-12 col-sm-6"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">{% trans 'PayByName' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:paybyname' %}"> {% trans 'PayByName' %}</a> -->
                     </li>
                 </ul>
             </div>
+        </div>
+    </div>
+</section>
+{% endblock %} {% block dashboard_wrapper_content %}
+
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div style="padding-bottom: 10px;">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                      <a class="nav-link active dashboard-nav" href="{% url 'coins:setting-setup' %}">Setup Wizard</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link dashboard-nav" href="{% url 'coins:coin-settings' %}">Std.coin</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link dashboard-nav" href="{% url 'coins:omini-coin' %}">Omini coin</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link dashboard-nav" href="{% url 'coins:ripple' %}" tabindex="-1" aria-disabled="true">Ripple</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dashboard-nav" href="#" tabindex="-1" aria-disabled="true">Escrow</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link dashboard-nav" href="#" tabindex="-1" aria-disabled="true">Paypal/other</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link dashboard-nav" href="#" tabindex="-1" aria-disabled="true"></a>
+                      </li>
+                  </ul>
+            </div>
             <div class="panel-body" style="text-align: center;">
                 <div class="accept-table-wrap">
-                    <table class="table table-border table-responsive-md">
+                    <table class="table table-border table-responsive-md" style="color: white">
                         <thead>
                             <tr>
                                 <th>Enabled</th>
                                 <th>Coin</th>
                                 <th>Your payment Address
-                                    <h6>(only needed for ASAP modes)</h6>
+                                    <br>(only needed for ASAP modes)
                                 </th>
                                 <th>Payout Mode </th>
                                 <th>Discount</th>
-                                <th>Maximum value per Transation</th>
+                                <th>Maximum value per Transaction</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,12 +138,19 @@
                         </tbody>
                     </table>
                 </div>
-
-                <button class="btn btn-signup text-center" >Select</button>
             </div>
+                <div class="col text-center">
+                <button type="submit" class="btn btn-success text-center" >Select</button>
+                </div>             
+                </form> 
+                </body>
+            </div>
+                
         </div>
     </div>
-</div>
+</section>
+
+
 
 
 {% endblock %}

@@ -297,7 +297,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
 }
 
 .paybx .bx-client{
-    min-height: 267px;
+    min-height: 320px;
     padding-top: 3em;
 }
 
@@ -484,4 +484,650 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
     .btn-item .btn{
         width: 100%;
     }
+}
+
+/* ------------------------------------------------------------------------------*/
+
+.dashboard{
+    text-align: center;
+    padding-bottom: 15px;
+}
+
+.dashboard-nav{
+    color: white;
+}
+
+.img-dashboard{
+    width: 30px;
+    height: 30px;
+    /* padding: 10px 0px 0px 10px; */
+    float: left;
+}
+
+.wallets-img {
+    width: 30px;
+}
+
+.merchant-icon-alt_asis {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 37px;
+    color: rgb(247, 147, 27);
+    font-weight: bold;
+}
+
+.icon-merchant {
+    height: 100px;
+    width: 100px;
+    background-color: rgb(247, 147, 27);
+    border-radius: 50%;
+    margin: 15px auto;
+    /* box-shadow: 0 1px 16px 2px #dedede; */
+    position: relative;
+}
+
+.icon-merchant-alt {
+    height: 100px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 15px auto;
+    /* box-shadow: 0 1px 16px 2px #dedede; */
+    position: relative;
+}
+
+.btn-history-wrap {
+    background: transparent;
+    border: 1px solid rgb(233, 233, 233);
+    box-shadow: none;
+    border-radius: 10px;
+
+}
+
+.w60px {
+    width: 40px;
+}
+
+.h50px {
+    height: 50px;
+    font-size: 1rem;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.btn-orange{
+    background-color: rgb(247, 147, 27);
+    border: none;
+    padding: 8px 8px 8px 8px;
+}
+
+.btn-transparent{
+    background-color: transparent;
+    border: 2px solid #fff;
+    padding: 6px 30px 6px 30px;
+    margin-left: 10px;
+    color: white;
+}
+
+/****************public coin vote*****************/
+a {
+    color: #e75d14;
+}
+.merchant-tools {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    padding: 0.5rem;
+    color: white;
+    margin-top: -20px;
+}
+
+.btop {
+    border-top: 1px solid #ddd;
+}
+
+.account-setting-wrap {
+    width: 90%;
+    height: auto;
+    margin: 30px auto;
+    padding: 2rem;
+    color:#fff;
+    background: rgba(34,34,34,0.63);
+    background: -moz-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(34,34,34,0.63)), color-stop(100%, rgba(60,59,73,0.63)));
+    background: -webkit-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -o-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -ms-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: linear-gradient(to right, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#3c3b49', GradientType=1 );
+    border-radius: 7px;
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    /* Hide table headers (but not display: none;, for accessibility) */
+    .vote_table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    .vote_table tr {
+        margin-top: 20px;
+        padding-bottom:
+    }
+    .vote_table td {
+        /* Behave  like a "row" */
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+    .vote_table td:before {
+        /* Now like a table header */
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 5px;
+        white-space: nowrap;
+    }
+    /*
+    Label the data
+    */
+    .vote_table td:nth-of-type(1):before {
+        /* content: "POSITION:    "; */
+    }
+    .vote_table td:nth-of-type(2):before {
+        content: "COIN:    ";
+    }
+    .vote_table td:nth-of-type(3):before {
+        content: "NAME:    ";
+    }
+    .vote_table td:nth-of-type(4):before {
+        content: "VOTES:    ";
+    }
+    .vote_table td:nth-of-type(5):before {
+        content: "PERCENTAGE OF VOTES:   ";
+    }
+    .vote_table td:nth-of-type(6):before {
+        content: "";
+        margin-right: -5px;
+    }
+}
+.table thead th {
+color:#dee2e6;
+border-top: none;
+}
+
+
+@media screen and (max-width:767px) {
+    .xs-padx1 {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
+    .account-setting-wrap {
+        width: 100%;
+    }
+}
+.coin-comp-widget-title {
+    text-align: center;
+    font-family: gothammedium;
+    font-size: 20px;
+    color:#CCD1D1;
+}
+.margin-center {
+    margin: 0 auto;
+}
+.coin-comp-widget {
+    text-align: center;
+}
+.submit-new-coin-text {
+    background-image: linear-gradient(0deg,#5F00B2 0,#6938e6 50%,#6938e6)!important;
+    color: #fff!important;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 17px!important;
+}
+.see-winners {
+    background-image: linear-gradient(0deg,#16b101 0,#16b101 50%,#16b101)!important;
+    color: #fff!important;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 17px!important;
+}
+.search-field {
+    margin-right: 20px;
+    position: absolute;
+    width: 92%!important;
+    padding-left: 20px!important;
+    padding-right: 120px!important;
+    padding-top: 13px!important;
+    padding-bottom: 13px!important;
+    border-radius: 80px!important;
+    border: solid 1px #cdced2!important;
+    font: 16px GothamLight!important;
+    z-index: 1!important;
+    background: #fff!important;
+    box-shadow: 0 3px 5px rgba(0,0,0,.09)!important;
+}
+.btn-search {
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    z-index: 2;
+    border: 0;
+    vertical-align: top;
+    padding: 8px 28px;
+    font-size: 17px;
+    border: 1px solid #f7931b;
+    background-color: #ca7308;
+    font-weight: 700;
+    border-radius: 50px;
+    height: 46px;
+    line-height: 30px;
+    color: #fff!important;
+    background-size: auto 200%;
+    box-shadow: 0 1px 0 rgba(0,0,0,.2878);
+    background-position: 0 100%;
+    outline: 0!important;
+}
+.btn-v2 {
+    padding: 3px 20px;
+    width: auto;
+    color: #fff !important;
+    background: #e65f19;
+}
+.progress-green {
+    background-color: #16b101 !important;
+}
+
+.proceeds-div {
+    width: 100%;
+    min-height: 60px;
+    border-radius: 4px;
+    border: solid 1px #a2fbe9;
+    background-color: #ddfff8;
+    color: #000;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.electroinc {
+    color: #ef5362;
+    cursor: pointer;
+}
+
+.btn-vote-btn2 {
+    width: 88px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.padx0 {
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+.padx5 {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.pady20 {
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.padt40 {
+    padding-top: 40px;
+}
+.kyc-note{
+    color:#fff;
+}
+/* supported coins */
+
+.dark-page-header {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    padding: 1.5rem;
+    color: white;
+    margin-top: -20px;
+}
+
+.header-dark-bg {
+    background-color: #424557;
+    padding: 1rem;
+    color: white;
+}
+
+.dasboard-head {
+    width: 100%;
+    background-color: #e8ebef;
+    margin-top: 10px;
+}
+
+.custom-ul li {
+    list-style: none;
+}
+
+.w20px {
+    width: 20px;
+}
+
+.btn-ex {
+    width: 110px;
+}
+
+.account-setting-wrap2 {
+    width: 100%;
+    height: auto;
+    margin: 30px auto;
+    padding: 2rem;
+    background: rgba(34,34,34,0.63);
+    background: -moz-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(34,34,34,0.63)), color-stop(100%, rgba(60,59,73,0.63)));
+    background: -webkit-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -o-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -ms-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: linear-gradient(to right, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#3c3b49', GradientType=1 );
+    border-radius: 7px;
+}
+
+.account-setting-wrap3 {
+    width: 100%;
+    height: auto;
+    margin: 30px auto;
+    padding: 2rem;
+    background: rgba(34,34,34,0.63);
+    background: -moz-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(34,34,34,0.63)), color-stop(100%, rgba(60,59,73,0.63)));
+    background: -webkit-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -o-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -ms-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: linear-gradient(to right, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#3c3b49', GradientType=1 );
+    border-radius: 7px;
+}
+
+.dashboard-wrapper {
+    margin-top: 1.5rem;
+    background-color: #fff;
+    height: auto;
+    width: 100%;
+    float: left;
+    box-shadow: 0 1px 16px 2px #dedede;
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-wrapper-width {
+    margin-top: 1.5rem;
+    background-color: #fff;
+    height: auto;
+    float: left;
+    box-shadow: 0 1px 16px 2px #dedede;
+    margin-bottom: 1.5rem;
+}
+
+input[type="radio"] {
+    margin-right: 10px;
+}
+
+label, input {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 15px;
+}
+
+@media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
+    /* Force table to not be like tables anymore */
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+    /* Hide table headers (but not display: none;, for accessibility) */
+    .support-table thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+    .support-table tr {
+        margin-top: 20px;
+        padding-bottom:
+    }
+    .support-table td {
+        /* Behave  like a "row" */
+        border: none;
+        position: relative;
+        padding-left: 50%;
+    }
+    .support-table td:before {
+        /* Now like a table header */
+        /* Top/left values mimic padding */
+        top: 6px;
+        left: 6px;
+        width: 45%;
+        padding-right: 5px;
+        white-space: nowrap;
+    }
+    /*
+    Label the data
+    */
+    .support-table td:nth-of-type(1):before {
+        content: "COIN:    ";
+    }
+    .support-table td:nth-of-type(2):before {
+        content: "COD:    ";
+    }
+    .support-table td:nth-of-type(3):before {
+        content: "FEE:    ";
+    }
+    .support-table td:nth-of-type(4):before {
+        content: "CONFIRMS:    ";
+    }
+    .support-table td:nth-of-type(5):before {
+        content: "TO BTC:   ";
+    }
+    .support-table td:nth-of-type(6):before {
+        content: "EXPLORE";
+    }
+}
+.btn-ex {
+    width: 110px;
+}
+
+.orange-bg {
+    background: #e75d14;
+}
+/*******************stores*****************/
+
+.search-area {
+    height: 50px;
+}
+
+.search-button {
+    height: 50px;
+    width: 70px;
+    background-color: #e75d14;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+}
+
+.search-button:hover {
+    background-color: #ff7226;
+    color: whitesmoke;
+}
+
+.menu-box {
+    min-width: 200px;
+    min-height: 160px;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+    background: rgba(34,34,34,0.63);
+    background: -moz-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(34,34,34,0.63)), color-stop(100%, rgba(60,59,73,0.63)));
+    background: -webkit-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -o-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -ms-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: linear-gradient(to right, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#3c3b49', GradientType=1 );
+    border-radius: 7px;
+}
+
+.menu-box:hover {
+    background-color: #7db9e0;
+}
+
+.store-icons {
+    width: 60px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.store-title {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/***********merchant-tools************/
+
+
+.merch-box {
+    border: 1px solid #333;
+    padding: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    height: 250px;
+    max-height: 400px;
+    text-align: center;
+}
+
+.merch-box-alt {
+    border: 1px solid #eee;
+    padding: 5px;
+    padding-right: 5px;
+    padding-left: 5px;
+    height: 300px;
+    max-height: 400px;
+    text-align: center;
+}
+
+.icon-merchant {
+    height: 100px;
+    width: 100px;
+    background-color: #ff772e;
+    border-radius: 50%;
+    margin: 15px auto;
+    box-shadow: 0 1px 16px 2px #dedede;
+    position: relative;
+}
+
+.icon-merchant-alt {
+    height: 100px;
+    width: 100px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 15px auto;
+    box-shadow: 0 1px 16px 2px #dedede;
+    position: relative;
+}
+
+.merchant-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 37px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.merchant-icon-alt {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 37px;
+    color: #ff772e;
+    font-weight: bold;
+}
+
+.deposit-content-set {
+    padding: 1px;
+    border-radius: 4px;
+    margin-bottom: 1em;
+}
+
+.merch-box ul {
+    color: #e75d14;
+    cursor: pointer;
+    text-align: left;
+    padding-left: 0px;
+    display: inline-block;
+}
+.shopping-head{
+    color: #fff;
+}
+.shopping-headline{
+    color: #fff;
+    font-size: 13px;
+}
+.merchant-tools-li{
+    color: #e75d14;
+}
+
+/****************help**************/
+
+.help-sidebar {
+    padding-right: 15px;
+    border-right: 1px solid #e8e8e8;
+    text-align: left;
+}
+
+.help-sidebar li {
+    list-style: none;
+    padding: 8px;
+}
+
+.help-sidebar li:hover {
+    background: #e75d15;
+    color: white !important;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.help-sidebar li:hover>a {
+    color: white;
+}
+
+.help-sidebar li:active {
+    background: #e75d15;
+    color: white !important;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.help-sidebar li:active>a {
+    color: white;
+}
+.help-label{
+    color:#A6ACAF;
+}
+.table-bordered td,tr{
+    border: 1px solid #333;
+}
+.table-bordered th {
+   border: 1px solid #333;
 }

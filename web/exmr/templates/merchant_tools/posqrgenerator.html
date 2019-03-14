@@ -1,45 +1,52 @@
-{% extends 'exmr.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
-<section>
-    <div class="dark-page-header text-center">
-        <h1>MERCHANT TOOLS</h1>
-        <h4>Point of Sale</h4>
+{% extends 'gcps/base.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
+<section class="section section-pad" style="padding-bottom: 2em;">
+    <div class="container animatedParent animateOnce" data-sequence="80">
+      <h1 class="text-white text-center text-uppercase animated fadeInUpShort" data-id='1'>
+            {% trans 'MERCHANT' %} <span class="text-theme b-700">{% trans 'TOOLS' %}</span>
+      </h1>  
+      <p class="text-center text-white h6 mt-3 center-aligner animated fadeInUpShort" data-id='2'>
+            {% trans 'Point of Sale' %}
+      </p>
     </div>
 </section>
-
-
-<div class="col-xs-12 col-md-10 col-md-offset-1 pad20">
-    <div class="dasboard-head col-xs-12 pad10">
-        <div class="img-dashboard">
-            <img src="{% static '/images/recevied.png' %} ">
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div class="dasboard-head pad10">
+                <div class="img-dashboard">
+                    <img src="{% static '/images/recevied.png' %} ">
+                </div>
+                <h4 class="text-theme">{% trans 'Advanced Button Maker' %}</h4>
+            </div>
+            <div class="dasboard-head col-12 pad10 text-center">
+                
+                <form method="post" novalidate>
+                    {% csrf_token %} {% include 'exmr_form.html' with form=form %}
+        
+                    <button type="submit" class="btn btn-orange">Submit</button>
+                </form>
+                
+            </div>
         </div>
-        <span class="font-h3">{% trans 'Advanced Button Maker' %}</span>
     </div>
-    <div class="dasboard-head col-xs-12 pad10 text-center">
-        <form method="post" novalidate>
-            {% csrf_token %} {% include 'exmr_form.html' with form=form %}
+    {% if html_url %}
+    <div class="col-xs-12 col-md-10 col-md-offset-1 pad20">
+        <div class="dasboard-head col-xs-12 col-md-8 ">
+            <span class="code-font"> {{html_url}}</span>
+            <br> 
+        </div>
 
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
-</div>
-
-{% if html_url %}
-<div class="col-xs-12 col-md-10 col-md-offset-1 pad20">
-    <div class="dasboard-head col-xs-12 col-md-8 ">
-        <span class="code-font"> {{html_url}}</span>
-        <br> 
+        <span class=" col-xs-12 col-md-4 col-md-offset-4 text-center">
+            <img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{html_url}}" class="col-xs-12 col-md-8 col-md-offset-2"></img>    
+            <span class="col-xs-12">Scan the above image using a QR bar scanner</span>               
+        </span>
     </div>
 
-    <span class=" col-xs-12 col-md-4 col-md-offset-4 text-center">
-        <img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{html_url}}" class="col-xs-12 col-md-8 col-md-offset-2"></img>    
-        <span class="col-xs-12">Scan the above image using a QR bar scanner</span>               
-    </span>
-</div>
-
-{% endif %}
-<div class="clearfix">
+    {% endif %}
+    <div class="clearfix">
 
 </div>
+</section>
 
 {% endblock %} {% block script %}
 <script src="{% static 'css/keyboard.css'%}"></script>

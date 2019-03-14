@@ -1,14 +1,15 @@
-{% extends 'exmr.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
-<section>
+{% extends 'gcps/base.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
+<section class="section section-pad">
+    <div class="bx-ash ">
     <div class="dark-page-header text-center">
         <h1>Support</h1>
         <h4>Need a little help?</h4>
     </div>
-</section>
-<section>
+</div>
+
+    <div class="account-setting-wrap">
     <div class="container">
         <div class="row">
-
             <div class="panel panel-default mt-5">
                 <div class="panel-heading">
                     <h3 class="panel-title">
@@ -24,7 +25,6 @@
                     <br> Our Coin Hosting Packages Include:
                     <br>
                     <br>
-
                     <ul>
                         <li>Initial Setup</li>
                         <li>Hosting*</li>
@@ -46,18 +46,22 @@
             </div>
         </div>
     </div>
-</section>
-<section>
+</div>
+
+    <div class="account-setting-wrap">
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-12 col-md-offset-3">
                 <form method="post" novalidate>
                     {% csrf_token %} {% include 'base_form.html' with form=form %}
-                    <button type="submit" class="btn btn-primary margin-center">Submit</button>
+                    <div class="text-center">
+                    <button type="submit" class="btn btn-outline-orange btn-lg ">Submit</button>
+                    </div>
                 </form>
             </div>
 
         </div>
     </div>
+</div>
 </section>
 {% endblock %} {% block script %}{% endblock %}

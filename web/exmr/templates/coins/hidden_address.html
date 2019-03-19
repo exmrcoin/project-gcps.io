@@ -3,47 +3,129 @@
 
 
 {% block dashboard_wrapper_content %}
-<div class="clearfix"></div>
-<div class="deposit-wrap">
-        <div class="deposit-content">
-            <div class="row m0 divid-b">
-                <div class="col-sm-7">
-                    <h4><b>Deposit Address-{{code}}</b></h4>
-                </div>
-                <div class="col-sm-2">
-                    <h4><b>TYPE<sup>1</sup></b></h4>
-                </div>
-                <div class="col-sm-3">
-                    <h4><b>Date Added</b></h4>
+
+<section class="section section-pad" style="padding-bottom: 1em">
+        <div class="container">
+            <div class="bx-ash mb-2">
+                        <ul class="nav nav-pills nav-fill">
+                            <li class="nav-item">
+                                <a href="{% url 'accounts:profile' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                    <span class="fas fa-tachometer-alt fa-2x col-xs-12 col-sm-6"></span>
+                                    <span class="dashboard-span hidden-xs col-sm-6 col-md-6 wallet-menu">{% trans 'Home' %}</span>
+                                </a>
+                                <!-- <i class="fas fa-2x fa-wallet"></i>
+                                <a class="nav-link" href="{% url 'accounts:profile' %}"></a> -->
+                            </li>
+                            <li class="nav-item">
+                                    <a href="{% url 'coins:wallets' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                        <i class="fas fa-2x fa-wallet col-xs-12 col-sm-6"></i>
+                                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
+                                            {% trans 'Your Wallet' %}
+                                        </span>
+                                    </a>
+                                <!-- <a class="nav-link" href="{% url 'coins:wallets' %}">{% trans 'Your Wallet' %}</a> -->
+                            </li>
+                            <li class="nav-item">
+                                    <a href="{% url 'coins:coin-settings' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                        <i class="fas fa-coins  fa-2x col-xs-12 col-sm-6"></i>
+                                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">{% trans 'Coin Settings' %}</span>
+                                    </a>
+                                <!-- <a class="nav-link" href="{% url 'coins:coin-settings' %}">{% trans 'Coin Settings' %}</a> -->
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'coins:transaction-history' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                        <i class="fas fa-receipt  fa-2x col-xs-12 col-sm-6"></i>
+                                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"> {% trans 'Transactions' %}</span>
+                                </a>
+                                <!-- <a class="nav-link" href="{% url 'coins:transaction-history' %}">{% trans 'Transactions' %}</a> -->
+                            </li>
+                            <li class="nav-item">
+                                    <a href="{% url 'mtools:posqrmaker' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                        <i class="fas fa-shopping-cart  fa-2x col-xs-12 col-sm-6"></i>
+                                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"> {% trans 'Quick POS' %}</span>
+                                    </a>
+                                <!-- <a class="nav-link" href="{% url 'mtools:posqrmaker' %}"> {% trans 'Quick POS' %}</a> -->
+                            </li>
+                            <li class="nav-item">
+                                    <a href="{% url 'coins:paybyname' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
+                                        <i class="fas fa-user-tie  fa-2x col-xs-12 col-sm-6"></i>
+                                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">{% trans 'PayByName' %}</span>
+                                    </a>
+                                <!-- <a class="nav-link" href="{% url 'coins:paybyname' %}"> {% trans 'PayByName' %}</a> -->
+                            </li>
+                        </ul>
+                    </div> 
                 </div>
             </div>
-            <div id="wallet_div">
-                {% for wallet in wallets %}
-                <div class="row m0 deposit-box" id="addr_{{wallet.pk}}">
-                    <div class="col-sm-7">
-                        <div style="background: bisque; margin: 4px; border-radius: 10px; padding: 10px;" class="col-xs-12">
-                            <span class="col-xs-10" >{{wallet.label}}</span>
-                            <span class="col-xs-10" id="pwd_span" style="word-wrap: break-word">{{wallet}}</span>
-                            <a id="cp_btn{{forloop.counter}}" class="js-tooltip" data-toggle="tooltip" title="copy" onclick="copy_password(this.id);"><i class="far fa-copy" style="font-size: 30px; padding: 10px"></i></a>
-                            
-                        </div>
-                        <button class="btn btn-success"><i class="fas fa-plus-circle"></i> <a href="{% url 'coins:label' code wallet.pk %}">Add Label </a></button>
-                        <button class="btn btn-warning" ><i class=""></i> <a href="{% url 'coins:hide' code wallet.pk %}">Unhide</a></button>
-                    </div>
-                    <div class="col-sm-2">
-                        <p><i class="fas fa-user"></i> Personal</p>
-                        <img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{wallet}}"></img>
-                    </div>
-                    <div class="col-sm-3">
-                        <p>{{ wallet.date }}</p>
-                    </div>
-                </div>
-                {% endfor %}
-            </div>
-            <button class="btn btn-signup mt20 mb20" ><i class="fas fa-eye-slash"></i> <a href="{% url 'coins:newaddr' code %}" style="color: white;">Back to New Addresses</a> </button>
-            
         </div>
-</div>
+    </section>
+    <section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em;">
+            <div class="container">
+                <div class="mb-2">
+                        <div >
+                                <div>
+                                    <div class="row m0 divid-b" style="border-bottom:0.05px solid white; color: white">
+                                        <div class="col-sm-7">
+                                            <h4><b>Deposit Address-{{code}}</b></h4>
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <h4><b>TYPE<sup>1</sup></b></h4>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <h4><b>Date Added</b></h4>
+                                        </div>
+                                    </div>
+                                    <div id="wallet_div" class="container" style="color: white">
+                                        {% for wallet in wallets %}
+                                        <div class="row m0 bx-ash mb-2" id="addr_{{wallet.pk}}">
+                                            <div class="col-7">
+                                                <div class="row">
+                                                    <div style="background: transparent; font-size: 15px; color: white ;margin: 4px; border: 2px solid white ;border-radius: 8px; padding: 10px;" class="col-12">
+                                                        <div class="row">
+                                                            <div class="col-10">
+                                                                <div class="mb-2" style="color: white">{{wallet.label}}</div>
+                                                                <div id="pwd_span" style="word-wrap: break-word">{{wallet}}</div>
+                                                            </div>
+                                                            <div class="col-2">
+                                                                <a id="cp_btn{{forloop.counter}}" class="js-tooltip" data-toggle="tooltip" title="copy" onclick="copy_password(this.id);">
+                                                                    <i class="far fa-copy" style="font-size: 30px; padding: 10px"></i>
+                                                                </a>
+                                                            </div>
+                                                            
+                                                            <!-- <div class="col-10" ></div>
+                                                            <a id="cp_btn{{forloop.counter}}" class="js-tooltip col-2" data-toggle="tooltip" title="copy" onclick="copy_password(this.id);"><i class="far fa-copy" style="font-size: 30px; padding: 10px"></i></a>
+                                                            <div class="col-10" id="pwd_span" style="word-wrap: break-word"></div> -->
+                                                            
+                                                            </div>
+                                                        </div>
+                                                        <button class="btn btn-orange ml-1"><i class="fas fa-plus-circle"></i> <a href="{% url 'coins:label' code wallet.pk %}" style="color: white">Add Label </a></button>
+                                                        <button class="btn btn-transparent " ><i class=""></i> <a href="{% url 'coins:hide' code wallet.pk %}" style="color: white">Unhide</a></button>
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <p><i class="fas fa-user"></i> Personal</p>
+                                                <img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{wallet}}"></img>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <p>{{ wallet.date }}</p>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                    <button class="btn btn-orange mt-2 mb20" onclick="newAddress()"><i class="fas fa-eye-slash"></i> <a href="{% url 'coins:newaddr' code %}" style="color: white;">Back to New Addresses</a></button>
+                                    
+                                </div>
+                        </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
 {% endblock %}
 {% block script %}
 <script type="text/javascript">

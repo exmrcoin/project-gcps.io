@@ -263,6 +263,18 @@ img.icon-list {
     border-radius: 7px;
 }
 
+.bx-ash-1 {
+    background: rgba(34,34,34,0.63);
+    background: -moz-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(34,34,34,0.63)), color-stop(100%, rgba(60,59,73,0.63)));
+    background: -webkit-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -o-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -ms-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: linear-gradient(to right, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#3c3b49', GradientType=1 );
+    border-radius: 7px;
+}
+
 .bx-client,
 .bx-client *{
     cursor: pointer;
@@ -275,6 +287,19 @@ img.icon-list {
 .bx-client:hover{
     cursor: pointer;
     margin-top: -5px;
+    background: rgba(222,122,0,1);
+background: -moz-linear-gradient(left, rgba(222,122,0,1) 0%, rgba(180,110,25,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(222,122,0,1)), color-stop(100%, rgba(180,110,25,1)));
+background: -webkit-linear-gradient(left, rgba(222,122,0,1) 0%, rgba(180,110,25,1) 100%);
+background: -o-linear-gradient(left, rgba(222,122,0,1) 0%, rgba(180,110,25,1) 100%);
+background: -ms-linear-gradient(left, rgba(222,122,0,1) 0%, rgba(180,110,25,1) 100%);
+background: linear-gradient(to right, rgba(222,122,0,1) 0%, rgba(180,110,25,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', endColorstr='#b46e19', GradientType=1 );
+}
+
+.bx-client-1:hover{
+    cursor: pointer;
+    /* margin-top: -5px; */
     background: rgba(222,122,0,1);
 background: -moz-linear-gradient(left, rgba(222,122,0,1) 0%, rgba(180,110,25,1) 100%);
 background: -webkit-gradient(left top, right top, color-stop(0%, rgba(222,122,0,1)), color-stop(100%, rgba(180,110,25,1)));
@@ -571,6 +596,17 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
 }
 
 /****************public coin vote*****************/
+<<<<<<< Updated upstream
+=======
+a {
+    color: #e75d14;
+}
+
+.a-1 {
+    color: #fff;
+}
+
+>>>>>>> Stashed changes
 .merchant-tools {
     width: 100%;
     height: auto;
@@ -1123,6 +1159,7 @@ label, input {
 .table-bordered th {
    border: 1px solid #333;
 }
+<<<<<<< Updated upstream
 .table thead th {
  border-bottom: 1px solid #333;
  border-top: none;
@@ -1196,3 +1233,126 @@ a:hover {
     transform: translate(-50%, -50%);
 }
 
+=======
+
+.selectable_div input[type="radio"] {
+    display: none;
+}
+
+.available_coin {
+    border: 2px solid #d4d9dd;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: block;
+    border-radius: 5px;
+    min-height: 135px;
+}
+
+.available_coin:hover {
+    border: 2px solid #41ad0f;
+    transform: scale(1.005);
+    -webkit-transition: transform 2s ease-in-out;
+}
+
+.selectable_div input[type="radio"]:checked+ .available_coin {
+    border: 2px solid #2e770b;
+    background-color: transparent;
+}
+
+.cryptoinput {
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #CCC;
+    color: #fff;
+    box-sizing: border-box;
+    font-family: 'Arvo';
+    font-size: 18px;
+    height: 35px;
+    padding: 10px 0px;
+    width: 80%;
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+}
+.cryptoinput:focus {
+    outline: none;  
+    border-bottom: 2px solid rgba(255, 108, 10, 1);
+    -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+input[type="range"] {
+    display: block;
+    -webkit-appearance: none;
+    -moz-appearance: none !important;
+    background-color: #bdc3c7;
+    min-width: 200px;
+    max-width: 80%;
+    height: 5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    outline: none !important;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #e74c3c;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    outline: 0;
+}
+
+ input[type="range"]::-webkit-slider-thumb:hover {
+    background-color: white;
+    border: 2px solid #e74c3c;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+}
+
+input[type="range"]::-moz-range-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #e74c3c;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: .3s ease-in-out;
+    outline: 0;
+}
+
+ input[type="range"]::-moz-range-thumb:hover {
+    background-color: white;
+    border: 2px solid #e74c3c;
+}
+
+input[type="range"]::-webkit-slider-thumb:active {
+    transform: scale(1.2);
+}
+
+input[type=range]::-moz-focus-outer {
+    border: 0;
+}
+
+.textfield-style1 {
+    height: 40px;
+    border-bottom: 2px solid orangered;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    text-align: center;
+    padding-bottom: 0px;
+    font-size: 16pt;
+    background: none;
+    
+
+}
+>>>>>>> Stashed changes

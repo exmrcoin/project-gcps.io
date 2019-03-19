@@ -1,4 +1,6 @@
-{% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+{% extends 'gcps/base.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+<section class="section section-pad">
+  <div class="bx-ash ">
 <div class="shop-cart">
   <div class="container">
      <table class="table panel">
@@ -28,6 +30,8 @@
   </table>
   </div>
 </div>
+</div>
+</section>
 {% endblock %}
 {% block script %}
 <script>

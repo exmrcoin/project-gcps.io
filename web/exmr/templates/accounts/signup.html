@@ -1,21 +1,25 @@
-{% extends 'exmr.html' %} {% load staticfiles widget_tweaks %} {% block title %}Signup{% endblock %} {% load i18n %}
+{% extends 'gcps/base.html' %} {% load staticfiles widget_tweaks %} {% block title %}Signup{% endblock %} {% load i18n %}
 <div></div>
 {% block content %}
-<section>
+<section class="section section-pad">
+    <div class="account-setting-wrap">
     <div class="login-bg">
         <div class="container">
             <div class="row">
-                <div class="col-xs-12 col-md-6 col-md-offset-3 login-sec">
-                    <div class="col-md-12">
-                        <img class="log-top-icon" src="{% static 'images/login-top-icon.png' %}" alt="">
-                    </div>
-                    <div class="col-md-12">
-                        <a href="{% url 'home' %}">
+                <div class="col-xs-12 col-md-4  login-sec">
+                    <div class="container w-100 h-100">
+                        <div class="row align-items-center  text-center h-100">
+                          <div class="col-md-12">
+                            <a href="{% url 'home' %}">
                             <img class="logo-log" src="{% static 'images/log-log.png' %}" alt="">
                         </a>
+                          </div>
+                        </div>
                     </div>
-                    <div class="form-group welcome">{% trans 'Welcome!' %}</div>
-                    <h3 class="log-subline">{% trans 'Sign in by entering the information below' %}</h3>
+                </div>
+                <div class="col-xs-12 col-md-8 login-sec">
+                    <h3 class="text-center login-text">{% trans 'Welcome!' %}</h3>
+                    <h4 class="log-subline text-center login-text">{% trans 'Sign in by entering the information below' %}</h4>
 
                     <div class="form-group col-xs-12">
                         <form id="signupForm" action="." method="post" novalidate class="pad20 col-xs-12">{% csrf_token %}
@@ -24,8 +28,8 @@
                                 <span class="error"></span>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-12 padx0">
+                           
+                                <div class="row padx0">
                                     <div class="col-md-6 form-group">
                                         {% render_field form.email class="form-control username-log" placeholder="Email" %}
                                         <span class="error"></span>
@@ -35,7 +39,7 @@
                                         <span class="error"></span>
                                     </div>
                                 </div>
-                                <div class="col-md-12 padx0">
+                                <div class="row padx0">
                                     <div class="col-md-6 form-group">
                                         {% render_field form.password1 class="form-control username-log" placeholder="Password" %}
                                         <span class="error"></span>
@@ -45,19 +49,18 @@
                                         <span class="error"></span>
                                     </div>
                                 </div>
-                            </div>
+                           
                             <p class="text-left text-info">{% blocktrans %} Please make it at least 10 characters long and include letters, numbers, and
                                 special characters. {% endblocktrans %}</p>
-                            <h5 class="text-left">{% trans "Timezone" %}</h5>
+                            <h5 class="login-text">{% trans "Timezone" %}</h5>
                             <div class=" form-group">
-
                                 {% render_field form.timezone class="selectpicker picker-signup form-control" placeholder="Confirm Password" %}
                                 <span class="error"></span>
                             </div>
                             <div class="text-left form-group">
                                 <div class="checkbox signup-ceckbox col-xs-12">
                                     {{ form.need_newsletter }}
-                                    <label for="checkbox1  " class="label-sign">
+                                    <label for="checkbox1  " class="login-text">
                                         {% trans 'Send newsletters and other relevant information to my provided e-mail.' %}
                                     </label>
                                 </div>
@@ -66,15 +69,16 @@
                             <div class="text-left form-group">
                                 <div class="checkbox signup-ceckbox col-xs-12">
                                     {{ form.accept_terms_and_conditions }}
-                                    <label for="checkbox1  " class="label-sign">
+                                    <label for="checkbox1  " class="login-text">
                                         {% trans 'Have read and agree to the' %}
                                         <span class="terms">{% trans 'Terms of Service.' %}</span>
                                     </label>
                                 </div>
                                 <span class="error"></span>
                             </div>
-
-                            <button type="submit" class="btn- btn-default btn-log sign-button">{% trans 'Signup' %}</button>
+                            <div class="text-center">
+                            <button type="submit" class="btn btn-outline-orange btn-log sign-button">{% trans 'Signup' %}</button>
+                        </div>
                         </form>
                     </div>
                 </div>
@@ -82,6 +86,7 @@
             </div>
         </div>
     </div>
+</div>
 </section>
 {% endblock %} {% block script %}
 <script>

@@ -4,14 +4,15 @@
   {% for error in form.non_field_errors %} {{ error }} {% endfor %}
 </div>
 {% endif %} {% for field in form.visible_fields %}
-<div class="form-group">
-  <div class="col-12 py-1 border-btm-line">
+<div class="row ">
 
-    <div class="col-12 text-left" style="font-size: 15px; color: white;">
+
+     
+    <div class="col-sm-4 mb-2 float-right" style="font-size: 15px; color: white;">
       {{ field.label_tag }}
     </div>
 
-    <div class="col-12">
+    <div class="col-sm-8 mb-2">
       {% if form.is_bound %} {% if field.errors %} 
       {% render_field field class="form-control-group is-invalid" %} {% for error in field.errors %}
       <div class="invalid-feedback">
@@ -23,6 +24,7 @@
       <small class="form-text text-muted">{{ field.help_text }}</small>
       {% endif %}
     </div>
-  </div>
+  
+
 </div>
 {% endfor %}

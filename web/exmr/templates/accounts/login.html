@@ -1,19 +1,24 @@
-{% extends 'exmr.html' %} {% load staticfiles widget_tweaks %} {% block content %} {% load i18n %}
-<section>
+{% extends 'gcps/base.html' %} {% load staticfiles widget_tweaks %} {% block content %} {% load i18n %}
+<section class="section section-pad">
+    <div class="account-setting-wrap">
     <div class="login-bg">
         <div class="container">
             <div class="row text-center">
-                <div class="col-xs-12 col-sm-6 col-lg-4 col-sm-offset-3  col-lg-offset-4 login-sec">
-                    <div class="form-group col-xs-12">
-                        <img class="log-top-icon" src="{% static 'images/login-top-icon.png' %}" alt="">
-                    </div>
-                    <div class="form-group col-xs-12">
-                        <a href="{% url 'home' %}">
+                <div class="col-xs-12 col-md-4  login-sec">
+                    <div class="container w-100 h-100">
+                        <div class="row align-items-center h-100">
+                          <div class="col-md-12">
+                            <a href="{% url 'home' %}">
                             <img class="logo-log" src="{% static 'images/log-log.png' %}" alt="">
                         </a>
+                          </div>
+                        </div>
                     </div>
-                    <h1 class="">{% trans 'Welcome!' %}</h1>
-                    <h4 class="">{% trans 'Sign in by entering the information below' %}</h4>
+                </div>
+                <div class="col-xs-12 col-md-8 login-sec">
+
+                    <h3 class="login-text">{% trans 'Welcome!' %}</h3>
+                    <h4 class="login-text">{% trans 'Sign in by entering the information below' %}</h4>
                     <div class="form-group col-xs-12">
                         {{ form.non_field_errors }}
                         <form novalidate method="post">{% csrf_token %}
@@ -22,32 +27,34 @@
                             </div>
                             <div class="form-group col-xs-12">
                                 {% render_field form.password class="form-control username-log" placeholder="Password" %} {{ form.password.errors }}
-                                <button type="submit" class="btn btn-default btn-login mt-4 floatl">{% trans 'Login' %}</button>
+                                <button type="submit" class="btn btn-outline-orange btn-login mt-4 floatl">{% trans 'Login' %}</button>
                                 <a href="{% url 'accounts:signup' %}">
-                                    <button type="button" class="btn btn-default btn-signup mt-4  floatr ">{% trans 'Signup' %}</button>
+                                    <button type="button" class="btn btn-outline-orange btn-signup mt-4  floatr ">{% trans 'Signup' %}</button>
                                 </a>
                             </div>
 
                         </form>
                     </div>
                     <div class="form-group col-xs-12">
-                        <div class="row">
-                            <div class="col-xs-6 floatl">
+                        <div class="login-sec">
+                            
                                 <a href="{% url 'accounts:reset_password' %}">
-                                    <h5>{% trans 'Forgot Password?' %}</h5>
+                                    <h5 class="text-center login-text">{% trans 'Forgot Password?' %}</h5>
                                 </a>
-                            </div>
-                            <div class="col-xs-6 floatr">
+                          
+                           
                                 <a href="{% url 'accounts:signup' %}">
-                                    <h5>{% trans "Don't have an account?" %}</h5>
+                                    <h5 class="text-center login-text">{% trans "Don't have an account?" %}</h5>
                                 </a>
-                            </div>
+                           
                         </div>
                     </div>
                 </div>
+               
             </div>
         </div>
     </div>
+</div>
 </section>
 {% endblock %}
 {% block script %}

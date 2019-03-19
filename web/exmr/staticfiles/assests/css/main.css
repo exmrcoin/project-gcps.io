@@ -571,9 +571,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
 }
 
 /****************public coin vote*****************/
-a {
-    color: #e75d14;
-}
 .merchant-tools {
     width: 100%;
     height: auto;
@@ -658,11 +655,6 @@ a {
         margin-right: -5px;
     }
 }
-.table thead th {
-color:#dee2e6;
-border-top: none;
-}
-
 
 @media screen and (max-width:767px) {
     .xs-padx1 {
@@ -1131,3 +1123,76 @@ label, input {
 .table-bordered th {
    border: 1px solid #333;
 }
+.table thead th {
+ border-bottom: 1px solid #333;
+ border-top: none;
+ color: #fff;
+}
+.login-text{
+ color:#A6ACAF;
+}
+.text-info {
+    color: #e75d15;
+    font-size: 12pt;
+    font-weight: 600;
+}
+
+a {
+    color: #e75d14;
+}
+
+a:hover {
+    color: #ff772e;
+    text-decoration: none;
+}
+/*******************stores*****************/
+
+.search-area {
+    height: 50px;
+}
+
+.search-button {
+    height: 50px;
+    width: 70px;
+    background-color: #e75d14;
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+}
+
+.search-button:hover {
+    background-color: #ff7226;
+    color: whitesmoke;
+}
+
+.menu-box {
+    min-width: 200px;
+    min-height: 160px;
+    background-color: #f0f0f0;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+
+.menu-box:hover {
+    background-color: #7db9e0;
+}
+
+.store-icons {
+    width: 60px;
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.store-title {
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+

@@ -108,12 +108,13 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'exmr.wsgi.application'
 
-CELERY_BROKER_URL = 'amqp://localhost'
-CELERY_RESULT_BACKEND = 'amqp://localhost'
+CELERY_BROKER_URL = 'redis://localhost'
+CELERY_RESULT_BACKEND = 'redis://localhost'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = "Asia/Makassar"
+CELERY_TIMEZONE = "Asia/Kolkata"
+
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
@@ -293,7 +294,7 @@ except ImportError:
     pass
 
 ADMINS = (
-   ('ME', 'anandkrishnan.techversant@gmail.com'),
+#    ('ME', 'anandkrishnan.techversant@gmail.com'),
    ('ADMIN', 'vipin.mohan@techversantinc.com'),
 )
 LOGGING = {
@@ -343,7 +344,7 @@ LOGGING = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": "redis://127.0.0.1:6379",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
@@ -352,6 +353,5 @@ CACHES = {
 }
 
 # Cache time to live is 10 minutes.
-CACHE_TTL = 60
-
+CACHE_TTL = 6000
 INTERNAL_IPS = ['127.0.0.1',]

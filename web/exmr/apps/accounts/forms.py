@@ -39,8 +39,8 @@ TIME_FORMAT_CHOICES = [('02:00', _('02:00')),
 
 class SignUpForm(UserCreationForm):
 
-    email = forms.EmailField()
-    confirm_email = forms.EmailField()
+    email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
+    confirm_email = forms.EmailField(max_length=254, help_text='Required. Inform a valid email address.')
     timezone = forms.ChoiceField(choices=CHOICES)
     need_newsletter = forms.BooleanField(required=False)
     accept_terms_and_conditions = forms.BooleanField(required=False)
@@ -53,12 +53,14 @@ class SignUpForm(UserCreationForm):
         email = self.cleaned_data.get('email')
         if email and User.objects.filter(email=email).exists():
             raise forms.ValidationError(u'Please use a different email address.')
-        return email
+        return email.lower()
 
     def clean_confirm_email(self):
-        if self.cleaned_data.get('email') != self.cleaned_data.get('confirm_email'):
-            return forms.ValidationError(_("Emails doesn't match"))
-        return self.cleaned_data.get('confirm_email')
+        email = self.cleaned_data.get('confirm_email')
+        if email and User.objects.filter(email=email).exists():
+            raise forms.ValidationError(u'Please use a different email address.')
+        return email.lower()
+
 
     def clean_username(self):
         username = self.cleaned_data.get('username')
@@ -70,6 +72,12 @@ class SignUpForm(UserCreationForm):
         if not self.cleaned_data.get('accept_terms_and_conditions'):
             raise forms.ValidationError(_('Please accept the terms and conditions'))
         return self.cleaned_data.get('accept_terms_and_conditions')
+
+    def clean(self):
+        cleaned_data = super(SignUpForm, self).clean()
+        if cleaned_data['email'] != cleaned_data['confirm_email']:
+            raise forms.ValidationError("Your emails don't match")
+        return cleaned_data
 
 
 class UpdateBasicProfileForm(forms.ModelForm):

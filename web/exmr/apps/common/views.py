@@ -14,7 +14,7 @@ from django.conf import settings
 from django.template.loader import render_to_string
 
 class HomeView(TemplateView):
-    template_name = 'gcps/home.html'
+    template_name = 'gcps/common/index.html'
 
     def get_context_data(self, **kwargs):
         merchant_id = self.request.GET.get('ref')

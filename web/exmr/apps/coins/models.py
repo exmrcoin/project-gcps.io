@@ -1,7 +1,7 @@
 import re
 import uuid
 import random
-
+import datetime
 from django.db import models
 from datetime import datetime
 from datetime import timedelta
@@ -9,6 +9,7 @@ from datetime import timedelta
 from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.postgres.fields import JSONField
+from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext_lazy as _
 
 from apps.common.models import Currency
@@ -72,6 +73,32 @@ def get_random():
     return u_id
 
 
+class TradeCommision(models.Model):
+    """
+    Model for Transaction Charges
+    """
+    COM_TYPE = (
+        ('FLAT', 'FLAT'),
+        ('PERCENTAGE', 'PERCENTAGE'),
+    )
+    transaction_commission_type = models.CharField(
+        max_length=20, choices=COM_TYPE, default='HOSTED')
+    commission_percentage = models.DecimalField(
+        _('commission percentage'), max_digits=5, decimal_places=3, default=0.00)
+    commission_flat_rate = models.DecimalField(
+        _('commission flat rate'), max_digits=10, decimal_places=3, default=0.00)
+
+    def save(self, *args, **kwargs):
+        if TradeCommision.objects.exists() and not self.pk:
+        # if you'll not check for self.pk 
+        # then error will also raised in update of exists model
+            raise ValidationError('There is can be only one TradeCommision instance')
+        return super(TradeCommision, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return self.transaction_commission_type+"_EXMR commision "
+
+
 class Coin(models.Model):
     """
     Model for coin details
@@ -120,6 +147,7 @@ class Coin(models.Model):
 
 
 
+
 class CoinConvertRequest(models.Model):
     """
     Model to save all the coin conversion requests
@@ -151,6 +179,8 @@ class WalletAddress(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     hidden = models.BooleanField(default=False)
     label = models.CharField(max_length=500, blank=True, default="")
+    current_balance = models.CharField(max_length=128, blank=True, default="0")
+    last_check =  models.DateTimeField(default = datetime.today)    
 
     def __str__(self):
         return self.address
@@ -325,6 +355,32 @@ class EthereumTokenWallet(models.Model):
     def __str__(self):
         return self.user.username + '_' + self.name.contract_symbol
 
+
+
+class CoinSetting(models.Model):
+    """
+    Model to save the coin setting for each user
+    """
+    user = models.ForeignKey(User, verbose_name=_(
+        'user'), related_name='get_user_coin_settings', on_delete=models.CASCADE)
+    coin = models.ForeignKey(Coin, verbose_name=_(
+        'coin'), related_name='get_coin_settings', null=True, blank=True, on_delete=models.CASCADE)
+    erc = models.ForeignKey(EthereumToken, verbose_name=_(
+        'erc'), related_name='get_coin_settings', null=True, blank=True, on_delete=models.CASCADE)
+    enabled = models.BooleanField(_('enabled'), default=False)
+    payment_address = models.CharField(_('payment address'), null=True, blank=True, max_length=64)
+    payment_mode = models.PositiveSmallIntegerField(
+        _('payment mode'), choices=PAYMENT_MODE_CHOICES, null=True, blank=True, default=TO_BALANCE)
+    discount_percentage = models.DecimalField(
+        _('discount field'), max_digits=6, null=True, blank=True, decimal_places=2)
+    maximum_per_transaction = models.DecimalField(
+        _('maximum per transaction'), max_digits=6, null=True, blank=True, decimal_places=2)
+    currency = models.ForeignKey(Currency, verbose_name=_(
+        'currency'), null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return '%s setting for %s' % (self.coin, self.user)
+
 class ConvertTransaction(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,blank = True,null=True)
     amount = models.CharField(blank=False, max_length=200)
@@ -390,27 +446,3 @@ class PayByNamePurchase(models.Model):
 
     def __str__(self):
         return self.user.username+" "+str(self.package.number_of_items)
-
-class CoinSetting(models.Model):
-    """
-    Model to save the coin setting for each user
-    """
-    user = models.ForeignKey(User, verbose_name=_(
-        'user'), related_name='get_user_coin_settings', on_delete=models.CASCADE)
-    coin = models.ForeignKey(Coin, verbose_name=_(
-        'coin'), related_name='get_coin_settings', null=True, blank=True, on_delete=models.CASCADE)
-    erc = models.ForeignKey(EthereumToken, verbose_name=_(
-        'erc'), related_name='get_coin_settings', null=True, blank=True, on_delete=models.CASCADE)
-    enabled = models.BooleanField(_('enabled'), default=False)
-    payment_address = models.CharField(_('payment address'), null=True, blank=True, max_length=64)
-    payment_mode = models.PositiveSmallIntegerField(
-        _('payment mode'), choices=PAYMENT_MODE_CHOICES, null=True, blank=True, default=TO_BALANCE)
-    discount_percentage = models.DecimalField(
-        _('discount field'), max_digits=6, null=True, blank=True, decimal_places=2)
-    maximum_per_transaction = models.DecimalField(
-        _('maximum per transaction'), max_digits=6, null=True, blank=True, decimal_places=2)
-    currency = models.ForeignKey(Currency, verbose_name=_(
-        'currency'), null=True, blank=True, on_delete=models.SET_NULL)
-
-    def __str__(self):
-        return '%s setting for %s' % (self.coin, self.user)

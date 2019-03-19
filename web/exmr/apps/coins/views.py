@@ -1,4 +1,6 @@
 import csv
+import ast
+import redis
 import random
 import string
 import datetime
@@ -12,7 +14,6 @@ from django.db.models import Q
 from django.conf import settings
 from django.contrib import messages
 from django.core import serializers
-from django.forms import formset_factory
 from django.urls import reverse_lazy, reverse
 from apps.common.utils import send_mail
 from django.core.mail import EmailMessage
@@ -27,12 +28,12 @@ from django.http import HttpResponseNotFound, HttpResponseServerError, JsonRespo
 
 from apps.coins.utils import *
 from apps.coins import coinlist
-from apps.apiapp import shapeshift, coinswitch
+from apps.apiapp import shapeshift, coinswitch, coingecko
 from apps.accounts.models import User, KYC
 from apps.accounts.decorators import check_2fa
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
-    CoinVote, ClaimRefund, NewCoin, CoinSetting, CoPromotion, CoPromotionURL, PayByNamePackage, \
+    CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, PayByNamePackage, \
     WalletAddress, EthereumToken, Phases, ConvertTransaction, PaypalTransaction,\
     PayByNamePurchase
 
@@ -42,6 +43,13 @@ paypalrestsdk.configure({
               "client_id": settings.PAYPAL_CLIENT_ID,
               "client_secret": settings.PAYPAL_CLIENT_SECRET 
               })
+
+
+coingecko = coingecko.CoinGeckoAPI()
+redis_object = redis.StrictRedis(host='localhost',
+	port='6379',
+	password='',
+	db=0, charset="utf-8", decode_responses=True)
 
 @method_decorator(check_2fa, name='dispatch')
 class WalletsView(LoginRequiredMixin, TemplateView):
@@ -53,8 +61,12 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         #     coin = Coin.objects.get(code=currency)
         #     if not Wallet.objects.filter(user=self.request.user, name=coin):
         #         create_wallet(self.request.user, currency)
-        data = json.loads(requests.get("http://coincap.io/front").text)
-        rates = {rate['short']:rate['price'] for rate in data}
+        try:
+            rates = redis_object.hgetall('rates')
+            rates = ast.literal_eval(rates)
+        except:
+            data = json.loads(requests.get("http://coincap.io/front").text)
+            rates = {rate['short']:rate['price'] for rate in data}
         self.request.session["rates"] = rates
         context["wallets"] = Coin.objects.all()
         context["erc_wallet"] = EthereumToken.objects.all()
@@ -88,7 +100,7 @@ class CoinConvertView(LoginRequiredMixin, TemplateView):
             available_coins.remove(sel_coin)
         except Exception as e:
             raise e
-        # print(type(available_coins))
+        print(type(available_coins))
         context['coin_images'] = image_path_list
         context['avbl_coins'] = list(available_coins)
         context['sel_coin'] = sel_coin
@@ -128,8 +140,8 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
             context['rate_json'] = limit_json['rate']
             context['min_limit'] = round(1.3 * limit_json['minimum'], 8)
             context['max_limit'] = round(0.75 * limit_json['limit'], 8)
-            # print(limit_json['minimum'])
-            # print(limit_json['limit'])
+            print(limit_json['minimum'])
+            print(limit_json['limit'])
             try:
                 balance = get_balance(self.request.user, sel_coin)
             except:
@@ -173,7 +185,7 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
         return render(request, 'coins/convert-select-confirm.html', context)
 
 
-class CoinConvertView3(TemplateView):
+class CoinConvertView3(LoginRequiredMixin,TemplateView):
     template_name = 'coins/convert-select-finished.html'
 
     def post(self, request, *args, **kwargs):
@@ -190,7 +202,7 @@ class CoinConvertView3(TemplateView):
             # ret_addr = 'LXA3i9eEAVDbgDqkThCa4D6BUJ3SEULkEr'
             transaction_details = coinswitch.create_fixed_amount_tx(input_coin_value,
                 addr, sel_coin, output_coin, ret_addr, None, None, None)
-            # print(transaction_details)
+            print(transaction_details)
             try:
                 obj = ConvertTransaction.objects.create(
                     user=self.request.user,
@@ -284,7 +296,7 @@ class SupportedCoinView(ListView):
         return context
 
 
-class ConvertCoinsView(FormView):
+class ConvertCoinsView(LoginRequiredMixin,FormView):
 
     template_name = 'coins/coin_conversion.html'
     form_class = ConvertRequestForm
@@ -322,7 +334,7 @@ class ConvertCoinsView(FormView):
         return super(ConvertCoinsView, self).form_valid(form)
 
     def form_invalid(self, form):
-        # print(form.errors)
+        print(form.errors)
         return super(ConvertCoinsView, self).form_invalid(form)
 
 
@@ -389,10 +401,9 @@ class PublicCoinVote(TemplateView):
             return HttpResponse(json.dumps(response_data), content_type='application/json')
 
 
-class CoinSettings(TemplateView):
+class CoinSettings(LoginRequiredMixin,TemplateView):
     template_name = 'coins/coin_settings.html'
-    
-    
+
     def get_context_data(self, *args, **kwargs):
         context = super(CoinSettings, self).get_context_data(**kwargs)
         # for currency in CURRENCIES:
@@ -406,55 +417,6 @@ class CoinSettings(TemplateView):
         context["erc_wallet"] = EthereumToken.objects.all()
         context['transactions'] = Transaction.objects.filter(user=self.request.user)
         return context
-
-    def post(self, request, *args, **kwargs):
-        req = request.POST
-        selected = request.POST.getlist('enabled')
-        coins = Coin.objects.all()
-        code = []
-        for x in coins:
-            code.append(x.code)
-
-        for item in code:
-            if item in selected:
-                try:
-                    setting = CoinSetting.objects.get(
-                        user=request.user, 
-                        coin=Coin.objects.get(code=item), 
-                    )
-                    setting.payment_address = req.get('address_'+item) 
-                    setting.payment_mode = req.get('pay_type_'+item)
-                    setting.discount_percentage=float(req.get('discount_'+item))
-                    setting.maximum_per_transaction=float(req.get('value_'+item))
-                    setting.enabled=True
-                    setting.save()
-                except:
-                    CoinSetting.objects.create(
-                    user=request.user, 
-                    coin=Coin.objects.get(code=item), 
-                    enabled=True,
-                    payment_address=req.get('address_'+item), 
-                    payment_mode=req.get('pay_type_'+item),
-                    discount_percentage=float(req.get('discount_'+item)), 
-                    maximum_per_transaction=float(req.get('value_'+item)),
-                )     
-            else:
-                try:
-                    setting = CoinSetting.objects.get(
-                        user=request.user, 
-                        coin=Coin.objects.get(code=item), 
-                    )
-                    
-                    setting.enabled=False
-                    setting.save()
-                except:
-                    CoinSetting.objects.create(
-                    user=request.user, 
-                    coin=Coin.objects.get(code=item), 
-                    enabled=False,
-                )
-
-        return render(request, self.template_name, {'wallets': Coin.objects.all(), 'erc_wallet': EthereumToken.objects.all(), 'transactions': Transaction.objects.filter(user=self.request.user)})
 
 class SettingSetUp(TemplateView):
     template_name = 'coins/setting_setup.html'
@@ -479,10 +441,7 @@ class RippleView(TemplateView):
         context['transactions'] = Transaction.objects.filter(user=self.request.user)
         return context
 
-    
-
-
-class CoinWithdrawal(TemplateView):
+class CoinWithdrawal(LoginRequiredMixin,TemplateView):
     template_name = 'coins/coin-withdrawal.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -494,6 +453,7 @@ class CoinWithdrawal(TemplateView):
                 contract_symbol=currency)
         else:
             context['coin'] = Coin.objects.get(code=currency)
+        context['balance'] = get_balance(self.request.user, currency)
         return context
 
 @method_decorator(check_2fa, name='dispatch')
@@ -720,7 +680,7 @@ class BalanceView(View):
             balance = 0
         if self.request.session["rates"].get(new_currency_code):
             rate = self.request.session["rates"][new_currency_code]
-            value = balance*rate
+            value = round((balance*rate),2)
         else:
             value = "NA"
         data = {'balance': str(balance), 'code': currency_code, 'value': value}
@@ -750,8 +710,8 @@ class ConversionView(View):
         if not convert_from:
             convert_from = "USD"
         try:
-            val = (float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q="+convert_from+"_"+\
-            convert_to+"&compact=y&callback=json").text.split(":")[-1].strip("}});")))
+            val = round(float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q="+convert_from+"_"+\
+            convert_to+"&compact=y&callback=json").text.split(":")[-1].strip("}});")),2)
         except:
             val = None
         self.request.session["coin_amount"] = val
@@ -909,9 +869,9 @@ class DisplaySupportedCoins(View):
         for coin in temp_list:
             if coin == currency_code:
                 temp_list.remove(coin)
-        # print(temp_list)
+        print(temp_list)
         final_dict = { key: coin_dict[key] for key in temp_list }
-        # print(final_dict)
+        print(final_dict)
         data = final_dict
         return HttpResponse(json.dumps(data), content_type="application/json")
 
@@ -1063,13 +1023,11 @@ class CoinAddrUpdate(UpdateView):
     template_name = 'coins/edit_label.html'
    
     def get_success_url(self):
-        # import pdb; pdb.set_trace()
         return reverse('coins:newaddr', kwargs={'currency': self.kwargs['currency']})
 
 class CoinHide(TemplateView):
 
     def get(self, request, *args, **kwargs):
-        # import pdb; pdb.set_trace()
         key = kwargs.get('pk')
         code = kwargs.get('currency')
         erc = EthereumToken.objects.filter(contract_symbol=code)

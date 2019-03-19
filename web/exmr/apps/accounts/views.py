@@ -39,8 +39,20 @@ class SignUpView(JSONResponseMixin, CreateView):
     template_name = 'accounts/signup.html'
     success_url = reverse_lazy('accounts:signup_complete')
 
+    def dispatch(self, request, *args, **kwargs):
+        try:
+            m_id = self.kwargs['mid']
+            self.request.session['refered_by'] = m_id 
+        except:
+            pass            
+        return super(SignUpView, self).dispatch(request, *args, **kwargs)
+        
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        return context
+
     def form_valid(self, form):
-        user = form.save()
+        user = form.save(commit=False)
         raw_password = form.cleaned_data.get('password1')
         user.set_password(raw_password)  # This line will hash the password
         user.is_active = False
@@ -48,6 +60,10 @@ class SignUpView(JSONResponseMixin, CreateView):
         profile, created = Profile.objects.get_or_create(user=user)
         profile.timezone = form.cleaned_data.get('timezone')
         profile.is_subscribed = form.cleaned_data.get('need_newsletter')
+        try:
+            profile.refered_by = Profile.objects.get(merchant_id=self.request.session['refered_by']).user
+        except:
+            pass
         profile.save()
         self.send_activation_mail(profile)
         return self.render_to_json_response({'msg': _('Activation mail sent')})
@@ -141,7 +157,7 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
         initial['time_format'] = user_profile.time_format
         initial['merchant_id'] = user_profile.merchant_id
         initial['ref_url'] = self.request.scheme + "://" + \
-            self.request.META['HTTP_HOST'] + "?ref=" + user_profile.merchant_id
+            self.request.META['HTTP_HOST'] + "/ref-signup/" + user_profile.merchant_id
         initial['gender'] = user_profile.gender
         return initial
 
@@ -151,7 +167,7 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
         context['security_form'] = LoginSecurityForm(instance=self.object)
         context['ipn_form'] = IPNSettingsForm(instance=self.object)
         context['ref_url'] = self.request.scheme + "://" + \
-            self.request.META['HTTP_HOST'] + "?ref=" + self.object.merchant_id
+            self.request.META['HTTP_HOST'] +  "/ref-signup/" + self.object.merchant_id
         return context
 
     def form_invalid(self, form, *args, **kwargs):

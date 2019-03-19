@@ -26,7 +26,7 @@ redis_object = redis.StrictRedis(host='localhost',
 	db=0, charset="utf-8", decode_responses=True)
 
 
-@shared_task
+# @shared_task
 def send_newsletter(self, request, queryset):
     queryset.update(is_active=True)
     profiles = Profile.objects.filter(is_subscribed=True)

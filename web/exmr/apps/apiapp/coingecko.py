@@ -68,6 +68,7 @@ class CoinGeckoAPI:
         """List all supported coins price, market cap, volume, and market related data (no pagination required)"""
 
         kwargs['vs_currency'] = vs_currency
+        kwargs['per_page'] = 2500
 
         api_url = '{0}coins/markets'.format(self.api_base_url)
         api_url = self.__api_url_params(api_url, kwargs)

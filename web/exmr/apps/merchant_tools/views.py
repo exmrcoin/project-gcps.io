@@ -19,8 +19,9 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import FormView, TemplateView, CreateView, View
 from django.contrib.sites.models import Site
 from django.views.decorators.cache import cache_control, never_cache
+from django.core.cache import cache
+from django.core.cache.backends.base import DEFAULT_TIMEOUT
 
-from django.views.decorators.cache import never_cache
 
 
 from apps.accounts.models import Profile
@@ -567,6 +568,37 @@ class URLMakerInvoiceView(TemplateView):
         context['merchant_name'] = Profile.objects.get(merchant_id=temp_obj.merchant_id)
         context['available_coins'] = coinlist.payment_gateway_coins()
         return context
+
+class POSCalcView(TemplateView):
+    template_name = 'gcps/merchant_tools/pos_calc.html'
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data()
+        return context
+
+
+    def post(self, request, *args, **kwargs):
+        input_amount =  request.POST.get('amountf')
+        input_currency =  request.POST.get('select_currency')
+        context = super().get_context_data(**kwargs)
+        context['amount'] = input_amount
+        context['input_currency'] = "usd"
+        token = account_activation_token.make_token(
+            user=self.request.user)
+        domain = self.request.get_host()
+        html_url = domain+reverse('mtools:poscalcpaysel', kwargs={'token': token})
+        context['html_url'] = html_url
+        context['available_coins'] = Coin.objects.filter(active=True)
+        context['rates'] =  cache.get('rates')
+        return render(self.request, 'gcps/merchant_tools/pos_coin_select.html', context)
+
+class POSCalcPaySelView(TemplateView):
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['available_coins'] = Coin.objects.filter(active=True)
+        return context
+
+        
+
 
 
 class POSQRMakerView(FormView):
@@ -1199,7 +1231,7 @@ class SimpleButtonMakerInvoice(TemplateView):
         domain = self.request.get_host()
         context = super().get_context_data(*args, **kwargs)
         try:
-            rates = redis_object.hgetall('rates')
+            rates = cache.get('rates')
             rates = ast.literal_eval(rates)
         except:
             data = json.loads(requests.get("http://coincap.io/front").text)
@@ -1434,41 +1466,46 @@ class ButtonMakerPayView(TemplateView):
 class MTest(TemplateView):
     template_name='common/gcps_base.html'
 
-    # def get_context_data(self):
-        # multipayment_list = MultiPayment.objects.filter(paid_date__gt = eight_hours )
-        # for payment in multipayment_list:
-        #     if not payment.completed:
-        #         merchant_id = payment.merchant_id
-        #         this_user = (Profile.objects.get(merchant_id = merchant_id)).user
-        #         try:
-        #             paid_in_coin = (payment.paid_in).code
-        #             is_erc = False
-        #         except:
-        #             paid_in_coin = (payment.paid_in_erc).symbol
-        #             is_erc = True
-                
-        #         current_balance = get_balance(this_user, paid_in_coin, payment.payment_address)
+    def get_context_data(self):
+        context = super().get_context_data()
+        input_cur = "BTC"
+        amount = 0.05
+        rates = cache.get('rates')
+        rates['EXMR'] = 0.017
+        cur_rate = rates[input_cur]
+        cur_cost = amount * cur_rate
+        print("current_cost %s",cur_cost)
+        try:
+            input_coin = Coin.objects.get(code = input_cur)
+        except:
+            input_coin = EthereumToken.objects.get(contract_symbol = input_cur)
+        tradecommission_obj =  TradeCommision.objects.all().first()
+        trans_charge_type = tradecommission_obj.transaction_commission_type
+        exmr_rate = rates['EXMR']
+        if trans_charge_type == "FLAT":
+            print("use flat slab logic")
+            exmr_amount = float(tradecommission_obj.commission_flat_rate)
+        else:
+            print("use percentage logic")
+            transaction_charge_usd = float(tradecommission_obj.commission_percentage) * cur_cost
+            exmr_amount = transaction_charge_usd/exmr_rate
+        
+        print(exmr_amount)
+        return context
 
-        #         if (current_balance >= float(payment.paid_amount)):
-        #             payment.completed =  True
-        #             payment.save()
-        #         else:
-        #             print('awaiting  payment')
 
-
-        # coin_rate_list = coingecko.get_coins_markets('usd')
-        # rates = {rate['symbol']:rate['current_price'] for rate in coin_rate_list}
-        # redis_object.set('rates', rates)
-        # print(type(redis_object.get('rates')))
-        # import os.path
-        # SITE_ROOT = os.path.abspath(os.path.dirname(__name__))
-        # try:
-        #     os.remove(SITE_ROOT+"/exmr/deltest.py") 
-        # except:
-        #     pass
-        # print(redis_object.get('rates'))
-        # payment_list = MultiPayment.objects.filter(paid_date__gt = eight_hours)
-        # logger.setLevel(logging.DEBUG)
-        # logger.info("foobar")
-        # email = EmailMessage('Hello', str(payment_list), to=['mail2vipinmohan@gmail.com'])
-        # email.send()
+        # wallet_list = Wallet.objects.all()
+        # for wallet in wallet_list:
+        #     import pdb; pdb.set_trace()
+        #     for addr in wallet.addresses.all():
+        #         temp_bal = get_balance(wallet.user, wallet.name, addr.address)
+        #         cache.set(addr.address,temp_bal)
+        #         temp_obj = WalletAddress.objects.get(address=addr.address)
+        #         temp_obj.last_check = datetime.datetime.now()
+        #         temp_obj.current_balance = temp_bal
+        #         temp_obj.save()
+        # context = super(MTest, self).get_context_data()
+        # print("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+        # print(cache.get(0x810561bdd3876b7a005e64f9ca759a0febdda5e9))
+        # print("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
+        # context['eth_bal'] = cache.get("0x810561bdd3876b7a005e64f9ca759a0febdda5e9")

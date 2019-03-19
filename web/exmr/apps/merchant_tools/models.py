@@ -215,7 +215,6 @@ class MultiPayment(models.Model):
     paid_amount = models.CharField(max_length=512, null=False)
     eq_usd = models.CharField(max_length=512, blank=True, null=True)
     paid_date = models.DateTimeField(blank=True, null=True, auto_now_add=True)
-    paid_date.editable = True
     attempted_usd = models.CharField(max_length=512, default=0)
     recieved_amount = models.CharField(max_length=512, default=0)
     recieved_usd = models.CharField(max_length=512, default=0)

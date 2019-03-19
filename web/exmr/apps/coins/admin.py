@@ -3,10 +3,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-from apps.coins.models import Coin, CoinSetting, CoinConvertRequest, Wallet, WalletAddress, Transaction,\
-                              ClaimRefund, NewCoin, CoinVote, CoPromotion, CoPromotionURL,\
-                              EthereumToken, EthereumTokenWallet, Phases, ConvertTransaction,\
-                              PaypalTransaction, PaybyName, PayByNamePackage,MoneroPaymentid, PayByNamePurchase
+from apps.coins.models import (Coin, CoinSetting, CoinConvertRequest, Wallet, WalletAddress, Transaction,ClaimRefund, NewCoin, CoinVote, CoPromotion, CoPromotionURL, EthereumToken, EthereumTokenWallet, Phases, ConvertTransaction, PaypalTransaction,PaybyName, PayByNamePackage,MoneroPaymentid, PayByNamePurchase,TradeCommision)
 
 
 admin.site.site_header = 'GetCryptoPayments Admin'
@@ -53,3 +50,4 @@ admin.site.register(PaypalTransaction)
 admin.site.register(PaybyName)
 admin.site.register(PayByNamePackage)
 admin.site.register(PayByNamePurchase)
+admin.site.register(TradeCommision)

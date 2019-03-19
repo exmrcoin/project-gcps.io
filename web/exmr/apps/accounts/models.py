@@ -68,6 +68,7 @@ class Profile(models.Model):
     email_confirmation_transaction = models.BooleanField(_('email confirmation send/withdrawal'), default=True)
     is_subscribed = models.BooleanField(_('is subscribed'), default=False)
     referance_count = models.IntegerField(_('reference count'), null=True, default=0)
+    refered_by =  models.ForeignKey(User,on_delete=models.CASCADE, blank=True, null=True)
 
     #  IPN Settings
 

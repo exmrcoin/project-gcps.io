@@ -901,6 +901,9 @@ a {
 
 input[type="radio"] {
     margin-right: 10px;
+    height: unset;
+    width: unset;
+    display: inherit;
 }
 
 label, input {
@@ -1382,4 +1385,28 @@ pre {
     display: block;
     font-size: 87.5%;
     color: #fff;
+}
+
+.floatr {
+    float: right;
+}
+
+.w100px{
+    width: 100px;
+}
+
+input[type=checkbox] {
+    box-sizing: border-box;
+    padding: 0;
+    height: 12px;
+    width: 15px;
+    margin-top: 7px;
+}
+
+#id_btn_image{
+    background: none;
+    border: none;
+    list-style: none;
+    height: unset;
+    display: inherit
 }

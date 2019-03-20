@@ -6,19 +6,21 @@
 {% endif %} {% for field in form.visible_fields %}
 <div class="row ">
 
-
      
-    <div class="col-sm-4 mb-2 float-right" style="font-size: 15px; color: white;">
+    <div class="col-4 mb-2 float-right" style="font-size: 15px; color: white;">
       {{ field.label_tag }}
     </div>
 
-    <div class="col-sm-8 mb-2">
-      {% if form.is_bound %} {% if field.errors %} 
-      {% render_field field class="form-control-group is-invalid" %} {% for error in field.errors %}
+    <div class="col-8 mb-2">
+      
+        {% if form.is_bound %} {% if field.errors %} 
+      
+        {% render_field field class="form-control is-invalid" %} {% for error in field.errors %}
+      
       <div class="invalid-feedback">
         {{ error }}
       </div>
-      {% endfor %} {% else %} {% render_field field class="form-control-group is-valid" %} {% endif %} 
+      {% endfor %} {% else %} {% render_field field class="form-control is-valid" %} {% endif %} 
       {% else %} {% render_field field class="form-control" %} 
       {% endif %} {% if field.help_text %}
       <small class="form-text text-muted">{{ field.help_text }}</small>

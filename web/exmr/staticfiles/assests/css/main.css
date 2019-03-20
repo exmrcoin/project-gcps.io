@@ -596,8 +596,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
 }
 
 /****************public coin vote*****************/
-<<<<<<< Updated upstream
-=======
 a {
     color: #e75d14;
 }
@@ -606,7 +604,6 @@ a {
     color: #fff;
 }
 
->>>>>>> Stashed changes
 .merchant-tools {
     width: 100%;
     height: auto;
@@ -1159,7 +1156,6 @@ label, input {
 .table-bordered th {
    border: 1px solid #333;
 }
-<<<<<<< Updated upstream
 .table thead th {
  border-bottom: 1px solid #333;
  border-top: none;
@@ -1233,7 +1229,6 @@ a:hover {
     transform: translate(-50%, -50%);
 }
 
-=======
 
 .selectable_div input[type="radio"] {
     display: none;
@@ -1355,4 +1350,36 @@ input[type=range]::-moz-focus-outer {
     
 
 }
->>>>>>> Stashed changes
+/****table changes****/
+.table td, .table th {
+    padding: .75rem;
+    vertical-align: top;
+    border-top: 1px solid #333;
+}
+.table{
+    color:#fff;
+}
+.bx-ash-menu {
+    background: rgba(34,34,34,0.63);
+    background: -moz-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(34,34,34,0.63)), color-stop(100%, rgba(60,59,73,0.63)));
+    background: -webkit-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -o-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: -ms-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: linear-gradient(to right, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#3c3b49', GradientType=1 );
+    border-radius: 7px;
+    min-width: 200px;
+    min-height: 160px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 5px;
+}
+.progress-bar{
+    color:#525050;
+}
+pre {
+    display: block;
+    font-size: 87.5%;
+    color: #fff;
+}

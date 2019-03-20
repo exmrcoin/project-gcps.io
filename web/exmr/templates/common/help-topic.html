@@ -1,7 +1,7 @@
 {% extends 'gcps/base.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
 <section class="section section-pad">
      <div class="bx-ash ">
-    <div class="merchant-tools merchant-one coin-payment-head">
+    <div class="merchant-tools merchant-one coin-payment-head dark-page-header">
         <h1>Help</h1>
         <h3>Frequently Asked Questions </h3>
     </div>
@@ -40,7 +40,7 @@
                 {% for faq_ans in faq %}
                 <div class="col-xs-12" id="question{{forloop.counter}}">
                     <h4 class="help-label">{{faq_ans.faq_question}}</h4>
-                    <p>{{faq_ans.faq_answer}}</p>
+                    <p class="login-text">{{faq_ans.faq_answer}}</p>
                 </div>
                 {% endfor %}
             </div>

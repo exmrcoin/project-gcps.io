@@ -1,231 +1,213 @@
 {% extends 'gcps/base.html' %} {% load staticfiles %} {% load transaction_status %} {% block content %} {% load i18n %} {% block page_css %}
+ 
+ <style type="text/css">
+     /*
+     Max width before this PARTICULAR table gets nasty
+     This query will take effect for any screen smaller than 760px
+     and also iPads specifically.
+     */
+ 
+     @media only screen and (max-width: 760px),
+     (min-device-width: 768px) and (max-device-width: 1024px) {
+ 
+         /* Force table to not be like tables anymore */
+         .responsive-table table,
+         thead,
+         tbody,
+         th,
+         td,
+         tr {
+             display: block;
+         }
+ 
+         /* Hide table headers (but not display: none;, for accessibility) */
+         .responsive-table thead tr {
+             position: absolute;
+             top: -9999px;
+             left: -9999px;
+         }
+ 
+         .responsive-table tr {
+             border: 1px solid #ccc;
+             margin: 5px;
+         }
+ 
+         .responsive-table td {
+             /* Behave  like a "row" */
+             border: none;
+             border-bottom: 1px solid #eee;
+             position: relative;
+             padding-left: 50% !important;
+         }
+ 
+         .responsive-table td:before {
+             position: absolute;
+             top: 6px;
+             left: 13px;
+             width: 45%;
+             padding-right: 10px;
+             white-space: nowrap;
+             text-align: left;
+             font-weight: bold;
+         }
+ 
+         /*
+         Label the data
+         */
+         .responsive-table td:nth-of-type(1):before {
+             content: "POSITION";
+         }
+         .responsive-table td:nth-of-type(2):before {
+             content: "COIN";
+         }
+         .responsive-table td:nth-of-type(3):before {
+             content: "NAME";
+         }
+         .responsive-table td:nth-of-type(4):before {
+             content: "VOTES";
+         }
+         .responsive-table td:nth-of-type(5):before {
+             content: "PERCENTAGE OF VOTES?";
+         }
+         .responsive-table td:nth-of-type(6):before {
+             content: "VOTE";
+         }
+ 
+     }
+ </style>
+ {% endblock %}
 
-<style type="text/css">
-    /*
-    Max width before this PARTICULAR table gets nasty
-    This query will take effect for any screen smaller than 760px
-    and also iPads specifically.
-    */
-
-    @media only screen and (max-width: 760px),
-    (min-device-width: 768px) and (max-device-width: 1024px) {
-
-        /* Force table to not be like tables anymore */
-        .responsive-table table,
-        thead,
-        tbody,
-        th,
-        td,
-        tr {
-            display: block;
-        }
-
-        /* Hide table headers (but not display: none;, for accessibility) */
-        .responsive-table thead tr {
-            position: absolute;
-            top: -9999px;
-            left: -9999px;
-        }
-
-        .responsive-table tr {
-            border: 1px solid #ccc;
-            margin: 5px;
-        }
-
-        .responsive-table td {
-            /* Behave  like a "row" */
-            border: none;
-            border-bottom: 1px solid #eee;
-            position: relative;
-            padding-left: 50% !important;
-        }
-
-        .responsive-table td:before {
-            position: absolute;
-            top: 6px;
-            left: 13px;
-            width: 45%;
-            padding-right: 10px;
-            white-space: nowrap;
-            text-align: left;
-            font-weight: bold;
-        }
-
-        /*
-        Label the data
-        */
-        .responsive-table td:nth-of-type(1):before {
-            content: "POSITION";
-        }
-        .responsive-table td:nth-of-type(2):before {
-            content: "COIN";
-        }
-        .responsive-table td:nth-of-type(3):before {
-            content: "NAME";
-        }
-        .responsive-table td:nth-of-type(4):before {
-            content: "VOTES";
-        }
-        .responsive-table td:nth-of-type(5):before {
-            content: "PERCENTAGE OF VOTES?";
-        }
-        .responsive-table td:nth-of-type(6):before {
-            content: "VOTE";
-        }
-
-    }
-</style>
-{% endblock %}
 <section class="section section-pad">
     <div class="bx-ash mb-2">
-    <div class="merchant-tools merchant-one exmr-head">
-        <h1>Public Coin Vote </h1>
-        <h6>"ONGOING"</h6>
-        <h4>Period August-October</h4> 
-        <h3>GetCryptoPayments Vote for Add Coin </h3>
-    </div>
+     <div class="merchant-tools merchant-one dark-page-header">
+         <h1>Public Coin Vote </h1>
+         <h6>"ONGOING"</h6>
+         <h4>Period August-October</h4> 
+         <h3>GetCryptoPayments Vote for Add Coin </h3>
+     </div>
 </div>
     
-    <div class="container-fluid xs-padx1">
-        <div class="col-xs-12 xs-padx1">
-            <div class="account-setting-wrap coin-support-main-wrap xs-padx1">
-                <fieldset class="setting-form form-settings">
-                    
-                    <div class="clearfix">
-
-                    </div>
-                   
-                    <div class="col-md-12">
-                        <p class="coin-comp-widget-title">Website Embed Widget</p>
-                        <p class="coin-comp-widget"><img class="coin-comp-image img-fluid margin-center" src="{% static '/images/image-729x90.png' %}" width="550"></p>
-                        <p class="coin-comp-widget"><a a class="" href="{% static '/compressed/images.zip'%}"> Download Widget Images Here</a></p><br>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="link underline-link text-center">
-                                <a class="btn submit-new-coin-text w200px mt-1" href="{% url 'coins:add-public-coin'%}">Submit New Coin Here</a>
-                                <a class="btn see-winners w200px mt-1" href="{% url 'coins:winners'%}"> See Winners Here</a>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                                <div class="search-content mt-1">
-                                    <input type="text" name="name" id="searchText" placeholder="Look for your coin" class="search-field" value="">
-                                    <button type="button" id="search" class="_submit btn btn-search" value="search">Search</button>
-                                </div>
-                        </div>
-                    </div>
-                    <!-- <button class="btn btn-success" onclick="window.location.href='{% url 'coins:add-public-coin'%}'"> Submit Coin </button> -->
-                    <div id="table_div" class=" mt-1 pt-1">
-                        <table class="table vote_table">
-                            <thead>
-                                <tr class="table-top">
-                                    <th></th>
-                                    <th>COIN</th>
-                                    <th>CODE</th>
-                                    <th>VOTES</th>
-                                    <th>PERCENTAGE OF VOTES</th>
-
-                                    <th>VOTE</th>
-
-                                </tr>
-                            </thead>
-                            <tbody class="py-1">
-                                {% for coin in coins %}
-                                <tr class="table-th pt-1">
-                                    <td > {% if coin.logo_url %}
-                                        <img src="{{coin.logo_url}}" style="width: 30px;">{% endif %}</td>
-                                    <td style="font-weight: 700;"> {{coin.name}}</td>
-                                    <td>
-                                        <B>{{coin.code}}</B>
-                                    </td>
-                                    <td>{{coin.vote_count}}/100,000</td>
-                                    <td>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-green" style="width:{% percentage coin.vote_count%}%">{% percentage coin.vote_count%}%</div>
-                                        </div>
-                                    </td>
-                                    <td class="padx0 text-center">
-                                        <button class="btn-vote-btn2 btn-v2 btn" onclick="{% if user.is_authenticated %}window.location.href='{% url 'coins:vote-details' coin.code %}'{% else %} $('#userModal').modal('show') {% endif %}">Vote</button>
-                                        
-
-                                    </td>
-                                </tr>
-
-                                {% endfor %}
-                                
-
-                            </tbody>
-
-                        </table>
-                    </div>
-
-                </fieldset>
-            </div>
-        </div>
-    </div>
-
-</section>
-
-<script type="text/javascript">
-function coinVote(coin_id,count){
-    $.ajax({
-                type: "POST",
-                url: "{% url 'public coin vote' %}",
-                data: {
-                    'count': count,
-                    'id':coin_id,
-                    csrfmiddlewaretoken: '{{ csrf_token }}'
-                },
-                success: function (data) {
-                    $("#table_div").html('')
-                    $("#table_div").append(data)
-                }
-            })
-}
-
-</script>
-{% endblock %}
-{% block script %}
-<script type="text/javascript">
-$("#search").click(function () {
-    var value = $("#searchText").val().toLowerCase().trim();
-
-    $("table tr").each(function (index) {
-        if (!index) return;
-        $(this).find("td").each(function () {
-            var id = $(this).text().toLowerCase().trim();
-            var not_found = (id.indexOf(value) == -1);
-            $(this).closest('tr').toggle(!not_found);
-            return not_found;
-        });
-    });
-});
-$("#searchText").keyup(function(e){
-    if(e.keyCode === 13){
-        $("#search").trigger('click');
-    }
-})
-</script>
-{% endblock %}
+     <div class="container-fluid xs-padx1">
+         <div class="col-xs-12 xs-padx1">
+             <div class="account-setting-wrap coin-support-main-wrap xs-padx1">
+                 <fieldset class="setting-form form-settings">
+                     
+                     <div class="clearfix">
  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                     </div>
+                    
+                     <div class="col-md-12">
+                         <p class="coin-comp-widget-title">Website Embed Widget</p>
+                         <p class="coin-comp-widget"><img class="coin-comp-image img-fluid margin-center" src="{% static '/images/image-729x90.png' %}" width="550"></p>
+                         <p class="coin-comp-widget"><a a class="" href="{% static '/compressed/images.zip'%}"> Download Widget Images Here</a></p><br>
+                     </div>
+                     <div class="row">
+                         <div class="col-md-6">
+                             <div class="link underline-link text-center">
+                                 <a class="btn submit-new-coin-text w200px mt-1" href="{% url 'coins:add-public-coin'%}">Submit New Coin Here</a>
+                                 <a class="btn see-winners w200px mt-1" href="{% url 'coins:winners'%}"> See Winners Here</a>
+                             </div>
+                         </div>
+                         <div class="col-md-6">
+                                 <div class="search-content mt-1">
+                                     <input type="text" name="name" id="searchText" placeholder="Look for your coin" class="search-field" value="">
+                                     <button type="button" id="search" class="_submit btn btn-search" value="search">Search</button>
+                                 </div>
+                         </div>
+                     </div>
+                     <!-- <button class="btn btn-success" onclick="window.location.href='{% url 'coins:add-public-coin'%}'"> Submit Coin </button> -->
+                     <div id="table_div" class=" mt-1 pt-1">
+                         <table class="table vote_table">
+                             <thead>
+                                 <tr class="table-top">
+                                     <th></th>
+                                     <th>COIN</th>
+                                     <th>CODE</th>
+                                     <th>VOTES</th>
+                                     <th>PERCENTAGE OF VOTES</th>
+ 
+                                     <th>VOTE</th>
+ 
+                                 </tr>
+                             </thead>
+                             <tbody class="py-1">
+                                 {% for coin in coins %}
+                                 <tr class="table-th pt-1">
+                                     <td > {% if coin.logo_url %}
+                                         <img src="{{coin.logo_url}}" style="width: 30px;">{% endif %}</td>
+                                     <td style="font-weight: 700;"> {{coin.name}}</td>
+                                     <td>
+                                         <B>{{coin.code}}</B>
+                                     </td>
+                                     <td>{{coin.vote_count}}/100,000</td>
+                                     <td>
+                                         <div class="progress">
+                                             <div class="progress-bar progress-green" style="width:{% percentage coin.vote_count%}%">{% percentage coin.vote_count%}%</div>
+                                         </div>
+                                     </td>
+                                     <td class="padx0 text-center">
+                                         <button class="btn-vote-btn2 btn-v2 btn" onclick="{% if user.is_authenticated %}window.location.href='{% url 'coins:vote-details' coin.code %}'{% else %} $('#userModal').modal('show') {% endif %}">Vote</button>
+                                         
+ 
+                                     </td>
+                                 </tr>
+ 
+                                 {% endfor %}
+                                 
+ 
+                             </tbody>
+ 
+                         </table>
+                     </div>
+ 
+                 </fieldset>
+             </div>
+         </div>
+     </div>
++
+ </section>
+ 
+ <script type="text/javascript">
+ function coinVote(coin_id,count){
+     $.ajax({
+                 type: "POST",
+                 url: "{% url 'public coin vote' %}",
+                 data: {
+                     'count': count,
+                     'id':coin_id,
+                     csrfmiddlewaretoken: '{{ csrf_token }}'
+                 },
+                 success: function (data) {
+                     $("#table_div").html('')
+                     $("#table_div").append(data)
+                 }
+             })
+ }
+ 
+ </script>
+ {% endblock %}
+ {% block script %}
+ <script type="text/javascript">
+ $("#search").click(function () {
+     var value = $("#searchText").val().toLowerCase().trim();
+ 
+     $("table tr").each(function (index) {
+         if (!index) return;
+         $(this).find("td").each(function () {
+             var id = $(this).text().toLowerCase().trim();
+             var not_found = (id.indexOf(value) == -1);
+             $(this).closest('tr').toggle(!not_found);
+             return not_found;
+         });
+     });
+ });
+ $("#searchText").keyup(function(e){
+     if(e.keyCode === 13){
+         $("#search").trigger('click');
+     }
+ })
+ </script>
+ {% endblock %}
+  
+ 
+ 

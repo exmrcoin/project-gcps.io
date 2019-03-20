@@ -12,7 +12,7 @@ urlpatterns = [
     path('profile/', views.DashboardView.as_view(), name='profile'),
     path('address/', views.AddressView.as_view(), name='address'),
     path('add-new-address-complete/', views.AddAddressCompleteView.as_view(), name='add_new_address_complete'),
-    path('login/', LoginView.as_view(template_name='gcps/accounts/login.html'), name='login'),
+    path('login/', LoginView.as_view(template_name='accounts/login.html'), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('settings/', views.AccountSettings.as_view(), name='settings'),
     path('save-public-info/', views.PublicInfoSave.as_view(), name='save_public_info'),

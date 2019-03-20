@@ -54,7 +54,7 @@
 
 <script type="text/javascript">
     function copy_password(btn_id) {
-    var temp = ($('#'+btn_id+'').next('div')).next('div');
+    var temp = ($('#'+btn_id+'').next('div'));
     var textArea = document.createElement("textarea");
     var elOriginalText = $('#'+btn_id+'').attr('data-original-title');
     textArea.value = temp.text();

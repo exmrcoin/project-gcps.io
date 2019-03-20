@@ -21,7 +21,7 @@
             {% csrf_token %} 
             {% include 'exmr_form.html' with form=form %}
             <div class="text-center">
-            <button type="submit" class="btn btn-outline-orange btn-lg">Submit</button>
+                <button type="submit" class="btn btn-outline-orange btn-lg">Submit</button>
             </div>
         </form>
     </div>
@@ -54,7 +54,7 @@
 
 <script type="text/javascript">
     function copy_password(btn_id) {
-    var temp = ($('#'+btn_id+'').next('div')).next('div');
+    var temp = ($('#'+btn_id+'').next('div'));
     var textArea = document.createElement("textarea");
     var elOriginalText = $('#'+btn_id+'').attr('data-original-title');
     textArea.value = temp.text();

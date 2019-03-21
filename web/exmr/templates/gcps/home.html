@@ -197,22 +197,57 @@
                       <h6 class="text-white text-center mb-4">
                         Choose Which <span class="text-theme">Assets to Trade</span>
                       </h6>
-                      <ul class="bx-list">
-                        <li>
-                          <img src="{% static 'assests/images/01.png' %}" class="icon-list" />
-                          <div class="text-white mt-2">Deposit</div>
+                      <a href="{% url 'coins:wallets' %}">
+                      <ul class="bx-list row">
+                        <li class="col-5">
+                          <div class="carousel vert slide" data-ride="carousel" data-interval="2700">
+                            <div class='carousel-inner text-center'>
+                              {% for coin,coin_details in d1.items %}
+
+                              {% if forloop.counter == 1 %}
+                              <div class="carousel-item active text-center">
+                                  <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                              </div>
+                              {% else %}
+                              <div class="carousel-item text-center">
+                                  <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                              </div>
+                              {% endif %}
+
+                              {% endfor %}
+                            </div>
+                            <div class="text-white mt-2">Deposit</div>
+                          </div>
                         </li>
-                        <li>
+                        <li class="col-2  d-flex align-items-center justify-content-center">
                           <img
                             src="{% static 'assests/images/transfer.png' %}"
                             class="icon-transfer"
                           />
                         </li>
-                        <li>
-                          <img src="{% static 'assests/images/02.png' %}" class="icon-list" />
-                          <div class="text-white mt-2">Receive</div>
+                        <li class="col-5">
+                            <div class="carousel vert slide" data-ride="carousel" data-interval="2000">
+                              <div class='carousel-inner'>
+                                {% for coin,coin_details in d2.items %}
+
+                                {% if forloop.counter == 1 %}
+                                <div class="carousel-item active text-center">
+                                    <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                </div>
+                                {% else %}
+                                <div class="carousel-item text-center">
+                                    <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                </div>
+                                {% endif %}
+
+                                {% endfor %}
+                              </div>
+                              <div class="text-white mt-2">Receive</div>
+                            </div>
                         </li>
                       </ul>
+                      </a>
+
                     </div>
                   </div>
                 </div>

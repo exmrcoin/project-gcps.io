@@ -230,7 +230,6 @@ img.icon-list {
 .bx-list{
     list-style: none;
     position: relative;
-    display: block;
     text-align: center;
     padding: 0px;
     margin: 0px;

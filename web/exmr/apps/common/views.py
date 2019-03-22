@@ -7,7 +7,7 @@ from django.views.generic import View, TemplateView, FormView
 from django.shortcuts import render
 from apps.accounts.models import Profile
 from apps.common.forms import CoinRequestForm, ContactForm
-from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload, StaticPage, API, InformationalSidebar, ReceivingSidebar
+from apps.common.models import FAQ, AnnouncementHome, HelpSidebar, LegalSidebar, PluginDownload, StaticPage, API, InformationalSidebar, ReceivingSidebar
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from apps.common.utils import send_mail
 from apps.coins import coinlist
@@ -21,6 +21,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         merchant_id = self.request.GET.get('ref')
         context = super(HomeView, self).get_context_data(**kwargs)
+        announcements = AnnouncementHome.objects.all()
         if merchant_id:
             user_profile = Profile.objects.get(merchant_id=merchant_id)
             referance_count = user_profile.referance_count
@@ -32,7 +33,8 @@ class HomeView(TemplateView):
         i = iter(d.items())      # alternatively, i = d.iteritems() works in Python 2
 
         context['d1'] = dict(itertools.islice(i, n))   # grab first n items
-        context['d2'] = dict(i)                        # grab the rest
+        context['d2'] = dict(i)
+        context['announce'] = announcements                        # grab the rest
         print(context['d1'])
         return context
 

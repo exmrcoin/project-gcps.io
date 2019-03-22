@@ -513,14 +513,12 @@
                             data-slide-to="0"
                             class="active"
                           ></li>
+                          {% for announce in announce %}
                           <li
                             data-target="#carouselExampleIndicators"
-                            data-slide-to="1"
+                            data-slide-to="{{forloop.counter}}"
                           ></li>
-                          <li
-                            data-target="#carouselExampleIndicators"
-                            data-slide-to="2"
-                          ></li>
+                          {% endfor %}
                         </ol>
                         <div class="carousel-inner">
                           <div class="carousel-item active">
@@ -539,38 +537,25 @@
                               </div>
                             </div>
                           </div>
+                          {% for announce in announce %}
                           <div class="carousel-item">
+                          
                             <div class="text-white">
                               <h3 class="text-uppercase">Announcement</h3>
                               <p class="mb-5">
-                                Recently listed Cloakcoin reached 70K points within
-                                the competition. Congratulations to the Cloakcoin
-                                developers team
+                                {{announce.description}}
                               </p>
                               <div class="text-theme text-right">
-                                More about visit cloakcoin.com
-                                <a href="#" class="circle-outline"
+                                More about visit {{announce.visit}}
+                                <a href="{{announce.link}}" class="circle-outline"
                                   ><i class="icon-arrow-right"></i
                                 ></a>
                               </div>
                             </div>
+                          
                           </div>
-                          <div class="carousel-item">
-                            <div class="text-white">
-                              <h3 class="text-uppercase">Announcement</h3>
-                              <p class="mb-5">
-                                Recently listed Cloakcoin reached 70K points within
-                                the competition. Congratulations to the Cloakcoin
-                                developers team
-                              </p>
-                              <div class="text-theme text-right">
-                                More about visit cloakcoin.com
-                                <a href="#" class="circle-outline"
-                                  ><i class="icon-arrow-right"></i
-                                ></a>
-                              </div>
-                            </div>
-                          </div>
+                          {% endfor %}
+                          
                         </div>
                       </div>
                     </div>

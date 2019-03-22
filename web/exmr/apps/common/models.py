@@ -181,4 +181,13 @@ class ReceivingSidebar(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.receive_topic)
         super(ReceivingSidebar, self).save(*args, **kwargs)
-        
+
+class AnnouncementHome(models.Model):
+
+    title = models.CharField(max_length=128)
+    description = models.CharField(max_length=2048)
+    visit = models.CharField(max_length=128)
+    link = models.URLField()
+
+    def __str__(self):
+        return self.visit

@@ -40,7 +40,7 @@ msgstr "女"
 
 #: apps/accounts/forms.py:27 apps/accounts/models.py:26
 msgid "Other/Prefer Not to say"
-msgstr "其他/优先不要说"
+msgstr "其他/不喜欢不说"
 
 #: apps/accounts/forms.py:31
 msgid "02-10-2018"
@@ -60,7 +60,7 @@ msgstr "02:00:00"
 
 #: apps/accounts/forms.py:59
 msgid "Emails doesn't match"
-msgstr "电子邮件不符"
+msgstr "电子邮件不匹配"
 
 #: apps/accounts/forms.py:70
 msgid "Please accept the terms and conditions"
@@ -68,7 +68,7 @@ msgstr "请接受条款和条件"
 
 #: apps/accounts/forms.py:133
 msgid "Invalid mobile number."
-msgstr "无效的手机号码。"
+msgstr "手机号码无效。"
 
 #: apps/accounts/forms.py:171 apps/store/forms.py:21
 msgid "Either username or email needs to be provided"
@@ -76,7 +76,7 @@ msgstr "需要提供用户名或电子邮件"
 
 #: apps/accounts/forms.py:176 apps/store/forms.py:26
 msgid "User not found"
-msgstr "未找到用户"
+msgstr "找不到用户"
 
 #: apps/accounts/models.py:38
 msgid "Buyer"
@@ -122,15 +122,15 @@ msgstr "时区"
 
 #: apps/accounts/models.py:58
 msgid "public name"
-msgstr "公开的名字"
+msgstr "公共名称"
 
 #: apps/accounts/models.py:59
 msgid "public email"
-msgstr "公共邮件"
+msgstr "公共邮箱"
 
 #: apps/accounts/models.py:60
 msgid "public URL"
-msgstr "公开网址"
+msgstr "公共网址"
 
 #: apps/accounts/models.py:61
 msgid "merchant id"
@@ -154,7 +154,7 @@ msgstr "PGP / GPG公钥"
 
 #: apps/accounts/models.py:66
 msgid "2FA authentication"
-msgstr "2FA认证"
+msgstr "2FA身份验证"
 
 #: apps/accounts/models.py:68
 msgid "email confirmation send/withdrawal"
@@ -162,7 +162,7 @@ msgstr "电子邮件确认发送/退出"
 
 #: apps/accounts/models.py:69
 msgid "is subscribed"
-msgstr "已订阅"
+msgstr "订阅"
 
 #: apps/accounts/models.py:70
 msgid "reference count"
@@ -176,19 +176,19 @@ msgstr "IPN秘密"
 msgid ""
 "This is used to verify that an IPN is from us, use a good random string "
 "nobody can guess."
-msgstr "这用于验证IPN来自我们，使用任何人都可以猜到的好随机字符串。"
+msgstr "这用于验证IPN来自我们，使用无人能猜出的好随机字符串。"
 
 #: apps/accounts/models.py:77 templates/accounts/settings.html:293
 msgid "IPN URL"
-msgstr "IPN网址"
+msgstr "IPN URL"
 
 #: apps/accounts/models.py:78
 msgid "When a user submits a new payment to you"
-msgstr "当用户向您提交新的付款时"
+msgstr "当用户向您提交新付款时"
 
 #: apps/accounts/models.py:79
 msgid "When funds have been received by us for a payment to you."
-msgstr "当我们收到资金用于支付给您。"
+msgstr "我们收到资金后会向您付款。"
 
 #: apps/accounts/models.py:80
 msgid "When funds for a payment have been sent to you."
@@ -196,19 +196,19 @@ msgstr "付款资金已发送给您。"
 
 #: apps/accounts/models.py:81
 msgid "When a deposit is received on one of your deposit addresses."
-msgstr "在您的某个存款地址收到存款时。"
+msgstr "当您在其中一个存款地址收到押金时。"
 
 #: apps/accounts/models.py:82
 msgid "When positive feedback has been left for you."
-msgstr "当积极的反馈留给你。"
+msgstr "当你留下积极的反馈意见时。"
 
 #: apps/accounts/models.py:83
 msgid "status notification email"
-msgstr "状态通知邮件"
+msgstr "状态通知电子邮件"
 
 #: apps/accounts/models.py:84
 msgid "receive SMS text when funds are received"
-msgstr "在收到资金时收到短信"
+msgstr "收到资金后会收到短信"
 
 #: apps/accounts/models.py:85
 msgid "SMS phone number"
@@ -228,7 +228,7 @@ msgstr "帐户激活链接"
 
 #: apps/accounts/models.py:175
 msgid "Profile Activation"
-msgstr "配置文件激活"
+msgstr "配置激活"
 
 #: apps/accounts/models.py:176
 msgid "Profile Activations"
@@ -252,11 +252,11 @@ msgstr "姓"
 
 #: apps/accounts/models.py:188
 msgid "address line 1"
-msgstr "地址栏1"
+msgstr "地址第一行"
 
 #: apps/accounts/models.py:189
 msgid "address line 2"
-msgstr "地址栏2"
+msgstr "地址第2行"
 
 #: apps/accounts/models.py:190
 msgid "country"
@@ -296,7 +296,7 @@ msgstr "评论"
 
 #: apps/accounts/models.py:212
 msgid "left by"
-msgstr "留下"
+msgstr "离开了"
 
 #: apps/accounts/models.py:214
 msgid "buyer or seller"
@@ -316,11 +316,11 @@ msgstr "内容"
 
 #: apps/accounts/models.py:253 templates/accounts/verify_2fa.html:18
 msgid "Authentication Code"
-msgstr "认证码"
+msgstr "验证码"
 
 #: apps/accounts/views.py:49
 msgid "Activation mail sent"
-msgstr "激活邮件发送"
+msgstr "激活邮件已发送"
 
 #: apps/accounts/views.py:172
 msgid "Account details updated successfully"
@@ -341,7 +341,7 @@ msgstr "密码不匹配"
 
 #: apps/accounts/views.py:248
 msgid "Invalid account activation link"
-msgstr "无效的帐户激活链接"
+msgstr "帐户激活链接无效"
 
 #: apps/accounts/views.py:251
 msgid "Account activation link expired"
@@ -349,7 +349,7 @@ msgstr "帐户激活链接已过期"
 
 #: apps/accounts/views.py:258
 msgid "Account activated <br><p>Please <a href=/login>login</a><p>"
-msgstr "激活账户<br> <p>请<a href=/login>登录</a> <p>"
+msgstr "帐户已激活<br> <p>请<a href=/login>登录</a> <p>"
 
 #: apps/coins/models.py:13
 msgid "Crypto"
@@ -361,7 +361,7 @@ msgstr "波纹"
 
 #: apps/coins/models.py:15
 msgid "Ether tokens"
-msgstr "以太币"
+msgstr "以太币令牌"
 
 #: apps/coins/models.py:16
 msgid "Fiat"
@@ -385,7 +385,7 @@ msgstr "平衡+转换"
 
 #: apps/coins/models.py:30
 msgid "ASAP + Convert"
-msgstr "ASAP +转换"
+msgstr "尽快+转换"
 
 #: apps/coins/models.py:38
 msgid "coin name"
@@ -409,11 +409,11 @@ msgstr "图片"
 
 #: apps/coins/models.py:42
 msgid "Upload a 35X35 image for better experience"
-msgstr "上传35X35图片以获得更好的体验"
+msgstr "上传35X35图像以获得更好的体验"
 
 #: apps/coins/models.py:43
 msgid "to BTC value"
-msgstr "以BTC价值"
+msgstr "到BTC的价值"
 
 #: apps/coins/models.py:44
 msgid "fee percentage"
@@ -425,7 +425,7 @@ msgstr "类型"
 
 #: apps/coins/models.py:46
 msgid "can convert coin to another"
-msgstr "可以将硬币转换为另一个"
+msgstr "可以将硬币兑换成另一种"
 
 #: apps/coins/models.py:47
 msgid "can explore coins"
@@ -437,11 +437,11 @@ msgstr "可以捐出硬币"
 
 #: apps/coins/models.py:49
 msgid "Disable this coin anytime"
-msgstr "随时关闭这枚硬币"
+msgstr "随时禁用此硬币"
 
 #: apps/coins/models.py:52
 msgid "vote count"
-msgstr "票数"
+msgstr "投票数"
 
 #: apps/coins/models.py:55 templates/accounts/dashboard.html:34
 msgid "Coin"
@@ -473,7 +473,7 @@ msgstr "折扣领域"
 
 #: apps/coins/models.py:72
 msgid "maximum per transaction"
-msgstr "每次交易的最大数"
+msgstr "每笔交易最多"
 
 #: apps/coins/models.py:73
 msgid "currency"
@@ -493,7 +493,7 @@ msgstr "来自地址的钱包"
 
 #: apps/coins/models.py:90
 msgid "wallet to address"
-msgstr "钱包来解决"
+msgstr "钱包要解决"
 
 #: apps/coins/models.py:96
 msgid "Coin Conversion Request"
@@ -517,11 +517,11 @@ msgstr "硬币网站"
 
 #: apps/coins/models.py:128
 msgid "coin url"
-msgstr "投币网址"
+msgstr "硬币网址"
 
 #: apps/common/models.py:10
 msgid "HTTP Auth"
-msgstr "HTTP验证"
+msgstr "HTTP身份验证"
 
 #: apps/common/models.py:11
 msgid "HMAC"
@@ -581,7 +581,7 @@ msgstr "商店名称"
 
 #: apps/store/models.py:36
 msgid "store url"
-msgstr "存储网址"
+msgstr "商店网址"
 
 #: apps/store/models.py:37
 msgid "category"
@@ -593,7 +593,7 @@ msgstr "加密处理器"
 
 #: apps/store/models.py:39
 msgid "store email"
-msgstr "存储邮件"
+msgstr "存储邮箱"
 
 #: apps/store/models.py:40
 msgid "keywords"
@@ -669,11 +669,11 @@ msgstr "한국어"
 
 #: templates/accounts/2fa_account.html:17
 msgid "Add Google Authenticator"
-msgstr "添加Google Authenticator"
+msgstr "添加Google身份验证器"
 
 #: templates/accounts/2fa_account.html:23
 msgid "2FA Accounts"
-msgstr "2FA帐户"
+msgstr "2FA账户"
 
 #: templates/accounts/2fa_account.html:45
 #: templates/accounts/2fa_account_list.html:34
@@ -699,7 +699,7 @@ msgstr "行动"
 
 #: templates/accounts/2fa_account.html:64
 msgid "No devices Found"
-msgstr "未找到设备"
+msgstr "找不到设备"
 
 #: templates/accounts/2fa_account.html:88
 msgid "Secret Key"
@@ -730,7 +730,7 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"你（或者假装成你的人）已经要求在一个帐户注册\n"
+"你（或假装是你的人）要求注册一个帐户\n"
 "    您的地址将从我们的记录中删除。"
 
 #: templates/accounts/activation_email.html:18
@@ -740,7 +740,7 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"要激活此帐户，请点击以下链接"
+"要激活此帐户，请单击以下链接"
 
 #: templates/accounts/activation_email.html:29
 #, python-format
@@ -762,7 +762,7 @@ msgid ""
 "and your address will be removed from our records.\n"
 msgstr ""
 "\n"
-"你（或者假装成你的人）已经要求在一个帐户注册\n"
+"你（或假装是你的人）要求注册一个帐户\n"
 "您的地址将从我们的记录中删除。\n"
 
 #: templates/accounts/activation_email.txt:7
@@ -790,7 +790,7 @@ msgstr "添加新地址"
 
 #: templates/accounts/address-book.html:27
 msgid "Saved Address"
-msgstr "保存的地址"
+msgstr "保存地址"
 
 #: templates/accounts/address-book.html:50
 msgid "Address Name"
@@ -806,11 +806,11 @@ msgstr "姓"
 
 #: templates/accounts/address-book.html:53
 msgid "Address Line 1"
-msgstr "地址栏1"
+msgstr "地址第一行"
 
 #: templates/accounts/address-book.html:54
 msgid "Address Line 2"
-msgstr "地址线2"
+msgstr "地址第2行"
 
 #: templates/accounts/address-book.html:55
 msgid "Country"
@@ -866,7 +866,7 @@ msgstr "时间"
 
 #: templates/accounts/dashboard.html:33
 msgid "Received / Sent Name"
-msgstr "已收到/已发送姓名"
+msgstr "收到/发送姓名"
 
 #: templates/accounts/dashboard.html:35
 msgid "Amount"
@@ -910,7 +910,7 @@ msgstr "欢迎！"
 
 #: templates/accounts/login.html:16 templates/accounts/signup.html:18
 msgid "Sign in by entering the information below"
-msgstr "输入以下信息登录"
+msgstr "通过输入以下信息登录"
 
 #: templates/accounts/login.html:26
 msgid "Login"
@@ -927,7 +927,7 @@ msgstr "忘记密码？"
 
 #: templates/accounts/login.html:43
 msgid "Don't have an account?"
-msgstr "没有账号？"
+msgstr "没有帐户？"
 
 #: templates/accounts/payment-history.html:22
 #: templates/accounts/payment-history.html:23
@@ -938,11 +938,11 @@ msgstr "存款历史"
 
 #: templates/accounts/payment-history.html:32
 msgid "Incoming Payment HIstory"
-msgstr "收款付款HIstory"
+msgstr "收款付诸纪念日"
 
 #: templates/accounts/payment-history.html:36
 msgid "History Search & Export"
-msgstr "历史搜索和导出"
+msgstr "历史搜索和出口"
 
 #: templates/accounts/settings.html:11
 msgid "Settings"
@@ -970,13 +970,13 @@ msgstr "您的商家ID："
 
 #: templates/accounts/settings.html:56
 msgid "Affiliate URL:"
-msgstr "加盟网址："
+msgstr "会员网址："
 
 #: templates/accounts/settings.html:57
 msgid ""
 "Want to earn some crypto? Give this URL to new users and when they sign up "
 "you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:"
-msgstr "想要赚取一些加密？为新用户提供此网址，当他们注册时，您将获得其GETCRYPTOPAYMENTS交易费用的一定比例："
+msgstr "想赚取一些加密？将此URL提供给新用户，当他们注册时，您将获得GETCRYPTOPAYMENTS交易费用的一定百分比："
 
 #: templates/accounts/settings.html:69
 msgid "Share/Save"
@@ -1016,11 +1016,11 @@ msgstr "公共名称"
 
 #: templates/accounts/settings.html:178
 msgid "Public Email"
-msgstr "公共电子邮件"
+msgstr "公共电邮"
 
 #: templates/accounts/settings.html:185
 msgid "Public URL"
-msgstr "公开网址"
+msgstr "公共网址"
 
 #: templates/accounts/settings.html:202 templates/accounts/settings.html:268
 #: templates/accounts/settings.html:367
@@ -1047,18 +1047,17 @@ msgstr "2因素认证"
 msgid ""
 "Email: You will be prompted for a code at the time of login which will be "
 "sent to your provided email ID."
-msgstr "电子邮件：您将在登录时被提示输入代码，并将其发送到您提供的电子邮件ID。"
+msgstr "电子邮件：系统会在您登录时提示您输入代码，该代码将发送到您提供的电子邮件ID。"
 
 #: templates/accounts/settings.html:245
 msgid ""
 "Linked 2FA Accounts: Link authenticators supporting TOTP such as Google "
 "Authenticator, Authy, FreeOTP, etc. You can edit your linked devices"
-msgstr ""
-"链接的2FA帐户：支持TOTP的链接验证器，例如Google Authenticator，Authy，FreeOTP等。您可以编辑链接的设备"
+msgstr "关联的2FA帐户：链接支持TOTP的身份验证器，例如Google身份验证器，Authy，FreeOTP等。您可以编辑链接的设备"
 
 #: templates/accounts/settings.html:252
 msgid "Email Confirmations for Sends/Withdrawals"
-msgstr "电子邮件确认发送/取款"
+msgstr "电子邮件确认发送/提取"
 
 #: templates/accounts/settings.html:259
 msgid "PGP/GPG Public Key"
@@ -1073,14 +1072,14 @@ msgid ""
 msgstr ""
 "\n"
 "付款状态电子邮件将发送到此电子邮件。\n"
-"                                                如果没有提供，notofications将被发送到主电子邮件"
+"                                                如果未提供，则会将通知发送至主电子邮件"
 
 #: templates/accounts/signup.html:49
 msgid ""
 " Please make it at least 10 characters long and include letters, numbers,\n"
 "                                 and special characters. "
 msgstr ""
-"请至少使用10个字符，包括字母，数字，\n"
+"请至少10个字符，包括字母，数字，\n"
 "                                 和特殊字符。"
 
 #: templates/accounts/signup.html:51
@@ -1089,7 +1088,7 @@ msgstr "时区"
 
 #: templates/accounts/signup.html:61
 msgid "Send newsletters and other relevant information to my provided e-mail."
-msgstr "发送通讯和其他相关信息到我提供的电子邮件。"
+msgstr "将简讯和其他相关信息发送到我提供的电子邮件中。"
 
 #: templates/accounts/signup.html:70
 msgid "Have read and agree to the"
@@ -1105,7 +1104,7 @@ msgstr "'输入您在上图中看到的字符：'"
 
 #: templates/accounts/signup_complete.html:6
 msgid "An activation link has been sent"
-msgstr "激活链接已发送"
+msgstr "已发送激活链接"
 
 #: templates/accounts/signup_complete.html:7
 msgid "Please check your mail"
@@ -1117,7 +1116,7 @@ msgstr "输入"
 
 #: templates/base.html:76 templates/exmr.html:44 templates/exmr.html:136
 msgid "Supported Coins"
-msgstr "支持硬币"
+msgstr "支持的硬币"
 
 #: templates/base.html:79 templates/exmr.html:50 templates/exmr.html:139
 msgid "Merchant Tools"
@@ -1125,7 +1124,7 @@ msgstr "商家工具"
 
 #: templates/base.html:82 templates/exmr.html:41 templates/exmr.html:142
 msgid "Public Coin Vote"
-msgstr "公共硬币投票"
+msgstr "公共投票"
 
 #: templates/base.html:85 templates/exmr.html:47 templates/exmr.html:145
 msgid "Store Directory"
@@ -1137,11 +1136,11 @@ msgstr "获取移动应用"
 
 #: templates/base.html:96 templates/exmr.html:156
 msgid "Affiliate Information"
-msgstr "联盟信息"
+msgstr "会员信息"
 
 #: templates/base.html:97 templates/exmr.html:157
 msgid "Official TOR URL"
-msgstr "官方TOR网址"
+msgstr "官方TOR URL"
 
 #: templates/base.html:98 templates/exmr.html:158
 msgid "PGP Key"
@@ -1153,7 +1152,7 @@ msgstr "费用/价格"
 
 #: templates/base.html:108 templates/exmr.html:168
 msgid "Help"
-msgstr "帮帮我"
+msgstr "救命"
 
 #: templates/base.html:109 templates/base.html:144 templates/exmr.html:169
 #: templates/exmr.html:196
@@ -1183,7 +1182,7 @@ msgstr "最低提款"
 
 #: templates/coins/coin-withdrawal.html:13
 msgid "Current Bal"
-msgstr "当前平均值"
+msgstr "目前Bal"
 
 #: templates/coins/coin-withdrawal.html:14
 msgid "Send/Withdrawal Amount"
@@ -1191,23 +1190,23 @@ msgstr "发送/提取金额"
 
 #: templates/coins/coin-withdrawal.html:15
 msgid "Transation Fee (est.)"
-msgstr "转换费（估计）"
+msgstr "转换费（est。）"
 
 #: templates/coins/coin-withdrawal.html:16
 msgid "Total Withdrawal"
-msgstr "总提款"
+msgstr "退款总额"
 
 #: templates/coins/coin-withdrawal.html:17
 msgid "Litecoin Testnet address or $payByName to send to"
-msgstr "Litecoin Testnet地址或$ payByName发送给"
+msgstr "要发送的Litecoin Testnet地址或$ payByName"
 
 #: templates/coins/coin-withdrawal.html:18
 msgid "Optional Note (Only Viewable by you)"
-msgstr "可选注意事项（只能由您查看）"
+msgstr "可选注释（仅可由您查看）"
 
 #: templates/coins/coin-withdrawal.html:48
 msgid "Request Withdrawal/Send"
-msgstr "申请提款/发送"
+msgstr "请求提款/发送"
 
 #: templates/coins/coin_conversion.html:8
 msgid "Coin Conversion"
@@ -1217,7 +1216,7 @@ msgstr "硬币转换"
 msgid ""
 "If you log in the fields below will be prepopulated with your Wallet deposit"
 " addresses."
-msgstr "如果您登录下面的字段，则会预先填充您的电子钱包存款地址。"
+msgstr "如果您登录以下字段，将预先填入您的电子钱包存款地址。"
 
 #: templates/coins/coin_conversion.html:42
 #: templates/common/support-coins.html:258
@@ -1226,7 +1225,7 @@ msgstr "兑换"
 
 #: templates/coins/coin_conversion_final.html:8
 msgid "Coin Conversion Requested"
-msgstr "硬币转换请求"
+msgstr "请求硬币转换"
 
 #: templates/coins/supported-coins.html:4
 msgid "SUPPORTED COINS"
@@ -1236,11 +1235,11 @@ msgstr "支持的硬币"
 msgid ""
 "Instant get crypto payments checkout with easy to use cart plugin, advanced,"
 " invoice buillder and API for custom integration"
-msgstr "即时通过易于使用的购物车插件，先进的发票制作工具和API进行加密支付结账，以实现定制集成"
+msgstr "即时获取加密付款结账，使用易于使用的购物车插件，高级，发票补丁和自定义集成API"
 
 #: templates/coins/supported-coins.html:33
 msgid "COIN NAME"
-msgstr "COIN NAME"
+msgstr "硬币名称"
 
 #: templates/coins/supported-coins.html:34
 msgid "COD"
@@ -1256,7 +1255,7 @@ msgstr "确认"
 
 #: templates/coins/supported-coins.html:39
 msgid "TO BTC"
-msgstr "TO BTC"
+msgstr "到BTC"
 
 #: templates/coins/supported-coins.html:42
 msgid "EXPLORE"
@@ -1293,16 +1292,16 @@ msgstr "命令"
 
 #: templates/common/index.html:23
 msgid "Accept over 140 altcoins now for only 0.50"
-msgstr "现在接受超过140个altcoins，只有0.50"
+msgstr "现在接受140多个山寨币仅0.50"
 
 #: templates/common/index.html:25
 msgid ""
 "Integrated payment gateway for cryptocurrencies such as Bitcoin and Litecoin"
-msgstr "加密货币的综合支付网关，比如比特币和莱特币"
+msgstr "用于加密货币的集成支付网关，如比特币和Litecoin"
 
 #: templates/common/index.html:26
 msgid "Get Start"
-msgstr "开始"
+msgstr "开始吧"
 
 #: templates/common/index.html:36
 msgid "scroll me"
@@ -1318,7 +1317,7 @@ msgstr "让GetCryptoPayments帮助："
 
 #: templates/common/index.html:56
 msgid "Accepting payments from over 140 different coins"
-msgstr "接受来自140多个不同硬币的付款"
+msgstr "接受超过140种不同硬币的付款"
 
 #: templates/common/index.html:57
 msgid "All New GetCryptoPayments ICO Marketplace"
@@ -1330,7 +1329,7 @@ msgstr "了解更多"
 
 #: templates/common/index.html:68
 msgid "One unique $tag to receive payments from all coins."
-msgstr "一个独特的$标签接收所有硬币的付款。"
+msgstr "一个唯一的$ tag，用于接收所有硬币的付款。"
 
 #: templates/common/index.html:69
 msgid "Example Profile"
@@ -1345,7 +1344,7 @@ msgid ""
 "Offering plugins for all the popular webcarts used today. Register and "
 "install a plugin to set up GetCryptoPayments with your new or pre-existing "
 "checkout"
-msgstr "为当今所有流行的网络机器提供插件。注册并安装一个插件，以便使用新的或预先存在的签出来设置GetCryptoPayments"
+msgstr "为今天使用的所有流行的网站提供插件。注册并安装插件，使用新的或预先存在的结帐设置GetCryptoPayments"
 
 #: templates/common/index.html:196
 msgid "Payment Features"
@@ -1353,7 +1352,7 @@ msgstr "付款功能"
 
 #: templates/common/index.html:198
 msgid "Here some ways GetCryptoPayments can help you process payments."
-msgstr "在这里GetCryptoPayments可以帮助您处理付款。"
+msgstr "在这里，GetCryptoPayments可以帮助您处理付款。"
 
 #: templates/common/index.html:206
 msgid "BitGo™ Instant"
@@ -1364,8 +1363,8 @@ msgid ""
 "GetCryptoPayments supports BitGo Instant making Bitcoin payments faster than\n"
 "                                ever before. "
 msgstr ""
-"GetCryptoPayments支持比特币即时支付比比特币支付更快\n"
-"                                以前。"
+"GetCryptoPayments支持BitGo Instant使比特币支付的速度快于\n"
+"                                以往。"
 
 #: templates/common/index.html:219
 msgid "Vault"
@@ -1376,19 +1375,19 @@ msgid ""
 "Protect your coins in the vault, requiring a time amount you specify before being\n"
 "                                able to spend them."
 msgstr ""
-"保护保管库中的硬币，需要您在指定之前指定的时间金额\n"
-"                                能够花费他们。"
+"保护您的金库中的硬币，需要您指定的时间金额\n"
+"                                能够花掉它们。"
 
 #: templates/common/index.html:232
 msgid "Fiat Settlements"
-msgstr "菲亚特定居点"
+msgstr "菲亚特聚居地"
 
 #: templates/common/index.html:233
 msgid ""
 "United States and Euro merchants now have fiat settlements directly to their\n"
 "                                bank accounts. "
 msgstr ""
-"美国和欧元商人现在已经直接向他们的住所提供住所\n"
+"美国和欧洲商人现在直接向他们提供非法定居点\n"
 "                                银行账户。"
 
 #: templates/common/index.html:245
@@ -1397,16 +1396,15 @@ msgstr "销售点（POS）"
 
 #: templates/common/index.html:246
 msgid "Simple interface for in person transactions. "
-msgstr "用于亲自交易的简单界面。"
-
+msgstr "简单的个人交易界面。"
 
 #: templates/common/index.html:264
 msgid "Secured with BitGo"
-msgstr "用BitG​​o保护"
+msgstr "使用BitG​​o保护"
 
 #: templates/common/index.html:265
 msgid "Our hot wallet is secured by BitGo - meaning 100 "
-msgstr "我们的热钱包由BitGo保护 - 意味着100"
+msgstr "我们的热门钱包由BitGo保护 - 意味着100"
 
 #: templates/common/index.html:265
 msgid ""
@@ -1414,7 +1412,7 @@ msgid ""
 "                                our funds are protected by multi-signature technology."
 msgstr ""
 "的\n"
-"                                我们的资金受到多重签名技术的保护。"
+"                                我们的资金受多重签名技术保护。"
 
 #: templates/common/index.html:277
 msgid "Mobile Apps"
@@ -1425,19 +1423,19 @@ msgid ""
 "Access your account, accept payments in person, and convert coins anywhere with\n"
 "                                our mobile apps for Android and iOS."
 msgstr ""
-"访问您的帐户，亲自接受付款，并随身携带硬币\n"
-"                                我们的Android和iOS版移动应用。"
+"访问您的帐户，亲自接受付款，并随时随地转换硬币\n"
+"                                我们针对Android和iOS的移动应用。"
 
 #: templates/common/index.html:290
 msgid "Auto Coin Conversion"
-msgstr "汽车硬币转换"
+msgstr "自动硬币转换"
 
 #: templates/common/index.html:291
 msgid ""
 "Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
 "                                time and fees."
 msgstr ""
-"自动转换为我们的一些硬币，节省您移动资金的麻烦，浪费\n"
+"自动转换我们的一些硬币，省去了移动资金，浪费的麻烦\n"
 "                                时间和费用。"
 
 #: templates/common/index.html:303
@@ -1446,27 +1444,27 @@ msgstr "多币钱包"
 
 #: templates/common/index.html:304
 msgid "Optionally store your coins in our secure online wallet."
-msgstr "可选择将您的硬币存储在我们的安全在线钱包中。"
+msgstr "可选择将您的硬币存放在我们的安全在线钱包"
 
 #: templates/common/index.html:322
 msgid ""
 "Our goal is to exceed more than 1,000,000 vendors across 182 different "
 "countries"
-msgstr "我们的目标是超过182个不同国家的超过1,000,000个供应商"
+msgstr "我们的目标是超过182个不同国家的1,000,000多家供应商"
 
 #: templates/common/index.html:323
 msgid ""
 "GetCryptoPayments is the first and largest payment processor of over 150 cryptocurrencies\n"
 "                    "
-msgstr "GetCryptoPayments是超过150个加密货币的第一个也是最大的支付处理器"
+msgstr "GetCryptoPayments是超过150种加密货币的第一个也是最大的支付处理器"
 
 #: templates/common/index.html:349
 msgid ""
 "Thank you GetCryptoPayments for taking Tron coin into consideration to belong to the list of your ERC-20\n"
 "                        tokens portfolio. I know you will have many successes."
 msgstr ""
-"感谢GetCryptoPayments考虑到Tron硬币属于您的ERC-20列表\n"
-"                        代币组合。我知道你会有很多成功。"
+"感谢GetCryptoPayments将Tron硬币考虑为属于您的ERC-20列表\n"
+"                        代币组合。我知道你会取得很多成功。"
 
 #: templates/common/index.html:351
 msgid "Justin Sun CEO Tronix Coin"
@@ -1478,9 +1476,9 @@ msgid ""
 "                        could do the hard work for us and accept all payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we only\n"
 "                        need to develop  with one API now."
 msgstr ""
-"我们希望接受恒星币支付，所以我们开始开发。然后我们实现了GetCryptoPayments\n"
-"                        可以为我们付出艰苦的工作，接受所有的付款并以比特币接受这笔钱。感谢GetCryptoPayments，我们只\n"
-"                        现在需要用一个API来开发。"
+"我们想接受Stellar硬币支付，所以我们开始开发。然后我们实现了GetCryptoPayments\n"
+"                        可以为我们做艰苦的工作并接受所有付款并在比特币中获得资金。谢谢GetCryptoPayments，我们只\n"
+"                        需要现在开发一个API。"
 
 #: templates/common/index.html:362
 msgid "Jed McCaleb CEO stellar.org"
@@ -1488,14 +1486,14 @@ msgstr "Jed McCaleb首席执行官stellar.org"
 
 #: templates/common/merchant-tools.html:7 templates/store/add-or-update.html:5
 msgid "MERCHANT TOOLS"
-msgstr "商船工具"
+msgstr "商品工具"
 
 #: templates/common/merchant-tools.html:9
 #: templates/common/merchant-tools.html:16
 #: templates/store/add-or-update.html:7
 msgid ""
 "If you would like to be updated about new API or changes to existing Apis"
-msgstr "如果您想要更新有关新API或对现有Apis的更改"
+msgstr "如果您想了解有关新API或现有Apis的更改的信息"
 
 #: templates/common/merchant-tools.html:10
 #: templates/common/merchant-tools.html:17
@@ -1525,7 +1523,7 @@ msgstr "GETCRYPTOPAYMENTAPI"
 
 #: templates/common/merchant-tools.html:44
 msgid "INVOICE BUILDER"
-msgstr "INVOICE BUILDER"
+msgstr "发票人"
 
 #: templates/common/merchant-tools.html:46
 msgid "Payment Request invoice maker"
@@ -1533,19 +1531,19 @@ msgstr "付款请求发票制造商"
 
 #: templates/common/merchant-tools.html:53
 msgid "POINT OF SALE(POS) INTERFACE"
-msgstr "销售点（POS）界面"
+msgstr "销售点（POS）接口"
 
 #: templates/common/merchant-tools.html:55
 msgid "HTML URL/ POST Fields"
-msgstr "HTML网址/ POST字段"
+msgstr "HTML URL / POST字段"
 
 #: templates/common/merchant-tools.html:56
 msgid "Post link QR Code Generator"
-msgstr "发布链接QR代码生成器"
+msgstr "发布链接QR Code Generator"
 
 #: templates/common/merchant-tools.html:57
 msgid "POS Examle"
-msgstr "POS检查"
+msgstr "POS考试"
 
 #: templates/common/merchant-tools.html:64
 msgid "SIMPLE BUTTONS"
@@ -1562,7 +1560,7 @@ msgstr "按钮制造商"
 #: templates/common/merchant-tools.html:88
 #: templates/common/merchant-tools.html:100
 msgid "HTML Post Field"
-msgstr "HTML Post字段"
+msgstr "HTML Post Field"
 
 #: templates/common/merchant-tools.html:68
 #: templates/common/merchant-tools.html:79
@@ -1617,7 +1615,7 @@ msgstr "登出"
 
 #: templates/registration/password_reset_complete.html:6
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr "您的密码已设置。你可以继续并登录。"
+msgstr "您的密码已设置。您可以继续并立即登录。"
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Log in"
@@ -1627,7 +1625,7 @@ msgstr "登录"
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
-msgstr "密码重置链接无效，可能是因为它已被使用。请重新设置密码。"
+msgstr "密码重置链接无效，可能是因为它已被使用。请求重设新密码。"
 
 #: templates/store/add-or-update.html:102
 msgid "Type the characters you see in the image above:"
@@ -1641,7 +1639,7 @@ msgstr "商店目录"
 #: templates/store/store_categories.html:7
 #: templates/store/store_listing.html:7
 msgid "Largest directory of merchants accepting multiple cryptocurrencies"
-msgstr "商户接受多个加密货币的最大目录"
+msgstr "最大的商家目录接受多种加密货币"
 
 #: templates/store/store_categories.html:15
 #: templates/store/store_listing.html:15

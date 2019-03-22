@@ -3,8 +3,6 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: templates/accounts/2fa_account.html:64
-#: templates/accounts/address-book.html:83
 #, fuzzy
 msgid ""
 msgstr ""
@@ -31,7 +29,7 @@ msgstr "Información pública"
 
 #: apps/accounts/admin.py:23
 msgid "Login Security"
-msgstr "Seguridad de acceso"
+msgstr "Seguridad de inicio de sesión"
 
 #: apps/accounts/forms.py:25 apps/accounts/models.py:24
 msgid "Male"
@@ -47,19 +45,19 @@ msgstr "Otro / Prefiero no decirlo"
 
 #: apps/accounts/forms.py:31
 msgid "02-10-2018"
-msgstr ""
+msgstr "02-10-2018"
 
 #: apps/accounts/forms.py:32
 msgid "02/10/2018"
-msgstr ""
+msgstr "10/02/2018"
 
 #: apps/accounts/forms.py:35
 msgid "02:00"
-msgstr ""
+msgstr "02:00"
 
 #: apps/accounts/forms.py:36
 msgid "02:00:00"
-msgstr ""
+msgstr "02:00:00"
 
 #: apps/accounts/forms.py:59
 msgid "Emails doesn't match"
@@ -71,7 +69,7 @@ msgstr "Por favor acepte los términos y condiciones"
 
 #: apps/accounts/forms.py:133
 msgid "Invalid mobile number."
-msgstr ""
+msgstr "Numero de celular invalido."
 
 #: apps/accounts/forms.py:171 apps/store/forms.py:21
 msgid "Either username or email needs to be provided"
@@ -91,11 +89,11 @@ msgstr "Vendedor"
 
 #: apps/accounts/models.py:43
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: apps/accounts/models.py:44
 msgid "Trezor Login"
-msgstr "Trezor Iniciar sesión"
+msgstr "Trezor Login"
 
 #: apps/accounts/models.py:45
 msgid "2FA Account"
@@ -153,7 +151,7 @@ msgstr "usar gravatar"
 
 #: apps/accounts/models.py:65
 msgid "PGP/GPG public key"
-msgstr "Clave pública de PGP / GPG"
+msgstr "Clave pública PGP / GPG"
 
 #: apps/accounts/models.py:66
 msgid "2FA authentication"
@@ -161,65 +159,67 @@ msgstr "Autenticación 2FA"
 
 #: apps/accounts/models.py:68
 msgid "email confirmation send/withdrawal"
-msgstr "envío / retirada de confirmación por correo electrónico"
+msgstr "confirmación de correo electrónico enviar / retirar"
 
 #: apps/accounts/models.py:69
 msgid "is subscribed"
-msgstr "está suscrito"
+msgstr "esta suscrito"
 
 #: apps/accounts/models.py:70
 msgid "reference count"
-msgstr "conteo de referencia"
+msgstr "recuento de referencias"
 
 #: apps/accounts/models.py:74 templates/accounts/settings.html:287
 msgid "IPN Secret"
-msgstr ""
+msgstr "Secreto de IPN"
 
 #: apps/accounts/models.py:75
 msgid ""
 "This is used to verify that an IPN is from us, use a good random string "
 "nobody can guess."
 msgstr ""
+"Esto se usa para verificar que una IPN es nuestra, use una buena cadena "
+"aleatoria que nadie pueda adivinar."
 
 #: apps/accounts/models.py:77 templates/accounts/settings.html:293
 msgid "IPN URL"
-msgstr ""
+msgstr "URL de IPN"
 
 #: apps/accounts/models.py:78
 msgid "When a user submits a new payment to you"
-msgstr ""
+msgstr "Cuando un usuario te envía un nuevo pago"
 
 #: apps/accounts/models.py:79
 msgid "When funds have been received by us for a payment to you."
-msgstr ""
+msgstr "Cuando hayamos recibido fondos para un pago a usted."
 
 #: apps/accounts/models.py:80
 msgid "When funds for a payment have been sent to you."
-msgstr ""
+msgstr "Cuando se le han enviado fondos para un pago."
 
 #: apps/accounts/models.py:81
 msgid "When a deposit is received on one of your deposit addresses."
-msgstr ""
+msgstr "Cuando se recibe un depósito en una de sus direcciones de depósito."
 
 #: apps/accounts/models.py:82
 msgid "When positive feedback has been left for you."
-msgstr ""
+msgstr "Cuando la retroalimentación positiva se ha dejado para usted."
 
 #: apps/accounts/models.py:83
 #, fuzzy
 #| msgid "Instant Payment Notification"
 msgid "status notification email"
-msgstr "Notificación de pago instantánea"
+msgstr "correo electrónico de notificación de estado"
 
 #: apps/accounts/models.py:84
 msgid "receive SMS text when funds are received"
-msgstr ""
+msgstr "recibir mensajes de texto SMS cuando se reciben los fondos"
 
 #: apps/accounts/models.py:85
 #, fuzzy
 #| msgid "phone_number"
 msgid "SMS phone number"
-msgstr "número de teléfono"
+msgstr "Número de teléfono SMS"
 
 #: apps/accounts/models.py:88
 msgid "Profile"
@@ -243,11 +243,11 @@ msgstr "Activaciones de perfil"
 
 #: apps/accounts/models.py:184
 msgid "saved address name"
-msgstr "nombre de dirección guardada"
+msgstr "nombre de dirección guardado"
 
 #: apps/accounts/models.py:185
 msgid "is default"
-msgstr "es por defecto"
+msgstr "es predeterminado"
 
 #: apps/accounts/models.py:186
 msgid "first name"
@@ -263,7 +263,7 @@ msgstr "Dirección Línea 1"
 
 #: apps/accounts/models.py:189
 msgid "address line 2"
-msgstr "línea de dirección 2"
+msgstr "dirección 2"
 
 #: apps/accounts/models.py:190
 msgid "country"
@@ -325,22 +325,22 @@ msgstr "contenido"
 #, fuzzy
 #| msgid "2FA authentication"
 msgid "Authentication Code"
-msgstr "Autenticación 2FA"
+msgstr "Código de autenticación"
 
 #: apps/accounts/views.py:49
 #, fuzzy
 #| msgid "An activation link has been sent"
 msgid "Activation mail sent"
-msgstr "El enlace de activación de la cuenta expiró"
+msgstr "Correo de activación enviado"
 
 #: apps/accounts/views.py:172
 msgid "Account details updated successfully"
-msgstr "Detalles de la cuenta actualizados con éxito"
+msgstr "Detalles de cuenta actualizados exitosamente"
 
 #: apps/accounts/views.py:184 apps/accounts/views.py:209
 #: apps/accounts/views.py:213 apps/accounts/views.py:232
 msgid "Information updated successfully"
-msgstr "Información actualizada con éxito"
+msgstr "Información actualizada con éxito."
 
 #: apps/accounts/views.py:203
 msgid "Current password is incorrect"
@@ -352,19 +352,20 @@ msgstr "Las contraseñas no coinciden"
 
 #: apps/accounts/views.py:248
 msgid "Invalid account activation link"
-msgstr "Enlace de activación de cuenta inválido"
+msgstr "Enlace de activación de cuenta no válido"
 
 #: apps/accounts/views.py:251
 msgid "Account activation link expired"
-msgstr "El enlace de activación de la cuenta expiró"
+msgstr "Enlace de activación de cuenta caducado"
 
 #: apps/accounts/views.py:258
 msgid "Account activated <br><p>Please <a href=/login>login</a><p>"
 msgstr ""
+"Cuenta activada <br> <p> Por favor <a href=/login> iniciar sesión </a> <p>"
 
 #: apps/coins/models.py:13
 msgid "Crypto"
-msgstr "Crypto"
+msgstr "Cripto"
 
 #: apps/coins/models.py:14
 msgid "Ripple"
@@ -372,7 +373,7 @@ msgstr "Onda"
 
 #: apps/coins/models.py:15
 msgid "Ether tokens"
-msgstr "Tokens de éter"
+msgstr "Fichas de éter"
 
 #: apps/coins/models.py:16
 msgid "Fiat"
@@ -392,11 +393,11 @@ msgstr "Nocturno"
 
 #: apps/coins/models.py:29
 msgid "To Balance + Convert"
-msgstr "Para Equilibrar + Convertir"
+msgstr "Para equilibrar + convertir"
 
 #: apps/coins/models.py:30
 msgid "ASAP + Convert"
-msgstr "ASAP + Convert"
+msgstr "ASAP + Convertir"
 
 #: apps/coins/models.py:38
 msgid "coin name"
@@ -404,7 +405,7 @@ msgstr "nombre de la moneda"
 
 #: apps/coins/models.py:39
 msgid "coin site URL"
-msgstr ""
+msgstr "URL del sitio de la moneda"
 
 #: apps/coins/models.py:40
 msgid "code"
@@ -420,15 +421,15 @@ msgstr "imagen"
 
 #: apps/coins/models.py:42
 msgid "Upload a 35X35 image for better experience"
-msgstr ""
+msgstr "Sube una imagen 35X35 para una mejor experiencia"
 
 #: apps/coins/models.py:43
 msgid "to BTC value"
-msgstr ""
+msgstr "a valor BTC"
 
 #: apps/coins/models.py:44
 msgid "fee percentage"
-msgstr ""
+msgstr "porcentaje de tarifa"
 
 #: apps/coins/models.py:45
 msgid "type"
@@ -436,23 +437,23 @@ msgstr "tipo"
 
 #: apps/coins/models.py:46
 msgid "can convert coin to another"
-msgstr ""
+msgstr "puede convertir una moneda a otra"
 
 #: apps/coins/models.py:47
 msgid "can explore coins"
-msgstr ""
+msgstr "puede explorar monedas"
 
 #: apps/coins/models.py:48
 msgid "can donate coins"
-msgstr ""
+msgstr "puede donar monedas"
 
 #: apps/coins/models.py:49
 msgid "Disable this coin anytime"
-msgstr ""
+msgstr "Deshabilita esta moneda en cualquier momento"
 
 #: apps/coins/models.py:52
 msgid "vote count"
-msgstr "conteo de votos"
+msgstr "recuento de votos"
 
 #: apps/coins/models.py:55 templates/accounts/dashboard.html:34
 msgid "Coin"
@@ -492,35 +493,35 @@ msgstr "moneda"
 
 #: apps/coins/models.py:85
 msgid "convert from coin"
-msgstr ""
+msgstr "convertir de moneda"
 
 #: apps/coins/models.py:87
 msgid "convert to coin"
-msgstr ""
+msgstr "convertir a moneda"
 
 #: apps/coins/models.py:89
 #, fuzzy
 #| msgid "payment address"
 msgid "wallet from address"
-msgstr "Dirección de Pago"
+msgstr "billetera de la dirección"
 
 #: apps/coins/models.py:90
 #, fuzzy
 #| msgid "payment address"
 msgid "wallet to address"
-msgstr "Dirección de Pago"
+msgstr "billetera a la dirección"
 
 #: apps/coins/models.py:96
 #, fuzzy
 #| msgid "Auto Coin Conversion"
 msgid "Coin Conversion Request"
-msgstr "Conversión automática de monedas"
+msgstr "Solicitud de conversión de moneda"
 
 #: apps/coins/models.py:97
 #, fuzzy
 #| msgid "Auto Coin Conversion"
 msgid "Coin Conversion Requests"
-msgstr "Conversión automática de monedas"
+msgstr "Peticiones de conversión de moneda"
 
 #: apps/coins/models.py:125 apps/common/models.py:19 apps/store/models.py:11
 msgid "name"
@@ -530,29 +531,29 @@ msgstr "nombre"
 #, fuzzy
 #| msgid "store email"
 msgid "email"
-msgstr "tienda de correo electrónico"
+msgstr "correo electrónico"
 
 #: apps/coins/models.py:127
 msgid "coin website"
-msgstr ""
+msgstr "sitio web de monedas"
 
 #: apps/coins/models.py:128
 #, fuzzy
 #| msgid "coin"
 msgid "coin url"
-msgstr "acuñar"
+msgstr "url de la moneda"
 
 #: apps/common/models.py:10
 msgid "HTTP Auth"
-msgstr ""
+msgstr "Autenticación HTTP"
 
 #: apps/common/models.py:11
 msgid "HMAC"
-msgstr ""
+msgstr "HMAC"
 
 #: apps/common/models.py:12
 msgid "N/A"
-msgstr ""
+msgstr "N / A"
 
 #: apps/common/models.py:25
 msgid "Currency"
@@ -580,7 +581,7 @@ msgstr "vínculos sociales"
 
 #: apps/common/models.py:111
 msgid "Video URL"
-msgstr ""
+msgstr "URL del vídeo"
 
 #: apps/store/models.py:12
 msgid "publish"
@@ -624,7 +625,7 @@ msgstr "palabras clave"
 
 #: apps/store/models.py:41
 msgid "banner image url"
-msgstr "URL de imagen de banner"
+msgstr "imagen de banner url"
 
 #: apps/store/models.py:42
 msgid "is approved"
@@ -644,68 +645,68 @@ msgstr "Inglés"
 
 #: exmr/settings/base.py:155
 msgid "Spanish"
-msgstr ""
+msgstr "Español"
 
 #: exmr/settings/base.py:156
 msgid "Deutsche"
-msgstr ""
+msgstr "Deutsche"
 
 #: exmr/settings/base.py:157
 msgid "हिन्दी"
-msgstr ""
+msgstr "्दी"
 
 #: exmr/settings/base.py:158
 msgid "Français"
-msgstr ""
+msgstr "Français"
 
 #: exmr/settings/base.py:159
 msgid "Italiano"
-msgstr ""
+msgstr "Italiano"
 
 #: exmr/settings/base.py:160
 msgid "Magyar"
-msgstr ""
+msgstr "magiar"
 
 #: exmr/settings/base.py:161
 msgid "Português"
-msgstr ""
+msgstr "Português"
 
 #: exmr/settings/base.py:162
 msgid "русский"
-msgstr ""
+msgstr "русский"
 
 #: exmr/settings/base.py:163
 msgid "فارسی"
-msgstr ""
+msgstr "فارسی"
 
 #: exmr/settings/base.py:164
 msgid "中文"
-msgstr ""
+msgstr "中文"
 
 #: exmr/settings/base.py:165
 msgid "日本語"
-msgstr ""
+msgstr "日本語"
 
 #: exmr/settings/base.py:166
 msgid "한국어"
-msgstr ""
+msgstr "한국어"
 
 #: templates/accounts/2fa_account.html:17
 #, fuzzy
 #| msgid "2 Factor Authentication"
 msgid "Add Google Authenticator"
-msgstr "Autenticación 2FA"
+msgstr "Añadir Google Authenticator"
 
 #: templates/accounts/2fa_account.html:23
 #, fuzzy
 #| msgid "2FA Account"
 msgid "2FA Accounts"
-msgstr "Cuenta 2FA"
+msgstr "Cuentas 2FA"
 
 #: templates/accounts/2fa_account.html:45
 #: templates/accounts/2fa_account_list.html:34
 msgid "Date"
-msgstr ""
+msgstr "Fecha"
 
 #: templates/accounts/2fa_account.html:46
 #: templates/accounts/2fa_account.html:92
@@ -713,42 +714,42 @@ msgstr ""
 #, fuzzy
 #| msgid "Account"
 msgid "Account Name"
-msgstr "Cuenta"
+msgstr "Nombre de la cuenta"
 
 #: templates/accounts/2fa_account.html:47
 #: templates/accounts/2fa_account_list.html:36
 #, fuzzy
 #| msgid "Account"
 msgid "Account Type"
-msgstr "Cuenta"
+msgstr "Tipo de cuenta"
 
 #: templates/accounts/2fa_account.html:48
 #: templates/accounts/2fa_account_list.html:37
 #: templates/accounts/address-book.html:59
 msgid "Action"
-msgstr ""
+msgstr "Acción"
 
 #: templates/accounts/2fa_account.html:88
 msgid "Secret Key"
-msgstr ""
+msgstr "Llave secreta"
 
 #: templates/accounts/2fa_account.html:97
 #, fuzzy
 #| msgid "Profile Activation"
 msgid "Activation Code"
-msgstr "Activación de perfil"
+msgstr "Código de activación"
 
 #: templates/accounts/2fa_account.html:105
 #, fuzzy
 #| msgid "Address"
 msgid "Add"
-msgstr "Dirección"
+msgstr "Añadir"
 
 #: templates/accounts/2fa_account_list.html:20
 #, fuzzy
 #| msgid "2 Factor Authentication"
 msgid "Two Factor Authentication List"
-msgstr "Autenticación 2FA"
+msgstr "Lista de autenticación de dos factores"
 
 #: templates/accounts/activation_email.html:6
 msgid "registration"
@@ -758,12 +759,15 @@ msgstr "registro"
 #, python-format
 msgid ""
 "\n"
-"    You (or someone pretending to be you) have asked to register an account "
-"at\n"
+"    You (or someone pretending to be you) have asked to register an account at\n"
 "    %(site_name)s.  If this wasn't you, please ignore this email\n"
 "    and your address will be removed from our records.\n"
 "    "
 msgstr ""
+"\n"
+"Usted (o alguien que pretende ser usted) ha solicitado registrar una cuenta en\n"
+"    __nombre del sitio__. Si no fuiste tu, ignora este correo\n"
+"    y su dirección será eliminada de nuestros registros."
 
 #: templates/accounts/activation_email.html:18
 msgid ""
@@ -771,6 +775,8 @@ msgid ""
 "    To activate this account, please click the following link\n"
 "    "
 msgstr ""
+"\n"
+"Para activar esta cuenta, haga clic en el siguiente enlace."
 
 #: templates/accounts/activation_email.html:29
 #, python-format
@@ -780,6 +786,9 @@ msgid ""
 "    %(site_name)s Management\n"
 "    "
 msgstr ""
+"\n"
+"Sinceramente,\n"
+"    %(site_name)s Gestión"
 
 #: templates/accounts/activation_email.txt:2
 #, python-format
@@ -789,12 +798,18 @@ msgid ""
 "%(site_name)s.  If this wasn't you, please ignore this email\n"
 "and your address will be removed from our records.\n"
 msgstr ""
+"\n"
+"Usted (o alguien que pretende ser usted) ha solicitado registrar una cuenta en\n"
+"__nombre del sitio__. Si no fuiste tu, ignora este correo\n"
+"y su dirección será eliminada de nuestros registros.\n"
 
 #: templates/accounts/activation_email.txt:7
 msgid ""
 "\n"
 "To activate this account, please click the following link:\n"
 msgstr ""
+"\n"
+"Para activar esta cuenta, por favor haga clic en el siguiente enlace:\n"
 
 #: templates/accounts/activation_email.txt:13
 #, python-format
@@ -803,36 +818,39 @@ msgid ""
 "Sincerely,\n"
 "%(site_name)s Management\n"
 msgstr ""
+"\n"
+"Sinceramente,\n"
+"%(site_name)s Gestión\n"
 
 #: templates/accounts/address-book.html:22
 #, fuzzy
 #| msgid "Address"
 msgid "Add New Address"
-msgstr "Dirección"
+msgstr "Agregar nueva dirección"
 
 #: templates/accounts/address-book.html:27
 #, fuzzy
 #| msgid "saved address name"
 msgid "Saved Address"
-msgstr "nombre de dirección guardada"
+msgstr "Dirección guardada"
 
 #: templates/accounts/address-book.html:50
 #, fuzzy
 #| msgid "Addresses"
 msgid "Address Name"
-msgstr "Direcciones"
+msgstr "Nombre de la dirección"
 
 #: templates/accounts/address-book.html:51
 #, fuzzy
 #| msgid "first name"
 msgid "First Name"
-msgstr "nombre de pila"
+msgstr "Nombre de pila"
 
 #: templates/accounts/address-book.html:52
 #, fuzzy
 #| msgid "last name"
 msgid "Last Name"
-msgstr "apellido"
+msgstr "Apellido"
 
 #: templates/accounts/address-book.html:53
 #, fuzzy
@@ -844,29 +862,29 @@ msgstr "Dirección Línea 1"
 #, fuzzy
 #| msgid "address line 2"
 msgid "Address Line 2"
-msgstr "línea de dirección 2"
+msgstr "Dirección Línea 2"
 
 #: templates/accounts/address-book.html:55
 #, fuzzy
 #| msgid "country"
 msgid "Country"
-msgstr "país"
+msgstr "País"
 
 #: templates/accounts/address-book.html:56
 msgid "State/province"
-msgstr ""
+msgstr "Provincia del estado"
 
 #: templates/accounts/address-book.html:57
 #, fuzzy
 #| msgid "code"
 msgid "Pincode"
-msgstr "código"
+msgstr "Código PIN"
 
 #: templates/accounts/address-book.html:58
 #, fuzzy
 #| msgid "phone_number"
 msgid "Phone number"
-msgstr "número de teléfono"
+msgstr "Número de teléfono"
 
 #: templates/accounts/dashboard-base.html:16
 msgid "Home"
@@ -878,7 +896,7 @@ msgstr "Tu billetera"
 
 #: templates/accounts/dashboard-base.html:31
 msgid "Coin Settings"
-msgstr "Votos de moneda"
+msgstr "Ajustes de moneda"
 
 #: templates/accounts/dashboard-base.html:37
 msgid "Transaction History"
@@ -886,11 +904,11 @@ msgstr "Historial de transacciones"
 
 #: templates/accounts/dashboard-base.html:42
 msgid "Quick POS"
-msgstr "Punto de venta rápido"
+msgstr "POS rápido"
 
 #: templates/accounts/dashboard-base.html:47 templates/common/index.html:67
 msgid "$PayByName"
-msgstr "$PayByName"
+msgstr "$ PayByName"
 
 #: templates/accounts/dashboard.html:18 templates/coins/wallets.html:17
 msgid "Recent Transaction"
@@ -906,7 +924,7 @@ msgstr "Nombre recibido / enviado"
 
 #: templates/accounts/dashboard.html:35
 msgid "Amount"
-msgstr "país"
+msgstr "Cantidad"
 
 #: templates/accounts/dashboard.html:36
 msgid "Status"
@@ -914,12 +932,12 @@ msgstr "Estado"
 
 #: templates/accounts/dashboard.html:70 templates/coins/wallets.html:42
 msgid "No Payment Found"
-msgstr "modo de pago"
+msgstr "No se encontró ningún pago"
 
 #: templates/accounts/forgot-password.html:14
 #: templates/accounts/forgot_password.html:13
 msgid "Forgot Password"
-msgstr "¿Se te olvidó tu contraseña?"
+msgstr "Se te olvidó tu contraseña"
 
 #: templates/accounts/forgot-password.html:15
 #: templates/accounts/forgot_password.html:14
@@ -936,11 +954,11 @@ msgstr "Enviar"
 
 #: templates/accounts/forgot_password_done.html:8
 msgid "Instructions has been sent"
-msgstr "Se han enviado instrucciones"
+msgstr "Las instrucciones han sido enviadas"
 
 #: templates/accounts/forgot_password_done.html:9
 msgid "to your mail"
-msgstr "tienda de correo electrónico"
+msgstr "a tu correo"
 
 #: templates/accounts/login.html:15 templates/accounts/signup.html:17
 msgid "Welcome!"
@@ -948,7 +966,7 @@ msgstr "¡Bienvenido!"
 
 #: templates/accounts/login.html:16 templates/accounts/signup.html:18
 msgid "Sign in by entering the information below"
-msgstr "Inicie sesión ingresando la información a continuación"
+msgstr "Inicia sesión introduciendo la siguiente información"
 
 #: templates/accounts/login.html:26
 msgid "Login"
@@ -965,42 +983,42 @@ msgstr "¿Se te olvidó tu contraseña?"
 
 #: templates/accounts/login.html:43
 msgid "Don't have an account?"
-msgstr "No tienes una cuenta?"
+msgstr "¿No tienes una cuenta?"
 
 #: templates/accounts/payment-history.html:22
 #: templates/accounts/payment-history.html:23
 #: templates/accounts/payment-history.html:24
 #: templates/accounts/payment-history.html:25
 msgid "Deposit History"
-msgstr ""
+msgstr "Historial de Depósitos"
 
 #: templates/accounts/payment-history.html:32
 msgid "Incoming Payment HIstory"
-msgstr ""
+msgstr "Historia de pago entrante"
 
 #: templates/accounts/payment-history.html:36
 msgid "History Search & Export"
-msgstr ""
+msgstr "Historial de búsqueda y exportación"
 
 #: templates/accounts/settings.html:11
 msgid "Settings"
-msgstr "Votos de moneda"
+msgstr "Ajustes"
 
 #: templates/accounts/settings.html:19
 msgid "Basic Settings"
-msgstr "Votos de moneda"
+msgstr "Ajustes básicos"
 
 #: templates/accounts/settings.html:30 templates/accounts/settings.html:212
 msgid "Login & Security"
-msgstr "Seguridad de acceso"
+msgstr "Inicio de sesión y seguridad"
 
 #: templates/accounts/settings.html:35 templates/accounts/settings.html:278
 msgid "Merchant Settings"
-msgstr "Votos de moneda"
+msgstr "Configuraciones de comerciante"
 
 #: templates/accounts/settings.html:42 templates/exmr.html:101
 msgid "Account Settings"
-msgstr "Votos de moneda"
+msgstr "Configuraciones de la cuenta"
 
 #: templates/accounts/settings.html:47
 msgid "Your Merchant ID:"
@@ -1008,16 +1026,16 @@ msgstr "Su ID de comerciante:"
 
 #: templates/accounts/settings.html:56
 msgid "Affiliate URL:"
-msgstr "Información afiliado"
+msgstr "URL de afiliado:"
 
 #: templates/accounts/settings.html:57
 msgid ""
 "Want to earn some crypto? Give this URL to new users and when they sign up "
 "you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:"
 msgstr ""
-"¿Quieres ganar algo de crypto? Dé esta URL a los nuevos usuarios y, cuando "
-"se registren, ganará un porcentaje de sus tarifas de transacción "
-"GETCRYPTOPAYMENTS:"
+"¿Quieres ganar algo de criptografía? Ofrezca esta URL a los nuevos usuarios "
+"y cuando se registren, usted ganará un porcentaje de las tarifas de "
+"transacción de GETCRYPTOPAYMENTS:"
 
 #: templates/accounts/settings.html:69
 msgid "Share/Save"
@@ -1033,27 +1051,27 @@ msgstr "Confirmar correo electrónico"
 
 #: templates/accounts/settings.html:126
 msgid "Gender"
-msgstr "género"
+msgstr "Género"
 
 #: templates/accounts/settings.html:133
 msgid "Time Zone"
-msgstr "zona horaria"
+msgstr "Zona horaria"
 
 #: templates/accounts/settings.html:139
 msgid "Date Format"
-msgstr "formato de fecha"
+msgstr "Formato de fecha"
 
 #: templates/accounts/settings.html:147
 msgid "Time Format"
-msgstr "formato de tiempo"
+msgstr "Formato de tiempo"
 
 #: templates/accounts/settings.html:154
 msgid "Update Account"
-msgstr "conteo de votos"
+msgstr "Actualizar cuenta"
 
 #: templates/accounts/settings.html:172
 msgid "Public Name"
-msgstr "nombre público"
+msgstr "Nombre publico"
 
 #: templates/accounts/settings.html:178
 msgid "Public Email"
@@ -1070,77 +1088,83 @@ msgstr "Actualizar"
 
 #: templates/accounts/settings.html:221
 msgid "Current Password"
-msgstr "¿Se te olvidó tu contraseña?"
+msgstr "contraseña actual"
 
 #: templates/accounts/settings.html:227
 msgid "New Password"
-msgstr "¿Se te olvidó tu contraseña?"
+msgstr "Nueva contraseña"
 
 #: templates/accounts/settings.html:234
 msgid "Confirm Password"
-msgstr "¿Se te olvidó tu contraseña?"
+msgstr "Confirmar contraseña"
 
 #: templates/accounts/settings.html:240
 msgid "2 Factor Authentication"
-msgstr "Autenticación 2FA"
+msgstr "Autenticación de 2 factores"
 
 #: templates/accounts/settings.html:244
 msgid ""
 "Email: You will be prompted for a code at the time of login which will be "
 "sent to your provided email ID."
 msgstr ""
+"Correo electrónico: se le solicitará un código en el momento de iniciar "
+"sesión que se enviará a la ID de correo electrónico proporcionada."
 
 #: templates/accounts/settings.html:245
 msgid ""
 "Linked 2FA Accounts: Link authenticators supporting TOTP such as Google "
 "Authenticator, Authy, FreeOTP, etc. You can edit your linked devices"
 msgstr ""
+"Cuentas 2FA vinculadas: Autentificadores de enlaces compatibles con TOTP, "
+"como Google Authenticator, Authy, FreeOTP, etc. Puedes editar tus "
+"dispositivos vinculados."
 
 #: templates/accounts/settings.html:252
 #, fuzzy
 #| msgid "email confirmation send/withdrawal"
 msgid "Email Confirmations for Sends/Withdrawals"
-msgstr "envío / retirada de confirmación por correo electrónico"
+msgstr "Confirmaciones por correo electrónico para envíos / retiros"
 
 #: templates/accounts/settings.html:259
 msgid "PGP/GPG Public Key"
-msgstr "Clave pública de PGP / GPG"
+msgstr "Clave pública PGP / GPG"
 
 #: templates/accounts/settings.html:339
 msgid ""
 "\n"
-"                                                Payment status email will be "
-"sent to this email.\n"
-"                                                If not provided, "
-"notofications will be sent to the primary email\n"
+"                                                Payment status email will be sent to this email.\n"
+"                                                If not provided, notofications will be sent to the primary email\n"
 "                                            "
 msgstr ""
+"\n"
+"Correo electrónico de estado de pago será enviado a este correo electrónico.\n"
+"                                                Si no se proporciona, las notificaciones se enviarán al correo electrónico principal"
 
 #: templates/accounts/signup.html:49
 #, fuzzy
 #| msgid ""
-#| "Please make it at least 10 characters long and include letters, numbers, "
-#| "and special characters."
+#| "Please make it at least 10 characters long and include letters, numbers, and"
+#| " special characters."
 msgid ""
 " Please make it at least 10 characters long and include letters, numbers,\n"
 "                                 and special characters. "
 msgstr ""
-"Por favor haga que tenga al menos 10 caracteres e incluya letras, números y "
-"caracteres especiales."
+"Por favor, haga un mínimo de 10 caracteres e incluya letras, números,\n"
+"                                 y personajes especiales."
 
 #: templates/accounts/signup.html:51
 msgid "Timezone"
-msgstr "zona horaria"
+msgstr "Zona horaria"
 
 #: templates/accounts/signup.html:61
 #, fuzzy
 #| msgid ""
-#| "Newsletters and other relevant information from Getcryptopayments.net to "
-#| "my provided e-mail."
+#| "Newsletters and other relevant information from Getcryptopayments.net to my "
+#| "provided e-mail."
 msgid "Send newsletters and other relevant information to my provided e-mail."
 msgstr ""
-"Boletines informativos y otra información relevante de Getcryptopayments.net "
-"a mi correo electrónico proporcionado."
+"Enviar boletines y otra información relevante a mi correo electrónico "
+"proporcionado."
 
 #: templates/accounts/signup.html:70
 msgid "Have read and agree to the"
@@ -1148,33 +1172,33 @@ msgstr "He leído y acepto el"
 
 #: templates/accounts/signup.html:71
 msgid "Terms of Service."
-msgstr "Términos de servicio"
+msgstr "Términos de servicio."
 
 #: templates/accounts/signup.html:85
 #, fuzzy
 #| msgid "Type the characters you see in the image above:"
 msgid " 'Type the characters you see in the image above:' "
-msgstr "Escriba los caracteres que ve en la imagen de arriba:"
+msgstr "'Escribe los caracteres que ves en la imagen de arriba:'"
 
 #: templates/accounts/signup_complete.html:6
 msgid "An activation link has been sent"
-msgstr "El enlace de activación de la cuenta expiró"
+msgstr "Se ha enviado un enlace de activación."
 
 #: templates/accounts/signup_complete.html:7
 msgid "Please check your mail"
-msgstr ""
+msgstr "Por favor revisa tu correo"
 
 #: templates/accounts/verify_2fa.html:18
 msgid "Enter"
-msgstr ""
+msgstr "Entrar"
 
 #: templates/base.html:76 templates/exmr.html:44 templates/exmr.html:136
 msgid "Supported Coins"
-msgstr "Monedas compatibles"
+msgstr "Monedas apoyadas"
 
 #: templates/base.html:79 templates/exmr.html:50 templates/exmr.html:139
 msgid "Merchant Tools"
-msgstr "Herramientas de comerciante"
+msgstr "Herramientas mercantes"
 
 #: templates/base.html:82 templates/exmr.html:41 templates/exmr.html:142
 msgid "Public Coin Vote"
@@ -1186,23 +1210,23 @@ msgstr "Directorio de tiendas"
 
 #: templates/base.html:95 templates/exmr.html:155
 msgid "Get Mobile App"
-msgstr "Obtener la aplicación móvil"
+msgstr "Obtener aplicación móvil"
 
 #: templates/base.html:96 templates/exmr.html:156
 msgid "Affiliate Information"
-msgstr "Información afiliado"
+msgstr "Información de afiliados"
 
 #: templates/base.html:97 templates/exmr.html:157
 msgid "Official TOR URL"
-msgstr "Información afiliado"
+msgstr "URL oficial de TOR"
 
 #: templates/base.html:98 templates/exmr.html:158
 msgid "PGP Key"
-msgstr "Clave PGP"
+msgstr "Llave PGP"
 
 #: templates/base.html:107 templates/exmr.html:167
 msgid "Fees/Pricing"
-msgstr "Tarifas / precios"
+msgstr "Tarifas / Precios"
 
 #: templates/base.html:108 templates/exmr.html:168
 msgid "Help"
@@ -1213,7 +1237,7 @@ msgstr "Ayuda"
 #, fuzzy
 #| msgid "Add Your Store"
 msgid "Add Store"
-msgstr "Agrega tu tienda"
+msgstr "Añadir tienda"
 
 #: templates/base.html:110 templates/base.html:145 templates/exmr.html:170
 #: templates/exmr.html:197
@@ -1230,94 +1254,97 @@ msgstr "Términos de servicio"
 
 #: templates/coins/coin-withdrawal.html:8
 msgid "Coin Withdrawal"
-msgstr ""
+msgstr "Moneda de retirada"
 
 #: templates/coins/coin-withdrawal.html:12
 msgid "Minimum Withdrawal"
-msgstr ""
+msgstr "Retiro mínimo"
 
 #: templates/coins/coin-withdrawal.html:13
 #, fuzzy
 #| msgid "Current Password"
 msgid "Current Bal"
-msgstr "¿Se te olvidó tu contraseña?"
+msgstr "Bal actual"
 
 #: templates/coins/coin-withdrawal.html:14
 msgid "Send/Withdrawal Amount"
-msgstr ""
+msgstr "Importe de envío / retirada"
 
 #: templates/coins/coin-withdrawal.html:15
 #, fuzzy
 #| msgid "Transaction History"
 msgid "Transation Fee (est.)"
-msgstr "Historial de transacciones"
+msgstr "Tarifa de Transación (est.)"
 
 #: templates/coins/coin-withdrawal.html:16
 msgid "Total Withdrawal"
-msgstr ""
+msgstr "Retiro total"
 
 #: templates/coins/coin-withdrawal.html:17
 msgid "Litecoin Testnet address or $payByName to send to"
-msgstr ""
+msgstr "Dirección Litnetin Testnet o $ payByName para enviar a"
 
 #: templates/coins/coin-withdrawal.html:18
 msgid "Optional Note (Only Viewable by you)"
-msgstr ""
+msgstr "Nota opcional (solo visible por usted)"
 
 #: templates/coins/coin-withdrawal.html:48
 msgid "Request Withdrawal/Send"
-msgstr ""
+msgstr "Solicitud de Retiro / Envío"
 
 #: templates/coins/coin_conversion.html:8
 #, fuzzy
 #| msgid "Auto Coin Conversion"
 msgid "Coin Conversion"
-msgstr "Conversión automática de monedas"
+msgstr "Conversión de moneda"
 
 #: templates/coins/coin_conversion.html:22
 msgid ""
-"If you log in the fields below will be prepopulated with your Wallet deposit "
-"addresses."
+"If you log in the fields below will be prepopulated with your Wallet deposit"
+" addresses."
 msgstr ""
+"Si inicia sesión, los campos a continuación se llenarán previamente con sus "
+"direcciones de depósito de Wallet."
 
 #: templates/coins/coin_conversion.html:42
 #: templates/common/support-coins.html:258
 #, fuzzy
 #| msgid "ASAP + Convert"
 msgid "Convert"
-msgstr "ASAP + Convert"
+msgstr "Convertir"
 
 #: templates/coins/coin_conversion_final.html:8
 #, fuzzy
 #| msgid "Auto Coin Conversion"
 msgid "Coin Conversion Requested"
-msgstr "Conversión automática de monedas"
+msgstr "Conversión de moneda solicitada"
 
 #: templates/coins/supported-coins.html:4
 #, fuzzy
 #| msgid "SUPPORTED COIN"
 msgid "SUPPORTED COINS"
-msgstr "MONEDA APOYADA"
+msgstr "MONEDAS SOPORTADAS"
 
 #: templates/coins/supported-coins.html:7
 #, fuzzy
 #| msgid ""
-#| "Instant get crypto payments checkout with easy to use cart plugin,"
-#| "advanced,invoice builder,and API for custom integration"
+#| "Instant get crypto payments checkout with easy to use cart "
+#| "plugin,advanced,invoice builder,and API for custom integration"
 msgid ""
-"Instant get crypto payments checkout with easy to use cart plugin, advanced, "
-"invoice buillder and API for custom integration"
+"Instant get crypto payments checkout with easy to use cart plugin, advanced,"
+" invoice buillder and API for custom integration"
 msgstr ""
-"Descarga inmediata de ceyto con un plugin de carrito fácil de usar, "
-"avanzado, creador de factura y API para integración personalizada"
+"Obtenga pago criptográfico instantáneo con un plugin de carrito fácil de "
+"usar, avanzado, buillder de facturas y API para una integración "
+"personalizada"
 
 #: templates/coins/supported-coins.html:33
 msgid "COIN NAME"
-msgstr "NOMBRE DE MONEDA"
+msgstr "Nombre de la moneda"
 
 #: templates/coins/supported-coins.html:34
 msgid "COD"
-msgstr ""
+msgstr "BACALAO"
 
 #: templates/coins/supported-coins.html:35
 msgid "FEE"
@@ -1325,11 +1352,11 @@ msgstr "CUOTA"
 
 #: templates/coins/supported-coins.html:38
 msgid "CONFIRMS"
-msgstr "CONFIRMA"
+msgstr "Confirma"
 
 #: templates/coins/supported-coins.html:39
 msgid "TO BTC"
-msgstr ""
+msgstr "A BTC"
 
 #: templates/coins/supported-coins.html:42
 msgid "EXPLORE"
@@ -1339,40 +1366,40 @@ msgstr "EXPLORAR"
 #, fuzzy
 #| msgid "ASAP + Convert"
 msgid "Convert Coin"
-msgstr "ASAP + Convert"
+msgstr "Convertir moneda"
 
 #: templates/coins/supported-coins.html:104
 #: templates/common/support-coins.html:273
 msgid "Close"
-msgstr "Cerca"
+msgstr "Cerrar"
 
 #: templates/coins/wallets.html:31
 #, fuzzy
 #| msgid "coin name"
 msgid "Coin Name"
-msgstr "nombre de la moneda"
+msgstr "Nombre de la moneda"
 
 #: templates/coins/wallets.html:32
 msgid "Code"
-msgstr ""
+msgstr "Código"
 
 #: templates/coins/wallets.html:33
 #, fuzzy
 #| msgid "To Balance"
 msgid "Balance"
-msgstr "Para equilibrar"
+msgstr "Equilibrar"
 
 #: templates/coins/wallets.html:34
 msgid "Value"
-msgstr ""
+msgstr "Valor"
 
 #: templates/coins/wallets.html:35
 msgid "Commands"
-msgstr ""
+msgstr "Comandos"
 
 #: templates/common/index.html:23
 msgid "Accept over 140 altcoins now for only 0.50"
-msgstr "Acepta más de 140 altcoins ahora por solo 0.50"
+msgstr "Acepta más de 140 altcoins ahora por solo 0.50."
 
 #: templates/common/index.html:25
 msgid ""
@@ -1385,7 +1412,7 @@ msgstr "Vamos a comenzar"
 
 #: templates/common/index.html:36
 msgid "scroll me"
-msgstr "desplazame"
+msgstr "desplazarme"
 
 #: templates/common/index.html:53
 msgid "Running an ICO?"
@@ -1395,17 +1422,17 @@ msgstr "Ejecutando un ICO?"
 #, fuzzy
 #| msgid "Let Getcryptopayments help with:"
 msgid "Let GetCryptoPayments help with:"
-msgstr "Ejecutando un ICO?"
+msgstr "Permita que GetCryptoPayments le ayude con:"
 
 #: templates/common/index.html:56
 #, fuzzy
 #| msgid "Accepting payments from over 150 different coins"
 msgid "Accepting payments from over 140 different coins"
-msgstr "Aceptando pagos de más de 150 monedas diferentes"
+msgstr "Aceptando pagos de más de 140 monedas diferentes."
 
 #: templates/common/index.html:57
 msgid "All New GetCryptoPayments ICO Marketplace"
-msgstr ""
+msgstr "Todo el nuevo ICO de GetCryptoPayments"
 
 #: templates/common/index.html:59
 msgid "Find Out More"
@@ -1413,57 +1440,56 @@ msgstr "Saber más"
 
 #: templates/common/index.html:68
 msgid "One unique $tag to receive payments from all coins."
-msgstr "Una única etiqueta $ para recibir pagos de todas las monedas."
+msgstr "Una etiqueta única de $ para recibir pagos de todas las monedas."
 
 #: templates/common/index.html:69
 msgid "Example Profile"
-msgstr "Perfil"
+msgstr "Perfil de ejemplo"
 
 #: templates/common/index.html:102
 msgid "Shopping Cart Plugins"
-msgstr "Complementos de carrito de compras"
+msgstr "Plugins de carrito de compras"
 
 #: templates/common/index.html:105
 #, fuzzy
 #| msgid ""
 #| "Offering plugins for all the popular webcarts used today. Register and "
-#| "install a plugin to set up Getcryptopayments with your new or pre-"
-#| "existing checkout"
+#| "install a plugin to set up Getcryptopayments with your new or pre-existing "
+#| "checkout"
 msgid ""
 "Offering plugins for all the popular webcarts used today. Register and "
 "install a plugin to set up GetCryptoPayments with your new or pre-existing "
 "checkout"
 msgstr ""
-"Ofrece complementos para todos los webcarts populares que se usan hoy en "
-"día. Registre e instale un complemento para configurar Getcryptopayments con "
-"su pago nuevo o preexistente"
+"Ofreciendo complementos para todos los webcarts populares utilizados hoy en "
+"día. Regístrese e instale un complemento para configurar GetCryptoPayments "
+"con su pago nuevo o preexistente"
 
 #: templates/common/index.html:196
 msgid "Payment Features"
-msgstr "Dirección de Pago"
+msgstr "Características de pago"
 
 #: templates/common/index.html:198
 msgid "Here some ways GetCryptoPayments can help you process payments."
 msgstr ""
+"Aquí hay algunas formas en que GetCryptoPayments puede ayudarlo a procesar "
+"los pagos."
 
 #: templates/common/index.html:206
 msgid "BitGo™ Instant"
-msgstr "BitGo ™ Instante"
+msgstr "BitGo ™ Instant"
 
 #: templates/common/index.html:207
 #, fuzzy
 #| msgid ""
-#| "Getcryptopayments supports BitGo Instant making Bitcoin payments faster "
-#| "than ever\n"
+#| "Getcryptopayments supports BitGo Instant making Bitcoin payments faster than ever\n"
 #| "                                    before. "
 msgid ""
-"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster "
-"than\n"
+"GetCryptoPayments supports BitGo Instant making Bitcoin payments faster than\n"
 "                                ever before. "
 msgstr ""
-"Getcryptopayments admite BitGo Instant realizando pagos de Bitcoin más "
-"rápido que nunca\n"
-"antes de."
+"GetCryptoPayments admite BitGo Instant haciendo pagos de Bitcoin más rápido que\n"
+"                                nunca antes"
 
 #: templates/common/index.html:219
 msgid "Vault"
@@ -1472,50 +1498,44 @@ msgstr "Bóveda"
 #: templates/common/index.html:220
 #, fuzzy
 #| msgid ""
-#| "Protect your coins in the vault, requiring a time amount you specify "
-#| "before being\n"
+#| "Protect your coins in the vault, requiring a time amount you specify before being\n"
 #| "                                    able to spend them."
 msgid ""
-"Protect your coins in the vault, requiring a time amount you specify before "
-"being\n"
+"Protect your coins in the vault, requiring a time amount you specify before being\n"
 "                                able to spend them."
 msgstr ""
-"Protege tus monedas en la bóveda, requiriendo una cantidad de tiempo que "
-"especifiques antes de ser\n"
-"capaz de gastarlos."
+"Proteja sus monedas en la bóveda, requiriendo una cantidad de tiempo que especifique antes de ser\n"
+"                                capaz de gastarlos."
 
 #: templates/common/index.html:232
 msgid "Fiat Settlements"
-msgstr "Acuerdos de Fiat"
+msgstr "Asentamientos Fiat"
 
 #: templates/common/index.html:233
 #, fuzzy
 #| msgid ""
-#| "United States and Euro merchants now have fiat settlements directly to "
-#| "their bank\n"
+#| "United States and Euro merchants now have fiat settlements directly to their bank\n"
 #| "                                    accounts. "
 msgid ""
-"United States and Euro merchants now have fiat settlements directly to "
-"their\n"
+"United States and Euro merchants now have fiat settlements directly to their\n"
 "                                bank accounts. "
 msgstr ""
-"Los comerciantes de Estados Unidos y el euro ahora tienen acuerdos fijos "
-"directamente a su banco\n"
-"cuentas"
+"Los comerciantes de Estados Unidos y el Euro ahora tienen acuerdos fiduciarios directamente a sus\n"
+"                                cuentas bancarias."
 
 #: templates/common/index.html:245
 msgid "Point of Sale (POS)"
-msgstr "Punto de venta (POS)"
+msgstr "Punto de Venta (POS)"
 
 #: templates/common/index.html:246
 msgid "Simple interface for in person transactions. "
-msgstr ""
+msgstr "Interfaz sencilla para transacciones en persona."
 
 #: templates/common/index.html:246
 msgid ""
 "\n"
 "                               "
-msgstr ""
+msgstr "\n"
 
 #: templates/common/index.html:264
 msgid "Secured with BitGo"
@@ -1535,30 +1555,26 @@ msgstr ""
 #| "                                    multisig technology."
 msgid ""
 "of\n"
-"                                our funds are protected by multi-signature "
-"technology."
+"                                our funds are protected by multi-signature technology."
 msgstr ""
-"de nuestros fondos están protegidos por\n"
-"tecnología multigrado."
+"de\n"
+"                                Nuestros fondos están protegidos por tecnología de firma múltiple."
 
 #: templates/common/index.html:277
 msgid "Mobile Apps"
-msgstr "Obtener la aplicación móvil"
+msgstr "Aplicaciones móviles"
 
 #: templates/common/index.html:278
 #, fuzzy
 #| msgid ""
-#| "Access your account, accept payments in person, and convert coins "
-#| "anywhere with our\n"
+#| "Access your account, accept payments in person, and convert coins anywhere with our\n"
 #| "                                    mobile apps for Android and iOS."
 msgid ""
-"Access your account, accept payments in person, and convert coins anywhere "
-"with\n"
+"Access your account, accept payments in person, and convert coins anywhere with\n"
 "                                our mobile apps for Android and iOS."
 msgstr ""
-"Acceda a su cuenta, acepte pagos en persona y convierta monedas en cualquier "
-"lugar con nuestra\n"
-"aplicaciones móviles para Android e iOS."
+"Acceda a su cuenta, acepte pagos en persona y convierta monedas en cualquier lugar con\n"
+"                                Nuestras aplicaciones móviles para Android y iOS."
 
 #: templates/common/index.html:290
 msgid "Auto Coin Conversion"
@@ -1567,21 +1583,18 @@ msgstr "Conversión automática de monedas"
 #: templates/common/index.html:291
 #, fuzzy
 #| msgid ""
-#| "Auto convert for some of our coins, saving you the trouble of moving "
-#| "funds, wasting\n"
+#| "Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
 #| "                                    time and fees."
 msgid ""
-"Auto convert for some of our coins, saving you the trouble of moving funds, "
-"wasting\n"
+"Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
 "                                time and fees."
 msgstr ""
-"Auto conversión para algunas de nuestras monedas, lo que le ahorra la "
-"molestia de mover fondos, perder\n"
-"tiempo y tarifas"
+"Conversión automática para algunas de nuestras monedas, lo que le ahorra la molestia de mover fondos y desperdiciar\n"
+"                                Tiempo y tarifas."
 
 #: templates/common/index.html:303
 msgid "Multi-Coin Wallet"
-msgstr "Monedero multi-moneda"
+msgstr "Monedero Multi-Moneda"
 
 #: templates/common/index.html:304
 msgid "Optionally store your coins in our secure online wallet."
@@ -1594,7 +1607,9 @@ msgstr ""
 msgid ""
 "Our goal is to exceed more than 1,000,000 vendors across 182 different "
 "countries"
-msgstr "Más de 730,000 vendedores en 182 países diferentes"
+msgstr ""
+"Nuestro objetivo es superar los más de 1,000,000 de proveedores en 182 "
+"países diferentes"
 
 #: templates/common/index.html:323
 #, fuzzy
@@ -1602,103 +1617,90 @@ msgstr "Más de 730,000 vendedores en 182 países diferentes"
 #| "Getcryptopayments is the first and largest payment processor of over 150 "
 #| "cryptocurrencies"
 msgid ""
-"GetCryptoPayments is the first and largest payment processor of over 150 "
-"cryptocurrencies\n"
+"GetCryptoPayments is the first and largest payment processor of over 150 cryptocurrencies\n"
 "                    "
 msgstr ""
-"Getcryptopayments es el primer y más grande procesador de pagos de más de "
-"150 criptomonedas"
+"GetCryptoPayments es el primer y más grande procesador de pagos de más de "
+"150 criptomonedas."
 
 #: templates/common/index.html:349
 msgid ""
-"Thank you GetCryptoPayments for taking Tron coin into consideration to "
-"belong to the list of your ERC-20\n"
-"                        tokens portfolio. I know you will have many "
-"successes."
+"Thank you GetCryptoPayments for taking Tron coin into consideration to belong to the list of your ERC-20\n"
+"                        tokens portfolio. I know you will have many successes."
 msgstr ""
+"Gracias, GetCryptoPayments por tener en cuenta que Tron coin pertenece a la lista de su ERC-20\n"
+"                        Cartera de fichas. Sé que tendrás muchos éxitos."
 
 #: templates/common/index.html:351
 msgid "Justin Sun CEO Tronix Coin"
-msgstr ""
+msgstr "Justin Sun CEO Tronix Coin"
 
 #: templates/common/index.html:359
 #, fuzzy
 #| msgid ""
 #| "We wanted to accept Start coin payments so\n"
-#| "                                                we starting developing. "
-#| "We wanted to accept Ether payments so we\n"
-#| "                                                starting developing. Then "
-#| "we realised Getcryptopayments could do the\n"
-#| "                                                hard work for us and we "
-#| "could accept all payments and receive the money\n"
-#| "                                                in Bitcoin. Thanks "
-#| "Getcryptopayments, we only need to develop with one\n"
+#| "                                                we starting developing. We wanted to accept Ether payments so we\n"
+#| "                                                starting developing. Then we realised Getcryptopayments could do the\n"
+#| "                                                hard work for us and we could accept all payments and receive the money\n"
+#| "                                                in Bitcoin. Thanks Getcryptopayments, we only need to develop with one\n"
 #| "                                                API now."
 msgid ""
-"We wanted to accept Stellar coin payments so we starting developing. Then we "
-"realized GetCryptoPayments\n"
-"                        could do the hard work for us and accept all "
-"payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we "
-"only\n"
+"We wanted to accept Stellar coin payments so we starting developing. Then we realized GetCryptoPayments\n"
+"                        could do the hard work for us and accept all payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we only\n"
 "                        need to develop  with one API now."
 msgstr ""
-"Queríamos aceptar pagos de monedas de inicio tan\n"
-"estamos empezando a desarrollar. Queríamos aceptar pagos Ether por lo que\n"
-"comenzando a desarrollarse Entonces nos dimos cuenta de que "
-"Getcryptopayments podría hacer\n"
-"trabajo duro para nosotros y podríamos aceptar todos los pagos y recibir el "
-"dinero\n"
-"en Bitcoin. Gracias a Getcryptopayments, solo tenemos que desarrollar con "
-"uno\n"
-"API ahora."
+"Queríamos aceptar los pagos de monedas de Stellar, así que comenzamos a desarrollar. Entonces nos dimos cuenta de GetCryptoPayments\n"
+"                        podría hacer el trabajo duro por nosotros y aceptar todos los pagos y recibir el dinero en Bitcoin. Gracias GetCryptoPayments, solo\n"
+"                        Necesito desarrollar con una API ahora."
 
 #: templates/common/index.html:362
 msgid "Jed McCaleb CEO stellar.org"
-msgstr ""
+msgstr "Jed McCaleb CEO stellar.org"
 
 #: templates/common/merchant-tools.html:7 templates/store/add-or-update.html:5
 msgid "MERCHANT TOOLS"
-msgstr "HERRAMIENTAS COMERCIALES"
+msgstr "Herramientas comerciales"
 
 #: templates/common/merchant-tools.html:9
-#: templates/common/merchant-tools.html:16 templates/store/add-or-update.html:7
+#: templates/common/merchant-tools.html:16
+#: templates/store/add-or-update.html:7
 msgid ""
 "If you would like to be updated about new API or changes to existing Apis"
-msgstr ""
-"Si desea recibir actualizaciones sobre nuevas API o cambios a Apis existentes"
+msgstr "Si desea ser actualizado sobre nuevas API o cambios a Apis existentes"
 
 #: templates/common/merchant-tools.html:10
-#: templates/common/merchant-tools.html:17 templates/store/add-or-update.html:8
+#: templates/common/merchant-tools.html:17
+#: templates/store/add-or-update.html:8
 msgid "click here"
 msgstr "haga clic aquí"
 
 #: templates/common/merchant-tools.html:25
 msgid "SHOPPING CART PLUGIN"
-msgstr "PLUGIN DEL CARRITO DE COMPRAS"
+msgstr "CARRITO DE COMPRAS PLUGIN"
 
 #: templates/common/merchant-tools.html:27
 msgid "Plugin Downloads"
-msgstr "Descargas de complementos"
+msgstr "Descargas de plugins"
 
 #: templates/common/merchant-tools.html:34
 msgid "API & IPNs"
-msgstr "API e IPN"
+msgstr "API y IPNs"
 
 #: templates/common/merchant-tools.html:36
 msgid "Instant Payment Notification"
-msgstr "Notificación de pago instantánea"
+msgstr "Notificación de pago instantáneo"
 
 #: templates/common/merchant-tools.html:37
 msgid "GETCRYPTOPAYMENTAPI"
-msgstr ""
+msgstr "GETCRYPTOPAYMENTAPI"
 
 #: templates/common/merchant-tools.html:44
 msgid "INVOICE BUILDER"
-msgstr "CONSTRUCTOR DE FACTURAS"
+msgstr "FABRICANTE DE FACTURAS"
 
 #: templates/common/merchant-tools.html:46
 msgid "Payment Request invoice maker"
-msgstr "Fabricante de factura de solicitud de pago"
+msgstr "Facturador de solicitud de pago"
 
 #: templates/common/merchant-tools.html:53
 msgid "POINT OF SALE(POS) INTERFACE"
@@ -1706,7 +1708,7 @@ msgstr "INTERFAZ DE PUNTO DE VENTA (POS)"
 
 #: templates/common/merchant-tools.html:55
 msgid "HTML URL/ POST Fields"
-msgstr "HTML URL / POST campos"
+msgstr "Campos de URL / POST HTML"
 
 #: templates/common/merchant-tools.html:56
 msgid "Post link QR Code Generator"
@@ -1714,19 +1716,19 @@ msgstr "Publicar enlace QR Code Generator"
 
 #: templates/common/merchant-tools.html:57
 msgid "POS Examle"
-msgstr "Ejemplo de POS"
+msgstr "POS Examle"
 
 #: templates/common/merchant-tools.html:64
 #, fuzzy
 #| msgid "DONATION BUTTONS"
 msgid "SIMPLE BUTTONS"
-msgstr "BOTONES DE DONACIÓN"
+msgstr "BOTONES SIMPLES"
 
 #: templates/common/merchant-tools.html:66
 #: templates/common/merchant-tools.html:77
 #: templates/common/merchant-tools.html:99
 msgid "Button Maker"
-msgstr "botón Fabricante"
+msgstr "Fabricante de botones"
 
 #: templates/common/merchant-tools.html:67
 #: templates/common/merchant-tools.html:78
@@ -1746,11 +1748,11 @@ msgstr "Ejemplos de botones"
 #, fuzzy
 #| msgid "DONATION BUTTONS"
 msgid "ADVANCE BUTTONS"
-msgstr "BOTONES DE DONACIÓN"
+msgstr "BOTONES AVANZADOS"
 
 #: templates/common/merchant-tools.html:86
 msgid "SHOPPING CART BUTTONS"
-msgstr "BOTONES DEL CARRITO DE COMPRAS"
+msgstr "BOTONES DE CARRO DE COMPRAS"
 
 #: templates/common/merchant-tools.html:90
 msgid "Button Images"
@@ -1758,11 +1760,11 @@ msgstr "Imágenes de botones"
 
 #: templates/common/merchant-tools.html:97
 msgid "DONATION BUTTONS"
-msgstr "BOTONES DE DONACIÓN"
+msgstr "BOTONES DE DONACION"
 
 #: templates/common/support-coins.html:258
 msgid "BITCOIN"
-msgstr ""
+msgstr "BITCOIN"
 
 #: templates/exmr.html:54
 msgid "Contact Us"
@@ -1782,7 +1784,7 @@ msgstr "Tablero"
 
 #: templates/exmr.html:104
 msgid "AddressBook"
-msgstr "Dirección"
+msgstr "Directorio"
 
 #: templates/exmr.html:107
 msgid "Logout"
@@ -1791,32 +1793,37 @@ msgstr "Cerrar sesión"
 #: templates/registration/password_reset_complete.html:6
 msgid "Your password has been set.  You may go ahead and log in now."
 msgstr ""
-"Su contraseña ha sido establecida. Puede continuar e iniciar sesión ahora."
+"Su contraseña ha sido establecida. Puede seguir adelante e iniciar sesión "
+"ahora."
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Log in"
-msgstr "iniciar sesión"
+msgstr "Iniciar sesión"
 
 #: templates/registration/password_reset_confirm.html:45
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
-"El enlace de restablecimiento de contraseña no era válido, posiblemente "
-"porque ya se utilizó. Solicite un nuevo restablecimiento de contraseña."
+"El enlace para restablecer la contraseña no era válido, posiblemente porque "
+"ya se ha utilizado. Por favor, solicite un nuevo restablecimiento de "
+"contraseña."
 
 #: templates/store/add-or-update.html:102
 msgid "Type the characters you see in the image above:"
-msgstr "Escriba los caracteres que ve en la imagen de arriba:"
+msgstr "Escribe los caracteres que ves en la imagen de arriba:"
 
-#: templates/store/store_categories.html:5 templates/store/store_listing.html:5
+#: templates/store/store_categories.html:5
+#: templates/store/store_listing.html:5
 msgid "STORE DIRECTORY"
 msgstr "DIRECTORIO DE TIENDAS"
 
-#: templates/store/store_categories.html:7 templates/store/store_listing.html:7
+#: templates/store/store_categories.html:7
+#: templates/store/store_listing.html:7
 msgid "Largest directory of merchants accepting multiple cryptocurrencies"
 msgstr ""
-"El directorio más grande de comerciantes que aceptan múltiples criptomonedas"
+"El directorio más grande de comerciantes que aceptan múltiples "
+"criptomonedas."
 
 #: templates/store/store_categories.html:15
 #: templates/store/store_listing.html:15
@@ -1833,8 +1840,8 @@ msgstr "Buscar"
 #~ msgstr "Disponible"
 
 #~ msgid ""
-#~ "Getcryptopayments supports BitGo Instant making Bitcoin payments "
-#~ "fasterthan ever before."
+#~ "Getcryptopayments supports BitGo Instant making Bitcoin payments fasterthan "
+#~ "ever before."
 #~ msgstr ""
 #~ "Getcryptopayments admite BitGo Instant haciendo que los pagos de Bitcoin "
 #~ "sean más rápidos que nunca."
@@ -1843,9 +1850,6 @@ msgstr "Buscar"
 #~ msgstr "Simon Dixon, CEO BnkToTheFuture.com"
 
 #, fuzzy
-#~| msgid ""
-#~| "Instant ceyto checkout with easy to use cart plugin,advanced,invoice "
-#~| "builder,and API for custom integration"
 #~ msgid ""
 #~ "Instant crypto checkout with easy to use cart plugin,advanced,invoice "
 #~ "builder,and API for custom integration"
@@ -1857,7 +1861,6 @@ msgstr "Buscar"
 #~ msgstr "Ether Token (Monedero solo)"
 
 #, fuzzy
-#~| msgid "coin"
 #~ msgid "Bitcoin"
 #~ msgstr "acuñar"
 
@@ -1885,25 +1888,17 @@ msgstr "Buscar"
 #, fuzzy
 #~ msgid ""
 #~ "We wanted to accept Start getcryptopayments so\n"
-#~ "                                                we starting developing. "
-#~ "We wanted to accept Ether payments so we\n"
-#~ "                                                starting developing. Then "
-#~ "we realised Getcryptopayments could do the\n"
-#~ "                                                hard work for us and we "
-#~ "could accept all payments and receive the money\n"
-#~ "                                                in Bitcoin. Thanks "
-#~ "Getcryptopayments, we only need to develop with one\n"
+#~ "                                                we starting developing. We wanted to accept Ether payments so we\n"
+#~ "                                                starting developing. Then we realised Getcryptopayments could do the\n"
+#~ "                                                hard work for us and we could accept all payments and receive the money\n"
+#~ "                                                in Bitcoin. Thanks Getcryptopayments, we only need to develop with one\n"
 #~ "                                                API now."
 #~ msgstr ""
 #~ "Queríamos aceptar pagos de StartCOIN por lo\n"
-#~ "estamos empezando a desarrollar. Queríamos aceptar pagos Ether por lo "
-#~ "que\n"
-#~ "comenzando a desarrollarse Entonces nos dimos cuenta de que "
-#~ "Getcryptopayments podría hacer\n"
-#~ "trabajo duro para nosotros y podríamos aceptar todos los pagos y recibir "
-#~ "el dinero\n"
-#~ "en Bitcoin. Gracias a Getcryptopayments, solo tenemos que desarrollar con "
-#~ "uno\n"
+#~ "estamos empezando a desarrollar. Queríamos aceptar pagos Ether por lo que\n"
+#~ "comenzando a desarrollarse Entonces nos dimos cuenta de que Getcryptopayments podría hacer\n"
+#~ "trabajo duro para nosotros y podríamos aceptar todos los pagos y recibir el dinero\n"
+#~ "en Bitcoin. Gracias a Getcryptopayments, solo tenemos que desarrollar con uno\n"
 #~ "API ahora."
 
 #~ msgid "CoinpaymentAPI"

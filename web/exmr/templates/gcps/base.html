@@ -12,6 +12,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
       rel="stylesheet"
     />
+    <script src='https://www.google.com/recaptcha/api.js?render=6LfNl2cUAAAAAKoPIBFAyyN9tF9hgCKBIrX2n_bo'></script>
     <!-- <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -66,7 +67,7 @@
             </li>
             <li class="nav-item ">
               <a class="nav-link" href="{% url 'coins:supported_coins' 'Crypto' %}">
-                {% trans 'Support Coins'%}
+                {% trans 'Supported Coins'%}
               </a>
             </li>
             <li class="nav-item ">
@@ -227,8 +228,8 @@
                   <div class="footer-link-group">
                     <a href="{% url 'common:helptopic' 'feespricing'  %}" class="footer-link">{% trans 'Fees/Pricing' %}</a>
                     <a href="{% url 'common:help' %}" class="footer-link">{% trans 'Help' %}</a>
-                    <a href="{% url 'store:add-to-store' %}" class="footer-link">{% trans 'Add Your Store' %}</a>
-                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Add Your Coin' %}</a>
+                    <a href="{% url 'store:add-to-store' %}" class="footer-link">{% trans 'Add Store' %}</a>
+                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Coin Request' %}</a>
                   </div>
                 </div>
 

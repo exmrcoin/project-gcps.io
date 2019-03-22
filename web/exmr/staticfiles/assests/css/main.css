@@ -568,7 +568,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
     border: 1px solid rgb(233, 233, 233);
     box-shadow: none;
     border-radius: 10px;
-
+    min-height: 100px;
 }
 
 .w60px {

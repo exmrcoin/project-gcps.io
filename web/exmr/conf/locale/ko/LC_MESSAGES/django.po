@@ -72,7 +72,7 @@ msgstr "휴대 전화 번호가 잘못되었습니다."
 
 #: apps/accounts/forms.py:171 apps/store/forms.py:21
 msgid "Either username or email needs to be provided"
-msgstr "사용자 이름 또는 전자 메일을 제공해야합니다."
+msgstr "사용자 이름 또는 이메일을 제공해야합니다."
 
 #: apps/accounts/forms.py:176 apps/store/forms.py:26
 msgid "User not found"
@@ -176,7 +176,7 @@ msgstr "IPN 비밀"
 msgid ""
 "This is used to verify that an IPN is from us, use a good random string "
 "nobody can guess."
-msgstr "이것은 IPN이 우리에게서 왔는지 확인하는 데 사용되며 아무도 추측 할 수없는 좋은 임의의 문자열을 사용합니다."
+msgstr "IPN이 우리에게서 왔는지 확인하는 데 사용됩니다. 아무도 추측 할 수없는 좋은 임의의 문자열을 사용합니다."
 
 #: apps/accounts/models.py:77 templates/accounts/settings.html:293
 msgid "IPN URL"
@@ -196,7 +196,7 @@ msgstr "지불을위한 자금이 귀하에게 발송되었을 때."
 
 #: apps/accounts/models.py:81
 msgid "When a deposit is received on one of your deposit addresses."
-msgstr "입금 주소 중 하나에서 입금이 접수 된 경우."
+msgstr "입금 주소 중 하나에 입금이 접수 된 경우."
 
 #: apps/accounts/models.py:82
 msgid "When positive feedback has been left for you."
@@ -425,7 +425,7 @@ msgstr "유형"
 
 #: apps/coins/models.py:46
 msgid "can convert coin to another"
-msgstr "동전을 다른 것으로 바꿀 수있다."
+msgstr "동전을 다른 것으로 변환 할 수있다."
 
 #: apps/coins/models.py:47
 msgid "can explore coins"
@@ -561,7 +561,7 @@ msgstr "동영상 URL"
 
 #: apps/store/models.py:12
 msgid "publish"
-msgstr "출판하다"
+msgstr "게시하다"
 
 #: apps/store/models.py:13
 msgid "slug"
@@ -653,7 +653,7 @@ msgstr "русский"
 
 #: exmr/settings/base.py:164
 msgid "فارسی"
-msgstr "فارسی"
+msgstr "필리핀"
 
 #: exmr/settings/base.py:165
 msgid "中文"
@@ -715,7 +715,7 @@ msgstr "더하다"
 
 #: templates/accounts/2fa_account_list.html:20
 msgid "Two Factor Authentication List"
-msgstr "2 요소 인증 목록"
+msgstr "두 가지 요소 인증 목록"
 
 #: templates/accounts/activation_email.html:6
 msgid "registration"
@@ -730,7 +730,7 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"너 (또는 너로 가장하는 사람)가에서 계정을 등록하도록 요청했습니다.\n"
+"너 (또는 너 인척하는 사람)가에서 계정을 등록하도록 요청했습니다.\n"
 "    귀하의 주소는 Google 기록에서 삭제됩니다."
 
 #: templates/accounts/activation_email.html:18
@@ -762,7 +762,7 @@ msgid ""
 "and your address will be removed from our records.\n"
 msgstr ""
 "\n"
-"너 (또는 너로 가장하는 사람)가에서 계정을 등록하도록 요청했습니다.\n"
+"너 (또는 너 인척하는 사람)가에서 계정을 등록하도록 요청했습니다.\n"
 "귀하의 주소는 Google 기록에서 삭제됩니다.\n"
 
 #: templates/accounts/activation_email.txt:7
@@ -902,7 +902,7 @@ msgstr "안내가 전송되었습니다."
 
 #: templates/accounts/forgot_password_done.html:9
 msgid "to your mail"
-msgstr "당신의 메일에"
+msgstr "귀하의 메일에"
 
 #: templates/accounts/login.html:15 templates/accounts/signup.html:17
 msgid "Welcome!"
@@ -927,7 +927,7 @@ msgstr "비밀번호를 잊으 셨나요?"
 
 #: templates/accounts/login.html:43
 msgid "Don't have an account?"
-msgstr "계정이 없으십니까?"
+msgstr "계정이 없습니까?"
 
 #: templates/accounts/payment-history.html:22
 #: templates/accounts/payment-history.html:23
@@ -977,8 +977,8 @@ msgid ""
 "Want to earn some crypto? Give this URL to new users and when they sign up "
 "you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:"
 msgstr ""
-"암호를 적립하고 싶습니까? 이 URL을 새로운 사용자에게 제공하고 가입시 GETCRYPTOPAYMENTS 거래 수수료의 일정 비율을 "
-"받게됩니다."
+"암호를 적립하고 싶습니까? 이 URL을 새로운 사용자에게 제공하고 가입시 GETCRYPTOPAYMENTS 거래 수수료의 일정 비율을 벌 "
+"수 있습니다."
 
 #: templates/accounts/settings.html:69
 msgid "Share/Save"
@@ -1056,8 +1056,8 @@ msgid ""
 "Linked 2FA Accounts: Link authenticators supporting TOTP such as Google "
 "Authenticator, Authy, FreeOTP, etc. You can edit your linked devices"
 msgstr ""
-"연결된 2FA 계정 : Google Authenticator, Authy, FreeOTP 등과 같은 TOTP를 지원하는 인증 자 연결. "
-"연결된 기기를 수정할 수 있습니다."
+"연결된 2FA 계정 : Google Authenticator, Authy, FreeOTP 등과 같은 TOTP를 지원하는 인증 연결자 링크"
+" 된 기기를 수정할 수 있습니다"
 
 #: templates/accounts/settings.html:252
 msgid "Email Confirmations for Sends/Withdrawals"
@@ -1076,7 +1076,7 @@ msgid ""
 msgstr ""
 "\n"
 "지불 상태 이메일이이 이메일로 발송됩니다.\n"
-"                                                제공되지 않으면 주목할만한 내용이 기본 이메일로 전송됩니다."
+"                                                제공되지 않으면 기본 이메일로 알림이 전송됩니다."
 
 #: templates/accounts/signup.html:49
 msgid ""
@@ -1096,7 +1096,7 @@ msgstr "제공된 전자 메일에 뉴스 레터 및 기타 관련 정보를 보
 
 #: templates/accounts/signup.html:70
 msgid "Have read and agree to the"
-msgstr "읽고"
+msgstr "읽고 동의하십시오."
 
 #: templates/accounts/signup.html:71
 msgid "Terms of Service."
@@ -1178,11 +1178,11 @@ msgstr "서비스 약관"
 
 #: templates/coins/coin-withdrawal.html:8
 msgid "Coin Withdrawal"
-msgstr "동전 탈퇴"
+msgstr "동전 인출"
 
 #: templates/coins/coin-withdrawal.html:12
 msgid "Minimum Withdrawal"
-msgstr "최소 인출"
+msgstr "최소 철회"
 
 #: templates/coins/coin-withdrawal.html:13
 msgid "Current Bal"
@@ -1240,7 +1240,7 @@ msgid ""
 "Instant get crypto payments checkout with easy to use cart plugin, advanced,"
 " invoice buillder and API for custom integration"
 msgstr ""
-"즉시 사용 가능한 카트 플러그인, 고급, 인보이스 buillder 및 사용자 정의 통합을위한 API를 사용하여 암호화 지불 결제를 즉시 "
+"즉시 사용 가능한 카트 플러그인, 고급, 인보이스 buillder 및 API를 사용하여 사용자 정의 통합을위한 암호화 지불 결제를 즉시 "
 "받으십시오."
 
 #: templates/coins/supported-coins.html:33
@@ -1261,7 +1261,7 @@ msgstr "확인"
 
 #: templates/coins/supported-coins.html:39
 msgid "TO BTC"
-msgstr "BTC로"
+msgstr "BTC 도착"
 
 #: templates/coins/supported-coins.html:42
 msgid "EXPLORE"
@@ -1286,7 +1286,7 @@ msgstr "암호"
 
 #: templates/coins/wallets.html:33
 msgid "Balance"
-msgstr "밸런스"
+msgstr "균형"
 
 #: templates/coins/wallets.html:34
 msgid "Value"
@@ -1311,7 +1311,7 @@ msgstr "시작하기"
 
 #: templates/common/index.html:36
 msgid "scroll me"
-msgstr "나를 스크롤하다"
+msgstr "나를 스크롤"
 
 #: templates/common/index.html:53
 msgid "Running an ICO?"
@@ -1323,7 +1323,7 @@ msgstr "GetCryptoPayments가 다음을 도와줍니다."
 
 #: templates/common/index.html:56
 msgid "Accepting payments from over 140 different coins"
-msgstr "140 가지가 넘는 동전에서 지불을 받아들입니다."
+msgstr "140 가지가 넘는 동전을 통한 지불 허용"
 
 #: templates/common/index.html:57
 msgid "All New GetCryptoPayments ICO Marketplace"
@@ -1371,7 +1371,7 @@ msgid ""
 "GetCryptoPayments supports BitGo Instant making Bitcoin payments faster than\n"
 "                                ever before. "
 msgstr ""
-"GetCryptoPayments는 BitGo Instant를 지원합니다.\n"
+"GetCryptoPayments는 BitGo 인스턴트를 지원하여 Bitcoin 결제를\n"
 "                                그 어느 때보 다."
 
 #: templates/common/index.html:219
@@ -1383,7 +1383,7 @@ msgid ""
 "Protect your coins in the vault, requiring a time amount you specify before being\n"
 "                                able to spend them."
 msgstr ""
-"금고에서 동전을 보호하십시오. 지정하기 전에 지정된 시간이 필요합니다.\n"
+"금고에서 동전을 보호하십시오. 지정하기 전에 시간을 지정해야합니다.\n"
 "                                그들을 보낼 수 있습니다."
 
 #: templates/common/index.html:232
@@ -1420,7 +1420,7 @@ msgid ""
 "                                our funds are protected by multi-signature technology."
 msgstr ""
 "의\n"
-"                                우리의 자금은 다중 서명 기술로 보호됩니다."
+"                                우리 자금은 다중 서명 기술로 보호됩니다."
 
 #: templates/common/index.html:277
 msgid "Mobile Apps"
@@ -1431,8 +1431,8 @@ msgid ""
 "Access your account, accept payments in person, and convert coins anywhere with\n"
 "                                our mobile apps for Android and iOS."
 msgstr ""
-"계정에 액세스하고, 직접 지불을 수락하고, 어디서나 동전을 변환하십시오.\n"
-"                                Android 및 iOS 용 Google 모바일 앱"
+"계정에 액세스하고, 직접 지불하고, 동전을 어디서나 변환하십시오.\n"
+"                                Android 및 iOS 용 모바일 앱"
 
 #: templates/common/index.html:290
 msgid "Auto Coin Conversion"
@@ -1443,7 +1443,7 @@ msgid ""
 "Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
 "                                time and fees."
 msgstr ""
-"일부 동전을 자동 변환하여 자금 이동의 낭비를 줄이고 낭비하지 않습니다.\n"
+"일부 동전은 자동으로 변환되어 자금 이동의 낭비를 줄이고 낭비하지 않습니다.\n"
 "                                시간과 비용."
 
 #: templates/common/index.html:303
@@ -1464,14 +1464,16 @@ msgstr "우리의 목표는 182 개국에 걸쳐 1,000,000 개 이상의 공급 
 msgid ""
 "GetCryptoPayments is the first and largest payment processor of over 150 cryptocurrencies\n"
 "                    "
-msgstr "GetCryptoPayments는 150 개가 넘는 크립토 통화 중 최초이자 최대 지불 프로세서입니다."
+msgstr ""
+"GetCryptoPayments는 150 개 이상의 크립토 크로스 (cryptocurrencies)로 이루어진 최초이자 최대 지불 "
+"프로세서입니다."
 
 #: templates/common/index.html:349
 msgid ""
 "Thank you GetCryptoPayments for taking Tron coin into consideration to belong to the list of your ERC-20\n"
 "                        tokens portfolio. I know you will have many successes."
 msgstr ""
-"귀하의 ERC-20 목록에 속하는 것을 고려하여 Tron 동전을 가져가는 것에 대해 GetCryptoPayments에 감사드립니다.\n"
+"귀하의 ERC-20 목록에 속하는 것으로 Tron 동전을 가져가는 것에 대한 GetCryptoPayments에 감사드립니다.\n"
 "                        토큰 포트폴리오. 나는 네가 많은 성공을 거둘 것이라는 것을 안다."
 
 #: templates/common/index.html:351
@@ -1485,7 +1487,7 @@ msgid ""
 "                        need to develop  with one API now."
 msgstr ""
 "우리는 스텔라 코인 지불을 받아들이고 개발을 시작했습니다. 그런 다음 GetCryptoPayments를 실현했습니다.\n"
-"                        우리를 위해 열심히 일하고 모든 지불을 받아 Bitcoin에서 돈을받을 수 있습니다. GetCryptoPayments에 감사드립니다.\n"
+"                        우리를 위해 열심히 일하고 모든 지불을 받아 Bitcoin에서 돈을받을 수 있습니다. 감사합니다 GetCryptoPayments, 우리는 단지\n"
 "                        이제는 하나의 API로 개발해야합니다."
 
 #: templates/common/index.html:362
@@ -1527,7 +1529,7 @@ msgstr "즉시 지불 통지"
 
 #: templates/common/merchant-tools.html:37
 msgid "GETCRYPTOPAYMENTAPI"
-msgstr "취업 알선"
+msgstr "착취 계획"
 
 #: templates/common/merchant-tools.html:44
 msgid "INVOICE BUILDER"
@@ -1535,7 +1537,7 @@ msgstr "송장 작성자"
 
 #: templates/common/merchant-tools.html:46
 msgid "Payment Request invoice maker"
-msgstr "지불 요청 송장 생성기"
+msgstr "지불 요청 송장 작성자"
 
 #: templates/common/merchant-tools.html:53
 msgid "POINT OF SALE(POS) INTERFACE"
@@ -1647,7 +1649,7 @@ msgstr "매장 디렉토리"
 #: templates/store/store_categories.html:7
 #: templates/store/store_listing.html:7
 msgid "Largest directory of merchants accepting multiple cryptocurrencies"
-msgstr "여러 크립토 체인을 허용하는 최대 디렉토리"
+msgstr "여러 개의 크립토 rencies 통화를 허용하는 가맹점의 최대 디렉토리"
 
 #: templates/store/store_categories.html:15
 #: templates/store/store_listing.html:15

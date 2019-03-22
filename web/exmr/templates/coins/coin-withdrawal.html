@@ -4,7 +4,7 @@
 {% load transaction_status %}
 {% load i18n widget_tweaks %}
 <section class="section section-pad" style="padding-bottom: 1em; ">
-    <div class="container">
+    <div >
         <div class="bx-ash mb-2">
             
                     <div>
@@ -20,50 +20,51 @@
                                   <div class="card" style="background-color: transparent;">
                                       <div class="card-body" style="word-wrap: normal">
                                           <div class="row" style="color: white">
-                                              <div class="col-4" style="line-height: 40px;" align="right">
+                                              <div class="col-8 col-sm-8 col-md-6 col-lg-4" style="line-height: 40px;" align="left">
                                                 <p><b>{% trans 'Minimum Withdrawal' %} :</b></p>
                                                 <p><b>{% trans 'Current Bal' %} :</b></p>
-                                                <p><b>{% trans 'Send/Withdrawal Amount' %} : </b></p>
+                                                <p style=" padding-bottom: 40px"><b>{% trans 'Send/Withdrawal Amount' %} : </b></p>
                                                 <p><b>{% trans 'Transation Fee (est.)' %}' : </b></p>
                                                 <p><b>{% trans 'Total Withdrawal' %} : </b></p>
-                                                 <p>{{coin.name}} {% trans 'Address or $payByName to send to' %} : </p>
-                                                 <p>{% trans 'Optional Note (Only Viewable by you)' %}' </p>
+                                                 <p>{{coin.name}} {% trans 'Address or $payByName' %} : </p>
+                                                 <p>{% trans 'Optional Note ' %}' </p>
                                               </div>
-                                              <div class="col-6 lh40" align="left" style="line-height: 40px;">
+                                              <div class="col-4 col-sm-4 col-md-6 col-lg-8 lh40" align="left" style="line-height: 40px;">
                                                 <p>00010 {% if coin.code %}{{coin.code}}{% else %}{{ coin.contract_symbol }}{% endif %}</p>
                                                 <p>{% get_bal_coin coin.code request.user %} {% if coin.code %}{{coin.code}}{% else %}{% get_bal_coin coin.contract_symbol request.user %}{{coin.contract_symbol}}{% endif %}</p>
-                                                <div class="row m0 mb20">
-                                                  <div class="col-sm-6 ">
+                                                <div class="row m0 mb20" style="margin-bottom: 20px;line-height: 40px;">
+                                                  <div class="col-12 col-sm-12 col-md-12 col-lg-12" >
                                                     <div class="input-group">
                                                       <input id="coin_amount" type="text" class="form-control amount"  >
-                                                      <select class="form-control" >
+                                                      <select  >
                                                       <option>{% if coin.code %}{{coin.code}}{% else %}{{ coin.contract_symbol }}{% endif %} </option>	
                                                       </select></div>
                                                   </div>
                                                   
-                                                   <div class="col-sm-6 p0" style="line-height: 40px;">
+                                                   <div class="col-12 col-sm-12 col-md-12  col-lg-12 p0" >
                                                    
                                                     <div class="input-group width80per">
                                                      <div class="divid"></div>
                                                       <input id="converted_amount" type="text" class="form-control amount"  >
                                                       
-                                                        <select name="dispcoin" class="form-control" id="dispcoin">
+                                                        <select name="dispcoin"  id="dispcoin">
                                                           <option value="BTC">BTC</option><option value="USD" selected="">USD</option><option value="CAD">CAD</option><option value="EUR">EUR</option><option value="ARS">ARS</option><option value="AUD">AUD</option><option value="AZN">AZN</option><option value="BGN">BGN</option><option value="BRL">BRL</option><option value="BYN">BYN</option><option value="CHF">CHF</option><option value="CLP">CLP</option><option value="CNY">CNY</option><option value="COP">COP</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="GBP">GBP</option><option value="GEL">GEL</option><option value="GIP">GIP</option><option value="HKD">HKD</option><option value="HUF">HUF</option><option value="IDR">IDR</option><option value="ILS">ILS</option><option value="INR">INR</option><option value="IRR">IRR</option><option value="IRT">IRT</option><option value="ISK">ISK</option><option value="JPY">JPY</option><option value="KRW">KRW</option><option value="LAK">LAK</option><option value="MKD">MKD</option><option value="MXN">MXN</option><option value="MYR">MYR</option><option value="NGN">NGN</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PEN">PEN</option><option value="PHP">PHP</option><option value="PKR">PKR</option><option value="PLN">PLN</option><option value="RON">RON</option><option value="RUB">RUB</option><option value="SEK">SEK</option><option value="SGD">SGD</option><option value="THB">THB</option><option value="TRY">TRY</option><option value="TWD">TWD</option><option value="UAH">UAH</option><option value="VND">VND</option><option value="ZAR">ZAR</option>
                                                         </select>
                                                        
                                                     </div>
                                                   </div>
                                                 </div>
-                                                <p style="margin-top: 19px;">00000000 {{ coin.code }}</p>
-                                                <p  id="id_amount">00000000 {{ coin.code }}</p>
+                                                <p style="margin-top: 19px;">000 {{ coin.code }}</p>
+                                                <p  id="id_amount">000 {{ coin.code }}</p>
                                                 <input type="text" class="form-control form-group wallet-send-coin-addr" />
                                                 <input type="text" class="form-control form-group" />
                                                 {% if not coin.code %}
                                                 <p>Important: You must have some ETH in the same address as your EXMR in order to pay the gas to send it. Not just in your account balance but in the same address; if needed you can do a withdrawal of ETH to your EXMR address.</p>
                                                 {% endif %}
-                                                <button class="btn btn-orange" onclick="sendConfirm();"> {% trans 'Request Withdrawal/Send' %} </button>
-                                                <img id="loading-image" src="{% static 'images/load.gif' %}" style="display:none;height: 60px;"/>
-                                              </div>                                     
+                                                
+                                              </div>
+                                              <button class="btn btn-orange" onclick="sendConfirm();"> {% trans 'Request Withdrawal/Send' %} </button>
+                                              <img id="loading-image" src="{% static 'images/load.gif' %}" style="display:none;height: 60px;"/>                                    
                                             </div>
                                   </div>                    
                                 </div>                    

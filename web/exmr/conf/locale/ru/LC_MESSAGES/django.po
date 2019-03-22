@@ -19,12 +19,12 @@ msgstr ""
 
 #: apps/accounts/admin.py:17
 msgid "Basic Details"
-msgstr "Основные сведения"
+msgstr "Основные детали"
 
 #: apps/accounts/admin.py:20 templates/accounts/settings.html:24
 #: templates/accounts/settings.html:163
 msgid "Public Info"
-msgstr "Общественная информация"
+msgstr "Публичная информация"
 
 #: apps/accounts/admin.py:23
 msgid "Login Security"
@@ -40,7 +40,7 @@ msgstr "женский"
 
 #: apps/accounts/forms.py:27 apps/accounts/models.py:26
 msgid "Other/Prefer Not to say"
-msgstr "Другое / Предпочитаю не говорить"
+msgstr "Другое / Не хочу отвечать"
 
 #: apps/accounts/forms.py:31
 msgid "02-10-2018"
@@ -64,15 +64,15 @@ msgstr "Письма не совпадают"
 
 #: apps/accounts/forms.py:70
 msgid "Please accept the terms and conditions"
-msgstr "Примите условия"
+msgstr "Пожалуйста, примите условия"
 
 #: apps/accounts/forms.py:133
 msgid "Invalid mobile number."
-msgstr "Недопустимый номер мобильного телефона."
+msgstr "Неверный номер мобильного телефона."
 
 #: apps/accounts/forms.py:171 apps/store/forms.py:21
 msgid "Either username or email needs to be provided"
-msgstr "Необходимо указать либо имя пользователя, либо электронную почту."
+msgstr "Необходимо указать имя пользователя или адрес электронной почты"
 
 #: apps/accounts/forms.py:176 apps/store/forms.py:26
 msgid "User not found"
@@ -92,11 +92,11 @@ msgstr "Эл. адрес"
 
 #: apps/accounts/models.py:44
 msgid "Trezor Login"
-msgstr "Вход в Трезор"
+msgstr "Вход в систему Trezor"
 
 #: apps/accounts/models.py:45
 msgid "2FA Account"
-msgstr "Аккаунт 2FA"
+msgstr "Счет 2FA"
 
 #: apps/accounts/models.py:46
 msgid "None"
@@ -126,7 +126,7 @@ msgstr "публичное имя"
 
 #: apps/accounts/models.py:59
 msgid "public email"
-msgstr "публичная электронная почта"
+msgstr "общедоступная электронная почта"
 
 #: apps/accounts/models.py:60
 msgid "public URL"
@@ -146,7 +146,7 @@ msgstr "формат времени"
 
 #: apps/accounts/models.py:64
 msgid "use gravatar"
-msgstr "использовать gravatar"
+msgstr "использовать граватар"
 
 #: apps/accounts/models.py:65
 msgid "PGP/GPG public key"
@@ -158,11 +158,11 @@ msgstr "Аутентификация 2FA"
 
 #: apps/accounts/models.py:68
 msgid "email confirmation send/withdrawal"
-msgstr "отправка / вывод подтверждения по электронной почте"
+msgstr "подтверждение по электронной почте отправка / снятие"
 
 #: apps/accounts/models.py:69
 msgid "is subscribed"
-msgstr "подписывается"
+msgstr "подписан"
 
 #: apps/accounts/models.py:70
 msgid "reference count"
@@ -170,19 +170,19 @@ msgstr "счетчик ссылок"
 
 #: apps/accounts/models.py:74 templates/accounts/settings.html:287
 msgid "IPN Secret"
-msgstr "Секрет IPN"
+msgstr "IPN Secret"
 
 #: apps/accounts/models.py:75
 msgid ""
 "This is used to verify that an IPN is from us, use a good random string "
 "nobody can guess."
 msgstr ""
-"Это используется для проверки того, что IPN принадлежит нам, используйте "
-"хорошую случайную строку, которую никто не может догадаться."
+"Это используется для проверки того, что IPN от нас, используйте хорошую "
+"случайную строку, которую никто не может догадаться."
 
 #: apps/accounts/models.py:77 templates/accounts/settings.html:293
 msgid "IPN URL"
-msgstr "URL IPN"
+msgstr "IPN URL"
 
 #: apps/accounts/models.py:78
 msgid "When a user submits a new payment to you"
@@ -190,15 +190,15 @@ msgstr "Когда пользователь отправляет вам новы
 
 #: apps/accounts/models.py:79
 msgid "When funds have been received by us for a payment to you."
-msgstr "Когда средства были получены нами для оплаты вам."
+msgstr "Когда мы получили средства для оплаты вам."
 
 #: apps/accounts/models.py:80
 msgid "When funds for a payment have been sent to you."
-msgstr "Когда вам были отправлены средства на оплату."
+msgstr "Когда средства для оплаты были отправлены вам."
 
 #: apps/accounts/models.py:81
 msgid "When a deposit is received on one of your deposit addresses."
-msgstr "Когда депозит получен по одному из ваших депозитных адресов."
+msgstr "При получении депозита на один из ваших депозитных адресов."
 
 #: apps/accounts/models.py:82
 msgid "When positive feedback has been left for you."
@@ -206,15 +206,15 @@ msgstr "Когда положительный отзыв был оставлен
 
 #: apps/accounts/models.py:83
 msgid "status notification email"
-msgstr "уведомление о статусе уведомления"
+msgstr "электронная почта уведомления о статусе"
 
 #: apps/accounts/models.py:84
 msgid "receive SMS text when funds are received"
-msgstr "получать текст SMS при получении денежных средств"
+msgstr "получать смс при получении средств"
 
 #: apps/accounts/models.py:85
 msgid "SMS phone number"
-msgstr "Номер телефона SMS"
+msgstr "СМС номер телефона"
 
 #: apps/accounts/models.py:88
 msgid "Profile"
@@ -234,11 +234,11 @@ msgstr "Активация профиля"
 
 #: apps/accounts/models.py:176
 msgid "Profile Activations"
-msgstr "Активация профиля"
+msgstr "Активации профиля"
 
 #: apps/accounts/models.py:184
 msgid "saved address name"
-msgstr "имя сохраненного адреса"
+msgstr "сохраненное имя адреса"
 
 #: apps/accounts/models.py:185
 msgid "is default"
@@ -298,7 +298,7 @@ msgstr "комментарий"
 
 #: apps/accounts/models.py:212
 msgid "left by"
-msgstr "слева"
+msgstr "оставленный"
 
 #: apps/accounts/models.py:214
 msgid "buyer or seller"
@@ -322,7 +322,7 @@ msgstr "Код аутентификации"
 
 #: apps/accounts/views.py:49
 msgid "Activation mail sent"
-msgstr "Активация почты отправлена"
+msgstr "Письмо активации отправлено"
 
 #: apps/accounts/views.py:172
 msgid "Account details updated successfully"
@@ -331,11 +331,11 @@ msgstr "Данные учетной записи успешно обновлен
 #: apps/accounts/views.py:184 apps/accounts/views.py:209
 #: apps/accounts/views.py:213 apps/accounts/views.py:232
 msgid "Information updated successfully"
-msgstr "Информация обновлена ​​успешно"
+msgstr "Информация успешно обновлена"
 
 #: apps/accounts/views.py:203
 msgid "Current password is incorrect"
-msgstr "Неверный пароль"
+msgstr "Неверный текущий пароль"
 
 #: apps/accounts/views.py:205
 msgid "Passwords doesn't match"
@@ -343,15 +343,16 @@ msgstr "Пароли не совпадают"
 
 #: apps/accounts/views.py:248
 msgid "Invalid account activation link"
-msgstr "Недействительная ссылка активации учетной записи"
+msgstr "Неверная ссылка для активации аккаунта"
 
 #: apps/accounts/views.py:251
 msgid "Account activation link expired"
-msgstr "Истечение активации учетной записи"
+msgstr "Ссылка для активации аккаунта истекла"
 
 #: apps/accounts/views.py:258
 msgid "Account activated <br><p>Please <a href=/login>login</a><p>"
-msgstr "Аккаунт активирован <p> Пожалуйста, <a href=/login> логин </a> <p>"
+msgstr ""
+"Аккаунт активирован <br> <p> Пожалуйста, <a href=/login> войдите </a> <p>"
 
 #: apps/coins/models.py:13
 msgid "Crypto"
@@ -363,7 +364,7 @@ msgstr "пульсация"
 
 #: apps/coins/models.py:15
 msgid "Ether tokens"
-msgstr "Эфирные жетоны"
+msgstr "Эфирные токены"
 
 #: apps/coins/models.py:16
 msgid "Fiat"
@@ -371,11 +372,11 @@ msgstr "указ"
 
 #: apps/coins/models.py:26
 msgid "To Balance"
-msgstr "Сбалансировать"
+msgstr "Чтобы сбалансировать"
 
 #: apps/coins/models.py:27
 msgid "ASAP"
-msgstr "как можно скорее"
+msgstr "Срочно"
 
 #: apps/coins/models.py:28
 msgid "Nightly"
@@ -383,19 +384,19 @@ msgstr "еженощно"
 
 #: apps/coins/models.py:29
 msgid "To Balance + Convert"
-msgstr "Чтобы сбалансировать + конвертировать"
+msgstr "Баланс + конвертировать"
 
 #: apps/coins/models.py:30
 msgid "ASAP + Convert"
-msgstr "ASAP + конвертировать"
+msgstr "Как можно скорее + ​​конвертировать"
 
 #: apps/coins/models.py:38
 msgid "coin name"
-msgstr "имя монеты"
+msgstr "название монеты"
 
 #: apps/coins/models.py:39
 msgid "coin site URL"
-msgstr "URL сайта монеты"
+msgstr "URL сайта монет"
 
 #: apps/coins/models.py:40
 msgid "code"
@@ -411,7 +412,7 @@ msgstr "образ"
 
 #: apps/coins/models.py:42
 msgid "Upload a 35X35 image for better experience"
-msgstr "Загрузите изображение 35X35 для лучшего опыта."
+msgstr "Загрузите изображение 35X35 для лучшего опыта"
 
 #: apps/coins/models.py:43
 msgid "to BTC value"
@@ -419,7 +420,7 @@ msgstr "к значению BTC"
 
 #: apps/coins/models.py:44
 msgid "fee percentage"
-msgstr "процентная ставка"
+msgstr "процент комиссии"
 
 #: apps/coins/models.py:45
 msgid "type"
@@ -427,15 +428,15 @@ msgstr "тип"
 
 #: apps/coins/models.py:46
 msgid "can convert coin to another"
-msgstr "может конвертировать монету в другую"
+msgstr "можно конвертировать монету в другую"
 
 #: apps/coins/models.py:47
 msgid "can explore coins"
-msgstr "может исследовать монеты"
+msgstr "можно исследовать монеты"
 
 #: apps/coins/models.py:48
 msgid "can donate coins"
-msgstr "может пожертвовать монеты"
+msgstr "можно пожертвовать монеты"
 
 #: apps/coins/models.py:49
 msgid "Disable this coin anytime"
@@ -471,7 +472,7 @@ msgstr "режим оплаты"
 
 #: apps/coins/models.py:71
 msgid "discount field"
-msgstr "поле скидки"
+msgstr "поле скидок"
 
 #: apps/coins/models.py:72
 msgid "maximum per transaction"
@@ -495,19 +496,19 @@ msgstr "кошелек с адреса"
 
 #: apps/coins/models.py:90
 msgid "wallet to address"
-msgstr "кошелек для адресации"
+msgstr "кошелек по адресу"
 
 #: apps/coins/models.py:96
 msgid "Coin Conversion Request"
-msgstr "Запрос на конвертирование монет"
+msgstr "Запрос конвертации монет"
 
 #: apps/coins/models.py:97
 msgid "Coin Conversion Requests"
-msgstr "Запросы на конвертирование монет"
+msgstr "Запросы на конвертацию монет"
 
 #: apps/coins/models.py:125 apps/common/models.py:19 apps/store/models.py:11
 msgid "name"
-msgstr "имя"
+msgstr "название"
 
 #: apps/coins/models.py:126
 msgid "email"
@@ -515,11 +516,11 @@ msgstr "Эл. адрес"
 
 #: apps/coins/models.py:127
 msgid "coin website"
-msgstr "сайт монеты"
+msgstr "сайт монет"
 
 #: apps/coins/models.py:128
 msgid "coin url"
-msgstr "монета"
+msgstr "URL монеты"
 
 #: apps/common/models.py:10
 msgid "HTTP Auth"
@@ -547,7 +548,7 @@ msgstr "поставщик"
 
 #: apps/common/models.py:34 apps/common/models.py:108
 msgid "link"
-msgstr "ссылка"
+msgstr "ссылка на сайт"
 
 #: apps/common/models.py:38
 msgid "Social Link"
@@ -583,7 +584,7 @@ msgstr "название магазина"
 
 #: apps/store/models.py:36
 msgid "store url"
-msgstr "адрес магазина"
+msgstr "URL магазина"
 
 #: apps/store/models.py:37
 msgid "category"
@@ -603,7 +604,7 @@ msgstr "ключевые слова"
 
 #: apps/store/models.py:41
 msgid "banner image url"
-msgstr "URL-адрес баннера"
+msgstr "URL изображения баннера"
 
 #: apps/store/models.py:42
 msgid "is approved"
@@ -675,7 +676,7 @@ msgstr "Добавить Google Authenticator"
 
 #: templates/accounts/2fa_account.html:23
 msgid "2FA Accounts"
-msgstr "Учетные записи 2FA"
+msgstr "Счета 2FA"
 
 #: templates/accounts/2fa_account.html:45
 #: templates/accounts/2fa_account_list.html:34
@@ -701,7 +702,7 @@ msgstr "действие"
 
 #: templates/accounts/2fa_account.html:64
 msgid "No devices Found"
-msgstr "Не найдено ни одного устройства"
+msgstr "Устройства не найдены"
 
 #: templates/accounts/2fa_account.html:88
 msgid "Secret Key"
@@ -713,11 +714,11 @@ msgstr "Код активации"
 
 #: templates/accounts/2fa_account.html:105
 msgid "Add"
-msgstr "Добавить"
+msgstr "добавлять"
 
 #: templates/accounts/2fa_account_list.html:20
 msgid "Two Factor Authentication List"
-msgstr "Два списка аутентификации факторов"
+msgstr "Список двухфакторной аутентификации"
 
 #: templates/accounts/activation_email.html:6
 msgid "registration"
@@ -732,7 +733,7 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"Вы (или кто-то притворяетесь вами) попросили зарегистрировать учетную запись в\n"
+"Вы (или кто-то, притворяющийся вами) попросили зарегистрировать учетную запись на\n"
 "    и ваш адрес будет удален из наших записей."
 
 #: templates/accounts/activation_email.html:18
@@ -742,7 +743,7 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"Чтобы активировать эту учетную запись, нажмите следующую ссылку."
+"Чтобы активировать эту учетную запись, пожалуйста, нажмите на следующую ссылку"
 
 #: templates/accounts/activation_email.html:29
 #, python-format
@@ -754,7 +755,7 @@ msgid ""
 msgstr ""
 "\n"
 "С уважением,\n"
-"    %(site_name)s Управление"
+"    %(site_name)s Management"
 
 #: templates/accounts/activation_email.txt:2
 #, python-format
@@ -764,7 +765,7 @@ msgid ""
 "and your address will be removed from our records.\n"
 msgstr ""
 "\n"
-"Вы (или кто-то притворяетесь вами) попросили зарегистрировать учетную запись в\n"
+"Вы (или кто-то, притворяющийся вами) попросили зарегистрировать учетную запись на\n"
 "и ваш адрес будет удален из наших записей.\n"
 
 #: templates/accounts/activation_email.txt:7
@@ -773,7 +774,7 @@ msgid ""
 "To activate this account, please click the following link:\n"
 msgstr ""
 "\n"
-"Чтобы активировать эту учетную запись, нажмите следующую ссылку:\n"
+"Для активации этой учетной записи, пожалуйста, нажмите на следующую ссылку:\n"
 
 #: templates/accounts/activation_email.txt:13
 #, python-format
@@ -784,7 +785,7 @@ msgid ""
 msgstr ""
 "\n"
 "С уважением,\n"
-"%(site_name)s Управление\n"
+"%(site_name)s Management\n"
 
 #: templates/accounts/address-book.html:22
 msgid "Add New Address"
@@ -832,7 +833,7 @@ msgstr "Номер телефона"
 
 #: templates/accounts/address-book.html:83
 msgid "No Address Found"
-msgstr "Не найдено адреса"
+msgstr "Адрес не найден"
 
 #: templates/accounts/dashboard-base.html:16
 msgid "Home"
@@ -844,7 +845,7 @@ msgstr "Ваш кошелек"
 
 #: templates/accounts/dashboard-base.html:31
 msgid "Coin Settings"
-msgstr "Настройки монеты"
+msgstr "Настройки монет"
 
 #: templates/accounts/dashboard-base.html:37
 msgid "Transaction History"
@@ -860,7 +861,7 @@ msgstr "$ PayByName"
 
 #: templates/accounts/dashboard.html:18 templates/coins/wallets.html:17
 msgid "Recent Transaction"
-msgstr "Последние транзакции"
+msgstr "Недавняя транзакция"
 
 #: templates/accounts/dashboard.html:32
 msgid "Time"
@@ -868,7 +869,7 @@ msgstr "Время"
 
 #: templates/accounts/dashboard.html:33
 msgid "Received / Sent Name"
-msgstr "Получено / отправлено имя"
+msgstr "Полученное / отправленное имя"
 
 #: templates/accounts/dashboard.html:35
 msgid "Amount"
@@ -876,11 +877,11 @@ msgstr "Количество"
 
 #: templates/accounts/dashboard.html:36
 msgid "Status"
-msgstr "Положение дел"
+msgstr "Статус"
 
 #: templates/accounts/dashboard.html:70 templates/coins/wallets.html:42
 msgid "No Payment Found"
-msgstr "Не найдено платежей"
+msgstr "Платеж не найден"
 
 #: templates/accounts/forgot-password.html:14
 #: templates/accounts/forgot_password.html:13
@@ -891,7 +892,7 @@ msgstr "Забыли пароль"
 #: templates/accounts/forgot_password.html:14
 msgid "To reset your password, enter your username or email address below"
 msgstr ""
-"Чтобы сбросить пароль, введите свое имя пользователя или адрес электронной "
+"Чтобы сбросить пароль, введите ваше имя пользователя или адрес электронной "
 "почты ниже"
 
 #: templates/accounts/forgot-password.html:25
@@ -902,7 +903,7 @@ msgstr "Отправить"
 
 #: templates/accounts/forgot_password_done.html:8
 msgid "Instructions has been sent"
-msgstr "Инструкции отправлены"
+msgstr "Инструкция отправлена"
 
 #: templates/accounts/forgot_password_done.html:9
 msgid "to your mail"
@@ -931,7 +932,7 @@ msgstr "Забыли пароль?"
 
 #: templates/accounts/login.html:43
 msgid "Don't have an account?"
-msgstr "У вас нет учетной записи?"
+msgstr "У вас нет аккаунта?"
 
 #: templates/accounts/payment-history.html:22
 #: templates/accounts/payment-history.html:23
@@ -942,7 +943,7 @@ msgstr "История депозитов"
 
 #: templates/accounts/payment-history.html:32
 msgid "Incoming Payment HIstory"
-msgstr "Входящие платежи HIstory"
+msgstr "История входящих платежей"
 
 #: templates/accounts/payment-history.html:36
 msgid "History Search & Export"
@@ -958,7 +959,7 @@ msgstr "Базовые настройки"
 
 #: templates/accounts/settings.html:30 templates/accounts/settings.html:212
 msgid "Login & Security"
-msgstr "Вход и Безопасность"
+msgstr "Логин и безопасность"
 
 #: templates/accounts/settings.html:35 templates/accounts/settings.html:278
 msgid "Merchant Settings"
@@ -981,9 +982,9 @@ msgid ""
 "Want to earn some crypto? Give this URL to new users and when they sign up "
 "you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:"
 msgstr ""
-"Хотите заработать крипто? Дайте этот URL новым пользователям, и при "
-"регистрации вы заработаете процент от их комиссионных сборов за "
-"GETCRYPTOPAYMENTS:"
+"Хотите заработать немного крипто? Дайте этот URL-адрес новым пользователям, "
+"и когда они зарегистрируются, вы получите процент от их комиссионных за "
+"транзакции GETCRYPTOPAYMENTS:"
 
 #: templates/accounts/settings.html:69
 msgid "Share/Save"
@@ -1015,19 +1016,19 @@ msgstr "Формат времени"
 
 #: templates/accounts/settings.html:154
 msgid "Update Account"
-msgstr "Обновить учетную запись"
+msgstr "Обновить аккаунт"
 
 #: templates/accounts/settings.html:172
 msgid "Public Name"
-msgstr "Открытое имя"
+msgstr "Публичное имя"
 
 #: templates/accounts/settings.html:178
 msgid "Public Email"
-msgstr "Электронная почта"
+msgstr "Публичная электронная почта"
 
 #: templates/accounts/settings.html:185
 msgid "Public URL"
-msgstr "Общий URL"
+msgstr "Общедоступный URL"
 
 #: templates/accounts/settings.html:202 templates/accounts/settings.html:268
 #: templates/accounts/settings.html:367
@@ -1036,7 +1037,7 @@ msgstr "Обновить"
 
 #: templates/accounts/settings.html:221
 msgid "Current Password"
-msgstr "текущий пароль"
+msgstr "Текущий пароль"
 
 #: templates/accounts/settings.html:227
 msgid "New Password"
@@ -1048,15 +1049,15 @@ msgstr "Подтвердите Пароль"
 
 #: templates/accounts/settings.html:240
 msgid "2 Factor Authentication"
-msgstr "2 Аутентификация фактора"
+msgstr "2 Факторная Аутентификация"
 
 #: templates/accounts/settings.html:244
 msgid ""
 "Email: You will be prompted for a code at the time of login which will be "
 "sent to your provided email ID."
 msgstr ""
-"Электронная почта: вам будет предложено ввести код во время входа в систему,"
-" который будет отправлен на указанный вами идентификатор электронной почты."
+"Электронная почта: Вам будет предложено ввести код во время входа в систему,"
+" который будет отправлен на указанный вами адрес электронной почты."
 
 #: templates/accounts/settings.html:245
 msgid ""
@@ -1069,7 +1070,7 @@ msgstr ""
 
 #: templates/accounts/settings.html:252
 msgid "Email Confirmations for Sends/Withdrawals"
-msgstr "Подтверждение электронной почты для отправки / снятия"
+msgstr "Подтверждения по электронной почте для отправки / снятия"
 
 #: templates/accounts/settings.html:259
 msgid "PGP/GPG Public Key"
@@ -1083,15 +1084,15 @@ msgid ""
 "                                            "
 msgstr ""
 "\n"
-"Электронное письмо о статусе оплаты будет отправлено на это электронное письмо.\n"
-"                                                Если не указано, уведомления не будут отправлены на основной адрес электронной почты"
+"На этот адрес будет отправлено электронное письмо со статусом платежа.\n"
+"                                                Если не предоставлено, уведомления будут отправлены на основной адрес электронной почты"
 
 #: templates/accounts/signup.html:49
 msgid ""
 " Please make it at least 10 characters long and include letters, numbers,\n"
 "                                 and special characters. "
 msgstr ""
-"Пожалуйста, сделайте это как минимум 10 символов и введите буквы, цифры,\n"
+"Пожалуйста, сделайте его длиной не менее 10 символов и включайте буквы, цифры,\n"
 "                                 и специальные символы."
 
 #: templates/accounts/signup.html:51
@@ -1101,16 +1102,16 @@ msgstr "Часовой пояс"
 #: templates/accounts/signup.html:61
 msgid "Send newsletters and other relevant information to my provided e-mail."
 msgstr ""
-"Отправьте информационные бюллетени и другую соответствующую информацию на "
-"мой предоставленный e-mail."
+"Отправлять информационные бюллетени и другую соответствующую информацию на "
+"мой адрес электронной почты."
 
 #: templates/accounts/signup.html:70
 msgid "Have read and agree to the"
-msgstr "Прочтите и согласитесь с"
+msgstr "Прочитал и согласен с"
 
 #: templates/accounts/signup.html:71
 msgid "Terms of Service."
-msgstr "Условия использования."
+msgstr "Условия обслуживания."
 
 #: templates/accounts/signup.html:85
 msgid " 'Type the characters you see in the image above:' "
@@ -1118,11 +1119,11 @@ msgstr "'Введите символы, которые вы видите на к
 
 #: templates/accounts/signup_complete.html:6
 msgid "An activation link has been sent"
-msgstr "Была отправлена ​​ссылка активации"
+msgstr "Ссылка для активации была отправлена"
 
 #: templates/accounts/signup_complete.html:7
 msgid "Please check your mail"
-msgstr "Проверьте почту"
+msgstr "Пожалуйста, проверьте вашу почту"
 
 #: templates/accounts/verify_2fa.html:18
 msgid "Enter"
@@ -1134,15 +1135,15 @@ msgstr "Поддерживаемые монеты"
 
 #: templates/base.html:79 templates/exmr.html:50 templates/exmr.html:139
 msgid "Merchant Tools"
-msgstr "Инструменты торговца"
+msgstr "Торговые инструменты"
 
 #: templates/base.html:82 templates/exmr.html:41 templates/exmr.html:142
 msgid "Public Coin Vote"
-msgstr "Общественная монета"
+msgstr "Публичное монетное голосование"
 
 #: templates/base.html:85 templates/exmr.html:47 templates/exmr.html:145
 msgid "Store Directory"
-msgstr "Каталог магазинов"
+msgstr "Каталог магазина"
 
 #: templates/base.html:95 templates/exmr.html:155
 msgid "Get Mobile App"
@@ -1150,11 +1151,11 @@ msgstr "Получить мобильное приложение"
 
 #: templates/base.html:96 templates/exmr.html:156
 msgid "Affiliate Information"
-msgstr "Информация о партнере"
+msgstr "Партнерская информация"
 
 #: templates/base.html:97 templates/exmr.html:157
 msgid "Official TOR URL"
-msgstr "Официальный URL-адрес TOR"
+msgstr "Официальный URL TOR"
 
 #: templates/base.html:98 templates/exmr.html:158
 msgid "PGP Key"
@@ -1184,31 +1185,31 @@ msgstr "политика конфиденциальности"
 
 #: templates/base.html:140 templates/exmr.html:178
 msgid "Terms of Service"
-msgstr "Условия использования"
+msgstr "условия обслуживания"
 
 #: templates/coins/coin-withdrawal.html:8
 msgid "Coin Withdrawal"
-msgstr "Вывод монет"
+msgstr "Снятие монет"
 
 #: templates/coins/coin-withdrawal.html:12
 msgid "Minimum Withdrawal"
-msgstr "Минимальный вывод средств"
+msgstr "Минимальный вывод"
 
 #: templates/coins/coin-withdrawal.html:13
 msgid "Current Bal"
-msgstr "Текущий бал"
+msgstr "Текущий Бал"
 
 #: templates/coins/coin-withdrawal.html:14
 msgid "Send/Withdrawal Amount"
-msgstr "Сумма отправки / снятия средств"
+msgstr "Сумма отправки / снятия"
 
 #: templates/coins/coin-withdrawal.html:15
 msgid "Transation Fee (est.)"
-msgstr "Транзакционная плата (оценка)."
+msgstr "Плата за переход (оценка)"
 
 #: templates/coins/coin-withdrawal.html:16
 msgid "Total Withdrawal"
-msgstr "Общий вывод средств"
+msgstr "Общий вывод"
 
 #: templates/coins/coin-withdrawal.html:17
 msgid "Litecoin Testnet address or $payByName to send to"
@@ -1216,11 +1217,11 @@ msgstr "Адрес Litecoin Testnet или $ payByName для отправки"
 
 #: templates/coins/coin-withdrawal.html:18
 msgid "Optional Note (Only Viewable by you)"
-msgstr "Необязательное примечание (доступно только для вас)"
+msgstr "Дополнительное примечание (доступно только для просмотра)"
 
 #: templates/coins/coin-withdrawal.html:48
 msgid "Request Withdrawal/Send"
-msgstr "Запрос на снятие / отправку"
+msgstr "Запрос на снятие / отправка"
 
 #: templates/coins/coin_conversion.html:8
 msgid "Coin Conversion"
@@ -1231,13 +1232,12 @@ msgid ""
 "If you log in the fields below will be prepopulated with your Wallet deposit"
 " addresses."
 msgstr ""
-"Если вы входите в поля ниже, они будут предварительно заполнены вашими "
-"депозитными адресами кошелька."
+"Если вы войдете в поля ниже, они будут заполнены адресами вашего кошелька."
 
 #: templates/coins/coin_conversion.html:42
 #: templates/common/support-coins.html:258
 msgid "Convert"
-msgstr "Конвертировать"
+msgstr "Перерабатывать"
 
 #: templates/coins/coin_conversion_final.html:8
 msgid "Coin Conversion Requested"
@@ -1252,13 +1252,13 @@ msgid ""
 "Instant get crypto payments checkout with easy to use cart plugin, advanced,"
 " invoice buillder and API for custom integration"
 msgstr ""
-"Мгновенный запрос на получение криптовых платежей с простым в использовании "
-"плагином для платформ, продвинутым, счетчиком счетов и API для "
-"пользовательской интеграции"
+"Мгновенное получение криптоплатежей с простым в использовании плагином "
+"корзины, расширенными возможностями, биллером счетов и API для "
+"индивидуальной интеграции"
 
 #: templates/coins/supported-coins.html:33
 msgid "COIN NAME"
-msgstr "COIN NAME"
+msgstr "ИМЯ МОНЕТЫ"
 
 #: templates/coins/supported-coins.html:34
 msgid "COD"
@@ -1274,20 +1274,20 @@ msgstr "ПОДТВЕРЖДАЕТ"
 
 #: templates/coins/supported-coins.html:39
 msgid "TO BTC"
-msgstr "В БТД"
+msgstr "К BTC"
 
 #: templates/coins/supported-coins.html:42
 msgid "EXPLORE"
-msgstr "ИССЛЕДОВАТЬ"
+msgstr "ПРОВОДИТЬ ИССЛЕДОВАНИЯ"
 
 #: templates/coins/supported-coins.html:87
 msgid "Convert Coin"
-msgstr "Конвертировать монетку"
+msgstr "Конвертировать монеты"
 
 #: templates/coins/supported-coins.html:104
 #: templates/common/support-coins.html:273
 msgid "Close"
-msgstr "Закрыть"
+msgstr "близко"
 
 #: templates/coins/wallets.html:31
 msgid "Coin Name"
@@ -1299,11 +1299,11 @@ msgstr "Код"
 
 #: templates/coins/wallets.html:33
 msgid "Balance"
-msgstr "Баланс"
+msgstr "Остаток средств"
 
 #: templates/coins/wallets.html:34
 msgid "Value"
-msgstr "Стоимость"
+msgstr "Значение"
 
 #: templates/coins/wallets.html:35
 msgid "Commands"
@@ -1311,14 +1311,13 @@ msgstr "команды"
 
 #: templates/common/index.html:23
 msgid "Accept over 140 altcoins now for only 0.50"
-msgstr "Принять более 140 altcoins сейчас всего за 0,50"
+msgstr "Принять более 140 альткойнов сейчас всего за 0,50"
 
 #: templates/common/index.html:25
 msgid ""
 "Integrated payment gateway for cryptocurrencies such as Bitcoin and Litecoin"
 msgstr ""
-"Интегрированный платежный шлюз для криптовыделений, таких как Bitcoin и "
-"Litecoin"
+"Интегрированный платежный шлюз для криптовалют, таких как биткойн и лайткойн"
 
 #: templates/common/index.html:26
 msgid "Get Start"
@@ -1334,15 +1333,15 @@ msgstr "Запуск ICO?"
 
 #: templates/common/index.html:54
 msgid "Let GetCryptoPayments help with:"
-msgstr "Пусть GetCryptoPayments поможет с:"
+msgstr "Позвольте GetCryptoPayments помочь с:"
 
 #: templates/common/index.html:56
 msgid "Accepting payments from over 140 different coins"
-msgstr "Принимая платежи из более чем 140 различных монет"
+msgstr "Прием платежей от более чем 140 различных монет"
 
 #: templates/common/index.html:57
 msgid "All New GetCryptoPayments ICO Marketplace"
-msgstr "Все новые продукты GetCryptoPayments ICO Marketplace"
+msgstr "Все новые торговые площадки GetCryptoPayments ICO"
 
 #: templates/common/index.html:59
 msgid "Find Out More"
@@ -1350,7 +1349,7 @@ msgstr "Узнать больше"
 
 #: templates/common/index.html:68
 msgid "One unique $tag to receive payments from all coins."
-msgstr "Один уникальный $ tag для получения платежей от всех монет."
+msgstr "Один уникальный $ тэг для приема платежей со всех монет."
 
 #: templates/common/index.html:69
 msgid "Example Profile"
@@ -1358,7 +1357,7 @@ msgstr "Пример профиля"
 
 #: templates/common/index.html:102
 msgid "Shopping Cart Plugins"
-msgstr "Плагины для покупок"
+msgstr "Плагины корзины покупок"
 
 #: templates/common/index.html:105
 msgid ""
@@ -1366,30 +1365,30 @@ msgid ""
 "install a plugin to set up GetCryptoPayments with your new or pre-existing "
 "checkout"
 msgstr ""
-"Предлагаем плагины для всех популярных веб-камер, используемых сегодня. "
-"Зарегистрируйте и установите плагин для настройки GetCryptoPayments с "
-"помощью новой или ранее существующей проверки"
+"Предлагая плагины для всех популярных веб-карт, используемых сегодня. "
+"Зарегистрируйтесь и установите плагин для настройки GetCryptoPayments с "
+"вашей новой или уже существующей проверкой"
 
 #: templates/common/index.html:196
 msgid "Payment Features"
-msgstr "Функции оплаты"
+msgstr "Особенности оплаты"
 
 #: templates/common/index.html:198
 msgid "Here some ways GetCryptoPayments can help you process payments."
 msgstr ""
-"Здесь некоторые способы GetCryptoPayments могут помочь вам обрабатывать "
-"платежи."
+"Вот несколько способов, с помощью которых GetCryptoPayments может помочь вам"
+" обрабатывать платежи."
 
 #: templates/common/index.html:206
 msgid "BitGo™ Instant"
-msgstr "BitGo ™ Мгновенное действие"
+msgstr "BitGo ™ Instant"
 
 #: templates/common/index.html:207
 msgid ""
 "GetCryptoPayments supports BitGo Instant making Bitcoin payments faster than\n"
 "                                ever before. "
 msgstr ""
-"GetCryptoPayments поддерживает BitGo Instant, делая биткойнские платежи быстрее, чем\n"
+"GetCryptoPayments поддерживает BitGo Instant, делая платежи биткойнами быстрее, чем\n"
 "                                когда-либо прежде."
 
 #: templates/common/index.html:219
@@ -1401,24 +1400,24 @@ msgid ""
 "Protect your coins in the vault, requiring a time amount you specify before being\n"
 "                                able to spend them."
 msgstr ""
-"Защитите свои монеты в хранилище, требуя указать время, которое вы укажете до\n"
-"                                в состоянии их провести."
+"Защитите свои монеты в хранилище, требуя определенное количество времени, прежде чем\n"
+"                                в состоянии их потратить."
 
 #: templates/common/index.html:232
 msgid "Fiat Settlements"
-msgstr "Фиатские поселения"
+msgstr "Fiat Поселения"
 
 #: templates/common/index.html:233
 msgid ""
 "United States and Euro merchants now have fiat settlements directly to their\n"
 "                                bank accounts. "
 msgstr ""
-"Продавцы из Соединенных Штатов и евро теперь имеют прямые расчеты прямо\n"
+"Торговцы из США и евро теперь имеют прямые платежи непосредственно\n"
 "                                банковские счета."
 
 #: templates/common/index.html:245
 msgid "Point of Sale (POS)"
-msgstr "Пункт продажи (POS)"
+msgstr "Торговая точка (POS)"
 
 #: templates/common/index.html:246
 msgid "Simple interface for in person transactions. "
@@ -1430,7 +1429,7 @@ msgstr "Защищено с помощью BitGo"
 
 #: templates/common/index.html:265
 msgid "Our hot wallet is secured by BitGo - meaning 100 "
-msgstr "Наш горячий кошелек защищен BitGo, что означает 100"
+msgstr "Наш горячий кошелек защищен BitGo - 100"
 
 #: templates/common/index.html:265
 msgid ""
@@ -1438,7 +1437,7 @@ msgid ""
 "                                our funds are protected by multi-signature technology."
 msgstr ""
 "из\n"
-"                                наши средства защищены технологией с несколькими сигналами."
+"                                наши средства защищены мультиподписной технологией."
 
 #: templates/common/index.html:277
 msgid "Mobile Apps"
@@ -1449,7 +1448,7 @@ msgid ""
 "Access your account, accept payments in person, and convert coins anywhere with\n"
 "                                our mobile apps for Android and iOS."
 msgstr ""
-"Получайте доступ к своей учетной записи, принимайте платежи лично и конвертируйте монеты где угодно\n"
+"Войдите в свой аккаунт, принимайте платежи лично и конвертируйте монеты в любом месте с\n"
 "                                наши мобильные приложения для Android и iOS."
 
 #: templates/common/index.html:290
@@ -1461,39 +1460,38 @@ msgid ""
 "Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
 "                                time and fees."
 msgstr ""
-"Автоматическое конвертирование для некоторых из наших монет, что избавляет вас от перемещения денежных средств,\n"
-"                                времени и сборов."
+"Авто конвертировать для некоторых наших монет, избавляя вас от необходимости перемещать средства, тратить\n"
+"                                время и сборы."
 
 #: templates/common/index.html:303
 msgid "Multi-Coin Wallet"
-msgstr "Мульти-монетный кошелек"
+msgstr "Multi-Coin Wallet"
 
 #: templates/common/index.html:304
 msgid "Optionally store your coins in our secure online wallet."
-msgstr "Вы можете хранить свои монеты в нашем безопасном онлайн-кошельке."
+msgstr "При желании храните свои монеты в нашем безопасном онлайн-кошельке."
 
 #: templates/common/index.html:322
 msgid ""
 "Our goal is to exceed more than 1,000,000 vendors across 182 different "
 "countries"
-msgstr ""
-"Наша цель - превысить более 1 000 000 поставщиков в 182 разных странах"
+msgstr "Наша цель - превзойти более 1 000 000 поставщиков в 182 странах."
 
 #: templates/common/index.html:323
 msgid ""
 "GetCryptoPayments is the first and largest payment processor of over 150 cryptocurrencies\n"
 "                    "
 msgstr ""
-"GetCryptoPayments - это первый и самый большой платежный процессор, "
-"состоящий из более чем 150 криптоверсий"
+"GetCryptoPayments является первым и крупнейшим платежным процессором из "
+"более чем 150 криптовалют"
 
 #: templates/common/index.html:349
 msgid ""
 "Thank you GetCryptoPayments for taking Tron coin into consideration to belong to the list of your ERC-20\n"
 "                        tokens portfolio. I know you will have many successes."
 msgstr ""
-"Спасибо GetCryptoPayments за то, что вы взяли монету Tron, чтобы принадлежать к списку вашего ERC-20\n"
-"                        портфолио. Я знаю, что у вас будет много успехов."
+"Спасибо GetCryptoPayments за то, что вы приняли во внимание монету Tron, которая входит в список ваших ERC-20.\n"
+"                        Портфель токенов. Я знаю, что у тебя будет много успехов."
 
 #: templates/common/index.html:351
 msgid "Justin Sun CEO Tronix Coin"
@@ -1505,24 +1503,25 @@ msgid ""
 "                        could do the hard work for us and accept all payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we only\n"
 "                        need to develop  with one API now."
 msgstr ""
-"Мы хотели принять платежи Stellar монеты, чтобы мы начали разрабатывать. Затем мы поняли GetCryptoPayments\n"
-"                        может сделать тяжелую работу для нас и принять все платежи и получить деньги в Биткойне. Благодаря GetCryptoPayments, мы только\n"
-"                        необходимо разработать с помощью одного API сейчас."
+"Мы хотели принимать платежи Stellar-монетами, поэтому мы начали развиваться. Тогда мы реализовали GetCryptoPayments\n"
+"                        может сделать тяжелую работу для нас и принять все платежи и получить деньги в биткойнах. Спасибо GetCryptoPayments, мы только\n"
+"                        нужно разрабатывать с одним API сейчас."
 
 #: templates/common/index.html:362
 msgid "Jed McCaleb CEO stellar.org"
-msgstr "Генеральный директор Jed McCaleb stellar.org"
+msgstr "Джед Маккалеб, генеральный директор stellar.org"
 
 #: templates/common/merchant-tools.html:7 templates/store/add-or-update.html:5
 msgid "MERCHANT TOOLS"
-msgstr "ТОРГОВЫЕ ИНСТРУМЕНТЫ"
+msgstr "ТОРГОВЫЙ ИНСТРУМЕНТ"
 
 #: templates/common/merchant-tools.html:9
 #: templates/common/merchant-tools.html:16
 #: templates/store/add-or-update.html:7
 msgid ""
 "If you would like to be updated about new API or changes to existing Apis"
-msgstr "Если вы хотите обновить новый API или изменить существующий Apis"
+msgstr ""
+"Если вы хотите быть в курсе новых API или изменений в существующих Apis"
 
 #: templates/common/merchant-tools.html:10
 #: templates/common/merchant-tools.html:17
@@ -1532,11 +1531,11 @@ msgstr "кликните сюда"
 
 #: templates/common/merchant-tools.html:25
 msgid "SHOPPING CART PLUGIN"
-msgstr "ТОРГОВАЯ КОРЗИНА PLUGIN"
+msgstr "ПОКУПКА ПЛАГИНА"
 
 #: templates/common/merchant-tools.html:27
 msgid "Plugin Downloads"
-msgstr "Загрузки для плагинов"
+msgstr "Загрузки плагинов"
 
 #: templates/common/merchant-tools.html:34
 msgid "API & IPNs"
@@ -1544,7 +1543,7 @@ msgstr "API и IPN"
 
 #: templates/common/merchant-tools.html:36
 msgid "Instant Payment Notification"
-msgstr "Мгновенное уведомление об оплате"
+msgstr "Уведомление о мгновенном платеже"
 
 #: templates/common/merchant-tools.html:37
 msgid "GETCRYPTOPAYMENTAPI"
@@ -1552,27 +1551,27 @@ msgstr "GETCRYPTOPAYMENTAPI"
 
 #: templates/common/merchant-tools.html:44
 msgid "INVOICE BUILDER"
-msgstr "СЧЕТ СТРОИТЕЛЯ"
+msgstr "СТРОИТЕЛЬ СЧЕТА"
 
 #: templates/common/merchant-tools.html:46
 msgid "Payment Request invoice maker"
-msgstr "Производитель счета-фактуры платежа"
+msgstr "Запрос на оплату"
 
 #: templates/common/merchant-tools.html:53
 msgid "POINT OF SALE(POS) INTERFACE"
-msgstr "ИНТЕРФЕЙС ИНТЕРФЕЙСА ПРОДАЖИ (POS)"
+msgstr "ТОЧКА ПРОДАЖИ (POS) ИНТЕРФЕЙС"
 
 #: templates/common/merchant-tools.html:55
 msgid "HTML URL/ POST Fields"
-msgstr "URL-адрес HTML / POST-поля"
+msgstr "HTML URL / поля POST"
 
 #: templates/common/merchant-tools.html:56
 msgid "Post link QR Code Generator"
-msgstr "Отправить ссылку QR Code Generator"
+msgstr "Опубликовать ссылку QR Code Generator"
 
 #: templates/common/merchant-tools.html:57
 msgid "POS Examle"
-msgstr "Экзамен POS"
+msgstr "POS Examle"
 
 #: templates/common/merchant-tools.html:64
 msgid "SIMPLE BUTTONS"
@@ -1589,7 +1588,7 @@ msgstr "Button Maker"
 #: templates/common/merchant-tools.html:88
 #: templates/common/merchant-tools.html:100
 msgid "HTML Post Field"
-msgstr "Текстовое поле HTML"
+msgstr "HTML Post Field"
 
 #: templates/common/merchant-tools.html:68
 #: templates/common/merchant-tools.html:79
@@ -1600,11 +1599,11 @@ msgstr "Примеры кнопок"
 
 #: templates/common/merchant-tools.html:75
 msgid "ADVANCE BUTTONS"
-msgstr "КНОПКИ ADVANCE"
+msgstr "РАСШИРЕННЫЕ КНОПКИ"
 
 #: templates/common/merchant-tools.html:86
 msgid "SHOPPING CART BUTTONS"
-msgstr "КНОПКИ ПОКУПКИ КОРПУСА"
+msgstr "КНОПКИ ПОКУПКИ"
 
 #: templates/common/merchant-tools.html:90
 msgid "Button Images"
@@ -1612,7 +1611,7 @@ msgstr "Изображения кнопок"
 
 #: templates/common/merchant-tools.html:97
 msgid "DONATION BUTTONS"
-msgstr "КНОПКИ ПОЖЕРТВОВАНИЯ"
+msgstr "КНОПКИ ДОНАЦИИ"
 
 #: templates/common/support-coins.html:258
 msgid "BITCOIN"
@@ -1620,7 +1619,7 @@ msgstr "Bitcoin"
 
 #: templates/exmr.html:54
 msgid "Contact Us"
-msgstr "Свяжитесь с нами"
+msgstr "Связаться с нами"
 
 #: templates/exmr.html:78
 msgid "Language"
@@ -1628,11 +1627,11 @@ msgstr "язык"
 
 #: templates/exmr.html:93
 msgid "Account"
-msgstr "Счет"
+msgstr "учетная запись"
 
 #: templates/exmr.html:98
 msgid "Dashboard"
-msgstr "Панель приборов"
+msgstr "Приборная доска"
 
 #: templates/exmr.html:104
 msgid "AddressBook"
@@ -1644,7 +1643,7 @@ msgstr "Выйти"
 
 #: templates/registration/password_reset_complete.html:6
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr "Ваш пароль установлен. Вы можете пойти и войти в систему сейчас."
+msgstr "Ваш пароль был установлен. Вы можете пойти дальше и войти сейчас."
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Log in"
@@ -1655,8 +1654,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
-"Ссылка на сброс пароля была недействительной, возможно, потому, что она уже "
-"использовалась. Пожалуйста, запросите новый сброс пароля."
+"Ссылка для сброса пароля была недействительной, возможно, потому что она уже"
+" использовалась. Пожалуйста, запросите новый пароль для сброса."
 
 #: templates/store/add-or-update.html:102
 msgid "Type the characters you see in the image above:"
@@ -1670,7 +1669,7 @@ msgstr "СПРАВОЧНИК МАГАЗИНА"
 #: templates/store/store_categories.html:7
 #: templates/store/store_listing.html:7
 msgid "Largest directory of merchants accepting multiple cryptocurrencies"
-msgstr "Крупнейший каталог продавцов, принимающих множественные криптотермии"
+msgstr "Крупнейший каталог продавцов, принимающих несколько криптовалют"
 
 #: templates/store/store_categories.html:15
 #: templates/store/store_listing.html:15

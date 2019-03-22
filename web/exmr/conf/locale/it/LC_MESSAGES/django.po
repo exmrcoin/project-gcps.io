@@ -177,7 +177,7 @@ msgid ""
 "This is used to verify that an IPN is from us, use a good random string "
 "nobody can guess."
 msgstr ""
-"Questo è usato per verificare che un IPN è da noi, usa una buona stringa "
+"Questo è usato per verificare che un IPN è da noi, usare una buona stringa "
 "casuale che nessuno può indovinare."
 
 #: apps/accounts/models.py:77 templates/accounts/settings.html:293
@@ -352,8 +352,7 @@ msgstr "Link di attivazione dell'account scaduto"
 
 #: apps/accounts/views.py:258
 msgid "Account activated <br><p>Please <a href=/login>login</a><p>"
-msgstr ""
-"Account attivato <br> <p> Si prega di <a href=/login> accedere </a> <p>"
+msgstr "Account attivato <br> <p> Si prega di <a href=/login> login </a> <p>"
 
 #: apps/coins/models.py:13
 msgid "Crypto"
@@ -421,7 +420,7 @@ msgstr "al valore di BTC"
 
 #: apps/coins/models.py:44
 msgid "fee percentage"
-msgstr "percentuale della tassa"
+msgstr "percentuale della commissione"
 
 #: apps/coins/models.py:45
 msgid "type"
@@ -437,7 +436,7 @@ msgstr "può esplorare monete"
 
 #: apps/coins/models.py:48
 msgid "can donate coins"
-msgstr "può donare monete"
+msgstr "puoi donare monete"
 
 #: apps/coins/models.py:49
 msgid "Disable this coin anytime"
@@ -517,7 +516,7 @@ msgstr "e-mail"
 
 #: apps/coins/models.py:127
 msgid "coin website"
-msgstr "sito di monete"
+msgstr "sito web di monete"
 
 #: apps/coins/models.py:128
 msgid "coin url"
@@ -613,7 +612,7 @@ msgstr "è approvato"
 
 #: apps/store/models.py:45
 msgid "Store"
-msgstr "Negozio"
+msgstr "Memorizzare"
 
 #: apps/store/models.py:46
 msgid "Stores"
@@ -1057,8 +1056,8 @@ msgid ""
 "Email: You will be prompted for a code at the time of login which will be "
 "sent to your provided email ID."
 msgstr ""
-"Email: ti verrà richiesto un codice al momento del login che verrà inviato "
-"al tuo ID e-mail fornito."
+"Email: ti verrà richiesto un codice al momento dell'accesso che verrà "
+"inviato al tuo ID e-mail fornito."
 
 #: templates/accounts/settings.html:245
 msgid ""
@@ -1123,7 +1122,7 @@ msgstr "È stato inviato un link di attivazione"
 
 #: templates/accounts/signup_complete.html:7
 msgid "Please check your mail"
-msgstr "Per favore controlla la tua posta"
+msgstr "Si prega di controllare la posta"
 
 #: templates/accounts/verify_2fa.html:18
 msgid "Enter"
@@ -1213,7 +1212,7 @@ msgstr "Ritiro totale"
 
 #: templates/coins/coin-withdrawal.html:17
 msgid "Litecoin Testnet address or $payByName to send to"
-msgstr "Litecoin Testnet indirizzo o $ payByName da inviare a"
+msgstr "Litecoin Indirizzo Testnet o $ payByName da inviare a"
 
 #: templates/coins/coin-withdrawal.html:18
 msgid "Optional Note (Only Viewable by you)"
@@ -1357,7 +1356,7 @@ msgstr "Profilo di esempio"
 
 #: templates/common/index.html:102
 msgid "Shopping Cart Plugins"
-msgstr "Plugin del carrello"
+msgstr "Plugin del carrello acquisti"
 
 #: templates/common/index.html:105
 msgid ""
@@ -1365,8 +1364,8 @@ msgid ""
 "install a plugin to set up GetCryptoPayments with your new or pre-existing "
 "checkout"
 msgstr ""
-"Offrendo plugin per tutte le famose webcar usate oggi. Registra e installa "
-"un plug-in per configurare GetCryptoPayments con il checkout nuovo o "
+"Offrendo plugin per tutte le famose webcar usate oggi. Registrati e installa"
+" un plug-in per configurare GetCryptoPayments con il checkout nuovo o "
 "preesistente"
 
 #: templates/common/index.html:196
@@ -1507,7 +1506,7 @@ msgid ""
 "                        could do the hard work for us and accept all payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we only\n"
 "                        need to develop  with one API now."
 msgstr ""
-"Volevamo accettare pagamenti con monete stellari, quindi abbiamo iniziato a svilupparci. Quindi abbiamo realizzato GetCryptoPayments\n"
+"Volevamo accettare pagamenti con monete stellari, quindi abbiamo iniziato a sviluppare. Poi abbiamo realizzato GetCryptoPayments\n"
 "                        potrebbe fare il duro lavoro per noi e accettare tutti i pagamenti e ricevere i soldi in Bitcoin. Grazie a GetCryptoPayments, solo noi\n"
 "                        necessario sviluppare con una sola API ora."
 
@@ -1560,7 +1559,7 @@ msgstr "FABBRICATO DI FATTURA"
 
 #: templates/common/merchant-tools.html:46
 msgid "Payment Request invoice maker"
-msgstr "Richiesta di pagamento fattura maker"
+msgstr "Richiesta di pagamento per fattura"
 
 #: templates/common/merchant-tools.html:53
 msgid "POINT OF SALE(POS) INTERFACE"

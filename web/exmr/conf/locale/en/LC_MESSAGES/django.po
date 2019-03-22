@@ -1419,7 +1419,6 @@ msgstr "Point of Sale (POS)"
 msgid "Simple interface for in person transactions. "
 msgstr "Simple interface for in person transactions."
 
-
 #: templates/common/index.html:264
 msgid "Secured with BitGo"
 msgstr "Secured with BitGo"

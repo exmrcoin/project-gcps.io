@@ -1,64 +1,7 @@
 {% extends 'accounts/dashboard-base.html' %}
 {% load staticfiles widget_tweaks i18n %}
 {% block dashboard_heading %}
-    <section class="section section-pad" style="padding-bottom: 1em">
-        <div class="container">
-            <div class="bx-ash mb-2">
-                <div class="grid-2-bx" style="display: inline">
-                    <h4 class="text-theme b-4 dashboard">DASHBOARD</h4>
-                    <div>
-                        <ul class="nav nav-pills nav-fill">
-                            <li class="nav-item">
-                                <a href="{% url 'accounts:profile' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
-                                    <span class="fas fa-tachometer-alt fa-2x col-xs-12 col-sm-6"></span>
-                                    <span class="dashboard-span hidden-xs col-sm-6 col-md-6 wallet-menu">{% trans 'Home' %}</span>
-                                </a>
-                                <!-- <i class="fas fa-2x fa-wallet"></i>
-                                <a class="nav-link" href="{% url 'accounts:profile' %}"></a> -->
-                            </li>
-                            <li class="nav-item">
-                                    <a href="{% url 'coins:wallets' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
-                                        <i class="fas fa-2x fa-wallet col-xs-12 col-sm-6"></i>
-                                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">
-                                            {% trans 'Your Wallet' %}
-                                        </span>
-                                    </a>
-                                <!-- <a class="nav-link" href="{% url 'coins:wallets' %}">{% trans 'Your Wallet' %}</a> -->
-                            </li>
-                            <li class="nav-item">
-                                    <a href="{% url 'coins:coin-settings' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
-                                        <i class="fas fa-coins  fa-2x col-xs-12 col-sm-6"></i>
-                                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">{% trans 'Coin Settings' %}</span>
-                                    </a>
-                                <!-- <a class="nav-link" href="{% url 'coins:coin-settings' %}">{% trans 'Coin Settings' %}</a> -->
-                            </li>
-                            <li class="nav-item">
-                                <a href="{% url 'coins:transaction-history' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
-                                        <i class="fas fa-receipt  fa-2x col-xs-12 col-sm-6"></i>
-                                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"> {% trans 'Transactions' %}</span>
-                                </a>
-                                <!-- <a class="nav-link" href="{% url 'coins:transaction-history' %}">{% trans 'Transactions' %}</a> -->
-                            </li>
-                            <li class="nav-item">
-                                    <a href="{% url 'mtools:posqrmaker' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
-                                        <i class="fas fa-shopping-cart  fa-2x col-xs-12 col-sm-6"></i>
-                                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu"> {% trans 'Quick POS' %}</span>
-                                    </a>
-                                <!-- <a class="nav-link" href="{% url 'mtools:posqrmaker' %}"> {% trans 'Quick POS' %}</a> -->
-                            </li>
-                            <li class="nav-item">
-                                    <a href="{% url 'coins:paybyname' %}" class="v-mid dashboard-nav text-center col-xs-12 px-0 py-1">
-                                        <i class="fas fa-user-tie  fa-2x col-xs-12 col-sm-6"></i>
-                                        <span class="dashboard-span hidden-xs hidden-sm  wallet-menu">{% trans 'PayByName' %}</span>
-                                    </a>
-                                <!-- <a class="nav-link" href="{% url 'coins:paybyname' %}"> {% trans 'PayByName' %}</a> -->
-                            </li>
-                        </ul>
-                    </div> 
-                </div>
-            </div>
-        </div>
-    </section>
+<h4 class="text-theme b-4 dashboard">DASHBOARD</h4>
 
     <!-- <div class="dashboard-bg">
     <div class="merchant-tools merchant-one coin-payment-head">

@@ -177,20 +177,20 @@ msgid ""
 "This is used to verify that an IPN is from us, use a good random string "
 "nobody can guess."
 msgstr ""
-"این مورد برای تأیید اینکه IPN از ما استفاده می شود استفاده می شود، از یک "
-"رشته تصادفی خوب هیچ کس نمی تواند حدس بزند."
+"این برای تأیید اینکه IPN از ما استفاده می شود، از یک رشته تصادفی خوب استفاده"
+" می شود هیچکس نمی تواند حدس بزند."
 
 #: apps/accounts/models.py:77 templates/accounts/settings.html:293
 msgid "IPN URL"
-msgstr "IPN URL"
+msgstr "URL IPN"
 
 #: apps/accounts/models.py:78
 msgid "When a user submits a new payment to you"
-msgstr "هنگامی که یک کاربر یک پرداخت جدید را به شما ارائه می دهد"
+msgstr "هنگامی که کاربر یک پرداخت جدید را به شما ارائه می دهد"
 
 #: apps/accounts/models.py:79
 msgid "When funds have been received by us for a payment to you."
-msgstr "هنگامی که وجه دریافت شده توسط ما برای پرداخت شما پرداخت می شود."
+msgstr "هنگامی که ما برای دریافت پرداختی به شما پول دریافت می کنیم."
 
 #: apps/accounts/models.py:80
 msgid "When funds for a payment have been sent to you."
@@ -198,7 +198,7 @@ msgstr "وقتی بودجه برای پرداخت به شما ارسال شده 
 
 #: apps/accounts/models.py:81
 msgid "When a deposit is received on one of your deposit addresses."
-msgstr "هنگامی که یک سپرده در یکی از آدرسهای سپرده شما دریافت می شود."
+msgstr "هنگامی که یک سپرده در یکی از آدرس های سپرده خود دریافت می شود."
 
 #: apps/accounts/models.py:82
 msgid "When positive feedback has been left for you."
@@ -210,7 +210,7 @@ msgstr "ایمیل اطلاع رسانی وضعیت"
 
 #: apps/accounts/models.py:84
 msgid "receive SMS text when funds are received"
-msgstr "دریافت متن SMS دریافت می شود"
+msgstr "هنگام دریافت وجوه دریافت متن SMS دریافت می شود"
 
 #: apps/accounts/models.py:85
 msgid "SMS phone number"
@@ -266,7 +266,7 @@ msgstr "کشور"
 
 #: apps/accounts/models.py:191
 msgid "city"
-msgstr "شهر"
+msgstr "شهرستان"
 
 #: apps/accounts/models.py:192
 msgid "state"
@@ -298,7 +298,7 @@ msgstr "اظهار نظر"
 
 #: apps/accounts/models.py:212
 msgid "left by"
-msgstr "چپ"
+msgstr "سمت چپ"
 
 #: apps/accounts/models.py:214
 msgid "buyer or seller"
@@ -343,7 +343,7 @@ msgstr "گذرواژهها مطابقت ندارد"
 
 #: apps/accounts/views.py:248
 msgid "Invalid account activation link"
-msgstr "لینک فعال سازی حساب کاربری نامعتبر است"
+msgstr "پیوند فعال بودن حساب کاربری نامعتبر است"
 
 #: apps/accounts/views.py:251
 msgid "Account activation link expired"
@@ -395,7 +395,7 @@ msgstr "نام سکه"
 
 #: apps/coins/models.py:39
 msgid "coin site URL"
-msgstr "آدرس سکه سایت"
+msgstr "URL سکه"
 
 #: apps/coins/models.py:40
 msgid "code"
@@ -411,15 +411,15 @@ msgstr "تصویر"
 
 #: apps/coins/models.py:42
 msgid "Upload a 35X35 image for better experience"
-msgstr "یک تصویر 35X35 برای تجربه بهتر آپلود کنید"
+msgstr "یک تصویر 35X35 را برای تجربه بهتر آپلود کنید"
 
 #: apps/coins/models.py:43
 msgid "to BTC value"
-msgstr "به مقدار BTC"
+msgstr "به ارزش BTC"
 
 #: apps/coins/models.py:44
 msgid "fee percentage"
-msgstr "درصد هزینه"
+msgstr "هزینه پرداخت"
 
 #: apps/coins/models.py:45
 msgid "type"
@@ -543,7 +543,7 @@ msgstr "ارزها"
 
 #: apps/common/models.py:33
 msgid "provider"
-msgstr "ارائه دهنده"
+msgstr "تامین کننده"
 
 #: apps/common/models.py:34 apps/common/models.py:108
 msgid "link"
@@ -732,8 +732,8 @@ msgid ""
 "    "
 msgstr ""
 "\n"
-"شما (یا کسی که وانمود می کنید) درخواست کرده اید یک حساب کاربری را در\n"
-"    و آدرس شما از سوابق ما حذف خواهد شد."
+"شما (یا کسی که وانمود می کنید) از یک حساب کاربری برای ثبت نام درخواست کرده اید\n"
+"    و آدرس شما از پرونده ما حذف خواهد شد."
 
 #: templates/accounts/activation_email.html:18
 msgid ""
@@ -764,8 +764,8 @@ msgid ""
 "and your address will be removed from our records.\n"
 msgstr ""
 "\n"
-"شما (یا کسی که وانمود می کنید) درخواست کرده اید یک حساب کاربری را در\n"
-"و آدرس شما از سوابق ما حذف خواهد شد.\n"
+"شما (یا کسی که وانمود می کنید) از یک حساب کاربری برای ثبت نام درخواست کرده اید\n"
+"و آدرس شما از پرونده ما حذف خواهد شد.\n"
 
 #: templates/accounts/activation_email.txt:7
 msgid ""
@@ -808,7 +808,7 @@ msgstr "نام خانوادگی"
 
 #: templates/accounts/address-book.html:53
 msgid "Address Line 1"
-msgstr "خط آدرس 1"
+msgstr "آدرس خط 1"
 
 #: templates/accounts/address-book.html:54
 msgid "Address Line 2"
@@ -868,7 +868,7 @@ msgstr "زمان"
 
 #: templates/accounts/dashboard.html:33
 msgid "Received / Sent Name"
-msgstr "دریافت / ارسال نام"
+msgstr "دریافت / فرستاده نام"
 
 #: templates/accounts/dashboard.html:35
 msgid "Amount"
@@ -930,7 +930,7 @@ msgstr "رمز عبور فراموش شده"
 
 #: templates/accounts/login.html:43
 msgid "Don't have an account?"
-msgstr "آیا حساب کاربری ندارید؟"
+msgstr "حساب کاربری ندارید؟"
 
 #: templates/accounts/payment-history.html:22
 #: templates/accounts/payment-history.html:23
@@ -945,7 +945,7 @@ msgstr "ورودی پرداخت HIstory"
 
 #: templates/accounts/payment-history.html:36
 msgid "History Search & Export"
-msgstr "جستجو و صادرات تاریخ"
+msgstr "تاریخ جستجو و صادرات"
 
 #: templates/accounts/settings.html:11
 msgid "Settings"
@@ -969,7 +969,7 @@ msgstr "تنظیمات حساب"
 
 #: templates/accounts/settings.html:47
 msgid "Your Merchant ID:"
-msgstr "شناسه فروشنده شما:"
+msgstr "شناسه Merchant شما:"
 
 #: templates/accounts/settings.html:56
 msgid "Affiliate URL:"
@@ -980,9 +980,9 @@ msgid ""
 "Want to earn some crypto? Give this URL to new users and when they sign up "
 "you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:"
 msgstr ""
-"آیا میخواهید برخی از رمزنگاریها را بدست آورید؟ این آدرس را برای کاربران جدید"
-" ارسال کنید و زمانی که آنها ثبت نام می کنید، یک درصد از هزینه های معامله "
-"GETCRYPTOPAYMENTS خود را کسب خواهید کرد:"
+"آیا می خواهید برای به دست آوردن برخی از رمزنگاری؟ این آدرس را برای کاربران "
+"جدید ارسال کنید و زمانی که آنها ثبت نام می کنید، یک درصد از هزینه های معامله"
+" GETCRYPTOPAYMENTS خود را کسب خواهید کرد:"
 
 #: templates/accounts/settings.html:69
 msgid "Share/Save"
@@ -1043,7 +1043,7 @@ msgstr "رمز عبور جدید"
 
 #: templates/accounts/settings.html:234
 msgid "Confirm Password"
-msgstr "رمز عبور را تأیید کنید"
+msgstr "تایید رمز عبور"
 
 #: templates/accounts/settings.html:240
 msgid "2 Factor Authentication"
@@ -1062,7 +1062,7 @@ msgid ""
 "Linked 2FA Accounts: Link authenticators supporting TOTP such as Google "
 "Authenticator, Authy, FreeOTP, etc. You can edit your linked devices"
 msgstr ""
-"پیوند حسابهای 2FA: تأییدکنندگان پیوند از TOTP مانند گوگل Authenticator، "
+"پیوند حسابهای 2FA: تأییدکنندگان پیوند از TOTP مانند Google Authenticator، "
 "Authy، FreeOTP، و غیره می توانید دستگاه های مرتبط خود را ویرایش کنید"
 
 #: templates/accounts/settings.html:252
@@ -1081,8 +1081,8 @@ msgid ""
 "                                            "
 msgstr ""
 "\n"
-"ایمیل وضعیت پرداخت به این ایمیل ارسال خواهد شد.\n"
-"                                                اگر ارائه نشده باشد، اطلاعیه ها به ایمیل اصلی ارسال می شود"
+"ایمیل وضعیت پرداخت به این ایمیل ارسال می شود.\n"
+"                                                درصورت عدم ارائه، اطلاعیه ها به ایمیل اصلی ارسال می شود"
 
 #: templates/accounts/signup.html:49
 msgid ""
@@ -1090,7 +1090,7 @@ msgid ""
 "                                 and special characters. "
 msgstr ""
 "لطفا آن را حداقل 10 کاراکتر داشته باشید و حاوی حروف، اعداد،\n"
-"                                 و شخصیت های خاص"
+"                                 و کاراکترهای خاص"
 
 #: templates/accounts/signup.html:51
 msgid "Timezone"
@@ -1102,7 +1102,7 @@ msgstr "ارسال خبرنامه و سایر اطلاعات مربوط به ا�
 
 #: templates/accounts/signup.html:70
 msgid "Have read and agree to the"
-msgstr "خواندن و پذیرفتن"
+msgstr "خواندن و موافقت با"
 
 #: templates/accounts/signup.html:71
 msgid "Terms of Service."
@@ -1114,7 +1114,7 @@ msgstr "'کاراکترهایی را که در تصویر بالا می بینی
 
 #: templates/accounts/signup_complete.html:6
 msgid "An activation link has been sent"
-msgstr "پیوند فعالسازی ارسال شد"
+msgstr "پیوند فعالسازی ارسال شده است"
 
 #: templates/accounts/signup_complete.html:7
 msgid "Please check your mail"
@@ -1184,7 +1184,7 @@ msgstr "شرایط استفاده از خدمات"
 
 #: templates/coins/coin-withdrawal.html:8
 msgid "Coin Withdrawal"
-msgstr "برداشت سکه"
+msgstr "اخراج سکه"
 
 #: templates/coins/coin-withdrawal.html:12
 msgid "Minimum Withdrawal"
@@ -1208,7 +1208,7 @@ msgstr "کل تخفیف"
 
 #: templates/coins/coin-withdrawal.html:17
 msgid "Litecoin Testnet address or $payByName to send to"
-msgstr "آدرس تست شبکه Litecoin یا $ payByName برای ارسال به"
+msgstr "Litecoin Testnet آدرس یا $ payByName برای ارسال به"
 
 #: templates/coins/coin-withdrawal.html:18
 msgid "Optional Note (Only Viewable by you)"
@@ -1227,8 +1227,8 @@ msgid ""
 "If you log in the fields below will be prepopulated with your Wallet deposit"
 " addresses."
 msgstr ""
-"اگر در زمینه های زیر وارد سایت شوید، با آدرس های سپرده های کیف پول خود را "
-"پیش خرید می کنید."
+"اگر در قسمت های زیر وارد سایت شوید، با آدرس سپرده های خود در کیف پول پیش "
+"پرداخت می شود."
 
 #: templates/coins/coin_conversion.html:42
 #: templates/common/support-coins.html:258
@@ -1249,7 +1249,7 @@ msgid ""
 " invoice buillder and API for custom integration"
 msgstr ""
 "فوری دریافت پرداخت رمزگذاری پرداخت با آسان به استفاده از پلاگین سبد خرید، "
-"پیشرفته، تقویت فاکتور و API برای ادغام سفارشی"
+"پیشرفته، buillder فاکتور و API برای ادغام سفارشی"
 
 #: templates/coins/supported-coins.html:33
 msgid "COIN NAME"
@@ -1306,7 +1306,7 @@ msgstr "دستورات"
 
 #: templates/common/index.html:23
 msgid "Accept over 140 altcoins now for only 0.50"
-msgstr "اکنون بیش از 140 آلتو کوین را فقط برای 0.50 قبول کنید"
+msgstr "اکنون بیش از 140 آلتو کوین را فقط برای 0.50 قبول دارید"
 
 #: templates/common/index.html:25
 msgid ""
@@ -1319,7 +1319,7 @@ msgstr "بریم شروع کنیم"
 
 #: templates/common/index.html:36
 msgid "scroll me"
-msgstr "من را بزن"
+msgstr "پیمایش کن"
 
 #: templates/common/index.html:53
 msgid "Running an ICO?"
@@ -1327,7 +1327,7 @@ msgstr "اجرای ICO؟"
 
 #: templates/common/index.html:54
 msgid "Let GetCryptoPayments help with:"
-msgstr "اجازه دهید GetCryptoPayments با:"
+msgstr "اجازه بدهید GetCryptoPayments با:"
 
 #: templates/common/index.html:56
 msgid "Accepting payments from over 140 different coins"
@@ -1343,7 +1343,7 @@ msgstr "اطلاعات بیشتر"
 
 #: templates/common/index.html:68
 msgid "One unique $tag to receive payments from all coins."
-msgstr "یک تگ unique tag برای دریافت پرداخت از تمام سکه ها."
+msgstr "یک نشان اختصاصی برای دریافت پرداخت از تمام سکه ها."
 
 #: templates/common/index.html:69
 msgid "Example Profile"
@@ -1360,7 +1360,7 @@ msgid ""
 "checkout"
 msgstr ""
 "ارائه پلاگین برای همه وب سایت های محبوب امروز استفاده می شود. ثبت نام و نصب "
-"یک افزونه برای راه اندازی GetCryptoPayments با چک کردن جدید یا قبل از آن"
+"یک افزونه برای راه اندازی GetCryptoPayments با چک جدید یا قبل از آن"
 
 #: templates/common/index.html:196
 msgid "Payment Features"
@@ -1369,7 +1369,7 @@ msgstr "ویژگی های پرداخت"
 #: templates/common/index.html:198
 msgid "Here some ways GetCryptoPayments can help you process payments."
 msgstr ""
-"در اینجا برخی از راه های GetCryptoPayments می تواند به شما در پردازش پرداخت "
+"در اینجا برخی از روش های GetCryptoPayments می تواند به شما در پردازش پرداخت "
 "کمک کند."
 
 #: templates/common/index.html:206
@@ -1381,7 +1381,7 @@ msgid ""
 "GetCryptoPayments supports BitGo Instant making Bitcoin payments faster than\n"
 "                                ever before. "
 msgstr ""
-"GetCryptoPayments با BitGo Instant از Bitcoin پرداخت سریعتر از\n"
+"GetCryptoPayments با استفاده از BitGo Instant از Bitcoin پرداخت سریعتر از\n"
 "                                همیشه قبل از."
 
 #: templates/common/index.html:219
@@ -1393,8 +1393,8 @@ msgid ""
 "Protect your coins in the vault, requiring a time amount you specify before being\n"
 "                                able to spend them."
 msgstr ""
-"محافظت از سکه های خود را در طاق، نیاز به مقدار زمانی که شما قبل از اینکه مشخص کنید\n"
-"                                قادر به صرف آنها هستند."
+"حفاظت از سکه های خود را در طاق، نیاز به مقدار زمانی که شما قبل از اینکه مشخص کنید\n"
+"                                قادر به صرف آنها هستند"
 
 #: templates/common/index.html:232
 msgid "Fiat Settlements"
@@ -1405,7 +1405,7 @@ msgid ""
 "United States and Euro merchants now have fiat settlements directly to their\n"
 "                                bank accounts. "
 msgstr ""
-"بازرگانان ایالات متحده و یورو اکنون مستعمرات خود را مستقر کرده اند\n"
+"بازرگانان ایالات متحده و یورو در حال حاضر محل سکونت خود را به طور مستقیم به آنها\n"
 "                                حساب های بانکی."
 
 #: templates/common/index.html:245
@@ -1430,7 +1430,7 @@ msgid ""
 "                                our funds are protected by multi-signature technology."
 msgstr ""
 "از\n"
-"                                بودجه ما توسط تکنولوژی چند امضا محافظت می شود."
+"                                منابع مالی ما توسط تکنولوژی چند امضا محافظت می شود."
 
 #: templates/common/index.html:277
 msgid "Mobile Apps"
@@ -1441,19 +1441,19 @@ msgid ""
 "Access your account, accept payments in person, and convert coins anywhere with\n"
 "                                our mobile apps for Android and iOS."
 msgstr ""
-"دسترسی به حساب کاربری خود، قبول پرداخت شخصی و تبدیل سکه ها در هر نقطه با\n"
+"دسترسی به حساب کاربری خود، پرداخت قبوض شخصی و تبدیل سکه ها در هر جای با\n"
 "                                برنامه های تلفن همراه ما برای آندروید و iOS."
 
 #: templates/common/index.html:290
 msgid "Auto Coin Conversion"
-msgstr "خودکار سکه تبدیل"
+msgstr "تبدیل خودکار سکه"
 
 #: templates/common/index.html:291
 msgid ""
 "Auto convert for some of our coins, saving you the trouble of moving funds, wasting\n"
 "                                time and fees."
 msgstr ""
-"خودکار برای برخی از سکه های ما تبدیل، صرفه جویی در شما از مشکلات حرکت وجوه، هدر رفتن\n"
+"خودکار برای برخی از سکه های ما تبدیل، صرفه جویی در شما مشکل از حرکت وجوه، هدر رفتن\n"
 "                                زمان و هزینه."
 
 #: templates/common/index.html:303
@@ -1462,7 +1462,7 @@ msgstr "کیف پول چند سکه"
 
 #: templates/common/index.html:304
 msgid "Optionally store your coins in our secure online wallet."
-msgstr "سکه های خود را در کیف پول آنلاین امن خود ذخیره کنید."
+msgstr "در صورت تمایل، سکه های خود را در کیف پول آنلاین امن خود ذخیره کنید."
 
 #: templates/common/index.html:322
 msgid ""
@@ -1484,8 +1484,8 @@ msgid ""
 "Thank you GetCryptoPayments for taking Tron coin into consideration to belong to the list of your ERC-20\n"
 "                        tokens portfolio. I know you will have many successes."
 msgstr ""
-"با تشکر از شما GetCryptoPayments برای در نظر گرفتن سکه Tron را به عنوان متعلق به لیست ERC-20 خود را\n"
-"                        علامت های تجاری نمونه کارها. من می دانم که موفقیت های زیادی خواهید داشت."
+"با تشکر از شما GetCryptoPayments برای گرفتن سکه Tron در نظر به عضویت در لیست ERC-20 خود را\n"
+"                        نمونه کارها برچسب ها. من می دانم که شما موفقیت های زیادی خواهید داشت."
 
 #: templates/common/index.html:351
 msgid "Justin Sun CEO Tronix Coin"
@@ -1497,8 +1497,8 @@ msgid ""
 "                        could do the hard work for us and accept all payments and receive the money in Bitcoin. Thanks GetCryptoPayments, we only\n"
 "                        need to develop  with one API now."
 msgstr ""
-"ما می خواستیم به پرداخت سکه های ستاره ای بپردازیم، بنابراین شروع به توسعه می کنیم. سپس متوجه شدیم GetCryptoPayments\n"
-"                        می تواند برای ما سخت کار کند و همه پرداخت ها را قبول کند و پول را در بیت کوین دریافت کند. با تشکر GetCryptoPayments، ما فقط\n"
+"ما میخواهیم پرداخت سکه های ستاره ای را بپذیریم تا شروع کنیم. سپس متوجه شدیم GetCryptoPayments\n"
+"                        می تواند برای ما سخت کار کند و همه پرداخت ها را بپذیرد و پول را در بیت کوین دریافت کند. با تشکر GetCryptoPayments، ما فقط\n"
 "                        نیاز به توسعه با یک API در حال حاضر."
 
 #: templates/common/index.html:362
@@ -1514,8 +1514,7 @@ msgstr "ابزارهای تجاری"
 #: templates/store/add-or-update.html:7
 msgid ""
 "If you would like to be updated about new API or changes to existing Apis"
-msgstr ""
-"اگر میخواهید درباره API جدید یا تغییرات موجود در Apis موجود را به روز کنید"
+msgstr "اگر میخواهید درباره API جدید یا تغییرات در آپیس موجود update شود"
 
 #: templates/common/merchant-tools.html:10
 #: templates/common/merchant-tools.html:17
@@ -1549,7 +1548,7 @@ msgstr "سازنده حساب"
 
 #: templates/common/merchant-tools.html:46
 msgid "Payment Request invoice maker"
-msgstr "درخواست پرداخت درخواست فاکتور"
+msgstr "سازنده فاکتور درخواست پرداخت"
 
 #: templates/common/merchant-tools.html:53
 msgid "POINT OF SALE(POS) INTERFACE"
@@ -1593,7 +1592,7 @@ msgstr "مثال های دکمه"
 
 #: templates/common/merchant-tools.html:75
 msgid "ADVANCE BUTTONS"
-msgstr "دکمه های پیشنهادی"
+msgstr "دکمه های ADVANCE"
 
 #: templates/common/merchant-tools.html:86
 msgid "SHOPPING CART BUTTONS"
@@ -1637,7 +1636,7 @@ msgstr "خروج"
 
 #: templates/registration/password_reset_complete.html:6
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr "گذرواژه شما تنظیم شده است شما ممکن است پیش بروید و وارد شوید."
+msgstr "رمز عبور شما تنظیم شده است شما ممکن است پیش بروید و وارد شوید."
 
 #: templates/registration/password_reset_complete.html:8
 msgid "Log in"
@@ -1648,12 +1647,12 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
-"لینک بازنشانی گذرواژه نامعتبر بود، احتمالا به این دلیل که قبلا استفاده شده "
-"است. لطفا درخواست بازنشانی رمز عبور جدید را درخواست کنید."
+"لینک بازنشانی گذرواژه نامعتبر بود، احتمالا چون قبلا استفاده شده است. لطفا "
+"درخواست بازنشانی رمز عبور جدید را درخواست کنید."
 
 #: templates/store/add-or-update.html:102
 msgid "Type the characters you see in the image above:"
-msgstr "کاراکترهایی را که در تصویر بالا مشاهده میکنید تایپ کنید:"
+msgstr "کاراکترهایی که در تصویر بالا مشاهده میکنید را وارد کنید:"
 
 #: templates/store/store_categories.html:5
 #: templates/store/store_listing.html:5
@@ -1663,7 +1662,7 @@ msgstr "فهرست فروشگاه"
 #: templates/store/store_categories.html:7
 #: templates/store/store_listing.html:7
 msgid "Largest directory of merchants accepting multiple cryptocurrencies"
-msgstr "بزرگترین دایرکتوری از بازرگانان پذیرفته چند رمزنگاری چندگانه"
+msgstr "بزرگترین دایرکتوری از تجار پذیرش رمزنگاری چندگانه"
 
 #: templates/store/store_categories.html:15
 #: templates/store/store_listing.html:15

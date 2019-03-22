@@ -12,6 +12,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
       rel="stylesheet"
     />
+    <script src='https://www.google.com/recaptcha/api.js?render=6LfNl2cUAAAAAKoPIBFAyyN9tF9hgCKBIrX2n_bo'></script>
     <!-- <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -66,7 +67,7 @@
             </li>
             <li class="nav-item ">
               <a class="nav-link" href="{% url 'coins:supported_coins' 'Crypto' %}">
-                {% trans 'Support Coins'%}
+                {% trans 'Supported Coins'%}
               </a>
             </li>
             <li class="nav-item ">
@@ -491,9 +492,9 @@
                             <div class="text-white">
                               <h3 class="text-uppercase">Announcement</h3>
                               <p class="mb-5">
-                                Recently listed Cloakcoin reached 70K points within
-                                the competition. Congratulations to the Cloakcoin
-                                developers team
+                                We recently listed USD Coin in our coin portfolio 
+                                Congratulations to all GCP'S users.
+                                USD Coin a stablecoin brought to you now by GetCryptoPayments.
                               </p>
                               <div class="text-theme text-right">
                                 More about centre.io
@@ -512,7 +513,7 @@
                                 developers team
                               </p>
                               <div class="text-theme text-right">
-                                More about centre.io
+                                More about visit cloakcoin.com
                                 <a href="#" class="circle-outline"
                                   ><i class="icon-arrow-right"></i
                                 ></a>
@@ -528,7 +529,7 @@
                                 developers team
                               </p>
                               <div class="text-theme text-right">
-                                More about centre.io
+                                More about visit cloakcoin.com
                                 <a href="#" class="circle-outline"
                                   ><i class="icon-arrow-right"></i
                                 ></a>
@@ -593,8 +594,8 @@
                   <div class="footer-link-group">
                     <a href="{% url 'common:helptopic' 'feespricing'  %}" class="footer-link">{% trans 'Fees/Pricing' %}</a>
                     <a href="{% url 'common:help' %}" class="footer-link">{% trans 'Help' %}</a>
-                    <a href="{% url 'store:add-to-store' %}" class="footer-link">{% trans 'Add Your Store' %}</a>
-                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Add Your Coin' %}</a>
+                    <a href="{% url 'store:add-to-store' %}" class="footer-link">{% trans 'Add Store' %}</a>
+                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Coin Request' %}</a>
                   </div>
                 </div>
 
@@ -602,7 +603,7 @@
                   <h6 class="footer-title">MORE</h6>
                   <div class="footer-link-group">
                     <a href="{% url 'common:help' %}privacy-policy" class="footer-link">{% trans 'Privacy Policy' %}</a>
-                    <a href="{% url 'common:help' %}terms-of-service" class="footer-link">{% trans 'Terms and Conditions' %}</a>
+                    <a href="{% url 'common:help' %}terms-of-service" class="footer-link">{% trans 'Terms of Service' %}</a>
                   </div>
                 </div>
               </div>

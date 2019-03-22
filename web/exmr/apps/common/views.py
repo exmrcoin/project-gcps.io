@@ -1,4 +1,5 @@
 import os
+import itertools
 
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse, reverse_lazy
@@ -9,6 +10,7 @@ from apps.common.forms import CoinRequestForm, ContactForm
 from apps.common.models import FAQ, HelpSidebar, LegalSidebar, PluginDownload, StaticPage, API, InformationalSidebar, ReceivingSidebar
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from apps.common.utils import send_mail
+from apps.coins import coinlist
 from django.core.mail import mail_admins
 from django.conf import settings
 from django.template.loader import render_to_string
@@ -18,13 +20,21 @@ class HomeView(TemplateView):
 
     def get_context_data(self, **kwargs):
         merchant_id = self.request.GET.get('ref')
+        context = super(HomeView, self).get_context_data(**kwargs)
         if merchant_id:
             user_profile = Profile.objects.get(merchant_id=merchant_id)
             referance_count = user_profile.referance_count
             referance_count = referance_count + 1
             user_profile.referance_count = referance_count
             user_profile.save()
-        return super(HomeView, self).get_context_data(**kwargs)
+        d = coinlist.get_supported_coin()
+        n = len(d) // 2          # length of smaller half
+        i = iter(d.items())      # alternatively, i = d.iteritems() works in Python 2
+
+        context['d1'] = dict(itertools.islice(i, n))   # grab first n items
+        context['d2'] = dict(i)                        # grab the rest
+        print(context['d1'])
+        return context
 
 
 class CoinRequestView(FormView):

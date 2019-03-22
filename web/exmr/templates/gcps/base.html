@@ -38,7 +38,9 @@
     
     <link href="{% static 'assests/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'assests/css/main.css' %}" rel="stylesheet">
-    {% block style %}{% endblock style %}
+    <style>
+    {% block style %}  {% endblock style %}
+    </style>
   </head>
   <body>
     <div id="particles-js"></div>

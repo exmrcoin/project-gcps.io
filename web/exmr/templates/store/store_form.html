@@ -1,13 +1,13 @@
-{% extends 'exmr.html' %} {% load staticfiles %}  {% load i18n %}
-
-
+{% extends 'gcps/base.html' %} {% load staticfiles %}  {% load i18n %}
 
 {% block content %}
+<section class="section section-pad">
+    <div class="bx-ash ">
 <div class="dark-page-header text-center">
     <h1 class="pad10 mt-2">
         {% trans 'STORE Edit' %}</h1>
     <h4 class="mt-2">
-        <p>{% trans 'Edit details of your store' %}
+        <p>{% trans 'Edit details of your store' %}</p>
     </h4>
     
 </div>
@@ -15,4 +15,6 @@
     {% include 'exmr_form.html' %}
     <input class="btn btn-warning" style="margin: 10px 0px 24px 560px;" type="submit" value="Save">
 </form>
+</div>
+</section>
 {% endblock %}

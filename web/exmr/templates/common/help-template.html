@@ -7,8 +7,8 @@
     </div>
 </div>
 <br>
-    <div class="container-fluid xs-padx1 ">
-        <div class="col-xs-12 xs-padx1">
+    <div class="container-fluid xs-padx1">
+        <div class="row xs-padx1">
             <div class="col-xs-12 col-md-4 ">
                 <div class="help-sidebar">
                     <h4 class="sidebar-label help-label">Help</h4>
@@ -33,7 +33,7 @@
             <div class="col-xs-12 col-md-8 text-justify">
                 {% for obj in details %}
                 <div id="help-answer" class="text-justify">
-                    {{obj.help_answer|safe}}
+                   <p class="login-text">{{obj.help_answer|safe}}</p>
                 </div>
                 {% endfor %}
             </div>

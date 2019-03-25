@@ -194,7 +194,7 @@
                     <div class="col-xs-12 col-sm-7 text-center">
                         
                         <h1><a href="{% url 'store:store-item-rate' store.category.slug store.pk %}">{{store.store_name}}</a></h1>
-                        <img src="{{ store.banner_image_url }}" class="img-responsive w150px margin-center">
+                        <img src="{{ store.banner_image_url }}" style="width: 150px" class="img-responsive w150px margin-center">
                         <p>
                             <a href="{{store.store_url}}">{{store.store_url}}</a>
                         </p>

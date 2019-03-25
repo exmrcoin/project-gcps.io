@@ -84,11 +84,11 @@
 
 
 
-<section class="buy-tocken">
+<section class="section section-pad">
     <div class="container">
         <div class="row m0">
             <div class="col-sm-8">
-                <div class="st-left">
+                <div class="bx-ash" style="color: white">
                     <h2> <img src="{% if coin.logo_url %}{{ coin.logo_url }}{% endif %}" style="margin-right: 15px; width: 20%;"><b>
                       {% coin_code_to_name view.kwargs.currency %}  [{{ view.kwargs.currency }}] </b></h2>
                     <h3>Help us get listed on GetCryptoPayments Gateway</h3>
@@ -109,9 +109,9 @@
 
             </div>
             <div class="col-sm-4">
-                <div class="st-right" align="center">
+                <div class="bx-ash" align="center" style="color: white; padding-bottom: 30px">
                     <h3>{% trans 'TIME REMAINING' %}</h3>
-                 <div class="counts">
+                 <div class="box2px">
                      <p>{% trans 'Points' %} :<b>{{coin.vote_count}}</b></p>
                       <p>{% trans 'Current place' %} :<b>{{position}}/{{total_coins}}</b></p>
                  </div>
@@ -124,14 +124,14 @@
 
 <section class="l-p">
     <div class="container">
-        <div class="col-sm-12">
-        <div class="l-p-wrap">
+        <div class="col-sm-12" >
+        <div class="bx-ash l-p-wrap " style="color: white">
             
             <h2 align="center"><b>{% trans 'Instant Listing Progress' %}</b></h2>
             <p align="center">{% trans "Once we reach 100% we get an instant listing on GetCryptoPayments Gateway!"%}</p>
 
             <div class="progress">
-    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{% percentage coin.vote_count%}%">
+    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{% percentage coin.vote_count%}%; color: white">
       {% percentage coin.vote_count%}%
     </div>
   </div>
@@ -143,18 +143,18 @@
   <div align="center">
 
     
-      <a href="javascript:void(0)" class="social-a social-share{%if 'twitter' in votes_share %} btn-is-disabled{%endif%}"  id="twitterShareBtn"><i class="fab fa-twitter"></i> Tweet</a>
+      <a href="javascript:void(0)" class="btn-orange mt-1 social-a social-share{%if 'twitter' in votes_share %} btn-is-disabled{%endif%}" style="display: inline-block"  id="twitterShareBtn"><i class="fab fa-twitter"></i> Tweet</a>
 
       <div class="fb-share-button" style="display:none;" 
       data-href="https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}" data-layout="button_count" id="id_share_facebook"></div>
 
-      <a href="#"  class="social-a social-share{%if 'facebook' in votes_share%} btn-is-disabled{%endif%}"  id="fbShareBtn"  data-layout="button_count"><i class="fab fa-facebook-square"></i> Share</a>
+      <a href="#"  class="btn-orange mt-1 social-a social-share{%if 'facebook' in votes_share%} btn-is-disabled{%endif%}" style="display: inline-block" id="fbShareBtn"  data-layout="button_count"><i class="fab fa-facebook-square"></i> Share</a>
 
-      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&title=The+Coin+Listing+Competition&ro=false&summary=&source=&counter=horizontal" class="social-a social-share{%if 'linkedin' in votes_share%} btn-is-disabled{%endif%}" target="_blank" id="id_share_linkedin"><i class="fab fa-linkedin"></i> Post</a>
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&title=The+Coin+Listing+Competition&ro=false&summary=&source=&counter=horizontal" class="btn-orange mt-1 social-a social-share{%if 'linkedin' in votes_share%} btn-is-disabled{%endif%}" target="_blank" id="id_share_linkedin"><i class="fab fa-linkedin"></i> Post</a>
       
-      <a href="https://telegram.me/share/url?url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&bodytext=Support+and+grow+your+favorite+Cryptocurrency+by+getting+it+listed+on+GetCryptoPayments+Exchange&tags=&text=The+Coin+Listing+Competition" class="social-a social-share{%if 'telegram' in votes_share%} btn-is-disabled{%endif%}" id="id_share_telegram" target="_blank"><i class="fas fa-paper-plane"></i> Share</a>
+      <a href="https://telegram.me/share/url?url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&bodytext=Support+and+grow+your+favorite+Cryptocurrency+by+getting+it+listed+on+GetCryptoPayments+Exchange&tags=&text=The+Coin+Listing+Competition" style="display: inline-block" class="btn-orange mt-1 social-a social-share{%if 'telegram' in votes_share%} btn-is-disabled{%endif%}" id="id_share_telegram" target="_blank"><i class="fas fa-paper-plane"></i> Share</a>
       
-      <a href="https://www.reddit.com/login?redirect=https://www.reddit.com/submit?url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}" class="social-a social-share{%if 'instagram' in votes_share%} btn-is-disabled{%endif%}" id="id_share_instagram" target="_blank"><i<i class="fab fa-reddit"></i></i> Share</a>
+      <a href="https://www.reddit.com/login?redirect=https://www.reddit.com/submit?url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}" class="btn-orange mt-1 social-a social-share{%if 'instagram' in votes_share%} btn-is-disabled{%endif%}" style="display: inline-block" id="id_share_instagram" target="_blank"><i<i class="fab fa-reddit"></i></i> Share</a>
   </div>
 
 
@@ -164,11 +164,11 @@
     <p>Follows Completed : <b>{{votes_follow_completed}}</b></p>
   
   <div align="center">
-      <a href="https://www.twitter.com/GCryptoPayments" class="social-a social-follow" id="id_follow_twitter" target="_blank"><i class="fab fa-twitter"></i> Follow</a>
-      <a href="https://www.facebook.com/GetCryptoPayments" class="social-a social-follow" id="id_follow_facebook" target="_blank"><i class="fab fa-facebook-square"></i> Follow</a>
-      <a href="https://www.reddit.com/r/exmr/" class="social-a social-follow" id="id_follow_linkedin" target="_blank"><i class="fab fa-reddit"></i> Follow</a>
-      <a href="https://t.me/JoinEXMR" class="social-a social-follow" target="_blank" id="id_follow_telegram"><i class="fas fa-paper-plane"></i> Follow</a>
-      <a href="https://www.instagram.com/GetCryptoPayments/" class="social-a social-follow" target="_blank" id="id_follow_instagram"><i class="fab fa-instagram"></i> Follow</a>
+      <a href="https://www.twitter.com/GCryptoPayments" style="display: inline-block" class="btn-orange mt-1 social-a social-follow" id="id_follow_twitter" target="_blank"><i class="fab fa-twitter"></i> Follow</a>
+      <a href="https://www.facebook.com/GetCryptoPayments" style="display: inline-block" class="btn-orange mt-1 social-a social-follow" id="id_follow_facebook" target="_blank"><i class="fab fa-facebook-square"></i> Follow</a>
+      <a href="https://www.reddit.com/r/exmr/" style="display: inline-block" class="btn-orange mt-1 social-a social-follow" id="id_follow_linkedin" target="_blank"><i class="fab fa-reddit"></i> Follow</a>
+      <a href="https://t.me/JoinEXMR" style="display: inline-block" class="btn-orange mt-1 social-a social-follow" target="_blank" id="id_follow_telegram"><i class="fas fa-paper-plane"></i> Follow</a>
+      <a href="https://www.instagram.com/GetCryptoPayments/" style="display: inline-block" class="btn-orange mt-1 social-a social-follow" target="_blank" id="id_follow_instagram"><i class="fab fa-instagram"></i> Follow</a>
   </div>
 <hr>
    <h2 align="center"><b>3- Buy EXMR on Exchange</b></h2>
@@ -176,20 +176,20 @@
     <p>Points Completed: <b>0</b></p>
   
  <div class="mt20" align="center">
-     <a href="https://exmrfoundation.org/exchange.html" class="btn btn-by"> BUY EXMR NOW</a>
+     <a href="https://exmrfoundation.org/exchange.html" class="btn btn-lg btn-orange"> BUY EXMR NOW</a>
  </div>
 </div>
- <div class="d-box col-sm-6 col-sm-offset-3">
+ <div class="bx-ash col-sm-6 mt-4 offset-sm-3" style="color: white">
     <h4><b>More way to Support  your coin</b></h4>
     <h5>Bonus Points<br><small>By Overlord secret code, Holders w/ether wallets with EXMR & High Leverage Task.</small></h5>
     <a href="{% url 'coins:copromotion-form'%}">Submit high leverage Point here</a>
      <h5>Referral Link</h5>
-     <input type="text" value="https://getcryptopayments.org{% url 'coins:vote-details' view.kwargs.currency %}" id="referalLink">
+     <input type="text" class="form-control" value="https://getcryptopayments.org{% url 'coins:vote-details' view.kwargs.currency %}" id="referalLink">
      <button class="btn" onclick="copyBtn()"> Copy </button>
 </div>
 </div>
 
-<div class="mb20">
+<div class="mb20" style="color: white">
     
   <h3 align="center" >Disclaimer</h3>
 

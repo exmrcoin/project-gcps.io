@@ -1615,3 +1615,9 @@ button:focus {
     outline: 1px dotted;
     outline: transparent;
 }
+.box2px {
+    border: 2px solid white;
+    border-radius: 7px;
+    padding: 10px;
+
+}

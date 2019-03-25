@@ -196,7 +196,7 @@
                   <div class="col-sm-12 col-md-6 animated fadeInRightShort">
                     <div class="bx-ash mb-2" style="max-width: 350px; margin: 0px auto; margin-right: 0px;">
                       <h6 class="text-white text-center mb-4">
-                        Choose Which <span class="text-theme">Assets to Trade</span>
+                        Assets <span class="text-theme"> Listed with us</span>
                       </h6>
                       <a href="{% url 'coins:wallets' %}">
                       <ul class="bx-list row">
@@ -208,16 +208,17 @@
                               {% if forloop.counter == 1 %}
                               <div class="carousel-item active text-center">
                                   <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                  <div class="text-white mt-2">{{coin_details.coin_name}}({{coin_details.coin_code}})</div>
                               </div>
                               {% else %}
                               <div class="carousel-item text-center">
                                   <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
-                              </div>
+                                  <div class="text-white mt-2">{{coin_details.coin_name}}({{coin_details.coin_code}})</div>
+                                </div>
                               {% endif %}
-
+                  
                               {% endfor %}
                             </div>
-                            <div class="text-white mt-2">Deposit</div>
                           </div>
                         </li>
                         <li class="col-2  d-flex align-items-center justify-content-center">
@@ -234,16 +235,18 @@
                                 {% if forloop.counter == 1 %}
                                 <div class="carousel-item active text-center">
                                     <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
-                                </div>
+                                    <div class="text-white mt-2">{{coin_details.coin_name}}({{coin_details.coin_code}})</div>
+                                  </div>
+
                                 {% else %}
                                 <div class="carousel-item text-center">
                                     <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
-                                </div>
+                                    <div class="text-white mt-2">{{coin_details.coin_name}}({{coin_details.coin_code}})</div>
+                                  </div>
                                 {% endif %}
 
                                 {% endfor %}
                               </div>
-                              <div class="text-white mt-2">Receive</div>
                             </div>
                         </li>
                       </ul>

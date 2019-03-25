@@ -5,3 +5,4 @@ node_modules/
 .vscode/
 .vs/
 .vscode/settings.json
+web/exmr/gnupg/random_seed

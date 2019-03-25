@@ -4,11 +4,140 @@
 {% load transaction_status %}
 {% load i18n %} 
 
+<section class="section section-pad">
+	<div class="bx-ash ">
+		<div class="dark-page-header text-center">
+			<h2 class="pad10 mt-2">
+					We appreciate your efforts into participating in the Coin Listing Competition and we’re into rewarding your hard work with more points and provide your team and community more leverage in the competition.
+			</h2>
+			
+			</h4>
+		</div>
+	</div>
+	<div class="container">
+		<div class="mt-4 bx-ash">
+			<h4 style="color:white;">Submit your co-promotion URLs below:</h4>
+			<div class="panel panel-default" style="padding: 30px;background-color: transparent;border-radius: 10px ;">
+				{% for message in messages %}
+				{% if message %}
+					<div class="alert alert-success" backgorun="">
+						Your high leverage task/s have been submitted and will be reviewed. We will let you know via email once the points have been credited to boost your coin's ranking on the Coin Listing Competition.
+					</div>
+				{% endif %}
+				{% endfor %}
+				<form action="#" method="post">
+					{% csrf_token %} 
+					<div id="id_copromotion_form" style="color: white">
+						<div class="form-group" >
+							<label for="url1">Select Coin</label>
+							<select name="coin_id" class="form-control selectpicker">
+								{% for coin in coins %}
+								<option value={{ coin.id }}>{{coin.name}}({{coin.code}})</option>
+								{% endfor %}
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="url1">SECRET CODE</label>
+							<input type="text" class="form-control" name="urls1" id="url1" placeholder="EXMR-XXXXXXXXX-MONERO">
+						</div>
+						<div class="form-group">
+							<label for="url2">URL 1</label>
+							<input type="text" class="form-control" name="urls2" id="url2" placeholder="http://www.example-2.com/">
+						</div>
+						<div class="form-group">
+							<label for="url3">URL 2</label>
+							<input type="text" class="form-control" name="urls3" id="url3" placeholder="http://www.example-3.com/">
+						</div>
+					</div>
+					<input type="hidden" class="form-control" name="total" id="id_total" value="3">
+					<button type="button" class="btn btn-primary add-field" onclick="addNew();">Add New Field</button>
+					<button type="submit" name="submit" class="btn btn-success" value="1">Submit</button>
+					
+				</form>
+			</div>
+			
+					<h3 style="text-align: center;margin-bottom:30px;color:white">Prerequisites For High-Leverage Tasks</h3>
+					<div class="row" style="color:white">
+						<div class="col-md-6">
+							<p style="text-align: center;"><strong>1,000 points per complete each high-leverage task below.</strong></p>
+							<br>
+							<ul>
+								<li>
+									<b>Promote the GetCryptoPayments Gateway</b> (Entire phase competition) - Promote your participation on the following channels:
+									<ul>
+										<li>Twitter (must be pinned)</li>
+											<li>Telegram (must be pinned)</li>
+										<li>Facebook (must be pinned)</li>
+										<li>Reddit (with active engagement)</li>
+										<li>Bitcointalk (with active engagement)</li>
+										<li>Email via an email blast (sent to at least 2,000 recipients)</li>
+									</ul>
+									<p>Individual task will earn your coin 1,000 points for every channel where you promote GetCryptoPayments. </p>
+								</li>
+								<li>Promotion video that will be uploaded in an important  YouTube channel.
+									<ul>
+										<li></li>
+									</ul>
+								</li>
+								<li>Daily Email Blast
+									<ul>
+										<li>Screenshot of email report</li>
+										<li>sent to at least 2,000 contacts </li>
+										<li>include <a style="color:#;" href="mailto:task@getcryptopayments.net"><span class="__cf_email__" data-cfemail="a8cbc0d1dadacdc4c4cde8cbdad1d8dcc9c4ccc9dbc086cbc7c5">[task@getcryptopayments.net]</span></a>, <a style="color:#;" href="mailto:listing@getcryptopayments.net"><span class="__cf_email__" data-cfemail="3453555d587457464d444055585055475c1a575b59">[listing@getcryptopayments.net]</span></a>, <a style="color:#;" href="cdn-cgi/l/email-protection.html#5c37392a35322f3d28331c3f2e252c283d30383d2f34723f3331"><span class="__cf_email__" data-cfemail="afc4cad9c6c1dccedbc0efccddd6dfdbcec3cbcedcc781ccc0c2"></span></a> </li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-6">
+							<p style="text-align: center;"><strong>These 10,000 points is equivalent one Overlord I member. </strong></p>
+							<br>
+							<ul>
+								<li>Telegram
+									<ul>
+										<li>should be posted by community admin </li>
+										<li>everyday post until end of the Phase </li>
+										<li>@BotGetCryptoPayments should be tagged in every post </li>
+									</ul>
+								</li>
+								<li>Bitcoin Forum
+									<ul>
+										<li>GetCryptoPayments Banner/Logo (w/ link) should be on the Announcement Group Banner </li>
+									</ul>
+								</li>
+								<li>Crypto related FB Community
+									<ul>
+										<li>15,000 members </li>
+									</ul>
+								</li>
+								<li>Guest post on an authoritative crypto site</li>
+								<li>Get an influencer to discuss about GetCryptoPayments </li>
+								<li>Reddit
+									<ul>
+										<li>with enough traction that is proportionate to the subreddit</li>
+										<li>post should reach the front page of the subreddit </li>
+									</ul>
+								</li>
+								<li>GetCryptoPayments Logos on Websites
+									<ul>
+										<li>under partners section </li>
+										<li>a banner/widget </li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+		</div>
+
+	</div>
+</section>
+
+
 <div class="container-fluid fluid-drop" style="padding-bottom: 70px;">
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-md-10 offset-md-1">
 	    <h2 style="text-align: center;font-size: 22px;line-height: 1.5;margin-bottom: 50px;">We appreciate your efforts into participating in the Coin Listing Competition and we’re into rewarding your hard work with more points and provide your team and community more leverage in the competition.</h2>
 	</div>
-	<div class="col-md-8 col-md-offset-2">
+	<div class="col-md-8 offset-md-2">
 	    <h4>Submit your co-promotion URLs below:</h4>
 	    <div class="panel panel-default" style="padding: 30px;background-color: #fff;border-radius: 10px;">
 	    	{% for message in messages %}

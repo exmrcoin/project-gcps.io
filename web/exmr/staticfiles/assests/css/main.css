@@ -21,14 +21,7 @@ body{
 }
 
 .nav-colored{
-    background: rgba(34,34,34,0.63);
-    background: -moz-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(34,34,34,0.63)), color-stop(100%, rgba(60,59,73,0.63)));
-    background: -webkit-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -o-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -ms-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: linear-gradient(to right, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#3c3b49', GradientType=1 );
+    background-color:#101010;
 }
 
 .btn-default{
@@ -482,7 +475,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
     }
 
     .navbar-cp{
-        background-color: #000000;
+        background-color: #101010;
     }
 
     .navbar-toggler-icon {

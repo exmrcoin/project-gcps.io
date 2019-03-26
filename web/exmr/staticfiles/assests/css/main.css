@@ -1494,7 +1494,6 @@ input[type=checkbox] {
 }
 
 /****************sidebar*******************/
-
 .sidenav {
     height: 100%;
     width: 0;
@@ -1615,9 +1614,14 @@ button:focus {
     outline: 1px dotted;
     outline: transparent;
 }
+
 .box2px {
     border: 2px solid white;
     border-radius: 7px;
     padding: 10px;
+}
+
+h6{
+    font-size: .95rem !important;
 
 }

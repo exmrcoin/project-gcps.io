@@ -1,4 +1,4 @@
-{% extends 'exmr.html' %} {% load static %}{% load transaction_status %}{% block style %}
+{% extends 'gcps/base.html' %} {% load static %}{% load transaction_status %}{% block style %}
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-html5-1.5.1/b-print-1.5.1/r-2.2.1/sc-1.4.4/datatables.min.css"
 /> {% endblock %} {% block content %}
 <!-- <section class="col-12 section-blue">
@@ -12,11 +12,11 @@
         </div>
     </div>
 </section> -->
-<section class="col-12 section-dark">
-    <div class="col-12 p-md-5 pb-5 pt-5">
-        <table id="data_table" class="table table-striped table-dark text-capitalize" style="width:100%;">
+<section class="section section-pad">
+    <div class=" bx-ash col-12 p-md-5 pb-5 pt-5">
+        <table id="data_table" class="table table-border table-responsive-md" style="width:100%; ">
             <thead>
-                <tr>
+                <tr style="border: none">
                     {% if all_users %}
                     <th scope="col">#</th>
                     <th scope="col">First Name</th>
@@ -34,7 +34,7 @@
                 {% if all_users %}
                     {% for user in all_users %}
                     
-                    <tr>
+                    <tr style="border: none">
                         <th scope="row" style="border-top: none;">{{forloop.counter}}</th>
                         <td><a href="{% url 'coins:user_wallet' user.id %}">{{user.first_name}}</a></td>
                         <td>{{user.last_name}}</td>
@@ -44,7 +44,7 @@
 
                 {% else %}
                     {% for coin in coins %}
-                    <tr>
+                    <tr style="border: none">
                         <th scope="row" style="border-top: none;">{{forloop.counter}}</th>
                         <td><a href="">{{coin.coin_name}}</a></td>
                         <td>{{coin.code}}</td>

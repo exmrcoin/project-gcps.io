@@ -1,15 +1,27 @@
 {% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
 <div></div>
 {% load transaction_status %} {% block dashboard_heading %}
-<div class="dashboard-bg">
-    <div class="merchant-tools merchant-one coin-payment-head">
-        <div class=" container merchant-box">WALLETS
-        </div>
-    </div>
-</div>
+<h4 class="text-theme b-4 dashboard">WALLETS</h4>
 {% endblock %} {% block dashboard_wrapper_content %}
-
-<div class="dashboard-wrapper">
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+        <div class="container">
+            <div class="bx-ash mb-2">
+                <div class="pad10">
+                            <div class="img-dashboard">
+                                <img src="{% static '/images/recevied.png' %}">
+                            </div>
+                            <h4 class="text-theme">{% trans 'Convert Coin' %}</h4>
+                </div>
+                <div class="text-center" style="color: white;">
+                    <h2>Insufficient Balance</h2>
+                    <h3>The current balance in your wallet is insufficient to perform this operation. Please add sufficient budget</h3>
+                </div>          
+            </div>
+        </div>
+            
+        </section>
+    
+<!-- <div class="dashboard-wrapper">
     <div class="dasboard-head pad10">
         <div class="img-dashboard">
             <img src="{% static '/images/recevied.png' %} ">
@@ -24,21 +36,21 @@
                     <h3>The current balance in your wallet is insufficient to perform this operation. Please add sufficient budget</h3>
  
                 </div>
-            </div>
+            </div> -->
             <!--  -->
 
 
 
             <!--  -->
-        </div>
+        <!-- </div>
 
     </div>
 </div>
 <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
+    <div class="modal-dialog"> -->
 
         <!-- Modal content-->
-        <div class="modal-content  exmr-modal white-font animated bounceInDown">
+        <!-- <div class="modal-content  exmr-modal white-font animated bounceInDown">
 
             <img src="{% static 'images/logo1.png' %}" class="margin-center img-responsive exmr-modal-logo">
             <div class="modal-header text-center">
@@ -58,6 +70,6 @@
         </div>
 
     </div>
-</div>
+</div> -->
 {% endblock %} {% block script %}
 {% endblock %}

@@ -22,7 +22,7 @@ urlpatterns = [
     path('ref-signup/<slug:mid>/', views.SignUpView.as_view(), name='signup'),
     path('sign-up-complete/', views.SignUpCompleteView.as_view(), name='signup_complete'),
     path('activate/<slug:key>', views.ProfileActivationView.as_view(), name='registration_activate'),
-    path('password-reset', PasswordResetView.as_view(template_name='accounts/forgot_password.html',
+    path('password-reset/', PasswordResetView.as_view(template_name='accounts/forgot_password.html',
                                                      form_class=CustomPasswordResetForm), name='reset_password'),
 
     path('2fa-accounts/', views.TwoFactorAccountView.as_view(), name='accounts_2fa'),

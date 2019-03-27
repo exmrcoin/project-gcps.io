@@ -1,14 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'gcps/base.html' %}
 {% load static %}
 
 {% block title %}Delete Two Factor Authentication{% endblock %}
 
 {% block content %}
-<section>
-	<div class="container">
+<section class="section section-pad">
+	<div class="bx-ash">
 		<form action="{% url 'accounts:delete_2fa' object.pk %}" method="post">{% csrf_token %}
-		    <p>Are you sure you want to delete "{{ object }}"?</p>
-		    <p><input type="submit" value="Confirm" class="btn btn-danger"/></p>
+		    <p style="color: white">Are you sure you want to delete "{{ object }}"?</p>
+		    <p><input type="submit" style="color: white"value="Confirm" class="btn btn-danger"/></p>
 		</form>
 	</div>
 </section>

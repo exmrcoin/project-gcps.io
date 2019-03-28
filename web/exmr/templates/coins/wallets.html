@@ -168,7 +168,7 @@
                                                             <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="dropdown" aria-expanded="false">{{ obj.code }} Options
                                                             <span class="caret"></span>
                                                             </button>
-                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: #1f1f23f0;">
                                                                 <a class="dropdown-item" href="{% url 'coins:newaddr' obj.code  %}"><i class="fab fa-get-pocket" style="padding-right: 11px";></i>Deposit / Receive</a>
                                                                 <a class="dropdown-item" href="{% url 'coins:coin-withdrawal' obj.code %}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Send / Withdraw</a>                                                                          
                                                                 <a class="dropdown-item" href="#"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> View Addresses
@@ -215,7 +215,7 @@
                                                             <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="dropdown" aria-expanded="false">Options
                                                                 <span class="caret"></span>
                                                             </button>
-                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: #1f1f23f0;">
                                                                 <a class="dropdown-item" href="{% url 'coins:newaddr' erc.contract_symbol  %}"><i class="fab fa-get-pocket" style="padding-right: 11px";></i>Deposit / Receive</a>
                                                                 <a class="dropdown-item" href="{% url 'coins:coin-withdrawal' erc.contract_symbol %}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Send / Withdraw</a>                                                                          
                                                                 <a class="dropdown-item" href="#"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> View Addresses

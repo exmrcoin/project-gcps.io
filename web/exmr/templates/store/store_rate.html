@@ -1,13 +1,12 @@
-{% extends 'exmr.html' %} {% load staticfiles %} {% load transaction_status %} {% block content %} {% load i18n %} {% block page_css %}
+{% extends 'gcps/base.html' %} {% load staticfiles %} {% load transaction_status %} {% block content %} {% load i18n %} {% block page_css %}
 {% block style %}<link rel="stylesheet" type="text/css" href="{% static 'css/star.css' %}">{% endblock style %}
 <style type="text/css">
 .star-ratings-css {
   unicode-bidi: bidi-override;
   color: #c5c5c5;
-  font-size: 25px;
+  font-size: 29px;
   height: 25px;
   width: 100px;
-  margin: 0 auto;
   position: relative;
   padding: 0;
   text-shadow: 0px 1px 0 #a2a2a2;
@@ -28,30 +27,23 @@
   z-index: 0;
 }</style>
 {% endblock %}
-<section>
+<section class="section section-pad">
+    <div class="bx-ash ">
     <div class="merchant-tools merchant-one exmr-head">
         <h1>Store Rate</h1>
         
         <h3> {{store.store_name}}</h3>
     </div>
-    <div class="container-fluid xs-padx1">
-        <div class="col-xs-12 xs-padx1">
+</div>
+    <div class="container-fluid xs-padx1 ">
+        <div class="row xs-padx1">
             <div class="account-setting-wrap coin-support-main-wrap xs-padx1">
                 <fieldset class="setting-form form-settings">
                 
                 <div class="row">
-                    <div class="col-xs-8"> 
+                    <div class="col-xs-8 col-sm-8"> 
                     <div id="table_div" class=" mt-1 pt-1">
-                        <table class="table vote_table">
-                            <thead>
-                                <tr class="hidden">
-                                    <th>1</th>
-                                    <th>2</th>
-                                    <th>3</th>
-                                    
-
-                                </tr>
-                            </thead>
+                        <table class="table borderless">
                             <tbody class="py-1">
                                 
                                 <!-- <tr class="table-th pt-1">
@@ -61,37 +53,37 @@
                                     
                                 </tr> -->
                                 <tr class="table-th pt-1">
-                                        <td style="text-align: right; min-width: 100px;"></td>
-                                        <td style="text-align: right; min-width: 200px;">Store Name: </td>
-                                        <td style="text-align: center; width: 100%">{{store.store_name}}</td>
+                                        
+                                        <td style=" min-width: 200px;">Store Name: </td>
+                                        <td style=" width: 100%">{{store.store_name}}</td>
                                     </tr>
                                 <tr class="table-th pt-1">
-                                    <td style="text-align: right; min-width: 100px;"></td>
-                                    <td style="text-align: right; min-width: 200px;">Website: </td>
-                                    <td style="text-align: center; width: 100%">{{store.store_url}}</td>
+                                    
+                                    <td style=" min-width: 200px;">Website: </td>
+                                    <td style=" width: 100%">{{store.store_url}}</td>
                                 </tr>
                                 <tr class="table-th pt-1">
-                                    <td style="text-align: right; min-width: 100px;"></td>
-                                    <td style="padding-top: 19px; text-align: right; min-width: 200px;">Feedback: </td>
-                                    <td style="text-align: center; width: 100%"> <div class="star-ratings-css" data-toggle="tooltip" title="the store has a rating of {{percent}}%">
+                                    
+                                    <td style="padding-top: 19px; min-width: 200px;">Feedback: </td>
+                                    <td style="width: 100%"> <div class="star-ratings-css" data-toggle="tooltip" title="the store has a rating of {{percent}}%">
                                         <div class="star-ratings-css-top" style="width: {{percent}}%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                                         <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
                                       </div></td>
                                 </tr>
                                 <tr class="table-th pt-1">
-                                    <td style="text-align: right; min-width: 100px;"></td>
-                                    <td style="text-align: right; min-width: 200px;">Crypto Processor: </td>
-                                    <td style="text-align: center; width: 100%">{{store.crypto_processor}}</td>
+                                   
+                                    <td style="min-width: 200px;">Crypto Processor: </td>
+                                    <td style="width: 100%">{{store.crypto_processor}}</td>
                                 </tr>
                                 <tr class="table-th pt-1">
-                                    <td style="text-align: right; min-width: 100px;"></td>
-                                    <td style="text-align: right; min-width: 200px;">Email: </td>
-                                    <td style="text-align: center; width: 100%">{{store.store_email}}</td>
+                                    
+                                    <td style="min-width: 200px;">Email: </td>
+                                    <td style="width: 100%">{{store.store_email}}</td>
                                 </tr>
                                 <tr class="table-th pt-1">
-                                    <td style="text-align: right; min-width: 100px;"></td>
-                                    <td style="text-align: right; min-width: 200px;">Voters: </td>
-                                    <td style="text-align: center; width: 100%">{{voters}}</td>
+                                  
+                                    <td style="min-width: 200px;">Voters: </td>
+                                    <td style="width: 100%">{{voters}}</td>
                                 </tr>
                                 
                             </tbody>
@@ -100,12 +92,18 @@
                     </div>
                     
                     </div>
+<<<<<<< HEAD
                     <div class="col-xs-2">
                             <div class="card" style="width: 18rem;">
                                     <img class="img-responsive w150px margin-center" style="width:150px;" src="{{ store.banner_image_url }}" alt="Card image cap">
+=======
+                    <div class="col-xs-2 col-sm-2">
+                            <div class="" style="width: 18rem;">
+                                    <img class="img-responsive w150px margin-center" src="{{ store.banner_image_url }}" alt="Card image cap">
+>>>>>>> 766d3ae3a2f84c9906f5d052784726f5e0566dc1
                                     {% if erc %}
                         
-                                    <p style="text-align: center; margin: 23px 8px 66px;">{{request.user.username}} have already given feedback</p>
+                                    <p style=" margin: 23px 8px 66px;">{{request.user.username}} have already given feedback</p>
                       
                                     
                         
@@ -130,13 +128,11 @@
                                     <div>
                                     <div>
                                         {% if owner == username %}
-                                        <button style="margin-left: 60px;" class="btn btn-warning"><a href="{% url 'store:update-store' store.pk %}">Update</a></button>
+                                        <button style="margin-left: 60px;" class="btn btn-lg btn-outline-orange"><a href="{% url 'store:update-store' store.pk %}">Update</a></button>
                                         {% else %}
-                                        <button style="margin: 60px;" class="btn btn-warning"><a href="{% url 'store:store-item' category.slug %}">Go Back</a></button>
+                                        <button style="margin: 60px;" class="btn btn-lg btn-outline-orange"><a href="{% url 'store:store-item' category.slug %}">Go Back</a></button>
                                         {% endif %}
-                                    </div>
-                                        
-                                           
+                                    </div>            
                     </div>
                 </div>
 
@@ -146,8 +142,6 @@
         </div>
     </div>
 </section>
-
-
 {% endblock %}
 {% block script %}
 <script>

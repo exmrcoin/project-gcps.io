@@ -583,7 +583,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
 .h50px {
     height: 50px;
     font-size: 1rem;
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif !important;
 }
 
 .btn-orange{
@@ -1179,11 +1179,11 @@ label, input {
 }
 
 a {
-    color: #e75d14;
+    color: #ffffff;
 }
 
 a:hover {
-    color: #ff772e;
+    color: #000000;
     text-decoration: none;
 }
 /*******************stores*****************/
@@ -1474,9 +1474,6 @@ input[type=checkbox] {
 .store-list {
     border: 1px solid #eaeaea;
 }
-.h50px {
-    height: 50px;
-}
 
 .h50pxi {
     height: 50px !important;
@@ -1663,4 +1660,11 @@ h6{
     white-space: nowrap;
     background-color: transparent;
     border: 0;
+}
+.error{
+    color: red;
+}
+
+.errorlist{
+    color: red;
 }

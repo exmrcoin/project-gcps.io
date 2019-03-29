@@ -10,19 +10,19 @@
         <div class="bx-ash mb-2">
             <div class="grid-2-bx" style="display: inline">
                 {% block dashboard_heading %}{%endblock%}
-                <ul class="row nav nav-pills nav-fill">
+                <ul class="row nav nav-pills nav-fill ml-5" >
                     <li class="col-md-4 col-4 col-lg-2 col-sm-4 col-xl-2 nav-item">
                         <a href="{% url 'accounts:profile' %}" class="v-mid dashboard-nav row px-0 py-1">
-                            <span class="fas fa-tachometer-alt fa-2x col-xs-12  col-md-6 col-sm-6"></span>
-                            <span class="dashboard-span hidden-xs col-sm-6 col-md-6 wallet-menu">{% trans 'Home' %}</span>
+                            <span class="fas fa-tachometer-alt fa-2x mr-1"></span>
+                            <span class="dashboard-span hidden-xs hidden-sm wallet-menu">{% trans 'Home' %}</span>
                         </a>
                         <!-- <i class="fas fa-2x fa-wallet"></i>
                         <a class="nav-link" href="{% url 'accounts:profile' %}"></a> -->
                     </li>
                     <li class="col-md-4 col-4 col-lg-2 col-sm-4 col-xl-2 nav-item">
                             <a href="{% url 'coins:wallets' %}" class="v-mid dashboard-nav row px-0 py-1">
-                                <i class="fas fa-2x fa-wallet col-xs-12 col-md-6 col-sm-6"></i>
-                                <span class="dashboard-span hidden-xs hidden-sm  col-md-6 wallet-menu">
+                                <i class="fas fa-2x fa-wallet mr-1"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu">
                                     {% trans 'Your Wallet' %}
                                 </span>
                             </a>
@@ -30,29 +30,29 @@
                     </li>
                     <li class=" col-md-4 col-4 col-lg-2 col-sm-4 col-xl-2 nav-item">
                             <a href="{% url 'coins:coin-settings' %}" class="v-mid dashboard-nav row px-0 py-1">
-                                <i class="fas fa-coins  fa-2x col-xs-12 col-md-6 col-sm-6"></i>
-                                <span class="dashboard-span hidden-xs hidden-sm col-md-6  wallet-menu">{% trans 'Coin Settings' %}</span>
+                                <i class="fas fa-coins  fa-2x mr-1"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu">{% trans 'Coin Settings' %}</span>
                             </a>
                         <!-- <a class="nav-link" href="{% url 'coins:coin-settings' %}">{% trans 'Coin Settings' %}</a> -->
                     </li>
                     <li class=" col-md-4 col-4 col-lg-2 col-sm-4 col-xl-2 nav-item">
                         <a href="{% url 'coins:transaction-history' %}" class="v-mid dashboard-nav row px-0 py-1">
-                                <i class="fas fa-receipt  fa-2x col-xs-12 col-md-6 col-sm-6"></i>
-                                <span class="dashboard-span hidden-xs hidden-sm col-md-6  wallet-menu"> {% trans 'Transactions' %}</span>
+                                <i class="fas fa-receipt  fa-2x mr-1"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"> {% trans 'Transactions' %}</span>
                         </a>
                         <!-- <a class="nav-link" href="{% url 'coins:transaction-history' %}">{% trans 'Transactions' %}</a> -->
                     </li>
                     <li class="col-md-4 col-4 col-lg-2 col-sm-4 col-xl-2 nav-item">
                             <a href="{% url 'mtools:posqrmaker' %}" class="v-mid dashboard-nav row px-0 py-1">
-                                <i class="fas fa-shopping-cart  fa-2x col-xs-12 col-md-6 col-sm-6"></i>
-                                <span class="dashboard-span hidden-xs hidden-sm col-md-6  wallet-menu"> {% trans 'Quick POS' %}</span>
+                                <i class="fas fa-shopping-cart  fa-2x mr-1"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"> {% trans 'Quick POS' %}</span>
                             </a>
                         <!-- <a class="nav-link" href="{% url 'mtools:posqrmaker' %}"> {% trans 'Quick POS' %}</a> -->
                     </li>
                     <li class="col-md-4 col-4 col-lg-2 col-sm-4 col-xl-2 nav-item">
                             <a href="{% url 'coins:paybyname' %}" class="v-mid dashboard-nav row px-0 py-1">
-                                <i class="fas fa-user-tie  fa-2x col-xs-12 col-md-6 col-sm-6"></i>
-                                <span class="dashboard-span hidden-xs hidden-sm col-md-6  wallet-menu">{% trans 'PayByName' %}</span>
+                                <i class="fas fa-user-tie  fa-2x mr-1"></i>
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu">{% trans 'PayByName' %}</span>
                             </a>
                         <!-- <a class="nav-link" href="{% url 'coins:paybyname' %}"> {% trans 'PayByName' %}</a> -->
                     </li>

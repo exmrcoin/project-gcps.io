@@ -22,7 +22,7 @@ FIAT = 3
 TYPE_CHOICES = (
     (CRYPTO, _('Crypto')),
     (RIPPLE, _('Ripple')),
-    (ETHER_TOKENS, _('Ether tokens')),
+    (ETHER_TOKENS, _('Tokens')),
     (FIAT, _('Fiat')),
 )
 

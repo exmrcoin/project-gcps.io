@@ -114,12 +114,12 @@
               <div
                 class="dropdown-menu dropdown-menu-right"
                 aria-labelledby="navbarDropdown"
-                style="left: -175px"
+                style="left: -130px"
               >
                 <a class="dropdown-item" href="{% url 'common:help' %}">Help Topics</a>
                 <a class="dropdown-item" href="{% url 'common:coinhosting' %}">Coin Request</a>
                 <!-- <div class="dropdown-divider"></div> -->
-                <a class="dropdown-item" href="{% url 'store:add-to-store' %}">Add Store to Store Directory</a>
+                <a class="dropdown-item" href="{% url 'store:add-to-store' %}">Add Store to Directory</a>
                 <a class="dropdown-item" href="{% url 'contact' %}">Contact Us</a>
               </div>
             </li>
@@ -198,7 +198,7 @@
       <!-- Navbar END -->
       {% block content %} {% endblock content %}
       <div id="appModal" class="modal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog" role="document" style="margin-top: 6.0rem">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">APP</h5>
@@ -226,7 +226,7 @@
                   <div class="footer-link-group">
                     <a href="{% url 'coins:supported_coins' 'Crypto' %}" class="footer-link">{% trans 'Supported Coins' %}</a>
                     <a href="{% url 'merchant-tools' %}" class="footer-link">{% trans 'Merchant Tools' %}</a>
-                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Point of Sales (POS)' %}</a>
+                    <a href="{% url 'mtools:posqrmaker' %}" class="footer-link">{% trans 'Point of Sales (POS)' %}</a>
                     <a href="{% url 'store:store-directory' %}" class="footer-link">{% trans 'Store Directory' %}</a>
                   </div>
                 </div>
@@ -234,7 +234,7 @@
                 <div class="col-sm-6 col-md-6 col-lg-3 animated fadeInUpShort" data-id='2'>
                   <h6 class="footer-title">RESOURCES</h6>
                   <div class="footer-link-group">
-                    <a href="#" class="footer-link">{% trans 'Get Mobile App' %}</a>
+                    <a href="{% url 'accounts:profile' %}" class="footer-link">{% trans 'Dashboard' %}</a>
                     <a href="#" class="footer-link">{% trans 'Affiliate Information' %} </a>
                     <a href="#" class="footer-link">{% trans 'Official TOR URL' %}</a>
                     <a href="#" class="footer-link">{% trans 'PGP Key' %}</a>
@@ -246,8 +246,8 @@
                   <div class="footer-link-group">
                     <a href="{% url 'common:helptopic' 'feespricing'  %}" class="footer-link">{% trans 'Fees/Pricing' %}</a>
                     <a href="{% url 'common:help' %}" class="footer-link">{% trans 'Help' %}</a>
-                    <a href="{% url 'store:add-to-store' %}" class="footer-link">{% trans 'Add Store' %}</a>
-                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Coin Request' %}</a>
+                    <a href="{% url 'store:add-to-store' %}" class="footer-link">{% trans 'Add Your Store' %}</a>
+                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Add Your Coin' %}</a>
                   </div>
                 </div>
 
@@ -255,7 +255,7 @@
                   <h6 class="footer-title">MORE</h6>
                   <div class="footer-link-group">
                     <a href="{% url 'common:help' %}privacy-policy" class="footer-link">{% trans 'Privacy Policy' %}</a>
-                    <a href="{% url 'common:help' %}terms-of-service" class="footer-link">{% trans 'Terms and Conditions' %}</a>
+                    <a href="{% url 'common:help' %}terms-of-service" class="footer-link">{% trans 'Terms of Service' %}</a>
                   </div>
                 </div>
               </div>

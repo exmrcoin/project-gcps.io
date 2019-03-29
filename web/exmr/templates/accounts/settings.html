@@ -33,17 +33,17 @@
                 </div>    
                 <div>                   
                     <ul class="nav nav-tabs" style="border: none">
-                        <li class="nav-item bx-ash-1 bx-client-1">
-                          <a class="nav-link a-1 active" data-toggle="tab" href="#home" style=" border-radius: 6px;" >{% trans 'Basic Settings' %}</a>
+                        <li class="nav-item bx-ash-1 bx-client-1 mt-1">
+                          <a class="nav-link a-1 active" data-toggle="tab" href="#home" style=" border-radius: 6px; min-width: 134px; text-align: center" >{% trans 'Basic Settings' %}</a>
                         </li>
-                        <li class="nav-item bx-ash-1 bx-client-1 ml-2">
-                          <a class="nav-link a-1" data-toggle="tab" href="#menu1" style="border-radius: 6px;">{% trans 'Public Info' %}</a>
+                        <li class="nav-item bx-ash-1 bx-client-1  mt-1">
+                          <a class="nav-link a-1" data-toggle="tab" href="#menu1" style="border-radius: 6px; min-width: 134px; text-align: center">{% trans 'Public Info' %}</a>
                         </li>
-                        <li class="nav-item bx-ash-1 bx-client-1 ml-2">
-                          <a class="nav-link a-1" data-toggle="tab" href="#menu2" style="border-radius: 6px;">{% trans 'Login & Security' %}</a>
+                        <li class="nav-item bx-ash-1 bx-client-1  mt-1">
+                          <a class="nav-link a-1" data-toggle="tab" href="#menu2" style="border-radius: 6px; min-width: 134px; text-align: center">{% trans 'Login & Security' %}</a>
                         </li>
-                        <li class="nav-item bx-ash-1 bx-client-1 ml-2">
-                          <a class="nav-link a-1" data-toggle="tab" href="#menu3" style="border-radius: 6px;">{% trans 'Merchant Settings' %}</a>
+                        <li class="nav-item bx-ash-1 bx-client-1  mt-1">
+                          <a class="nav-link a-1" data-toggle="tab" href="#menu3" style="border-radius: 6px; min-width: 134px; text-align: center">{% trans 'Merchant Settings' %}</a>
                         </li>
                       </ul>
                       
@@ -57,7 +57,7 @@
                                                 <form class="form-inline" role="form">
                                                     <div class="form-group merchant-id">
                                                         <label for="name">{% trans 'Your Merchant ID:' %}</label>
-                                                        <label for="name">{{ profile.merchant_id }}</label>
+                                                        <label for="name" style="word-break: break-word;">{{ profile.merchant_id }}</label>
                 
                                                     </div>
                                                 </form>
@@ -68,7 +68,7 @@
                                                         <label for="name">{% trans 'Affiliate URL:' %}</label>
                                                     </div>
                                                     <div >
-                                                        <p class="pr0">  {% trans 'Want to earn some crypto? Give this URL to new users and when they sign up you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:' %}
+                                                        <p class="pr0" style="word-break: break-word;">  {% trans 'Want to earn some crypto? Give this URL to new users and when they sign up you will earn a percentage of their GETCRYPTOPAYMENTS transaction fees:' %}
                                                             <br>
                                                             <b>
                                                                 <span id="refUrl">{{ ref_url }}</span>

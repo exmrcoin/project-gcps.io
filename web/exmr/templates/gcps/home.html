@@ -96,12 +96,12 @@
               </a>
               <div
                 class="dropdown-menu dropdown-menu-right"
-                aria-labelledby="navbarDropdown" style="left: -175px"
+                aria-labelledby="navbarDropdown" style="left: -130px"
               >
                 <a class="dropdown-item" href="{% url 'common:help' %}">Help Topics</a>
                 <a class="dropdown-item" href="{% url 'common:coinhosting' %}">Coin Request</a>
                 <!-- <div class="dropdown-divider"></div> -->
-                <a class="dropdown-item" href="{% url 'store:add-to-store' %}">Add Store to Store Directory</a>
+                <a class="dropdown-item" href="{% url 'store:add-to-store' %}">Add Store to Directory</a>
                 <a class="dropdown-item" href="{% url 'contact' %}">Contact Us</a>
               </div>
             </li>
@@ -168,7 +168,7 @@
               </li>
             {% else%}
             <li class="nav-item btn-item">
-              <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-orange">Login</a>
+              <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-outline-orange">Login</a>
             </li>
             <li class="nav-item btn-item">
                 <a href="{% url 'accounts:signup' %}" style="color: #000000;" type="submit" class="btn btn-default">Signup</a>
@@ -189,9 +189,11 @@
                     </div>
                     <h1 class="text-white b-300">Welcome to</h1>
                     <h1 class="text-white b-800 titl-bg"><i class="fa fa-address-book-o" aria-hidden="true"></i>GCPS</h1>
+                    {% if not user.is_authenticated %}
                     <div class="form-group mt-3">
-                      <button class="btn btn-outline-default">Signup Now</button>
+                      <button class="btn btn-outline-default"><a href="{% url 'accounts:signup' %}">Signup Now</a></button>
                     </div>
+                    {% endif %}
                   </div>
                   <div class="col-sm-12 col-md-6 animated fadeInRightShort">
                     <div class="bx-ash mb-2" style="max-width: 350px; margin: 0px auto; margin-right: 0px;">
@@ -597,7 +599,7 @@
                   <div class="footer-link-group">
                     <a href="{% url 'coins:supported_coins' 'Crypto' %}" class="footer-link">{% trans 'Supported Coins' %}</a>
                     <a href="{% url 'merchant-tools' %}" class="footer-link">{% trans 'Merchant Tools' %}</a>
-                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Point of Sales (POS)' %}</a>
+                    <a href="{% url 'mtools:posqrmaker' %}" class="footer-link">{% trans 'Point of Sales (POS)' %}</a>
                     <a href="{% url 'store:store-directory' %}" class="footer-link">{% trans 'Store Directory' %}</a>
                   </div>
                 </div>
@@ -605,7 +607,7 @@
                 <div class="col-sm-6 col-md-6 col-lg-3 animated fadeInUpShort" data-id='2'>
                   <h6 class="footer-title">RESOURCES</h6>
                   <div class="footer-link-group">
-                    <a href="#" class="footer-link">{% trans 'Get Mobile App' %}</a>
+                    <a href="{% url 'accounts:profile' %}" class="footer-link">{% trans 'Dashboard' %}</a>
                     <a href="#" class="footer-link">{% trans 'Affiliate Information' %} </a>
                     <a href="#" class="footer-link">{% trans 'Official TOR URL' %}</a>
                     <a href="#" class="footer-link">{% trans 'PGP Key' %}</a>
@@ -617,8 +619,8 @@
                   <div class="footer-link-group">
                     <a href="{% url 'common:helptopic' 'feespricing'  %}" class="footer-link">{% trans 'Fees/Pricing' %}</a>
                     <a href="{% url 'common:help' %}" class="footer-link">{% trans 'Help' %}</a>
-                    <a href="{% url 'store:add-to-store' %}" class="footer-link">{% trans 'Add Store' %}</a>
-                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Coin Request' %}</a>
+                    <a href="{% url 'store:add-to-store' %}" class="footer-link">{% trans 'Add Your Store' %}</a>
+                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Add Your Coin' %}</a>
                   </div>
                 </div>
 

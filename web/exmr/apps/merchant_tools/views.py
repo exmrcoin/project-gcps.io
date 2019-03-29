@@ -1468,35 +1468,12 @@ class MTest(TemplateView):
 
     def get_context_data(self):
         context = super().get_context_data()
-        input_cur = "BTC"
-        amount = 0.05
-        rates = cache.get('rates')
-        rates['EXMR'] = 0.017
-        cur_rate = rates[input_cur]
-        cur_cost = amount * cur_rate
-        print("current_cost %s",cur_cost)
-        try:
-            input_coin = Coin.objects.get(code = input_cur)
-        except:
-            input_coin = EthereumToken.objects.get(contract_symbol = input_cur)
-        tradecommission_obj =  TradeCommision.objects.all().first()
-        trans_charge_type = tradecommission_obj.transaction_commission_type
-        exmr_rate = rates['EXMR']
-        if trans_charge_type == "FLAT":
-            print("use flat slab logic")
-            exmr_amount = float(tradecommission_obj.commission_flat_rate)
-        else:
-            print("use percentage logic")
-            transaction_charge_usd = float(tradecommission_obj.commission_percentage) * cur_cost
-            exmr_amount = transaction_charge_usd/exmr_rate
-        
-        print(exmr_amount)
+        context['bal'] =  get_balance(self.request.user, 'EXMR')
         return context
 
 
         # wallet_list = Wallet.objects.all()
         # for wallet in wallet_list:
-        #     import pdb; pdb.set_trace()
         #     for addr in wallet.addresses.all():
         #         temp_bal = get_balance(wallet.user, wallet.name, addr.address)
         #         cache.set(addr.address,temp_bal)

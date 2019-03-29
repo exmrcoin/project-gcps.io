@@ -25,6 +25,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
 from django.views.generic import ListView, FormView, TemplateView, DetailView, View, UpdateView
 from django.http import HttpResponseNotFound, HttpResponseServerError, JsonResponse,HttpResponseRedirect
+from itertools import chain
 
 from apps.coins.utils import *
 from apps.coins import coinlist
@@ -344,23 +345,41 @@ class NewCoinAddr(LoginRequiredMixin, TemplateView):
     def get_context_data(self, **kwargs):
         context = super(NewCoinAddr, self).get_context_data(**kwargs)
         code = kwargs.get('currency')
-        erc = EthereumToken.objects.filter(contract_symbol=code)
-        if not erc:
+        try:
+            erc = EthereumToken.objects.get(contract_symbol=code)
+        except:
+            erc = None
+        if erc:
             try:
-                context['wallets'] = Wallet.objects.get(
+                temp_wal_1 = EthereumTokenWallet.objects.get(
+                    user=self.request.user,  name__contract_symbol=code).addresses.filter(hidden=False).order_by('id')
+            except:
+                temp_wal_1 = []
+        try:
+            temp_wal_2 = Wallet.objects.get(
+                user=self.request.user,  name__code=code).addresses.filter(hidden=False).order_by('id')
+        except:
+            create_wallet(self.request.user, code)
+            try:
+                temp_wal_2 = Wallet.objects.get(
                     user=self.request.user,  name__code=code).addresses.filter(hidden=False).order_by('id')
             except:
-                create_wallet(self.request.user, code)
-                context['wallets'] = Wallet.objects.get(
-                    user=self.request.user,  name__code=code).addresses.filter(hidden=False).order_by('id')
+                temp_wal_2 = Wallet.objects.get(
+                    user=self.request.user,  token_name__contract_symbol=code).addresses.filter(hidden=False).order_by('id')
+        
+        if erc:
+            try:
+                if erc.extra_message:
+                    context['extra_message'] = erc.extra_message
+            except:
+                pass
+            temp_wal_3 = Wallet.objects.get(
+                user=self.request.user,  name__code="ETH").addresses.filter(hidden=False).order_by('id')
+            context['wallets']= list(chain(temp_wal_3,temp_wal_1, temp_wal_2))
         else:
-            try:
-                context['wallets'] = EthereumTokenWallet.objects.get(
-                    user=self.request.user,  name__contract_symbol=code).addresses.filter(hidden=False).order_by('id')
-            except:
-                create_wallet(self.request.user, code)
-                context['wallets'] = EthereumTokenWallet.objects.get(
-                    user=self.request.user,  name__contract_symbol=code).addresses.filter(hidden=False).order_by('id')
+            context['extra_message'] = Coin.objects.get(code=code).extra_message
+            context['wallets']= temp_wal_2
+        
         context['code'] = code
         return context
 
@@ -385,6 +404,12 @@ class PublicCoinVote(TemplateView):
         context = super(PublicCoinVote, self).get_context_data(**kwargs)
         context['coins'] = NewCoin.objects.filter(
             approved=True).order_by('-vote_count')
+        phase = Phases.objects.last()
+        time_start = str(phase.time_start.day)+ " " +phase.time_start.strftime("%B")
+        time_stop = str(phase.time_start.day)+ " " +phase.time_stop.strftime("%B")
+        if phase.extra_message:
+            context['extra_message'] = phase.extra_message
+        context["time_period"] =  time_start + " - " + time_stop
         return context
 
     def post(self, request, *args, **kwargs):

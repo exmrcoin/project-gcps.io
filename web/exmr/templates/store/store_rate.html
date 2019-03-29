@@ -34,14 +34,13 @@
         
         <h3> {{store.store_name}}</h3>
     </div>
-</div>
-    <div class="container-fluid xs-padx1 ">
-        <div class="row xs-padx1">
+    <div class="container-fluid xs-padx1">
+        <div class="col-12 xs-padx1">
             <div class="account-setting-wrap coin-support-main-wrap xs-padx1">
                 <fieldset class="setting-form form-settings">
                 
                 <div class="row">
-                    <div class="col-xs-8 col-sm-8"> 
+                    <div class="col-8"> 
                     <div id="table_div" class=" mt-1 pt-1">
                         <table class="table borderless">
                             <tbody class="py-1">
@@ -92,9 +91,9 @@
                     </div>
                     
                     </div>
-                    <div class="col-xs-2 col-sm-2">
-                            <div class="" style="width: 18rem;">
-                                    <img class="img-responsive w150px margin-center" src="{{ store.banner_image_url }}" alt="Card image cap">
+                    <div class="col-4">
+                            <div class="card" style="width: 18rem;">
+                                    <img class="img-fluid w150px margin-center" src="{{ store.banner_image_url }}" alt="Card image cap">
                                     {% if erc %}
                         
                                     <p style=" margin: 23px 8px 66px;">{{request.user.username}} have already given feedback</p>

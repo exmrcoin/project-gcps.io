@@ -30,6 +30,10 @@ class CoinModelAdmin(ImportExportModelAdmin):
         model = Coin
 
 
+
+
+
+
 admin.site.register(Coin, CoinModelAdmin)
 admin.site.register(Phases)
 admin.site.register(CoinSetting)

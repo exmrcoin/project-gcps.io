@@ -82,9 +82,13 @@
      <div class="merchant-tools merchant-one dark-page-header">
          <h1>Public Coin Vote </h1>
          <h6>"ONGOING"</h6>
-         <h4>Period August-October</h4> 
-         <h4>GetCryptoPayments Vote for Add Coin </h4>
-     </div>
+         <h4>Period {{time_period}}</h4> 
+         {% if extra_message %}
+            <h3>{{extra_message}}</h3>
+         {% else %}
+         <h3>GetCryptoPayments Vote for Add Coin </h3>
+         {% endif %}
+        </div>
 </div>
     
      <div class="container-fluid xs-padx1">

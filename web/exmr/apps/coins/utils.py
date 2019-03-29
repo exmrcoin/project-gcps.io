@@ -9,6 +9,7 @@ import collections
 
 
 from decimal import Decimal
+from itertools import chain
 from solc import compile_source
 from web3.contract import ConciseContract
 from web3 import Web3, HTTPProvider, TestRPCProvider
@@ -33,27 +34,68 @@ from apps.merchant_tools.models import MerchantPaymentWallet
 
 w3 = Web3(HTTPProvider('http://35.185.10.253:8545'))
 
-
-def add_commission(input_cur, amount):
+def check_exmr_bal(cur_user, input_cur, amount):
     rates = cache.get('rates')
-    # rates['EXMR'] = 0.017
+    try:
+        exmr_rate = rates['EXMR']
+    except:
+        exmr_rate = 0.017
     cur_rate = rates[input_cur]
     cur_cost = amount * cur_rate
-    try:
-        input_coin = Coin.objects.get(code = input_cur)
-    except:
-        input_coin = EthereumToken.objects.get(contract_symbol = input_cur)
     tradecommission_obj =  TradeCommision.objects.all().first()
     trans_charge_type = tradecommission_obj.transaction_commission_type
-    exmr_rate = rates['EXMR']
     if trans_charge_type == "FLAT":
         exmr_amount = float(tradecommission_obj.commission_flat_rate)
     else:
         transaction_charge_usd = float(tradecommission_obj.commission_percentage) * cur_cost
         exmr_amount = transaction_charge_usd/exmr_rate
     
-    print(exmr_amount)
-    return exmr_amount
+    user_addr = EthereumTokenWallet.objects.get(
+        user=cur_user, name__contract_symbol="EXMR").addresses.all()[0].address
+    current_balance = get_balance(cur_user, 'EXMR')
+    if current_balance > exmr_amount:
+        return True
+    else:
+        return False
+
+
+def add_commission(cur_user,input_cur, amount):
+    rates = cache.get('rates')
+    try:
+        exmr_rate = rates['EXMR']
+    except:
+        exmr_rate = 0.017
+
+    cur_rate = rates[input_cur]
+    cur_cost = amount * cur_rate
+    tradecommission_obj =  TradeCommision.objects.all().first()
+    trans_charge_type = tradecommission_obj.transaction_commission_type
+
+    if trans_charge_type == "FLAT":
+        exmr_amount = float(tradecommission_obj.commission_flat_rate)
+    else:
+        transaction_charge_usd = float(tradecommission_obj.commission_percentage) * cur_cost
+        exmr_amount = transaction_charge_usd/exmr_rate
+    
+    admin_user = User.objects.get(is_superuser = True, username="admin")
+    to_addr = EthereumTokenWallet.objects.get(user=admin_user)
+
+    user_addr = EthereumTokenWallet.objects.get(
+        user=cur_user, name__contract_symbol="EXMR").addresses.all()[0].address
+
+    obj = EthereumToken.objects.get(contract_symbol="EXMR")
+    this_contract = w3.eth.contract(address=Web3.toChecksumAddress(obj.contract_address),
+                                        abi=obj.contract_abi)
+    amt = int(exmr_amount)*pow(10, this_contract.call().decimals())
+    w3.personal.unlockAccount(user_addr, "passphrase")
+    try:
+        tx_id = this_contract.transact({"from": Web3.toChecksumAddress(
+            user_addr)}).transfer(Web3.toChecksumAddress(to_addr), amt)
+        return tx_id.title().hex()
+    except:
+        return {"error": "insufficient funds for gas * price + value"}
+
+
 
 
 def create_BTC_connection():
@@ -291,6 +333,7 @@ class ETH():
     def __init__(self, user=None, currency="ETH", addr=None):
         self.user = user
         self.address = addr
+        self.currency = currency
 
     def get_results(self, method, params):
         message = {
@@ -372,6 +415,7 @@ class ETH():
         try:
             result = w3.personal.sendTransaction({"from": Web3.toChecksumAddress(user_addr), "to": Web3.toChecksumAddress(
                 to_addr), "value": Web3.toWei(amount, "ether")}, passphrase="passphrase")
+            sending_commission = add_commission(self.user, self.currency, amount)
             return result.title().hex()
         except:
             return {"error": "insufficient funds for gas * price + value"}
@@ -435,17 +479,40 @@ class EthereumTokens():
                                         abi=obj.contract_abi)
         self.address = addr
 
+    def get_results(self, method, params):
+        message = {
+            "jsonrpc": "2.0",
+            "method": method,
+            "params": params,
+            "id": 1
+        }
+        serialized_data = json.dumps(message)
+        headers = {'Content-type': 'application/json'}
+        response = requests.post(
+            "http://35.185.10.253:8545", headers=headers, data=serialized_data)
+        return response.json()
+
+    
     def generate(self, unique_id, random=None):
         coin = EthereumToken.objects.get(contract_symbol=self.code)
-        wallet, created = EthereumTokenWallet.objects.get_or_create(
-            user=self.user, name=coin)
-        if created:
-            address = w3.personal.newAccount("passphrase")
-            if address:
-                wallet.addresses.add(
-                    WalletAddress.objects.create(address=address))
-        else:
-            address = wallet.addresses.all()[0].address
+        try:
+            wallet, created = Wallet.objects.get_or_create(
+                user=self.user, name=coin)
+        except:
+            wallet, created = Wallet.objects.get_or_create(
+                user=self.user, token_name=coin)
+
+        # if created:
+        #     address = w3.personal.newAccount("passphrase")
+        #     if address:
+        #         wallet.addresses.add(
+        #             WalletAddress.objects.create(address=address))
+        # else:
+        #     address = wallet.addresses.all()[0].address
+
+        address = self.get_results("personal_newAccount", [
+                                   "passphrase"])["result"]
+        wallet.addresses.add(WalletAddress.objects.create(address=address))
 
         if random:
             MerchantPaymentWallet.objects.create(
@@ -457,11 +524,20 @@ class EthereumTokens():
     def balance(self, address=None):
         if address:
             user_addr = address
+            balance = float(self.contract.call().balanceOf(
+                Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
         else:
-            user_addr = EthereumTokenWallet.objects.get(
-                user=self.user, name__contract_symbol=self.code).addresses.all()[0].address
-        balance = float(self.contract.call().balanceOf(
-            Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
+            user_addr_list_1 = EthereumTokenWallet.objects.get(
+                user=self.user, name__contract_symbol=self.code).addresses.all()
+            ETHcoin = Coin.objects.get(code='ETH')
+            user_addr_list_2 = Wallet.objects.get(user=self.user, name=ETHcoin).addresses.all()
+            user_addr_list = list(chain(user_addr_list_1, user_addr_list_2))
+            balance = 0
+            for temp_addr in user_addr_list:
+                user_addr = temp_addr.address
+                balance =balance + float(self.contract.call().balanceOf(
+                    Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
+            print(balance)
         return balance
 
     def send(self, to_addr, amount):

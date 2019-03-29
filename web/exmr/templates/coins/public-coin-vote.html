@@ -114,7 +114,7 @@
                          </div>
                          <div class="col-md-6">
                                  <div class="search-content mt-1">
-                                     <input type="text" name="name" id="searchText" placeholder="Look for your coin" class="search-field" value="">
+                                     <input type="text" name="name" id="searchText" placeholder="Look for your coin" class="search-field" value="" onkeyup="coinsearch()">
                                      <button type="button" id="search" class="_submit btn btn-search" value="search">Search</button>
                                  </div>
                          </div>
@@ -192,7 +192,7 @@
  {% endblock %}
  {% block script %}
  <script type="text/javascript">
- $("#search").click(function () {
+ function coinsearch() {
      var value = $("#searchText").val().toLowerCase().trim();
  
      $("table tr").each(function (index) {
@@ -204,14 +204,14 @@
              return not_found;
          });
      });
- });
- $("#searchText").keyup(function(e){
-     if(e.keyCode === 13){
-         $("#search").trigger('click');
-     }
- })
+ };
+//  $("#searchText").keyup(function(e){
+//      if(e.keyCode === 13){
+//          $("#search").trigger('click');
+//      }
+//  })
  </script>
  {% endblock %}
   
  
- 
+ coinsearch

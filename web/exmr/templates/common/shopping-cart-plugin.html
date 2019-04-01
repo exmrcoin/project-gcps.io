@@ -1,5 +1,60 @@
 {% extends 'gcps/base.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
-<section class="section section-pad">
+<section class="section section-pad" style="padding-bottom: 1em">
+  <div class="container">
+      <div class="bx-ash mb-2">
+          <div class="grid-2-bx" style="display: inline">
+              <ul class="row nav nav-pills nav-fill " >
+                  <li class="col-md-4 col-4 col-lg-2 col-sm-6 col-xl-2 nav-item">
+                      <a href="{% url 'accounts:profile' %}" class="v-mid dashboard-nav row px-0 py-1">
+                          
+                          <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-tachometer-alt fa-2x mr-1 "></i>{% trans 'Home' %}</span>
+                      </a>
+                      <!-- <i class="fas fa-2x fa-wallet"></i>
+                      <a class="nav-link" href="{% url 'accounts:profile' %}"></a> -->
+                  </li>
+                  <li class="col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item">
+                          <a href="{% url 'coins:wallets' %}" class="v-mid dashboard-nav row px-0 py-1">
+                              
+                              <span class="dashboard-span hidden-xs hidden-sm wallet-menu">
+                                  <i class="fas fa-2x fa-wallet mr-1"></i>{% trans 'Your Wallet' %}
+                              </span>
+                          </a>
+                      <!-- <a class="nav-link" href="{% url 'coins:wallets' %}">{% trans 'Your Wallet' %}</a> -->
+                  </li>
+                  <li class=" col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item">
+                          <a href="{% url 'coins:coin-settings' %}" class="v-mid dashboard-nav row px-0 py-1">
+                              
+                              <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-coins  fa-2x mr-1"></i>{% trans 'Coin Settings' %}</span>
+                          </a>
+                      <!-- <a class="nav-link" href="{% url 'coins:coin-settings' %}">{% trans 'Coin Settings' %}</a> -->
+                  </li>
+                  <li class=" col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item">
+                      <a href="{% url 'coins:transaction-history' %}" class="v-mid dashboard-nav row px-0 py-1">
+                              
+                              <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-receipt  fa-2x mr-1"></i> {% trans 'Transactions' %}</span>
+                      </a>
+                      <!-- <a class="nav-link" href="{% url 'coins:transaction-history' %}">{% trans 'Transactions' %}</a> -->
+                  </li>
+                  <li class="col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item">
+                          <a href="{% url 'mtools:posqrmaker' %}" class="v-mid dashboard-nav row px-0 py-1">
+                              
+                              <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-shopping-cart  fa-2x mr-1"></i> {% trans 'Quick POS' %}</span>
+                          </a>
+                      <!-- <a class="nav-link" href="{% url 'mtools:posqrmaker' %}"> {% trans 'Quick POS' %}</a> -->
+                  </li>
+                  <li class="col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item">
+                          <a href="{% url 'coins:paybyname' %}" class="v-mid dashboard-nav row px-0 py-1">
+                              
+                              <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-user-tie  fa-2x mr-1"></i>{% trans 'PayByName' %}</span>
+                          </a>
+                      <!-- <a class="nav-link" href="{% url 'coins:paybyname' %}"> {% trans 'PayByName' %}</a> -->
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</section>
+<section class="section section-pad" style="padding-top: 1em;">
   <div class="bx-ash ">
 <div class="shop-cart">
   <div class="container">

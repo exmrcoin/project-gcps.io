@@ -620,7 +620,7 @@
                     <a href="{% url 'common:helptopic' 'feespricing'  %}" class="footer-link">{% trans 'Fees/Pricing' %}</a>
                     <a href="{% url 'common:help' %}" class="footer-link">{% trans 'Help' %}</a>
                     <a href="{% url 'store:add-to-store' %}" class="footer-link">{% trans 'Add Your Store' %}</a>
-                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Add Your Coin' %}</a>
+                    <a href="{% url 'common:coinhosting' %}" class="footer-link">{% trans 'Add Your Coin' %}</a>
                   </div>
                 </div>
 
@@ -649,7 +649,7 @@
             </ul>
             <ul class="footer-social float-right animatedParent animateOnce" data-sequence="100">
               <li class="animated fadeInRightShort" data-id="1"><button type="submit" onclick="window.location.href='{% url 'store:add-to-store' %}'" class="btn btn-orange">Add Store</button></li>
-              <li class="animated fadeInRightShort" data-id="2">
+              <li id="border" class="animated fadeInRightShort" data-id="2">
                 <a href="{% url 'public coin vote' %}"
                   ><img
                     src="{% static '/assests/images/store.png' %}"
@@ -657,7 +657,7 @@
                     alt="footer-img-store"
                 /></a>
               </li>
-              <li class="animated fadeInRightShort" data-id="3">
+              <li id="border" class="animated fadeInRightShort" data-id="3">
                 <a href="#"
                   ><img
                     src="{% static 'assests/images/apple-icon.png' %}"
@@ -666,7 +666,7 @@
                     data-toggle="modal" data-target="#appModal"
                 /></a>
               </li>
-              <li class="animated fadeInRightShort" data-id="4">
+              <li id="border" class="animated fadeInRightShort" data-id="4">
                 <a href="#"
                   ><img
                     src="{% static  'assests/images/play-store.png' %}"

@@ -476,7 +476,7 @@ img.icon-list {
 
 .img-footer-icon {
     border-radius: 3px;
-    border: 1px solid #dedeff;
+    /* border: 1px solid #dedeff; */
     max-width: 130px;
 }
 
@@ -1249,7 +1249,7 @@ a {
 }
 
 a:hover {
-    color: #000000;
+    color: #f7931b;
     text-decoration: none;
 }
 
@@ -1774,4 +1774,12 @@ table.borderless th {
     color: white;
     text-align: center;
     margin-bottom: 50px;
+}
+
+#border a img:hover {
+    border: 1px solid #f7931b;
+}
+#coin-settings-name:hover{
+    background-color: #007bff;
+    border-radius: 4px;
 }

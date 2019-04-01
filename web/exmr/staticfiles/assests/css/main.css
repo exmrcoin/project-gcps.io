@@ -1569,6 +1569,16 @@ input[type=checkbox] {
 }
 
 
+}
+.logo-header {
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translatex(-50%);
+
+}
 
 /****************sidebar*******************/
 .sidenav {
@@ -1786,13 +1796,4 @@ table.borderless th {
 }
 .w150px {
     width: 150px;
-}
-.logoheader {
-    height: 60px;
-    width: 60px;
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translatex(-50%);
-
 }

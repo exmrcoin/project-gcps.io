@@ -328,7 +328,7 @@ img.icon-list {
     margin-bottom: 1em;
 }
 
-.paybx .bx-client {
+.paybx .bx-client{
     min-height: 355px;
     padding-top: 3em;
 }
@@ -1630,7 +1630,7 @@ input[type=checkbox] {
 
 .md-ul li {
     padding: 10px;
-    width: 250px;
+    width: 100%;
     list-style: none;
     background: rgba(34, 34, 34, 0.63);
     background: -moz-linear-gradient(left, rgba(34, 34, 34, 0.63) 0%, rgba(60, 59, 73, 0.63) 100%);
@@ -1707,6 +1707,7 @@ h6 {
     font-size: .95rem !important;
 
 }
+
 
 .dropdown-menu {
     position: absolute;

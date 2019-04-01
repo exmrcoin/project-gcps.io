@@ -51,7 +51,7 @@
     </div>
 </div>
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-3 col-xs-3">
         <!-- sidebar -->
             <ul class="md-ul mt-4">
                     <a href="/en/store/store-directory/art-collectibles/">
@@ -125,7 +125,6 @@
                              <i class="fas fa-angle-right float-right"></i>
                         </li>
                     </a>
-
                     <a href="/en/store/store-directory/socialseomarketing/">
                         <li class="directoru-menu menu-story">Social/SEO/Marketing
                              <i class="fas fa-angle-right float-right"></i>
@@ -149,13 +148,9 @@
                              <i class="fas fa-angle-right float-right"></i>
                         </li>
                     </a>
-
             </ul>
         </div>
-
-
-
-  <div class=" col-md-9">
+  <div class=" col-md-9 col-xs-9">
         <div class="account-setting-wrap" id="test">
             <div class="col-xs-12">
                 <h2 class="login-text">All Stores</h2>
@@ -169,7 +164,6 @@
                         <option>3</option>
                         <option>4</option>
                     </select>
-
                 </div>
                 <div class="col-xs-12 col-md-6">
                     <label for="sel1" class="login-text">Select list:</label>
@@ -179,7 +173,6 @@
                         <option>3</option>
                         <option>4</option>
                     </select>
-
                 </div>
             </div>
             {% for store in stores%}
@@ -192,7 +185,6 @@
                             </div>  
                     </div>
                     <div class="col-xs-12 col-sm-7 text-center">
-                        
                         <h1><a href="{% url 'store:store-item-rate' store.category.slug store.pk %}">{{store.store_name}}</a></h1>
                         <img src="{{ store.banner_image_url }}" style="width: 150px" class="img-responsive w150px margin-center">
                         <p>
@@ -206,14 +198,9 @@
                     </div>
                 </div>
             {% endfor %}
-
-            
             </div>
         </div>
-
-      
     </div>
-    
 </section>
 {% endblock %}
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -226,9 +213,7 @@
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
     }
-
 </script>
-
 <script>
     $('#navsideicon').affix({
         offset: {

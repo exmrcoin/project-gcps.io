@@ -1,8 +1,11 @@
-{% extends 'base.html' %}
+{% extends 'gcps/base.html' %}
 {% load staticfiles %}
 {% block content %}
     {% load i18n %}
-    <div class="Coin-Hosting">
+    <section class="section section-pad">
+  
+
+    <div class="Coin-Hosting account-setting-wrap ">
         <div class="container">
             <div class="panel panel-default">
                 <div class="panel-heading">Coin Hosting Request</div>
@@ -30,7 +33,7 @@
 
                 <div class="row m0">
 
-                    <div class="col-sm-8 col-sm-offset-2 m-wrap">
+                    <div class="col-sm-12 m-wrap">
                         <div class="coin-form-wrap row ">
                             <div class="form-group col-sm-6">
                                 <label for="first_name">Your Name</label>
@@ -62,9 +65,9 @@
                                 <input type="text" class="form-control text-view" name="" id="first_name" placeholder="Coin Source URL">
                             </div>
 
-                            <div align="center">
+                            <div class="text-center col-sm-12 ">
 
-                                <button type="submit" class="btn-up">Submit Coin</button>
+                                <button type="submit" class="btn-up btn-outline-orange btn-lg">Submit Coin</button>
                             </div>
                         </div>
                     </div>
@@ -72,6 +75,7 @@
             </div>
         </div>
     </div>
+</section>
 {% endblock %}
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

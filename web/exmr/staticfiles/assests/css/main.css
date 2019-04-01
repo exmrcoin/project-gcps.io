@@ -1179,7 +1179,7 @@ input {
 
 .merchant-tools-li {
     color: #e75d14;
-
+}
 .merchant-tools-li{
     color: #fff;
 
@@ -1568,15 +1568,7 @@ input[type=checkbox] {
     margin: 0 auto;
 }
 
-.logoheader {
-    height: 60px;
-    width: 60px;
-    position: absolute;
-    top: 15px;
-    left: 50%;
-    transform: translatex(-50%);
 
-}
 
 /****************sidebar*******************/
 .sidenav {
@@ -1794,4 +1786,13 @@ table.borderless th {
 }
 .w150px {
     width: 150px;
+}
+.logoheader {
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translatex(-50%);
+
 }

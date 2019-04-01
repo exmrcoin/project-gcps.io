@@ -137,6 +137,7 @@ class Coin(models.Model):
     max_deposit = models.DecimalField(
         max_digits=10, decimal_places=8, default=0)
     vote_count = models.IntegerField(_('vote count'), default=0)
+    extra_message = models.CharField(max_length=512, blank=True, default="")
 
     class Meta:
         verbose_name = _('Coin')
@@ -145,6 +146,56 @@ class Coin(models.Model):
     def __str__(self):
         return self.coin_name
 
+
+
+class EthereumToken(models.Model):
+    coin_name = models.CharField(_('coin name'), max_length=255, blank=True)
+    contract_symbol = models.CharField(max_length=30)
+    contract_address = models.CharField(max_length=100)
+    contract_abi = JSONField()
+    image = models.ImageField(_('image'), help_text=_(
+        'Upload a 35X35 image for better experience'), blank=True)
+    display = models.BooleanField(
+        default=False, help_text=_('Show/Hide this coin anytime'))
+    payment_transaction_allowed = models.BooleanField(
+        default=False, help_text=_('Show/Hide on payment gateway'))
+    swap_allowed = models.BooleanField(
+        default=False, help_text=_('Show/Hide on coin convert page'))
+    extra_message = models.CharField(max_length=512, blank=True, default="")
+
+    def __str__(self):
+        return self.coin_name
+
+
+
+class WalletAddress(models.Model):
+    """
+    Model to save the coin addresses generated for each user
+    """
+    address = models.CharField(max_length=500, blank=True, default="")
+    date = models.DateTimeField(auto_now_add=True)
+    hidden = models.BooleanField(default=False)
+    label = models.CharField(max_length=500, blank=True, default="")
+    current_balance = models.CharField(max_length=128, blank=True, default="0")
+    last_check =  models.DateTimeField(default = datetime.today)    
+
+    def __str__(self):
+        return self.address
+
+class EthereumTokenWallet(models.Model):
+    """
+    Model to save the coin wallet for each user
+    """
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    name = models.ForeignKey(EthereumToken, on_delete=models.CASCADE)
+    addresses = models.ManyToManyField(WalletAddress)
+    private = models.CharField(max_length=500, blank=True, default="")
+    public = models.CharField(max_length=500, blank=True, default="")
+    words = models.CharField(max_length=500, blank=True, default="")
+    paymentid = models.CharField(max_length=500, blank=True, default="")
+
+    def __str__(self):
+        return self.user.username + '_' + self.name.contract_symbol
 
 
 
@@ -171,19 +222,6 @@ class CoinConvertRequest(models.Model):
         verbose_name_plural = _('Coin Conversion Requests')
 
 
-class WalletAddress(models.Model):
-    """
-    Model to save the coin addresses generated for each user
-    """
-    address = models.CharField(max_length=500, blank=True, default="")
-    date = models.DateTimeField(auto_now_add=True)
-    hidden = models.BooleanField(default=False)
-    label = models.CharField(max_length=500, blank=True, default="")
-    current_balance = models.CharField(max_length=128, blank=True, default="0")
-    last_check =  models.DateTimeField(default = datetime.today)    
-
-    def __str__(self):
-        return self.address
 
 class MoneroPaymentid(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -199,7 +237,8 @@ class Wallet(models.Model):
     Model to save the coin wallet for each user
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.ForeignKey(Coin, on_delete=models.CASCADE)
+    name = models.ForeignKey(Coin, on_delete=models.CASCADE, null=True, blank=True)
+    token_name = models.ForeignKey(EthereumToken, on_delete=models.CASCADE, null=True, blank=True)
     addresses = models.ManyToManyField(WalletAddress)
     private = models.CharField(max_length=500, blank=True, default="")
     public = models.CharField(max_length=500, blank=True, default="")
@@ -207,8 +246,11 @@ class Wallet(models.Model):
     paymentid = models.CharField(max_length=500, blank=True, default="")
 
     def __str__(self):
-        return self.user.username + '_' + self.name.code
-
+        try:
+            return self.user.username + '_' + self.name.code
+        except:
+            return self.user.username + '_' + self.token_name.contract_symbol
+            
 
 class CoinRequest(models.Model):
     name = models.CharField(verbose_name=_(
@@ -250,6 +292,7 @@ class Phases(models.Model):
         'Voting_phase'), max_length=128, null=False)
     time_start = models.DateField(auto_now=False, auto_now_add=False)
     time_stop = models.DateField(auto_now=False, auto_now_add=False)
+    extra_message = models.CharField(max_length=512, default="", null=True, blank=True)
 
     def __str__(self):
         return self.phase
@@ -320,40 +363,6 @@ class WinnerCoins(models.Model):
     phase_name = models.CharField(max_length=64, unique=True)
     winner_coins = models.ForeignKey(NewCoin, verbose_name=_(
         'coin'), on_delete=models.CASCADE)
-
-
-class EthereumToken(models.Model):
-    coin_name = models.CharField(_('coin name'), max_length=255, blank=True)
-    contract_symbol = models.CharField(max_length=30)
-    contract_address = models.CharField(max_length=100)
-    contract_abi = JSONField()
-    image = models.ImageField(_('image'), help_text=_(
-        'Upload a 35X35 image for better experience'), blank=True)
-    display = models.BooleanField(
-        default=False, help_text=_('Show/Hide this coin anytime'))
-    payment_transaction_allowed = models.BooleanField(
-        default=False, help_text=_('Show/Hide on payment gateway'))
-    swap_allowed = models.BooleanField(
-        default=False, help_text=_('Show/Hide on coin convert page'))
-
-    def __str__(self):
-        return self.contract_symbol
-
-
-class EthereumTokenWallet(models.Model):
-    """
-    Model to save the coin wallet for each user
-    """
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.ForeignKey(EthereumToken, on_delete=models.CASCADE)
-    addresses = models.ManyToManyField(WalletAddress)
-    private = models.CharField(max_length=500, blank=True, default="")
-    public = models.CharField(max_length=500, blank=True, default="")
-    words = models.CharField(max_length=500, blank=True, default="")
-    paymentid = models.CharField(max_length=500, blank=True, default="")
-
-    def __str__(self):
-        return self.user.username + '_' + self.name.contract_symbol
 
 
 

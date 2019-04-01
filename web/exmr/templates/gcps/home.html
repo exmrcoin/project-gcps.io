@@ -209,12 +209,12 @@
 
                               {% if forloop.counter == 1 %}
                               <div class="carousel-item active text-center">
-                                  <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                  <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="{{coin_details.coin_name}}">
                                   <div class="text-white mt-2">{{coin_details.coin_name}}({{coin_details.coin_code}})</div>
                               </div>
                               {% else %}
                               <div class="carousel-item text-center">
-                                  <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                  <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="{{coin_details.coin_name}}">
                                   <div class="text-white mt-2">{{coin_details.coin_name}}({{coin_details.coin_code}})</div>
                                 </div>
                               {% endif %}
@@ -696,6 +696,7 @@
     crossorigin="anonymous"
     ></script>
     <script src="{% static 'assests/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assests/js/Stats.min.js' %}"></script>
     
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="{% static 'assests/js/css3-animate-it.js' %}"></script>

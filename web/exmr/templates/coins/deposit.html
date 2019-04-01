@@ -5,7 +5,13 @@
 {% endblock %}
 
 {% block dashboard_wrapper_content %}
-
+{% if extra_message %}
+    <div class="container">
+        <div class="col-12 alert alert-warning">
+            <span>{{extra_message}}</span>
+        </div>
+    </div>
+{% endif %}
     <section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em;">
             <div class="container">
                 <div class="mb-2">

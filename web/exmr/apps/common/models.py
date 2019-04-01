@@ -11,7 +11,6 @@ AUTH_TYPE = (
     ('N/A', _('N/A')),
 )
 
-
 class Currency(models.Model):
     """
     Model to save different currencies

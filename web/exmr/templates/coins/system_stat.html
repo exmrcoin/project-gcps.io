@@ -34,11 +34,13 @@
                 {% if all_users %}
                     {% for user in all_users %}
                     
-                    <tr style="border: none">
-                        <th scope="row" style="border-top: none;">{{forloop.counter}}</th>
-                        <td><a href="{% url 'coins:user_wallet' user.id %}">{{user.first_name}}</a></td>
-                        <td>{{user.last_name}}</td>
-                        <td>{{user.email }}</td>
+                    <tr>
+                            <th scope="row" style="border-top: none;">{{forloop.counter}}</th>
+                            <td>{{user.first_name}}</td>
+                            <td>{{user.last_name}}</td>
+                            <td>
+                                    <a href="{% url 'coins:user_wallet' user.id %}">{{user.email }}
+                                        </a></td>
                     </tr>
                     {% endfor %}
 

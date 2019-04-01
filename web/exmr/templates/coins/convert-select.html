@@ -16,74 +16,66 @@
 <section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
         <div class="container">
             <div class="row bx-ash mb-2">           
-                <div><h4 class="text-theme"><img style="padding-bottom: 6px" src="{% static '/images/recevied.png' %} "><span class="pl-2" >{% trans 'Convert Coin' %}</span></h4></div>
-                <div class="col-12">
-                    <input type="text" placeholder="search by COIN CODE" data-search>
-                </div>
-                <div class=" col-12">
-                        <form method="POST" action="{% url 'coins:convert_select_confirm'%}">
-                            {% csrf_token %}<div class="row">
-                        {% for coin in avbl_coins %}
-                        
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2 p-1 selectable_div" style="color: white" data-filter-item data-filter-name="{{coin|lower}} ">
-                            <label class="col-12">
-                                <input type="radio" name="coin_radio" value="{{coin}}"/>
-                                <div class="col-xs-12 text-center available_coin">
-                                    {%for key,image in coin_images.items%} {% if key == coin %}
-                                    <img src="{{image}}" class="img-responsive w60px margin-center ">
-                                    <h4>{{coin}}</h4>
-                                    {% endif %} {% endfor %}
+                <div class="col-12"><h4 class="text-theme"><img style="padding-bottom: 6px" src="{% static '/images/recevied.png' %} "><span class="pl-2" >{% trans 'Convert Coin' %}</span></h4></div>
+
+
+                <div id="coin_search_list" class="col-12">
+                        <input class="search coin-convert-search col-12" placeholder="Search by COIN CODE" />
+                        <div class="  col-12">
+            
+                            <form method="POST" action="{% url 'coins:convert_select_confirm'%}" class="list d-flex flex-wrap col-12">
+                                {% csrf_token %}
+            
+                                {% for coin in avbl_coins %}                        
+                                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 p-1 selectable_div" style="color: white" >
+                                        <label class="col-12">
+                                            <input type="radio" name="coin_radio" value="{{coin}}"/>
+                                            <div class="col-xs-12 text-center available_coin">
+                                                {%for key,image in coin_images.items%} {% if key == coin %}
+                                                <img src="{{image}}" class="img-responsive w60px margin-center ">
+                                                <h4 class="coin-name">{{coin}}</h4>
+                                                <h5>{{coin.name}}</h5>
+                                                {% endif %} {% endfor %}
+                                            </div>
+                                        </label>
+                                    </div>
+                                {% endfor %}
+            
+            
+                                <input type="hidden" value="{{sel_coin}}" name="sel_coin" placeholder="Enter Amount">
+                                <div class="col-12 my-2 text-right">
+                                        <input type="submit" class="btn btn-success"value="Continue"> 
                                 </div>
-                            </label>
+            
+                            </form>
+            
+            
+            
                         </div>
-                        {% endfor %}</div>
-                        <input type="hidden" value="{{sel_coin}}" name="sel_coin" placeholder="Enter Amount">
-                        <div class="col-12 my-2 text-right">
-                                <input type="submit" class="btn btn-success"value="Continue"> 
-                        </div>
-                    </form>
-                </div>    
+                    </div>
+            
+                
+                
             </div>
         </div>
+
 </section>
 
-<div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content  exmr-modal white-font animated bounceInDown">
-
-            <img src="{% static 'images/logo1.png' %}" class="margin-center img-responsive exmr-modal-logo">
-            <div class="modal-header text-center">
-                <button type="button" class="close" data-dismiss="modal">×</button>
-                <h3 class="modal-title">
-                    <i class="fa fa-exclamation-circle"></i>Alpha Version Testnet</h3>
-            </div>
-            <div class="modal-body text-center">
-                We are in active development to bring you the best features.
-                <br>The Coin will be added to be winners in our Coin Listing Competition.
-                <br>More Coin support will be added in future.
-                <br>We thankyou for your understanding.
-                <br>
-                <br>
-                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-
-    </div>
-</div>
 {% endblock %} {% block script %}
+<script src="{% static 'assests/js/list.min.js' %}"></script>
 <script>
-    
-$('[data-search]').on('keyup', function() {
-	var searchVal = $(this).val();
-	var filterItems = $('[data-filter-item]');
+var options = {
+  valueNames: [
+    'coin-name',
+    'born',
+    { data: ['id'] },
+    { attr: 'src', name: 'image' },
+    { attr: 'href', name: 'link' },
+    { attr: 'data-timestamp', name: 'timestamp' }
+  ]
+};
+var userList = new List('coin_search_list', options);
+   </script>
 
-	if ( searchVal != '' ) {
-		filterItems.addClass('hidden');
-		$('[data-filter-item][data-filter-name*="' + searchVal.toLowerCase() + '"]').removeClass('hidden');
-	} else {
-		filterItems.removeClass('hidden');
-	}
-});
-</script> {% endblock %}
+
+{% endblock %}

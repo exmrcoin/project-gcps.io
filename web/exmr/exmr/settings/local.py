@@ -37,8 +37,7 @@ CACHES = {
         'LOCATION': 'localhost:6379',
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
-        },
-        "KEY_PREFIX": "redis_exmr"
+        }
     }
 }
 CACHE_TTL = 60

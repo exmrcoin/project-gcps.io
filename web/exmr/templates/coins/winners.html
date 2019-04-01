@@ -12,17 +12,15 @@
         <div class="mt-4 container">
                 <div class="row">
                     {% for phase in phases %}
-                    <div class="col-12 py-3 text-center">
+                    <div class="col-md-12 py-3 text-center">
                         <div class="col-12 text-center">
                                 <h2 style="color: white">These are the Winners of {{phase}} </h2>
-        
                         </div>
-        
-                        <div class="col-3 text-center bx-ash">
+                        <div class="col-md-3 text-center bx-ash">
                         {% for coin in newcoins %}
                         {% if coin.phase == phase %}
-                            <div class="col-12 my-1">
-                                <div class="col-12  py-3 ">
+                            <div class="col-md-12 my-1">
+                                <div class="col-md-12  py-3 ">
                                     <img src="{{coin.logo_url}}" style="width: 80px" class="img-responsive margin-center">
                                     <h6 style="color: white">{{coin.name}} ({{coin.code}})</h6>
                                 </div>
@@ -32,9 +30,7 @@
                         </div>
                     </div>
                     {% endfor %}
-        
                 </div>
             </div>
     </section>
-
 {% endblock %} {% block script %} {% endblock %}

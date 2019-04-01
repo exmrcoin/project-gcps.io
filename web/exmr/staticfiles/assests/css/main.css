@@ -1176,8 +1176,13 @@ input {
     font-size: 13px;
 }
 
+
 .merchant-tools-li {
     color: #e75d14;
+
+.merchant-tools-li{
+    color: #fff;
+
 }
 
 /****************help**************/
@@ -1782,4 +1787,11 @@ table.borderless th {
 #coin-settings-name:hover{
     background-color: #007bff;
     border-radius: 4px;
+
+}
+.gcps-bx{
+    min-height: 273px;
+}
+.w150px {
+    width: 150px;
 }

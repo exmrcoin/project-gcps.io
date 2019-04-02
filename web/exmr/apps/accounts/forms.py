@@ -75,8 +75,11 @@ class SignUpForm(UserCreationForm):
 
     def clean(self):
         cleaned_data = super(SignUpForm, self).clean()
-        if cleaned_data['email'] != cleaned_data['confirm_email']:
-            raise forms.ValidationError("Your emails don't match")
+        try:
+            if cleaned_data['email'] != cleaned_data['confirm_email']:
+                raise forms.ValidationError("Your emails don't match")
+        except:
+            pass
         return cleaned_data
 
 

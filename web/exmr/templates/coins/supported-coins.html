@@ -63,10 +63,10 @@
                             <td>{{ coin.to_btc }}</td>
                             <td>
                                 {% if coin.can_convert %}
-                                <a href="{% url 'coins:convert_select' coin.code %}" class="btn btn-default white-font orange-bg  btn-ex">
+                                <a href="{% url 'accounts:profile' %}" class="btn btn-default white-font orange-bg  btn-ex">
                                     <!-- data-target="#myModal" -->
                                     <img class="w20px" src={% static 'images/arrows.svg' %}>
-                                    <span>Converter</span>
+                                    <span>Start</span>
                             </a>
                                 {% endif %}
                             </td>
@@ -88,10 +88,10 @@
                             <td>{{ ripple.to_btc }}</td>
                             <td>
                                 {% if ripple.can_convert %}
-                                <a href="{% url 'coins:convert_select' ripple.code %}" class="btn btn-default white-font orange-bg  btn-ex"                                    >
+                                <a href="{% url 'accounts:profile' %}" class="btn btn-default white-font orange-bg  btn-ex"                                    >
                                     <!-- data-target="#myModal" -->
                                     <img class="w20px" src={% static 'images/arrows.svg' %}>
-                                    <span>Converter</span>
+                                    <span>Start</span>
                             </a>
                                 {% endif %}
                             </td>
@@ -114,11 +114,11 @@
                             <td>{% trans '1.00000' %}</td>
                             <td>
                                 
-                                <a href="{% url 'coins:convert_select' token.contract_symbol %}" class="btn btn-default white-font orange-bg  btn-ex" data-coin-id="{{ token.contract_symbol }}" data-toggle="modal"
+                                <a href="{% url 'accounts:profile' %}" class="btn btn-default white-font orange-bg  btn-ex" data-coin-id="{{ token.contract_symbol }}" data-toggle="modal"
                                     data-coin-id="" onclick="show_coin_selector('{{coin.code}}')">
                                     <!-- data-target="#myModal" -->
                                     <img class="w20px" src={% static 'images/arrows.svg' %}>
-                                    <span>Converter</span>
+                                    <span>Start</span>
                             </a>
                                 
                             </td>

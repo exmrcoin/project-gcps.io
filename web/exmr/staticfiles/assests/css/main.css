@@ -598,13 +598,20 @@ img.icon-list {
     border: none;
     padding: 8px 8px 8px 8px;
 }
-
+.btn-orange:hover {
+    background-color: rgb(247, 147, 27);
+    border: none;
+    padding: 8px 8px 8px 8px;
+}
 .btn-transparent {
     background-color: transparent;
     border: 2px solid #fff;
     padding: 6px 30px 6px 30px;
     margin-left: 10px;
     color: white;
+}
+.btn-transparent:hover{
+    color:#FFF;
 }
 
 /****************public coin vote*****************/
@@ -1636,6 +1643,7 @@ input[type=checkbox] {
 }
 
 .md-ul li {
+    word-break: break-word;
     padding: 10px;
     width: 100%;
     list-style: none;

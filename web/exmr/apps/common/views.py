@@ -176,3 +176,4 @@ class ApiTemplateView(TemplateView):
         else:
             context['details1'] = ReceivingSidebar.objects.filter(slug=slug)
         return context
+

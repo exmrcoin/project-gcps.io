@@ -84,6 +84,7 @@ class CoinConvertView(LoginRequiredMixin, TemplateView):
         shapeshift_available_coin = coinswitch.get_coins()
         image_path_list = {}
         exmr_list = coinlist.get_all_active_coin_code()   
+        print(shapeshift_available_coin)
         available_coins = list(filter(lambda x: x in list(shapeshift_available_coin), exmr_list))
         for coin in list(shapeshift_available_coin):
             for coin in exmr_list:
@@ -101,7 +102,7 @@ class CoinConvertView(LoginRequiredMixin, TemplateView):
             available_coins.remove(sel_coin)
         except Exception as e:
             raise e
-        print(type(available_coins))
+        print((available_coins))
         context['coin_images'] = image_path_list
         context['avbl_coins'] = list(available_coins)
         context['sel_coin'] = sel_coin

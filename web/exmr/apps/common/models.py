@@ -190,3 +190,11 @@ class AnnouncementHome(models.Model):
 
     def __str__(self):
         return self.visit
+
+class UITheme(models.Model):
+    theme_name = models.CharField(max_length=128)
+    file_name = models.CharField(max_length=128)
+    is_active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.theme_name

@@ -7,7 +7,7 @@ from django.views.generic import View, TemplateView, FormView
 from django.shortcuts import render
 from apps.accounts.models import Profile
 from apps.common.forms import CoinRequestForm, ContactForm
-from apps.common.models import FAQ, AnnouncementHome, HelpSidebar, LegalSidebar, PluginDownload, StaticPage, API, InformationalSidebar, ReceivingSidebar
+from apps.common.models import FAQ, AnnouncementHome, HelpSidebar, UITheme, LegalSidebar, PluginDownload, StaticPage, API, InformationalSidebar, ReceivingSidebar
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from apps.common.utils import send_mail
 from apps.coins import coinlist
@@ -16,11 +16,13 @@ from django.conf import settings
 from django.template.loader import render_to_string
 
 class HomeView(TemplateView):
-    template_name = 'gcps/home.html'
+    template_name = 'gcps/test_base.html'
 
     def get_context_data(self, **kwargs):
         merchant_id = self.request.GET.get('ref')
         context = super(HomeView, self).get_context_data(**kwargs)
+        curr_theme = UITheme.objects.get(is_active=True)
+        curr_css = curr_theme.theme_name
         announcements = AnnouncementHome.objects.all()
         if merchant_id:
             user_profile = Profile.objects.get(merchant_id=merchant_id)
@@ -35,9 +37,32 @@ class HomeView(TemplateView):
         context['d1'] = dict(itertools.islice(i, n))   # grab first n items
         context['d2'] = dict(i)
         context['announce'] = announcements                        # grab the rest
+        context['theme'] = curr_css
         print(context['d1'])
         return context
 
+class ModeChangeView(View):
+
+    def post(self, request, *args, **kwargs):
+        curr_theme = request.POST['theme']
+        if curr_theme == 'Day':
+            theme = UITheme.objects.get(theme_name='Day')
+            theme.is_active = True
+            theme.save()
+            alt_theme = UITheme.objects.get(theme_name='Night')
+            alt_theme.is_active = False
+            alt_theme.save()
+            
+        else:
+            theme = UITheme.objects.get(theme_name='Night')
+            theme.is_active = True
+            theme.save()
+            alt_theme = UITheme.objects.get(theme_name='Day')
+            alt_theme.is_active = False
+            alt_theme.save()
+
+
+        return HttpResponse("test")
 
 class CoinRequestView(FormView):
     template_name = 'common/coin-hosting.html'

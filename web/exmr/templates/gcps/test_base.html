@@ -12,12 +12,19 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
       rel="stylesheet"
     />
+
     <link
+
+    <script src='https://www.google.com/recaptcha/api.js?render=6LfNl2cUAAAAAKoPIBFAyyN9tF9hgCKBIrX2n_bo'></script>
+    <!-- <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
       crossorigin="anonymous"
     />
+    /> -->
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     {% block fonts %} {% endblock %}
     <!-- <link href="assests/Fonts/style.css" rel="stylesheet" /> -->
     <!-- FONT
@@ -34,7 +41,11 @@
     <!-- Custom styles for this template -->
     
     <link href="{% static 'assests/css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'assests/css/main.css' %}" rel="stylesheet">
+    {% if theme == "Day" %}
+    <link id="theme" href="{% static 'assests/css/dark-main.css' %}" rel="stylesheet">
+    {% else %}
+    <link id="theme" href="{% static 'assests/css/main.css' %}" rel="stylesheet">
+    {% endif %}
     {% block style %}{% endblock style %}
   </head>
   <body>
@@ -43,7 +54,7 @@
     <!-- container-fluid -->
     <div class="container-fluid">
       <!-- Navbar -->
-       <nav class="navbar navbar-cp navbar-expand-lg" id="navbarCP">
+      <nav class="navbar navbar-cp navbar-expand-lg" id="navbarCP">\
         <button
           class="navbar-toggler"
           type="button"
@@ -53,6 +64,7 @@
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
+
           <span class="navbar-toggler-icon">MENU</span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -64,7 +76,7 @@
             </li>
             <li class="nav-item ">
               <a class="nav-link" href="{% url 'coins:supported_coins' 'Crypto' %}">
-                {% trans 'Support Coins'%}
+                {% trans 'Supported Coins'%}
               </a>
             </li>
             <li class="nav-item ">
@@ -93,7 +105,7 @@
               </a>
               <div
                 class="dropdown-menu dropdown-menu-right"
-                aria-labelledby="navbarDropdown"
+                aria-labelledby="navbarDropdown" style="left: -175px"
               >
                 <a class="dropdown-item" href="{% url 'common:help' %}">Help Topics</a>
                 <a class="dropdown-item" href="{% url 'common:coinhosting' %}">Coin Request</a>
@@ -165,17 +177,413 @@
               </li>
             {% else%}
             <li class="nav-item btn-item">
-              <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-orange">Login</a>
+              <a class="nav-link btn-outline-orange btn" href="{% url 'accounts:login' %}">Login</a>
             </li>
             <li class="nav-item btn-item">
                 <a href="{% url 'accounts:signup' %}" style="color: #000000;" type="submit" class="btn btn-default">Signup</a>
             </li>
             {% endif %}
+            <li>
+              <label class="switch">
+                <input id="mode_toggle" type="checkbox" {% ifequal theme "Day" %}{%else%}checked{%endifequal%}>
+                <span class="slider round"></span>
+              </label>
+            </li>
           </ul>
         </div>
       </nav>
       <!-- Navbar END -->
       {% block content %} {% endblock content %}
+      <div class="content-bx">
+            <!-- Section -->
+            <section class="section section-pad">
+              <div class="container">
+                <div class="row animatedParent animateOnce">
+                  <div class="col-sm-12 col-md-6 animated fadeInLeftShort">
+                    <div class="form-group">
+                      <img src="{% static 'assests/images/logo.png' %}" class="img-logo" />
+                    </div>
+                    <h1 class="text-white b-300">Welcome to {{file}}</h1>
+                    <h1 class="text-white b-800 titl-bg"><i class="fa fa-address-book-o" aria-hidden="true"></i>GCPS</h1>
+                    <div class="form-group mt-3">
+                      <button class="btn btn-outline-default">Signup Now</button>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 animated fadeInRightShort">
+                    <div class="bx-ash mb-2" style="max-width: 350px; margin: 0px auto; margin-right: 0px;">
+                      <h6 class="text-white text-center mb-4">
+                        Assets <span class="text-theme"> Listed with us</span>
+                      </h6>
+                      <a href="{% url 'coins:wallets' %}">
+                      <ul class="bx-list row">
+                        <li class="col-5">
+                          <div class="carousel vert slide" data-ride="carousel" data-interval="2700">
+                            <div class='carousel-inner text-center'>
+                              {% for coin,coin_details in d1.items %}
+
+                              {% if forloop.counter == 1 %}
+                              <div class="carousel-item active text-center">
+                                  <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                  <div class="text-white mt-2">{{coin_details.coin_name}}({{coin_details.coin_code}})</div>
+                              </div>
+                              {% else %}
+                              <div class="carousel-item text-center">
+                                  <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                  <div class="text-white mt-2">{{coin_details.coin_name}}({{coin_details.coin_code}})</div>
+                                </div>
+                              {% endif %}
+                  
+                              {% endfor %}
+                            </div>
+                          </div>
+                        </li>
+                        <li class="col-2  d-flex align-items-center justify-content-center">
+                          <img
+                            src="{% static 'assests/images/transfer.png' %}"
+                            class="icon-transfer"
+                          />
+                        </li>
+                        <li class="col-5">
+                            <div class="carousel vert slide" data-ride="carousel" data-interval="2000">
+                              <div class='carousel-inner'>
+                                {% for coin,coin_details in d2.items %}
+
+                                {% if forloop.counter == 1 %}
+                                <div class="carousel-item active text-center">
+                                    <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                    <div class="text-white mt-2">{{coin_details.coin_name}}({{coin_details.coin_code}})</div>
+                                  </div>
+
+                                {% else %}
+                                <div class="carousel-item text-center">
+                                    <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                    <div class="text-white mt-2">{{coin_details.coin_name}}({{coin_details.coin_code}})</div>
+                                  </div>
+                                {% endif %}
+
+                                {% endfor %}
+                              </div>
+                            </div>
+                        </li>
+                      </ul>
+                      </a>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- Section END -->
+    
+            <!-- Section -->
+            <section class="section section-pad pt-2">
+              <div class="container">
+                <div class="row animatedParent animateOnce" data-sequence='500'>
+                  <div class="col-sm-12 col-md-6 animated fadeInUpShort" data-id='1'>
+                    <div class="bx-ash mb-2">
+                      <div class="grid-2-bx">
+                        <div><i class="text-theme icon-bi-wallet fa-4x"></i></div>
+                        <div>
+                          <h4 class="text-theme b-4">Receive Crypto Payments?</h4>
+                          <h6 class="b-3 text-white">
+                            Let GetCryptoPayments help with:
+                          </h6>
+                          <div class="form-group text-white">
+                            Accepting payments from over 100 different coins By our
+                            GetCryptoPayments Merchant Tools
+                          </div>
+                          <div class="form-group mt-3">
+                            <button class="btn btn-outline-default">
+                              Find Out More <i class="icon-chevron-right fa-xs"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-12 col-md-6 animated fadeInUpShort" data-id='2'>
+                    <div class="bx-ash mb-2">
+                      <div class="grid-2-bx">
+                        <div>
+                          <i class="text-theme fas fa-fingerprint fa-4x"></i>
+                        </div>
+                        <div>
+                          <h4 class="text-theme b-4">$PayByName</h4>
+                          <h6 class="b-3 text-white mb-4">
+                            One unique $tag to receive payments from all coins.
+                          </h6>
+                          <div class="form-group text-white">
+                            Example Profile
+                          </div>
+                          <div class="form-group mt-3">
+                            <div class="input-group mb-3">
+                              <div class="input-group-prepend">
+                                <span class="input-group-text bg-white">$</span>
+                              </div>
+                              <input
+                                type="text"
+                                class="form-control bg-transparent text-white"
+                                aria-label="Amount (to the nearest dollar)"
+                              />
+                              <div class="input-group-append">
+                                <button class="btn btn-orange">Check Now</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <!-- Section END -->
+    
+            <!-- Section -->
+            <section class="section section-pad pt-2">
+              <div class="container animatedParent animateOnce" data-sequence='80'>
+                <h2 class="text-white text-center animated fadeInUpShort" data-id='1'>
+                  SHOPPING CART <span class="text-theme b-700">PLUGINS</span>
+                </h2>
+                <p class="text-center text-white h6 mt-3 center-aligner animated fadeInUpShort" data-id='2'>
+                  Offering plugins for all the popular webcarts used today. Register
+                  and install a plugin to set up GetCryptoPayments with your new or
+                  pre-existing checkout'
+                </p>
+                <div class="row mt-5 justify-content-center">
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='4'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/cart01.png'%}" class="img-fluid" />
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='5'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/cart02.png'%}" class="img-fluid" />
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='6'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/cart03.png' %}" class="img-fluid" />
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='7'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/cart04.png' %}" class="img-fluid" />
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='8'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/cart05.png' %}" class="img-fluid" />
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='9'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/cart06.png' %}" class="img-fluid" />
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='10'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/cart07.png' %}" class="img-fluid" />
+                    </div>
+                  </div>
+                  <!-- item END -->
+                </div>
+              </div>
+            </section>
+            <!-- Section END -->
+    
+            <!-- Section -->
+            <section class="section section-pad pt-2 pb-5">
+              <div class="container animatedParent animateOnce" data-sequence="80">
+                <h2 class="text-white text-center text-uppercase animated fadeInUpShort" data-id='1'>
+                  PAYMENT <span class="text-theme b-700">Features</span>
+                </h2>
+                <p class="text-center text-white h6 mt-3 center-aligner animated fadeInUpShort" data-id='2'>
+                  Here some ways GetCryptoPayments can help you process payments.
+                </p>
+                <div class="row mt-5 justify-content-center paybx">
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='3'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/03.png' %}" class="img-fluid img-icon" />
+                      <h6 class="text-theme text-center">BitGo™ Instant</h6>
+                      <p class="text-white text-center">
+                        GetCryptoPayments supports BitGo Instant making Bitcoin
+                        payments faster than ever before.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='4'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/04.png' %}" class="img-fluid img-icon" />
+                      <h6 class="text-theme text-center">Secured with BitGo</h6>
+                      <p class="text-white text-center">
+                        Our hot wallet is secured by BitGo - meaning 100 of our
+                        funds are protected by multi-signature technology.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='5'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/05.png' %}" class="img-fluid img-icon" />
+                      <h6 class="text-theme text-center">Vault</h6>
+                      <p class="text-white text-center">
+                        Protect your coins in the vault, requiring a time amount you
+                        specify before being able to spend them.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='6'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/06.png' %}" class="img-fluid img-icon" />
+                      <h6 class="text-theme text-center">Mobile Apps</h6>
+                      <p class="text-white text-center">
+                        Access your account, accept payments in person, and convert
+                        coins anywhere with our mobile apps for Android and iOS.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='7'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static  'assests/images/07.png' %}" class="img-fluid img-icon" />
+                      <h6 class="text-theme text-center">Fiat Settlements</h6>
+                      <p class="text-white text-center">
+                        United States and Euro merchants now have fiat settlements
+                        directly to their bank accounts.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='8'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/08.png' %}" class="img-fluid img-icon" />
+                      <h6 class="text-theme text-center">Auto Coin Conversion</h6>
+                      <p class="text-white text-center">
+                        Auto convert for some of our coins, saving you the trouble
+                        of moving funds, wasting time and fees.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='9'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/09.png' %}" class="img-fluid img-icon" />
+                      <h6 class="text-theme text-center">Point of Sale (POS)</h6>
+                      <p class="text-white text-center">
+                        Simple interface for in person transactions.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- item END -->
+                  <!-- item -->
+                  <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='10'>
+                    <div class="bx-ash bx-client">
+                      <img src="{% static 'assests/images/10.png' %}" class="img-fluid img-icon" />
+                      <h6 class="text-theme text-center">Multi-Coin Wallet</h6>
+                      <p class="text-white text-center">
+                        Optionally store your coins in our secure online wallet.
+                      </p>
+                    </div>
+                  </div>
+                  <!-- item END -->
+                </div>
+              </div>
+            </section>
+            <!-- Section END -->
+    
+            <!-- Section -->
+            <section class="section section-pad pt-1 pb-5">
+              <div class="container animatedParent animateOnce">
+                <div class="row mt-5 justify-content-center">
+                  <!-- item -->
+                  <div class="col-md-6 col-sm-8 animated fadeInUpShort">
+                    <div class="bx-ash">
+                      <div
+                        id="carouselExampleIndicators"
+                        class="carousel slide carousel-fade"
+                        data-ride="carousel"
+                      >
+                        <ol class="carousel-indicators carousel-cs-dot">
+                          <li
+                            data-target="#carouselExampleIndicators"
+                            data-slide-to="0"
+                            class="active"
+                          ></li>
+                          {% for announce in announce %}
+                          <li
+                            data-target="#carouselExampleIndicators"
+                            data-slide-to="{{forloop.counter}}"
+                          ></li>
+                          {% endfor %}
+                        </ol>
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <div class="text-white">
+                              <h3 class="text-uppercase">Announcement</h3>
+                              <p class="mb-5">
+                                We recently listed USD Coin in our coin portfolio 
+                                Congratulations to all GCP'S users.
+                                USD Coin a stablecoin brought to you now by GetCryptoPayments.
+                              </p>
+                              <div class="text-theme text-right">
+                                More about centre.io
+                                <a href="#" class="circle-outline"
+                                  ><i class="icon-arrow-right"></i
+                                ></a>
+                              </div>
+                            </div>
+                          </div>
+                          {% for announce in announce %}
+                          <div class="carousel-item">
+                          
+                            <div class="text-white">
+                              <h3 class="text-uppercase">Announcement</h3>
+                              <p class="mb-5">
+                                {{announce.description}}
+                              </p>
+                              <div class="text-theme text-right">
+                                More about visit {{announce.visit}}
+                                <a href="{{announce.link}}" class="circle-outline"
+                                  ><i class="icon-arrow-right"></i
+                                ></a>
+                              </div>
+                            </div>
+                          
+                          </div>
+                          {% endfor %}
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- item END -->
+                </div>
+              </div>
+            </section>
+            <!-- Section END -->
       <div id="appModal" class="modal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -200,7 +608,7 @@
           <div class="container">
             <div class="footer-content">
               <div class="row animatedParent animateOnce" data-sequence="100">
-                <div class="col-sm-6 col-md-3 animated fadeInUpShort" data-id='1'>
+                <div class="col-sm-6 col-md-6 col-lg-3 animated fadeInUpShort" data-id='1'>
                   <h6 class="footer-title">GETCRYPTOPAYMENTS</h6>
                   <div class="footer-link-group">
                     <a href="{% url 'coins:supported_coins' 'Crypto' %}" class="footer-link">{% trans 'Supported Coins' %}</a>
@@ -209,8 +617,7 @@
                     <a href="{% url 'store:store-directory' %}" class="footer-link">{% trans 'Store Directory' %}</a>
                   </div>
                 </div>
-
-                <div class="col-sm-6 col-md-3 animated fadeInUpShort" data-id='2'>
+                <div class="col-sm-6 col-md-6 col-lg-3 animated fadeInUpShort" data-id='2'>
                   <h6 class="footer-title">RESOURCES</h6>
                   <div class="footer-link-group">
                     <a href="#" class="footer-link">{% trans 'Get Mobile App' %}</a>
@@ -219,22 +626,21 @@
                     <a href="#" class="footer-link">{% trans 'PGP Key' %}</a>
                   </div>
                 </div>
-
-                <div class="col-sm-6 col-md-3 animated fadeInUpShort" data-id='3'>
+                <div class="col-sm-6 col-md-6 col-lg-3 animated fadeInUpShort" data-id='3'>
                   <h6 class="footer-title">SERVICES</h6>
                   <div class="footer-link-group">
                     <a href="{% url 'common:helptopic' 'feespricing'  %}" class="footer-link">{% trans 'Fees/Pricing' %}</a>
                     <a href="{% url 'common:help' %}" class="footer-link">{% trans 'Help' %}</a>
-                    <a href="{% url 'store:add-to-store' %}" class="footer-link">{% trans 'Add Your Store' %}</a>
-                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Add Your Coin' %}</a>
+                    <a href="{% url 'store:add-to-store' %}" class="footer-link">{% trans 'Add Store' %}</a>
+                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Coin Request' %}</a>
                   </div>
                 </div>
 
-                <div class="col-sm-6 col-md-3 animated fadeInUpShort" data-id='4'>
+                <div class="col-sm-6 col-md-6 col-lg-3 animated fadeInUpShort" data-id='4'>
                   <h6 class="footer-title">MORE</h6>
                   <div class="footer-link-group">
                     <a href="{% url 'common:help' %}privacy-policy" class="footer-link">{% trans 'Privacy Policy' %}</a>
-                    <a href="{% url 'common:help' %}terms-of-service" class="footer-link">{% trans 'Terms and Conditions' %}</a>
+                    <a href="{% url 'common:help' %}terms-of-service" class="footer-link">{% trans 'Terms of Service' %}</a>
                   </div>
                 </div>
               </div>
@@ -290,12 +696,12 @@
 
     <!-- container-fluid END -->
     <!-- JS -->
-    <script
+    <!-- <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
       crossorigin="anonymous"
-    ></script>
-    <script src="{% static 'assests/js/bootstrap.min.js' %}"></script>
+    ></script> -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
     <script
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -317,145 +723,200 @@
     //     } else {
     //       $('#navbarCP').removeClass("nav-colored");
     //     }
+    <script src="{% static 'assests/js/bootstrap.min.js' %}"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="{% static 'assests/js/css3-animate-it.js' %}"></script>
+    <!-- <script src="assests/js/css3-animate-it.js"></script> -->
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('#mode_toggle').change(function() {
+        var theme_check=document.getElementById('mode_toggle');
+        var theme ;
+        if (theme_check.checked){
+          theme = 'Day';
+        }
+        else{
+          theme = 'Night';
+        }
+        
+
+
+        // if ($(this).is(':checked')) {
+        //   theme = 'Night';
+        // }else {
+        //   theme = 'Day';
+        // };
+        $.ajax({
+                 type:"POST",
+                 url:"{% url 'common:change_mode' %}",
+                 data:{
+                    theme: theme,
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+
+                },
+                 success: function(){
+                    location.reload() 
+                    }
+            });
+    
+});
+    })
+    </script>
+    <script type="text/javascript">
+      /* nav color change */
+
+     $(window).scroll(function() {
+
+         scroll = $(window).scrollTop();
+
+         if (scroll >= 70) {
+          //  alert(); 
+          $('#navbarCP').addClass("nav-colored");
+        } else {
+          $('#navbarCP').removeClass("nav-colored");
+        }
     });
 
       /* ---- particles.js config ---- */
-
-    // particlesJS("particles-js", {
+    particlesJS("particles-js", {
     
-    //     particles: {
-    //       number: {
-    //         value: 180,
-    //         density: {
-    //           enable: true,
-    //           value_area: 800
-    //         }
-    //       },
-    //       color: {
-    //         value: "#606060"
-    //       },
-    //       shape: {
-    //         type: "circle",
-    //         stroke: {
-    //           width: 0,
-    //           color: "#000000"
-    //         },
-    //         polygon: {
-    //           nb_sides: 5
-    //         },
-    //         image: {
-    //           src: "img/github.svg",
-    //           width: 100,
-    //           height: 100
-    //         }
-    //       },
-    //       opacity: {
-    //         value: 0.5,
-    //         random: false,
-    //         anim: {
-    //           enable: false,
-    //           speed: 1,
-    //           opacity_min: 0.1,
-    //           sync: false
-    //         }
-    //       },
-    //       size: {
-    //         value: 3,
-    //         random: true,
-    //         anim: {
-    //           enable: false,
-    //           speed: 1,
-    //           size_min: 0.1,
-    //           sync: false
-    //         }
-    //       },
-    //       line_linked: {
-    //         enable: true,
-    //         distance: 150,
-    //         color: "#606060",
-    //         opacity: 0.4,
-    //         width: 1
-    //       },
-    //       move: {
-    //         enable: true,
-    //         speed: 2,
-    //         direction: "none",
-    //         random: false,
-    //         straight: false,
-    //         out_mode: "out",
-    //         bounce: false,
-    //         attract: {
-    //           enable: false,
-    //           rotateX: 600,
-    //           rotateY: 1200
-    //         }
-    //       }
-    //     },
-    //     interactivity: {
-    //       detect_on: "canvas",
-    //       events: {
-    //         onhover: {
-    //           enable: true,
-    //           mode: "grab"
-    //         },
-    //         onclick: {
-    //           enable: true,
-    //           mode: "push"
-    //         },
-    //         resize: true
-    //       },
-    //       modes: {
-    //         grab: {
-    //           distance: 140,
-    //           line_linked: {
-    //             opacity: 1
-    //           }
-    //         },
-    //         bubble: {
-    //           distance: 400,
-    //           size: 40,
-    //           duration: 2,
-    //           opacity: 8,
-    //           speed: 3
-    //         },
-    //         repulse: {
-    //           distance: 200,
-    //           duration: 0.4
-    //         },
-    //         push: {
-    //           particles_nb: 4
-    //         },
-    //         remove: {
-    //           particles_nb: 2
-    //         }
-    //       }
-    //     },
-    //     retina_detect: true
-    //   });
+        particles: {
+          number: {
+            value: 180,
+            density: {
+              enable: true,
+              value_area: 800
+            }
+          },
+          color: {
+            value: {% if theme == "Day" %}"#9d9d9d",{%else%}"#606060",{%endif%}
+          },
+          shape: {
+            type: "circle",
+            stroke: {
+              width: 0,
+              color: "#000000"
+            },
+            polygon: {
+              nb_sides: 5
+            },
+            image: {
+              src: "img/github.svg",
+              width: 100,
+              height: 100
+            }
+          },
+          opacity: {
+            value: 0.5,
+            random: false,
+            anim: {
+              enable: false,
+              speed: 1,
+              opacity_min: 0.1,
+              sync: false
+            }
+          },
+          size: {
+            value: 3,
+            random: true,
+            anim: {
+              enable: false,
+              speed: 1,
+              size_min: 0.1,
+              sync: false
+            }
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: {% if theme == "Day" %}"#9d9d9d",{%else%}"#606060",{%endif%}
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+            attract: {
+              enable: false,
+              rotateX: 600,
+              rotateY: 1200
+            }
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "grab"
+            },
+            onclick: {
+              enable: true,
+              mode: "push"
+            },
+            resize: true
+          },
+          modes: {
+            grab: {
+              distance: 140,
+              line_linked: {
+                opacity: 1
+              }
+            },
+            bubble: {
+              distance: 400,
+              size: 40,
+              duration: 2,
+              opacity: 8,
+              speed: 3
+            },
+            repulse: {
+              distance: 200,
+              duration: 0.4
+            },
+            push: {
+              particles_nb: 4
+            },
+            remove: {
+              particles_nb: 2
+            }
+          }
+        },
+        retina_detect: true
+      });
 
-    //   /* ---- stats.js config ---- */
+      /* ---- stats.js config ---- */
 
-    //   var count_particles, stats, update;
-    //   stats = new Stats();
-    //   stats.setMode(0);
-    //   stats.domElement.style.position = "absolute";
-    //   stats.domElement.style.left = "0px";
-    //   stats.domElement.style.top = "0px";
-    //   document.body.appendChild(stats.domElement);
-    //   count_particles = document.querySelector(".js-count-particles");
-    //   update = function() {
-    //     stats.begin();
-    //     stats.end();
-    //     if (
-    //       window.pJSDom[0].pJS.particles &&
-    //       window.pJSDom[0].pJS.particles.array
-    //     ) {
-    //       count_particles.innerText =
-    //         window.pJSDom[0].pJS.particles.array.length;
-    //     }
-    //     requestAnimationFrame(update);
-    //   };
-    //   requestAnimationFrame(update);
+      var count_particles, stats, update;
+      stats = new Stats();
+      stats.setMode(0);
+      stats.domElement.style.position = "absolute";
+      stats.domElement.style.left = "0px";
+      stats.domElement.style.top = "0px";
+      document.body.appendChild(stats.domElement);
+      count_particles = document.querySelector(".js-count-particles");
+      update = function() {
+        stats.begin();
+        stats.end();
+        if (
+          window.pJSDom[0].pJS.particles &&
+          window.pJSDom[0].pJS.particles.array
+        ) {
+          count_particles.innerText =
+            window.pJSDom[0].pJS.particles.array.length;
+        }
+        requestAnimationFrame(update);
+      };
+      requestAnimationFrame(update);
+
+
     </script>
+    {% block script %}{% endblock script %}
   </body>
 </html>

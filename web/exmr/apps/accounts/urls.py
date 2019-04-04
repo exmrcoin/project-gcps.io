@@ -36,4 +36,5 @@ urlpatterns = [
     path('login-notice/', views.LoginNoticeView.as_view(), name='login_notice'),
     path('kyc/', views.KYCView.as_view(), name='kyc'),
     path('kyc-accept/', views.KYCAcceptanceView.as_view(), name="kyc_accept"),
+    path('view-profile-paybyname/', views.PayByNameCheck.as_view(), name="paybyname_check"),
 ]

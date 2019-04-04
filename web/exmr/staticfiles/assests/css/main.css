@@ -675,7 +675,6 @@ a {
 
     .vote_table tr {
         margin-top: 20px;
-        padding-bottom:
     }
 
     .vote_table td {
@@ -982,7 +981,6 @@ input {
 
     .support-table tr {
         margin-top: 20px;
-        padding-bottom:
     }
 
     .support-table td {
@@ -1576,7 +1574,6 @@ input[type=checkbox] {
 }
 
 
-}
 .logo-header {
     height: 60px;
     width: 60px;
@@ -1805,3 +1802,201 @@ table.borderless th {
 .w150px {
     width: 150px;
 }
+
+
+.btnpad {
+    /*min-width: 90px;*/
+    min-height: 90px;
+    background-color: #0a0a0a;
+    color:#e75d14;
+    border: none;
+    border-radius: 0px;	
+}
+.btnpad:hover{
+	background-color: #e75d14;
+	color: white;
+}
+.btnpad2 {
+    /*min-width: 180px;*/
+    min-height: 90px;
+    background-color: #0a0a0a;
+    color:#30938d;
+    border: none;
+    border-radius: 0px;	
+}
+.btnpad2:hover{
+	background: #30938d;
+	color: white;
+}
+.btnpad3{
+    /*min-width: 90px;*/
+    min-height: 90px;
+    background-color: #cc4b24;
+    color:white;
+    border: none;
+    border-radius: 0px;	
+}
+.btnpad3:hover{
+	background: red;
+	color: white;
+}
+.calc-input{
+	/*height: 75px;*/
+	/*min-width: 180px;*/
+	border-radius: 0px;
+	border:0px;
+	padding-left: 15px;
+    background-color: #030303;
+    text-align: right;
+}
+.btnpad4{
+	height: 75px;
+	/*min-width: 90px;*/
+	background-color: grey;
+	color: #e75d14;
+    border: none;
+    border-radius: 0px;	
+}
+.btnpad5{
+	/*min-width: 135px;*/
+	height: 60px;
+	border-radius: 0px;
+	background-color: #cc4b24;
+	color: white;
+}
+.bg-dark1{
+    background-color: #0a0a0a;
+    color:#30938d;
+}
+.bg-dark1:hover{
+    background-color: #30938d;
+    color:white;	
+}
+.calc-input:focus{
+
+        border-color: #ff80ff;
+        box-shadow: 0px 1px 1px rgba(21, 99, 8, 0.075) inset, 0px 0px 8px rgba(21, 99, 8, 0.5);
+
+}
+.calc-select {
+  padding: 5px 35px 5px 5px;
+  font-size: 16px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url(../images/arrow.png) 96% / 15% no-repeat #030303;
+}
+.calc-select:hover{
+	font-size: 20px;
+	color:white;
+	background-color: #0a0a0a;
+}
+.calc-select:focus{
+	font-size: 20px;
+	color:white;
+	background-color: #0a0a0a;
+}
+/* CAUTION: IE hackery ahead */
+.calc-select::-ms-expand { 
+    display: none; /* remove default arrow on ie10 and ie11 */
+}
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+.rounded-tl{
+	border-top-left-radius: 12px !important;
+}
+.rounded-bl{
+	border-bottom-left-radius: 12px !important;	
+}
+.rounded-tr{
+	border-top-right-radius: 12px !important;
+}
+.rounded-br{
+	border-bottom-right-radius: 12px !important;	
+}
+select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+option:not(:checked) {
+    color: black; /* prevent <option>s from becoming transparent as well */
+  }
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #27272e;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }
+
+  .slider:after {
+    background-image: url("/static/images/toggle-img.jpg");
+    content: '';
+    position: absolute;
+    height: 16px;
+    width: 16px;
+    left: 35px;
+    top: 10px;
+    background-size: 15px;
+    background-repeat: no-repeat;
+    background-position-y: -17px;
+  }
+  

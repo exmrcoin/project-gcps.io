@@ -7,7 +7,7 @@ from django.views.generic import View, TemplateView, FormView
 from django.shortcuts import render
 from apps.accounts.models import Profile
 from apps.common.forms import CoinRequestForm, ContactForm
-from apps.common.models import FAQ, AnnouncementHome, HelpSidebar, LegalSidebar, PluginDownload, StaticPage, API, InformationalSidebar, ReceivingSidebar
+from apps.common.models import FAQ, AnnouncementHome, HelpSidebar, UITheme, LegalSidebar, PluginDownload, StaticPage, API, InformationalSidebar, ReceivingSidebar
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from apps.common.utils import send_mail
 from apps.coins import coinlist
@@ -16,11 +16,17 @@ from django.conf import settings
 from django.template.loader import render_to_string
 
 class HomeView(TemplateView):
-    template_name = 'gcps/home.html'
+    template_name = 'gcps/test_base.html'
 
     def get_context_data(self, **kwargs):
         merchant_id = self.request.GET.get('ref')
         context = super(HomeView, self).get_context_data(**kwargs)
+        try:
+            curr_theme = self.request.session['curr_theme']
+        except:
+            curr_theme = 'Night'
+            self.request.session['curr_theme'] = 'Night'
+        # theme
         announcements = AnnouncementHome.objects.all()
         if merchant_id:
             user_profile = Profile.objects.get(merchant_id=merchant_id)
@@ -35,9 +41,21 @@ class HomeView(TemplateView):
         context['d1'] = dict(itertools.islice(i, n))   # grab first n items
         context['d2'] = dict(i)
         context['announce'] = announcements                        # grab the rest
-        print(context['d1'])
+        context['theme'] = curr_theme
+        # print(context['d1'])
         return context
 
+class ModeChangeView(View):
+
+    def post(self, request, *args, **kwargs):
+        curr_theme = request.POST['theme']
+        if curr_theme == 'Day':
+            self.request.session['curr_theme'] = 'Night'
+        else:
+            self.request.session['curr_theme'] = 'Day'
+
+        print(self.request.session['curr_theme'])
+        return HttpResponse("test")
 
 class CoinRequestView(FormView):
     template_name = 'common/coin-hosting.html'
@@ -176,3 +194,4 @@ class ApiTemplateView(TemplateView):
         else:
             context['details1'] = ReceivingSidebar.objects.filter(slug=slug)
         return context
+

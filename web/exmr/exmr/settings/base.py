@@ -295,7 +295,7 @@ except ImportError:
 
 ADMINS = (
 #    ('ME', 'anandkrishnan.techversant@gmail.com'),
-#  ('ADMIN', 'vipin.mohan@techversantinc.com'),
+#    ('ADMIN', 'vipin.mohan@techversantinc.com'),
 )
 LOGGING = {
     'version': 1,

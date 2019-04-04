@@ -573,22 +573,37 @@ class POSCalcView(TemplateView):
     template_name = 'gcps/merchant_tools/pos_calc.html'
     def get_context_data(self,**kwargs):
         context = super().get_context_data()
+        try:
+            context['rates']=cache.get('rates')
+            print(type(context['rates']))
+        except:
+            print("passed")
+            pass
         return context
 
 
     def post(self, request, *args, **kwargs):
         input_amount =  request.POST.get('amountf')
         input_currency =  request.POST.get('select_currency')
+        print(input_currency)
         context = super().get_context_data(**kwargs)
-        context['amount'] = input_amount
-        context['input_currency'] = "usd"
+        try:
+            cur_rate = cache.get('rates')
+        except:
+            pass
+        if not input_currency == "USD":
+            usd_equivalent = round((cur_rate[input_currency] * float(input_amount)),8)
+
+        context['amount'] = input_amount    
+        context['usd_amount'] = usd_equivalent
+        context['input_currency'] = input_currency
         token = account_activation_token.make_token(
             user=self.request.user)
         domain = self.request.get_host()
         html_url = domain+reverse('mtools:poscalcpaysel', kwargs={'token': token})
         context['html_url'] = html_url
         context['available_coins'] = Coin.objects.filter(active=True)
-        context['rates'] =  cache.get('rates')
+        context['rates'] =  cur_rate
         return render(self.request, 'gcps/merchant_tools/pos_coin_select.html', context)
 
 class POSCalcPaySelView(TemplateView):

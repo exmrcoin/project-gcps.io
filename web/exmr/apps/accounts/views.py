@@ -519,4 +519,11 @@ class KYCAcceptanceView(View):
             return HttpResponse(json.dumps({"status": True}))
         return HttpResponse(json.dumps({"status": False}))
 
- 
+class  PayByNameCheck(TemplateView):
+    template_name = 'accounts/profile_rate.html'
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        # try:
+            # pbn = self.kwargs.get
+        return self.render_to_response(context)

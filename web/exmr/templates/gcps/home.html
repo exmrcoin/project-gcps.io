@@ -302,19 +302,17 @@
                             Example Profile
                           </div>
                           <div class="form-group mt-3">
+                            <form action="{% url 'accounts:paybyname_check' %}" method="GET">
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text bg-white">$</span>
                               </div>
-                              <input
-                                type="text"
-                                class="form-control bg-transparent text-white"
-                                aria-label="Amount (to the nearest dollar)"
-                              />
+                              <input type="text" class="form-control bg-transparent text-white" aria-label="Amount (to the nearest dollar)" name="pbn" />
                               <div class="input-group-append">
-                                <button class="btn btn-orange">Check Now</button>
+                                <button type="submit" class="btn btn-orange">Check Now</button>
                               </div>
                             </div>
+                          </form>
                           </div>
                         </div>
                       </div>

@@ -180,7 +180,7 @@
             {% endif %}
             <li>
               <label class="switch">
-                <input id="mode_toggle" type="checkbox" {% if theme == "Day" %}{%else%}checked{%endif%}>
+                <input id="mode_toggle" type="checkbox" {% ifequal theme "Day" %}{%else%}checked{%endifequal%}>
                 <span class="slider round"></span>
               </label>
             </li>
@@ -711,12 +711,22 @@
     <script type="text/javascript">
     $(document).ready(function() {
       $('#mode_toggle').change(function() {
+        var theme_check=document.getElementById('mode_toggle');
         var theme ;
-        if (!$(this).is(':checked')) {
+        if (theme_check.checked){
           theme = 'Day';
-        }else {
+        }
+        else{
           theme = 'Night';
-        };
+        }
+        
+
+
+        // if ($(this).is(':checked')) {
+        //   theme = 'Night';
+        // }else {
+        //   theme = 'Day';
+        // };
         $.ajax({
                  type:"POST",
                  url:"{% url 'common:change_mode' %}",

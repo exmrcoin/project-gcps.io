@@ -21,8 +21,12 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         merchant_id = self.request.GET.get('ref')
         context = super(HomeView, self).get_context_data(**kwargs)
-        curr_theme = UITheme.objects.get(is_active=True)
-        curr_css = curr_theme.theme_name
+        try:
+            curr_theme = self.request.session['curr_theme']
+        except:
+            curr_theme = 'Night'
+            self.request.session['curr_theme'] = 'Night'
+        # theme
         announcements = AnnouncementHome.objects.all()
         if merchant_id:
             user_profile = Profile.objects.get(merchant_id=merchant_id)
@@ -37,8 +41,8 @@ class HomeView(TemplateView):
         context['d1'] = dict(itertools.islice(i, n))   # grab first n items
         context['d2'] = dict(i)
         context['announce'] = announcements                        # grab the rest
-        context['theme'] = curr_css
-        print(context['d1'])
+        context['theme'] = curr_theme
+        # print(context['d1'])
         return context
 
 class ModeChangeView(View):
@@ -46,22 +50,11 @@ class ModeChangeView(View):
     def post(self, request, *args, **kwargs):
         curr_theme = request.POST['theme']
         if curr_theme == 'Day':
-            theme = UITheme.objects.get(theme_name='Day')
-            theme.is_active = True
-            theme.save()
-            alt_theme = UITheme.objects.get(theme_name='Night')
-            alt_theme.is_active = False
-            alt_theme.save()
-            
+            self.request.session['curr_theme'] = 'Night'
         else:
-            theme = UITheme.objects.get(theme_name='Night')
-            theme.is_active = True
-            theme.save()
-            alt_theme = UITheme.objects.get(theme_name='Day')
-            alt_theme.is_active = False
-            alt_theme.save()
+            self.request.session['curr_theme'] = 'Day'
 
-
+        print(self.request.session['curr_theme'])
         return HttpResponse("test")
 
 class CoinRequestView(FormView):

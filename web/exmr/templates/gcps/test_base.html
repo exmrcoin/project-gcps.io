@@ -1,0 +1,461 @@
+{% load staticfiles widget_tweaks %} {% load i18n %} {% get_available_languages as languages %} {% load helper_tags %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    {% block meta %} {% endblock %}
+    <title>GetCryptoPayments | {% block title %}{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- FONT -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    {% block fonts %} {% endblock %}
+    <!-- <link href="assests/Fonts/style.css" rel="stylesheet" /> -->
+    <!-- FONT
+
+    <link href="assests/css/animations-ie-fix.css" rel="stylesheet" />IE FIX
+    <link href="assests/css/animations.css" rel="stylesheet" />
+    <link href="assests/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="assests/css/main.css" rel="stylesheet" /> -->
+
+
+    <link href="{% static 'assests/Fonts/style.css' %}" rel="stylesheet">
+    <link href="{% static 'assests/css/animations-ie-fix.css' %}" rel="stylesheet">
+    <link href="{% static 'assests/css/animations.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    
+    <link href="{% static 'assests/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assests/css/main.css' %}" rel="stylesheet">
+    {% block style %}{% endblock style %}
+  </head>
+  <body>
+    <div id="particles-js"></div>
+    <!-- Background Particles section -->
+    <!-- container-fluid -->
+    <div class="container-fluid">
+      <!-- Navbar -->
+       <nav class="navbar navbar-cp navbar-expand-lg" id="navbarCP">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon">MENU</span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav nav-link-list mr-auto">
+            <li class="nav-item btn-item">
+              <a class="nav-link btn-outline-orange btn" href="{% url 'public coin vote' %}"
+                >{% trans 'Public Coin Vote'%}</a
+              >
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'coins:supported_coins' 'Crypto' %}">
+                {% trans 'Support Coins'%}
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'store:store-directory' %}">
+                {% trans 'Store Directory'%}
+              </a>
+            </li>
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'merchant-tools' %}">
+                {% trans 'Merchant Tools'%}
+              </a>
+            </li>
+          </ul>
+          <ul class="navbar-nav nav-link-list">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle-down"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+              {% trans 'Contact Us' %}
+              </a>
+              <div
+                class="dropdown-menu dropdown-menu-right"
+                aria-labelledby="navbarDropdown"
+              >
+                <a class="dropdown-item" href="{% url 'common:help' %}">Help Topics</a>
+                <a class="dropdown-item" href="{% url 'common:coinhosting' %}">Coin Request</a>
+                <!-- <div class="dropdown-divider"></div> -->
+                <a class="dropdown-item" href="{% url 'store:add-to-store' %}">Add Store to Store Directory</a>
+                <a class="dropdown-item" href="{% url 'contact' %}">Contact Us</a>
+              </div>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item ">
+              <a class="nav-link" href="{% url 'accounts:profile' %}">
+                {% trans 'Dashboard'%}
+              </a>
+            </li>
+            {% endif %}
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle-down"
+                href="#"
+                id="navbarDropdown2"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              ><img class="language-icon" style="height: 18px;" src="{% static 'gcps/images/language.png' %}"> {% trans 'Language' %}
+                
+              </a>
+              <!-- <ul class="dropdown-menu drop-down-right" aria-labelledby="navbarDropdown2">
+                  {% for language in languages %}
+                  <li class="{% ifequal current_language language.0 %}active{% endifequal %}">
+                      <a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% change_lang language %}" title="{{ language.1 }}">
+                          {{ language.1 }}
+                      </a>
+                  </li>
+                  {% endfor %}
+              </ul> -->
+              <div
+                class="dropdown-menu dropdown-menu-right"
+                aria-labelledby="navbarDropdown2"
+              >
+              {% for language in languages %}
+                <a class="dropdown-item" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{% change_lang language %}" title="{{ language.1 }}">{{ language.1 }}</a>
+              {% endfor %}
+              </div>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle-down"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                {% trans 'Account' %}
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <a class="dropdown-item" href="{% url 'accounts:settings' %}">{% trans 'Account Settings' %}</a>
+                  <a class="dropdown-item" href="{% url 'accounts:address' %}">{% trans 'AddressBook' %}</a>
+                  <!-- <div class="dropdown-divider"></div> -->
+                  <a class="dropdown-item" href="{% url 'accounts:kyc' %}?next=/">{% trans 'KYC' %}</a>
+                  <a class="dropdown-item" href="{% url 'accounts:logout' %}?next=/">{% trans 'Logout' %}</a>
+                </div>
+              </li>
+            {% else%}
+            <li class="nav-item btn-item">
+              <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-orange">Login</a>
+            </li>
+            <li class="nav-item btn-item">
+                <a href="{% url 'accounts:signup' %}" style="color: #000000;" type="submit" class="btn btn-default">Signup</a>
+            </li>
+            {% endif %}
+          </ul>
+        </div>
+      </nav>
+      <!-- Navbar END -->
+      {% block content %} {% endblock content %}
+      <div id="appModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">APP</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>In Development, Coming soon.</p>
+            </div>
+            <div class="modal-footer">
+              <!-- <button type="button"  class="btn btn-primary">Save changes</button> -->
+              <button type="button" style="background-color: #f7931b" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- FOOTER -->
+        <footer class="footer-cp">
+          <div class="container">
+            <div class="footer-content">
+              <div class="row animatedParent animateOnce" data-sequence="100">
+                <div class="col-sm-6 col-md-3 animated fadeInUpShort" data-id='1'>
+                  <h6 class="footer-title">GETCRYPTOPAYMENTS</h6>
+                  <div class="footer-link-group">
+                    <a href="{% url 'coins:supported_coins' 'Crypto' %}" class="footer-link">{% trans 'Supported Coins' %}</a>
+                    <a href="{% url 'merchant-tools' %}" class="footer-link">{% trans 'Merchant Tools' %}</a>
+                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Point of Sales (POS)' %}</a>
+                    <a href="{% url 'store:store-directory' %}" class="footer-link">{% trans 'Store Directory' %}</a>
+                  </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3 animated fadeInUpShort" data-id='2'>
+                  <h6 class="footer-title">RESOURCES</h6>
+                  <div class="footer-link-group">
+                    <a href="#" class="footer-link">{% trans 'Get Mobile App' %}</a>
+                    <a href="#" class="footer-link">{% trans 'Affiliate Information' %} </a>
+                    <a href="#" class="footer-link">{% trans 'Official TOR URL' %}</a>
+                    <a href="#" class="footer-link">{% trans 'PGP Key' %}</a>
+                  </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3 animated fadeInUpShort" data-id='3'>
+                  <h6 class="footer-title">SERVICES</h6>
+                  <div class="footer-link-group">
+                    <a href="{% url 'common:helptopic' 'feespricing'  %}" class="footer-link">{% trans 'Fees/Pricing' %}</a>
+                    <a href="{% url 'common:help' %}" class="footer-link">{% trans 'Help' %}</a>
+                    <a href="{% url 'store:add-to-store' %}" class="footer-link">{% trans 'Add Your Store' %}</a>
+                    <a href="{% url 'public coin vote' %}" class="footer-link">{% trans 'Add Your Coin' %}</a>
+                  </div>
+                </div>
+
+                <div class="col-sm-6 col-md-3 animated fadeInUpShort" data-id='4'>
+                  <h6 class="footer-title">MORE</h6>
+                  <div class="footer-link-group">
+                    <a href="{% url 'common:help' %}privacy-policy" class="footer-link">{% trans 'Privacy Policy' %}</a>
+                    <a href="{% url 'common:help' %}terms-of-service" class="footer-link">{% trans 'Terms and Conditions' %}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ul class="footer-social mr-auto animatedParent animateOnce" data-sequence="100">
+              <li class="animated fadeInLeftShort" data-id="1">
+                <a href="https://www.facebook.com/GetCryptoPayments/"><i class="fab fa-facebook-f"></i></a>
+              </li>
+              <li class="animated fadeInLeftShort" data-id="2">
+                <a href="https://www.linkedin.com/company/getcryptopayments/"><i class="fab fa-linkedin-in"></i></a>
+              </li>
+              <li class="animated fadeInLeftShort" data-id="3">
+                <a href="https://twitter.com/GCryptoPayments"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li class="animated fadeInLeftShort" data-id="4">
+                <a href="http://t.me/GetCryptoPayments"><i class="fas fa-paper-plane"></i></a>
+              </li>
+            </ul>
+            <ul class="footer-social float-right animatedParent animateOnce" data-sequence="100">
+              <li class="animated fadeInRightShort" data-id="1"><button type="submit" onclick="window.location.href='{% url 'store:add-to-store' %}'" class="btn btn-orange">Add Store</button></li>
+              <li class="animated fadeInRightShort" data-id="2">
+                <a href="{% url 'public coin vote' %}"
+                  ><img
+                    src="{% static '/assests/images/store.png' %}"
+                    class="img-footer-icon"
+                    alt="footer-img-store"
+                /></a>
+              </li>
+              <li class="animated fadeInRightShort" data-id="3">
+                <a href="#"
+                  ><img
+                    src="{% static 'assests/images/apple-icon.png' %}"
+                    class="img-footer-icon"
+                    alt="footer-img-store"
+                    data-toggle="modal" data-target="#appModal"
+                /></a>
+              </li>
+              <li class="animated fadeInRightShort" data-id="4">
+                <a href="#"
+                  ><img
+                    src="{% static  'assests/images/play-store.png' %}"
+                    class="img-footer-icon"
+                    alt="footer-img-store"
+                    data-toggle="modal" data-target="#appModal"
+                /></a>
+              </li>
+            </ul>
+          </div>
+        </footer>
+        <!-- FOOTER END -->
+      </div>
+    </div>
+
+    <!-- container-fluid END -->
+    <!-- JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script src="{% static 'assests/js/bootstrap.min.js' %}"></script>
+    <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"
+    ></script>
+    <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
+    <script src="{% static 'assests/js/css3-animate-it.js' %}"></script>
+    <!-- <script src="assests/js/css3-animate-it.js"></script> -->
+    <script type="text/javascript">
+      /* nav color change */
+
+    // $(window).scroll(function() {
+
+    //     scroll = $(window).scrollTop();
+
+    //     if (scroll >= 70) {
+    //       //alert();
+    //       $('#navbarCP').addClass("nav-colored");
+    //     } else {
+    //       $('#navbarCP').removeClass("nav-colored");
+    //     }
+    });
+
+      /* ---- particles.js config ---- */
+
+    // particlesJS("particles-js", {
+    
+    //     particles: {
+    //       number: {
+    //         value: 180,
+    //         density: {
+    //           enable: true,
+    //           value_area: 800
+    //         }
+    //       },
+    //       color: {
+    //         value: "#606060"
+    //       },
+    //       shape: {
+    //         type: "circle",
+    //         stroke: {
+    //           width: 0,
+    //           color: "#000000"
+    //         },
+    //         polygon: {
+    //           nb_sides: 5
+    //         },
+    //         image: {
+    //           src: "img/github.svg",
+    //           width: 100,
+    //           height: 100
+    //         }
+    //       },
+    //       opacity: {
+    //         value: 0.5,
+    //         random: false,
+    //         anim: {
+    //           enable: false,
+    //           speed: 1,
+    //           opacity_min: 0.1,
+    //           sync: false
+    //         }
+    //       },
+    //       size: {
+    //         value: 3,
+    //         random: true,
+    //         anim: {
+    //           enable: false,
+    //           speed: 1,
+    //           size_min: 0.1,
+    //           sync: false
+    //         }
+    //       },
+    //       line_linked: {
+    //         enable: true,
+    //         distance: 150,
+    //         color: "#606060",
+    //         opacity: 0.4,
+    //         width: 1
+    //       },
+    //       move: {
+    //         enable: true,
+    //         speed: 2,
+    //         direction: "none",
+    //         random: false,
+    //         straight: false,
+    //         out_mode: "out",
+    //         bounce: false,
+    //         attract: {
+    //           enable: false,
+    //           rotateX: 600,
+    //           rotateY: 1200
+    //         }
+    //       }
+    //     },
+    //     interactivity: {
+    //       detect_on: "canvas",
+    //       events: {
+    //         onhover: {
+    //           enable: true,
+    //           mode: "grab"
+    //         },
+    //         onclick: {
+    //           enable: true,
+    //           mode: "push"
+    //         },
+    //         resize: true
+    //       },
+    //       modes: {
+    //         grab: {
+    //           distance: 140,
+    //           line_linked: {
+    //             opacity: 1
+    //           }
+    //         },
+    //         bubble: {
+    //           distance: 400,
+    //           size: 40,
+    //           duration: 2,
+    //           opacity: 8,
+    //           speed: 3
+    //         },
+    //         repulse: {
+    //           distance: 200,
+    //           duration: 0.4
+    //         },
+    //         push: {
+    //           particles_nb: 4
+    //         },
+    //         remove: {
+    //           particles_nb: 2
+    //         }
+    //       }
+    //     },
+    //     retina_detect: true
+    //   });
+
+    //   /* ---- stats.js config ---- */
+
+    //   var count_particles, stats, update;
+    //   stats = new Stats();
+    //   stats.setMode(0);
+    //   stats.domElement.style.position = "absolute";
+    //   stats.domElement.style.left = "0px";
+    //   stats.domElement.style.top = "0px";
+    //   document.body.appendChild(stats.domElement);
+    //   count_particles = document.querySelector(".js-count-particles");
+    //   update = function() {
+    //     stats.begin();
+    //     stats.end();
+    //     if (
+    //       window.pJSDom[0].pJS.particles &&
+    //       window.pJSDom[0].pJS.particles.array
+    //     ) {
+    //       count_particles.innerText =
+    //         window.pJSDom[0].pJS.particles.array.length;
+    //     }
+    //     requestAnimationFrame(update);
+    //   };
+    //   requestAnimationFrame(update);
+    </script>
+  </body>
+</html>

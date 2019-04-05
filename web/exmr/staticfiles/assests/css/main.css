@@ -1999,4 +1999,11 @@ option:not(:checked) {
     background-repeat: no-repeat;
     background-position-y: -17px;
   }
-  
+  .logo-header {
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    top: 5px;
+    left: 50%;
+    transform: translatex( -50%);
+}

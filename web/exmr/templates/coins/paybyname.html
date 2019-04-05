@@ -101,15 +101,14 @@
                         <div class="modal-dialog modal-sm modal-dialog-centered">
                           <div class="modal-content">
                             <div class="modal-header">
-                                <h4 class="modal-title">PayByName</h4>
+                                <h5 class="modal-title">PayByName</h5>
                               <button type="button" class="close" data-dismiss="modal">&times;</button>
                             </div>
                             <div class="modal-body">
-                              <label>Enter PayByName<input type="text" id="id_paybyname" name="paybyname"></input>
+                              <input type="text" class="form-control" id="id_paybyname" name="paybyname" placeholder="Enter PayByName">
                             </div>
                             <div class="modal-footer">
-                              <button type="button" id="id_submit" class="btn btn-success">Submit</button>
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              <button type="button" id="id_submit" class="btn btn-outline-orange">Submit</button>
                             </div>
                           </div>
                         </div>
@@ -118,14 +117,11 @@
             </div>
         </div>
 </section>
-
-
 {% endblock %}{% block script %}
 <script>
     $(window).on("load",function(){
             $('#onload').modal('show');
     })
-
     $("#id_submit").click(function(){
         $.ajax({
                     type: "POST",
@@ -141,7 +137,6 @@
                             alert("Error")
                         }
                     })
-
      })
 </script>
 {% endblock %}

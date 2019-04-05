@@ -88,7 +88,7 @@
             <div class="bx-ash" style="width: 18rem;">
                <img class="img-responsive w150px margin-center" style="width:150px;" src="{{ store.banner_image_url }}" alt="Card image cap">
                {% if erc %}
-               <p style=" margin: 23px 8px 66px; width: 10px">{{request.user.username}} have already given feedback</p>
+               <p style=" margin: 23px 8px 66px; ">{{request.user.username}} have already given feedback</p>
                {% else %}
                <form method='POST' id="form" action="{% url 'store:store-vote' category.slug store.pk %}">
                   {% csrf_token %}
@@ -108,9 +108,9 @@
                <div>
                <div>
                {% if owner == username %}
-               <button style="margin-left: 60px;" class="btn btn-lg btn-outline-orange"><a href="{% url 'store:update-store' store.pk %}">Update</a></button>
+               <button  class="btn btn-lg btn-outline-orange"><a href="{% url 'store:update-store' store.pk %}">Update</a></button>
                {% else %}
-               <button style="margin: 60px;" class="btn btn-lg btn-outline-orange"><a href="{% url 'store:store-item' category.slug %}">Go Back</a></button>
+               <button  class="btn btn-lg btn-outline-orange"><a href="{% url 'store:store-item' category.slug %}">Go Back</a></button>
                {% endif %}
                </div>            
                </div>

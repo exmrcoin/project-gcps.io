@@ -3,7 +3,7 @@
     <div class="account-setting-wrap">
     <div class="login-bg">
         <div class="container">
-            <div class="row text-center">
+            <div class="row ">
                 <div class="col-xs-12 col-md-4  login-sec">
                     <div class="container w-100 h-100">
                         <div class="row align-items-center h-100">
@@ -17,16 +17,16 @@
                 </div>
                 <div class="col-xs-12 col-md-8 login-sec">
 
-                    <h3 class="login-text">{% trans 'Welcome!' %}</h3>
-                    <h4 class="login-text">{% trans 'Sign in by entering the information below' %}</h4>
-                    <div class="form-group col-xs-12">
+                    <h3 class="login-text text-center">{% trans 'Welcome!' %}</h3>
+                    <h4 class="login-text text-center">{% trans 'Sign in by entering the information below' %}</h4>
+                    <div class="form-group col-xs-12 ">
                         {{ form.non_field_errors }}
                         <form novalidate method="post">{% csrf_token %}
                             <div class="form-group col-xs-12">
                                 {% render_field form.username class="form-control username-log" placeholder="Username/Email" %} {{ form.username.errors }}
                             </div>
-                            <div class="form-group col-xs-12">
-                                {% render_field form.password class="form-control username-log" placeholder="Password" %} {{ form.password.errors }}
+                            {% render_field form.password class="form-control username-log" placeholder="Password" %} {{ form.password.errors }}
+                            <div class="form-group col-xs-12 text-center">
                                 <button type="submit" class="btn btn-outline-orange btn-login mt-4 floatl">{% trans 'Login' %}</button>
                                 <a href="{% url 'accounts:signup' %}">
                                     <button type="button" class="btn btn-outline-orange btn-signup text-center mt-4  floatr ">{% trans 'Signup' %}</button>
@@ -35,8 +35,8 @@
 
                         </form>
                     </div>
-                    <div class="form-group col-xs-12">
-                        <div class="login-sec">
+                    <div class="form-group col-xs-12 ">
+                        <div class="login-sec ">
                             
                                 <a href="{% url 'accounts:reset_password' %}">
                                     <h5 class="text-center login-text">{% trans 'Forgot Password?' %}</h5>

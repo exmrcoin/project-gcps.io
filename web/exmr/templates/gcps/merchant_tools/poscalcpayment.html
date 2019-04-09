@@ -47,7 +47,7 @@
             </div>
             <div class="col-md-12 text-center mt-1">
                 <div class="col-xs-12 col-sm-4 col-md-3">
-                    Amount: <span id="amt_coin">{% if amount_to_be_paid %}{{amount_to_be_paid}}{% else %} 0 {% endif %}</span> {{selected_coin.code}}
+                    Amount: <span id="amt_coin">{{amount_to_be_paid}}</span> {{selected_coin}}
                 </div>
                 <div class="col-xs-12 col-sm-5 col-md-6 ">
                     <div class="col-xs-12">
@@ -148,27 +148,6 @@
     <script src="{% static 'js/notify.js' %}"></script>
     <script src="{% static 'js/common.js' %}"></script>
     <!-- </script> -->
-    <script>
-        var coin_dict = {}
-        $.ajax({
-            dataType: "json",
-            url: "https://coincap.io/front",
-            success: function (data) {
-                for (obj in data) {
-                    coin_dict[data[obj].short] = data[obj].price;
-                    if (data[obj].short == "{{selected_coin.code}}") {
-                        var amt_payable = parseFloat('{{amt_payable_usd}}');
-                        var coin_usd = data[obj].price.toFixed(2);
-                        var req_coin = (amt_payable / coin_usd).toFixed(8);
-                        // document.getElementById("payable_amt").value = amt_payable.toFixed(2);
-                        // document.getElementById("coin_usd_span").innerHTML = "USD/BTC";
-                        // document.getElementById("coin_amt_span").innerHTML = "BTC";
-                        document.getElementById("amt_coin").innerHTML = req_coin;
-                    }
-                }
-            }
-        });
-    </script>
 
 {% block script %}
 <script type="text/javascript">
@@ -190,20 +169,6 @@ try {
 textArea.remove();
 $('#'+btn_id+'').attr('data-original-title', elOriginalText);
 }
-
-// $(document).ready(function() {
-//   // Initialize
-//   // ---------------------------------------------------------------------
-
-//   // Tooltips
-//   // Requires Bootstrap 3 for functionality
-//   $('.js-tooltip').tooltip();
-
-//   // Copy to clipboard
-//   // Grab any text in the attribute 'data-copy' and pass it to the 
-//   // copy function
-  
-// });
 </script>
 {% endblock %}
 

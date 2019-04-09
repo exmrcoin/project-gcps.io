@@ -1,55 +1,70 @@
 {% extends 'gcps/testbase.html' %} {% load staticfiles widget_tweaks i18n %}{% load i18n %}
-<!-- body -->
-{% block content %}
-<section class="section section-pad">
-   <div class="col-12 col-md-12 offset-md-3 col-lg-4 offset-lg-4 py-5">
-      <form id="coform" role="form"  action="{% url 'mtools:poscalc'%}" method="POST" class="container">
-         {% csrf_token %} 
-         <div class="container" >
-            <div class="calc-border row d-flex mb-1 calc-bg">
-               <h5 class="text-white col-md-8" style="margin-top: 31px;">Enter your order total:</h5>
-               <select class="btn btnpad calc-select rounded-tr col-md-4" value="" name="select_currency">
-                  <option selected>USD</option>
-                  {% for k,v in rates.items %}
-                  <option value="{{k}}">{{k}} - {{v|floatformat:4}}</option>
-                  {% endfor %}
-               </select>
-            </div>
-            <div class="row calc-main-border">
-               <div class="col-md-6 calc-padding"><button class="calc-border btn btnpad2 col-12 p-02 col-12" onClick="padClear(); return false;">CLEAR</button></div>
-               <div class="col-md-6 calc-padding"><button class="calc-border btn btnpad3 col-12 p-03 col-12" onClick="padBack(); return false;">
-                  <span class="fa fa-arrow-left"></span></button>
-               </div>
-               <div class="col-md-12 calc-padding d-flex">
-                  <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(1); return false;">1</button></div>
-                  <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(2); return false;">2</button></div>
-                  <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(3); return false;">3</button></div>
-               </div>
-               <div class="col-md-12 calc-padding d-flex">
-                  <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(4); return false;">4</button></div>
-                  <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(5); return false;">5</button></div>
-                  <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(6); return false;">6</button></div>
-               </div>
-               <div class="col-md-12 calc-padding d-flex">
-                  <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(7); return false;">7</button></div>
-                  <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(8); return false;">8</button></div>
-                  <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(9); return false;">9</button></div>
-               </div>
-               <div class="col-md-12 calc-padding d-flex">
-                  <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(0); padPress(0); return false;">00</button></div>
-                  <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(0); return false;">0</button></div>
-                  <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPeriod(); return false;">.</button>
-                  </div>
-               </div>
-               <div class="col-md-6 calc-padding"><button class="calc-border btn btnpad2 col-12 p-02 col-12"><span class="glyphicon glyphicon-arrow-left"></span> Back</button></div>
-               <div class="col-md-6 calc-padding"><button class="calc-border btn btnpad3 col-12 p-03 col-12" ">Continue </button>
-               </div>
-            </div>
-         </div>
-      </form>
-   </div>
-</section>
-{% endblock content %}
+        <!-- body -->
+        {% block content %}
+        <div class="col-12 p-0 bg-image">
+            <!--  -->
+
+
+            <div class="col-12 col-md-6 offset-md-3 col-lg-4 offset-lg-4 py-5 text-center">
+               <h3 class="text-white mt-5">Enter your order total:</h3>
+              <form id="coform" role="form"  action="{% url 'mtools:poscalcpaysel'%}" method="POST" class="container">
+                {% csrf_token %} 
+                <div class="container text-center" style="margin-bottom: 5px;">
+                   <div class="row d-flex justify-content-center ">
+                    <input id="amountf" name="amountf" value="" size="14" class="calc-input col-8 rounded-tl"> 
+                    <select class="btn btnpad col-4 calc-select rounded-tr col-4 p-0" value="" name="select_currency">
+                            <option selected>USD</option>
+                        {% for k,v in rates.items %}
+                            <option value="{{k}}">{{k}} - {{v|floatformat:4}}</option>
+                        {% endfor %}
+                    </select>
+                       
+                   </div>
+                    <div class="row">
+                             <div class="col-6 p-0"><button class="btn btnpad2 col-12 p-02 col-12" onClick="padClear(); return false;">CLEAR</button></div>
+                             <div class="col-6 p-0"><button class="btn btnpad3 col-12 p-03 col-12" onClick="padBack(); return false;">
+                                 <span class="fa fa-arrow-left"></span></button>
+                             </div>
+                          <div class="col-12 p-0 d-flex">
+                             <div class="col-4 p-0"><button class="btn btn-primary btnpad col-12 p-0" onClick="padPress(1); return false;">1</button></div>
+                             <div class="col-4 p-0"><button class="btn btn-primary btnpad col-12 p-0" onClick="padPress(2); return false;">2</button></div>
+                             <div class="col-4 p-0"><button class="btn btn-primary btnpad col-12 p-0" onClick="padPress(3); return false;">3</button></div>
+                          </div>
+                          <div class="col-12 p-0 d-flex">
+                             <div class="col-4 p-0"><button class="btn btn-primary btnpad col-12 p-0" onClick="padPress(4); return false;">4</button></div>
+                             <div class="col-4 p-0"><button class="btn btn-primary btnpad col-12 p-0" onClick="padPress(5); return false;">5</button></div>
+                             <div class="col-4 p-0"><button class="btn btn-primary btnpad col-12 p-0" onClick="padPress(6); return false;">6</button></div>
+                          </div>
+                          <div class="col-12 p-0 d-flex">
+                             <div class="col-4 p-0"><button class="btn btn-primary btnpad col-12 p-0" onClick="padPress(7); return false;">7</button></div>
+                             <div class="col-4 p-0"><button class="btn btn-primary btnpad col-12 p-0" onClick="padPress(8); return false;">8</button></div>
+                             <div class="col-4 p-0"><button class="btn btn-primary btnpad col-12 p-0" onClick="padPress(9); return false;">9</button></div>
+                          </div>
+                          <div class="col-12 p-0 d-flex">
+
+                           <div class="col-4 p-0"><button class="btn btn-primary btnpad col-12 p-0" onClick="padPress(0); padPress(0); return false;">00</button></div>
+                          <div class="col-4 p-0"><button class="btn btn-primary btnpad col-12 p-0" onClick="padPress(0); return false;">0</button></div>
+                          <div class="col-4 p-0"><button class="btn btn-primary btnpad col-12 p-0" onClick="padPeriod(); return false;">.</button>
+                          </div>
+                      </div>
+                    
+                            <div class="col-12 p-0 d-flex justify-content-center text-center">
+                               <button class="btn btnpad col-6 p-0 bg-dark1 rounded-bl" ><span class="glyphicon glyphicon-arrow-left"></span> Back</button>  
+                               <button class="btn btnpad col-6 p-0 rounded-br">Continue <span class="glyphicon glyphicon-arrow-right"></span></button>
+                            </div>
+
+                    </div>
+                 </div>
+              </form>
+           </div>
+
+
+
+
+            <!--  -->
+        </div>
+        {% endblock content %}
+
 {% block script %}
 <script type="text/javascript">
    var padel = null;

@@ -1,5 +1,6 @@
 import csv
 import ast
+import json
 import redis
 import random
 import string
@@ -63,7 +64,7 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         #     if not Wallet.objects.filter(user=self.request.user, name=coin):
         #         create_wallet(self.request.user, currency)
         try:
-            rates = redis_object.hgetall('rates')
+            rates = cache.get('rates')
             rates = ast.literal_eval(rates)
         except:
             data = json.loads(requests.get("http://coincap.io/front").text)
@@ -1094,4 +1095,13 @@ class HiddenAddress(TemplateView):
 
     
         
-        
+class GetCurrentRate(View):
+    def post(self, request, *args, **kwargs):
+        try:
+            rates = cache.get('rates')
+        except:
+            data = json.loads(requests.get("http://coincap.io/front").text)
+            rates = {rate['short']:rate['price'] for rate in data}
+
+        data = json.dumps(rates)
+        return HttpResponse(data, content_type='application/json') 

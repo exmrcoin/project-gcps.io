@@ -6,7 +6,7 @@ from apps.merchant_tools.views import (ButtonMakerView, CryptoPaymment, PaymentF
                                        HelpTemplateView, DonationButtonMakerView, SimpleButtonMakerView, ButtonMakerContinuePayment, ButtonMakerInvoice,
                                        CryptoPaymmentV2, DonationButtonMakerInvoice, CryptoPaymmentSimple, SimpleButtonMakerInvoice, MTest)
 # GCPS_V2
-from apps.merchant_tools.views import (POSCalcView, POSCalcPaySelView)
+from apps.merchant_tools.views import (POSCalcView,POSCalcCoinSelect, POSCALCPayView)
 
 app_name = 'mtools'
 
@@ -21,7 +21,8 @@ urlpatterns = [
     path('merchant-tools-docs/', MercDocs.as_view(),  name='mercdocs'),
     path('help/<slug:slug>/', HelpTemplateView.as_view(), name='helptopic'),
     path('pos-calculator/', POSCalcView.as_view(),  name='poscalc'),
-    path('pos-calculator/<token>', POSCalcPaySelView.as_view(),  name='poscalcpaysel'),
+    path('pos-calculator-select/', POSCalcCoinSelect.as_view(),  name='poscalcpaysel'),
+    path('pos-calculator-final/', POSCALCPayView.as_view(),  name='poscalcfinal'),
     path('pos-qr/', POSQRMakerView.as_view(),  name='posqrmaker'),
     path('pos-qr/<token>/', POSQRPayView.as_view(),  name='pospay'),
     path('POSQRCompletePayment/', POSQRCompletePaymentView.as_view(),  name='posqrpay'),

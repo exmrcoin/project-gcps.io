@@ -51,6 +51,7 @@ urlpatterns = [
     path('download-txn/', coin_views.DownloadTxnView.as_view(), name="download_txn"),
     path('paybyname-submit', coin_views.PayByNameSubmit.as_view(), name="paybyname_submit"),
     path('paybyname-options/<int:pk>/', coin_views.PayByNameOptions.as_view(), name="paybyname_options"),
+    path('get_current_rate/', coin_views.GetCurrentRate.as_view(), name="getcurrentrate"),
 
 
 

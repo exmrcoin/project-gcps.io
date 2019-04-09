@@ -265,13 +265,7 @@ img.icon-list {
     color: #3f3830;
 }
 .bx-ash-border {
-    background: rgba(34,34,34,0.63);
-    background: -moz-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(34,34,34,0.63)), color-stop(100%, rgba(60,59,73,0.63)));
-    background: -webkit-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -o-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -ms-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: linear-gradient(to right, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: linear-gradient(to right, rgba(200, 200, 200, 0.63) 0%, rgba(150, 150, 150, 0.63) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#3c3b49', GradientType=1 );
     border-radius: 7px;
     color:#fff;
@@ -851,13 +845,7 @@ a {
     height: auto;
     margin: 30px auto;
     padding: 2rem;
-    background: rgba(34,34,34,0.63);
-    background: -moz-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(34,34,34,0.63)), color-stop(100%, rgba(60,59,73,0.63)));
-    background: -webkit-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -o-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -ms-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: linear-gradient(to right, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: linear-gradient(to right, rgba(200, 200, 200, 0.63) 0%, rgba(150, 150, 150, 0.63) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#3c3b49', GradientType=1 );
     border-radius: 7px;
 }
@@ -1254,8 +1242,8 @@ style="color: white"
 .cryptoinput {
     background-color: transparent;
     border: none;
-    border-bottom: 1px solid #CCC;
-    color: #fff;
+    border-bottom: 1px solid #3f3830;
+    color: #3f3830;
     box-sizing: border-box;
     font-family: 'Arvo';
     font-size: 18px;

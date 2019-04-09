@@ -1,7 +1,7 @@
-{% extends 'gcps/base.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
 <section class="section section-pad">
         <div class="bx-ash ">
-            <div class="dark-page-header text-center">
+            <div class="dark-page-header text-white text-center">
                 <h1 class="pad10 mt-2">
                     {% trans 'WINNERS' %}</h1>
                        <h4 class="mt-2">
@@ -14,7 +14,7 @@
                     {% for phase in phases %}
                     <div class="col-md-12 py-3 text-center">
                         <div class="col-12 text-center">
-                                <h2 style="color: white">These are the Winners of {{phase}} </h2>
+                                <h2 class="text-white">These are the Winners of {{phase}} </h2>
                         </div>
                         <div class="col-md-3 text-center bx-ash">
                         {% for coin in newcoins %}
@@ -22,7 +22,7 @@
                             <div class="col-md-12 my-1">
                                 <div class="col-md-12  py-3 ">
                                     <img src="{{coin.logo_url}}" style="width: 80px" class="img-responsive margin-center">
-                                    <h6 style="color: white">{{coin.name}} ({{coin.code}})</h6>
+                                    <h6 class="text-white">{{coin.name}} ({{coin.code}})</h6>
                                 </div>
                             </div>
                         {% endif %}

@@ -1,7 +1,7 @@
-{% extends 'gcps/base.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
 <section class="section section-pad">
      <div class="bx-ash ">
-    <div class="merchant-tools merchant-one dark-page-header">
+    <div class="merchant-tools merchant-one text-white dark-page-header">
         <h1>Help</h1>
         <h3>Frequently Asked Questions </h3>
     </div>
@@ -32,8 +32,8 @@
             </div>
             <div class="col-xs-12 col-md-8 text-justify">
                 {% for obj in details %}
-                <div id="help-answer" class="text-justify" style="color: white">
-                   <p class="login-text">{{obj.help_answer|safe}}</p>
+                <div id="help-answer text-white" class="text-justify">
+                   <p class="login-text text-white">{{obj.help_answer|safe}}</p>
                 </div>
                 {% endfor %}
             </div>

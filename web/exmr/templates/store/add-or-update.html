@@ -1,7 +1,7 @@
-{% extends 'gcps/base.html' %} {% load staticfiles %} {% block content %} {% load widget_tweaks %} {% load i18n %}
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% block content %} {% load widget_tweaks %} {% load i18n %}
 <section class="section section-pad">
     <div class="bx-ash ">
-    <div class="dark-page-header text-center">
+    <div class="dark-page-header text-white text-center">
         <h1 class="pad10 mt-2">
             {% trans 'MERCHANT TOOLS' %}</h1>
         <h4 class="mt-2">
@@ -11,7 +11,7 @@
     </div>
 </div>
     <div class="container ">
-        <div class="alert alert-warning mt-5">
+        <div class="alert alert-warning  mt-5">
             <p>This form can also be used to update your listing if you are already listed with us</p>
         </div>
 
@@ -21,7 +21,7 @@
                 <div class="col-xs-3">
                     <img class="w20px mt-2" src="{% static 'images/add-icon.svg' %}">
                 </div>
-                <div class="col-xs-9">
+                <div class="col-xs-9 text-white">
                     <h4 >&nbsp;Add New Store</h4>
                 </div>
             </div>
@@ -58,7 +58,7 @@
 
                     </fieldset>
                 </div>
-                <div class="main-field col-xs-12 text-center">
+                <div class="main-field col-xs-12 text-white text-center">
                     Optional Fields
                     <h4>( Items given will be shown in your listing )</h4>
                 </div>
@@ -88,13 +88,13 @@
 
                 </div>
 
-                <div class="main-field col-xs-12 text-center"><h4>Submit Store</h4> </div>
+                <div class="main-field col-xs-12  text-white text-center"><h4>Submit Store</h4> </div>
                 <div class="account-setting-wrap3 new-store-sec col-xs-12">
 
                     <section class="entr-box col-xs-12">
                         <fieldset>
 
-                            <div class='CaptchaWrap'>
+                            <div class='CaptchaWrap  text-white'>
                                 <div id="CaptchaImageCode" class="CaptchaTxtField">
                                     <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
 

@@ -1,7 +1,7 @@
-{% extends 'gcps/base.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
 <section class="section section-pad">
     <div class="bx-ash ">
-    <div class="dark-page-header text-center">
+    <div class="dark-page-header text-white text-center">
         <h1>Support</h1>
         <h4>Need a little help?</h4>
     </div>
@@ -23,30 +23,30 @@
                         
                         <form action="." method="POST">
                             {% csrf_token %}
-                            <table class="table table-bordered table-condensed">
+                            <table class="table table-bordered table-condensed" style="border: none">
                                 <thead>
-                                    <tr><th class="center" colspan="3"><h3>Submit Message</h3></th></tr>
+                                    <tr style="border: none"><th class="center" style="border: none" colspan="3"><h3>Submit Message</h3></th></tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><span style="font-size:large;color:#95A5A6;">Your Name</span></td>
-                                        <td><input type="text" id="id_name" class="form-control" name="name" value="" required=""></td>
+                                        <td style="border: none"><span class="text-white font-large">Your Name</span></td>
+                                        <td style="border: none"><input type="text" id="id_name" class="form-control" name="name" value="" required=""></td>
                                     </tr>
                                     <tr>
-                                        <td><span style="font-size:large;color:#95A5A6;">Your Email</span></td>
-                                        <td><input type="email" id="id_email" class="form-control" name="email" value="" required=""></td>
+                                        <td style="border: none"><span class="text-white font-large">Your Email</span></td>
+                                        <td style="border: none"><input type="email" id="id_email" class="form-control" name="email" value="" required=""></td>
                                     </tr>
                                     <tr>
-                                        <td><span style="font-size:large;color:#95A5A6;">Category</span></td>
-                                        <td><select id="id_category" class="form-control" name="category" required=""><option value="Sales">Sales</option><option value="ICO Services">ICO Services</option><option value="Partnership Requests">Partnership Requests</option><option value="Other">Other</option></select></td>
+                                        <td style="border: none"><span class="text-white font-large">Category</span></td>
+                                        <td style="border: none"><select id="id_category" class="form-control" name="category" required=""><option value="Sales">Sales</option><option value="ICO Services">ICO Services</option><option value="Partnership Requests">Partnership Requests</option><option value="Other">Other</option></select></td>
                                     </tr>
                                     <tr>
-                                        <td><span style="font-size:large;color:#95A5A6;">Message</span></td>
-                                        <td><textarea name="message" id="id_message" class="form-control" rows="10" required=""></textarea></td>
+                                        <td style="border: none"><span class="text-white font-large">Message</span></td>
+                                        <td style="border: none"><textarea name="message" id="id_message" class="form-control" rows="10" required=""></textarea></td>
                                     </tr>
                                     
                                     <tr>
-                                        <td colspan="2" class="text-center"><button class="btn btn-outline-orange">Submit Message</button></td>
+                                        <td style="border: none" colspan="2" class="text-center"><button class="btn btn-outline-orange">Submit Message</button></td>
                                     </tr>
                                 </tbody>
                             </table>

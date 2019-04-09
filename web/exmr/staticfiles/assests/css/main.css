@@ -1747,3 +1747,12 @@ color: black; /* prevent
     border: 1px solid #fff;
     border-radius: 2px;
   }
+.deposit-box{
+  background: transparent; 
+  font-size: 15px; 
+  color: white ;
+  margin: 4px; 
+  border: 2px solid white ;
+  border-radius: 8px; 
+  padding: 10px;
+}

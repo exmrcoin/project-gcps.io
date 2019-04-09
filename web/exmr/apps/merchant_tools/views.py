@@ -617,7 +617,7 @@ class POSCalcPaySelView(TemplateView):
 
 
 class POSQRMakerView(FormView):
-    template_name = 'merchant_tools/posqrgenerator.html'
+    template_name = 'gcps/merchant_tools/pos_calc.html'
     form_class = POSQRForm
 
     def get_success_url(self):

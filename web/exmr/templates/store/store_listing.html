@@ -1,4 +1,4 @@
-{% extends 'gcps/base.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
 <style type="text/css">
     .star-ratings-css {
       unicode-bidi: bidi-override;
@@ -30,7 +30,7 @@
 </style>
 <section class="section section-pad">
     <div class="bx-ash ">
-    <div class="dark-page-header text-center">
+    <div class="dark-page-header text-white text-center">
         <h1 class="pad10 mt-2">
             {% trans 'STORE DIRECTORY' %}</h1>
         <h4 class="mt-2">
@@ -152,7 +152,7 @@
         </div>
   <div class=" col-md-9 col-xs-9">
         <div class="account-setting-wrap" id="test">
-            <div class="col-xs-12">
+            <div class="col-xs-12  text-white">
                 <h2 class="login-text">All Stores</h2>
             </div>
             <div class="form-group row">

@@ -1,4 +1,4 @@
-{% extends 'gcps/base.html' %} {% load staticfiles %} {% load transaction_status %} {% block content %} {% load i18n %} {% block page_css %}
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% load transaction_status %} {% block content %} {% load i18n %} {% block page_css %}
  
  <style type="text/css">
      /*
@@ -79,7 +79,7 @@
 
 <section class="section section-pad">
     <div class="bx-ash mb-2">
-     <div class="merchant-tools merchant-one dark-page-header">
+     <div class="merchant-tools merchant-one dark-page-header text-white">
          <h1>Public Coin Vote </h1>
          <h6>"ONGOING"</h6>
          <h4>Period {{time_period}}</h4> 

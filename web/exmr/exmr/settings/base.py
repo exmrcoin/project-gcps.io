@@ -101,6 +101,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.i18n',
                 'apps.accounts.views.signup_context',
+                'apps.common.views.theme_context',
             ],
         },
     },

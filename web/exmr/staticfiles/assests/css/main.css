@@ -1734,3 +1734,16 @@ color: black; /* prevent
    .calc-padding{
    padding: 2px 2px!important;
    }
+    
+  
+  .text-white {
+    color: #fff!important;
+  }
+
+#dispcoin{
+    padding: 5%;
+    background: transparent;
+    color: #28a745;
+    border: 1px solid #fff;
+    border-radius: 2px;
+  }

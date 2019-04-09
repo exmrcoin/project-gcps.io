@@ -88,7 +88,7 @@
     <div class="container">
         <div class="row m0">
             <div class="col-sm-8">
-                <div class="bx-ash" style="color: white">
+                <div class="bx-ash text-white" >
                     <h2> <img src="{% if coin.logo_url %}{{ coin.logo_url }}{% endif %}" style="margin-right: 15px; width: 20%;"><b>
                       {% coin_code_to_name view.kwargs.currency %}  [{{ view.kwargs.currency }}] </b></h2>
                     <h3>Help us get listed on GetCryptoPayments Gateway</h3>
@@ -109,7 +109,7 @@
 
             </div>
             <div class="col-sm-4">
-                <div class="bx-ash" align="center" style="color: white; padding-bottom: 30px">
+                <div class="bx-ash text-white" align="center" style="color: white; padding-bottom: 30px">
                     <h3>{% trans 'TIME REMAINING' %}</h3>
                  <div class="box2px">
                      <p>{% trans 'Points' %} :<b>{{coin.vote_count}}</b></p>
@@ -125,7 +125,7 @@
 <section class="l-p">
     <div class="container">
         <div class="col-sm-12" >
-        <div class="bx-ash l-p-wrap " style="color: white">
+        <div class="bx-ash text-white l-p-wrap " style="color: white">
             
             <h2 align="center"><b>{% trans 'Instant Listing Progress' %}</b></h2>
             <p align="center">{% trans "Once we reach 100% we get an instant listing on GetCryptoPayments Gateway!"%}</p>
@@ -183,7 +183,7 @@
      <a href="https://exmrfoundation.org/exchange.html" class="btn btn-lg btn-orange"> BUY EXMR NOW</a>
  </div>
 </div>
- <div class="bx-ash col-sm-6 mt-4 offset-sm-3" style="color: white">
+ <div class="bx-ash text-white col-sm-6 mt-4 offset-sm-3">
     <h4><b>More way to Support  your coin</b></h4>
     <h5>Bonus Points<br><small>By Overlord secret code, Holders w/ether wallets with EXMR & High Leverage Task.</small></h5>
     <a href="{% url 'coins:copromotion-form'%}">Submit high leverage Point here</a>
@@ -193,7 +193,7 @@
 </div>
 </div>
 
-<div class="mb20" style="color: white">
+<div class="mb20 text-white" >
     
   <h3 align="center" >Disclaimer</h3>
 

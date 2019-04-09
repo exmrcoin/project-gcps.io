@@ -528,7 +528,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
 }
 
 .dashboard-nav{
-    color: white;
+    color: #3f3830;
 }
 
 .img-dashboard{
@@ -573,8 +573,8 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
 }
 
 .btn-history-wrap {
-    background: transparent;
-    border: 1px solid rgb(233, 233, 233);
+    background: linear-gradient(to right, rgba(200, 200, 200, 0.63) 0%, rgba(150, 150, 150, 0.63) 100%);;
+    border: 1px solid #3f3830;
     box-shadow: none;
     border-radius: 10px;
     min-height: 100px;
@@ -598,10 +598,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
 
 .btn-transparent{
     background-color: transparent;
-    border: 2px solid #fff;
+    border: 2px solid #3f3830;
     padding: 6px 30px 6px 30px;
     margin-left: 10px;
-    color: white;
+    color: #3f3830;
 }
 
 /****************public coin vote*****************/
@@ -632,13 +632,7 @@ a {
     margin: 30px auto;
     padding: 2rem;
     color:#fff;
-    background: rgba(34,34,34,0.63);
-    background: -moz-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(34,34,34,0.63)), color-stop(100%, rgba(60,59,73,0.63)));
-    background: -webkit-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -o-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -ms-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: linear-gradient(to right, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: linear-gradient(to right, rgba(200, 200, 200, 0.63) 0%, rgba(150, 150, 150, 0.63) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#3c3b49', GradientType=1 );
     border-radius: 7px;
 }
@@ -711,7 +705,7 @@ a {
     text-align: center;
     font-family: gothammedium;
     font-size: 20px;
-    color:#CCD1D1;
+    color:#3f3830;
 }
 .margin-center {
     margin: 0 auto;
@@ -919,6 +913,7 @@ label, input {
     display: inline-block;
     vertical-align: middle;
     font-size: 15px;
+    color: #3f3830;
 }
 
 @media only screen and (max-width: 760px), (min-device-width: 768px) and (max-device-width: 1024px) {
@@ -1118,7 +1113,7 @@ label, input {
     color: #fff;
 }
 .shopping-headline{
-    color: #fff;
+    color: #3f3830;
     font-size: 13px;
 }
 .merchant-tools-li{
@@ -1162,19 +1157,19 @@ label, input {
 .help-label{
     color:#A6ACAF;
 }
-.table-bordered td,tr{
+/* .table-bordered td,tr{
     border: 1px solid #333;
-}
+} */
 .table-bordered th {
    border: 1px solid #333;
 }
 .table thead th {
  border-bottom: 1px solid #333;
  border-top: none;
- color: #fff;
+ color: #3f3830;
 }
 .login-text{
- color:#A6ACAF;
+ color:#3f3830;
 }
 .text-info {
     color: #e75d15;
@@ -1370,16 +1365,10 @@ input[type=range]::-moz-focus-outer {
     border-top: 1px solid #333;
 }
 .table{
-    color:#fff;
+    color:#3f3830;
 }
 .bx-ash-menu {
-    background: rgba(34,34,34,0.63);
-    background: -moz-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(34,34,34,0.63)), color-stop(100%, rgba(60,59,73,0.63)));
-    background: -webkit-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -o-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -ms-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: linear-gradient(to right, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: linear-gradient(to right, rgba(200, 200, 200, 0.63) 0%, rgba(150, 150, 150, 0.63) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#3c3b49', GradientType=1 );
     border-radius: 7px;
     min-width: 200px;
@@ -1561,13 +1550,7 @@ input[type=checkbox] {
     padding: 10px;
     width: 250px;
     list-style: none;
-    background: rgba(34,34,34,0.63);
-    background: -moz-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(34,34,34,0.63)), color-stop(100%, rgba(60,59,73,0.63)));
-    background: -webkit-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -o-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: -ms-linear-gradient(left, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
-    background: linear-gradient(to right, rgba(34,34,34,0.63) 0%, rgba(60,59,73,0.63) 100%);
+    background: linear-gradient(to right, rgba(200, 200, 200, 0.63) 0%, rgba(150, 150, 150, 0.63) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#222222', endColorstr='#3c3b49', GradientType=1 );
     margin-top: 5px;
 }
@@ -1626,7 +1609,7 @@ button:focus {
 }
 
 .box2px {
-    border: 2px solid white;
+    border: 2px solid #3f3830;
     border-radius: 7px;
     padding: 10px;
 }
@@ -1670,7 +1653,7 @@ h6{
 }
 
 .text-white {
-    color: #000!important;
+    color: #3f3830!important;
 }
 
 /* The switch - the box around the slider */
@@ -1715,7 +1698,7 @@ h6{
   }
 
   .slider:after {
-    background-image: url("/static/images/toggle-img.jpg");
+    background-image: url("/static/images/toggle-img.png");
     content: '';
     position: absolute;
     height: 16px;
@@ -1751,4 +1734,15 @@ h6{
 
   #particles-js{
     background: #e0e0e0;
+  }
+
+  #dispcoin{
+    padding: 5%;
+    background: transparent;
+    color: #28a745;
+    border: 1px solid #3f3830;
+    border-radius: 2px;
+  }
+  .bx-ash-back{
+    background: linear-gradient(to right, rgba(200, 200, 200, 0.63) 0%, rgba(150, 150, 150, 0.63) 100%);
   }

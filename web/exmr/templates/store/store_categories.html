@@ -1,7 +1,7 @@
-{% extends 'gcps/base.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
 <section class="section section-pad">
-    <div class="bx-ash ">
-    <div class="dark-page-header text-center">
+    <div class="bx-ash text-white">
+    <div class="dark-page-header text-white text-center">
         <h1 class="pad10 mt-2">
             {% trans 'STORE DIRECTORY' %}</h1>
         <h4 class="mt-2">
@@ -25,7 +25,7 @@
         <div class="row">
             {% for category in categories %}
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="bx-ash-menu">
+              <div class="bx-ash-menu text-white">
                 <a href="{{category.slug}}">
                     <div class="menu-icon-wrap">
                         <img class="store-icons" src="{{category.image.url}}">

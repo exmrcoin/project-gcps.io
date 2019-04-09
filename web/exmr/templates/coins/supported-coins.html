@@ -1,23 +1,18 @@
-{% extends 'gcps/base.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
 <section class="section section-pad" >
-<div class="bx-ash ">
-    <div class="dark-page-header">
-        <h1 class="pad10 mt-1">{% trans 'SUPPORTED COINS' %}
-        </h1>
+<div class="bx-ash">
+    <div class="dark-page-header text-white">
+        <h1 class="pad10 mt-1">{% trans 'SUPPORTED COINS' %}</h1>
         <h5 class="mt-2">
             {% trans 'Instant get crypto payments checkout with easy to use cart plugin, advanced, invoice buillder and API for custom integration' %}
         </h5>
     </div>
 </div>
-
-  
     <div class="dashboard-bg body-background mt">
         <div class="container">
             <div class="bx-ash-border mt-2 col-xs-12">
                 <ul class="pad10 custom-ul row mb-0">
-                    
                     {% for coin_type in coin_types %}
-                    
                     <li class="col-xs-12 col-sm-3 ">
                         <label for="checkbox1" class="mt0">
                             {{ coin_type.1 }}
@@ -26,7 +21,6 @@
                         </label>
                     </li>
                     {% endfor %}
-
                 </ul>
             </div>
             <div class="col-xs-12 account-setting-wrap2 coin-support-main-wrap">
@@ -43,12 +37,9 @@
                                 <sub class="sub-number">2</sub>
                             </th>
                             <th>{% trans 'EXPLORE' %}</th>
-
                         </tr>
                     </thead>
-                   
                     <tbody>
-                       
                         {% for coin in coins %}
                         <tr>
                             <td>
@@ -75,7 +66,6 @@
                         {% if selected_coin_type is 1 %}
                         {% for ripple in ripples %}
                         <tr>
-                            
                             <td>
                                 {% if ripple.coin.image %}
                                 <img class="coin-icon-support wallets-img" src={{ riiple.image.url }}> {% endif %}
@@ -91,17 +81,14 @@
                                 <a href="{% url 'accounts:profile' %}" class="btn btn-default white-font orange-bg  btn-ex"                                    >
                                     <!-- data-target="#myModal" -->
                                     <img class="w20px" src={% static 'images/arrows.svg' %}>
-                                    <span>Start</span>
-                            </a>
+                                    <span>Start</span></a>
                                 {% endif %}
                             </td>
-                            
                         </tr>
                         {% endfor %}
                         {% elif selected_coin_type is 2 %}
                         {% for token in tokens %}
                         <tr>
-                            
                             <td>
                                 {% if token.image %}
                                 <img class="coin-icon-support wallets-img" src={{ token.image.url }}> {% endif %}

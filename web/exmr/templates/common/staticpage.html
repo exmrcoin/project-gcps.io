@@ -1,4 +1,4 @@
-{% extends 'gcps/base.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
 
 <section class="section section-pad" style="padding-bottom: 1em">
     <div class="container">
@@ -57,12 +57,12 @@
 </section>
 <section class="section section-pad" style="padding-top: 1em">
     <div class="bx-ash ">
-    <div class="dark-page-header text-center">
+    <div class="dark-page-header text-center text-white">
         <h1>{{staticpage.topic}}</h1>
     </div>
 </div>
 
-    <div class="container account-setting-wrap">
+    <div class="container account-setting-wrap text-white">
         <div class="row">
             <div class="col-xs-12 my-1">
                     {% autoescape off %} {{staticpage.content}} {% endautoescape %}

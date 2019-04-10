@@ -584,7 +584,6 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
 
 .btn-orange{
     background-color: rgb(247, 147, 27);
-    border: none;
     padding: 8px 8px 8px 8px;
 }
 
@@ -602,7 +601,7 @@ a {
 }
 
 .a-1 {
-    color: #fff;
+    color: red;
 }
 
 .merchant-tools {

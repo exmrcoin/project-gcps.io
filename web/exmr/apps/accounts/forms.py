@@ -137,13 +137,23 @@ class AddressForm(forms.ModelForm):
                   'address_line_2', 'country', 'city', 'state', 'postal_code', 'phone_number',
                   'is_default'
                   ]
+    def clean_postal_code(self):
+        import pdb; pdb.set_trace()
+        postal_code = self.cleaned_data.get('postal_code')
+        rule = re.compile('^\+(?:[0-9]●?){6,14}[0-9]$')
+        if not rule.search(postal_code):
+            raise forms.ValidationError(_('Invalid postal code.'))
+        return postal_code
 
     def clean_phone_number(self):
+        import pdb; pdb.set_trace()
         phone_number = self.cleaned_data.get('phone_number')
         rule = re.compile('^\+(?:[0-9]●?){6,14}[0-9]$')
         if not rule.search(phone_number):
             raise forms.ValidationError(_('Invalid mobile number.'))
         return phone_number
+    
+    
 
 
 class LoginSecurityForm(forms.ModelForm):

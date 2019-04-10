@@ -79,17 +79,18 @@
                                                 <div class="form-group col-md-12">
                                                     <label for="first_name">State/Province</label>
                                                     {{ form.state|add_class:'form-control text-view' }}
-                                                    <span>USA/Canada -2 digits code </br> other countries use your local custom or leave blank</span>
+                                                    <span class="text-white">USA/Canada -2 digits code </br> other countries use your local custom or leave blank</span>
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label for="first_name">Zip/postal Code</label>
                                                     {{ form.postal_code|add_class:'form-control text-view' }}
+                                                    {{ form.postal_code.errors }}
                     
                                                 </div>
                                                 <div class="form-group col-md-12">
                                                     <label for="first_name">Phone Number</label>
                                                     {{ form.phone_number|add_class:'form-control text-view' }}
-                                                    <span>( Phone number should start with '+' followed by country code and number )</span>
+                                                    <span class="text-white">( Phone number should start with '+' followed by country code and number )</span>
                                                     {{ form.phone_number.errors }}
                                                 </div>
                                                 <div class="form-group col-md-12 text-center">

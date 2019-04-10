@@ -508,12 +508,10 @@ font-family: 'Open Sans', sans-serif !important;
 }
 .btn-orange {
 background-color: rgb(247, 147, 27);
-border: none;
 padding: 8px 8px 8px 8px;
 }
 .btn-orange:hover {
 background-color: rgb(247, 147, 27);
-border: none;
 padding: 8px 8px 8px 8px;
 }
 .btn-transparent {

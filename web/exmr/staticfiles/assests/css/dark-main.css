@@ -481,7 +481,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
     }
 
     .navbar-cp{
-        background-color: #101010;
+        background-color: #dadada;
+    }
+    .light-bar{
+        color: #f7931b !important;
     }
 
     .navbar-toggler-icon {
@@ -1101,7 +1104,7 @@ label, input {
 
 .help-sidebar {
     padding-right: 15px;
-    border-right: 1px solid #e8e8e8;
+    border-right: 1px solid #3f3830;
     text-align: left;
 }
 

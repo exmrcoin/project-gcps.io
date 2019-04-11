@@ -1830,7 +1830,7 @@ h6{
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: url(../images/arrow.png) 96% / 15% no-repeat #fff;
+    background: url(../images/arrow.png) 96% / 15% no-repeat;
     }
     .calc-select:hover{
     font-size: 20px;
@@ -1842,9 +1842,9 @@ h6{
     color:white;
     background-color: #e75d14;
     }
-    .calc-border {
-        border: 1px solid#e75d14;
-        border-radius: 12px;
+    .calc-border{
+    border:1px solid#e75d14;
+    border-radius: 8px;
     }
     .calc-bg {
         background-color: #fff;
@@ -1853,6 +1853,7 @@ h6{
     .calc-main-border{
     border:1px solid#e75d14;
     padding: 8px;
+    border-radius: 8px;
     }
     /* CAUTION: IE hackery ahead */
     .calc-select::-ms-expand { 

@@ -116,8 +116,11 @@
                                                 <tr style="border: none">
                                                     <td align="left">Search Dates:</td>
                                                     <td>From
-                                                        <input name="start_date" size="12" value="7/21/2018"> to
-                                                        <input name="end_date" size="12" value="10/19/2018">
+                                                        <input type ="text" id ="datepicker-13" name="start_date" size="12" value="7/21/2018"> to
+                                                        <input name="end_date" size="12" value="10/19/2018" type ="text" id ="datepicker-14">
+                                                    </td>
+                                                    <td>
+                                                            
                                                     </td>
                                                 </tr>
                                                <!--  <tr>
@@ -215,6 +218,13 @@
 
      })
           
+
+     </script>
+     <script>
+        $(function() {
+            $( "#datepicker-13" ).datepicker();
+            $( "#datepicker-14" ).datepicker();
+        });
 
      </script>
 

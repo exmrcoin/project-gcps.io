@@ -24,7 +24,7 @@ from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, A
                                  Feedback, KYC, KYCTerms
 from apps.accounts.decorators import check_2fa
 from apps.coins.utils import *
-from apps.coins.models import Coin, Wallet, Transaction
+from apps.coins.models import Coin, Wallet, Transaction, PaybyName
 from apps.common.utils import generate_key, JSONResponseMixin, get_pin
 from apps.accounts.forms import SignUpForm, UpdateBasicProfileForm, PublicInfoForm, LoginSecurityForm,\
                                 IPNSettingsForm, AddressForm, KYCForm
@@ -519,11 +519,14 @@ class KYCAcceptanceView(View):
             return HttpResponse(json.dumps({"status": True}))
         return HttpResponse(json.dumps({"status": False}))
 
-class  PayByNameCheck(TemplateView):
-    template_name = 'accounts/profile_rate.html'
+class  PayByNameCheck(View):
+    # template_name = 'accounts/profile_rate.html'
 
     def get(self, request, *args, **kwargs):
-        context = self.get_context_data(**kwargs)
-        # try:
-            # pbn = self.kwargs.get
-        return self.render_to_response(context)
+        paybyname = self.request.GET['pbn']
+        pbn_list = PaybyName.objects.filter(label=paybyname)
+        if len(pbn_list) == 0:
+            return HttpResponse(json.dumps({"pbn_status": "Available"}))
+
+        return  HttpResponse(json.dumps({"pbn_status": "Unavailable"}))
+        

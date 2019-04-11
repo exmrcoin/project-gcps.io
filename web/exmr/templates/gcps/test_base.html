@@ -179,10 +179,11 @@
               </li>
             {% else%}
             <li class="nav-item btn-item">
-              <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-outline-orange">Login</a>
+              <!-- <a href="{% url 'accounts:login' %}" type="submit" class="btn-outline-orange btn" >Login</a> -->
+              <a class="nav-link btn-outline-orange btn" href="{% url 'accounts:login' %}" >{% trans 'Login'%}</a>
             </li>
             <li class="nav-item btn-item">
-                <a href="{% url 'accounts:signup' %}" style="color: #000000;" type="submit" class="btn btn-default">Signup</a>
+                <a href="{% url 'accounts:signup' %}" class="btn btn-orange">Signup</a>
             </li>
             {% endif %}
             <li>
@@ -205,7 +206,7 @@
                       <img src="{% static 'assests/images/logo.png' %}" class="img-logo" />
                     </div>
                     <h1 class="text-white b-300">Welcome to</h1>
-                    <h1 class="text-white b-800 titl-bg"><i class="fa fa-address-book-o" aria-hidden="true"></i>GCPS</h1>
+                    <h1 class="text-white b-800 titl-bg"><i class="fa fa-address-book-o" aria-hidden="true"></i>GCPS 2.0</h1>
                     {% if not user.is_authenticated %}
                     <div class="form-group mt-3">
                       <button class="btn btn-outline-default"><a href="{% url 'accounts:signup' %}">Signup Now</a></button>
@@ -316,17 +317,17 @@
                             Example Profile
                           </div>
                           <div class="form-group mt-3">
-                            <form action="{% url 'accounts:paybyname_check' %}" method="GET">
+                            <!-- <form action="{% url 'accounts:paybyname_check' %}" method="GET"> -->
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
                                 <span class="input-group-text bg-white">$</span>
                               </div>
-                              <input type="text" class="form-control bg-transparent text-white" aria-label="Amount (to the nearest dollar)" name="pbn" />
+                              <input type="text" id="pbn" class="form-control bg-transparent text-white" aria-label="Amount (to the nearest dollar)" name="pbn" />
                               <div class="input-group-append">
-                                <button type="submit" class="btn btn-orange">Check Now</button>
+                                <button id="pbn_button" class="btn btn-orange">Check Now</button>
                               </div>
                             </div>
-                          </form>
+                          <!-- </form> -->
                           </div>
                         </div>
                       </div>
@@ -744,6 +745,29 @@
       
   });
       })
+    </script>
+    <script>
+      $('#pbn_button').click(function(){
+        pbn = $('#pbn').val()
+        if (pbn===""){
+          alert("Please provide a valid input")
+        }else{
+
+        
+          $.ajax({
+                    type:"GET",
+                    url:"{% url 'accounts:paybyname_check' %}",
+                    data:{
+                        pbn: pbn,
+                    },
+                    success: function(data){
+                      var response = JSON.parse(data);
+                      alert("The requetsed paybyname tag " + pbn + " is " + response["pbn_status"])
+                      if (response["pbn_status"] === "Available"){
+                        window.location.href = "{% url 'coins:paybyname' %}";}
+                        }
+                });
+      }})
     </script>
     <script type="text/javascript">
       /* nav color change */

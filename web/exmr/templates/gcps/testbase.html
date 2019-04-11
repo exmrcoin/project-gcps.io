@@ -19,6 +19,7 @@
       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
       crossorigin="anonymous"
     /> -->
+      
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     {% block fonts %} {% endblock %}
     <!-- <link href="assests/Fonts/style.css" rel="stylesheet" /> -->
@@ -30,6 +31,7 @@
     <link href="{% static 'assests/Fonts/style.css' %}" rel="stylesheet">
     <link href="{% static 'assests/css/animations-ie-fix.css' %}" rel="stylesheet">
     <link href="{% static 'assests/css/animations.css' %}" rel="stylesheet">
+    <link href = "https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel = "stylesheet">
     <!-- Custom styles for this template -->
     <link href="{% static 'assests/css/bootstrap.min.css' %}" rel="stylesheet">
     {% if theme == "Day" %}
@@ -179,10 +181,11 @@
               </li>
             {% else%}
             <li class="nav-item btn-item">
-              <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-orange">Login</a>
+              <!-- <a href="{% url 'accounts:login' %}" type="submit" class="btn btn-orange">Login</a> -->
+              <a class="nav-link btn-outline-orange btn" href="{% url 'accounts:login' %}" >{% trans 'Login'%}</a>
             </li>
             <li class="nav-item btn-item">
-                <a href="{% url 'accounts:signup' %}" style="color: #000000;" type="submit" class="btn btn-default">Signup</a>
+                <a href="{% url 'accounts:signup' %}" style="color: #000000;" class="nav-link btn btn-orange ">Signup</a>
             </li>
             {% endif %}
             <li>
@@ -310,7 +313,9 @@
 
     <!-- container-fluid END -->
     <!-- JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src = "https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src = "https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script> -->
     <!-- <script src="{% static 'js/jquery.min.js' %}"></script> -->
     <script
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"

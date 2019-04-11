@@ -375,10 +375,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
 }
 
 .footer-content{
-    border-top: 1px solid #64636f;
-    border-bottom: 1px solid #64636f;
+    /* border-top: 1px solid #64636f; */
+    /* border-bottom: 1px solid #64636f;
     padding-top: 5em;
-    padding-bottom: 5em;
+    padding-bottom: 5em; */
 }
 
 .footer-title{
@@ -1794,7 +1794,7 @@ h6{
     border-radius: 0px;
     border:0px;
     padding-left: 15px;
-    background-color: #030303;
+    background-color: #fff;
     text-align: right;
     }
     .btnpad4{
@@ -1842,11 +1842,13 @@ h6{
     color:white;
     background-color: #e75d14;
     }
-    .calc-border{
-    border:1px solid#e75d14;
+    .calc-border {
+        border: 1px solid#e75d14;
+        border-radius: 12px;
     }
-    .calc-bg{
-    background-color:#fff;
+    .calc-bg {
+        background-color: #fff;
+        padding: 10px;
     }
     .calc-main-border{
     border:1px solid#e75d14;

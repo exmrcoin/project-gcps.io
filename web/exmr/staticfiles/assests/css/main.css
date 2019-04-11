@@ -329,10 +329,10 @@ margin-left: -15px;
 margin-right: -15px;
 }
 .footer-content {
-border-top: 1px solid #64636f;
-border-bottom: 1px solid #64636f;
+/* border-top: 1px solid #64636f; */
+/* border-bottom: 1px solid #64636f;
 padding-top: 5em;
-padding-bottom: 5em;
+padding-bottom: 5em; */
 }
 .footer-title {
 color: #f7931b;
@@ -1617,11 +1617,13 @@ font-size: 20px;
 color:white;
 background-color: #0a0a0a;
 }
-.calc-border{
-border:1px solid#e75d14;
+.calc-border {
+  border: 1px solid#e75d14;
+  border-radius: 12px;
 }
-.calc-bg{
-background-color:#030303;
+.calc-bg {
+  background-color: #fff;
+  padding: 10px;
 }
 .calc-main-border{
 border:1px solid#e75d14;

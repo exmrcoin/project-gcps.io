@@ -71,7 +71,7 @@
           <div class="container" >
              <div class="calc-border row d-flex mb-1 calc-bg">
                 <!-- <h5 class="text-white col-md-8" style="margin-top: 31px;">Enter your order total:</h5> -->
-                <input id="amountf" name="amountf" value="" size="14" placeholder="Enter your order total: " class="calc-input col-8 rounded-tl"> 
+                <input id="amountf" name="amountf" value="0" size="14" placeholder="Enter your order total: " class="calc-input col-8 rounded-tl"> 
                 <select class="btn btnpad calc-select rounded-tr col-md-4" value="" name="select_currency">
                    <option selected>USD</option>
                    {% for k,v in rates.items %}
@@ -102,12 +102,10 @@
                 <div class="col-md-12 calc-padding d-flex">
                    <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(0); padPress(0); return false;">00</button></div>
                    <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(0); return false;">0</button></div>
-                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPeriod(); return false;">.</button>
-                   </div>
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPeriod(); return false;">.</button></div>
                 </div>
-                <div class="col-md-6 calc-padding"><button class="calc-border btn btnpad2 col-12 p-02 col-12"><span class="glyphicon glyphicon-arrow-left"></span> Back</button></div>
-                <div class="col-md-6 calc-padding"><button class="calc-border btn btnpad3 col-12 p-03 col-12" ">Continue </button>
-                </div>
+                <div class="col-md-6 calc-padding"><button class="calc-border btn btnpad2 col-12 p-02 col-12"><span class="glyphicon glyphicon-arrow-left"></span>Back</button></div>
+                <div class="col-md-6 calc-padding"><button class="calc-border btn btnpad3 col-12 p-03 col-12">Continue </button></div>
              </div>
           </div>
        </form>

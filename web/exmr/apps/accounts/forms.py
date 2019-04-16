@@ -139,7 +139,7 @@ class AddressForm(forms.ModelForm):
                   ]
     def clean_postal_code(self):
         postal_code = self.cleaned_data.get('postal_code')
-        rule = re.compile('^\+(?:[0-9]●?){6,14}[0-9]$')
+        rule = re.compile('^(0|[1-9][0-9]*)$')
         if not rule.search(postal_code):
             raise forms.ValidationError(_('Invalid postal code.'))
         return postal_code

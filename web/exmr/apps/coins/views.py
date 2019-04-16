@@ -35,7 +35,7 @@ from apps.accounts.models import User, KYC
 from apps.accounts.decorators import check_2fa
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
-    CoinVote, ClaimRefund, NewCoin, CoPromotion, CoPromotionURL, PayByNamePackage, \
+    CoinVote, ClaimRefund, NewCoin, CoinSetting, CoPromotion, CoPromotionURL, PayByNamePackage, \
     WalletAddress, EthereumToken, Phases, ConvertTransaction, PaypalTransaction,\
     PayByNamePurchase
 
@@ -444,6 +444,55 @@ class CoinSettings(LoginRequiredMixin,TemplateView):
         context["erc_wallet"] = EthereumToken.objects.all()
         context['transactions'] = Transaction.objects.filter(user=self.request.user)
         return context
+
+    def post(self, request, *args, **kwargs):
+        req = request.POST
+        selected = request.POST.getlist('enabled')
+        coins = Coin.objects.all()
+        code = []
+        for x in coins:
+            code.append(x.code)
+
+        for item in code:
+            if item in selected:
+                try:
+                    setting = CoinSetting.objects.get(
+                        user=request.user, 
+                        coin=Coin.objects.get(code=item), 
+                    )
+                    setting.payment_address = req.get('address_'+item) 
+                    setting.payment_mode = req.get('pay_type_'+item)
+                    setting.discount_percentage=float(req.get('discount_'+item))
+                    setting.maximum_per_transaction=float(req.get('value_'+item))
+                    setting.enabled=True
+                    setting.save()
+                except:
+                    CoinSetting.objects.create(
+                    user=request.user, 
+                    coin=Coin.objects.get(code=item), 
+                    enabled=True,
+                    payment_address=req.get('address_'+item), 
+                    payment_mode=req.get('pay_type_'+item),
+                    discount_percentage=float(req.get('discount_'+item)), 
+                    maximum_per_transaction=float(req.get('value_'+item)),                           
+                )     
+            else:
+                try:
+                    setting = CoinSetting.objects.get(
+                        user=request.user, 
+                        coin=Coin.objects.get(code=item), 
+                    )
+                     
+                    setting.enabled=False
+                    setting.save()
+                except:
+                    CoinSetting.objects.create(
+                    user=request.user, 
+                    coin=Coin.objects.get(code=item), 
+                    enabled=False,
+                )
+ 
+        return render(request, self.template_name, {'wallets': Coin.objects.all(), 'erc_wallet': EthereumToken.objects.all(), 'transactions': Transaction.objects.filter(user=self.request.user)})
 
 class SettingSetUp(TemplateView):
     template_name = 'coins/setting_setup.html'

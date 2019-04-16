@@ -1488,9 +1488,12 @@ border: 0;
 }
 .error {
 color: red;
+margin-right: 19px;
+
 }
 .errorlist {
 color: red;
+margin-right: 19px;
 }
 @media (min-width: 992px) {
 .navbar-expand-lg .navbar-collapse {
@@ -1714,7 +1717,7 @@ color: black; /* prevent
    border-radius: 50%;
    }
    .slider:after {
-   background-image: url("/static/images/toggle-img.jpg");
+   background-image: url("/static/images/toggle-img.png");
    content: '';
    position: absolute;
    height: 16px;
@@ -1762,3 +1765,7 @@ color: black; /* prevent
   padding: 34px;
   color: white!important;
 }
+/* li{
+  list-style: none;
+  /* margin-right: 19px; */
+} */

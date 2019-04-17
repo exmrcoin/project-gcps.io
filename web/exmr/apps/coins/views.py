@@ -785,7 +785,7 @@ class ConversionView(View):
         convert_from = self.request.GET.get("from")
         if not convert_from:
             convert_from = "USD"
-        try:
+        try:           
             val = round(float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q="+convert_from+"_"+\
             convert_to+"&compact=y&callback=json").text.split(":")[-1].strip("}});")),2)
         except:
@@ -1089,7 +1089,7 @@ class PayByNameOptions(LoginRequiredMixin, View):
         if action == "renew":
             paybyname = obj.first()
             expirypaybyname = paybyname.expiry+timedelta(days=365)
-            paybyname.expiry = expirpaybyname
+            paybyname.expiry = expirypaybyname
             return JsonResponse({"status": True})
 
 

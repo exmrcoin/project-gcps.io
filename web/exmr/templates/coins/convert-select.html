@@ -25,27 +25,29 @@
                         <input class="search coin-convert-search col-12" placeholder="Search by COIN CODE" />
                         <div class="p-0 p-md-2   col-12">
             
-                            <div  class="list d-flex flex-wrap col-12 p-0 p-md-2 ">
-            
-                                {% for coin in avbl_coins %}                        
-                                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 p-0 p-md-2  " style="color: white" >
+                            <ul  class="list d-flex flex-wrap col-12 p-0 p-md-2 ">
+                                
+                                {% for coin in avbl_coins %}    
+                                <li class="col-6 col-sm-4 col-md-3 col-xl-2 p-0">                    
+                                    <div class="col-12 p-0 p-md-2  " style="color: white" >
                                         <label class="col-12 selectable_div">
                                             <input type="radio" name="coin_radio" value="{{coin}}"/>
                                             <div class="col-xs-12 text-center available_coin">
                                                 {%for key,value in coin_images.items %} {% if key == coin %}
                                                 <img src="{{value.image}}" class="img-responsive w60px margin-center ">
                                                 <h4 class="coin-name">{{coin}}</h4>
-                                                <span>{{value.name}}</span>
+                                                <span class="coinname" coin-full="{{value.name}}">{{value.name}}</span>
                                                 {% endif %} {% endfor %}
                                             </div>
                                         </label>
                                     </div>
+                                </li>
                                 {% endfor %}
             
             
                                 <input type="hidden" value="{{sel_coin}}" name="sel_coin" placeholder="Enter Amount">
             
-                            </div>
+                                </ul>
             
             
             
@@ -67,14 +69,8 @@
 <script src="{% static 'assests/js/list.min.js' %}"></script>
 <script>
 var options = {
-  valueNames: [
-    'coin-name',
-    'born',
-    { data: ['id'] },
-    { attr: 'src', name: 'image' },
-    { attr: 'href', name: 'link' },
-    { attr: 'data-timestamp', name: 'timestamp' }
-  ]
+  valueNames: ['coin-name','coinname',
+    { attr: 'coin-full', name: 'coinfullname' }],
 };
 var userList = new List('coin_search_list', options);
    </script>

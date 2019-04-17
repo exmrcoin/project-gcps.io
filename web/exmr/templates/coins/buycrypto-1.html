@@ -67,7 +67,7 @@
 
 </div> -->
 {% endblock %} {% block script %}
-
+<!-- 
 <script type="text/javascript">
     var elem = document.querySelector('input[type="range"]');
     var rangeValue = function () {
@@ -112,11 +112,11 @@ function convert_to_usd(){
 
 $.urlParam = function(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    return results[1] || 0;
+    return results[1]||0;
 }
 
 
 if ($.urlParam('error'))
     alert("Currently we have insufficient funds. Please try with lesser amount.")
-</script>
+</script> -->
 {% endblock %}

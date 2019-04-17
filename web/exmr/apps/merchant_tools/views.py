@@ -620,7 +620,8 @@ class POSCalcCoinSelect(TemplateView):
         self.request.session['input_amount'] = input_amount
         self.request.session['input_coin'] = input_currency
         self.request.session['usd_equivalent'] = usd_equivalent
-        context['available_coins'] = Coin.objects.filter(active=True)
+        # context['available_coins'] = Coin.objects.filter(active=True)
+        context['available_coins'] = coinlist.payment_gateway_coins()
         context['rates'] = cur_rate
         return render(self.request, 'gcps/merchant_tools/pos_coin_select.html', context)
 

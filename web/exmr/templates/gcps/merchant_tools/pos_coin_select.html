@@ -54,12 +54,12 @@
                                 <div class="col-12 px-0 bg-white">
                                     <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
                                         <form>
-                                            {% for coins in available_coins %}
+                                            {% for key,coins in available_coins.items %}
                                             <label>
-                                                <input type="radio" name="selected_coin" value="{{coins.code}}" id="coins_{{coins.code}}" onclick="change_coin('{{coins.code}}')">
+                                                <input type="radio" name="selected_coin" value="{{coins.coin_code}}" id="coins_{{coins.coin_code}}" onclick="change_coin('{{coins.coin_code}}')">
                                                 <div class="btn btnrad btnrad-sık">
-                                                    <img src="{{coins.image.url}}" class="crypto-btn-image col-xs-3">
-                                                    <span class="col-xs-9">{{coins}}</span>
+                                                    <img src="{{coins.image}}" class="crypto-btn-image col-xs-3">
+                                                    <span class="col-xs-9">{{coins.coin_code}}</span>
                                                 </div>
                                             </label>
                                             {% endfor %}

@@ -83,15 +83,16 @@ class CoinConvertView(LoginRequiredMixin, TemplateView):
         context = super(CoinConvertView, self).get_context_data(**kwargs)
         sel_coin = self.kwargs.get('currency')
         shapeshift_available_coin = coinswitch.get_coins()
+        temp_dict_1 = shapeshift_available_coin.copy()
         image_path_list = {}
         exmr_list = coinlist.get_all_active_coin_code()   
-        print(shapeshift_available_coin)
         available_coins = list(filter(lambda x: x in list(shapeshift_available_coin), exmr_list))
-        for coin in list(shapeshift_available_coin):
+        # print((shapeshift_available_coin))
+        for coin,value in temp_dict_1.items():
             for coin in exmr_list:
                 if not coin == sel_coin:
                     try:
-                        image_path_list[coin] = shapeshift_available_coin[coin]['image']
+                        image_path_list[coin] = { 'image':shapeshift_available_coin[coin]['image'], 'name' : shapeshift_available_coin[coin]['name']}
                     except:
                         pass
                 else:
@@ -103,9 +104,12 @@ class CoinConvertView(LoginRequiredMixin, TemplateView):
             available_coins.remove(sel_coin)
         except Exception as e:
             raise e
-        print((available_coins))
+
+        for key,value in image_path_list.items():
+            print(key)
         context['coin_images'] = image_path_list
         context['avbl_coins'] = list(available_coins)
+        # print(image_path_list)
         context['sel_coin'] = sel_coin
         return context
 
@@ -806,6 +810,12 @@ class BuyCryptoView(TemplateView):
             return super().get(request,**kwargs)
         else:
             return self.post(request,**kwargs)
+
+    def get_context_data(self, request, *args, **kwargs):
+        context = super().get_context_data()
+        context['rates'] = cache.get('rates')
+        return context
+
 
     def post(self, request, *args, **kwargs):
         context = {}

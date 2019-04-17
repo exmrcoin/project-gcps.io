@@ -19,22 +19,23 @@
                 <div class="col-12"><h4 class="text-theme"><img style="padding-bottom: 6px" src="{% static '/images/recevied.png' %} "><span class="pl-2" >{% trans 'Convert Coin' %}</span></h4></div>
 
 
-                <div id="coin_search_list" class="col-12">
+                <form method="POST" action="{% url 'coins:convert_select_confirm'%}" class="p-0 p-md-2 list d-flex flex-wrap col-12">
+                    {% csrf_token %}
+                <div id="coin_search_list" class="col-12 p-0 p-md-2 ">
                         <input class="search coin-convert-search col-12" placeholder="Search by COIN CODE" />
-                        <div class="  col-12">
+                        <div class="p-0 p-md-2   col-12">
             
-                            <form method="POST" action="{% url 'coins:convert_select_confirm'%}" class="list d-flex flex-wrap col-12">
-                                {% csrf_token %}
+                            <div  class="list d-flex flex-wrap col-12 p-0 p-md-2 ">
             
                                 {% for coin in avbl_coins %}                        
-                                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 p-1 selectable_div" style="color: white" >
-                                        <label class="col-12">
+                                    <div class="col-6 col-sm-4 col-md-3 col-lg-2 p-0 p-md-2  " style="color: white" >
+                                        <label class="col-12 selectable_div">
                                             <input type="radio" name="coin_radio" value="{{coin}}"/>
                                             <div class="col-xs-12 text-center available_coin">
-                                                {%for key,image in coin_images.items%} {% if key == coin %}
-                                                <img src="{{image}}" class="img-responsive w60px margin-center ">
+                                                {%for key,value in coin_images.items %} {% if key == coin %}
+                                                <img src="{{value.image}}" class="img-responsive w60px margin-center ">
                                                 <h4 class="coin-name">{{coin}}</h4>
-                                                <h5>{{coin.name}}</h5>
+                                                <span>{{value.name}}</span>
                                                 {% endif %} {% endfor %}
                                             </div>
                                         </label>
@@ -43,17 +44,18 @@
             
             
                                 <input type="hidden" value="{{sel_coin}}" name="sel_coin" placeholder="Enter Amount">
-                                <div class="col-12 my-2 text-right">
-                                <input type="submit" class="btn btn-success"value="Continue"> 
-                                </div>
-
-                            </form>
+            
+                            </div>
             
             
             
                         </div>
                     </div>
-                    
+                    <div class="col-12 my-2 text-right">
+                            <input type="submit" class="btn btn-success"value="Continue"> 
+                    </div>
+                    </form>
+            
                 
                 
             </div>

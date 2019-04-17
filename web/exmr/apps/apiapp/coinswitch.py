@@ -17,7 +17,7 @@ def _coinswitch_get_request(url_path):
     ss_img_dict = {}
     for item in temp_ss_list:
             coin_code = item['symbol'].upper()
-            ss_img_dict[coin_code] = {'image':item['logoUrl']}  
+            ss_img_dict[coin_code] = {'image':item['logoUrl'],'name':item['name']}  
     return ss_img_dict
 
 def _coinswitch_post_request(url_path, payload):

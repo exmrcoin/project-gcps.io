@@ -16,7 +16,7 @@
                                 <h4 class="text-theme">{% trans 'Coin Withdrawal' %}</h4>
                             </div>
                             <div>
-                                <div>
+                                <div class="text-center">
                                   <div class="card" style="background-color: transparent;">
                                       <div class="card-body" style="word-wrap: normal">
                                           <div class="row text-white" >
@@ -63,11 +63,14 @@
                                                 {% endif %}
                                                 
                                               </div>
-                                              <button class="btn btn-orange text-white" onclick="sendConfirm();"> {% trans 'Request Withdrawal/Send' %} </button>
                                               <img id="loading-image" src="{% static 'images/load.gif' %}" style="display:none;height: 60px;"/>                                    
                                             </div>
-                                  </div>                    
-                                </div>                    
+
+                                  </div>
+                    
+                                </div>                                  
+                                <button class="btn btn-orange text-white" onclick="sendConfirm();"> {% trans 'Request Withdrawal/Send' %} </button>
+                    
                             </div>
             
         </div>

@@ -166,6 +166,7 @@ class AccountSettings(LoginRequiredMixin, JSONResponseMixin, UpdateView):
         context['public_info_form'] = PublicInfoForm(instance=self.object)
         context['security_form'] = LoginSecurityForm(instance=self.object)
         context['ipn_form'] = IPNSettingsForm(instance=self.object)
+        context['form'] = UpdateBasicProfileForm(instance=self.object)
         context['ref_url'] = self.request.scheme + "://" + \
             self.request.META['HTTP_HOST'] +  "/ref-signup/" + self.object.merchant_id
         return context
@@ -220,6 +221,7 @@ class SecurityInfoSave( AccountSettings, UpdateView):
     form_class = LoginSecurityForm
 
     def get_object(self, queryset=None):
+
         return self.request.user.get_profile
 
     def form_valid(self, form):

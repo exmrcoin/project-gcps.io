@@ -1407,15 +1407,18 @@ background: #3c576e;
 color: white;
 }
 select {
--webkit-appearance: none;
--moz-appearance: none;
-text-indent: 1px;
-text-overflow: '';
-background-image: url('../images/down-arrow.png') !important;
-background-position-x: right;
-background-repeat: no-repeat;
-background-position-y: 40%;
-outline: none;
+    -webkit-appearance: menulist-button;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    background-image: url(../images/down-arrow.png) !important;
+    background-position-x: right;
+    background-repeat: no-repeat;
+    background-position-y: 40%;
+    outline: none;
+    min-width: 60px;
+    border-radius: 4px;
+    background: white;
 }
 select:-moz-focusring {
 color: transparent;

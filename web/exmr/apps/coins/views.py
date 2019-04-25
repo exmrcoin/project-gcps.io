@@ -816,7 +816,7 @@ class BuyCryptoView(TemplateView):
         else:
             return self.post(request,**kwargs)
 
-    def get_context_data(self, request, *args, **kwargs):
+    def get_context_data(self, *args, **kwargs):
         context = super().get_context_data()
         context['rates'] = cache.get('rates')
         return context

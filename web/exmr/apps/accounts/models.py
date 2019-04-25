@@ -185,7 +185,7 @@ class ProfileActivation(models.Model):
         verbose_name_plural = _('Profile Activations')
 
 
-class Address(models.Model):
+class Addresses(models.Model):
     """
     Model to save address details
     """

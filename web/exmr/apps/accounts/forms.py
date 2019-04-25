@@ -13,7 +13,7 @@ from django.utils.encoding import force_bytes
 from django.contrib.sites.shortcuts import get_current_site
 from django.db.models import Q
 
-from apps.accounts.models import Profile, Address, KYC
+from apps.accounts.models import Profile, Addresses, KYC
 
 CHOICES = [(pytz.timezone(tz), tz) for tz in pytz.common_timezones]
 
@@ -132,7 +132,7 @@ class AddressForm(forms.ModelForm):
     phone_number = forms.CharField()
 
     class Meta:
-        model = Address
+        model = Addresses
         fields = ['address_name', 'first_name', 'last_name', 'address_line_1',
                   'address_line_2', 'country', 'city', 'state', 'postal_code', 'phone_number',
                   'is_default'

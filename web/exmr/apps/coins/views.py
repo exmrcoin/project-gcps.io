@@ -15,6 +15,7 @@ from django.db.models import Q
 from django.conf import settings
 from django.contrib import messages
 from django.core import serializers
+from django.core.cache import cache
 from django.urls import reverse_lazy, reverse
 from apps.common.utils import send_mail
 from django.core.mail import EmailMessage
@@ -786,15 +787,19 @@ class VoteWinners(TemplateView):
 class ConversionView(View):
     def get(self, request, *args, **kwargs):
         convert_to = self.request.GET.get("to")
+        amount = self.request.GET.get("amount")
         convert_from = self.request.GET.get("from")
         if not convert_from:
             convert_from = "USD"
-        try:           
-            val = round(float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q="+convert_from+"_"+\
-            convert_to+"&compact=y&callback=json").text.split(":")[-1].strip("}});")),2)
+        try:
+            rates = cache.get('rates')
+            val = rates[convert_to]
+
+            # val = round(float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q="+convert_from+"_"+\
+            # convert_to+"&compact=y&callback=json").text.split(":")[-1].strip("}});")),2)
         except:
             val = None
-        self.request.session["coin_amount"] = val
+        self.request.session["coin_amount"] = int(amount)/val
 
         return HttpResponse(json.dumps({"value": val}), content_type="application/json")
 
@@ -824,6 +829,7 @@ class BuyCryptoView(TemplateView):
         balance = get_balance(coin_user, coin_code)
         amount = str(round(float(request.POST.get("usd_value")),4))
         currency = "USD"
+
         coin_amount = round(float(request.session["coin_amount"])*float(amount),4)
         if float(coin_amount) <= balance:
             payment = paypalrestsdk.Payment({

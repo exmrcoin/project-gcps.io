@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.core.mail import EmailMultiAlternatives
 from django.utils.translation import ugettext_lazy as _
 
-from apps.accounts.models import Profile, Address, Feedback, ProfileActivation, NewsLetter, KYC,\
+from apps.accounts.models import Profile, Addresses, Feedback, ProfileActivation, NewsLetter, KYC,\
                                  TwoFactorAccount, KYCTerms
 from apps.accounts.tasks import send_newsletter
 from exmr import settings
@@ -39,7 +39,7 @@ class AddressAdmin(admin.ModelAdmin):
     list_display = ['address_name', 'is_default']
 
 
-admin.site.register(Address, AddressAdmin)
+admin.site.register(Addresses, AddressAdmin)
 
 
 class FeedbackAdmin(admin.ModelAdmin):

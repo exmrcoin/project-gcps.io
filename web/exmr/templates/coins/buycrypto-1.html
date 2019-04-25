@@ -12,13 +12,13 @@
             <div class="col-12">
                 <form method="POST" action=".">
                     {% csrf_token %}
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                         <span style="float: left; font-size: 20px;">0$</span>
                         <span style="float: right; font-size: 20px;">5000$</span>
                     </div>
                     <div class="col-12" style="padding-top: 13px;">
                         <input type="range" min="10" max="5000" value="50" link-to="text_box_name" id="rangeslider" style="width: 100%">
-                    </div>
+                    </div> -->
                     <br><br>
                     <div class="row" >
                         <div class="col-12 col-sm-6">
@@ -77,16 +77,16 @@
         convert_to_usd();
     }
     elem.addEventListener("input", rangeValue);
-</script>
+</script> -->
 <script>
-    $('#input_usd_value').on('change keyup paste', function () {
+    $('#input_usd_value').change(function () {
         var elem = document.querySelector('#input_coin_value');
-        var newValue = elem.value;
-        if (newValue > 5000) {
-            elem.value = 5000;
-        }
-        target = document.querySelector('#rangeslider');
-        target.value = newValue;
+        // var newValue = elem.value;
+        // if (newValue > 5000) {
+        //     elem.value = 5000;
+        // }
+        // target = document.querySelector('#rangeslider');
+        // target.value = newValue;
         convert_to_usd();
     });
 </script>
@@ -100,11 +100,12 @@ function convert_to_usd(){
                 url: "{% url 'coins:currency_convert' %}",
                 data: {
                     'to': "{{ view.kwargs.currency }}",
+                    'amount':parseInt($('#input_usd_value').val()), 
                 },
                 success: function (data) {
                     usd = parseInt($('#input_usd_value').val());
                     console.log(data["value"]*usd)
-                    $("#input_coin_value").val(data["value"]*usd)
+                    $("#input_coin_value").val(usd/data["value"])
                 }
             })
 

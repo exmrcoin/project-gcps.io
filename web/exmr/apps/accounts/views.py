@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.conf import settings
 from django.contrib import messages
 from django.urls import reverse_lazy
+from django.core.mail import send_mail
 from apps.common.utils import send_mail, send_email
 from django.forms import formset_factory
 from django.contrib.auth.models import User
@@ -20,7 +21,7 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.views.generic import CreateView, TemplateView, FormView, UpdateView
 
-from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, Address,\
+from apps.accounts.models import Profile, ProfileActivation, TwoFactorAccount, Addresses,\
                                  Feedback, KYC, KYCTerms
 from apps.accounts.decorators import check_2fa
 from apps.coins.utils import *
@@ -124,6 +125,7 @@ class AddressView(LoginRequiredMixin, CreateView):
             self.object.save()
         messages.add_message(self.request, messages.INFO,
                              'Address details have been stored successfully')
+        # send_mail('check_timedout', 'Balance = ', 'Balance = ', settings.EMAIL_HOST_USER, ['ebrahimasifismail@gmail.com'], fail_silently=False)
         return super(AddressView, self).form_valid(form)
 
 
@@ -349,11 +351,14 @@ class DeleteAddress(LoginRequiredMixin, DeleteView):
     """
         removing 2fa account from active list
     """
-    model = Address
+    model = Addresses
     success_url = reverse_lazy('accounts:address')
     # template_name = 'accounts/2fa_confirm_delete.html'
 
 
+# class DeleteAddress(DeleteView):
+#     model = Addresses
+#     success_url = reverse_lazy('accounts:address')
 
 @method_decorator(check_2fa, name='dispatch')
 class TwoFactorAccountList(LoginRequiredMixin, ListView):

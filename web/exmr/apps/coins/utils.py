@@ -412,9 +412,11 @@ class ETH():
         sorted_addr_balance_list = sorted(addr_balance_list.items(), key=lambda kv: kv[1], reverse=True)
         
         temp_bal_amt = amount
+        cur_addr_list ={}
         for addr_temp in sorted_addr_balance_list:
-            
-            temp_bal_amt = addr_bal_list[addr_temp] - temp_bal_amt
+            if temp_bal_amt >= 0:
+                temp_bal_amt = addr_balance_list[addr_temp] - temp_bal_amt
+                cur_addr_list[addr_temp]= addr_balance_list[addr_temp]
 
         try:
             result = w3.personal.sendTransaction({"from": Web3.toChecksumAddress(user_addr), "to": Web3.toChecksumAddress(

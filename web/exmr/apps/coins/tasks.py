@@ -41,14 +41,5 @@ def check_wallet_balance():
     
 
 
-# app.conf.beat_schedule = {
-#     'add-every-15-minutes': {
-#         'task': 'tasks.add',
-#         'schedule': 10.0,
-#         'args': ()
-#     },
-# }
-# app.conf.timezone = 'UTC'
-
 
     

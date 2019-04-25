@@ -1608,31 +1608,33 @@ class MTest(TemplateView):
 
     def get_context_data(self):
         context = super().get_context_data()
-        input_cur = "BTC"
-        amount = 0.05
-        rates = cache.get('rates')
-        rates['EXMR'] = 0.017
-        cur_rate = rates[input_cur]
-        cur_cost = amount * cur_rate
-        print("current_cost %s", cur_cost)
-        try:
-            input_coin = Coin.objects.get(code=input_cur)
-        except:
-            input_coin = EthereumToken.objects.get(contract_symbol=input_cur)
-        tradecommission_obj = TradeCommision.objects.all().first()
-        trans_charge_type = tradecommission_obj.transaction_commission_type
-        exmr_rate = rates['EXMR']
-        if trans_charge_type == "FLAT":
-            print("use flat slab logic")
-            exmr_amount = float(tradecommission_obj.commission_flat_rate)
-        else:
-            print("use percentage logic")
-            transaction_charge_usd = float(
-                tradecommission_obj.commission_percentage) * cur_cost
-            exmr_amount = transaction_charge_usd/exmr_rate
+        from apps.apiapp.coincap import CoincapAPI  
+        coincap = CoincapAPI()
+        # input_cur = "BTC"
+        # amount = 0.05
+        # rates = cache.get('rates')
+        # rates['EXMR'] = 0.017
+        # cur_rate = rates[input_cur]
+        # cur_cost = amount * cur_rate
+        # print("current_cost %s", cur_cost)
+        # try:
+        #     input_coin = Coin.objects.get(code=input_cur)
+        # except:
+        #     input_coin = EthereumToken.objects.get(contract_symbol=input_cur)
+        # tradecommission_obj = TradeCommision.objects.all().first()
+        # trans_charge_type = tradecommission_obj.transaction_commission_type
+        # exmr_rate = rates['EXMR']
+        # if trans_charge_type == "FLAT":
+        #     print("use flat slab logic")
+        #     exmr_amount = float(tradecommission_obj.commission_flat_rate)
+        # else:
+        #     print("use percentage logic")
+        #     transaction_charge_usd = float(
+        #         tradecommission_obj.commission_percentage) * cur_cost
+        #     exmr_amount = transaction_charge_usd/exmr_rate
 
-        print(exmr_amount)
-        return context
+        # print(exmr_amount)
+        # return context
 
         # wallet_list = Wallet.objects.all()
         # for wallet in wallet_list:
@@ -1649,3 +1651,9 @@ class MTest(TemplateView):
         # print(cache.get(0x810561bdd3876b7a005e64f9ca759a0febdda5e9))
         # print("eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee")
         # context['eth_bal'] = cache.get("0x810561bdd3876b7a005e64f9ca759a0febdda5e9")
+        
+
+        coin_rate_list = coincap.get_coins_markets('usd')
+        rates = {(rate['symbol']).upper():rate['priceUsd'] for rate in coin_rate_list['data']}
+        cache.set('rates', rates)
+        cache.set('last_check',  datetime.now())

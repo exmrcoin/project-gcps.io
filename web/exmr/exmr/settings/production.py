@@ -7,12 +7,14 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
+        'NAME': 'gcps',
         'USER': 'gcps_admin',
         'PASSWORD': 'Exmr!gcps2019',
         'HOST': 'gcps.ch42z6pwp0th.us-east-2.rds.amazonaws.com',
     }
 }
+
+
 
 # For email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

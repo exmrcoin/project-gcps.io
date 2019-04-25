@@ -3,7 +3,7 @@ from django.contrib import admin
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-from apps.coins.models import (Coin, CoinSetting, CoinConvertRequest, Wallet, WalletAddress, Transaction,ClaimRefund, NewCoin, CoinVote, CoPromotion, CoPromotionURL, EthereumToken, EthereumTokenWallet, Phases, ConvertTransaction, PaypalTransaction,PaybyName, PayByNamePackage,MoneroPaymentid, PayByNamePurchase,TradeCommision)
+from apps.coins.models import (RateAPI, Coin, CoinSetting, CoinConvertRequest, Wallet, WalletAddress, Transaction,ClaimRefund, NewCoin, CoinVote, CoPromotion, CoPromotionURL, EthereumToken, EthereumTokenWallet, Phases, ConvertTransaction, PaypalTransaction,PaybyName, PayByNamePackage,MoneroPaymentid, PayByNamePurchase,TradeCommision)
 
 
 admin.site.site_header = 'GetCryptoPayments Admin'
@@ -29,8 +29,16 @@ class CoinModelAdmin(ImportExportModelAdmin):
     class Meta:
         model = Coin
 
+class NewsletterAdmin(admin.ModelAdmin):
+    list_display = ['rate_api']
+    def has_delete_permission(self, request, obj=None):
+        return False
+    def has_add_permission(self, request):
+        return False  
+
 
 admin.site.register(Coin, CoinModelAdmin)
+admin.site.register(RateAPI)
 admin.site.register(Phases)
 admin.site.register(CoinSetting)
 admin.site.register(CoinConvertRequest)

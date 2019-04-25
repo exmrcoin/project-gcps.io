@@ -3,13 +3,13 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-__API_URL_BASE = 'https://api.coingecko.com/api/v3/'
+__API_URL_BASE = 'https://api.coincap.io/v2/'
 
-class CoinGeckoAPI:
+class CoincapAPI:
     
-    __API_URL_BASE = 'https://api.coingecko.com/api/v3/'
+    __API_URL_BASE = 'https://api.coincap.io/v2/'
 
-    def __init__(self, api_base_url="https://api.coingecko.com/api/v3/"):
+    def __init__(self, api_base_url="https://api.coincap.io/v2/"):
         self.api_base_url = api_base_url
         self.request_timeout = 120
 
@@ -67,10 +67,10 @@ class CoinGeckoAPI:
     def get_coins_markets(self, vs_currency, **kwargs):
         """List all supported coins price, market cap, volume, and market related data (no pagination required)"""
 
-        kwargs['vs_currency'] = vs_currency
-        kwargs['per_page'] = 250
+        # kwargs['vs_currency'] = vs_currency
+        kwargs['limit'] = 2000
 
-        api_url = '{0}coins/markets'.format(self.api_base_url)
+        api_url = '{0}assets'.format(self.api_base_url)
         api_url = self.__api_url_params(api_url, kwargs)
         # import pdb; pdb.set_trace()
         return self.__request(api_url)

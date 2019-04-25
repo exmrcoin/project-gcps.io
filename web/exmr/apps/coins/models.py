@@ -82,7 +82,7 @@ class TradeCommision(models.Model):
         ('PERCENTAGE', 'PERCENTAGE'),
     )
     transaction_commission_type = models.CharField(
-        max_length=20, choices=COM_TYPE, default='HOSTED')
+        max_length=20, choices=COM_TYPE, default='FLAT')
     commission_percentage = models.DecimalField(
         _('commission percentage'), max_digits=5, decimal_places=3, default=0.00)
     commission_flat_rate = models.DecimalField(
@@ -97,6 +97,29 @@ class TradeCommision(models.Model):
 
     def __str__(self):
         return self.transaction_commission_type+"_EXMR commision "
+
+class RateAPI(models.Model):
+    """
+    Model for Transaction Charges
+    """
+    COM_TYPE = (
+        ('coingecko', 'coingecko'),
+        ('coincap', 'coincap'),
+    )
+    rate_api = models.CharField(
+        max_length=20, choices=COM_TYPE, default='coincap')
+
+
+    def save(self, *args, **kwargs):
+        if RateAPI.objects.exists() and not self.pk:
+        # if you'll not check for self.pk 
+        # then error will also raised in update of exists model
+            raise ValidationError('There is can be only one JuicerBaseSettings instance')
+        return super(RateAPI, self).save(*args, **kwargs)  
+
+ 
+    def __str__(self):
+        return self.rate_api  
 
 
 class Coin(models.Model):

@@ -12,6 +12,7 @@ from django.utils import timezone
 from datetime import timedelta, datetime
 from apps.coins import utils
 from apps.apiapp.coingecko import CoinGeckoAPI
+from apps.apiapp.coincap import CoincapAPI
 from django.core.cache import cache
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.template.loader import render_to_string
@@ -24,6 +25,7 @@ logger = get_task_logger(__name__)
 
 
 coingecko = CoinGeckoAPI()
+coincap = CoincapAPI()
 
 @periodic_task(run_every=(crontab(minute='*/1')), name="check_market_rate", ignore_result=True)
 def check_market_rate():
@@ -32,6 +34,13 @@ def check_market_rate():
     rates = {(rate['symbol']).upper():rate['current_price'] for rate in coin_rate_list}
     cache.set('rates', rates)
     cache.set('last_check',  datetime.now())
+
+
+    coin_rate_list = coincap.get_coins_markets('usd')
+    rates = {(rate['symbol']).upper():rate['priceUsd'] for rate in coin_rate_list['data']}
+    cache.set('rates', rates)
+
+
     # try:
     #     rates = cache.get('rates')
     #     rates = ast.literal_eval(rates)

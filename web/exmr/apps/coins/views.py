@@ -808,6 +808,7 @@ class BuyCryptoView(TemplateView):
     
     @method_decorator(check_2fa)
     def dispatch(self, request, *args, **kwargs):
+        import pdb; pdb.set_trace()
         kyc_status = KYC.objects.filter(user=self.request.user,approved=True)
         if not kyc_status:
             return redirect(reverse_lazy("accounts:kyc"))
@@ -817,7 +818,7 @@ class BuyCryptoView(TemplateView):
             return self.post(request,**kwargs)
 
     def get_context_data(self, *args, **kwargs):
-        context = super().get_context_data()
+        context = super().get_context_data(**kwargs)
         context['rates'] = cache.get('rates')
         return context
 

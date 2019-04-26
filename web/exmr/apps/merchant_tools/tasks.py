@@ -30,9 +30,9 @@ coincap = CoincapAPI()
 @periodic_task(run_every=(crontab(minute='*/1')), name="check_market_rate", ignore_result=True)
 def check_market_rate():
    
-    coin_rate_list = coingecko.get_coins_markets('usd')
-    rates = {(rate['symbol']).upper():rate['current_price'] for rate in coin_rate_list}
-    cache.set('rates', rates)
+    # coin_rate_list = coingecko.get_coins_markets('usd')
+    # rates = {(rate['symbol']).upper():rate['current_price'] for rate in coin_rate_list}
+    # cache.set('rates', rates)
     cache.set('last_check',  datetime.now())
 
 

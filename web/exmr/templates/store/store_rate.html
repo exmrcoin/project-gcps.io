@@ -108,9 +108,9 @@
                <div>
                <div>
                {% if owner == username %}
-               <button  class="btn btn-lg btn-outline-orange"><a href="{% url 'store:update-store' store.pk %}">Update</a></button>
+               <button  class="btn btn-lg btn-outline-orange"><a class="text-white" href="{% url 'store:update-store' store.pk %}">Update</a></button>
                {% else %}
-               <button  class="btn btn-lg btn-outline-orange"><a href="{% url 'store:store-item' category.slug %}">Go Back</a></button>
+               <button  class="btn btn-lg btn-outline-orange text-white"><a class="text-white" href="{% url 'store:store-item' category.slug %}">Go Back</a></button>
                {% endif %}
                </div>            
                </div>

@@ -122,7 +122,7 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
         context = super(CoinConvertView2, self).get_context_data()
         sel_coin = request.POST.get('sel_coin')
         output_coin = request.POST.get('coin_radio')
-        shapeshift_available_coin = shapeshift.get_coins()
+        shapeshift_available_coin = coinswitch.get_coins()
         for coin in list(shapeshift_available_coin):
             if coin == output_coin:
                 context['output_coin_img'] = shapeshift_available_coin[coin]['image']
@@ -358,13 +358,13 @@ class NewCoinAddr(LoginRequiredMixin, TemplateView):
             erc = None
         if erc:
             try:
-                temp_wal_1 = EthereumTokenWallet.objects.get(
-                    user=self.request.user,  name__contract_symbol=code).addresses.filter(hidden=False).order_by('id')
+                temp_wal_1 = Wallet.objects.get(
+                    user=self.request.user,  name__code='ETH').addresses.filter(hidden=False).order_by('id')
             except:
                 temp_wal_1 = []
         try:
             temp_wal_2 = Wallet.objects.get(
-                user=self.request.user,  name__code=code).addresses.filter(hidden=False).order_by('id')
+                user=self.request.user,  name__code='ETH').addresses.filter(hidden=False).order_by('id')
         except:
             create_wallet(self.request.user, code)
             try:

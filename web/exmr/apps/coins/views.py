@@ -362,9 +362,10 @@ class NewCoinAddr(LoginRequiredMixin, TemplateView):
                     user=self.request.user,  name__code='ETH').addresses.filter(hidden=False).order_by('id')
             except:
                 temp_wal_1 = []
+        
         try:
             temp_wal_2 = Wallet.objects.get(
-                user=self.request.user,  name__code='ETH').addresses.filter(hidden=False).order_by('id')
+                user=self.request.user,  name__code=code).addresses.filter(hidden=False).order_by('id')
         except:
             create_wallet(self.request.user, code)
             try:

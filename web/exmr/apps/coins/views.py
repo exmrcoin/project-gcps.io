@@ -800,7 +800,7 @@ class ConversionView(View):
             # convert_to+"&compact=y&callback=json").text.split(":")[-1].strip("}});")),2)
         except:
             val = None
-        self.request.session["coin_amount"] = int(amount)/val
+        self.request.session["coin_amount"] = float(amount)/float(val)
 
         return HttpResponse(json.dumps({"value": val}), content_type="application/json")
 
@@ -809,7 +809,6 @@ class BuyCryptoView(TemplateView):
     
     @method_decorator(check_2fa)
     def dispatch(self, request, *args, **kwargs):
-        import pdb; pdb.set_trace()
         kyc_status = KYC.objects.filter(user=self.request.user,approved=True)
         if not kyc_status:
             return redirect(reverse_lazy("accounts:kyc"))

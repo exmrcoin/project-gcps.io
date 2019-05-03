@@ -11,10 +11,8 @@ class LocationBlock(MiddlewareMixin):
         g = GeoIP2()
         try:
             city = g.city(ip)["region"]
-            print(g.city(ip))
         except:
         	city = None
-        print(city)
         if city in BLOCK_REGION: 
                 return HttpResponseForbidden()
         return None

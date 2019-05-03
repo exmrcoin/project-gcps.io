@@ -72,6 +72,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django_session_timeout.middleware.SessionTimeoutMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -80,7 +81,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'apps.common.middleware.LocationBlock',
 ]
-
+SESSION_EXPIRE_SECONDS = 60
 AUTHENTICATION_BACKENDS = [
     'apps.accounts.backends.EmailOrUsernameModelBackend',
     'django.contrib.auth.backends.ModelBackend'

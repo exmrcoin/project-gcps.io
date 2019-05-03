@@ -88,7 +88,6 @@ class CoinConvertView(LoginRequiredMixin, TemplateView):
         image_path_list = {}
         exmr_list = coinlist.get_all_active_coin_code()   
         available_coins = list(filter(lambda x: x in list(shapeshift_available_coin), exmr_list))
-        # print((shapeshift_available_coin))
         for coin,value in temp_dict_1.items():
             for coin in exmr_list:
                 if not coin == sel_coin:
@@ -106,11 +105,8 @@ class CoinConvertView(LoginRequiredMixin, TemplateView):
         except Exception as e:
             raise e
 
-        for key,value in image_path_list.items():
-            print(key)
         context['coin_images'] = image_path_list
         context['avbl_coins'] = list(available_coins)
-        # print(image_path_list)
         context['sel_coin'] = sel_coin
         return context
 
@@ -148,8 +144,6 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
             context['rate_json'] = limit_json['rate']
             context['min_limit'] = round(1.3 * limit_json['minimum'], 8)
             context['max_limit'] = round(0.75 * limit_json['limit'], 8)
-            print(limit_json['minimum'])
-            print(limit_json['limit'])
             try:
                 balance = get_balance(self.request.user, sel_coin)
             except:
@@ -210,7 +204,6 @@ class CoinConvertView3(LoginRequiredMixin,TemplateView):
             # ret_addr = 'LXA3i9eEAVDbgDqkThCa4D6BUJ3SEULkEr'
             transaction_details = coinswitch.create_fixed_amount_tx(input_coin_value,
                 addr, sel_coin, output_coin, ret_addr, None, None, None)
-            print(transaction_details)
             try:
                 obj = ConvertTransaction.objects.create(
                     user=self.request.user,
@@ -342,7 +335,6 @@ class ConvertCoinsView(LoginRequiredMixin,FormView):
         return super(ConvertCoinsView, self).form_valid(form)
 
     def form_invalid(self, form):
-        print(form.errors)
         return super(ConvertCoinsView, self).form_invalid(form)
 
 
@@ -819,6 +811,7 @@ class BuyCryptoView(TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
+        context['coin_code'] = self.kwargs['currency']
         context['rates'] = cache.get('rates')
         return context
 
@@ -962,9 +955,7 @@ class DisplaySupportedCoins(View):
         for coin in temp_list:
             if coin == currency_code:
                 temp_list.remove(coin)
-        print(temp_list)
         final_dict = { key: coin_dict[key] for key in temp_list }
-        print(final_dict)
         data = final_dict
         return HttpResponse(json.dumps(data), content_type="application/json")
 

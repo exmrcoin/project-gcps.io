@@ -39,7 +39,7 @@ def send_mail(user, subject, message, from_email, recipient_list, fail_silently=
         Profile.objects.get(user= user).pgp_gpg_public_key
         message = smart_text(gpg.encrypt(message))
     except:
-        print("there is something wrong")
+        pass
     send_email_django(subject, message, from_email, recipient_list, fail_silently,\
               auth_user, auth_password, connection, html_message)
     return True

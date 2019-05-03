@@ -41,8 +41,6 @@ class HomeView(TemplateView):
         context['d1'] = dict(itertools.islice(i, n))   # grab first n items
         context['d2'] = dict(i)
         context['announce'] = announcements                        # grab the rest
-        # context['theme'] = curr_theme
-        # print(context['d1'])
         return context
 
 def theme_context(request):

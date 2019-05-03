@@ -19,7 +19,6 @@ class CoincapAPI:
 
 
     def __request(self, url):
-        #print(url)
         try:
             response = self.session.get(url, timeout = self.request_timeout)
             response.raise_for_status()

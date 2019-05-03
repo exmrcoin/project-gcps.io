@@ -466,7 +466,6 @@ def create_DASH_wallet(user, currency):
     try:
         wallet, created = Wallet.objects.get_or_create(user=user, name=coin)
         if created:
-            print(addr)
             wallet.addresses.add(WalletAddress.objects.create(address=addr))
             wallet.save()
         else:
@@ -543,7 +542,6 @@ class EthereumTokens():
                 user_addr = temp_addr.address
                 balance =balance + float(self.contract.call().balanceOf(
                     Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
-            print(balance)
         return balance
 
     def send(self, to_addr, amount):
@@ -732,7 +730,6 @@ class XMR():
         try:
             return result['result']['tx_hash']
         except:
-            print(result)
             return 'error'
 
 

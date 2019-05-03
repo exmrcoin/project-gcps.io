@@ -30,7 +30,6 @@ redis_object = redis.StrictRedis(host='localhost',
 def send_newsletter(self, request, queryset):
     queryset.update(is_active=True)
     profiles = Profile.objects.filter(is_subscribed=True)
-    print(profiles)
     for q in queryset:
         subject = q.subject
         content = q.content

@@ -580,7 +580,6 @@ class URLMakerInvoiceView(TemplateView):
         context['available_coins'] = coinlist.payment_gateway_coins()
         return context
 
-
 class POSCalcView(TemplateView):
     template_name = 'gcps/merchant_tools/pos_calc.html'
 
@@ -588,10 +587,10 @@ class POSCalcView(TemplateView):
         context = super().get_context_data()
         try:
             context['rates'] = cache.get('rates')
-            print(type(context['rates']))
         except:
-            print("passed")
-            pass
+            data = json.loads(requests.get("http://coincap.io/front").text)
+            rates = {rate['short']: rate['price'] for rate in data}
+            context['rates'] = json.dumps(rates)
         return context
 
 class POSCalcCoinSelect(TemplateView):
@@ -599,14 +598,16 @@ class POSCalcCoinSelect(TemplateView):
     def post(self, request, *args, **kwargs):
         input_amount = request.POST.get('amountf')
         input_currency = request.POST.get('select_currency')
-        print(input_currency)
         context = super().get_context_data(**kwargs)
         try:
             cur_rate = cache.get('rates')
+            context['rates'] = cur_rate
         except:
-            pass
+            data = json.loads(requests.get("http://coincap.io/front").text)
+            rates = {rate['short']: rate['price'] for rate in data}
+            context['rates'] = json.dumps(rates)
         if not input_currency == "USD":
-            usd_equivalent = round((cur_rate[input_currency] * float(input_amount)), 8)
+            usd_equivalent = round((float(cur_rate[input_currency]) * float(input_amount)), 8)
         else:
             usd_equivalent = float(input_amount)
 
@@ -622,7 +623,6 @@ class POSCalcCoinSelect(TemplateView):
         self.request.session['usd_equivalent'] = usd_equivalent
         # context['available_coins'] = Coin.objects.filter(active=True)
         context['available_coins'] = coinlist.payment_gateway_coins()
-        context['rates'] = cur_rate
         return render(self.request, 'gcps/merchant_tools/pos_coin_select.html', context)
 
 
@@ -632,10 +632,11 @@ class POSCALCPayView(TemplateView):
     template_name = 'merchant_tools/posqrpostpayment.html'
 
     def post(self, request, *args, **kwargs):
-        context = {}
+        context = super().get_context_data(**kwargs)
         superuser = User.objects.get(is_superuser=True)
         merchant_id = Profile.objects.get(
             user=self.request.user).merchant_id
+        merchant_user = Profile.objects.get(merchant_id=merchant_id).user
         unique_id = self.request.session['unique_transaction_id']
         input_amount = self.request.session['input_amount']
         input_coin = self.request.session['input_coin']
@@ -643,7 +644,9 @@ class POSCALCPayView(TemplateView):
         try:
             rates = cache.get('rates')
         except:
-            pass
+            data = json.loads(requests.get("http://coincap.io/front").text)
+            rates = {rate['short']: rate['price'] for rate in data}
+            rates = json.dumps(rates)
 
         if input_coin == "USD":
             selected_coin_amount = float(input_amount)/float(rates[selected_coin])
@@ -651,7 +654,7 @@ class POSCALCPayView(TemplateView):
             selected_coin_amount = (float(input_amount) * float(rates[input_coin]))/float(rates[selected_coin])
 
         addr = create_wallet(
-            superuser, selected_coin)
+            merchant_user, selected_coin)
         selected_coin_amount= round(selected_coin_amount,8)
         try:
             obj, created = MultiPayment.objects.get_or_create(
@@ -684,7 +687,6 @@ class POSCALCPayView(TemplateView):
         context['crypto_address'] = addr
         context['selected_coin'] = selected_coin
         context['amount_to_be_paid'] = selected_coin_amount
-        print(context['amount_to_be_paid'])
         return render(self.request, 'gcps/merchant_tools/poscalcpayment.html', context)
 
 
@@ -1074,7 +1076,6 @@ class ButtonMakerInvoice(TemplateView):
             shipping_cost_add = btn_item_obj.shipping_cost_add
             shipping_cost = btn_item_obj.shipping_cost
             tax_amount = float(btn_item_obj.item_tax) * float(item_qty)
-            print(btn_item_obj.item_tax)
             if ((float(shipping_cost_add)) > 0 and float(item_qty) > 1):
                 total_shipping = float(
                     shipping_cost) + (float(shipping_cost_add) * (float(item_qty)-1))
@@ -1131,8 +1132,6 @@ class ButtonMakerInvoice(TemplateView):
         else:
             total_shipping = float(shipping_cost)
 
-        print("1 total shipiing" + str(total_shipping))
-        print("tax amount" + str(tax_amount))
         context['unique_id'] = unique_id
         context['payable'] = (
             float(item_qty) * float(item_amount)) + total_shipping + float(tax_amount)
@@ -1359,7 +1358,6 @@ class SimpleButtonMakerInvoice(TemplateView):
         except:
             data = json.loads(requests.get("http://coincap.io/front").text)
             rates = {rate['short']: rate['price'] for rate in data}
-        print(rates)
         context['rates'] = json.dumps(rates)
         if self.invoice_url:
             temp_obj = SimpleButtonInvoice.objects.get(
@@ -1546,7 +1544,6 @@ class ButtonMakerPayView(TemplateView):
                 except Exception as e:
                     raise e
 
-        # print( unique_id + ','+ selected_coin + ','+payable_amt + ','+payable_amt_usd)
         try:
             try:
                 obj = MultiPayment.objects.filter(paid_unique_id=unique_id, paid_in=Coin.objects.get(

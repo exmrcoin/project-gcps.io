@@ -30,23 +30,28 @@
             </div>
             <div class="col-xs-12 col-md-8 text-justify">
                 <h4 class="help-label text-white">Frequently Asked Questions - BitCoin Payment Processor</h4>
-                <ul>
-                    {% for ques in faq %}
-                    <li>
-                        <a href="#question{{forloop.counter}}">{{ques.faq_question}}</a>
-                    </li>
+                <div class="col-xs-12 col-md-8 text-justify">
+                    <h4 class="help-label text-white">Frequently Asked Questions - BitCoin Payment Processor</h4>
+                    <ul>
+                        {% for ques in faq %}
+                        <li>
+                            <a href="#question{{forloop.counter}}">{{ques.faq_question}}</a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% for faq_ans in faq %}
+                    <div class="col-xs-12 " id="question{{forloop.counter}}" >
+                        <h4 class="help-label text-white">{{faq_ans.faq_question}}</h4>
+                        <p class="login-text ">{{faq_ans.faq_answer}}</p>
+                    </div>
                     {% endfor %}
-                </ul>
-                {% for faq_ans in faq %}
-                <div class="col-xs-12 " id="question{{forloop.counter}}">
-                    <h4 class="help-label text-white">{{faq_ans.faq_question}}</h4>
-                    <p class="login-text ">{{faq_ans.faq_answer}}</p>
                 </div>
-                {% endfor %}
+                
             </div>
         </div>
     </div>
 </section>
 
 {% block script %}
-<script src="{% static 'js/exmr.js' %}"></script> {% endblock %} {% endblock %}
+<script src="{% static 'js/exmr.js' %}"></script> 
+{% endblock %} {% endblock %}

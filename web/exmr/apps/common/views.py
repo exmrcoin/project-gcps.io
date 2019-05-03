@@ -60,9 +60,7 @@ class ModeChangeView(View):
             self.request.session['curr_theme'] = 'Night'
         else:
             self.request.session['curr_theme'] = 'Day'
-
-        print(self.request.session['curr_theme'])
-        return HttpResponse("test")
+        return HttpResponse(self.request.session['curr_theme'])
 
 class CoinRequestView(FormView):
     template_name = 'common/coin-hosting.html'

@@ -365,9 +365,13 @@
                         theme: theme,
                         csrfmiddlewaretoken: '{{ csrf_token }}',
                     },
-                     success: function(){
-                        location.reload() 
-                        }
+                     success: function(data){
+                      if (data ===  'Day') {
+                        $('#theme').attr('href', 'https://www.getcryptopayments.com/static/assests/css/dark-main.css')
+                      }else {
+                        $('#theme').attr('href', 'https://www.getcryptopayments.com/static/assests/css/main.css')
+                      }
+                    }
                 });
         
     });

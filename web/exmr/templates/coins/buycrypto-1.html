@@ -5,32 +5,27 @@
 
 <section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
     <div class="container">
-        <div class="row bx-ash text-white text-center" >
+        <div class="row bx-ash text-white text-center">
             <div class="col-12 text-center pt-1 px-5 pb-5 ">
                 <h1>Buy {{sel_coin}}</h1>
             </div>
             <div class="col-12">
                 <form method="POST" action=".">
                     {% csrf_token %}
-                    <!-- <div class="col-12">
-                        <span style="float: left; font-size: 20px;">0$</span>
-                        <span style="float: right; font-size: 20px;">5000$</span>
-                    </div>
-                    <div class="col-12" style="padding-top: 13px;">
-                        <input type="range" min="10" max="5000" value="50" link-to="text_box_name" id="rangeslider" style="width: 100%">
-                    </div> -->
                     <br><br>
-                    <div class="row" >
+                    <div class="row">
                         <div class="col-12 col-sm-6">
                             <label>USD: </label>
-                            <input type="text"  name="usd_value"  id="input_usd_value" class="value textfield-style1 text-whitw">
+                            <input type="text" name="usd_value" id="input_usd_value"
+                                class="value textfield-style1 text-white">
                         </div>
                         <div class="col-12 col-sm-6">
                             <label>{{ view.kwargs.currency }}:</label>
-                            <input type="text" name="coin_value" id="input_coin_value" class="value textfield-style1 text-white">
+                            <input type="text" name="coin_value" id="input_coin_value"
+                                class="value textfield-style1 text-white">
                         </div>
                         <div class="col-12 p-5">
-                            <input  type="submit" class="btn btn-success" value="Buy Coin">
+                            <input type="submit" class="btn btn-success" value="Buy Coin">
                         </div>
                     </div>
                 </form>
@@ -39,79 +34,45 @@
     </div>
 </section>
 
-<!-- <div class="p-5 text-center">
-    <div class="col-xs-12 text-center pt-1 px-5 pb-5 ">
-        <h1>Buy {{sel_coin}}</h1>
-    </div>
-    <form method="POST" action=".">
-        {% csrf_token %}
-        <div class="col-xs-12">
-            <span class="floatl">0$</span>
-            <span class="floatr">5000$</span>
-        </div>
-        <input type="range" min="10" max="5000" value="50" link-to="text_box_name" id="rangeslider">
-
-        <br><br>
-        <div class="col-xs-12 col-sm-6">
-            <label>USD: </label>
-            <input type="text"  name="usd_value"  id="input_usd_value" class="value textfield-style1">
-        </div>
-        <div class="col-xs-12 col-sm-6">
-            <label>{{ view.kwargs.currency }}:</label>
-            <input type="text" name="coin_value" id="input_coin_value" class="value textfield-style1">
-        </div>
-        <div class="col-xs-12 p-5">
-            <input type="submit" class="btn btn-success" value="Buy Coin">
-        </div>
-    </form>
-
-</div> -->
 {% endblock %} {% block script %}
-<!-- 
-<script type="text/javascript">
-    var elem = document.querySelector('input[type="range"]');
-    var rangeValue = function () {
-        var newValue = elem.value;
-        var target = document.querySelector('#input_usd_value');
-        target.value = newValue;
-        convert_to_usd();
-    }
-    elem.addEventListener("input", rangeValue);
-</script> -->
+
 <script>
-    $('#input_usd_value').change(function () {
-        var elem = document.querySelector('#input_coin_value');
-        // var newValue = elem.value;
-        // if (newValue > 5000) {
-        //     elem.value = 5000;
-        // }
-        // target = document.querySelector('#rangeslider');
-        // target.value = newValue;
-        convert_to_usd();
-    });
-</script>
-
-<script type="text/javascript">
-
-function convert_to_usd(){
-
-    $.ajax({
+    var rates = {{ rates|safe }};
+    var dest_coin = "{{view.kwargs.currency}}";
+    function get_rate(){
+            $.ajax({
                 type: "GET",
-                url: "{% url 'coins:currency_convert' %}",
-                data: {
-                    'to': "{{ view.kwargs.currency }}",
-                    'amount':parseInt($('#input_usd_value').val()), 
-                },
+                dataType: 'json',
+                async:true,
+                url: "{% url 'coins:getcurrentrate' %}",
                 success: function (data) {
-                    usd = parseInt($('#input_usd_value').val());
-                    console.log(data["value"]*usd)
-                    $("#input_coin_value").val(usd/data["value"])
+                    rates = data;
+                },
+                error:function(data){
+                    console.log(data);
                 }
             })
+    }
 
-}
+    $('#input_usd_value').change(function () {
+        get_rate();
+        var elem = document.getElementById('input_usd_value').value;
+        var dest_coin_rate = rates[dest_coin];
+        var dest_coin_amt = (elem / dest_coin_rate).toFixed(8);
+        document.getElementById('input_coin_value').value = dest_coin_amt;
 
-$.urlParam = function(name){
+    });
+
+    
+    $('#input_coin_value').change(function () {
+        get_rate();
+        var elem = document.getElementById('input_coin_value').value;
+        var dest_coin_rate = rates[dest_coin];
+        var usd_amt = (elem * dest_coin_rate).toFixed(2);
+        document.getElementById('input_usd_value').value = usd_amt;
+    });
+
+    $.urlParam = function(name){
     var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
     return results[1]||0;
 }
@@ -119,5 +80,7 @@ $.urlParam = function(name){
 
 if ($.urlParam('error'))
     alert("Currently we have insufficient funds. Please try with lesser amount.")
-</script> -->
+
+</script>
+
 {% endblock %}

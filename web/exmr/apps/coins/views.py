@@ -23,6 +23,7 @@ from django.template import RequestContext
 from django.shortcuts import get_object_or_404
 from django.template.loader import render_to_string
 from django.utils.decorators import method_decorator
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
 from django.views.generic import ListView, FormView, TemplateView, DetailView, View, UpdateView
@@ -796,7 +797,7 @@ class ConversionView(View):
 
         return HttpResponse(json.dumps({"value": val}), content_type="application/json")
 
-class BuyCryptoView(TemplateView):
+class BuyCryptoView(LoginRequiredMixin,TemplateView):
     template_name = "coins/buycrypto-1.html"
     
     @method_decorator(check_2fa)
@@ -815,16 +816,16 @@ class BuyCryptoView(TemplateView):
         context['rates'] = cache.get('rates')
         return context
 
-
+    @login_required
     def post(self, request, *args, **kwargs):
-        context = {}
+        context = super().get_context_data(**kwargs)
         coin_code = kwargs["currency"]
         coin_user = User.objects.get(is_superuser = True, username="admin")
         balance = get_balance(coin_user, coin_code)
         amount = str(round(float(request.POST.get("usd_value")),4))
         currency = "USD"
 
-        coin_amount = round(float(request.session["coin_amount"])*float(amount),4)
+        coin_amount = round(float(request.POST.get("coin_value"))*float(amount),8)
         if float(coin_amount) <= balance:
             payment = paypalrestsdk.Payment({
                 "intent": "sale",
@@ -1153,7 +1154,7 @@ class HiddenAddress(TemplateView):
     
         
 class GetCurrentRate(View):
-    def post(self, request, *args, **kwargs):
+    def get(self, request, *args, **kwargs):
         try:
             rates = cache.get('rates')
         except:
@@ -1161,4 +1162,6 @@ class GetCurrentRate(View):
             rates = {rate['short']:rate['price'] for rate in data}
 
         data = json.dumps(rates)
+        print(data)
+        print(type(data))
         return HttpResponse(data, content_type='application/json') 

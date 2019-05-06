@@ -816,7 +816,7 @@ class BuyCryptoView(LoginRequiredMixin,TemplateView):
         context['rates'] = cache.get('rates')
         return context
 
-    @login_required
+    # @login_required
     def post(self, request, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         coin_code = kwargs["currency"]

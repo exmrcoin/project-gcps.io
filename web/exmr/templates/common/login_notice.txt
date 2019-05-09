@@ -1,0 +1,11 @@
+Hello {{ username }},
+
+This email confirms you have logged in to your GetCryptoPayments.com account from {{ip}} at this time.
+
+If you did not log in you should change your GetCryptoPayments.com password immediately since whoever did this has your correct password. You should also check for any changes to your Coin Acceptance settings and/or coin balances in your GetCryptoPayments Wallet.
+
+Thank you,
+GetCryptoPayments.com
+Support is available at: https://www.getcryptopayments.com/common/help/
+
+Login request was made from IP: {{ip}}

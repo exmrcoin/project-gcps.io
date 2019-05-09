@@ -1,0 +1,11 @@
+Hello {{ username }},
+
+Deposit Address {{object}} of {{code}} has been hidden from your GetCryptoPayments Dashboard. 
+
+If you did not authorize the specified change, you should change your GetCryptoPayments.com password immediately since whoever did this has your correct password. You should also check for any changes to your Coin Acceptance settings and/or coin balances in your GetCryptoPayments Wallet.
+
+Thank you,
+GetCryptoPayments.com
+Support is available at: https://www.getcryptopayments.com/common/help/
+
+Hide request was made from IP: {{ip}}

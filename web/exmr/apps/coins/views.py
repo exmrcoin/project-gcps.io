@@ -822,9 +822,8 @@ class BuyCryptoView(LoginRequiredMixin,TemplateView):
         coin_code = kwargs["currency"]
         coin_user = User.objects.get(is_superuser = True, username="admin")
         balance = get_balance(coin_user, coin_code)
-        amount = str(round(float(request.POST.get("usd_value")),4))
+        amount = round(float(request.POST.get("usd_value")),4)
         currency = "USD"
-
         coin_amount = round(float(request.POST.get("coin_value"))*float(amount),8)
         if float(coin_amount) <= balance:
             payment = paypalrestsdk.Payment({
@@ -845,7 +844,7 @@ class BuyCryptoView(LoginRequiredMixin,TemplateView):
                     "amount": {
                         "total": amount,
                         "currency": currency},
-                    "description": coin_code+" buy transaction. Amount of "+amount+currency}]})
+                    "description": coin_code+" buy transaction. Amount of "+ str(amount) +currency}]})
 
             if payment.create():
                 PaypalTransaction.objects.create(
@@ -1122,8 +1121,8 @@ class CoinHide(TemplateView):
             obj = get_object_or_404(addr, pk=key)
            
         else:
-            addr = EthereumTokenWallet.objects.get(
-                user=self.request.user,  name__contract_symbol=code).addresses
+            addr = Wallet.objects.get(
+                user=self.request.user,  name__code='ETH').addresses
             obj = get_object_or_404(addr, pk=key)
 
         if obj.hidden == True:
@@ -1132,8 +1131,24 @@ class CoinHide(TemplateView):
             obj.hidden = True
 
         obj.save()
+        context = {
+                   "ip": self.get_client_ip(request),
+                   "username": request.user.username,
+                   "object" : obj,
+                   "code" : code,
+                #    "otp": request.session['email_otp'],
+                   }
+        msg_plain = render_to_string('common/hidden_address.txt', context)
+        send_mail(self.request.user, 'Deposit Address Hide Notice', msg_plain , settings.EMAIL_HOST_USER, [request.user.email], fail_silently=False)
         return redirect(reverse_lazy('coins:newaddr', kwargs={'currency': self.kwargs.get('currency')}))
-
+    
+    def get_client_ip(self, request):
+        x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+        if x_forwarded_for:
+            ip = x_forwarded_for.split(',')[0]
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
 class HiddenAddress(TemplateView):
     template_name = 'coins/hidden_address.html'
 
@@ -1146,8 +1161,8 @@ class HiddenAddress(TemplateView):
                     user=self.request.user,  name__code=code).addresses.filter(hidden=True).order_by('id')
             
         else:
-                context['wallets'] = EthereumTokenWallet.objects.get(
-                    user=self.request.user,  name__contract_symbol=code).addresses.filter(hidden=True).order_by('id')
+                context['wallets'] = Wallet.objects.get(
+                    user=self.request.user,  name__code='ETH').addresses.filter(hidden=True).order_by('id')
         context['code'] = code
         return context
 

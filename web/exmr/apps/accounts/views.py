@@ -402,13 +402,19 @@ class Verify2FAView(LoginRequiredMixin, View):
 
     def post(self, request, *args, **kwargs):
         otp_code = self.request.POST.get('otp')
-
+        context = {
+                   "ip": self.get_client_ip(request),
+                   "username": request.user.username,
+                   "otp": request.session['email_otp'],
+                   }
+        msg_plain = render_to_string('common/login_notice.txt', context)
         if request.user.get_profile.two_factor_auth == 0 or \
                 not TwoFactorAccount.objects.filter(account_type='google_authenticator').exists():
             two_factor_type = 'Email'
 
             if request.session.get('email_otp') == otp_code:
                 request.session['2fa_verified'] = True
+                send_mail(self.request.user, 'Login Notice', msg_plain , settings.EMAIL_HOST_USER, [request.user.email], fail_silently=False)
                 return redirect(reverse('accounts:profile'))
 
         elif request.user.get_profile.two_factor_auth == 2:
@@ -421,6 +427,7 @@ class Verify2FAView(LoginRequiredMixin, View):
 
                 if totp.verify(otp_code):
                     self.request.session['2fa_verified'] = True
+                    send_mail(self.request.user, 'Login Notice', msg_plain, settings.EMAIL_HOST_USER, ['ebrahimasifismail@gmail.com'], fail_silently=False)
                     return redirect(reverse('accounts:profile'))
 
         context = {

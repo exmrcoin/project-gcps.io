@@ -39,6 +39,7 @@ def check_market_rate():
     coin_rate_list = coincap.get_coins_markets('usd')
     rates = {(rate['symbol']).upper():rate['priceUsd'] for rate in coin_rate_list['data']}
     cache.set('rates', rates)
+    
 
 
     # try:
@@ -53,6 +54,7 @@ def check_market_rate():
 def send_feedback_email_task():
     logger.info("check_timedout")
     rates = cache.get('rates')
+    # send_mail('check_timedout', 'Balance = '+str(balance)+'address = '+multi_payment.address+'coin = '+multi_payment.code+'rates'+str(rates)+'    '+'market', settings.EMAIL_HOST_USER, ['ebrahimasifismail@gmail.com'], fail_silently=False)
     pending = MerchantPaymentWallet.objects.filter(is_active=True)
     if pending:
         for multi_payment in pending:

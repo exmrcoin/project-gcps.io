@@ -610,7 +610,7 @@ class POSCalcCoinSelect(TemplateView):
             usd_equivalent = round((float(cur_rate[input_currency]) * float(input_amount)), 8)
         else:
             usd_equivalent = float(input_amount)
-
+            
         context['amount'] = input_amount
         context['usd_amount'] = usd_equivalent
         context['input_currency'] = input_currency

@@ -148,13 +148,12 @@ class ProfileActivation(models.Model):
     user = models.ForeignKey(User, verbose_name=_('user'), on_delete=models.CASCADE)
     activation_key = models.CharField(max_length=64)
     expired = models.BooleanField(default=False)
-
+    
     def send_activation_email(self, site, request=None):
         """
         Send an activation email to the user associated with this
         ``ProfileActivation``.
         """
-
         activation_email_subject = _('Account Activation Link')
         activation_email_body = 'accounts/activation_email.txt'
         activation_email_html = 'accounts/activation_email.html'

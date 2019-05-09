@@ -81,7 +81,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'apps.common.middleware.LocationBlock',
 ]
-SESSION_EXPIRE_SECONDS = 120
+SESSION_EXPIRE_SECONDS = 600
 AUTHENTICATION_BACKENDS = [
     'apps.accounts.backends.EmailOrUsernameModelBackend',
     'django.contrib.auth.backends.ModelBackend'

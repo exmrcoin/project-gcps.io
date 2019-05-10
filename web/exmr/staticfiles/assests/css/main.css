@@ -1227,6 +1227,7 @@ background: none;
 padding: .75rem;
 vertical-align: top;
 border-top: 1px solid #333;
+text-align: center;
 }
 .table {
 color: #fff;

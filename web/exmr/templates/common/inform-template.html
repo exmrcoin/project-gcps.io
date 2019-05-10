@@ -64,14 +64,14 @@
     <div class="row xs-padx1">
         <div class="col-xs-12 col-md-4 ">
             <div class="help-sidebar">
-                <h3 class="sidebar-label help-label">Informational Commands</h3>
+                <h3 class="sidebar-label text-white">Informational Commands</h3>
                 {% for topic in inform_sidebar %}
 
                 <li>
                     <a href="{% url 'common:apitopic' topic.slug %}" class="sidebar-link">{{topic.inform_topic}}</a>
                 </li>
                 {% endfor %}
-                <h3 class="sidebar-label help-label">Receiving Payments</h3>
+                <h3 class="sidebar-label text-white">Receiving Payments</h3>
                 {% for topic in receive_sidebar %}
 
                 <li>

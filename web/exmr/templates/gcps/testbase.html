@@ -367,9 +367,9 @@
                     },
                      success: function(data){
                       if (data ===  'Day') {
-                        $('#theme').attr('href', 'https://www.getcryptopayments.com/static/assests/css/dark-main.css')
+                        $('#theme').attr('href', "{% static 'assests/css/dark-main.css' %}")
                       }else {
-                        $('#theme').attr('href', 'https://www.getcryptopayments.com/static/assests/css/main.css')
+                        $('#theme').attr('href', "{% static 'assests/css/main.css' %}")
                       }
                     }
                 });

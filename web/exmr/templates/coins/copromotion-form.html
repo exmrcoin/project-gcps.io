@@ -6,7 +6,7 @@
 
 <section class="section section-pad">
 	<div class="bx-ash ">
-		<div class="dark-page-header text-center">
+		<div class="dark-page-header text-white text-center">
 			<h2 class="pad10 mt-2">
 					We appreciate your efforts into participating in the Coin Listing Competition and we’re into rewarding your hard work with more points and provide your team and community more leverage in the competition.
 			</h2>
@@ -16,7 +16,7 @@
 	</div>
 	<div class="container">
 		<div class="mt-4 bx-ash">
-			<h4 style="color:white;">Submit your co-promotion URLs below:</h4>
+			<h4 class="text-white">Submit your co-promotion URLs below:</h4>
 			<div class="panel panel-default" style="padding: 30px;background-color: transparent;border-radius: 10px ;">
 				{% for message in messages %}
 				{% if message %}
@@ -27,7 +27,7 @@
 				{% endfor %}
 				<form action="#" method="post">
 					{% csrf_token %} 
-					<div id="id_copromotion_form" style="color: white">
+					<div id="id_copromotion_form" class="text-white">
 						<div class="form-group" >
 							<label for="url1">Select Coin</label>
 							<select name="coin_id" class="form-control selectpicker">
@@ -56,8 +56,8 @@
 				</form>
 			</div>
 			
-					<h3 style="text-align: center;margin-bottom:30px;color:white">Prerequisites For High-Leverage Tasks</h3>
-					<div class="row" style="color:white">
+					<h3 class="text-white" style="text-align: center;margin-bottom:30px;">Prerequisites For High-Leverage Tasks</h3>
+					<div class="row text-white">
 						<div class="col-md-6">
 							<p style="text-align: center;"><strong>1,000 points per complete each high-leverage task below.</strong></p>
 							<br>
@@ -133,7 +133,7 @@
 </section>
 
 
-<div class="container-fluid fluid-drop" style="padding-bottom: 70px;">
+<!-- <div class="container-fluid fluid-drop" style="padding-bottom: 70px;">
 	<div class="col-md-10 offset-md-1">
 	    <h2 style="text-align: center;font-size: 22px;line-height: 1.5;margin-bottom: 50px;">We appreciate your efforts into participating in the Coin Listing Competition and we’re into rewarding your hard work with more points and provide your team and community more leverage in the competition.</h2>
 	</div>
@@ -249,7 +249,7 @@
 	        </ul>
 	    </div>
 	</div>
-</div>
+</div> -->
 
 {% endblock %}
 {% block script %}

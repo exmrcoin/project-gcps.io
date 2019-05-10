@@ -4,7 +4,7 @@
     <div class="dark-page-header text-white">
         <h1 class="pad10 mt-1">{% trans 'SUPPORTED COINS' %}</h1>
         <h5 class="mt-2">
-            {% trans 'Instant get crypto payments checkout with easy to use cart plugin, advanced, invoice buillder and API for custom integration' %}
+            {% trans 'Instant get crypto payments checkout with easy to use cart plugin, advanced, invoice builder and API for custom integration' %}
         </h5>
     </div>
 </div>
@@ -14,10 +14,10 @@
                 <ul class="pad10 custom-ul row mb-0">
                     {% for coin_type in coin_types %}
                     <li class="col-xs-12 col-sm-3 ">
-                        <label for="checkbox1" class="mt0">
-                            {{ coin_type.1 }}
+                        <label class="mt0">
+                            
                             <input id="checkbox1" name="type" type="radio" onclick="window.location='{% url 'coins:supported_coins' coin_type.1 %}';" value={{ coin_type.0 }} class="mt0 floatl" {% ifequal selected_coin_type coin_type.0%}
-                                checked{% endifequal %}>
+                                checked{% endifequal %}>{{ coin_type.1 }}
                         </label>
                     </li>
                     {% endfor %}

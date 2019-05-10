@@ -1146,6 +1146,7 @@ label, input {
  border-bottom: 1px solid #333;
  border-top: none;
  color: #3f3830;
+ text-align: center
 }
 .login-text{
  color:#3f3830;

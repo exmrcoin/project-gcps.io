@@ -11,6 +11,7 @@ import collections
 from decimal import Decimal
 from itertools import chain
 from solc import compile_source
+from neorpc.Client import RPCClient
 from web3.contract import ConciseContract
 from web3 import Web3, HTTPProvider, TestRPCProvider
 from stellar_base.asset import Asset
@@ -328,7 +329,6 @@ class XRPTest():
             pub_address = wallet.addresses.all()[0].address
         return pub_address
 
-
 class ETH():
     def __init__(self, user=None, currency="ETH", addr=None):
         self.user = user
@@ -527,13 +527,14 @@ class EthereumTokens():
         return address
 
     def balance(self, address=None):
+        coin = EthereumToken.objects.get(contract_symbol=self.code)
         if address:
             user_addr = address
             balance = float(self.contract.call().balanceOf(
                 Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
         else:
-            user_addr_list_1 = EthereumTokenWallet.objects.get(
-                user=self.user, name__contract_symbol=self.code).addresses.all()
+            user_addr_list_1 = Wallet.objects.get(
+                user=self.user, token_name=coin).addresses.all()
             ETHcoin = Coin.objects.get(code='ETH')
             user_addr_list_2 = Wallet.objects.get(user=self.user, name=ETHcoin).addresses.all()
             user_addr_list = list(chain(user_addr_list_1, user_addr_list_2))

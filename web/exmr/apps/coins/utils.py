@@ -11,7 +11,6 @@ import collections
 from decimal import Decimal
 from itertools import chain
 from solc import compile_source
-from neorpc.Client import RPCClient
 from web3.contract import ConciseContract
 from web3 import Web3, HTTPProvider, TestRPCProvider
 from stellar_base.asset import Asset

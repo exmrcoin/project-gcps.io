@@ -213,7 +213,12 @@
                 <div class="row animatedParent animateOnce">
                   <div class="col-sm-12 col-md-6 animated fadeInLeftShort">
                     <div class="form-group">
-                      <img src="{% static 'gcps/images/logoclearwhite.png' %}" class="img-logo img-fluid w100px" />
+                      {% if theme == "Day" %}
+                      <img id="logo" src="{% static 'gcps/images/logoclear.png' %}" class="img-logo img-fluid w100px" />
+                      {% else %}
+                      <img id="logo" src="{% static 'gcps/images/logoclearwhite.png' %}" class="img-logo img-fluid w100px" />
+                      {% endif %}
+                      
                     </div>
                     <h1 class="text-white b-300">Welcome to</h1>
                     <h1 class="text-white b-800 titl-bg"><i class="fa fa-address-book-o" aria-hidden="true"></i>GCPS 2.0</h1>
@@ -753,9 +758,11 @@
                   },
                    success: function(data){
                       if (data ===  'Day') {
-                        $('#theme').attr('href', 'https://www.getcryptopayments.com/static/assests/css/dark-main.css')
+                        $('#theme').attr('href', "{% static 'assests/css/dark-main.css' %}")
+                        $('#logo').attr('src', "{% static 'gcps/images/logoclear.png' %}")
                       }else {
-                        $('#theme').attr('href', 'https://www.getcryptopayments.com/static/assests/css/main.css')
+                        $('#theme').attr('href', "{% static 'assests/css/main.css' %}")
+                        $('#logo').attr('src', "{% static 'gcps/images/logoclearwhite.png' %}")
                       }
                     }
               });

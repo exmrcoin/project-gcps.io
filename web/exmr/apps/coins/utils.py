@@ -532,11 +532,16 @@ class EthereumTokens():
             balance = float(self.contract.call().balanceOf(
                 Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
         else:
+            try:
+                user_addr_list_3 = EthereumTokenWallet.objects.get(user=self.user, token_name=self.code).addresses.all()
+            except:
+                user_addr_list_3 = []
+
             user_addr_list_1 = Wallet.objects.get(
                 user=self.user, token_name=coin).addresses.all()
             ETHcoin = Coin.objects.get(code='ETH')
             user_addr_list_2 = Wallet.objects.get(user=self.user, name=ETHcoin).addresses.all()
-            user_addr_list = list(chain(user_addr_list_1, user_addr_list_2))
+            user_addr_list = list(chain(user_addr_list_1, user_addr_list_2, user_addr_list_3))
             balance = 0
             for temp_addr in user_addr_list:
                 user_addr = temp_addr.address

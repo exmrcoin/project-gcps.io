@@ -386,10 +386,9 @@ class ETH():
 
     def send(self, to_addr, amount):
         to_addr = check_pay_by_name(to_addr, "ETH")
-        user_addr = Wallet.objects.get(
-            user=self.user, name__code='ETH').addresses.all()[0].address
-        user_addr_list = Wallet.objects.filter(
-            user=self.user, name__code='ETH').addresses.all()
+        user_addr = Wallet.objects.get(user=self.user, name__code='ETH').addresses.all()[0].address
+        user_addr_list = (Wallet.objects.get(
+            user=self.user, name__code='ETH')).addresses.all()
         current_balance = 0
         temp_addr_list = {}
         # for temp_addr in user_addr_list:
@@ -403,23 +402,24 @@ class ETH():
         addr_balance_list = {}
         for temp_addr in user_addr_list:
             try:
-                addr_balance_list[temp_addr] = cache.get[temp_addr]
+                addr_balance_list[temp_addr.address] = cache.get(temp_addr.address)
             except:
-                addr_balance_list[temp_addr] = self.balance[temp_addr]
+                addr_balance_list[temp_addr.address] = self.rcvd_bal(temp_addr.address)
 
-        sorted_addr_balance_list = sorted(addr_balance_list.items(), key=lambda kv: kv[1], reverse=True)
+        # sorted_addr_balance_list = sorted(addr_balance_list.items(), key=lambda kv: kv[1], reverse=True)
         
-        temp_bal_amt = amount
-        cur_addr_list ={}
-        for addr_temp in sorted_addr_balance_list:
-            if temp_bal_amt >= 0:
-                temp_bal_amt = addr_balance_list[addr_temp] - temp_bal_amt
-                cur_addr_list[addr_temp]= addr_balance_list[addr_temp]
+        # temp_bal_amt = amount
+        # cur_addr_list ={}
+        # for addr_temp in sorted_addr_balance_list:
+        #     if temp_bal_amt >= 0:
+        #         temp_bal_amt = addr_balance_list[addr_temp.address] - temp_bal_amt
+        #         cur_addr_list[addr_temp.address]= addr_balance_list[addr_temp.address]
 
         try:
             result = w3.personal.sendTransaction({"from": Web3.toChecksumAddress(user_addr), "to": Web3.toChecksumAddress(
                 to_addr), "value": Web3.toWei(amount, "ether")}, passphrase="passphrase")
             sending_commission = add_commission(self.user, self.currency, amount)
+            import pdb; pdb.set_trace()
             return result.title().hex()
         except:
             return {"error": "insufficient funds for gas * price + value"}

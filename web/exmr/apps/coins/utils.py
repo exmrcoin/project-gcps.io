@@ -165,7 +165,6 @@ def get_balance(user, currency, addr=None):
     """
     Retrive specified user wallet balance.
     """
-
     erc = EthereumToken.objects.filter(contract_symbol=currency)
     if erc:
         balance = EthereumTokens(user=user, code=currency, addr=addr).balance()
@@ -533,7 +532,7 @@ class EthereumTokens():
                 Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
         else:
             try:
-                user_addr_list_3 = EthereumTokenWallet.objects.get(user=self.user, token_name=self.code).addresses.all()
+                user_addr_list_3 = EthereumTokenWallet.objects.get(user=self.user, name__contract_symbol=self.code).addresses.all()
             except:
                 user_addr_list_3 = []
 
@@ -543,10 +542,13 @@ class EthereumTokens():
             user_addr_list_2 = Wallet.objects.get(user=self.user, name=ETHcoin).addresses.all()
             user_addr_list = list(chain(user_addr_list_1, user_addr_list_2, user_addr_list_3))
             balance = 0
+            print(str(datetime.datetime.now()))
             for temp_addr in user_addr_list:
                 user_addr = temp_addr.address
                 balance =balance + float(self.contract.call().balanceOf(
                     Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
+                
+                print(str(datetime.datetime.now()))
         return balance
 
     def send(self, to_addr, amount):

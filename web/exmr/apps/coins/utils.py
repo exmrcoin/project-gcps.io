@@ -533,7 +533,7 @@ class EthereumTokens():
                 Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
         else:
             try:
-                user_addr_list_3 = EthereumTokenWallet.objects.get(user=self.user, token_name=self.code).addresses.all()
+                user_addr_list_3 = EthereumTokenWallet.objects.get(user=self.user, name__contract_symbol=self.code).addresses.all()
             except:
                 user_addr_list_3 = []
 

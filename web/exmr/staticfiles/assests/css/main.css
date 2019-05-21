@@ -1047,7 +1047,7 @@ color: #A6ACAF;
 }
 .table-bordered td,
 tr {
-border: 1px solid #333;
+/* border: 1px solid #333; */
 }
 .table-bordered th {
 border: 1px solid #333;
@@ -1707,7 +1707,7 @@ color: black; /* prevent
    background-color: #27272e;
    }
    input:focus + .slider {
-   box-shadow: 0 0 1px #2196F3;
+   box-shadow: 0 0 1px #27272e;
    }
    input:checked + .slider:before {
    -webkit-transform: translateX(26px);

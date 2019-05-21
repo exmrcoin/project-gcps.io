@@ -211,8 +211,8 @@
                     data: {
                     },
                     success: function (data) {
-
-                         $("#transactionTable").append(data.data)
+                        alert(data.data);
+                        $("#transactionTable").html(data.data)
                         }
                     })
 

@@ -101,9 +101,11 @@
                             <td>{% trans '1.00000' %}</td>
                             <td>
                                 
-                                <a href="{% url 'coins:wallets' %}" class="btn btn-default white-font orange-bg  btn-ex" data-coin-id="{{ token.contract_symbol }}" data-toggle="modal"
-                                    data-coin-id="" onclick="show_coin_selector('{{coin.code}}')">
+                                <!-- <a href="{% url 'coins:wallets' %}" class="btn btn-default white-font orange-bg  btn-ex" data-coin-id="{{ token.contract_symbol }}" data-toggle="modal"
+                                    data-coin-id="" onclick="show_coin_selector('{{coin.code}}')"> -->
+
                                     <!-- data-target="#myModal" -->
+                                    <a href="{% url 'coins:wallets' %}" class="btn btn-default white-font orange-bg  btn-ex">
                                     <img class="w20px" src={% static 'images/arrows.svg' %}>
                                     <span>Start</span>
                             </a>

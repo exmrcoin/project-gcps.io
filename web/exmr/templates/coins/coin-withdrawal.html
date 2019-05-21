@@ -24,10 +24,10 @@
                                                 <p><b>{% trans 'Minimum Withdrawal' %} :</b></p>
                                                 <p><b>{% trans 'Current Bal' %} :</b></p>
                                                 <p style=" padding-bottom: 40px"><b>{% trans 'Send/Withdrawal Amount' %} : </b></p>
-                                                <p><b>{% trans 'Transation Fee (est.)' %}' : </b></p>
+                                                <p><b>{% trans 'Transaction Fee (est.)' %} : </b></p>
                                                 <p><b>{% trans 'Total Withdrawal' %} : </b></p>
-                                                 <p>{{coin.name}} {% trans 'Address or $payByName' %} : </p>
-                                                 <p>{% trans 'Optional Note ' %}' </p>
+                                                 <p><b>{{coin.name}} {% trans 'Address or $payByName' %} : </b></p>
+                                                 <p><b>{% trans 'Optional Note ' %}: </b></p>
                                               </div>
                                               <div class="col-4 col-sm-4 col-md-6 col-lg-8 lh40" align="left" style="line-height: 40px;">
                                                 <p>00010 {% if coin.code %}{{coin.code}}{% else %}{{ coin.contract_symbol }}{% endif %}</p>
@@ -54,8 +54,8 @@
                                                     </div>
                                                   </div>
                                                 </div>
-                                                <p style="margin-top: 19px;">000 {{ coin.code }}</p>
-                                                <p  id="id_amount">000 {{ coin.code }}</p>
+                                                <p style="margin-top: 19px;">{{ coin.code }}</p>
+                                                <p  id="id_amount">{{ coin.code }}</p>
                                                 <input type="text" class="form-control form-group wallet-send-coin-addr" />
                                                 <input type="text" class="form-control form-group" />
                                                 {% if not coin.code %}

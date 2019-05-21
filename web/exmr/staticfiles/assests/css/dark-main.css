@@ -1696,11 +1696,11 @@ h6{
 }
   
   input:checked + .slider {
-    background-color: #2196F3;
+    background-color: #27272e;
   }
   
   input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px #27272e;
   }
   
   input:checked + .slider:before {

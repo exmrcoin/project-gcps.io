@@ -21,6 +21,7 @@ from django.contrib.sites.models import Site
 from django.views.decorators.cache import cache_control, never_cache
 from django.core.cache import cache
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
+from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 
 
 from apps.accounts.models import Profile
@@ -593,7 +594,7 @@ class POSCalcView(TemplateView):
             context['rates'] = json.dumps(rates)
         return context
 
-class POSCalcCoinSelect(TemplateView):
+class POSCalcCoinSelect( TemplateView):
     template_name = 'gcps/merchant_tools/pos_coin_select.html'
     def post(self, request, *args, **kwargs):
         input_amount = request.POST.get('amountf')

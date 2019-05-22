@@ -1,17 +1,16 @@
 {% extends 'gcps/base.html' %} {% load static %}{% load transaction_status %}{% block style %}
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-html5-1.5.1/b-print-1.5.1/r-2.2.1/sc-1.4.4/datatables.min.css"
 /> {% endblock %} {% block content %}
-<!-- <section class="col-12 section-blue">
+<section class="section section-pad">
     <div class="col-12 pb-5 pt-5">
 
         <div class="col-12 d-flex justify-content-center" style="position: relative">
-            <canvas id="myChart" style="max-width: 400px; max-height:400px; min-width:280px" width="400" height="400"></canvas>
             <div style="position: absolute;top: 50%;max-width:100px; max-height:50px;text-overflow: ellipsis;">
-                <span style="font-size: 14pt;color: white;" id="total_usd">$1,234,567</span>
+                <a href="{% url 'coins:admin_wallet_coin' %}">View Coins</a>
             </div>
         </div>
     </div>
-</section> -->
+</section> 
 <section class="section section-pad">
     <div class=" bx-ash col-12 p-md-5 pb-5 pt-5">
         <table id="data_table" class="table table-border table-responsive-md" style="width:100%; ">

@@ -761,6 +761,40 @@ class BalanceView(View):
         data = {'balance': str(balance), 'code': currency_code, 'value': value}
         return HttpResponse(json.dumps(data), content_type="application/json")
 
+class AdminBalanceView(View):
+    def get(self, request, *args, **kwargs):
+        currency_code = self.request.GET.get('code')
+        # if currency_code=='EXMR':
+        #     import pdb; pdb.set_trace()
+        value = None
+        if not cache.get('rates'):
+            data = json.loads(requests.get("http://coincap.io/front").text)
+            rates = {rate['short']:rate['price'] for rate in data}
+            self.request.session["rates"] = rates
+        else:
+            rates = cache.get('rates')
+
+        if 'Test' in currency_code:
+            new_currency_code = currency_code.strip("Test")
+        else:
+            new_currency_code = currency_code
+        temp_balance = 0
+        temp_wallet_list = Wallet.objects.filter(Q(name__code=currency_code) | Q(token_name__contract_symbol=currency_code))
+        for wallet in temp_wallet_list:
+            try:
+                balance = get_balance(wallet.user, currency_code)
+                temp_balance = temp_balance + float(balance)
+            except:
+                balance = 0
+            if not balance:
+                balance = 0
+        if rates:
+            rate = float(rates[currency_code])
+            value = round((temp_balance*rate),2)
+        else:
+            value = "NA"
+        data = {'balance': str(temp_balance), 'code': currency_code, 'value': value}
+        return HttpResponse(json.dumps(data), content_type="application/json")
 
 class VoteWinners(TemplateView):
     template_name = 'coins/winners.html'
@@ -971,6 +1005,16 @@ class AdminWallet(TemplateView):
             return context
         else:
             return context
+
+
+@method_decorator(check_2fa, name='dispatch')
+class AdminWalletCoin(TemplateView):
+    template_name = "coins/system_coin_stat.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["coins"] = coinlist.get_supported_coin()
+        return context
 
 @method_decorator(check_2fa, name='dispatch')
 class UserWallet(TemplateView):

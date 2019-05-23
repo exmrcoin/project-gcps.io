@@ -47,6 +47,7 @@ urlpatterns = [
     path('displaysupportedcoins/',coin_views.DisplaySupportedCoins.as_view(), name="displaysupportedcoins"),
     path('admin-wallet/', coin_views.AdminWallet.as_view(), name="admin_wallet"),
     path('admin-wallet-coins/', coin_views.AdminWalletCoin.as_view(), name="admin_wallet_coin"),
+    path('admin-coins-wallet/<str:coin>/', coin_views.AdminCoinWalletView.as_view(), name="admin_coin_wallet"),
     path('user-wallet/<int:pk>/', coin_views.UserWallet.as_view(), name="user_wallet"),
     path('transaction-history/', coin_views.TransactionHistoryView.as_view(), name='transaction-history'),
     path('transaction-history/<str:type>/', coin_views.TransactionDetails.as_view(), name='transaction-history-details'),

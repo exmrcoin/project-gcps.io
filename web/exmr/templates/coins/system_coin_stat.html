@@ -25,7 +25,7 @@
 
                 <tr style="border: none">
                     <th scope="row" style="border-top: none;">{{forloop.counter}}</th>
-                    <td><a href=""><img src="{{tempcoin.image}}" class="img-fluid w60px">{{tempcoin.coin_name}}</a></td>
+                    <td><a href="{% url 'coins:admin_coin_wallet' coin=tempcoin.coin_code %}"><img src="{{tempcoin.image}}" class="img-fluid w60px">{{tempcoin.coin_name}}</a></td>
                     <td>{{tempcoin.coin_code}}</td>
                     <td id="bal_{{tempcoin.coin_code}}">
                         <img id="loading-image_{{coin_code}}" src="{% static 'images/load.gif' %}"

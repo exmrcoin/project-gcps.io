@@ -3,7 +3,7 @@ import requests
 import datetime
 
 from django import template
-
+from apps.accounts.models import User
 from apps.coins.utils import *
 from apps.coins.models import Coin, NewCoin, EthereumTokenWallet
 register = template.Library()
@@ -28,6 +28,19 @@ def snd(mapping, key):
 
 @register.simple_tag
 def get_bal_coin(key, user):
+    try:
+        balance = get_balance(user, key)
+    except:
+        return 0
+    if not balance:
+        balance = 0
+    return balance
+
+@register.simple_tag
+def get_pk_bal_coin(key, pk):
+    user = User.objects.get(pk=pk)
+    print(user)
+    print(key)
     try:
         balance = get_balance(user, key)
     except:

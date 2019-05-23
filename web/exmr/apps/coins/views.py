@@ -796,6 +796,7 @@ class AdminBalanceView(View):
         data = {'balance': str(temp_balance), 'code': currency_code, 'value': value}
         return HttpResponse(json.dumps(data), content_type="application/json")
 
+
 class VoteWinners(TemplateView):
     template_name = 'coins/winners.html'
 
@@ -1025,6 +1026,20 @@ class UserWallet(TemplateView):
         context["coins"] = Coin.objects.all()
         context["pk"] = kwargs["pk"]
         return context
+
+
+class AdminCoinWalletView(TemplateView):
+    template_name = "coins/system_wallet_stat.html"
+
+    def get_context_data(self, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        current_coin = kwargs["coin"]
+        try:
+            context["wallets"] = Wallet.objects.filter(name__code=current_coin)
+        except:
+            context["wallets"] = EthereumTokenWallet.objects.filter(name__contract_symbol=current_coin)
+        return context
+
 
 @method_decorator(check_2fa, name='dispatch')
 class TransactionHistoryView(LoginRequiredMixin, TemplateView):

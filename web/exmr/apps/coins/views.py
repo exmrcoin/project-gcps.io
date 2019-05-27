@@ -624,7 +624,7 @@ class SendConfirmView(TemplateView):
                 context['status_message'] = 'This transaction cannot be processed. Please ensure you have sufficient balance to cover transaction charges. For further enquiry contact support'
         else:
             context['status'] = False
-            context['status_message'] = 'This Transaction is invalid. Please check your trasaction history to view more details'
+            context['status_message'] = 'This Transaction is invalid. Please check your transaction history to view more details'
         return context
 
 

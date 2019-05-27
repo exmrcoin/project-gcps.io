@@ -7,16 +7,17 @@
     <div class="supwiz">
         <div class="container">              
             <div class="panel panel-default">
-                {% if status%}
+                {% if status %}
                     <div class="panel-heading text-white">Success</div>
                     <div class="panel-body">
                     <h4 class="text-white">Your withdrawal request has been Confirmed</h4>
                     <a href="{% url 'coins:wallets' %}">Back to coin balances</a>
                     </div>
                 {% else %}
-                    <div class="panel-heading" style="background-color: #e25151;">Error</div>
-                    <div class="panel-body text-white">
+                    <div class="panel-heading text-center text-white" style="background-color: #e25151;"><h1>Error</h1></div>
+                    <div class="panel-body text-white text-center">
                     <h4>Your have followed an invalid url. Please check the url.</h4>
+                    <h5>{{status_message}}</h5>
                     </div>
                 {% endif %}
             </div>

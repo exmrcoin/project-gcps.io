@@ -580,7 +580,7 @@ class SendSuccessView(TemplateView):
         context['transaction'] = self.request.session['transaction']
         return context
 
-@method_decorator(check_2fa, name='dispatch')
+# @method_decorator(check_2fa, name='dispatch')
 class SendConfirmView(TemplateView):
     template_name = 'coins/send-money-confirm.html'
 
@@ -590,31 +590,41 @@ class SendConfirmView(TemplateView):
         token = kwargs.get('slug').split('-')[1]
         t_obj = Transaction.objects.filter(
             system_tx_id=tx_id, activation_code=token).first()
-        if t_obj:
-            erc = EthereumToken.objects.filter(contract_symbol=t_obj.currency)
-            if t_obj.currency == 'XRPTest':
-                obj = XRPTest(self.request.user)
-            elif t_obj.currency == 'XRP':
-                obj = XRP(self.request.user)
-            elif erc:
-                obj = EthereumTokens(self.request.user, t_obj.currency)
-            elif t_obj.currency == 'BTC':
-                obj = BTC(self.request.user, t_obj.currency)
-            elif t_obj.currency == 'ETH':
-                obj = ETH(self.request.user, "ETH")
-            elif t_obj.currency == 'XLM':
-                obj = XLM(self.request.user, "XLM")
-            elif t_obj.currency == 'XMR':
-                obj = XMR(self.request.user, "XMR")
-            valid = obj.send(t_obj.transaction_to, str(t_obj.amount))
-            balance = obj.balance()
-            t_obj.approved = True
-            t_obj.balance = balance
-            t_obj.transaction_id = valid
-            t_obj.save()
-            context['status'] = True
+        user = t_obj.user
+        if not t_obj.approved:
+            if t_obj:
+                erc = EthereumToken.objects.filter(contract_symbol=t_obj.currency)
+                if t_obj.currency == 'XRPTest':
+                    obj = XRPTest(user)
+                elif t_obj.currency == 'XRP':
+                    obj = XRP(user)
+                elif erc:
+                    obj = EthereumTokens(user, t_obj.currency)
+                elif t_obj.currency == 'BTC':
+                    obj = BTC(user, t_obj.currency)
+                elif t_obj.currency == 'ETH':
+                    obj = ETH(user, "ETH")
+                elif t_obj.currency == 'XLM':
+                    obj = XLM(user, "XLM")
+                elif t_obj.currency == 'XMR':
+                    obj = XMR(user, "XMR")
+                valid = obj.send(t_obj.transaction_to, str(t_obj.amount))
+                if not 'error' in valid:
+                    balance = obj.balance()
+                    t_obj.approved = True
+                    t_obj.balance = balance
+                    t_obj.transaction_id = valid
+                    t_obj.save()
+                    context['status'] = True
+                else:
+                    context['status'] = False
+                    context['status_message'] = 'This transaction cannot be processed. Please ensure you have sufficient balance to cover transaction charges. For further enquiry contact support'
+            else:
+                context['status'] = False
+                context['status_message'] = 'This transaction cannot be processed. Please ensure you have sufficient balance to cover transaction charges. For further enquiry contact support'
         else:
             context['status'] = False
+            context['status_message'] = 'This Transaction is invalid. Please check your trasaction history to view more details'
         return context
 
 

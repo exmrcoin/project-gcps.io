@@ -368,23 +368,19 @@ class ETH():
         return address
 
     def balance(self):
-        user_addr = Wallet.objects.get(
-            user=self.user, name__code='ETH').addresses.all()[0].address
-        params = [user_addr, "latest"]
-        balance = 0
-        if not self.address:
+        current_balance = 0
+        try:
             user_addr_list = Wallet.objects.get(user=self.user, name__code='ETH').addresses.all()
             current_balance = 0
             for temp_addr in user_addr_list:
                 balance = float(w3.fromWei(w3.eth.getBalance(Web3.toChecksumAddress(temp_addr.address)), "ether"))
                 current_balance = current_balance + balance
             return current_balance
-        else:
-            balance = float(w3.fromWei(w3.eth.getBalance(Web3.toChecksumAddress(self.address)), "ether"))
-        # balance = float(w3.fromWei(w3.eth.getBalance(Web3.toChecksumAddress(user_addr)), "ether"))
-        return balance
+        except:
+            return current_balance
 
     def send(self, to_addr, amount):
+        min_transaction_fee = float((Coin.objects.get(code='ETH')).min_transaction_fees)
         amount = float(amount)
         to_addr = check_pay_by_name(to_addr, "ETH")
         user_addr = Wallet.objects.get(user=self.user, name__code='ETH').addresses.all()[0].address
@@ -403,24 +399,35 @@ class ETH():
         addr_balance_list = {}
         for temp_addr in user_addr_list:
             try:
-                addr_balance_list[temp_addr.address] = cache.get(temp_addr.address)
+                addr_balance_list[temp_addr.address] = (cache.get(temp_addr.address) - min_transaction_fee)
             except:
-                addr_balance_list[temp_addr.address] = self.rcvd_bal(temp_addr.address)
+                addr_balance_list[temp_addr.address] = (self.rcvd_bal(temp_addr.address)) - min_transaction_fee
 
         sorted_addr_balance_list = sorted(addr_balance_list.items(), key=lambda kv: kv[1], reverse=True)
         print(sorted_addr_balance_list)
         temp_bal_amt = amount
         cur_addr_list ={}
         for addr_temp, addr_bal in sorted_addr_balance_list:
-            if temp_bal_amt >= 0:
-                temp_bal_amt = addr_balance_list[addr_temp] - temp_bal_amt
-                cur_addr_list[addr_temp]= addr_balance_list[addr_temp]
-
+            if temp_bal_amt > 0:
+                if temp_bal_amt > addr_bal:
+                    temp_bal_amt = temp_bal_amt - addr_bal
+                    cur_addr_list[addr_temp]= addr_bal
+                else:
+                    cur_addr_list[addr_temp] = temp_bal_amt
+                    temp_bal_amt = 0
+            else:
+                break
+        if temp_bal_amt > 0:
+            return {"error": "insufficient funds for gas * price + value"}
+            
+        result_hex_list = []
         try:
-            result = w3.personal.sendTransaction({"from": Web3.toChecksumAddress(user_addr), "to": Web3.toChecksumAddress(
-                to_addr), "value": Web3.toWei(amount, "ether")}, passphrase="passphrase")
+            for addr_temp, addr_bal in cur_addr_list.items():
+                result = w3.personal.sendTransaction({"from": Web3.toChecksumAddress(addr_temp), "to": Web3.toChecksumAddress(
+                    to_addr), "value": Web3.toWei(addr_bal, "ether")}, passphrase="passphrase")
+                result_hex_list.append(result.title().hex())
             sending_commission = add_commission(self.user, self.currency, amount)
-            return result.title().hex()
+            return result_hex_list
         except:
             return {"error": "insufficient funds for gas * price + value"}
 

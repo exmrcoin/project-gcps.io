@@ -90,13 +90,15 @@ class TradeCommision(models.Model):
 
     def save(self, *args, **kwargs):
         if TradeCommision.objects.exists() and not self.pk:
-        # if you'll not check for self.pk 
-        # then error will also raised in update of exists model
-            raise ValidationError('There is can be only one TradeCommision instance')
+            # if you'll not check for self.pk
+            # then error will also raised in update of exists model
+            raise ValidationError(
+                'There is can be only one TradeCommision instance')
         return super(TradeCommision, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.transaction_commission_type+"_EXMR commision "
+
 
 class RateAPI(models.Model):
     """
@@ -109,17 +111,16 @@ class RateAPI(models.Model):
     rate_api = models.CharField(
         max_length=20, choices=COM_TYPE, default='coincap')
 
-
     def save(self, *args, **kwargs):
         if RateAPI.objects.exists() and not self.pk:
-        # if you'll not check for self.pk 
-        # then error will also raised in update of exists model
-            raise ValidationError('There is can be only one JuicerBaseSettings instance')
-        return super(RateAPI, self).save(*args, **kwargs)  
+            # if you'll not check for self.pk
+            # then error will also raised in update of exists model
+            raise ValidationError(
+                'There is can be only one JuicerBaseSettings instance')
+        return super(RateAPI, self).save(*args, **kwargs)
 
- 
     def __str__(self):
-        return self.rate_api  
+        return self.rate_api
 
 
 class Coin(models.Model):
@@ -138,7 +139,7 @@ class Coin(models.Model):
     confirms = models.PositiveSmallIntegerField(_('confirms'))
     image = models.ImageField(_('image'), help_text=_(
         'Upload a 35X35 image for better experience'))
-
+    min_transaction_fees = models.FloatField(default=0)
     coin_hosting_type = models.CharField(
         max_length=20, choices=COIN_HOSTING, default='HOSTED')
     to_btc = models.DecimalField(
@@ -170,7 +171,6 @@ class Coin(models.Model):
         return self.coin_name
 
 
-
 class EthereumToken(models.Model):
     coin_name = models.CharField(_('coin name'), max_length=255, blank=True)
     contract_symbol = models.CharField(max_length=30)
@@ -190,7 +190,6 @@ class EthereumToken(models.Model):
         return self.coin_name
 
 
-
 class WalletAddress(models.Model):
     """
     Model to save the coin addresses generated for each user
@@ -200,10 +199,11 @@ class WalletAddress(models.Model):
     hidden = models.BooleanField(default=False)
     label = models.CharField(max_length=500, blank=True, default="")
     current_balance = models.CharField(max_length=128, blank=True, default="0")
-    last_check =  models.DateTimeField(default = datetime.today)    
+    last_check = models.DateTimeField(default=datetime.today)
 
     def __str__(self):
         return self.address
+
 
 class EthereumTokenWallet(models.Model):
     """
@@ -219,7 +219,6 @@ class EthereumTokenWallet(models.Model):
 
     def __str__(self):
         return self.user.username + '_' + self.name.contract_symbol
-
 
 
 class CoinConvertRequest(models.Model):
@@ -245,23 +244,25 @@ class CoinConvertRequest(models.Model):
         verbose_name_plural = _('Coin Conversion Requests')
 
 
-
 class MoneroPaymentid(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    username = models.CharField(max_length=50, blank = True, default="")
+    username = models.CharField(max_length=50, blank=True, default="")
     paymentid = models.CharField(max_length=500, blank=True, default="")
     address = models.CharField(max_length=500, blank=True, default="")
-    
+
     def __str__(self):
-        return self.user.username+"_"+ self.paymentid
+        return self.user.username+"_" + self.paymentid
+
 
 class Wallet(models.Model):
     """
     Model to save the coin wallet for each user
     """
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    name = models.ForeignKey(Coin, on_delete=models.CASCADE, null=True, blank=True)
-    token_name = models.ForeignKey(EthereumToken, on_delete=models.CASCADE, null=True, blank=True)
+    name = models.ForeignKey(
+        Coin, on_delete=models.CASCADE, null=True, blank=True)
+    token_name = models.ForeignKey(
+        EthereumToken, on_delete=models.CASCADE, null=True, blank=True)
     addresses = models.ManyToManyField(WalletAddress)
     private = models.CharField(max_length=500, blank=True, default="")
     public = models.CharField(max_length=500, blank=True, default="")
@@ -273,7 +274,7 @@ class Wallet(models.Model):
             return self.user.username + '_' + self.name.code
         except:
             return self.user.username + '_' + self.token_name.contract_symbol
-            
+
 
 class CoinRequest(models.Model):
     name = models.CharField(verbose_name=_(
@@ -315,7 +316,8 @@ class Phases(models.Model):
         'Voting_phase'), max_length=128, null=False)
     time_start = models.DateField(auto_now=False, auto_now_add=False)
     time_stop = models.DateField(auto_now=False, auto_now_add=False)
-    extra_message = models.CharField(max_length=512, default="", null=True, blank=True)
+    extra_message = models.CharField(
+        max_length=512, default="", null=True, blank=True)
 
     def __str__(self):
         return self.phase
@@ -366,7 +368,7 @@ class CoinVote(models.Model):
 
 
 class CoPromotionURL(models.Model):
-    url  = models.URLField(_('copromotion url'))
+    url = models.URLField(_('copromotion url'))
 
     def __str__(self):
         return self.url
@@ -388,7 +390,6 @@ class WinnerCoins(models.Model):
         'coin'), on_delete=models.CASCADE)
 
 
-
 class CoinSetting(models.Model):
     """
     Model to save the coin setting for each user
@@ -400,7 +401,8 @@ class CoinSetting(models.Model):
     erc = models.ForeignKey(EthereumToken, verbose_name=_(
         'erc'), related_name='get_coin_settings', null=True, blank=True, on_delete=models.CASCADE)
     enabled = models.BooleanField(_('enabled'), default=False)
-    payment_address = models.CharField(_('payment address'), null=True, blank=True, max_length=64)
+    payment_address = models.CharField(
+        _('payment address'), null=True, blank=True, max_length=64)
     payment_mode = models.PositiveSmallIntegerField(
         _('payment mode'), choices=PAYMENT_MODE_CHOICES, null=True, blank=True, default=TO_BALANCE)
     discount_percentage = models.DecimalField(
@@ -413,8 +415,10 @@ class CoinSetting(models.Model):
     def __str__(self):
         return '%s setting for %s' % (self.coin, self.user)
 
+
 class ConvertTransaction(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE,blank = True,null=True)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, blank=True, null=True)
     amount = models.CharField(blank=False, max_length=200)
     input_coin = models.CharField(blank=True, max_length=20)
     output_coin = models.CharField(blank=True, max_length=20)
@@ -430,16 +434,21 @@ class ConvertTransaction(models.Model):
 
     def __str__(self):
         try:
-            temp=self.user.username +"_"+self.input_coin+"_"+self.output_coin+"_"+ str(self.txn_date)
+            temp = self.user.username + "_"+self.input_coin + \
+                "_"+self.output_coin+"_" + str(self.txn_date)
         except:
-            temp=self.input_coin+"_"+self.output_coin+"_"+ str(self.txn_date)
+            temp = self.input_coin+"_" + \
+                self.output_coin+"_" + str(self.txn_date)
         return temp
 
+
 class PaypalTransaction(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE,blank = True,null=True)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, blank=True, null=True)
     amount = models.CharField(blank=False, max_length=200)
     coin_amount = models.CharField(blank=False, max_length=200)
-    coin = models.ForeignKey(Coin, verbose_name=_('coin'), on_delete=models.CASCADE)
+    coin = models.ForeignKey(Coin, verbose_name=_(
+        'coin'), on_delete=models.CASCADE)
     paypal_txid = models.CharField(blank=False, max_length=200)
     tx_status = models.BooleanField(default=False)
     system_tx_status = models.BooleanField(default=False)
@@ -455,8 +464,10 @@ class PayByNamePackage(models.Model):
     def __str__(self):
         return str(self.number_of_items)
 
+
 def update_expiry():
     return timezone.now()+timedelta(days=365)
+
 
 class PaybyName(models.Model):
     user = models.ForeignKey(User, verbose_name=_(
@@ -467,14 +478,16 @@ class PaybyName(models.Model):
     def __str__(self):
         return self.user.username+" paybyname:"+self.label
 
+
 class PayByNamePurchase(models.Model):
     package = models.ForeignKey(PayByNamePackage, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     purchase_status = models.BooleanField(default=False)
-    tx_id =models.CharField(max_length=100, blank=True, unique=True, default=uuid.uuid4)
+    tx_id = models.CharField(max_length=100, blank=True,
+                             unique=True, default=uuid.uuid4)
     expiry = models.DateTimeField(blank=True, null=True)
     paybyname = models.ForeignKey(PaybyName, verbose_name=_(
-        'paybyname usage'),related_name='paybyname', on_delete=models.SET_NULL, null=True)
+        'paybyname usage'), related_name='paybyname', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.user.username+" "+str(self.package.number_of_items)

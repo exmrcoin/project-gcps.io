@@ -5,20 +5,21 @@
         <div class="container">
             <div class="row ">
                 <div class="col-12 col-md-4  login-sec">
-                    <div class="container w-100 h-100">
-                        <div class="row align-items-center h-100">
+                    <div class="container w-100 ">
+                        <div class="row align-items-center text-center h-100">
                           <div class="col-md-12 col-12">
                             <a href="{% url 'home' %}">
-                            <img class="logo-log" style="margin-left: 30px;" src="{% static 'images/log-log.png' %}" alt="">
+                            <img class="logo-log"  src="{% static 'images/log-log.png' %}" alt="">
                         </a>
+                        <h3 class="login-text text-center ">{% trans 'Welcome!' %}</h3>
+                    <h4 class="login-text text-center">{% trans 'Sign in by entering the information below' %}</h4>
                           </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-8 login-sec">
 
-                    <h3 class="login-text text-center">{% trans 'Welcome!' %}</h3>
-                    <h4 class="login-text text-center">{% trans 'Sign in by entering the information below' %}</h4>
+                    
                     <div class="form-group col-xs-12 ">
                         {{ form.non_field_errors }}
                         <form novalidate method="post">{% csrf_token %}

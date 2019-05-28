@@ -590,7 +590,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#de7a00', end
 .btn-transparent{
     background-color: transparent;
     border: 1px solid #3f3830;
-    padding: 6px 30px 6px 30px;
+    padding: 8px;
     margin-left: 10px;
     color: #3f3830;
 }

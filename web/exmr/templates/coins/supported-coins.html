@@ -11,11 +11,12 @@
     <div class="dashboard-bg body-background mt">
         <div class="container">
             <div class="bx-ash-border mt-2 col-xs-12">
-                <ul class="pad10 custom-ul row mb-0">
+                <ul class="custom-ul row mb-0">
                     {% for coin_type in coin_types %}
                     <li class="col-xs-12 col-sm-3 ">
                         <label class="mt0">
                             
+
                             <input id="checkbox1" name="type" type="radio" onclick="window.location='{% url 'coins:supported_coins' coin_type.1 %}';" value={{ coin_type.0 }} class="mt0 floatl" {% ifequal selected_coin_type coin_type.0%}
                                 checked{% endifequal %}>{{ coin_type.1 }}
                         </label>

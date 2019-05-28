@@ -1,7 +1,7 @@
 {% extends 'gcps/testbase.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
 <section class="section section-pad">
      <div class="bx-ash ">
-    <div class="merchant-tools merchant-one coin-payment-head text-white dark-page-header">
+    <div class="merchant-tools merchant-one coin-payment-head dark-page-header text-white">
         <h1>Help</h1>
         <h3>Frequently Asked Questions </h3>
     </div>
@@ -10,19 +10,19 @@
     <div class="container-fluid xs-padx1">
         <div class="row xs-padx1">
             <div class="col-xs-12 col-md-4 ">
-                <div class="help-sidebar text-white">
-                    <h4 class="sidebar-label text-white help-label">Help</h4>
+                <div class="help-sidebar ">
+                    <h4 class="sidebar-label help-label text-white">Help</h4>
                     {% for topic in help_sidebar %}
 
                     <li>
-                        <a href="{% url 'common:helptopic' topic.slug %}" class="sidebar-link">{{topic.help_topic}}</a>
+                        <a href="{% url 'common:helptopic' topic.slug %}" class="sidebar-link text-white">{{topic.help_topic}}</a>
                     </li>
                     {% endfor %}
                     <h4 class="sidebar-label help-label text-white">Legal</h4>
                     {% for topic in legal_sidebar %}
 
                     <li>
-                        <a href="{% url 'common:helptopic' topic.slug %}" class="sidebar-link">{{topic.help_topic}}</a>
+                        <a href="{% url 'common:helptopic' topic.slug %}" class="sidebar-link text-white">{{topic.help_topic}}</a>
                     </li>
                     {% endfor %}
                 </div>
@@ -30,21 +30,18 @@
             </div>
             <div class="col-xs-12 col-md-8 text-justify">
                 <h4 class="help-label text-white">Frequently Asked Questions - BitCoin Payment Processor</h4>
-                <div class="col-xs-12 col-md-8 text-justify">
-                    
-                    <ul>
-                        {% for ques in faq %}
-                        <li>
-                            <a href="#question{{forloop.counter}}">{{ques.faq_question}}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                    {% for faq_ans in faq %}
-                    <div class="col-xs-12 " id="question{{forloop.counter}}" >
-                        <h4 class="help-label text-white">{{faq_ans.faq_question}}</h4>
-                        <p class="login-text ">{{faq_ans.faq_answer}}</p>
-                    </div>
+
+                <ul>
+                    {% for ques in faq %}
+                    <li>
+                        <a href="#question{{forloop.counter}}" class="text-white">{{ques.faq_question}}</a>
+                    </li>
                     {% endfor %}
+                </ul>
+                {% for faq_ans in faq %}
+                <div class="col-xs-12" id="question{{forloop.counter}}">
+                    <h4 class="help-label text-white">{{faq_ans.faq_question}}</h4>
+                    <p class="login-text text-white">{{faq_ans.faq_answer}}</p>
                 </div>
                 
             </div>

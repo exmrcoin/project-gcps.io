@@ -1,11 +1,7 @@
 {% extends 'gcps/testbase.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
 <section class="section section-pad">
         <div class="bx-ash ">
-<<<<<<< Updated upstream
             <div class="dark-page-header text-white text-center">
-=======
-            <div class="dark-page-header text-center text-white">
->>>>>>> Stashed changes
                 <h1 class="pad10 mt-2">
                     {% trans 'WINNERS' %}</h1>
                        <h4 class="mt-2">
@@ -14,35 +10,26 @@
             </div>
         </div>
         <div class="mt-4 container">
-                <div class="row">
-                    {% for phase in phases %}
-                    <div class="col-md-12 py-3 text-center">
-                        <div class="col-12 text-center">
-<<<<<<< Updated upstream
-                                <h2 class="text-white">These are the Winners of {{phase}} </h2>
-=======
-                                <h2 style="color: white" class="text-white">These are the Winners of {{phase}} </h2>
->>>>>>> Stashed changes
-                        </div>
-                        <div class="col-md-3 text-center bx-ash">
-                        {% for coin in newcoins %}
-                        {% if coin.phase == phase %}
-                            <div class="col-md-12 my-1 ">
-                                <div class="col-md-12  py-3 ">
-                                    <img src="{{coin.logo_url}}" style="width: 80px" class="img-responsive margin-center">
-<<<<<<< Updated upstream
-                                    <h6 class="text-white">{{coin.name}} ({{coin.code}})</h6>
-=======
-                                    <h6 style="color: white" class="text-white">{{coin.name}} ({{coin.code}})</h6>
->>>>>>> Stashed changes
-                                </div>
-                            </div>
-                        {% endif %}
-                        {% endfor %}
-                        </div>
+            <div class="row">
+                {% for phase in phases %}
+                <div class="col-md-12 py-3 text-center">
+                    <div class="col-12 text-center">
+                       <h2 class="text-white">These are the Winners of {{phase}} </h2> 
                     </div>
+                    <div class="col-md-3 text-center bx-ash">
+                    {% for coin in newcoins %}
+                    {% if coin.phase == phase %}
+                        <div class="col-md-12 my-1 ">
+                            <div class="col-md-12  py-3 ">
+                               <img src="{{coin.logo_url}}" style="width: 80px" class="img-responsive margin-center"><h6 class="text-white">{{coin.name}} ({{coin.code}})</h6>
+                            </div>
+                        </div>
+                    {% endif %}
                     {% endfor %}
+                    </div>
                 </div>
+                {% endfor %}
             </div>
+        </div>
     </section>
 {% endblock %} {% block script %} {% endblock %}

@@ -1,4 +1,5 @@
-{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+{% extends 'gcps/testbase.html' %} {% load staticfiles %}  {% load i18n %}
+{% block content %}
 <section class="section section-pad">
      <div class="bx-ash ">
     <div class="merchant-tools merchant-one coin-payment-head dark-page-header text-white">
@@ -43,12 +44,14 @@
                     <h4 class="help-label text-white">{{faq_ans.faq_question}}</h4>
                     <p class="login-text text-white">{{faq_ans.faq_answer}}</p>
                 </div>
+                {% endfor %}
                 
             </div>
         </div>
     </div>
 </section>
 
+{% endblock %} 
 {% block script %}
 <script src="{% static 'js/exmr.js' %}"></script> 
-{% endblock %} {% endblock %}
+{% endblock %} 

@@ -82,6 +82,7 @@ MIDDLEWARE = [
     'apps.common.middleware.LocationBlock',
 ]
 SESSION_EXPIRE_SECONDS = 600
+SESSION_EXPIRE_AFTER_LAST_ACTIVITY = True
 AUTHENTICATION_BACKENDS = [
     'apps.accounts.backends.EmailOrUsernameModelBackend',
     'django.contrib.auth.backends.ModelBackend'

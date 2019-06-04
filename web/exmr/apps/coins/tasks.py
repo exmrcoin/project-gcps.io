@@ -24,20 +24,16 @@ logger = get_task_logger(__name__)
 coingecko = CoinGeckoAPI()
 
 
-# app = Celery()
 @periodic_task(run_every=(crontab(minute='*/1')), name="check_wallet_balance", ignore_result=True)
-# @app.task
 def check_wallet_balance():
     wallet_list = Wallet.objects.all()
     for wallet in wallet_list:
         for addr in wallet.addresses.all():
-            temp_bal = utils.get_balance(wallet.user, wallet.name.code, addr.address)
+            try:
+                temp_bal = utils.get_balance(wallet.user, wallet.name.code, addr.address)
+            except:
+                temp_bal = utils.get_balance(wallet.user, wallet.token_name.contract_symbol, addr.address)
             cache.set(addr.address,temp_bal)
-            temp_obj = WalletAddress.objects.filter(address=addr.address)
-            temp_obj.last_check = datetime.now()
-            temp_obj.current_balance = temp_bal
-            temp_obj.update()
-
     
 
 

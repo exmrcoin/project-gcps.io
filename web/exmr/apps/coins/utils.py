@@ -299,12 +299,6 @@ class XRPTest():
             return result['result']['error']
 
     def generate(self, unique_id, random=None):
-        # address_process = subprocess.Popen(
-        #     ['node', '../ripple-wallet/test.js'], stdout=subprocess.PIPE)
-        # address_data, err = address_process.communicate()
-        # addresses = address_data.decode("utf-8") .replace("\n", "")
-        # pub_address = addresses.split("{ address: '")[1].split("'")[0]
-        # priv_address = addresses.split("secret: '")[-1].replace("' }", "")
         coin = Coin.objects.get(code='XRPTest')
         addresses = json.loads(requests.post(
             "https://faucet.altnet.rippletest.net/accounts").text)
@@ -388,13 +382,6 @@ class ETH():
             user=self.user, name__code='ETH')).addresses.all()
         current_balance = 0
         temp_addr_list = {}
-        # for temp_addr in user_addr_list:
-        #     if (float(current_balance) <= amount):
-        #         temp_balance = self.balance(temp_addr)
-        #         if (current_balance + temp_balance) > amount:
-        #             temp_balance = (amount - current_balance)
-        #         current_balance = current_balance + temp_balance
-        #         temp_addr_list[temp_addr] = temp_balance
 
         addr_balance_list = {}
         for temp_addr in user_addr_list:
@@ -404,7 +391,6 @@ class ETH():
                 addr_balance_list[temp_addr.address] = (self.rcvd_bal(temp_addr.address)) - min_transaction_fee
 
         sorted_addr_balance_list = sorted(addr_balance_list.items(), key=lambda kv: kv[1], reverse=True)
-        print(sorted_addr_balance_list)
         temp_bal_amt = amount
         cur_addr_list ={}
         for addr_temp, addr_bal in sorted_addr_balance_list:
@@ -512,14 +498,6 @@ class EthereumTokens():
             wallet, created = Wallet.objects.get_or_create(
                 user=self.user, token_name=coin)
 
-        # if created:
-        #     address = w3.personal.newAccount("passphrase")
-        #     if address:
-        #         wallet.addresses.add(
-        #             WalletAddress.objects.create(address=address))
-        # else:
-        #     address = wallet.addresses.all()[0].address
-
         address = self.get_results("personal_newAccount", [
                                    "passphrase"])["result"]
         wallet.addresses.add(WalletAddress.objects.create(address=address))
@@ -533,7 +511,7 @@ class EthereumTokens():
 
     def balance(self, address=None):
         coin = EthereumToken.objects.get(contract_symbol=self.code)
-        if address:
+        if self.address:
             user_addr = address
             balance = float(self.contract.call().balanceOf(
                 Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
@@ -549,13 +527,10 @@ class EthereumTokens():
             user_addr_list_2 = Wallet.objects.get(user=self.user, name=ETHcoin).addresses.all()
             user_addr_list = list(chain(user_addr_list_1, user_addr_list_2, user_addr_list_3))
             balance = 0
-            print(str(datetime.datetime.now()))
             for temp_addr in user_addr_list:
                 user_addr = temp_addr.address
                 balance =balance + float(self.contract.call().balanceOf(
                     Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
-                
-                print(str(datetime.datetime.now()))
         return balance
 
     def send(self, to_addr, amount):
@@ -962,22 +937,6 @@ class DepositTransaction():
             if wallet.name in available_coins:
                 data = data + self.get_currency_txn(wallet.name.code)
         return data
-        # if currency in ['XRPTest']:
-        #     return XRPTest(user).generate()
-        # elif currency in ['ETH']:
-        #     return ETH(user, currency).generate()
-        # if currency in ['XRP']:
-        #     return XRP(user).generate()
-        # elif currency in ['XMR']:
-        #     return XMR(user, currency).generate()
-        # elif currency in ['DASH']:
-        #     return globals()['create_'+currency+'_wallet'](user, currency)
-        # elif currency in ['BTC', 'LTC', 'XVG', 'BCH']:
-        #     return BTC(user, currency).generate()
-        # elif currency in ['XLM']:
-        #     return XLM(user, currency).generate()
-        # else:
-        #     return str(currency)+' server is under maintenance'
 
     def get_currency_txn(self, currency):
         erc = EthereumToken.objects.filter(contract_symbol=currency)

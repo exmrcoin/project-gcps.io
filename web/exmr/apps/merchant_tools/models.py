@@ -367,3 +367,8 @@ class MerchantPaymentWallet(models.Model):
 
     def __str__(self):
         return self.merchant.username
+
+
+class IPN(models.Model):
+    merchant_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    nonce = models.IntegerField(null=False, default= 0)

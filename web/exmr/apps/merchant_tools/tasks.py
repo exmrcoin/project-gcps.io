@@ -99,8 +99,6 @@ def check_multipayment():
         if queryset:
             total = 0
             for wallet in queryset:
-                # logger.info(wallet.market_rate)
-                # logger.info("ratehhhhhhhhhhhhhhhhhhhhh"+wallet.market_rate)
                 total = float(total) + float(wallet.market_rate)     
             if invoice.item_amount <= total:
                 invoice.payment_status = 'SUCCESS'

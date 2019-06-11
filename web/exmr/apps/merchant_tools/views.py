@@ -1606,7 +1606,6 @@ class MTest(TemplateView):
 
     def get_context_data(self):
         context = super().get_context_data()
-        import pdb
         from apps.coins import utils
         wallet_list = Wallet.objects.all()
         for wallet in wallet_list:

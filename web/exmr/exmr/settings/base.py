@@ -25,7 +25,8 @@ PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'kyl6$+fkolo)v480b_!0tv2=zf85#h(4nr^dx%y1nqjy=_f_m0'
-
+GOOGLE_RECAPTCHA_SECRET_KEY = '6LfNl2cUAAAAANX9oc_VwGrqxWATc8o8-eLMPYYQ'
+GOOGLE_RECAPTCHA_SITE_KEY = '6LfNl2cUAAAAAKoPIBFAyyN9tF9hgCKBIrX2n_bo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

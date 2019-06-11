@@ -112,7 +112,7 @@
             e.preventDefault();
             if (captchaResult == true) {
                 var form_submit_status = formSubmit('#signupForm', '{% url "accounts:signup" %}');
-                console.log(captchaResult, form_submit_status, "capcta form submit")
+                console.log(captchaResult, form_submit_status, "captcha form submit")
                 if (captchaResult && form_submit_status)
                     location.replace("{% url 'accounts:signup_complete'  %}");
             }
@@ -123,9 +123,7 @@
 </script>
 <script>
     grecaptcha.ready(function () {
-        grecaptcha.execute('6LfNl2cUAAAAAKoPIBFAyyN9tF9hgCKBIrX2n_bo', {
-                action: 'action_name'
-            })
+        grecaptcha.execute('6LfNl2cUAAAAAKoPIBFAyyN9tF9hgCKBIrX2n_bo', {action: 'action_name'})
             .then(function (token) {
                 captchaResult = true;
             });

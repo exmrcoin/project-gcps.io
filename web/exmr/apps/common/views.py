@@ -1,4 +1,6 @@
 import os
+import json
+import urllib
 import itertools
 
 from django.http import HttpResponse,HttpResponseRedirect
@@ -15,18 +17,30 @@ from django.core.mail import mail_admins
 from django.conf import settings
 from django.template.loader import render_to_string
 
+
+def google_verify(recaptcha_response):
+    url = 'https://www.google.com/recaptcha/api/siteverify'
+    payload = {
+        'secret': settings.GOOGLE_RECAPTCHA_SECRET_KEY,
+        'response': recaptcha_response
+    }
+    data = urllib.parse.urlencode(payload).encode()
+    req = urllib.request.Request(url, data=data)
+
+    response = urllib.request.urlopen(req)
+    result = json.loads(response.read().decode())
+
+    if (not result['success']):  # make sure action matches the one from your template
+        return False
+    else:
+        return True
+
 class HomeView(TemplateView):
     template_name = 'gcps/test_base.html'
 
     def get_context_data(self, **kwargs):
         merchant_id = self.request.GET.get('ref')
         context = super(HomeView, self).get_context_data(**kwargs)
-        # try:
-        #     curr_theme = self.request.session['curr_theme']
-        # except:
-        #     curr_theme = ''
-        #     self.request.session['curr_theme'] = 'Night'
-        # theme
         announcements = AnnouncementHome.objects.all()
         if merchant_id:
             user_profile = Profile.objects.get(merchant_id=merchant_id)
@@ -66,21 +80,48 @@ class CoinRequestView(FormView):
     success_url = reverse_lazy('home')
  
     def form_valid(self,form):
-        form.save()
+        recaptcha_response = self.request.POST.get('g-recaptcha-response')
+        recaptcha_result = google_verify(recaptcha_response)
+        if recaptcha_result:
+            form.save()
+        else:
+            return render(self.request, '403.html')
+        self.requester_email = form.cleaned_data['requester_email']
+        self.coin_symbol = form.cleaned_data['coin_symbol']
+        self.coin_name = form.cleaned_data['coin_name']
+        self.coin_source_url = form.cleaned_data['coin_source_url']
+        self.coin_url = form.cleaned_data['coin_url']
         self.coin_request_notice(self.request)
         self.admin_coin_request_notice(self.request)
         return HttpResponseRedirect(self.success_url)
 
     def coin_request_notice(self, request):
-        msg_plain = render_to_string('common/coin_request_email.txt')
-        send_mail(
-                    request.user,
-                    'Coin Request Notice',
-                    msg_plain,
-                    settings.DEFAULT_FROM_EMAIL,
-                    [request.user.email],
-                    fail_silently=True
-                )
+        context = {
+            "coin_symbol" : self.coin_symbol,
+            "coin_name" :self.coin_name,
+            "coin_source_url" : self.coin_source_url,
+            "coin_url" : self.coin_url,
+        }
+        msg_plain = render_to_string('common/coin_request_email.txt', context)
+        try:
+            send_mail(
+                        request.user,
+                        'Coin Request Notice',
+                        msg_plain,
+                        settings.DEFAULT_FROM_EMAIL,
+                        [request.user.email],
+                        fail_silently=True
+                    )
+        except:
+            send_mail(
+                        None,
+                        'Coin Request Notice',
+                        msg_plain,
+                        settings.DEFAULT_FROM_EMAIL,
+                        [self.requester_email],
+                        fail_silently=True
+                    )
+
         return True
 
     def admin_coin_request_notice(self, request):

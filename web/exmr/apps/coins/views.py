@@ -31,9 +31,10 @@ from django.http import HttpResponseNotFound, HttpResponseServerError, JsonRespo
 from itertools import chain
 
 from apps.coins.utils import *
+from apps.coins import utils as utils
 from apps.coins import coinlist
 from apps.apiapp import shapeshift, coinswitch, coingecko
-from apps.accounts.models import User, KYC
+from apps.accounts.models import User, KYC, Profile
 from apps.accounts.decorators import check_2fa
 from apps.coins.forms import ConvertRequestForm, NewCoinForm
 from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Transaction,\
@@ -67,7 +68,7 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         #         create_wallet(self.request.user, currency)
         try:
             rates = cache.get('rates')
-            rates = ast.literal_eval(rates)
+            # rates = ast.literal_eval(rates)
         except:
             data = json.loads(requests.get("http://coincap.io/front").text)
             rates = {rate['short']:rate['price'] for rate in data}
@@ -749,7 +750,7 @@ class BalanceView(View):
             user = User.objects.get(id = self.request.GET.get("user_id"))
         else:
             user = request.user
-        if not self.request.session.get("rates"):
+        if not cache.get("rates"):
             data = json.loads(requests.get("http://coincap.io/front").text)
             rates = {rate['short']:rate['price'] for rate in data}
             self.request.session["rates"] = rates
@@ -758,24 +759,23 @@ class BalanceView(View):
         else:
             new_currency_code = currency_code
         try:
-            balance = get_balance(user, currency_code)
+            balance = utils.get_balance(user, currency_code)
         except:
             balance = 0
         if not balance:
             balance = 0
-        if self.request.session["rates"].get(new_currency_code):
-            rate = self.request.session["rates"][new_currency_code]
-            value = round((balance*rate),2)
+        cache_rates = cache.get("rates")
+        if cache_rates[new_currency_code]:
+            rate = cache_rates[new_currency_code]
+            value = float(balance)*float(rate)
         else:
-            value = "NA"
+            value = 0
         data = {'balance': str(balance), 'code': currency_code, 'value': value}
         return HttpResponse(json.dumps(data), content_type="application/json")
 
 class AdminBalanceView(View):
     def get(self, request, *args, **kwargs):
         currency_code = self.request.GET.get('code')
-        # if currency_code=='EXMR':
-        #     import pdb; pdb.set_trace()
         value = None
         if not cache.get('rates'):
             data = json.loads(requests.get("http://coincap.io/front").text)
@@ -831,14 +831,17 @@ class ConversionView(View):
         if not convert_from:
             convert_from = "USD"
         try:
-            rates = cache.get('rates')
-            val = rates[convert_to]
+            # rates = cache.get('rates')
+            # val = rates[convert_to]
 
-            # val = round(float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q="+convert_from+"_"+\
-            # convert_to+"&compact=y&callback=json").text.split(":")[-1].strip("}});")),2)
+            val = round(float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q="+convert_from+"_"+\
+            convert_to+"&compact=ultra&apiKey=4ce7f25c8cf6f2f34ada").text.split(":")[-1].strip("}});")),2)
         except:
             val = None
-        self.request.session["coin_amount"] = float(amount)/float(val)
+        try:
+            self.request.session["coin_amount"] = float(amount)/float(val)
+        except:
+            self.request.session["coin_amount"] = val
 
         return HttpResponse(json.dumps({"value": val}), content_type="application/json")
 
@@ -1111,16 +1114,86 @@ class PayByNameView(LoginRequiredMixin, TemplateView):
         return context
 
 
-class PayByNamePayView(LoginRequiredMixin, DetailView):
-    template_name = "coins/paybyname-payment.html"
-    model = PayByNamePackage
+class PayByNamePayView(LoginRequiredMixin, TemplateView):
+    template_name = 'coins/paybyname_coin_select.html'
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        for paybyname in range(kwargs['object'].number_of_items):
-            PayByNamePurchase.objects.create(user=self.request.user, package=kwargs['object'], purchase_status=True)
-        
+        # for paybyname in range(kwargs['object'].number_of_items):
+        #     PayByNamePurchase.objects.create(user=self.request.user, package=kwargs['object'], purchase_status=True)
         return context
+
+    def post(self, request, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        package_id = request.POST.get('package_id')
+        package_obj = PayByNamePackage.objects.get(id=package_id)
+        context['amount'] = package_obj.price
+        context['input_currency'] = "USD"
+        context['available_coins'] = coinlist.payment_gateway_coins()
+        return render(self.request, 'coins/paybyname_coin_select.html', context)
+
+
+class PayByNamePaymentView(TemplateView):
+    template_name = 'merchant_tools/posqrpostpayment.html'
+
+    def post(self, request, *args, **kwargs):
+        context = super().get_context_data(**kwargs)
+        superuser = User.objects.get(is_superuser=True)
+        merchant_id = Profile.objects.get(
+            user=superuser).merchant_id
+        merchant_user = Profile.objects.get(merchant_id=merchant_id).user
+        unique_id = self.request.session['unique_transaction_id']
+        input_amount = self.request.session['input_amount']
+        input_coin = self.request.session['input_coin']
+        selected_coin = request.POST.get('selected_coin')
+        try:
+            rates = cache.get('rates')
+        except:
+            data = json.loads(requests.get("http://coincap.io/front").text)
+            rates = {rate['short']: rate['price'] for rate in data}
+            rates = json.dumps(rates)
+
+        if input_coin == "USD":
+            selected_coin_amount = float(input_amount)/float(rates[selected_coin])
+        else:
+            selected_coin_amount = (float(input_amount) * float(rates[input_coin]))/float(rates[selected_coin])
+
+        addr = create_wallet(
+            merchant_user, selected_coin)
+        selected_coin_amount= round(selected_coin_amount,8)
+        try:
+            obj, created = MultiPayment.objects.get_or_create(
+                merchant_id=merchant_id,
+                paid_amount=selected_coin_amount,
+                paid_in=Coin.objects.get(code=selected_coin),
+                eq_usd=request.session['usd_equivalent'],
+                paid_unique_id=unique_id,
+                attempted_usd=0,
+                transaction_id=account_activation_token.make_token(
+                    user=self.request.user),
+                payment_address=addr
+            )
+        except:
+            obj, created = MultiPayment.objects.get_or_create(
+                merchant_id=merchant_id,
+                paid_amount=selected_coin_amount,
+                paid_in_erc=EthereumToken.objects.get( 
+                    contract_symbol=selected_coin),
+                eq_usd=request.session['usd_equivalent'],
+                paid_unique_id=unique_id,
+                attempted_usd=0,
+                transaction_id=account_activation_token.make_token(
+                    user=self.request.user),
+                payment_address=addr
+            )
+        # temp = selected_coin
+        # selected_coin ={}
+        # selected_coin['code'] = temp
+        context['crypto_address'] = addr
+        context['selected_coin'] = selected_coin
+        context['amount_to_be_paid'] = selected_coin_amount
+        return render(self.request, 'gcps/merchant_tools/poscalcpayment.html', context)
+
 
 
 @method_decorator(check_2fa, name='dispatch')

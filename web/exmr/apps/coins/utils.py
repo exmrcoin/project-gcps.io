@@ -6,8 +6,10 @@ import datetime
 import binascii
 import subprocess
 import collections
+import time
+import datetime as utcdatetime
 
-
+from datetime import timedelta
 from decimal import Decimal
 from itertools import chain
 from solc import compile_source
@@ -33,6 +35,8 @@ from apps.apiapp import views as apiview
 from apps.merchant_tools.models import MerchantPaymentWallet
 
 w3 = Web3(HTTPProvider('http://35.185.10.253:8545'))
+timestamp_dif = 300 #in seconds
+
 
 def check_exmr_bal(cur_user, input_cur, amount):
     rates = cache.get('rates')
@@ -367,8 +371,19 @@ class ETH():
             user_addr_list = Wallet.objects.get(user=self.user, name__code='ETH').addresses.all()
             current_balance = 0
             for temp_addr in user_addr_list:
-                balance = float(w3.fromWei(w3.eth.getBalance(Web3.toChecksumAddress(temp_addr.address)), "ether"))
-                current_balance = current_balance + balance
+                try:
+                    temp_var = cache.get(temp_addr.address)
+                    current_timestamp = int(time.time())
+                    if (int(temp_var['last_checked']) > int(current_timestamp - timestamp_dif)):
+                        # print("inside cache ethereum")
+                        balance = temp_var['bal']
+                        # print(str(temp_addr.address) + " _ " + str(temp_var['bal']))
+                        current_balance = current_balance + balance
+                    else:
+                        raise Exception
+                except:
+                    balance = float(w3.fromWei(w3.eth.getBalance(Web3.toChecksumAddress(temp_addr.address)), "ether"))
+                    current_balance = current_balance + balance
             return current_balance
         except:
             return current_balance
@@ -512,9 +527,8 @@ class EthereumTokens():
     def balance(self, address=None):
         coin = EthereumToken.objects.get(contract_symbol=self.code)
         if self.address:
-            user_addr = address
-            balance = float(self.contract.call().balanceOf(
-                Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
+            user_addr = self.address
+            balance = float(self.contract.call().balanceOf(Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
         else:
             try:
                 user_addr_list_3 = EthereumTokenWallet.objects.get(user=self.user, name__contract_symbol=self.code).addresses.all()
@@ -529,8 +543,23 @@ class EthereumTokens():
             balance = 0
             for temp_addr in user_addr_list:
                 user_addr = temp_addr.address
-                balance =balance + float(self.contract.call().balanceOf(
-                    Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
+                print(user_addr)
+                print(cache.get(user_addr))
+                try:
+                    temp_var = cache.get(user_addr)
+                    current_timestamp = int(time.time())
+                    if(temp_var['code']==self.code):
+                        if (int(temp_var['last_checked']) > int(current_timestamp - timestamp_dif)):
+                            balance = temp_var['bal']
+                            # print("inside cache balance " + str(coin))
+                        else:
+                            raise Exception
+                    else:
+                        pass
+                except:
+                    # print("inside exception " + str(coin))
+                    balance =balance + float(self.contract.call().balanceOf(
+                        Web3.toChecksumAddress(user_addr))/pow(10, self.contract.call().decimals()))
         return balance
 
     def send(self, to_addr, amount):

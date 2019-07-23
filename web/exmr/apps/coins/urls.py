@@ -33,6 +33,7 @@ urlpatterns = [
     path('add-public-coin/', coin_views.NewCoinAddView.as_view(), name='add-public-coin' ),
     path('paybyname/', coin_views.PayByNameView.as_view(), name='paybyname' ),
     path('paybyname-payment/<int:pk>/', coin_views.PayByNamePayView.as_view(), name='paybyname-payment' ),
+    path('paybyname-payment-final/', coin_views.PayByNamePaymentView.as_view(), name='pbnfinal' ),
     path('copromotion-form/', coin_views.CopromotionView.as_view(), name="copromotion-form"),
     path('get_balance/', coin_views.BalanceView.as_view(), name="get_balance"),
     path('get_all_coin_balance/', coin_views.AdminBalanceView.as_view(), name="get_all_coin_balance"),

@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .poloneix import *
-from .binance import *
 from apps.coins.models import Coin
 
 # Create your views here.

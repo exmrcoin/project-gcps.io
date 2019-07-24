@@ -34,7 +34,10 @@ def check_wallet_balance():
             try:
                 temp_bal = utils.get_balance(wallet.user, wallet.name.code, addr.address)
             except:
-                temp_bal = utils.get_balance(wallet.user, wallet.token_name.contract_symbol, addr.address)
+                try:
+                    temp_bal = utils.get_balance(wallet.user, wallet.token_name.contract_symbol, addr.address)
+                except:
+                    temp_bal = 0
             temp_timestamp = int(time.time())
             temp_var = {}
             temp_var['bal'] = temp_bal

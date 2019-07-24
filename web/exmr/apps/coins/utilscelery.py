@@ -77,6 +77,8 @@ def get_balance(user, currency, addr=None):
     """
     Retrive specified user wallet balance.
     """
+    if "Unable to generate address" in addr:
+        return 0
     erc = EthereumToken.objects.filter(contract_symbol=currency)
     if erc:
         balance = EthereumTokens(user=user, code=currency, addr=addr).balance()

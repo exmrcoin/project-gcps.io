@@ -298,8 +298,8 @@ except ImportError:
     pass
 
 ADMINS = (
-#    ('ME', 'anandkrishnan.techversant@gmail.com'),
-#    ('ADMIN', 'vipin.mohan@techversantinc.com'),
+   ('ME', 'mail2vipinmohan@gmail.com'),
+   ('ADMIN', 'vipin.mohan@techversantinc.com'),
 )
 LOGGING = {
     'version': 1,

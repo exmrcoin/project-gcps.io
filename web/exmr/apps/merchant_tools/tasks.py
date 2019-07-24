@@ -34,8 +34,6 @@ def check_market_rate():
     # rates = {(rate['symbol']).upper():rate['current_price'] for rate in coin_rate_list}
     # cache.set('rates', rates)
     cache.set('last_check',  datetime.now())
-
-
     coin_rate_list = coincap.get_coins_markets('usd')
     rates = {(rate['symbol']).upper():rate['priceUsd'] for rate in coin_rate_list['data']}
     cache.set('rates', rates)
@@ -50,7 +48,7 @@ def check_market_rate():
     #     rates = {rate['short']:rate['price'] for rate in data}
     # print(rates)
 
-@periodic_task(run_every=(crontab(minute='*/1')), name="send_feedback_email_task", ignore_result=True)
+@periodic_task(run_every=(crontab(minute='*/10')), name="send_feedback_email_task", ignore_result=True)
 def send_feedback_email_task():
     logger.info("check_timedout")
     rates = cache.get('rates')
@@ -75,7 +73,7 @@ def send_feedback_email_task():
             # send_mail('check_timedout', 'Balance = '+str(balance)+'address = '+multi_payment.address+'coin = '+multi_payment.code+'rates'+str(rates)+'    '+'market', settings.EMAIL_HOST_USER, ['ebrahimasifismail@gmail.com'], fail_silently=False)
 
 
-@periodic_task(run_every=(crontab(minute='*/1')), name="check_multipayment", ignore_result=True)
+@periodic_task(run_every=(crontab(minute='*/10')), name="check_multipayment", ignore_result=True)
 def check_multipayment():
     # logger.info("multi_payment")
     context = []

@@ -26,7 +26,7 @@ logger = get_task_logger(__name__)
 coingecko = CoinGeckoAPI()
 
 
-@periodic_task(run_every=(crontab(minute='*/1')), name="check_wallet_balance", ignore_result=True)
+@periodic_task(run_every=(crontab(minute='*/60')), name="check_wallet_balance", ignore_result=True)
 def check_wallet_balance():
     wallet_list = Wallet.objects.exclude(name__isnull=True)
     for wallet in wallet_list:
@@ -46,7 +46,7 @@ def check_wallet_balance():
     
 
 
-@periodic_task(run_every=(crontab(minute='*/1')), name="check_token_balance", ignore_result=True)    
+@periodic_task(run_every=(crontab(minute='*/60')), name="check_token_balance", ignore_result=True)    
 def check_token_balance():        
     wallet_list = Wallet.objects.exclude(token_name__isnull=True).values_list('token_name','addresses')
     address_list = []

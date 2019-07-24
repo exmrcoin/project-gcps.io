@@ -35,7 +35,7 @@ from apps.apiapp import views as apiview
 from apps.merchant_tools.models import MerchantPaymentWallet
 
 w3 = Web3(HTTPProvider('http://35.185.10.253:8545'))
-timestamp_dif = 300 #in seconds
+timestamp_dif = 3000 #in seconds
 
 
 def check_exmr_bal(cur_user, input_cur, amount):

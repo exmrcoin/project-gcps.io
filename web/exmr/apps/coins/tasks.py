@@ -54,7 +54,7 @@ def check_token_balance():
         temp_var['bal'] = temp_bal
         temp_var['last_checked'] = temp_timestamp
         temp_var['code'] = x
-        cache.set(y,temp_var)
+        cache.set(y,temp_var, timeout=7200)
 
     
 
@@ -75,7 +75,7 @@ def check_wallet_balance():
             temp_var = {}
             temp_var['bal'] = temp_bal
             temp_var['last_checked'] = temp_timestamp
-            cache.set(addr.address,temp_var)
+            cache.set(addr.address,temp_var, timeout=7200)
     
 
 

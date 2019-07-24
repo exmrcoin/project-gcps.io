@@ -32,11 +32,11 @@ def check_market_rate():
    
     # coin_rate_list = coingecko.get_coins_markets('usd')
     # rates = {(rate['symbol']).upper():rate['current_price'] for rate in coin_rate_list}
-    # cache.set('rates', rates)
-    cache.set('last_check',  datetime.now())
+    # cache.set('rates', rates, timeout=7200)
+    cache.set('last_check',  datetime.now(), timeout=7200)
     coin_rate_list = coincap.get_coins_markets('usd')
     rates = {(rate['symbol']).upper():rate['priceUsd'] for rate in coin_rate_list['data']}
-    cache.set('rates', rates)
+    cache.set('rates', rates, timeout=7200)
     
 
 

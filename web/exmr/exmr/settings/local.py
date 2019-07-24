@@ -21,28 +21,12 @@ DATABASES = {
 }
 
 SESSION_EXPIRE_SECONDS = 6000
-# For email
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-
-# EMAIL_USE_SSL = True
-
-# EMAIL_HOST = 'just150.justhost.com'
-
-# EMAIL_HOST_USER = 'noreply@getcryptopayments.net'
-
-# EMAIL_HOST_PASSWORD = 'Exmr@2018'
-
-# EMAIL_PORT = 465
-
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'exmr.test@gmail.com'
-EMAIL_HOST_PASSWORD = 'Adminqwerty123'
+EMAIL_HOST_USER = 'noreply@getcryptopayments.com'
+EMAIL_HOST_PASSWORD = 'Exmr@2019~!'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEBUG = False
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEBUG = True
 
 PAYPAL_MODE = "sandbox"
 PAYPAL_CLIENT_ID = "AblPqPuQrjYiRqrrwfrokV0qBZf2rxt7S76SzcIY3qAHkRga8Jo_yPebqg50y7MUu8NdEMpJGa-LesfL"
@@ -57,4 +41,4 @@ CACHES = {
         }
     }
 }
-CACHE_TTL = 60
+CACHE_TTL = 72000

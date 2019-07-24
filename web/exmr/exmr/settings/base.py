@@ -357,5 +357,5 @@ CACHES = {
 }
 
 # Cache time to live is 10 minutes.
-CACHE_TTL = 6000
+CACHE_TTL = 36000
 INTERNAL_IPS = ['127.0.0.1',]

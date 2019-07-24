@@ -25,27 +25,6 @@ CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 logger = get_task_logger(__name__)
 coingecko = CoinGeckoAPI()
 
-
-@periodic_task(run_every=(crontab(minute='*/60')), name="check_wallet_balance", ignore_result=True)
-def check_wallet_balance():
-    wallet_list = Wallet.objects.exclude(name__isnull=True)
-    for wallet in wallet_list:
-        for addr in wallet.addresses.all():
-            try:
-                temp_bal = utils.get_balance(wallet.user, wallet.name.code, addr.address)
-            except:
-                try:
-                    temp_bal = utils.get_balance(wallet.user, wallet.token_name.contract_symbol, addr.address)
-                except:
-                    temp_bal = 0
-            temp_timestamp = int(time.time())
-            temp_var = {}
-            temp_var['bal'] = temp_bal
-            temp_var['last_checked'] = temp_timestamp
-            cache.set(addr.address,temp_var)
-    
-
-
 @periodic_task(run_every=(crontab(minute='*/60')), name="check_token_balance", ignore_result=True)    
 def check_token_balance():        
     wallet_list = Wallet.objects.exclude(token_name__isnull=True).values_list('token_name','addresses')
@@ -78,3 +57,25 @@ def check_token_balance():
         cache.set(y,temp_var)
 
     
+
+
+@periodic_task(run_every=(crontab(minute='*/60')), name="check_wallet_balance", ignore_result=True)
+def check_wallet_balance():
+    wallet_list = Wallet.objects.exclude(name__isnull=True)
+    for wallet in wallet_list:
+        for addr in wallet.addresses.all():
+            try:
+                temp_bal = utils.get_balance(wallet.user, wallet.name.code, addr.address)
+            except:
+                try:
+                    temp_bal = utils.get_balance(wallet.user, wallet.token_name.contract_symbol, addr.address)
+                except:
+                    temp_bal = 0
+            temp_timestamp = int(time.time())
+            temp_var = {}
+            temp_var['bal'] = temp_bal
+            temp_var['last_checked'] = temp_timestamp
+            cache.set(addr.address,temp_var)
+    
+
+

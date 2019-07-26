@@ -1203,6 +1203,8 @@ class PayByNamePaymentView(LoginRequiredMixin, TemplateView):
             return HttpResponseForbidden(render(request, '403.html'))
         try:
             rates = cache.get('rates')
+            if rates is None:
+                raise Exception
         except:
             data = json.loads(requests.get("http://coincap.io/front").text)
             rates = {rate['short']: rate['price'] for rate in data}

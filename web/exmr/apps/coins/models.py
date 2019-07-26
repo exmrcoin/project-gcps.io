@@ -482,6 +482,7 @@ class PaybyName(models.Model):
 class PayByNamePurchase(models.Model):
     package = models.ForeignKey(PayByNamePackage, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    unique_id = models.CharField(max_length=100, blank=True,unique=True)
     purchase_status = models.BooleanField(default=False)
     tx_id = models.CharField(max_length=100, blank=True,
                              unique=True, default=uuid.uuid4)
@@ -490,4 +491,4 @@ class PayByNamePurchase(models.Model):
         'paybyname usage'), related_name='paybyname', on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
-        return self.user.username+" "+str(self.package.number_of_items)
+        return self.user.username+"_"+str(self.package.number_of_items)

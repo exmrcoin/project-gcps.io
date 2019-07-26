@@ -27,8 +27,10 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin, AccessMixin
 from django.shortcuts import HttpResponse, render, redirect, get_object_or_404
 from django.views.generic import ListView, FormView, TemplateView, DetailView, View, UpdateView
-from django.http import HttpResponseNotFound, HttpResponseServerError, JsonResponse,HttpResponseRedirect
+from django.http import HttpResponseNotFound, HttpResponseServerError, JsonResponse, HttpResponseRedirect, HttpResponseForbidden
 from itertools import chain
+
+from django.contrib.auth.tokens import PasswordResetTokenGenerator
 
 from apps.coins.utils import *
 from apps.coins import utils as utils
@@ -41,20 +43,31 @@ from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Tr
     CoinVote, ClaimRefund, NewCoin, CoinSetting, CoPromotion, CoPromotionURL, PayByNamePackage, \
     WalletAddress, EthereumToken, Phases, ConvertTransaction, PaypalTransaction,\
     PayByNamePurchase
-
+from apps.merchant_tools.models import MultiPayment
 
 paypalrestsdk.configure({
-              "mode": settings.PAYPAL_MODE, # sandbox or live
-              "client_id": settings.PAYPAL_CLIENT_ID,
-              "client_secret": settings.PAYPAL_CLIENT_SECRET 
-              })
+    "mode": settings.PAYPAL_MODE,  # sandbox or live
+    "client_id": settings.PAYPAL_CLIENT_ID,
+    "client_secret": settings.PAYPAL_CLIENT_SECRET
+})
 
 
 coingecko = coingecko.CoinGeckoAPI()
 redis_object = redis.StrictRedis(host='localhost',
-	port='6379',
-	password='',
-	db=0, charset="utf-8", decode_responses=True)
+                                 port='6379',
+                                 password='',
+                                 db=0, charset="utf-8", decode_responses=True)
+
+
+class AccountActivationTokenGenerator(PasswordResetTokenGenerator):
+    """ Overriding default Password reset token generator for email confirmation"""
+
+    def _make_hash_value(self, user, timestamp):
+        return ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(12))
+
+
+account_activation_token = AccountActivationTokenGenerator()
+
 
 @method_decorator(check_2fa, name='dispatch')
 class WalletsView(LoginRequiredMixin, TemplateView):
@@ -71,11 +84,12 @@ class WalletsView(LoginRequiredMixin, TemplateView):
             # rates = ast.literal_eval(rates)
         except:
             data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']:rate['price'] for rate in data}
+            rates = {rate['short']: rate['price'] for rate in data}
         self.request.session["rates"] = rates
         context["wallets"] = Coin.objects.all()
         context["erc_wallet"] = EthereumToken.objects.all()
-        context['transactions'] = Transaction.objects.filter(user=self.request.user)
+        context['transactions'] = Transaction.objects.filter(
+            user=self.request.user)
         return context
 
 
@@ -88,13 +102,15 @@ class CoinConvertView(LoginRequiredMixin, TemplateView):
         shapeshift_available_coin = coinswitch.get_coins()
         temp_dict_1 = shapeshift_available_coin.copy()
         image_path_list = {}
-        exmr_list = coinlist.get_all_active_coin_code()   
-        available_coins = list(filter(lambda x: x in list(shapeshift_available_coin), exmr_list))
-        for coin,value in temp_dict_1.items():
+        exmr_list = coinlist.get_all_active_coin_code()
+        available_coins = list(
+            filter(lambda x: x in list(shapeshift_available_coin), exmr_list))
+        for coin, value in temp_dict_1.items():
             for coin in exmr_list:
                 if not coin == sel_coin:
                     try:
-                        image_path_list[coin] = { 'image':shapeshift_available_coin[coin]['image'], 'name' : shapeshift_available_coin[coin]['name']}
+                        image_path_list[coin] = {
+                            'image': shapeshift_available_coin[coin]['image'], 'name': shapeshift_available_coin[coin]['name']}
                     except:
                         pass
                 else:
@@ -139,7 +155,7 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
                     context['has_balance'] = False
                 else:
                     context['has_balance'] = True
-                    
+
             except:
                 pass
             pair = limit_json['pair']
@@ -189,7 +205,7 @@ class CoinConvertView2(LoginRequiredMixin, TemplateView):
         return render(request, 'coins/convert-select-confirm.html', context)
 
 
-class CoinConvertView3(LoginRequiredMixin,TemplateView):
+class CoinConvertView3(LoginRequiredMixin, TemplateView):
     template_name = 'coins/convert-select-finished.html'
 
     def post(self, request, *args, **kwargs):
@@ -205,7 +221,7 @@ class CoinConvertView3(LoginRequiredMixin,TemplateView):
                 user=self.request.user, currency=sel_coin)
             # ret_addr = 'LXA3i9eEAVDbgDqkThCa4D6BUJ3SEULkEr'
             transaction_details = coinswitch.create_fixed_amount_tx(input_coin_value,
-                addr, sel_coin, output_coin, ret_addr, None, None, None)
+                                                                    addr, sel_coin, output_coin, ret_addr, None, None, None)
             try:
                 obj = ConvertTransaction.objects.create(
                     user=self.request.user,
@@ -224,11 +240,7 @@ class CoinConvertView3(LoginRequiredMixin,TemplateView):
         except Exception as e:
             raise e
 
-
         ############################
-
-
-
 
         try:
             convert_address = transaction_details['deposit']
@@ -237,15 +249,16 @@ class CoinConvertView3(LoginRequiredMixin,TemplateView):
             return HttpResponseServerError()
         valid = False
         balance = get_balance(request.user, coin)
-        valid =getattr(apps.coins.utils,coin)(self.request.user, coin).send( convert_address, input_coin_value)
+        valid = getattr(apps.coins.utils, coin)(
+            self.request.user, coin).send(convert_address, input_coin_value)
         # valid = {'result': 'soccccccccc'}
         # valid = {'error':'test error'}
         if valid:
             context['result'] = "Success. Your account will be credited with 12 Hours. If not please contact support."
 
             trans_obj = Transaction.objects.create(user=self.request.user, currency=coin,
-                                               balance=balance, amount=input_coin_value, transaction_to=convert_address,
-                                               activation_code='coin convert')
+                                                   balance=balance, amount=input_coin_value, transaction_to=convert_address,
+                                                   activation_code='coin convert')
         else:
             context['result'] = "Transaction failed. "
             context['result1'] = "Retry after some time. If your account has been deducted please contact support."
@@ -280,9 +293,9 @@ class SupportedCoinView(ListView):
     template_name = 'coins/supported-coins.html'
     queryset = Coin.objects.filter(active=True)
     context_object_name = 'coins'
-    
+
     def get_queryset(self, *args, **kwargs):
-        
+
         type_dict = dict(TYPE_CHOICES)
         self.coin_type = dict(zip(type_dict.values(), type_dict.keys())).get(
             self.kwargs['type'], 0)
@@ -299,7 +312,7 @@ class SupportedCoinView(ListView):
         return context
 
 
-class ConvertCoinsView(LoginRequiredMixin,FormView):
+class ConvertCoinsView(LoginRequiredMixin, FormView):
 
     template_name = 'coins/coin_conversion.html'
     form_class = ConvertRequestForm
@@ -342,7 +355,7 @@ class ConvertCoinsView(LoginRequiredMixin,FormView):
 
 class NewCoinAddr(LoginRequiredMixin, TemplateView):
     template_name = 'coins/deposit.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super(NewCoinAddr, self).get_context_data(**kwargs)
         code = kwargs.get('currency')
@@ -356,7 +369,7 @@ class NewCoinAddr(LoginRequiredMixin, TemplateView):
                     user=self.request.user,  name__code='ETH').addresses.filter(hidden=False).order_by('id')
             except:
                 temp_wal_1 = []
-        
+
         try:
             temp_wal_2 = Wallet.objects.get(
                 user=self.request.user,  name__code=code).addresses.filter(hidden=False).order_by('id')
@@ -368,7 +381,7 @@ class NewCoinAddr(LoginRequiredMixin, TemplateView):
             except:
                 temp_wal_2 = Wallet.objects.get(
                     user=self.request.user,  token_name__contract_symbol=code).addresses.filter(hidden=False).order_by('id')
-        
+
         if erc:
             try:
                 if erc.extra_message:
@@ -377,11 +390,13 @@ class NewCoinAddr(LoginRequiredMixin, TemplateView):
                 pass
             temp_wal_3 = Wallet.objects.get(
                 user=self.request.user,  name__code="ETH").addresses.filter(hidden=False).order_by('id')
-            context['wallets']= list(chain(temp_wal_3,temp_wal_1, temp_wal_2))
+            context['wallets'] = list(
+                chain(temp_wal_3, temp_wal_1, temp_wal_2))
         else:
-            context['extra_message'] = Coin.objects.get(code=code).extra_message
-            context['wallets']= temp_wal_2
-        
+            context['extra_message'] = Coin.objects.get(
+                code=code).extra_message
+            context['wallets'] = temp_wal_2
+
         context['code'] = code
         return context
 
@@ -407,11 +422,13 @@ class PublicCoinVote(TemplateView):
         context['coins'] = NewCoin.objects.filter(
             approved=True).order_by('-vote_count')
         phase = Phases.objects.last()
-        time_start = str(phase.time_start.day)+ " " +phase.time_start.strftime("%B")
-        time_stop = str(phase.time_start.day)+ " " +phase.time_stop.strftime("%B")
+        time_start = str(phase.time_start.day) + " " + \
+            phase.time_start.strftime("%B")
+        time_stop = str(phase.time_start.day) + " " + \
+            phase.time_stop.strftime("%B")
         if phase.extra_message:
             context['extra_message'] = phase.extra_message
-        context["time_period"] =  time_start + " - " + time_stop
+        context["time_period"] = time_start + " - " + time_stop
         return context
 
     def post(self, request, *args, **kwargs):
@@ -428,7 +445,7 @@ class PublicCoinVote(TemplateView):
             return HttpResponse(json.dumps(response_data), content_type='application/json')
 
 
-class CoinSettings(LoginRequiredMixin,TemplateView):
+class CoinSettings(LoginRequiredMixin, TemplateView):
     template_name = 'coins/coin_settings.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -438,11 +455,12 @@ class CoinSettings(LoginRequiredMixin,TemplateView):
         #     if not Wallet.objects.filter(user=self.request.user, name=coin):
         #         create_wallet(self.request.user, currency)
         data = json.loads(requests.get("http://coincap.io/front").text)
-        rates = {rate['short']:rate['price'] for rate in data}
+        rates = {rate['short']: rate['price'] for rate in data}
         self.request.session["rates"] = rates
         context["wallets"] = Coin.objects.all()
         context["erc_wallet"] = EthereumToken.objects.all()
-        context['transactions'] = Transaction.objects.filter(user=self.request.user)
+        context['transactions'] = Transaction.objects.filter(
+            user=self.request.user)
         return context
 
     def post(self, request, *args, **kwargs):
@@ -457,48 +475,53 @@ class CoinSettings(LoginRequiredMixin,TemplateView):
             if item in selected:
                 try:
                     setting = CoinSetting.objects.get(
-                        user=request.user, 
-                        coin=Coin.objects.get(code=item), 
+                        user=request.user,
+                        coin=Coin.objects.get(code=item),
                     )
-                    setting.payment_address = req.get('address_'+item) 
+                    setting.payment_address = req.get('address_'+item)
                     setting.payment_mode = req.get('pay_type_'+item)
-                    setting.discount_percentage=float(req.get('discount_'+item))
-                    setting.maximum_per_transaction=float(req.get('value_'+item))
-                    setting.enabled=True
+                    setting.discount_percentage = float(
+                        req.get('discount_'+item))
+                    setting.maximum_per_transaction = float(
+                        req.get('value_'+item))
+                    setting.enabled = True
                     setting.save()
                 except:
                     CoinSetting.objects.create(
-                    user=request.user, 
-                    coin=Coin.objects.get(code=item), 
-                    enabled=True,
-                    payment_address=req.get('address_'+item), 
-                    payment_mode=req.get('pay_type_'+item),
-                    discount_percentage=float(req.get('discount_'+item)), 
-                    maximum_per_transaction=float(req.get('value_'+item)),                           
-                )     
+                        user=request.user,
+                        coin=Coin.objects.get(code=item),
+                        enabled=True,
+                        payment_address=req.get('address_'+item),
+                        payment_mode=req.get('pay_type_'+item),
+                        discount_percentage=float(req.get('discount_'+item)),
+                        maximum_per_transaction=float(req.get('value_'+item)),
+                    )
             else:
                 try:
                     setting = CoinSetting.objects.get(
-                        user=request.user, 
-                        coin=Coin.objects.get(code=item), 
+                        user=request.user,
+                        coin=Coin.objects.get(code=item),
                     )
-                     
-                    setting.enabled=False
+
+                    setting.enabled = False
                     setting.save()
                 except:
                     CoinSetting.objects.create(
-                    user=request.user, 
-                    coin=Coin.objects.get(code=item), 
-                    enabled=False,
-                )
- 
+                        user=request.user,
+                        coin=Coin.objects.get(code=item),
+                        enabled=False,
+                    )
+
         return render(request, self.template_name, {'wallets': Coin.objects.all(), 'erc_wallet': EthereumToken.objects.all(), 'transactions': Transaction.objects.filter(user=self.request.user)})
+
 
 class SettingSetUp(TemplateView):
     template_name = 'coins/setting_setup.html'
 
+
 class OMiniView(TemplateView):
     template_name = 'coins/omini.html'
+
 
 class RippleView(TemplateView):
     template_name = 'coins/ripple.html'
@@ -510,14 +533,16 @@ class RippleView(TemplateView):
         #     if not Wallet.objects.filter(user=self.request.user, name=coin):
         #         create_wallet(self.request.user, currency)
         data = json.loads(requests.get("http://coincap.io/front").text)
-        rates = {rate['short']:rate['price'] for rate in data}
+        rates = {rate['short']: rate['price'] for rate in data}
         self.request.session["rates"] = rates
         context["ripple"] = Coin.objects.get(code='XRPTest')
         context["erc_wallet"] = EthereumToken.objects.all()
-        context['transactions'] = Transaction.objects.filter(user=self.request.user)
+        context['transactions'] = Transaction.objects.filter(
+            user=self.request.user)
         return context
 
-class CoinWithdrawal(LoginRequiredMixin,TemplateView):
+
+class CoinWithdrawal(LoginRequiredMixin, TemplateView):
     template_name = 'coins/coin-withdrawal.html'
 
     def get_context_data(self, *args, **kwargs):
@@ -531,6 +556,7 @@ class CoinWithdrawal(LoginRequiredMixin,TemplateView):
             context['coin'] = Coin.objects.get(code=currency)
         context['balance'] = get_balance(self.request.user, currency)
         return context
+
 
 @method_decorator(check_2fa, name='dispatch')
 class SendView(LoginRequiredMixin, View):
@@ -547,9 +573,9 @@ class SendView(LoginRequiredMixin, View):
         amount = Decimal(request.POST.get('amount'))
         erc = EthereumToken.objects.filter(contract_symbol=currency)
         balance = get_balance(request.user, currency)
-        if float(amount) > balance or amount<=0:
+        if float(amount) > balance or amount <= 0:
             return HttpResponse(json.dumps({"error": "Insufficient Funds"}), content_type='application/json')
-    
+
         code = ''.join(random.choice(string.ascii_lowercase +
                                      string.ascii_uppercase) for _ in range(12))
         trans_obj = Transaction.objects.create(user=self.request.user, currency=currency,
@@ -567,8 +593,8 @@ class SendView(LoginRequiredMixin, View):
         }
         response_data = render_to_string(
             'coins/transfer-confirmed-email.html', context, )
-        send_mail(self.request.user, 'Getcryptopayments.org Withdrawal Confirmation', response_data,\
-                settings.DEFAULT_FROM_EMAIL,[self.request.user.email])
+        send_mail(self.request.user, 'Getcryptopayments.org Withdrawal Confirmation', response_data,
+                  settings.DEFAULT_FROM_EMAIL, [self.request.user.email])
         return HttpResponse(json.dumps({"success": True}), content_type='application/json')
 
 
@@ -582,6 +608,8 @@ class SendSuccessView(TemplateView):
         return context
 
 # @method_decorator(check_2fa, name='dispatch')
+
+
 class SendConfirmView(TemplateView):
     template_name = 'coins/send-money-confirm.html'
 
@@ -594,7 +622,8 @@ class SendConfirmView(TemplateView):
         user = t_obj.user
         if not t_obj.approved:
             if t_obj:
-                erc = EthereumToken.objects.filter(contract_symbol=t_obj.currency)
+                erc = EthereumToken.objects.filter(
+                    contract_symbol=t_obj.currency)
                 if t_obj.currency == 'XRPTest':
                     obj = XRPTest(user)
                 elif t_obj.currency == 'XRP':
@@ -747,12 +776,12 @@ class BalanceView(View):
         currency_code = self.request.GET.get('code')
         value = None
         if self.request.GET.get("user_id"):
-            user = User.objects.get(id = self.request.GET.get("user_id"))
+            user = User.objects.get(id=self.request.GET.get("user_id"))
         else:
             user = request.user
         if not cache.get("rates"):
             data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']:rate['price'] for rate in data}
+            rates = {rate['short']: rate['price'] for rate in data}
             self.request.session["rates"] = rates
         if 'Test' in currency_code:
             new_currency_code = currency_code.strip("Test")
@@ -773,13 +802,14 @@ class BalanceView(View):
         data = {'balance': str(balance), 'code': currency_code, 'value': value}
         return HttpResponse(json.dumps(data), content_type="application/json")
 
+
 class AdminBalanceView(View):
     def get(self, request, *args, **kwargs):
         currency_code = self.request.GET.get('code')
         value = None
         if not cache.get('rates'):
             data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']:rate['price'] for rate in data}
+            rates = {rate['short']: rate['price'] for rate in data}
             self.request.session["rates"] = rates
         else:
             rates = cache.get('rates')
@@ -789,7 +819,8 @@ class AdminBalanceView(View):
         else:
             new_currency_code = currency_code
         temp_balance = 0
-        temp_wallet_list = Wallet.objects.filter(Q(name__code=currency_code) | Q(token_name__contract_symbol=currency_code))
+        temp_wallet_list = Wallet.objects.filter(
+            Q(name__code=currency_code) | Q(token_name__contract_symbol=currency_code))
         for wallet in temp_wallet_list:
             try:
                 balance = get_balance(wallet.user, currency_code)
@@ -800,10 +831,11 @@ class AdminBalanceView(View):
                 balance = 0
         if rates:
             rate = float(rates[currency_code])
-            value = round((temp_balance*rate),2)
+            value = round((temp_balance*rate), 2)
         else:
             value = "NA"
-        data = {'balance': str(temp_balance), 'code': currency_code, 'value': value}
+        data = {'balance': str(temp_balance),
+                'code': currency_code, 'value': value}
         return HttpResponse(json.dumps(data), content_type="application/json")
 
 
@@ -834,8 +866,8 @@ class ConversionView(View):
             # rates = cache.get('rates')
             # val = rates[convert_to]
 
-            val = round(float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q="+convert_from+"_"+\
-            convert_to+"&compact=ultra&apiKey=4ce7f25c8cf6f2f34ada").text.split(":")[-1].strip("}});")),2)
+            val = round(float(requests.get("https://free.currencyconverterapi.com/api/v6/convert?q="+convert_from+"_" +
+                                           convert_to+"&compact=ultra&apiKey=4ce7f25c8cf6f2f34ada").text.split(":")[-1].strip("}});")), 2)
         except:
             val = None
         try:
@@ -845,18 +877,19 @@ class ConversionView(View):
 
         return HttpResponse(json.dumps({"value": val}), content_type="application/json")
 
-class BuyCryptoView(LoginRequiredMixin,TemplateView):
+
+class BuyCryptoView(LoginRequiredMixin, TemplateView):
     template_name = "coins/buycrypto-1.html"
-    
+
     @method_decorator(check_2fa)
     def dispatch(self, request, *args, **kwargs):
-        kyc_status = KYC.objects.filter(user=self.request.user,approved=True)
+        kyc_status = KYC.objects.filter(user=self.request.user, approved=True)
         if not kyc_status:
             return redirect(reverse_lazy("accounts:kyc"))
-        elif request.method=="GET":
-            return super().get(request,**kwargs)
+        elif request.method == "GET":
+            return super().get(request, **kwargs)
         else:
-            return self.post(request,**kwargs)
+            return self.post(request, **kwargs)
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -868,11 +901,12 @@ class BuyCryptoView(LoginRequiredMixin,TemplateView):
     def post(self, request, *args, **kwargs):
         context = super().get_context_data(**kwargs)
         coin_code = kwargs["currency"]
-        coin_user = User.objects.get(is_superuser = True, username="admin")
+        coin_user = User.objects.get(is_superuser=True, username="admin")
         balance = get_balance(coin_user, coin_code)
-        amount = round(float(request.POST.get("usd_value")),4)
+        amount = round(float(request.POST.get("usd_value")), 4)
         currency = "USD"
-        coin_amount = round(float(request.POST.get("coin_value"))*float(amount),8)
+        coin_amount = round(
+            float(request.POST.get("coin_value"))*float(amount), 8)
         if float(coin_amount) <= balance:
             payment = paypalrestsdk.Payment({
                 "intent": "sale",
@@ -892,16 +926,16 @@ class BuyCryptoView(LoginRequiredMixin,TemplateView):
                     "amount": {
                         "total": amount,
                         "currency": currency},
-                    "description": coin_code+" buy transaction. Amount of "+ str(amount) +currency}]})
+                    "description": coin_code+" buy transaction. Amount of " + str(amount) + currency}]})
 
             if payment.create():
                 PaypalTransaction.objects.create(
-                    user = request.user,
-                    amount = amount,
-                    coin = Coin.objects.get(code = coin_code),
+                    user=request.user,
+                    amount=amount,
+                    coin=Coin.objects.get(code=coin_code),
                     paypal_txid=payment.id,
-                    coin_amount = coin_amount
-                    )
+                    coin_amount=coin_amount
+                )
                 context["coin"] = coin_code
                 context["coin_amount"] = coin_amount
                 context["amount"] = amount
@@ -912,22 +946,21 @@ class BuyCryptoView(LoginRequiredMixin,TemplateView):
                         # https://github.com/paypal/rest-api-sdk-python/pull/58
                         approval_url = str(link.href)
                         context["paypal_url"] = approval_url
-            
-                        return render(request,"coins/payment-gateway-selector.html", context=context)
-        else:
-            return redirect(reverse_lazy("coins:buy_coin",kwargs={'currency': coin_code})+"?error=true")
-        
 
-          
+                        return render(request, "coins/payment-gateway-selector.html", context=context)
+        else:
+            return redirect(reverse_lazy("coins:buy_coin", kwargs={'currency': coin_code})+"?error=true")
+
+
 @method_decorator(check_2fa, name='dispatch')
 class PayPalVerifyView(View):
     def get(self, request, *args, **kwargs):
         payment = paypalrestsdk.Payment.find(request.GET.get("paymentId"))
 
         if payment.execute({"payer_id": request.GET.get("PayerID")}):
-            paypal_obj = PaypalTransaction.objects.get(user = request.user,
-                        paypal_txid = request.GET.get("paymentId"))
-            paypal_obj.tx_status=True
+            paypal_obj = PaypalTransaction.objects.get(user=request.user,
+                                                       paypal_txid=request.GET.get("paymentId"))
+            paypal_obj.tx_status = True
             self.send_coins(request, paypal_obj)
             paypal_obj.save()
             self.send_confirmation_mail(request, paypal_obj)
@@ -935,32 +968,32 @@ class PayPalVerifyView(View):
             del request.session["coin_amount"]
         else:
             status = False
-        return render(request,"coins/payment_status.html", context={"status": status})
+        return render(request, "coins/payment_status.html", context={"status": status})
 
     def send_confirmation_mail(self, request, paypal_obj):
         context = {
-                   "ip": self.get_client_ip(request),
-                   "first_name": request.user.first_name,
-                   "coin_amount":paypal_obj.coin_amount,
-                   "coin":paypal_obj.coin.code,
-                   "amount":paypal_obj.amount
-                   }
+            "ip": self.get_client_ip(request),
+            "first_name": request.user.first_name,
+            "coin_amount": paypal_obj.coin_amount,
+            "coin": paypal_obj.coin.code,
+            "amount": paypal_obj.amount
+        }
         msg_plain = render_to_string('coins/purchase_success.txt', context)
         send_mail(
-                    request.user,
-                    'Purchase Confirmed',
-                    msg_plain,
-                    settings.DEFAULT_FROM_EMAIL,
-                    [request.user.email],
-                    fail_silently=False
-                )
+            request.user,
+            'Purchase Confirmed',
+            msg_plain,
+            settings.DEFAULT_FROM_EMAIL,
+            [request.user.email],
+            fail_silently=False
+        )
         return True
 
     def send_coins(self, request, paypal_obj):
         coin_code = paypal_obj.coin.code
-        coin_user = User.objects.get(is_superuser = True, username="admin")
+        coin_user = User.objects.get(is_superuser=True, username="admin")
         transaction_to = Wallet.objects.filter(user=self.request.user,
-                         name__code=coin_code).first().addresses.all().first().address
+                                               name__code=coin_code).first().addresses.all().first().address
         amount = paypal_obj.coin_amount
         erc = EthereumToken.objects.filter(contract_symbol=coin_code)
         if coin_code == 'XRPTest':
@@ -986,7 +1019,7 @@ class PayPalVerifyView(View):
                                                balance=balance, amount=amount, transaction_to=transaction_to,
                                                activation_code="Buy Crypto")
         return True
-    
+
     def get_client_ip(self, request):
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
@@ -994,6 +1027,7 @@ class PayPalVerifyView(View):
         else:
             ip = request.META.get('REMOTE_ADDR')
         return ip
+
 
 class DisplaySupportedCoins(View):
     def get(self, request, *args, **kwargs):
@@ -1003,9 +1037,10 @@ class DisplaySupportedCoins(View):
         for coin in temp_list:
             if coin == currency_code:
                 temp_list.remove(coin)
-        final_dict = { key: coin_dict[key] for key in temp_list }
+        final_dict = {key: coin_dict[key] for key in temp_list}
         data = final_dict
         return HttpResponse(json.dumps(data), content_type="application/json")
+
 
 @method_decorator(check_2fa, name='dispatch')
 class AdminWallet(TemplateView):
@@ -1030,6 +1065,7 @@ class AdminWalletCoin(TemplateView):
         context["coins"] = coinlist.get_supported_coin()
         return context
 
+
 @method_decorator(check_2fa, name='dispatch')
 class UserWallet(TemplateView):
     template_name = "coins/system_stat.html"
@@ -1050,7 +1086,8 @@ class AdminCoinWalletView(TemplateView):
         try:
             context["wallets"] = Wallet.objects.filter(name__code=current_coin)
         except:
-            context["wallets"] = EthereumTokenWallet.objects.filter(name__contract_symbol=current_coin)
+            context["wallets"] = EthereumTokenWallet.objects.filter(
+                name__contract_symbol=current_coin)
         return context
 
 
@@ -1058,7 +1095,7 @@ class AdminCoinWalletView(TemplateView):
 class TransactionHistoryView(LoginRequiredMixin, TemplateView):
     template_name = 'coins/payment-history.html'
 
-    
+
 @method_decorator(check_2fa, name='dispatch')
 class TransactionDetails(LoginRequiredMixin, TemplateView):
     template_name = 'coins/transactions.html'
@@ -1067,35 +1104,43 @@ class TransactionDetails(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         if kwargs["type"] == 'withdrawal':
             if self.request.GET.get('currency'):
-                context["transactions"] = Transaction.objects.filter(user=self.request.user, currency=self.request.GET.get('currency'))
+                context["transactions"] = Transaction.objects.filter(
+                    user=self.request.user, currency=self.request.GET.get('currency'))
             else:
-                context["transactions"] = Transaction.objects.filter(user=self.request.user)
+                context["transactions"] = Transaction.objects.filter(
+                    user=self.request.user)
 
         elif kwargs["type"] == 'deposit':
-                if self.request.GET.get('currency'):
-                    context["transactions"] = DepositTransaction(self.request.user).get_currency_txn(self.request.GET.get('currency'))
-                else:
-                    context["transactions"] = DepositTransaction(self.request.user).get_deposit_transactions()  
+            if self.request.GET.get('currency'):
+                context["transactions"] = DepositTransaction(
+                    self.request.user).get_currency_txn(self.request.GET.get('currency'))
+            else:
+                context["transactions"] = DepositTransaction(
+                    self.request.user).get_deposit_transactions()
         return context
+
 
 @method_decorator(check_2fa, name='dispatch')
 class DownloadTxnView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
-        txns = reorder_tx_data(DepositTransaction(self.request.user).get_deposit_transactions())
+        txns = reorder_tx_data(DepositTransaction(
+            self.request.user).get_deposit_transactions())
         if request.GET.get('mode') == "export":
             response = HttpResponse(content_type='text/csv')
             response['Content-Disposition'] = 'attachment; filename="export.csv"'
 
             writer = csv.writer(response)
-            txns = reorder_tx_data(DepositTransaction(self.request.user).get_deposit_transactions())
-            writer.writerow(['Time','Address', 'TX ID','Coin','Amount'])
+            txns = reorder_tx_data(DepositTransaction(
+                self.request.user).get_deposit_transactions())
+            writer.writerow(['Time', 'Address', 'TX ID', 'Coin', 'Amount'])
             for txn in txns:
                 writer.writerow(txn.values())
 
             return response
         else:
-            response = render_to_string('coins/transaction_table.html',{'transactions': txns})
-            return HttpResponse(json.dumps({'data': response}),content_type="application/json")
+            response = render_to_string(
+                'coins/transaction_table.html', {'transactions': txns})
+            return HttpResponse(json.dumps({'data': response}), content_type="application/json")
 
 
 class PayByNameView(LoginRequiredMixin, TemplateView):
@@ -1103,12 +1148,13 @@ class PayByNameView(LoginRequiredMixin, TemplateView):
 
     def get_context_data(self, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["paybynames"] = PaybyName.objects.filter(user = self.request.user)
+        context["paybynames"] = PaybyName.objects.filter(
+            user=self.request.user)
         context["packages"] = PayByNamePackage.objects.all()
         pay_by_names = PaybyName.objects.filter(user=self.request.user).count()
-        time_threshold =  datetime.datetime.now() - timedelta(days=365)
-        purchases = PayByNamePurchase.objects.filter(Q(user=self.request.user, purchase_status=True, expiry__gt=time_threshold, paybyname=None)|\
-                                                    Q(user=self.request.user, purchase_status=True, expiry=None)).count()
+        time_threshold = datetime.datetime.now() - timedelta(days=365)
+        purchases = PayByNamePurchase.objects.filter(Q(user=self.request.user, purchase_status=True, expiry__gt=time_threshold, paybyname=None) |
+                                                     Q(user=self.request.user, purchase_status=True, expiry=None)).count()
         if purchases:
             context['new_paybyname'] = range(purchases)
         return context
@@ -1127,25 +1173,34 @@ class PayByNamePayView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         package_id = request.POST.get('package_id')
         package_obj = PayByNamePackage.objects.get(id=package_id)
+        unique_id = account_activation_token.make_token(
+            user=self.request.user)
+        context['unique_id'] = unique_id
+        PayByNamePurchase.objects.create(
+            user=self.request.user, package=package_obj, purchase_status=False, unique_id=unique_id)
         context['amount'] = package_obj.price
         context['input_currency'] = "USD"
         context['available_coins'] = coinlist.payment_gateway_coins()
         return render(self.request, 'coins/paybyname_coin_select.html', context)
 
 
-class PayByNamePaymentView(TemplateView):
+class PayByNamePaymentView(LoginRequiredMixin, TemplateView):
     template_name = 'merchant_tools/posqrpostpayment.html'
 
     def post(self, request, *args, **kwargs):
         context = super().get_context_data(**kwargs)
-        superuser = User.objects.get(is_superuser=True)
-        merchant_id = Profile.objects.get(
-            user=superuser).merchant_id
-        merchant_user = Profile.objects.get(merchant_id=merchant_id).user
-        unique_id = self.request.session['unique_transaction_id']
-        input_amount = self.request.session['input_amount']
-        input_coin = self.request.session['input_coin']
+        unique_id = request.POST.get('unique_id')
         selected_coin = request.POST.get('selected_coin')
+        try:
+            selected_coin = request.POST.get('selected_coin') 
+        except:
+            return HttpResponseForbidden(render(request, '403.html'))
+        
+        try:
+            package_price = PayByNamePurchase.objects.get(
+                unique_id=unique_id).package.price
+        except:
+            return HttpResponseForbidden(render(request, '403.html'))
         try:
             rates = cache.get('rates')
         except:
@@ -1153,20 +1208,19 @@ class PayByNamePaymentView(TemplateView):
             rates = {rate['short']: rate['price'] for rate in data}
             rates = json.dumps(rates)
 
-        if input_coin == "USD":
-            selected_coin_amount = float(input_amount)/float(rates[selected_coin])
-        else:
-            selected_coin_amount = (float(input_amount) * float(rates[input_coin]))/float(rates[selected_coin])
-
+        rate_of_coin = rates[selected_coin]
+        selected_coin_amount = float(package_price)/float(rate_of_coin)
+        merchant_user = User.objects.get(is_superuser=True, username="admin")
         addr = create_wallet(
             merchant_user, selected_coin)
-        selected_coin_amount= round(selected_coin_amount,8)
+        selected_coin_amount = round(selected_coin_amount, 8)
+        merchant_profile = Profile.objects.get(user=merchant_user)
         try:
             obj, created = MultiPayment.objects.get_or_create(
-                merchant_id=merchant_id,
+                merchant_id=merchant_profile.merchant_id,
                 paid_amount=selected_coin_amount,
                 paid_in=Coin.objects.get(code=selected_coin),
-                eq_usd=request.session['usd_equivalent'],
+                eq_usd=package_price,
                 paid_unique_id=unique_id,
                 attempted_usd=0,
                 transaction_id=account_activation_token.make_token(
@@ -1175,11 +1229,11 @@ class PayByNamePaymentView(TemplateView):
             )
         except:
             obj, created = MultiPayment.objects.get_or_create(
-                merchant_id=merchant_id,
+                merchant_id=merchant_profile.merchant_id,
                 paid_amount=selected_coin_amount,
-                paid_in_erc=EthereumToken.objects.get( 
+                paid_in_erc=EthereumToken.objects.get(
                     contract_symbol=selected_coin),
-                eq_usd=request.session['usd_equivalent'],
+                eq_usd=package_price,
                 paid_unique_id=unique_id,
                 attempted_usd=0,
                 transaction_id=account_activation_token.make_token(
@@ -1195,37 +1249,39 @@ class PayByNamePaymentView(TemplateView):
         return render(self.request, 'gcps/merchant_tools/poscalcpayment.html', context)
 
 
-
 @method_decorator(check_2fa, name='dispatch')
 class PayByNameSubmit(LoginRequiredMixin, View):
 
     def post(self, *args, **kwargs):
         label = self.request.POST.get("name")
         pay_by_names = PaybyName.objects.filter(user=self.request.user).count()
-        time_threshold =  datetime.datetime.now() - timedelta(days=365)
-        purchases = PayByNamePurchase.objects.filter(Q(user=self.request.user, purchase_status=True, expiry__gt=time_threshold, paybyname=None)|\
-                                                    Q(user=self.request.user, purchase_status=True, expiry=None)).count()
+        time_threshold = datetime.datetime.now() - timedelta(days=365)
+        purchases = PayByNamePurchase.objects.filter(Q(user=self.request.user, purchase_status=True, expiry__gt=time_threshold, paybyname=None) |
+                                                     Q(user=self.request.user, purchase_status=True, expiry=None)).count()
         if purchases:
-            paybyname_obj = PaybyName.objects.create(user=self.request.user,label=label)
-            non_used_purchases = PayByNamePurchase.objects.filter(user=self.request.user, purchase_status=True, expiry=None)
-            used_purchases = PayByNamePurchase.objects.filter(user=self.request.user, purchase_status=True, paybyname=None)
+            paybyname_obj = PaybyName.objects.create(
+                user=self.request.user, label=label)
+            non_used_purchases = PayByNamePurchase.objects.filter(
+                user=self.request.user, purchase_status=True, expiry=None)
+            used_purchases = PayByNamePurchase.objects.filter(
+                user=self.request.user, purchase_status=True, paybyname=None)
             if non_used_purchases:
                 non_used_purchase = non_used_purchases.first()
                 non_used_purchase.expiry = paybyname_obj.expiry
                 non_used_purchase.paybyname = paybyname_obj
                 non_used_purchase.save()
             else:
-                used_purchase =used_purchases.first()
+                used_purchase = used_purchases.first()
                 used_purchase.paybyname = paybyname_obj
                 used_purchase.save()
                 paybyname_obj.expiry = used_purchase.expiry
                 paybyname_obj.save()
 
             return JsonResponse({"status": True})
-        
+
         return JsonResponse({"status": False})
 
-            
+
 @method_decorator(check_2fa, name='dispatch')
 class PayByNameOptions(LoginRequiredMixin, View):
 
@@ -1247,9 +1303,10 @@ class CoinAddrUpdate(UpdateView):
     model = WalletAddress
     fields = ['label']
     template_name = 'coins/edit_label.html'
-   
+
     def get_success_url(self):
         return reverse('coins:newaddr', kwargs={'currency': self.kwargs['currency']})
+
 
 class CoinHide(TemplateView):
 
@@ -1261,7 +1318,7 @@ class CoinHide(TemplateView):
             addr = Wallet.objects.get(
                 user=self.request.user,  name__code=code).addresses
             obj = get_object_or_404(addr, pk=key)
-           
+
         else:
             addr = Wallet.objects.get(
                 user=self.request.user,  name__code='ETH').addresses
@@ -1274,16 +1331,17 @@ class CoinHide(TemplateView):
 
         obj.save()
         context = {
-                   "ip": self.get_client_ip(request),
-                   "username": request.user.username,
-                   "object" : obj,
-                   "code" : code,
-                #    "otp": request.session['email_otp'],
-                   }
+            "ip": self.get_client_ip(request),
+            "username": request.user.username,
+            "object": obj,
+            "code": code,
+            #    "otp": request.session['email_otp'],
+        }
         msg_plain = render_to_string('common/hidden_address.txt', context)
-        send_mail(self.request.user, 'Deposit Address Hide Notice', msg_plain , settings.EMAIL_HOST_USER, [request.user.email], fail_silently=False)
+        send_mail(self.request.user, 'Deposit Address Hide Notice', msg_plain,
+                  settings.EMAIL_HOST_USER, [request.user.email], fail_silently=False)
         return redirect(reverse_lazy('coins:newaddr', kwargs={'currency': self.kwargs.get('currency')}))
-    
+
     def get_client_ip(self, request):
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
@@ -1291,6 +1349,8 @@ class CoinHide(TemplateView):
         else:
             ip = request.META.get('REMOTE_ADDR')
         return ip
+
+
 class HiddenAddress(TemplateView):
     template_name = 'coins/hidden_address.html'
 
@@ -1299,26 +1359,25 @@ class HiddenAddress(TemplateView):
         code = kwargs.get('currency')
         erc = EthereumToken.objects.filter(contract_symbol=code)
         if not erc:
-                context['wallets'] = Wallet.objects.get(
-                    user=self.request.user,  name__code=code).addresses.filter(hidden=True).order_by('id')
-            
+            context['wallets'] = Wallet.objects.get(
+                user=self.request.user,  name__code=code).addresses.filter(hidden=True).order_by('id')
+
         else:
-                context['wallets'] = Wallet.objects.get(
-                    user=self.request.user,  name__code='ETH').addresses.filter(hidden=True).order_by('id')
+            context['wallets'] = Wallet.objects.get(
+                user=self.request.user,  name__code='ETH').addresses.filter(hidden=True).order_by('id')
         context['code'] = code
         return context
 
-    
-        
+
 class GetCurrentRate(View):
     def get(self, request, *args, **kwargs):
         try:
             rates = cache.get('rates')
         except:
             data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']:rate['price'] for rate in data}
+            rates = {rate['short']: rate['price'] for rate in data}
 
         data = json.dumps(rates)
         print(data)
         print(type(data))
-        return HttpResponse(data, content_type='application/json') 
+        return HttpResponse(data, content_type='application/json')

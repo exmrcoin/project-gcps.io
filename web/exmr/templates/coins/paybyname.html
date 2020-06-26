@@ -1,0 +1,161 @@
+{% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
+<div></div>
+{% load transaction_status %} {% block dashboard_heading %}
+<h4 class="text-theme b-4 dashboard">PAY BY NAME</h4>
+{% endblock %} {% block dashboard_wrapper_content %}
+
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div class="pad10">
+                <div class="img-dashboard">
+                    <img src="{% static '/images/recevied.png' %} ">
+                </div>
+                <h4 class="text-theme">{% trans 'Get Your Personalised PaymentID' %}</h4>
+            </div>
+            <div>
+                <div>
+                    <div>
+                        <div class="card" style="background-color: transparent">
+                            <div class="card-body">
+
+                                <!--Table-->
+                                <table
+                                    class="table table-border table-responsive-md table-fixed overflow table-scroll text-white">
+
+                                    <!--Table head-->
+                                    <thead>
+                                        <tr class="table-top" style="border: none">
+
+                                            <th>{% trans '$PayByName Tag' %}</th>
+                                            <th>{% trans 'Expires' %}</th>
+                                            <th>{% trans 'Commands' %}</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% if new_paybyname %}
+                                        {% for available in new_paybyname %}
+                                        <tr class="table-th" style="border: none">
+                                            <th>
+                                                <span><a href="#" data-toggle="modal" data-target="#payByName">Add New
+                                                        PayByName</a></span>
+                                            </th>
+                                        </tr>
+                                        {% endfor %}
+                                        {% endif %}
+
+                                        {% for paybyname in paybynames %}
+                                        <tr class="table-th" style="border: none">
+                                            <th>
+                                                <span>{{ paybyname.label }}</span>
+                                            </th>
+                                            <th>
+                                                <span>{{ paybyname.expiry }}</span>
+                                            </th>
+                                            <th>
+                                                <span class="hidden-xs nobr">
+                                                    <!-- <a type="button" class="btn btn-xs btn-primary" href="help-paybyname-verify">Get Verified</a> 
+                                                        <a type="button" class="btn btn-xs btn-primary" href="index.php?cmd=acct_paybyname&amp;action=edit&amp;tagid=6029691e211c534f562094418d0b702b">Edit Profile</a> -->
+                                                    <a type="button" class="btn btn-xs btn-success"
+                                                        href="{% url 'coins:paybyname_options' paybyname.id  %}?action=renew">Renew</a>
+                                                    <a type="button" class="btn btn-xs btn-danger"
+                                                        href="{% url 'coins:paybyname_options' paybyname.id  %}?action=delete"
+                                                        onclick="return confirm('Are you sure you want to delete your tag? It will no longer work and someone else may claim it for themselves.');">Delete
+                                                        Tag</a>
+                                                </span>
+
+                                            </th>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <!--Table body-->
+
+                                </table>
+                                <!--Table-->
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div style="margin-top: 2rem">
+
+                <div>
+                    <div>
+                        <div class="card" style="background-color: transparent">
+                            <div class="card-body pad10 text-center">
+                                {% for package in packages %}
+                                {% if forloop.counter == 1 %}
+                                <form action="{% url 'coins:paybyname-payment' package.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="package_id" value="{{package.id}}">
+                                    <button class="btn btn-primary mx-1 my-1 col-xs-12 col-sm-6 col-md-4 mw300"
+                                        type="submit">Purchase new $PayByName tag for ${{ package.price }} USD</button>
+
+                                </form>
+                                {% else %}
+                                <form action="{% url 'coins:paybyname-payment' package.id %}" method="POST">
+                                        {% csrf_token %}
+                                    <input type="hidden" name="package_id" value="{{package.id}}">
+                                    <button class="btn btn-primary mx-1 my-1 col-xs-12 col-sm-6 col-md-4 mw300"
+                                        type="submit">{{ package.number_of_items }} for ${{ package.price }}
+                                        USD</button>
+                                </form>
+                                {% endif %}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="payByName" role="dialog">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">PayByName</h5>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" class="form-control" id="id_paybyname" name="paybyname"
+                                placeholder="Enter PayByName">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="id_submit" class="btn btn-outline-orange">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+{% endblock %}{% block script %}
+<script>
+    $(window).on("load", function () {
+        $('#onload').modal('show');
+    })
+    $("#id_submit").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "{% url 'coins:paybyname_submit' %}",
+            data: {
+                'name': $("#id_paybyname").val(),
+                'csrfmiddlewaretoken': '{{ csrf_token }}'
+            },
+            success: function (data) {
+                if (data["status"])
+                    window.location.href = "{% url 'coins:paybyname' %}"
+                else
+                    alert("Error")
+            }
+        })
+    })
+</script>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% load transaction_status %}
+<table class="table vote_table">
+    <thead>
+        <tr class="table-top">
+            <th>POSITION</th>
+
+            <th>COIN</th>
+            <th>NAME </th>
+            <th>VOTES</th>
+            <th> PERCENTAGE OF VOTES</th>
+
+            <th>VOTE</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for coin in coins %}
+        <tr class="table-th">
+            <td>{{forloop.counter}}st</td>
+            <td> {{coin.coin_name}}</td>
+            <td>
+                <B>DigitalNote</B>
+            </td>
+            <td>{{coin.vote_count}}/1,000</td>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar progress-green" style="width:{% percentage coin.vote_count%}%">{% percentage coin.vote_count%}%</div>
+                </div>
+            </td>
+            <td class="padx0">
+                <button class="btn-vote-btn2" onclick="coinVote('{{coin.id}}',1);">+1 votes</button>
+                <button type="button" class="btn-vote-btn2" onclick="coinVote('{{coin.id}}',5);">+5 votes</button>
+                <button type="button" class="btn-vote-btn2" onclick="coinVote('{{coin.id}}',10);">+10 votes</button>
+
+            </td>
+        </tr>
+
+        {% endfor %}
+        
+
+    </tbody>
+
+</table>

@@ -1,0 +1,15 @@
+{% extends 'gcps/base.html' %}
+
+{% block content %}
+    {% load i18n %}
+    <section class="section section-pad">
+        <div class="bx-ash">
+            <div class="min-height-content" style="color: white; text-align: center">
+                <h2>{% trans 'An activation link has been sent' %} <br>
+                    {% trans 'Please check your mail' %}
+                </h2>
+
+            </div>
+        </div>
+    </section>
+{% endblock %}

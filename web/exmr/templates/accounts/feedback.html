@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    {% load i18n %}
+    <section>
+        <div class="dashboard-bg">
+            <div class="merchant-tools merchant-one">
+                <div class=" container merchant-box">FEEDBACK
+                </div>
+                <div class="container subline-p merchant-toolp">
+                    <p>Instant crypto checkout with easy to use cart plugin,advanced,invoice buillder,and API for custom intagration
+                </div>
+            </div>
+            <div class="view-feed">
+                <div class="container">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Feedback Overview</div>
+                        <div class="panel-body">
+                            <div class="row m0">
+                                <div class="col-sm-3">
+                                    <img src="{% static 'images/default-avatar.png' %}" width="200px" height="200px" class="img-circle" style="margin-top: 1em" />
+                                </div>
+                                <div class="col-sm-9">
+                                    <div class="d-wrap">
+                                        <table id="bstable" class="table">
+                                            <thead>
+                                            <tr class="hidden">
+                                                <th>Field</th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td style="border:0px"><b>User</b> <span class="pull-right">:</span></td>
+                                                <td style="border:0px">{{ user.username }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border:0px"><b>Member since</b> <span class="pull-right">:</span></td>
+                                                <td style="border:0px">{{ user.date_joined }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border:0px"><b>Rating</b> <span class="pull-right">:</span></td>
+                                                <td style="border:0px"><span style="color: #5cb85c;">
+{#                                                    <i class="fa fa-star" aria-hidden="true"></i>#}
+                                                    <span class="stars" data-rating={{ user.get_profile.average }} data-num-stars="5" ></span>
+                                                </span> </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border:0px"><b>Positive</b> <span class="pull-right">:</span></td>
+                                                <td style="border:0px"><font color="#008000">{{ user.get_profile.positive }}</font></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border:0px"><b>Neutral</b> <span class="pull-right">:</span></td>
+                                                <td style="border:0px"><font color="#008000">{{ user.get_profile.neutral }}</font></td>
+                                            </tr>
+                                            <tr>
+                                                <td style="border:0px"><b>Negative</b> <span class="pull-right">:</span></td>
+                                                <td style="border:0px"><font color="#008000">{{ user.get_profile.negative }}</font></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Browse Feedback</div>
+                        <div class="panel-body feed-table">
+                            <table id="cstable" class="table table-bordered table-condensed stacktable large-only">
+                                <thead>
+                                <tr>
+                                    <th width="0" >Date</th>
+                                    <th width="0" >Rating</th>
+                                    <th width="0" >B/S</th>
+                                    <th width="0" >Left By</th>
+                                    <th>Comment</th>
+                                    {#                                    <th>Country</th>#}
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for feedback in user.get_all_feedback.all %}
+                                    <tr>
+                                        <td class="coins nobr" align="">{{ feedback.date }}</td>
+                                        <td class="text-center"><img src={% static 'images/pos1.png' %} border="0" alt="Positive" title="Positive">{{ feedback.rating }}</td>
+                                        <td>{{ feedback.get_buyer_or_seller_display }}</td>
+                                        <td>{{ feedback.left_by }}</td>
+                                        <td>{{ feedback.comment }}</td>
+                                        {#                                    <td>{{ user.get_user_addresses.country }}</td>#}
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                <tr>
+                                    <td colspan="6"><a type="button" class="btn btn-primary btn-sm" href="#">Older</a></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+ {% block extra_js %}
+
+     <script>
+    $.fn.stars = function() {
+        return $(this).each(function() {
+            var rating = $(this).data("rating");
+
+            var numStars = $(this).data("numStars");
+
+            var fullStar = new Array(Math.floor(rating + 1)).join('<i class="fa fa-star"></i>');
+
+            var halfStar = ((rating%1) !== 0) ? '<i class="fas fa-star-half"></i>': '';
+
+            var noStar = new Array(Math.floor(numStars + 1 - rating)).join('<i class="fa fa-star-o"></i>');
+            console.log(fullStar, halfStar, noStar, "kjjjjjjjjjjjjjjjjjj")
+            $(this).html(fullStar + halfStar + noStar);
+
+        });
+    }
+
+    $('.stars').stars();
+</script>
+
+ {% endblock %}
+
+
+
+
+

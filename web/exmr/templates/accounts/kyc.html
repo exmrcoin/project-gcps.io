@@ -1,0 +1,91 @@
+{% extends 'gcps/testbase.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load i18n widget_tweaks %}
+<section class="section section-pad">
+<div class="bx-ash text-white">
+    <div class="merchant-tools text-white dark-page-header">
+        <h1>KYC </h1>
+    </div>
+
+</div>
+	<div class="row">
+
+		<div class="col-xs-12  col-md-12 col-md-offset-3 text-center my-2">
+        <div class="account-setting-wrap text-white coin-support-main-wrap xs-padx1">
+            {% if pending %}
+            <h3> Please Wait we are processing your kyc request</h3>
+            {% elif approved %}
+            <h3> Successfully verifed your kyc and now you are eligible to use our fiat services.</h3>
+            {% else %}
+			<form class="form-horizontal" method="POST" action="." enctype="multipart/form-data">
+    			{% csrf_token %}
+    			{{form}}
+    			<input type="submit" class="btn-outline-orange btn-lg mt-4"></input>
+			</form>
+            {% endif %}
+	    </div>
+    </div>
+        {% if not peding and not approved %}
+        <p class="kyc-note text-white">*Note: KYC process can take 3 business days.</p>
+        {% endif %}
+	</div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="accept" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content bg-white" style="border-radius: 0px;">
+            <div class="modal-body col-xs-12 bg-white">
+                <div class="col-xs-12">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                </div>
+                <div class="col-xs-12 pb-1">
+                    <h3> Terms & Conditions</h3>
+                </div>
+                <div class="col-xs-12 modal-scroll ">
+
+                    Terms & Conditions
+                </div>
+                <div class="col-xs-12 text-center">
+                    <button type="button" class="btn btn-success material-button" onclick="terms(1);">I Agree</button>
+                    <button type="button" class="btn btn-default material-button"  onclick="terms(0);" >I Disagree</button>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+</section>
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+    {% if not kyc_terms %}
+    $("#accept").modal("show");
+    {% endif %}
+    function terms(status)
+    {
+      if (status){
+        $.ajax({
+                    type: "GET",
+                    url: "{% url 'accounts:kyc_accept' %}",
+                    data: {
+                        'status': status,
+                    },
+                    success: function (data) {
+
+                         $("#accept").modal("hide");
+                        }
+                    })
+      }
+      else{
+        window.location.href="/"
+      }
+    }
+</script>
+{% endblock %}

@@ -1,188 +1,187 @@
-{% load staticfiles %}
+{% load staticfiles %} {% load i18n %} {% get_available_languages as languages %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> {% block meta %} {% endblock %}
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
+    <!-- favicon -->
     <title>GetCryptoPayments | {% block title %}{% endblock %}</title>
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'  %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'  %}">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css'  %}">
-    {% block page_css %} {% endblock %}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    {% block extra_css %} {% endblock %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css"
+    />
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="//jonthornton.github.io/jquery-timepicker/jquery.timepicker.css"> {% block page_css %} {% endblock %}
 
 </head>
 
 <body>
-<nav class="navbar navbar-default nave-menu">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed menu-btn" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                    aria-expanded="false">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <img src="{% static 'images/logo.png' %}">
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav menu-nav ">
-                <li>
-                    <a href="#">Public Coin Vote </a>
-                </li>
-                <li>
-                    <a href="#">Supported Coins</a>
-                </li>
-                <li>
-                    <a href="#">Store Directory</a>
-                </li>
-                <li>
-                    <a href="#">Merchant Tools</a>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Contact Us
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu drop-down-box">
-                        <li>
-                            <a href="#">Action</a>
-                        </li>
-                        <li>
-                            <a href="#">Another action</a>
-                        </li>
-                        <li>
-                            <a href="#">Something else here</a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li>
-                            <a href="#">Separated link</a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li>
-                            <a href="#">One more separated link</a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle drop-menu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <img class="language-icon" src="{% static 'images/language.png' %}"> Language
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu drop-down-box">
-                        <li>
-                            <a href="#">Action</a>
-                        </li>
-                        <li>
-                            <a href="#">Another action</a>
-                        </li>
-                        <li>
-                            <a href="#">Something else here</a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li>
-                            <a href="#">Separated link</a>
-                        </li>
-                        <li role="separator" class="divider"></li>
-                        <li>
-                            <a href="#">One more separated link</a>
-                        </li>
-                    </ul>
-                </li>
-
-            </ul>
-            <a href="{% url 'login' %}" type="submit" class="btn btn-default btn-log1">Login</a>
-            <a href="{% url 'signup' %}" type="submit" class="btn btn-default btn-sign">Signup</a>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-{% block content %}
-{% endblock %}
-<footer>
-    <div class="footer-bg">
-        <div class="container ">
-            <div class="row ">
-                <div class="col-sm-2">
-                    <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                        <span>
-                <img class="footer-head-line" src="{% static 'images/footer-line.png' %}">
-              </span>
-                    </div>
-                    <ul>
-                        <li>Supported Coins </li>
-                        <li>Merchant Tools</li>
-                        <li>Public Coin Vote </li>
-                        <li>Store Directory </li>
-                    </ul>
+        <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>    
                 </div>
-                <div class="col-sm-2">
-                    <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                        <span>
-                <img class="footer-head-line" src="{% static 'images/footer-line.png'  %}">
-              </span>
-                    </div>
-                    <ul>
-                        <li>Get Mobile App </li>
-                        <li>Affiliate Information</li>
-                        <li>Official TOR URL </li>
-                        <li>PGP Key</li>
-                    </ul>
+                <a class="navbar-brand" href="#">Brand</a>
+                <div class="navbar-collapse collapse">
+                  <ul class="nav navbar-nav navbar-left">
+                      <li><a href="#">Left</a></li>
+                      <li><a href="#about">Left</a></li>
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#about">Right</a></li>
+                    <li><a href="#contact">Right</a></li>
+                  </ul>
                 </div>
-                <div class="col-sm-2">
-                    <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                        <span>
-                <img class="footer-head-line" src="{% static 'images/footer-line.png' %}">
-              </span>
+              </nav>
+              
+              .navbar-brand
+              {
+                  position: absolute;
+                  width: 100%;
+                  left: 0;
+                  text-align: center;
+                  margin:0 auto;
+              }
+              .navbar-toggle {
+                  z-index:3;
+              }
+    {% block content %} {% endblock %}
+    <footer>
+        <div class="footer-bg">
+            <div class="container ">
+                <div class="row ">
+                    <div class="col-sm-4 col-lg-2">
+                        <div class="footer-head-menu">GETCRYPTOPAYMENTS
+                            <div class="footer-heading-line">
+                            </div>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="{% url 'coins:supported_coins' 'Crypto' %}">{% trans 'Supported Coins' %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'merchant-tools' %}">{% trans 'Merchant Tools' %}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'public coin vote' %}">{% trans 'Public Coin Vote'%}</a>
+                            </li>
+                            <li>
+                                <a href="{% url 'store:store-directory' %}">{% trans 'Store Directory' %}</a>
+                            </li>
+                        </ul>
                     </div>
-                    <ul>
-                        <li>Fees/Pricing </li>
-                        <li>Help </li>
-                        <li>Add Your Store</li>
-                        <li>Coin Request </li>
-                    </ul>
-                </div>
-                <div class="col-sm-2">
-                    <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                        <span>
-                <img class="footer-head-line" src="{% static 'images/footer-line.png' %}">
-              </span>
+                    <div class="col-sm-4 col-lg-2">
+                        <div class="footer-head-menu">GETCRYPTOPAYMENTS
+                            <div class="footer-heading-line">
+                            </div>
+                        </div>
+                        <ul>
+                            <li>{% trans 'Get Mobile App' %}</li>
+                            <li>{% trans 'Affiliate Information' %}</li>
+                            <li>{% trans 'Official TOR URL' %}</li>
+                            <li>{% trans 'PGP Key' %}</li>
+                        </ul>
                     </div>
-                    <ul>
-                        <li>Twitter</li>
-                        <li>Facebook</li>
-                        <li>Blog</li>
-                    </ul>
-                </div>
-                <div class="col-sm-2">
-                    <div class="footer-head-menu">GETCRYPTOPAYMENTS
-                        <span>
-                <img class="footer-head-line" src="{% static 'images/footer-line.png'%}">
-              </span>
+                    <div class="col-sm-4 col-lg-2">
+                        <div class="footer-head-menu">GETCRYPTOPAYMENTS
+                            <div class="footer-heading-line">
+                            </div>
+                        </div>
+                        <ul>
+                            <li>{% trans 'Fees/Pricing' %}</li>
+                            <li>{% trans 'Help' %}</li>
+                            <li>{% trans 'Add Store' %}</li>
+                            <li>{% trans 'Coin Request' %}</li>
+                        </ul>
                     </div>
-                    <ul>
-                        <li>Privacy Policy</li>
-                        <li>Terms of Service</li>
-                    </ul>
-                </div>
-                <div class="col-sm-2 footer-head-menu">
-                    <button type="submit" class="btn- btn-default btn-footer">Add Your Store</button>
-                    <button type="submit" class="btn- btn-default btn-footer coin-payment">Coin Requst</button>
-                    <img class="apple-icon" src="{% static 'images/apple-icon.png' %}">
-                    <img class="apple-icon" src="{% static 'images/play-store.png' %}">
+                    <div class="col-sm-4 col-lg-2">
+                        <div class="footer-head-menu">GETCRYPTOPAYMENTS
+                        </div>
+                        <div class="footer-heading-line">
+                        </div>
+                        <ul>
+                            <a href="https://twitter.com/GCryptoPayments" target="_blank">
+                                <li>Twitter</li>
+                            </a>
+                            <a href="https://www.facebook.com/GetCryptoPayments/" target="_blank">
+                                <li>Facebook</li>
+                            </a>
+                            <a href="https://www.linkedin.com/company/getcryptopayments/" target="_blank">
+                                <li>Linkedin</li>
+                            </a>
+                            <a href="http://t.me/GetCryptoPayments" target="_blank">
+                                <li>Telegram</li>
+                            </a>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-lg-2">
+                        <div class="footer-head-menu">GETCRYPTOPAYMENTS
+                            <div class="footer-heading-line">
+                            </div>
+                        </div>
+                        <ul>
+                            <li>{% trans 'Privacy Policy' %}</li>
+                            <li>{% trans 'Terms of Service' %}</li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-4 col-lg-2 footer-head-menu">
+                        <button type="submit" class="btn- btn-default btn-footer w100p">{% trans 'Add Store' %}</button>
+                        <button type="submit" class="btn- btn-default btn-footer coin-payment w100p">{% trans 'Coin Request' %}</button>
+                        <img class="img-responsive w100p appstore-icon" src="{% static 'images/apple-icon.png' %}">
+                        <img class="img-responsive w100p appstore-icon" src="{% static 'images/play-store.png' %}">
+                    </div>
                 </div>
             </div>
+            <div class="pad10">
+
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
 </body>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-{% block extra_js %} {% endblock %}
+
 </html>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+<script src="{% static 'js/jquery-ui.min.js' %}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+<script src="{% static 'js/jquery.timepicker.min.js' %}"></script>
+<script src="{% static 'js/datepicker.min.js' %}"></script>
+<script src="{% static 'js/jquery.toaster.js' %}"></script>
+
+<script src="{% static 'js/common.js' %}"></script>
+
+
+
+
+<script>
+    $(function () {
+        $("#datepicker").datepicker();
+    });
+</script>
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker3').datetimepicker({
+            format: 'LT'
+        });
+    });
+</script> {% block extra_js %} {% endblock %}

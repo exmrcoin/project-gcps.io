@@ -1,0 +1,100 @@
+{% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
+<div></div>
+{% load transaction_status %} {% block dashboard_heading %}<h4 class="text-theme b-4 dashboard">COIN SETTINGS</h4>
+{% endblock %} {% block dashboard_wrapper_content %}
+
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div style="padding-bottom: 10px;">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                      <a class="nav-link active dashboard-nav" href="{% url 'coins:setting-setup' %}">Setup Wizard</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link dashboard-nav" href="{% url 'coins:coin-settings' %}">Std.coin</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link dashboard-nav" href="{% url 'coins:omini-coin' %}">Omini coin</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link dashboard-nav" href="{% url 'coins:ripple' %}" tabindex="-1" aria-disabled="true">Ripple</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link dashboard-nav" href="#" tabindex="-1" aria-disabled="true">Escrow</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link dashboard-nav" href="#" tabindex="-1" aria-disabled="true">Paypal/other</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link dashboard-nav" href="#" tabindex="-1" aria-disabled="true"></a>
+                      </li>
+                  </ul>
+            </div>
+            <div class="panel-body" style="text-align: center;">
+                <div class="accept-table-wrap">
+                    <table class="table table-border table-responsive-md text-white">
+                        <thead>
+                            <tr style="border: none" >
+                                <th>Enabled</th>
+                                <th>Coin</th>
+                                <th>Your payment Address
+                                    <br>(only needed for ASAP modes)
+                                </th>
+                                <th>Payout Mode </th>
+                                <th>Discount</th>
+                                <th>Maximum value per Transaction</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border: none">
+                                <td>
+                                    <input type="checkbox" name="">
+                                </td>
+                                <td>
+                                    <p>
+                                        <img src="{% static 'images/coins/' %}{{ ripple.code}}.png" class="wallets-img" width="30px"><span>{{ ripple.coin_name }}</span></p>
+                                </td>
+                                <td>
+                                    <input type="text" class="form-control form-control-sm" />
+                                </td>
+                                <td>
+                                    <select class="form-control form-control-sm">
+                                        <option>To balance</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="text" name="" value="0%" class="form-control form-control-sm">
+                                </td>
+                                <td>
+                                    <div class="input-group">
+
+                                        <input type="text" class="form-control form-control-sm" name="msg" value="0">
+                                        <span class="input-group-addon p0 ">
+                                            <select class="form-control form-control-sm">
+                                                <option>USD</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                <div class="col text-center">
+                <button type="submit" class="btn btn-success text-center" >Select</button>
+                </div>             
+                </form> 
+                </body>
+            </div>
+                
+        </div>
+    </div>
+</section>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,280 @@
+{% extends 'exmr.html' %}
+{% load staticfiles %}
+{% block content %}
+    {% load i18n %}
+    <section>
+        <div class="dasboard-head">
+            <div class="merchant-tools merchant-one">
+                <div class=" container merchant-box">SUPPORTED COINS
+                </div>
+                <div class="container subline-p merchant-toolp">
+                    <p>Instant GetCryptoPayments checkout with easy to use cart plugin,advanced,invoice builder,and API for custom integration
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="dashboard-bg">
+            <div class="container">
+                <div class="dashboard-wrapper">
+                    <div class="dasboard-head">
+                        <div class="supportcoin-check-wrap">
+                            <ul>
+                                <li class=" col-sm-3 check-box-box"><div class="checkbox check-box-line">
+                                    <label for="checkbox1">
+                                        <input id="checkbox1" type="checkbox">
+                                        Crypto
+                                    </label>
+                                </div></li>
+                                <li class=" col-sm-3 check-box-box"><div class="checkbox check-box-line">
+                                    <label for="checkbox1">
+                                        <input id="checkbox1" type="checkbox">
+                                        Ripple
+                                    </label>
+                                </div></li>
+                                <li class="col-sm-3 check-box-box"><div class="checkbox check-box-line">
+                                    <label for="checkbox1">
+                                        <input id="checkbox1" type="checkbox">
+                                        Ether Token (Wallet only)
+                                    </label>
+                                </div></li>
+                                <li class="col-sm-3 check-box-box"><div class="checkbox check-box-line">
+                                    <label for="checkbox1">
+                                        <input id="checkbox1" type="checkbox">
+                                        Fiat
+                                    </label>
+                                </div></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="account-setting-wrap coin-support-main-wrap">
+                        <fieldset class="setting-form form-settings">
+                            <table class="table support-table">
+                                <thead>
+                                <tr>
+                                    <th>COIN NAME</th>
+                                    <th>COD</th>
+                                    <th>FEE
+                                        <sub class="sub-number">1</sub>
+                                    </th>
+                                    <th>CONFIRMS</th>
+                                    <th>TO BTC
+                                        <sub class="sub-number">3</sub>
+                                    </th>
+                                    <th>EXPLORE</th>
+
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        <img class="coin-icon-support" src="{% static 'images/BTC-SUPPORT-COIN.png' %}">
+                                        <span class="coin-name">Bitcoin</span>
+                                    </td>
+                                    <td>BTC</td>
+                                    <td>0.50%</td>
+                                    <td>2</td>
+                                    <td>1.0000000000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-support-convert" data-toggle="modal" data-target="#myModal">
+                                            <img class="arrow-covertet-icon"  src="{% static 'images/arrows.svg' %}"> Converter</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img class="coin-icon-support" src="{% static 'images/LTC -coin.png' %}">
+                                        <span class="coin-name">Litecoin</span>
+                                    </td>
+                                    <td>BTC</td>
+                                    <td>0.50%</td>
+                                    <td>2</td>
+                                    <td>1.0000000000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-support-convert" data-toggle="modal" data-target="#myModal">
+                                            <img class="arrow-covertet-icon" src="{% static 'images/arrows.svg' %}"> Converter</button>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img class="coin-icon-support" src="{% static 'images/ADC-coin.png'  %}">
+                                        <span class="coin-name">Audio coin</span>
+                                    </td>
+                                    <td>BTC</td>
+                                    <td>0.50%</td>
+                                    <td>2</td>
+                                    <td>1.0000000000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-support-convert" data-toggle="modal" data-target="#myModal">
+                                            <img class="arrow-covertet-icon" src="{% static 'images/arrows.svg' %}"> Converter</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img class="coin-icon-support" src="{% static 'images/BTC-SUPPORT-COIN.png' %}">
+                                        <span class="coin-name">Bitcoin</span>
+                                    </td>
+                                    <td>BTC</td>
+                                    <td>0.50%</td>
+                                    <td>2</td>
+                                    <td>1.0000000000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-support-convert" data-toggle="modal" data-target="#myModal">
+                                            <img class="arrow-covertet-icon" src="{% static 'images/arrows.svg' %}"> Converter</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img class="coin-icon-support" src="{% static 'images/LTC -coin.png' %}">
+                                        <span class="coin-name">Litecoin</span>
+                                    </td>
+                                    <td>BTC</td>
+                                    <td>0.50%</td>
+                                    <td>2</td>
+                                    <td>1.0000000000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-support-convert" data-toggle="modal" data-target="#myModal">
+                                            <img class="arrow-covertet-icon" src="{% static 'images/arrows.svg' %}"> Converter</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img class="coin-icon-support" src="{% static 'images/ADC-coin.png' %}">
+                                        <span class="coin-name">Audio coin</span>
+                                    </td>
+                                    <td>BTC</td>
+                                    <td>0.50%</td>
+                                    <td>2</td>
+                                    <td>1.0000000000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-support-convert" data-toggle="modal" data-target="#myModal">
+                                            <img class="arrow-covertet-icon" src="{% static 'images/arrows.svg' %}"> Converter</button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <img class="coin-icon-support" src="{% static 'images/BTC-SUPPORT-COIN.png' %}">
+                                        <span class="coin-name">Bitcoin</span>
+                                    </td>
+                                    <td>BTC</td>
+                                    <td>0.50%</td>
+                                    <td>2</td>
+                                    <td>1.0000000000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-support-convert" data-toggle="modal" data-target="#myModal">
+                                            <img class="arrow-covertet-icon" src="{% static 'images/arrows.svg' %}"> Converter</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img class="coin-icon-support" src="{% static 'images/LTC -coin.png' %}">
+                                        <span class="coin-name">Litecoin</span>
+                                    </td>
+                                    <td>BTC</td>
+                                    <td>0.50%</td>
+                                    <td>2</td>
+                                    <td>1.0000000000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-support-convert" data-toggle="modal" data-target="#myModal">
+                                            <img class="arrow-covertet-icon" src="{% static 'images/arrows.svg' %}"> Converter</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img class="coin-icon-support" src="{% static 'images/ADC-coin.png' %}">
+                                        <span class="coin-name">Audio coin</span>
+                                    </td>
+                                    <td>BTC</td>
+                                    <td>0.50%</td>
+                                    <td>2</td>
+                                    <td>1.0000000000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-support-convert" data-toggle="modal" data-target="#myModal">
+                                            <img class="arrow-covertet-icon" src="{% static 'images/arrows.svg' %}"> Converter</button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <img class="coin-icon-support" src="{% static 'images/BTC-SUPPORT-COIN.png' %}">
+                                        <span class="coin-name">Bitcoin</span>
+                                    </td>
+                                    <td>BTC</td>
+                                    <td>0.50%</td>
+                                    <td>2</td>
+                                    <td>1.0000000000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-support-convert" data-toggle="modal" data-target="#myModal">
+                                            <img class="arrow-covertet-icon" src="{% static 'images/arrows.svg' %}"> Converter</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img class="coin-icon-support" src="{% static 'images/LTC -coin.png' %}">
+                                        <span class="coin-name">Litecoin</span>
+                                    </td>
+                                    <td>BTC</td>
+                                    <td>0.50%</td>
+                                    <td>2</td>
+                                    <td>1.0000000000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-support-convert" data-toggle="modal" data-target="#myModal">
+                                            <img class="arrow-covertet-icon" src="{% static 'images/arrows.svg' %}"> Converter</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <img class="coin-icon-support" src="{% static 'images/ADC-coin.png' %}">
+                                        <span class="coin-name">Audio coin</span>
+                                    </td>
+                                    <td>BTC</td>
+                                    <td>0.50%</td>
+                                    <td>2</td>
+                                    <td>1.0000000000</td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary btn-support-convert" data-toggle="modal" data-target="#myModal">
+                                            <img class="arrow-covertet-icon" src="{% static 'images/arrows.svg' %}"> Converter</button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </fieldset>
+                    </div>
+
+                </div>
+            </div>
+
+    </section>    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content popup-top">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">{% trans 'Convert' %} <img  class="coin-icon-support"  src={% static 'images/BTC-SUPPORT-COIN.png' %}> {% trans 'BITCOIN' %}</h4>
+                </div>
+                <div class="modal-body">
+                    <button class="conver-btn-coin " type="button "> <img  class="coin-icon-support coin-replace"  src={% static 'images/BTC-SUPPORT-COIN.png' %}><span class="coin-name">BitCoin</span></button>
+                    <button class="conver-btn-coin " type="button "> <img  class="coin-icon-support coin-replace"  src={% static 'images/BTC-SUPPORT-COIN.png' %}><span class="coin-name">BitCoin</span></button>
+                    <button class="conver-btn-coin " type="button "> <img  class="coin-icon-support coin-replace"  src={% static 'images/BTC-SUPPORT-COIN.png' %}><span class="coin-name">BitCoin</span></button>
+                    <button class="conver-btn-coin " type="button "> <img  class="coin-icon-support coin-replace"  src={% static 'images/BTC-SUPPORT-COIN.png' %}><span class="coin-name">BitCoin</span></button>
+                    <button class="conver-btn-coin " type="button "> <img  class="coin-icon-support coin-replace"  src={% static 'images/BTC-SUPPORT-COIN.png' %}><span class="coin-name">BitCoin</span></button>
+                    <button class="conver-btn-coin " type="button "> <img  class="coin-icon-support coin-replace"  src={% static 'images/BTC-SUPPORT-COIN.png' %}><span class="coin-name">BitCoin</span></button>
+                    <button class="conver-btn-coin " type="button "> <img  class="coin-icon-support coin-replace"  src={% static 'images/BTC-SUPPORT-COIN.png' %}><span class="coin-name">BitCoin</span></button>
+                    <button class="conver-btn-coin " type="button "> <img  class="coin-icon-support coin-replace"  src={% static 'images/BTC-SUPPORT-COIN.png' %}><span class="coin-name">BitCoin</span></button>
+                    <button class="conver-btn-coin " type="button "> <img  class="coin-icon-support coin-replace"  src={% static 'images/BTC-SUPPORT-COIN.png' %}><span class="coin-name">BitCoin</span></button>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{% trans 'Close' %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

@@ -1,0 +1,215 @@
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% block content %} {% load widget_tweaks %} {% load i18n %}
+<section class="section section-pad">
+    <div class="bx-ash ">
+    <div class="dark-page-header text-white text-center">
+        <h1 class="pad10 mt-2">
+            {% trans 'MERCHANT TOOLS' %}</h1>
+        <h4 class="mt-2">
+            {% trans 'If you would like to be updated about new API or changes to existing Apis' %}
+            <span class="click">{% trans 'click here' %}</span>
+        </h4>
+    </div>
+</div>
+    <div class="container ">
+        <div class="alert alert-warning  mt-5">
+            <p>This form can also be used to update your listing if you are already listed with us</p>
+        </div>
+
+        <div class="account-setting-wrap top-sec">
+
+            <div class="row text-center">
+                <div class="col-xs-3">
+                    <img class="w20px mt-2" src="{% static 'images/add-icon.svg' %}">
+                </div>
+                <div class="col-xs-9 text-white">
+                    <h4 >&nbsp;Add New Store</h4>
+                </div>
+            </div>
+            <form id="addToStoreForm" class="form-orange" action="{% url 'store:add-to-store' %}" method="post" novalidate>{% csrf_token %}
+
+                <div class="col-xs-12 new-store-sec account-setting-wrap3">
+                    <fieldset class="col-xs-12">
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Store Name</label>
+                            {{ form.store_name|add_class:'form-control text-view' }} {{ form.store_name.errors }}
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Store URL</label>
+                            {{ form.store_url|add_class:'form-control text-view' }} {{ form.store_url.errors }}
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Username/Merchant ID</label>
+                            {{ form.username_or_merch_id|add_class:'form-control text-view' }} {{ form.username_or_merch_id.errors }}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="confirm_password">Category</label>
+                            {{ form.category|add_class:'form-control select-view' }} {{ form.category.errors }}
+
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Crypto Processor</label>
+                            {{ form.crypto_processor|add_class:'form-control text-view' }}
+                            <span>( Please specify which crypto processor your are using )</span>
+                            {{ form.crypto_processor.errors }}
+
+                        </div>
+
+                    </fieldset>
+                </div>
+                <div class="main-field col-xs-12 text-white text-center">
+                    Optional Fields
+                    <h4>( Items given will be shown in your listing )</h4>
+                </div>
+                <div class="account-setting-wrap3 new-store-sec col-xs-12">
+
+                    <div class="setting-form form-settings">
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Store Email</label>
+                            {{ form.store_email|add_class:'form-control text-view' }} {{ form.store_email.errors }}
+
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Keywords</label>
+                            {{ form.keywords|add_class:'form-control text-view' }}
+                            <span>(Optional enter up to 5 search keywords for your listing separated with a, )</span>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label for="first_name">Banner image URL</label>
+                            {{ form.banner_image_url|add_class:'form-control text-view' }} {{ form.banner_image_url.errors }}
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="main-field col-xs-12  text-white text-center"><h4>Submit Store</h4> </div>
+                <div class="account-setting-wrap3 new-store-sec col-xs-12">
+
+                    <section class="entr-box col-xs-12">
+                        <fieldset>
+
+                            <div class='CaptchaWrap  text-white'>
+                                <div id="CaptchaImageCode" class="CaptchaTxtField">
+                                    <canvas id="CapCode" class="capcode" width="300" height="80"></canvas>
+
+                                </div>
+
+
+                                <p>{% trans 'Type the characters you see in the image above:' %}</p>
+
+                            </div>
+
+                        </fieldset>
+                    </section>
+                    <div class="form-group">
+                        <input type="text" class="capticha-enter1 form-control username-log" id="UserCaptchaCode" class="CaptchaTxtField" placeholder='Enter Captcha - Case Sensitive'>
+                        <span id="WrongCaptchaError" class="error"></span>
+                    </div>
+                    <div class="text-center">
+                    <button type="submit" class="btn btn-outline-orange btn-lg btn-log sign-button">{% trans 'Submit' %}</button>
+                </div>
+                </div>
+            </form>
+
+
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+</body>
+
+{% block script %}
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+
+<script>
+    var cd;
+
+    $(function () {
+        CreateCaptcha();
+    });
+
+    // Create Captcha
+    function CreateCaptcha() {
+        //$('#InvalidCapthcaError').hide();
+        var alpha = new Array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9');
+
+        var i;
+        for (i = 0; i < 6; i++) {
+            var a = alpha[Math.floor(Math.random() * alpha.length)];
+            var b = alpha[Math.floor(Math.random() * alpha.length)];
+            var c = alpha[Math.floor(Math.random() * alpha.length)];
+            var d = alpha[Math.floor(Math.random() * alpha.length)];
+            var e = alpha[Math.floor(Math.random() * alpha.length)];
+            var f = alpha[Math.floor(Math.random() * alpha.length)];
+        }
+        cd = a + ' ' + b + ' ' + c + ' ' + d + ' ' + e + ' ' + f;
+        $('#CaptchaImageCode').empty().append('<canvas id="CapCode" class="capcode" width="300" height="80"></canvas><button class="btn btn-sync" onclick="CreateCaptcha();"><i class="fas fa-sync-alt"></i></button>');
+
+        var c = document.getElementById("CapCode"),
+            ctx = c.getContext("2d"),
+            x = c.width / 2,
+            img = new Image();
+
+        img.src = "{% static 'images/captcha2.jpg' %}";
+        img.onload = function () {
+            var pattern = ctx.createPattern(img, "repeat");
+            ctx.fillStyle = pattern;
+            ctx.fillRect(0, 0, c.width, c.height);
+            ctx.font = "48px Roboto Slab";
+            ctx.fillStyle = '#a5a5a5';
+            ctx.textAlign = 'center';
+            ctx.setTransform(1, -0.12, 0, 1, 0, 15);
+            ctx.fillText(cd, x, 55);
+        };
+
+
+    }
+
+    // Validate Captcha
+    function ValidateCaptcha() {
+        var string1 = removeSpaces(cd);
+        var string2 = removeSpaces($('#UserCaptchaCode').val());
+        if (string1 == string2) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    // Remove Spaces
+    function removeSpaces(string) {
+        return string.split(' ').join('');
+    }
+
+    // Check Captcha
+    function CheckCaptcha() {
+        var result = ValidateCaptcha();
+        if ($("#UserCaptchaCode").val() == "" || $("#UserCaptchaCode").val() == null || $("#UserCaptchaCode").val() == "undefined") {
+            $('#WrongCaptchaError').text('Please enter code given below in a picture.').show();
+            $('#UserCaptchaCode').focus();
+        } else {
+            if (result == false) {
+                $('#WrongCaptchaError').text('Invalid Captcha! Please try again.').show();
+                CreateCaptcha();
+                $('#UserCaptchaCode').focus().select();
+            }
+            else {
+                $('#UserCaptchaCode').val('').attr('place-holder', 'Enter Captcha - Case Sensitive');
+                CreateCaptcha();
+                $('#WrongCaptchaError').fadeOut(100);
+                $('#SuccessMessage').fadeIn(500).css('display', 'block').delay(5000).fadeOut(250);
+            }
+        }
+        return result;
+    }
+
+
+</script> {% endblock %}

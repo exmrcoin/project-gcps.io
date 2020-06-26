@@ -1,0 +1,118 @@
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
+<section class="section section-pad" style="padding-bottom: 1em;">
+    <div class="container animatedParent animateOnce" data-sequence="80">
+      <h1 class="text-white text-center text-uppercase animated fadeInUpShort" data-id='1'>
+            {% trans 'MERCHANT' %} <span class="text-theme b-700">{% trans 'TOOLS' %}</span>
+      </h1>  
+      <p class="text-center text-white h6 mt-3 center-aligner animated fadeInUpShort" data-id='2'>
+            {% trans 'Point of Sale' %}
+      </p>
+    </div>
+</section>
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em;">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div class="grid-2-bx" style="display: inline">
+                <ul class="row nav nav-pills nav-fill " >
+                    <li class="col-md-4 col-4 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center">
+                        <a href="{% url 'accounts:profile' %}" class="v-mid dashboard-nav ">
+                            
+                            <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-tachometer-alt fa-2x mr-1 "></i>{% trans 'Home' %}</span>
+                        </a>
+                        <!-- <i class="fas fa-2x fa-wallet"></i>
+                        <a class="nav-link" href="{% url 'accounts:profile' %}"></a> -->
+                    </li>
+                    <li class="col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center">
+                            <a href="{% url 'coins:wallets' %}" class="v-mid dashboard-nav">
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu">
+                                    <i class="fas fa-2x fa-wallet mr-1"></i>{% trans 'Your Wallet' %}
+                                </span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:wallets' %}">{% trans 'Your Wallet' %}</a> -->
+                    </li>
+                    <li class=" col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center">
+                            <a href="{% url 'coins:coin-settings' %}" class="v-mid dashboard-nav">
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-coins  fa-2x mr-1"></i>{% trans 'Coin Settings' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:coin-settings' %}">{% trans 'Coin Settings' %}</a> -->
+                    </li>
+                    <li class=" col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center">
+                        <a href="{% url 'coins:transaction-history' %}" class="v-mid dashboard-nav">
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-receipt  fa-2x mr-1"></i> {% trans 'Transactions' %}</span>
+                        </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:transaction-history' %}">{% trans 'Transactions' %}</a> -->
+                    </li>
+                    <li class="col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center">
+                            <a href="{% url 'mtools:poscalc' %}" class="v-mid dashboard-nav">
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-shopping-cart  fa-2x mr-1"></i> {% trans 'Quick POS' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'mtools:poscalc' %}"> {% trans 'Quick POS' %}</a> -->
+                    </li>
+                    <li class="col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center">
+                            <a href="{% url 'coins:paybyname' %}" class="v-mid dashboard-nav">
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-user-tie  fa-2x mr-1"></i>{% trans 'PayByName' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:paybyname' %}"> {% trans 'PayByName' %}</a> -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div class="pad10">
+                <div class="img-dashboard">
+                    <img src="{% static '/images/recevied.png' %} ">
+                </div>
+                <h4 class="text-theme">{% trans 'Advanced Button Maker' %}</h4>
+            </div>
+            <div class="col-12 pad10 text-center">
+                
+                <form method="post" novalidate>
+                    {% csrf_token %} {% include 'exmr_form.html' with form=form %}
+        
+                    <button type="submit" class="btn btn-orange">Submit</button>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+    
+</section>
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            {% if html_url %}
+            <div class="col-12 col-md-10 offset-md-1 ">
+                <div class="col-xs-12 col-md-8 mb-5 text-center">
+                    <span class="text-white code-font "> {{html_url}}</span>
+                    <br> 
+                </div>
+        
+                <span class=" col-12 col-md-4 offset-md-4 text-center">
+                    <img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{html_url}}" style="width: 150px" class="col-xs-12 col-md-8 col-md-offset-2">  
+                    <span class="col-xs-12">Scan the above image using a QR bar scanner</span>               
+                </span>
+            </div>
+        
+            {% endif %}
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    
+</section>
+
+{% endblock %} {% block script %}
+<script src="{% static 'css/keyboard.css'%}"></script>
+
+<script src="{% static 'js/jquery.keyboard.js' %}"></script>
+
+{% endblock %}

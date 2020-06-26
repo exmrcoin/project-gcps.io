@@ -1,0 +1,203 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% load countries %}
+{% get_countries as countries %}
+{% block dashboard_heading %}
+<h4 class="text-theme b-4 dashboard">ADDRESS BOOK</h4>
+{% endblock %}
+{% block dashboard_wrapper_content %}
+
+<section class="section section-pad" style="padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div>
+                <div class="img-dashboard">
+                    <img src="{% static '/images/recevied.png' %}">
+                </div>
+                <h4 class="text-theme">{% trans 'Account Settings' %}</h4>
+            </div>    
+            <div>                   
+                <ul class="nav nav-tabs" style="border: none">
+                    <li class="nav-item bx-ash-1 bx-client-1">
+                      <a class="nav-link a-1 text-white active" data-toggle="tab" href="#home" style=" border-radius: 6px;" >{% trans 'Add New Address' %}</a>
+                    </li>
+                    <li class="nav-item bx-ash-1 bx-client-1 ml-2">
+                      <a class="nav-link a-1 text-white" data-toggle="tab" href="#menu1" style="border-radius: 6px;">{% trans 'Saved Address' %}</a>
+                    </li>
+                  </ul>
+                  
+                  <!-- Tab panes -->
+                <div class="bx-ash mt-4">
+                    <div class="tab-content">
+                        <div class="tab-pane active container" id="home">
+                            <div class="a-1"> 
+                                    <form id="address" action="{% url 'accounts:address' %}" method="post" novalidate>
+                                            {% csrf_token %}
+                                            <fieldset class="setting-form form-settings">
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name">Saved Address Name</label>
+                                                    {{ form.address_name|add_class:'form-control text-view' }}
+                                                    {{ form.address_name.errors }}
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name" style="margin-top: 8px">Is Default</label>
+                                                    {{ form.is_default|add_class:'mt0 mb-2 ml-1' }}
+                                                </div>
+                    
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name">First Name</label>
+                                                    {{ form.first_name|add_class:'form-control text-view' }}
+                                                    {{ form.first_name.errors }}
+                                                </div>
+                    
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name">Last Name</label>
+                                                    {{ form.last_name|add_class:'form-control text-view' }}
+                                                </div>
+                    
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name">Address</label>
+                                                    {{ form.address_line_1|add_class:'form-control text-view' }}
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name">(con)</label>
+                                                    {{ form.address_line_2|add_class:'form-control text-view' }}
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="confirm_password">Country</label>
+                                                    {{ form.country|add_class:'form-control select-view' }}
+                                                    {% for country in countries %}
+                                                        <option>{{ country.name }}</option>
+                                                    {% endfor %}
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name">City</label>
+                                                    {{ form.city|add_class:'form-control text-view' }}
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name">State/Province</label>
+                                                    {{ form.state|add_class:'form-control text-view' }}
+                                                    <span class="text-white">USA/Canada -2 digits code </br> other countries use your local custom or leave blank</span>
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name">Zip/postal Code</label>
+                                                    {{ form.postal_code|add_class:'form-control text-view' }}
+                                                    {{ form.postal_code.errors }}
+                    
+                                                </div>
+                                                <div class="form-group col-md-12">
+                                                    <label for="first_name">Phone Number</label>
+                                                    {{ form.phone_number|add_class:'form-control text-view' }}
+                                                    <span class="text-white">( Phone number should start with '+' followed by country code and number )</span>
+                                                    {{ form.phone_number.errors }}
+                                                </div>
+                                                <div class="form-group col-md-12 text-center">
+                                                    <button type="submit" class="btn btn-orange btn-lg " style="padding: 12px 40px 12px 40px; margin-top: 20px;">Save Address</button>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                 
+                            </div>
+                        </div>
+                        <div class="tab-pane container" id="menu1">
+                            <div class="">
+                                <!--Table-->
+                                <table class="table table-border table-responsive-md table-fixed two-fa-table" style="color: white">
+                                        <!--Table head-->
+                                        <thead>
+                                        <table class="table table-responsive-md table-fixed text-white" >
+                                            {% if address %}
+                                                <!--Table head-->
+                                                <thead>
+                                                <tr class="table-top" style="border: none">
+            
+                                                    <th>{% trans 'Address Name' %}</th>
+                                                    <th>{% trans 'First Name' %}</th>
+                                                    <th>{% trans 'Last Name' %}</th>
+                                                    <th>{% trans 'Address Line 1' %}</th>
+                                                    <th>{% trans 'Address Line 2' %}</th>
+                                                    <th>{% trans 'Country' %}</th>
+                                                    <th>{% trans 'State/province' %}</th>
+                                                    <th>{% trans 'Pincode' %}</th>
+                                                    <th>{% trans 'Phone number' %}</th>
+                                                    <th>{% trans 'Action' %}</th>
+            
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                {% for obj in address %}
+                                                    <tr style="border: none">
+                                                        <td>{{ obj.address_name }}</td>
+                                                        <td>{{ obj.first_name }}</td>
+                                                        <td>{{ obj.last_name }}</td>
+                                                        <td>{{ obj.address_line_1 }}</td>
+                                                        <td>{{ obj.address_line_2 }}</td>
+                                                        <td>{{ obj.country }}</td>
+                                                        <td>{{ obj.state }}</td>
+                                                        <td>{{ obj.postal_code }}</td>
+                                                        <td>{{ obj.phone_number }}</td>
+                                                        <td><a href="{% url 'accounts:delete_address' obj.pk %}"
+                                                            class="btn btn-danger">Delete</a></td>
+            
+                                                    </tr>
+                                                {% endfor %}
+                                                </tbody>
+                                                <!--Table body-->
+                                            {% else %}
+                                                <td class="table-style" colspan="5">{% trans 'No Address Found' %}</td>
+                                            {% endif %}
+                                        </table>
+                                        <!--Table body-->
+            
+                                    </table>
+                                    <!--Table-->
+                                
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>  
+        </div>
+
+        </div> 
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/clipboard.min.js' %}"></script>
+    <script src="{% static 'js/account_settings.js' %}"></script>
+    <script src="{% static 'js/bootbox.min.js' %}"></script>
+    <script>
+        $('.btn-delete').on('click', function (e) {
+            var url = $(this).attr('href');
+            e.preventDefault();
+            bootbox.confirm({
+                title: "Delete Address Device",
+                message: "<form id='deleteAddress' action=\""+url+"\" method=\"post\">{% csrf_token %}\n" +
+                "    <p>Are you sure you want to delete ?</p>\n" +
+                "</form>",
+                buttons: {
+                    cancel: {
+                        label: '<i class="fa fa-times"></i> Cancel'
+                    },
+                    confirm: {
+                        label: '<i class="fa fa-check"></i> Confirm'
+                    }
+                },
+                callback: function (result) {
+                    if(result){
+                        $('#deleteAddress').submit();
+                    }
+                }
+            });
+
+        });
+
+    </script>
+{% endblock %}
+
+

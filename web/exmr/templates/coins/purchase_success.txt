@@ -1,0 +1,8 @@
+Hello {{ first_name }},
+
+This email confirms you have successfully purchased an amount of {{ coin_amount }}{{ coin }}  from  IP {{ ip }}. You have success fully paid {{ amount }}.
+
+
+Thank you,
+Getcryptopayments.org
+Support is available at: https://www.getcryptopayments.org/common/help/

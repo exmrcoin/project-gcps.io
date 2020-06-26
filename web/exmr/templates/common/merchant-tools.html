@@ -1,0 +1,253 @@
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} 
+{% block title %} Merchant Tools{% endblock %} {% block content %} 
+{% load i18n %}
+<section class="section section-pad" style="padding-bottom: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div class="grid-2-bx" style="display: inline">
+                <ul class="row nav nav-pills nav-fill " >
+                    <li class="col-md-4 col-xs-6 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center" >
+                        <a href="{% url 'accounts:profile' %}" class="v-mid dashboard-nav" >
+                            
+                            <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-tachometer-alt fa-2x  mr-4"></i>{% trans '&nbsp;&nbsp;&nbsp;Home' %}</span>
+                        </a>
+                        <!-- <i class="fas fa-2x fa-wallet"></i>
+                        <a class="nav-link" href="{% url 'accounts:profile' %}"></a> -->
+                    </li>
+                    <li class="col-md-4 col-xs-6 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center" >
+                            <a href="{% url 'coins:wallets' %}" class="v-mid dashboard-nav" >
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu" style="">
+                                    <i class="fas fa-2x fa-wallet mr-2"></i>{% trans 'Your Wallet' %}
+                                </span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:wallets' %}">{% trans 'Your Wallet' %}</a> -->
+                    </li>
+                    <li class=" col-md-4 col-xs-6 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center" >
+                            <a href="{% url 'coins:coin-settings' %}" class="v-mid dashboard-nav" >
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-coins  fa-2x "></i>{% trans 'Coin Settings' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:coin-settings' %}">{% trans 'Coin Settings' %}</a> -->
+                    </li>
+                    <li class=" col-md-4 col-xs-6 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center" >
+                        <a href="{% url 'coins:transaction-history' %}" class="v-mid dashboard-nav " >
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-receipt  fa-2x mr-1"></i> {% trans 'Transactions' %}</span>
+                        </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:transaction-history' %}">{% trans 'Transactions' %}</a> -->
+                    </li>
+                    <li class="col-md-4 col-xs-6 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center" >
+                            <a href="{% url 'mtools:poscalc' %}" class="v-mid dashboard-nav" >
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-shopping-cart  fa-2x mr-2 "></i> {% trans 'Quick POS' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'mtools:poscalc' %}"> {% trans 'Quick POS' %}</a> -->
+                    </li>
+                    <li class="col-md-4 col-xs-6 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center" >
+                            <a href="{% url 'coins:paybyname' %}" class="v-mid dashboard-nav" 
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-user-tie  fa-2x mr-2"></i>{% trans 'PayByName' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:paybyname' %}"> {% trans 'PayByName' %}</a> -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section section-pad" style="padding-top: 1em;">
+    <div class="bx-ash ">
+    <div class="dark-page-header text-white text-center">
+        <h1 class="pad10 mt-2">
+            {% trans 'MERCHANT TOOLS' %}</h1>
+        
+               <h4 class="mt-2">
+            {% trans 'If you would like to be updated about new API or changes to existing Apis' %}
+            <span class="click">{% trans 'click here' %}</span>
+        </h4>
+    </div>
+    </div>
+        <!-- Section -->
+                <section class="section section-pad pt-2 pb-5">
+                  <div class="container animatedParent animateOnce" data-sequence="80">
+                 
+                   
+                    <div class="row mt-5 justify-content-center paybx">
+                      <!-- item -->
+                      <div class="col-lg-3 col-md-4 col-sm-6 mb-4 animated fadeInUpShort" data-id='3'>
+                        <div class="bx-ash bx-client">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/cart.png' %}">
+                </div>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'SHOPPING CART PLUGIN' %}</h5>
+                <ul class="merchant-tools-li">
+                    <li><a href={% url 'common:plugin-download' %}>{% trans 'Plugin Downloads' %}</a></li>
+                    
+                </ul>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-lg-3 col-md-4 col-sm-6 mb-4 animated fadeInUpShort" data-id='4'>
+                        <div class="bx-ash bx-client">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/api.png' %}">
+                </div>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'API & IPNs' %}</h5>
+                <ul class="merchant-tools-li">
+                    <li><a href="{% url 'common:staticpage' slug='mtools_inst_payment_Notfctn' %}">{% trans 'Instant Payment Notification' %}</a></li>
+                    <li><a href="{% url 'common:api' %}">{% trans 'GETCRYPTOPAYMENTAPI' %}</a></li>
+                </ul>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-lg-3 col-md-4 col-sm-6 mb-4 animated fadeInUpShort" data-id='5'>
+                        <div class="bx-ash bx-client">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/invoice.png' %}">
+                </div>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'INVOICE BUILDER' %}</h5>
+                <ul class="merchant-tools-li">
+                    <li><a href="{% url 'mtools:urlmaker' %}">{% trans 'Payment Request invoice maker' %}</a></li>
+                </ul>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-lg-3 col-md-4 col-sm-6 mb-4 animated fadeInUpShort" data-id='6'>
+                        <div class="bx-ash bx-client">
+                <div class="icon-merchant">
+                    <img class="merchant-icon " src="{% static 'images/point.png' %}">
+                </div>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'POINT OF SALE(POS) INTERFACE' %}</h5>
+                <ul class="merchant-tools-li">
+                    <li><a href="{% url 'common:staticpage' slug='mtools_pos_html_post' %}">{% trans 'HTML URL/ POST Fields' %}</a></li>
+                    <li><a href="{% url 'mtools:poscalc' %}">{% trans 'Post link QR Code Generator' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='mtools_pos_example' %}">{% trans 'POS Example' %}</a></li>
+                </ul>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-lg-3 col-md-4 col-sm-6 mb-4 animated fadeInUpShort" data-id='7'>
+                        <div class="bx-ash bx-client">
+                 <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/simle-button.png' %}">
+                </div>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'SIMPLE BUTTONS' %}</h5>
+                <ul class="merchant-tools-li">
+                    <li><a href="{% url 'mtools:simplebuttonmaker' %}">{% trans 'Button Maker' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='simple_button_html_post' %}">{% trans 'HTML POST Field' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='simple_button_example' %}">{% trans 'Button Examples' %}</a></li>
+                </ul>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-lg-3 col-md-4 col-sm-6 mb-4 animated fadeInUpShort" data-id='8'>
+                        <div class="bx-ash bx-client">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/advance.png' %}">
+                </div>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'ADVANCE BUTTONS' %}</h5>
+                <ul class="merchant-tools-li">
+                    <li><a href="{% url 'mtools:buttonmaker'  %}">{% trans 'Button Maker' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='advanced_button_html_post' %}">{% trans 'HTML Post Field' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='advanced_button_html_example' %}">{% trans 'Button Examples' %}</a></li>
+
+                </ul>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-lg-3 col-md-4 col-sm-6 mb-4 animated fadeInUpShort" data-id='9'>
+                        <div class="bx-ash bx-client">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/shopping-cart.png' %}">
+                </div>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'SHOPPING CART BUTTONS' %}</h5>
+                <ul class="merchant-tools-li">
+                    <li><a href="{% url 'common:staticpage' slug='cart_button_html_post' %}">{% trans 'HTML Post Field' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='cart_button_example' %}">{% trans 'Button Examples' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='simple_button_images' %}">{% trans 'Button Images' %}</a></li>
+                </ul>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-lg-3 col-md-4 col-sm-6 mb-4 animated fadeInUpShort" data-id='10'>
+                        <div class="bx-ash bx-client">
+                <div class="icon-merchant">
+                    <img class="merchant-icon" src="{% static 'images/donation.png' %}">
+                </div>
+                <h5 class=" shopping-headline text-theme text-center">{% trans 'DONATION BUTTONS' %}</h5>
+                <ul class="merchant-tools-li">
+                    <li><a href="{% url 'mtools:donationbuttonmaker' %}">{% trans 'Button Maker' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='simple_button_html_post' %}">{% trans 'HTML Post Field' %}</a></li>
+                    <li><a href="{% url 'common:staticpage' slug='simple_button_html_post' %}">{% trans 'Button Examples' %}</a></li>
+                </ul>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                    </div>
+                  </div>
+                </section>
+                <!-- Section END -->
+</section>
+
+{% endblock %}
+</body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/datepicker.min.js"></script>
+<script>
+    (function ($) {
+
+        'use strict';
+
+        $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
+            var $target = $(e.target);
+            var $tabs = $target.closest('.nav-tabs-responsive');
+            var $current = $target.closest('li');
+            var $parent = $current.closest('li.dropdown');
+            $current = $parent.length > 0 ? $parent : $current;
+            var $next = $current.next();
+            var $prev = $current.prev();
+            var updateDropdownMenu = function ($el, position) {
+                $el
+                    .find('.dropdown-menu')
+                    .removeClass('pull-xs-left pull-xs-center pull-xs-right')
+                    .addClass('pull-xs-' + position);
+            };
+
+            $tabs.find('>li').removeClass('next prev');
+            $prev.addClass('prev');
+            $next.addClass('next');
+
+            updateDropdownMenu($prev, 'left');
+            updateDropdownMenu($current, 'center');
+            updateDropdownMenu($next, 'right');
+        });
+
+    })(jQuery);
+    $('.datepicker').datepicker();
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 60,
+        minTime: '10',
+        maxTime: '6:00pm',
+        defaultTime: '11',
+        startTime: '10:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+</script>
+
+</html>

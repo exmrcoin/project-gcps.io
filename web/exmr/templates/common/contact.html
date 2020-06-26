@@ -1,0 +1,76 @@
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
+<section class="section section-pad">
+    <div class="bx-ash ">
+    <div class="dark-page-header text-white text-center">
+        <h1>Support</h1>
+        <h4>Need a little help?</h4>
+    </div>
+</div>
+<div class="account-setting-wrap">
+    <div class="container">
+        <div class="page-row" style="height: 25px;"></div>
+        <div class="page-row page-row-expanded">
+            <div class="container">
+            <style>
+                p { padding:0px; margin:0px; }
+            </style>
+                <div class="panel panel-default">
+                <div class="panel-heading"><h4>Contact Us</h4></div>
+                <div class="panel-body">
+              
+                        <h6>This form is not for support requests! All support requests must be via the <a href="{% url 'common:help' %}">Support Ticket</a> system. Any support requests sent via this form will be ignored.</h6>
+                        <h6>If you want to add your coin to GetCryptoPayments, <a href="{% url 'coins:add-public-coin' %}">click here</a>.</h6>
+                        
+                        <form action="." method="POST">
+                            {% csrf_token %}
+                            <table class="table table-bordered table-condensed" style="border: none">
+                                <thead>
+                                    <tr style="border: none"><th class="center" style="border: none" colspan="3"><h3>Submit Message</h3></th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="border: none"><span class="text-white font-large">Your Name</span></td>
+                                        <td style="border: none"><input type="text" id="id_name" class="form-control" name="name" value="" required=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: none"><span class="text-white font-large">Your Email</span></td>
+                                        <td style="border: none"><input type="email" id="id_email" class="form-control" name="email" value="" required=""></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: none"><span class="text-white font-large">Category</span></td>
+                                        <td style="border: none"><select id="id_category" class="form-control" name="category" required=""><option value="Sales">Sales</option><option value="ICO Services">ICO Services</option><option value="Partnership Requests">Partnership Requests</option><option value="Other">Other</option></select></td>
+                                    </tr>
+                                    <tr>
+                                        <td style="border: none"><span class="text-white font-large">Message</span></td>
+                                        <td style="border: none"><textarea name="message" id="id_message" class="form-control" rows="10" required=""></textarea></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td style="border: none" colspan="2" class="text-center"><button class="btn btn-outline-orange">Submit Message</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <input type="hidden" name="screen_res" value="1366x768">
+                        </form>           
+                    </div>
+                </div>
+            </div>   
+
+
+</div>
+        </div>
+    </div>
+</section>
+
+{% endblock %} {% block script %}
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LfNl2cUAAAAAKoPIBFAyyN9tF9hgCKBIrX2n_bo', {
+                action: 'action_name'
+            })
+            .then(function (token) {
+                captchaResult = true;
+            });
+    });
+</script>
+{% endblock %}

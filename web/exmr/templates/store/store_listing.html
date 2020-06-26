@@ -1,0 +1,223 @@
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+<style type="text/css">
+    .star-ratings-css {
+      unicode-bidi: bidi-override;
+      color: #c5c5c5;
+      font-size: 25px;
+      height: 25px;
+      width: 86px;
+      margin: 0 auto;
+      position: relative;
+      padding: 0;
+      text-shadow: 0px 1px 0 #a2a2a2;
+    }
+    .star-ratings-css-top {
+      color: #e7711b;
+      padding: 0;
+      position: absolute;
+      z-index: 1;
+      display: block;
+      top: 0;
+      left: 0;
+      font-size: 25px;
+      overflow: hidden;
+    }
+    .star-ratings-css-bottom {
+      padding: 0;
+      display: block;
+      z-index: 0;
+    }
+</style>
+<section class="section section-pad">
+    <div class="bx-ash ">
+    <div class="dark-page-header text-white text-center">
+        <h1 class="pad10 mt-2">
+            {% trans 'STORE DIRECTORY' %}</h1>
+        <h4 class="mt-2">
+            <p>{% trans 'Largest directory of merchants accepting multiple cryptocurrencies' %}</p>
+        </h4>
+        <div class="container-fluid mt-5 padx0">
+            <div class="col-xs-12 col-sm-12 padx0">
+                <form id="searchform" action="{% url 'store:store-search' %}" method="get" accept-charset="utf-8">
+                    <div class="input-group">
+                        <input type="text" class="form-control search-area" placeholder="Search" name="q" id="srch-term">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default search-button" type="submit">{% trans 'Search' %}</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="row">
+        <div class="col-md-3 col-xs-3">
+        <!-- sidebar -->
+            <ul class="md-ul mt-4 account-setting-wrap">
+                    <a href="/en/store/store-directory/art-collectibles/">
+                        <li class="directoru-menu menu-story">Art &amp; Collectibles
+                            <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/charities/">
+                        <li class="directoru-menu menu-story">Charities
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/dining-groceries/">
+                        <li class="directoru-menu menu-story">Dining &amp; Groceries
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/electronics-mining/">
+                        <li class="directoru-menu menu-story">Electronics &amp; Mining
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/gaming-ebooks/">
+                        <li class="directoru-menu menu-story">Gaming &amp; eBooks
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/gift-cards-prepaid/">
+                        <li class="directoru-menu menu-story">Gift Cards / Prepaid
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/health-beauty/">
+                        <li class="directoru-menu menu-story">Health &amp; Beauty
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/hosting-vps-vpn/">
+                        <li class="directoru-menu menu-story">Hosting / VPS &amp; VPN
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/investments-metals/">
+                        <li class="directoru-menu menu-story">Investments / Metals
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/misc-products/">
+                        <li class="directoru-menu menu-story">Misc Products
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/music-movies-tv/">
+                        <li class="directoru-menu menu-story">Music / Movies &amp; TV
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/shoes-clothing/">
+                        <li class="directoru-menu menu-story">Shoes &amp; Clothing
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+                    <a href="/en/store/store-directory/socialseomarketing/">
+                        <li class="directoru-menu menu-story">Social/SEO/Marketing
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/tickets-travel/">
+                        <li class="directoru-menu menu-story">Tickets &amp; Travel
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/adult-18/">
+                        <li class="directoru-menu menu-story">Adult 18+
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+
+                    <a href="/en/store/store-directory/all-stores/">
+                        <li class="directoru-menu menu-story">All Stores
+                             <i class="fas fa-angle-right float-right"></i>
+                        </li>
+                    </a>
+            </ul>
+        </div>
+  <div class=" col-md-9 col-xs-9">
+        <div class="account-setting-wrap" id="test">
+            <div class="col-xs-12  text-white">
+                <h2 class="login-text">All Stores</h2>
+            </div>
+            <div class="form-group row">
+                <div class="col-xs-12 col-md-6">
+                    <label for="sel1" class="login-text">Select list:</label>
+                    <select class="form-control" id="sel1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <label for="sel1" class="login-text">Select list:</label>
+                    <select class="form-control" id="sel1">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                    </select>
+                </div>
+            </div>
+            {% for store in stores%}
+                <div class="row mt-2 store-list" id="test">
+                    <div class="col-xs-12 col-sm-3 text-center">
+                            <p></p>
+                            <div class="star-ratings-css" data-toggle="tooltip" title="the store has a rating of {{store.percent}}%">
+                                    <div class="star-ratings-css-top" style="width: {{store.percent}}%"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                                    <div class="star-ratings-css-bottom"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+                            </div>  
+                    </div>
+                    <div class="col-xs-12 col-sm-7 text-center">
+                        <h1><a href="{% url 'store:store-item-rate' store.category.slug store.pk %}">{{store.store_name}}</a></h1>
+                        <img src="{{ store.banner_image_url }}" style="width: 150px" class="img-responsive w150px margin-center">
+                        <p>
+                            <a href="{{store.store_url}}">{{store.store_url}}</a>
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-2 text-center">
+                        <button class="btn btn-primary mt-xs-10p mt-3" onclick="location.href='{% url 'store:check-out' store.id %}'">
+                          <i class="fas fa-angle-up"></i>
+                        </button>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+{% block script %}
+<script>
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+    }
+
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+    }
+</script>
+<script>
+    $('#navsideicon').affix({
+        offset: {
+            bottom: $('#footer').height()
+        }
+    });
+</script> {% endblock %}

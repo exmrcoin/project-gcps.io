@@ -1,0 +1,93 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load transaction_status %}
+{% load i18n %} 
+<section class="section section-pad">
+    <div class="bx-ash ">
+        <div class="dark-page-header text-white text-center">
+            <h1 class="pad10 mt-2">
+                GetCryptoPayments - New Coin Listing Competition</h1>
+            <h4 class="mt-2">
+                Enter your contact information below for a chance to have your coin listed on August 2018
+                
+            </h4>
+        </div>
+    </div>
+    <div class="account-setting-wrap container">
+        <div class="row ">
+            <div class="col-md-12">
+            <form method="post">
+                {% csrf_token %}
+             
+                 <div>
+                  <label class="mt20">Email Address *</label> <span>{{form.errors.email}}</span>
+                  <input type="text" name="email" id="id_email" class="form-control" style="display: unset"  placeholder="Your Email Address" value="{{ form.email.value|default_if_none:"" }}">
+                  <label class="mt20">Company Email Address (Optional)</label><span>{{form.errors.company_email}}</span>
+                  <input type="text" name="company_email" id="id_company_email" placeholder="Company Email Address"  class="form-control" style="display: unset" value="{{ form.company_email.value|default_if_none:"" }}">
+                  <label class="mt30">Full  Name *</label><span>{{form.errors.first_name}}</span>
+                  <input type="text" name="first_name" id="id_first_name" placeholder="Your Full Name"  required="" class="form-control" value="{{ form.first_name.value|default_if_none:"" }}">
+                  <label class="mt30">Role in the company *</label><span>{{form.errors.last_name}}</span>
+                  <input type="text" name="last_name" id="id_first_name" placeholder="Your Role"  required="" class="form-control" value="{{ form.last_name.value|default_if_none:"" }}">
+                  <label class="mt20">Telegram username (Optional) </label><span>{{form.errors.contact_number}}</span>
+                  <input type="text" name="contact_number" id="id_contact_number" placeholder="@yourusername"  class="form-control" value="{{ form.contact_number.value|default_if_none:"" }}">
+                  <label class=""> CoinMarketCap Link (Optional)</label><span>{{form.errors.secondary_number}}</span>
+                  <input type="text" name="secondary_number" id="id_secondary_number" placeholder="Example: /yourcoin"  class="form-control" value="{{ form.secondary_number.value|default_if_none:"" }}">
+                  <label class="mt30"> Coin Name *</label><span>{{form.errors.name}}</span>
+                  <input type="text" name="name" id="id_name" placeholder="Example: YourCoin"  required="" class="form-control" value="{{ form.name.value|default_if_none:"" }}">
+                  <label class="mt10"> Coin Sticker *</label><span>{{form.errors.code}}</span>
+                  <input type="text" name="code" id="id_code" placeholder="Example: YCOIN"  required="" class="form-control" value="{{ form.code.value|default_if_none:"" }}">
+                  <label class="mt30">Website *</label><span>{{form.errors.website}}</span>
+                  <input type="text" id="id_website" name="website" placeholder="http://website.com"  required="" class="form-control" value="{{ form.website.value|default_if_none:"" }}">
+                  <!-- <label class="mt20">Role in the company</label> -->
+                  <!-- <select name="role" class="form-control" >
+                     <option value="VP/Director">VP/Director</option>
+                     <option value="Marketing Manager">Marketing Manager</option>
+                     <option value="Chief Engineer">Chief Engineer</option>
+                     <option value="Analyst">Analyst</option>
+                     <option value="External Relations">External Relations</option>
+                     <option value="Network Admin / System Admin">Network Admin / System Admin</option>
+                     <option value="Community Member">Community Member</option>
+                 </select> -->
+                 <!-- <label class="mt20" style="margin-bottom: 5px;">Best time to call (EDT) <strong class="red">*</strong></label>
+                 <p>Office hours: Mon-Fri (11pm - 8am EDT)</p> -->
+                 <div class="row">
+                     <div class="col-sm-6">
+                 <!-- <input type="date" name="besttime" placeholder="Date/Time/EDT"  required="" class="form-control"> -->
+             </div>
+             <div class="col-sm-6">
+                 <!-- <input id="time" type="time" class="form-control"> -->
+             </div>
+                 </div>
+                 <label class="mt30">Logo URL (64x64)*</label><span>{{form.errors.logo_url}}</span>
+                 <input type="text" name="logo_url" id="id_logo_url" placeholder="http://directory-to-the-logo/yourlogo-64x64.png" required="" class="form-control" value="{{ form.logo_url.value|default_if_none:"" }}">
+                 <label class="mt20">Coin #hashtag</label><span>{{form.errors.hash_tags}}</span>
+                 <input type="text" name="hash_tags" id="id_hash_tags" placeholder="Coin #hashtag"  class="form-control" value="{{ form.hash_tags.value|default_if_none:"" }}">
+                 <label class="mt20">Twitter Handle *</label><span>{{form.errors.twitter_handle}}</span>
+                 <input type="text" name="twitter_handle" id="id_twitter_handle" placeholder="@coinname" required="" class="form-control" value="{{ form.twitter_handle.value|default_if_none:"" }}">
+                 <label class="mt20">Facebook Page (Optional)</label><span>{{form.errors.fb_page}}</span>
+                 <input type="text" name="fb_page" id="id_fb_page" placeholder="http://facebook.com/yourcoinspage" class="form-control" value="{{ form.fb_page.value|default_if_none:"" }}">
+                 <label class="mt20">Twitter Page (Optional)</label><span>{{form.errors.twitter_page}}</span>
+                 <input type="text" name="twitter_page" id="id_twitter_page" placeholder="http://twitter.com/yourcoinspage" class="form-control" value="{{ form.twitter_page.value|default_if_none:"" }}">
+                 <label class="mt20">Linkedin Page (Optional)</label><span>{{form.errors.linkedin_page}}</span>
+                 <input type="text" name="linkedin_page" id="id_linkedin_page" placeholder="http://linkedin.com/profile/yourcoinspage" value="{{ form.linkedin_page.value|default_if_none:"" }}" class="form-control">
+                 <label class="mt20">Telegram Page (Optional)</label><span>{{form.errors.telegram_page}}</span>
+                 <input type="text" name="telegram_page" id="id_telegram_page" placeholder="http://t.me/yourcoinspage" value="{{ form.telegram_page.value|default_if_none:"" }}" class="form-control">
+                 <label class="mt20">Reddit Page (Optional)</label><span>{{form.errors.reddit_page}}</span>
+                 <input type="text" name="reddit_page" id="id_reddit_page" placeholder="http://reddit.com/user/yourcoinspage" value="{{ form.reddit_page.value|default_if_none:"" }}" class="form-control">
+                 <div class="mt-3">
+                    <input class="btn btn-orange"  type="reset" value="Reset">
+                    <button class="btn btn-transparent"> Send Request </button>
+                </div>
+                 </div>
+             </div>
+         </form>
+         {{form.errors.name}}
+        </div>
+    </div>
+
+
+
+</section>
+       
+{% endblock %}

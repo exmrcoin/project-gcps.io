@@ -1,0 +1,76 @@
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
+
+<section class="section section-pad" style="padding-bottom: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div class="grid-2-bx" style="display: inline">
+                <ul class="row nav nav-pills nav-fill " >
+                    <li class="col-md-4 col-xs-6 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center" >
+                        <a href="{% url 'accounts:profile' %}" class="v-mid dashboard-nav" >
+                            
+                            <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-tachometer-alt fa-2x  mr-4"></i>{% trans '&nbsp;&nbsp;&nbsp;Home' %}</span>
+
+                        </a>
+                        <!-- <i class="fas fa-2x fa-wallet"></i>
+                        <a class="nav-link" href="{% url 'accounts:profile' %}"></a> -->
+                    </li>
+                    <li class="col-md-4 col-xs-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center" >
+                            <a href="{% url 'coins:wallets' %}" class="v-mid dashboard-nav" >
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu" style="">
+                                    <i class="fas fa-2x fa-wallet mr-1"></i>{% trans 'Your Wallet' %}
+                                </span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:wallets' %}">{% trans 'Your Wallet' %}</a> -->
+                    </li>
+                    <li class=" col-md-4 col-xs-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center" >
+                            <a href="{% url 'coins:coin-settings' %}" class="v-mid dashboard-nav" >
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-coins  fa-2x "></i>{% trans 'Coin Settings' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:coin-settings' %}">{% trans 'Coin Settings' %}</a> -->
+                    </li>
+                    <li class=" col-md-4 col-xs-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center" >
+                        <a href="{% url 'coins:transaction-history' %}" class="v-mid dashboard-nav " >
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-receipt  fa-2x"></i> {% trans 'Transactions' %}</span>
+                        </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:transaction-history' %}">{% trans 'Transactions' %}</a> -->
+                    </li>
+
+                    <li class="col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center">
+                            <a href="{% url 'mtools:poscalc' %}" class="v-mid dashboard-nav">
+
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-shopping-cart  fa-2x mr-2"></i> {% trans 'Quick POS' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'mtools:poscalc' %}"> {% trans 'Quick POS' %}</a> -->
+                    </li>
+                    <li class="col-md-4 col-xs-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center" >
+                            <a href="{% url 'coins:paybyname' %}" class="v-mid dashboard-nav" 
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-user-tie  fa-2x mr-1"></i>{% trans 'PayByName' %}</span>
+                            </a>
+                        <!-- <a class="nav-link" href="{% url 'coins:paybyname' %}"> {% trans 'PayByName' %}</a> -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section section-pad" style="padding-top: 1em">
+    <div class="bx-ash ">
+    <div class="dark-page-header text-center text-white">
+        <h1>{{staticpage.topic}}</h1>
+    </div>
+</div>
+
+    <div class="container account-setting-wrap text-white">
+        <div class="row">
+            <div class="col-xs-12 my-1">
+                    {% autoescape off %} {{staticpage.content}} {% endautoescape %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %} {% block script %}{% endblock %}

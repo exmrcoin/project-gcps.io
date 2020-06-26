@@ -1,0 +1,131 @@
+	/*
+  	Flaticon icon font: Flaticon
+  	Creation date: 22/06/2016 15:04
+  	*/
+
+@font-face {
+  font-family: "Flaticon";
+  src: url("../fonts/Flaticon.eot");
+  src: url("../fonts/Flaticon.eot?#iefix") format("embedded-opentype"),
+       url("../fonts/Flaticon.woff") format("woff"),
+       url("../fonts/Flaticon.ttf") format("truetype"),
+       url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: "Flaticon";
+    src: url("../fonts/Flaticon.svg#Flaticon") format("svg");
+  }
+}
+
+[class^="flaticon-"]:before, [class*=" flaticon-"]:before,
+[class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
+  font-family: Flaticon;
+  font-size:50px;
+font-style: normal;
+margin-left: 20px;
+}
+
+.flaticon-bitcoin-accept-symbol:before { content: "\f100"; }
+.flaticon-bitcoin-accepted-here-logo:before { content: "\f101"; }
+.flaticon-bitcoin-and-laptop-symbol:before { content: "\f102"; }
+.flaticon-bitcoin-and-users-connections:before { content: "\f103"; }
+.flaticon-bitcoin-ascending-coin:before { content: "\f104"; }
+.flaticon-bitcoin-bag:before { content: "\f105"; }
+.flaticon-bitcoin-bars-ascendant-graphic-of-increasing-money:before { content: "\f106"; }
+.flaticon-bitcoin-bars-graphic-on-laptop-screen:before { content: "\f107"; }
+.flaticon-bitcoin-coin:before { content: "\f108"; }
+.flaticon-bitcoin-coin-going-down:before { content: "\f109"; }
+.flaticon-bitcoin-connect-up-graphic:before { content: "\f10a"; }
+.flaticon-bitcoin-credit-card:before { content: "\f10b"; }
+.flaticon-bitcoin-currency-symbol-with-dollar-yens-and-pounds-signs:before { content: "\f10c"; }
+.flaticon-bitcoin-digital-currency-logo:before { content: "\f10d"; }
+.flaticon-bitcoin-digital-network-symbol:before { content: "\f10e"; }
+.flaticon-bitcoin-discount-commercial-symbol:before { content: "\f10f"; }
+.flaticon-bitcoin-down-arrow:before { content: "\f110"; }
+.flaticon-bitcoin-down-line-graphic:before { content: "\f111"; }
+.flaticon-bitcoin-electric-symbol-with-a-bolt-shape:before { content: "\f112"; }
+.flaticon-bitcoin-email-by-mobile-phone:before { content: "\f113"; }
+.flaticon-bitcoin-emblem:before { content: "\f114"; }
+.flaticon-bitcoin-exchange-rate:before { content: "\f115"; }
+.flaticon-bitcoin-exchange-rate-symbol:before { content: "\f116"; }
+.flaticon-bitcoin-flower-in-a-pot:before { content: "\f117"; }
+.flaticon-bitcoin-globe-symbol:before { content: "\f118"; }
+.flaticon-bitcoin-graphic-with-up-arrow:before { content: "\f119"; }
+.flaticon-bitcoin-id-card-symbol:before { content: "\f11a"; }
+.flaticon-bitcoin-in-a-pushcart:before { content: "\f11b"; }
+.flaticon-bitcoin-in-processor:before { content: "\f11c"; }
+.flaticon-bitcoin-in-science-symbol:before { content: "\f11d"; }
+.flaticon-bitcoin-in-science-symbol-on-mobile-phone-screen:before { content: "\f11e"; }
+.flaticon-bitcoin-inside-a-mail-envelope-outline:before { content: "\f11f"; }
+.flaticon-bitcoin-key-or-password-symbol:before { content: "\f120"; }
+.flaticon-bitcoin-label-tag:before { content: "\f121"; }
+.flaticon-bitcoin-logo:before { content: "\f122"; }
+.flaticon-bitcoin-love-heart:before { content: "\f123"; }
+.flaticon-bitcoin-mechanic-symbol:before { content: "\f124"; }
+.flaticon-bitcoin-mobile-phone-connections-graphic:before { content: "\f125"; }
+.flaticon-bitcoin-mobile-phone-graphic:before { content: "\f126"; }
+.flaticon-bitcoin-mobile-phone-secure-shield:before { content: "\f127"; }
+.flaticon-bitcoin-mobile-phone-with-a-placeholder-symbol-on-screen:before { content: "\f128"; }
+.flaticon-bitcoin-network:before { content: "\f129"; }
+.flaticon-bitcoin-network-symbol:before { content: "\f12a"; }
+.flaticon-bitcoin-not-accepted-symbol:before { content: "\f12b"; }
+.flaticon-bitcoin-not-accepted-symbol-with-a-slash:before { content: "\f12c"; }
+.flaticon-bitcoin-on-cloud:before { content: "\f12d"; }
+.flaticon-bitcoin-on-cloud-with-down-arrow-symbol:before { content: "\f12e"; }
+.flaticon-bitcoin-on-cloud-with-up-arrow-on-mobile-phone-screen:before { content: "\f12f"; }
+.flaticon-bitcoin-on-cloud-with-up-arrow-symbol:before { content: "\f130"; }
+.flaticon-bitcoin-placeholder:before { content: "\f131"; }
+.flaticon-bitcoin-pocket:before { content: "\f132"; }
+.flaticon-bitcoin-pocket-or-wallet:before { content: "\f133"; }
+.flaticon-bitcoin-pound-currency-exchange-rate:before { content: "\f134"; }
+.flaticon-bitcoin-presentation:before { content: "\f135"; }
+.flaticon-bitcoin-presentation-of-safety-shield:before { content: "\f136"; }
+.flaticon-bitcoin-presentation-symbol:before { content: "\f137"; }
+.flaticon-bitcoin-presentation-with-bars-graphic:before { content: "\f138"; }
+.flaticon-bitcoin-presentation-with-circular-arrows-symbol:before { content: "\f139"; }
+.flaticon-bitcoin-presentation-with-coins-and-male-businessman:before { content: "\f13a"; }
+.flaticon-bitcoin-presentation-with-graphs-and-reporter:before { content: "\f13b"; }
+.flaticon-bitcoin-presentation-with-money-bag-symbol:before { content: "\f13c"; }
+.flaticon-bitcoin-presentation-with-reporter:before { content: "\f13d"; }
+.flaticon-bitcoin-qr-code-on-mobile-phone-screen:before { content: "\f13e"; }
+.flaticon-bitcoin-reward-label:before { content: "\f13f"; }
+.flaticon-bitcoin-sack:before { content: "\f140"; }
+.flaticon-bitcoin-safe-pig:before { content: "\f141"; }
+.flaticon-bitcoin-safety-lock-symbol:before { content: "\f142"; }
+.flaticon-bitcoin-safety-shield-symbol:before { content: "\f143"; }
+.flaticon-bitcoin-safety-shopping-shield-symbol:before { content: "\f144"; }
+.flaticon-bitcoin-science-symbol:before { content: "\f145"; }
+.flaticon-bitcoin-shop:before { content: "\f146"; }
+.flaticon-bitcoin-sign-in-a-circle-with-two-spots-connect-symbol:before { content: "\f147"; }
+.flaticon-bitcoin-sign-in-eye-iris:before { content: "\f148"; }
+.flaticon-bitcoin-sign-in-keyhole-shape-on-a-wallet:before { content: "\f149"; }
+.flaticon-bitcoin-sign-on-cloud-with-down-arrow-download-symbol-on-cellphone-screen:before { content: "\f14a"; }
+.flaticon-bitcoin-sign-on-usb-device:before { content: "\f14b"; }
+.flaticon-bitcoin-surrounded-by-a-circle-of-olive-leaves:before { content: "\f14c"; }
+.flaticon-bitcoin-symbol:before { content: "\f14d"; }
+.flaticon-bitcoin-symbol-in-a-speech-bubble:before { content: "\f14e"; }
+.flaticon-bitcoin-symbol-inside-a-timer-variant:before { content: "\f14f"; }
+.flaticon-bitcoin-symbol-inside-circulating-arrows:before { content: "\f150"; }
+.flaticon-bitcoin-symbol-inside-head:before { content: "\f151"; }
+.flaticon-bitcoin-symbol-on-mobile-phone-screen:before { content: "\f152"; }
+.flaticon-bitcoin-symbol-on-paper-and-coins:before { content: "\f153"; }
+.flaticon-bitcoin-symbol-on-sim-card-chip:before { content: "\f154"; }
+.flaticon-bitcoin-symbol-placeholder-in-laptop:before { content: "\f155"; }
+.flaticon-bitcoin-symbol-with-withdraw-option:before { content: "\f156"; }
+.flaticon-bitcoin-ticket:before { content: "\f157"; }
+.flaticon-bitcoin-to-dollar-exchange-rate-symbol:before { content: "\f158"; }
+.flaticon-bitcoin-trolley:before { content: "\f159"; }
+.flaticon-bitcoin-user-down-line-symbol:before { content: "\f15a"; }
+.flaticon-bitcoin-user-safety-shield-interface-symbol:before { content: "\f15b"; }
+.flaticon-bitcoin-user-symbol:before { content: "\f15c"; }
+.flaticon-bitcoin-warning-symbol:before { content: "\f15d"; }
+.flaticon-bitcoin-with-an-up-arrow:before { content: "\f15e"; }
+.flaticon-bitcoin-with-olive-leaves-at-both-sides:before { content: "\f15f"; }
+.flaticon-bitcoin-with-qr-code-interface-commercial-symbol-of-money:before { content: "\f160"; }
+.flaticon-bitcoin-withdraw-symbol:before { content: "\f161"; }
+.flaticon-bitcoins-papers:before { content: "\f162"; }
+.flaticon-droplet-with-bitcoin-symbol:before { content: "\f163"; }

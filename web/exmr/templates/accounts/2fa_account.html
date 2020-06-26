@@ -1,0 +1,256 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles widget_tweaks i18n %}
+{% block dashboard_heading %}
+    <h4 class="text-theme b-4 dashboard">ADDRESS BOOK</h4>
+{% endblock %}
+{% block dashboard_wrapper_content %}
+<section class="section section-pad" style="padding-top: 1em">
+        <div class="container">
+            <div class="bx-ash mb-2">
+                <div>
+                    <div class="img-dashboard">
+                        <img src="{% static '/images/recevied.png' %}">
+                    </div>
+                    <h4 class="text-theme">{% trans '2FA Settings' %}</h4>
+                </div>    
+                <div>                   
+                    <ul class="nav nav-tabs" style="border: none">
+                        <li class="nav-item bx-ash-1 bx-client-1">
+                          <a class="nav-link a-1 active" data-toggle="tab" href="#home" style=" border-radius: 6px;" >{% trans 'Add Google Authenticator' %}</a>
+                        </li>
+                        <li class="nav-item bx-ash-1 bx-client-1 ml-2">
+                          <a class="nav-link a-1" data-toggle="tab" href="#menu1" style="border-radius: 6px;">{% trans '2FA Accounts' %}</a>
+                        </li>
+                    </ul>
+                      
+                      <!-- Tab panes -->
+                    <div class="mt-4">
+                        <div class="tab-content">
+                            <div class="tab-pane active container" id="home">
+                                    <div class="account-setting-wrap pt20" style="background: none;">
+                                            <form id="address" action="{% url 'accounts:accounts_2fa' %}" method="post" novalidate>
+                                                {% csrf_token %}
+                                                <fieldset class="setting-form form-settings">
+                            
+                                                    
+                                                    <div class="form-group col-md-12">
+                                                        <label for="id_account_name">{% trans 'Secret Key:' %}</label>
+                                                        <label for="id_account_name">{{ view.key }}</label>
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label for="id_account_name">{% trans 'Account Name' %}</label>
+                                                        {{ form.account_name|add_class:'form-control text-view' }}
+                                                        {{ form.account_name.errors }}
+                                                    </div>
+                                                    <div class="form-group col-md-12">
+                                                        <label for="id_account_type">{% trans 'Activation Code' %}</label>
+                                                        {{ form.totp|add_class:'form-control text-view' }}
+                                                        {{ form.totp.errors }}
+                                                    </div>
+                            
+                                                    <div class="form-group col-md-12" style="text-align: center;">
+                            
+                                                        <button type="submit" class="btn btn-orange" >
+                                                            {% trans 'Add' %}
+                                                        </button>
+                            
+                                                    </div>
+                                                </fieldset>
+                                            </form>
+                                        </div>
+                                    
+                                    
+                            </div>
+                            <div class="tab-pane container" id="menu1">
+                                    <table class="table table-border table-responsive-md table-fixed two-fa-table">
+                                            <!--Table head-->
+                                            <thead>
+                                            <tr class="table-top">
+                
+                                                <th>{% trans 'Date' %}</th>
+                                                <th>{% trans 'Account Name' %}</th>
+                                                <th>{% trans 'Account Type' %}</th>
+                                                <th>{% trans 'Action' %}</th>
+                
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for obj in object_list %}
+                                                <tr>
+                                                    <td>{{ obj.time }}</td>
+                                                    <td>{{ obj.account_name }}</td>
+                                                    <td>{{ obj.get_account_type_display }}</td>
+                                                    <td><a href="{% url 'accounts:delete_2fa' obj.pk %}"
+                                                           class="btn btn-delete">Delete</a></td>
+                
+                                                </tr>
+                                            {% empty %}
+                                                <tr>
+                                                    <td class="table-style" colspan="5">{% trans 'No devices Found' %}</td>
+                
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                            <!--Table body-->
+                
+                                        </table>
+                                        <!--Table-->
+                            </div>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+
+            </div> 
+        </div>
+    </section>
+    <!-- <div class="dashboard-wrapper">
+        <div class="dasboard-head">
+            <div class="bs-example bs-example-tabs examble-tab w100" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs nav-tabs-responsive multiple-tab m0" role="tablist">
+                    <li role="presentation" class="next active">
+                        <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">
+                            <span class="text">{% trans 'Add Google Authenticator' %}</span>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#home" id="home-tab" role="tab" data-toggle="tab" aria-controls="home"
+                           aria-expanded="true">
+                            <span class="text">{% trans '2FA Accounts' %}</span>
+                        </a>
+                    </li>
+
+                </ul>
+
+
+            </div>
+
+        </div> -->
+
+        <!-- <div id="myTabContent" class="tab-content">
+            <div role="tabpanel" class="tab-pane fade in" id="home" aria-labelledby="home-tab">
+            <div class="card">
+                    <div class="card-body"> -->
+
+                        <!--Table-->
+                        <!-- <table class="table table-border table-responsive-md table-fixed two-fa-table"> -->
+                            <!--Table head-->
+                            <!-- <thead>
+                            <tr class="table-top">
+
+                                <th>{% trans 'Date' %}</th>
+                                <th>{% trans 'Account Name' %}</th>
+                                <th>{% trans 'Account Type' %}</th>
+                                <th>{% trans 'Action' %}</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for obj in object_list %}
+                                <tr>
+                                    <td>{{ obj.time }}</td>
+                                    <td>{{ obj.account_name }}</td>
+                                    <td>{{ obj.get_account_type_display }}</td>
+                                    <td><a href="{% url 'accounts:delete_2fa' obj.pk %}"
+                                           class="btn btn-delete">Delete</a></td>
+
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td class="table-style" colspan="5">{% trans 'No devices Found' %}</td>
+
+                                </tr>
+                            {% endfor %}
+                            </tbody> -->
+                            <!--Table body-->
+
+                        <!-- </table> -->
+                        <!--Table-->
+
+
+                    <!-- </div>
+                </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade in active" id="profile" aria-labelledby="home-tab">
+                <div class="account-setting-wrap pt20">
+                <form id="address" action="{% url 'accounts:accounts_2fa' %}" method="post" novalidate>
+                    {% csrf_token %}
+                    <fieldset class="setting-form form-settings">
+
+                        <div class="form-group col-md-12">
+                            <canvas id="qr"></canvas>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="id_account_name">{% trans 'Secret Key' %}</label>
+                            <label for="id_account_name">{{ view.key }}</label>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="id_account_name">{% trans 'Account Name' %}</label>
+                            {{ form.account_name|add_class:'form-control text-view' }}
+                            {{ form.account_name.errors }}
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label for="id_account_type">{% trans 'Activation Code' %}</label>
+                            {{ form.totp|add_class:'form-control text-view' }}
+                            {{ form.totp.errors }}
+                        </div>
+
+                        <div class="form-group col-md-6">
+
+                            <button type="submit" class="btn- btn-default btn-log ">
+                                {% trans 'Add' %}
+                            </button>
+
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            </div>
+
+        </div>
+
+    </div>
+    </div> -->
+{% endblock %}
+
+{% block extra_js %}
+
+    <script src="{% static 'js/bootbox.min.js' %}"></script>
+    <script src="{% static 'js/qrious.js' %}"></script>
+    <script>
+        var qr_url = "otpauth://totp/exmr:{{user.email}}?secret={{view.key}}&amp;issuer=exmr"
+        var qr = new QRious({
+            element: document.getElementById('qr'),
+            value: qr_url
+        });
+        qr.size = 200;
+
+        $('.btn-delete').on('click', function (e) {
+            var url = $(this).attr('href');
+            e.preventDefault();
+            bootbox.confirm({
+            title: "Delete 2FA Device",
+            message: "<form id='deleteDevice' action=\""+url+"\" method=\"post\">{% csrf_token %}\n" +
+            "    <p>Are you sure you want to delete ?</p>\n" +
+            "</form>",
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i> Cancel'
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i> Confirm'
+                }
+            },
+            callback: function (result) {
+                if(result){
+                    $('#deleteDevice').submit();
+                }
+            }
+        });
+
+        });
+
+
+
+    </script>
+{% endblock %}

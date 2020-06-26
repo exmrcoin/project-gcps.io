@@ -1,0 +1,362 @@
+{% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
+<div></div>
+{% load transaction_status %} {% block dashboard_heading %}<h4 class="text-theme b-4 dashboard">WALLETS</h4>
+{% endblock %} {% block dashboard_wrapper_content %}
+
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+        <div class="container">
+            <div class="bx-ash mb-2">
+                    <div class="accordion" id="accordionExample">
+    
+                            <div class="card-header" id="headingOne">
+                              <h5 class="mb-0">
+                                
+                                  <div data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><h4 class="text-theme"><img style="padding-bottom: 6px" src="{% static '/images/recevied.png' %} "><span class="pl-2" >{% trans 'Recent Transaction' %}</span></h4></div>
+                                
+                              </h5>
+                            </div>
+                        
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                               <!--Table-->
+                               <table class="table table-border table-responsive-md text-white" style="table-layout: fixed;">
+                                              
+                                  <!--Table head-->
+                                  <thead>
+                                  <tr class="table-top" style="border: none">
+                      
+                                      <th class="text-center">{% trans 'Time' %}</th>
+                                      <th class="text-center">{% trans 'Received / Sent Name' %}</th>
+                                      <th class="text-center">{% trans 'Coin' %}</th>
+                                      <th class="text-center">{% trans 'Amount' %}</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody >
+                                      {% if transactions %}
+                                      {% for transaction in transactions %}
+                                      <tr style="border: none">
+                                          <td align="center">{{ transaction.date }}</td>
+                                          <td align="center" >{{transaction.transaction_to}}</td>
+                                          <td align="center">{{transaction.currency}}</td>
+                                          <td align="center">{{transaction.amount}}</td>
+                                      </tr>
+                                      {% endfor %}
+                                      {% else %}
+                                  <tr>
+                                      <td class="table-style" colspan="4">{% trans 'No Payment Found' %}</td>
+                      
+                                  </tr>
+                                      {% endif %}
+                                  </tbody>
+                                  <!--Table body-->
+                      
+                              </table>
+                              <!--Table-->
+                            </div>
+                      </div>
+                    
+            </div>                      
+        </div>
+    </section>
+<div class="container">
+
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div >
+                    <div class="pad10">
+                        <div class="img-dashboard">
+                            <img src="{% static '/images/recevied.png' %}">
+                        </div>
+                        <h4 class="text-theme">{% trans 'Wallets' %}</h4>
+                        </div>
+                            <div>
+                                <div>
+                                    <div class="card" style="background-color: transparent;">
+                                        <div class="card-body" >
+                                                                        <!--Table-->
+                                            <table class="table table_2 table-border table-responsive-md table-fixed overflow table-scroll text-white" style="table-layout: fixed;">
+                                                                            <!--Table head-->
+                                                <thead>
+                                                    <tr class="table-top" style="border: none">
+                                                        <th>{% trans 'Coin Name' %}</th>
+                                                        <th>{% trans 'Code' %}</th>
+                                                        <th>{% trans 'Balance' %}</th>
+                                                        <th>
+                                                            <select name="dispcoin" id="dispcoin"><option value="BTC">BTC</option><option value="USD" selected="">USD</option><option value="CAD">CAD</option><option value="EUR">EUR</option><option value="ARS">ARS</option><option value="AUD">AUD</option><option value="AZN">AZN</option><option value="BGN">BGN</option><option value="BRL">BRL</option><option value="BYN">BYN</option><option value="CHF">CHF</option><option value="CLP">CLP</option><option value="CNY">CNY</option><option value="COP">COP</option><option value="CZK">CZK</option><option value="DKK">DKK</option><option value="GBP">GBP</option><option value="GEL">GEL</option><option value="GIP">GIP</option><option value="HKD">HKD</option><option value="HUF">HUF</option><option value="IDR">IDR</option><option value="ILS">ILS</option><option value="INR">INR</option><option value="IRR">IRR</option><option value="IRT">IRT</option><option value="ISK">ISK</option><option value="JPY">JPY</option><option value="KRW">KRW</option><option value="LAK">LAK</option><option value="MKD">MKD</option><option value="MXN">MXN</option><option value="MYR">MYR</option><option value="NGN">NGN</option><option value="NOK">NOK</option><option value="NZD">NZD</option><option value="PEN">PEN</option><option value="PHP">PHP</option><option value="PKR">PKR</option><option value="PLN">PLN</option><option value="RON">RON</option><option value="RUB">RUB</option><option value="SEK">SEK</option><option value="SGD">SGD</option><option value="THB">THB</option><option value="TRY">TRY</option><option value="TWD">TWD</option><option value="UAH">UAH</option><option value="VND">VND</option><option value="ZAR">ZAR</option></select>
+                                                            {% trans 'Value' %}
+                                                        </th>
+                                                        <th>{% trans 'Commands' %}</th>
+                            
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                            
+                                                        <!-- <tr>
+                                                            <td class="table-style" colspan="5">{% trans 'No Payment Found' %}</td>
+                            
+                                                        </tr> -->
+                                                {% for obj in wallets %}
+                                                {% if obj.display %}
+                                                <tr class="table-th" style="border: none">
+                                                    <th>
+                                                        <img src="{% static 'images/coins/' %}{{ obj.code}}.png" class="wallets-img">
+                                                        <span>{{ obj.coin_name }}</span>
+                                                    </th>
+                                                    <th>
+                                                        <span>{{ obj.code }}</span>
+                                                    </th>
+                                                    <th id="bal_{{obj.code}}">
+                                                        <img id="loading-image_{{obj.code}}" src="{% static 'images/load.gif' %}" style="display:none;height: 20px;" />
+                                                    </th>
+                                                    <th>
+                                                        <span id="val_{{obj.code}}" class="rateVal"></span>
+                                                        <span style="display:none;" class="val_{{obj.code}}" class="rateVal"></span>
+                                                    </th>
+                                                    <th style="width: 150px;">
+                                                        <div class="dropdown" style="width: 100%;">
+                                                            {% if obj.active %}
+                                                            <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="dropdown" aria-expanded="false">{{ obj.code }} Options
+                                                            <span class="caret"></span>
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: #1f1f23f0;">
+                                                                <a class="dropdown-item" href="{% url 'coins:newaddr' obj.code  %}"><i class="fab fa-get-pocket" style="padding-right: 11px";></i>Deposit / Receive</a>
+                                                                <a class="dropdown-item" href="{% url 'coins:coin-withdrawal' obj.code %}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Send / Withdraw</a>                                                                          
+                                                                <a class="dropdown-item" href="#"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> View Addresses
+                                                                    <sup>3</sup></a></a>
+                                                                <a class="dropdown-item" href="{% url 'coins:convert_select'  obj.code %}"><i class="fa fa-space-shuttle" aria-hidden="true" style="padding-right: 11px";></i> Convert</a>
+                                                                <a class="dropdown-item" href="#"><i class="fas fa-lock" style="padding-right: 11px";></i>Lock in Vault</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item" href="{% url 'coins:transaction-history-details' 'deposit' %}"><i class="fab fa-get-pocket" style="padding-right: 11px";></i>Deposit History</a>
+                                                                <a class="dropdown-item" href="{% url 'coins:transaction-history-details' 'withdrawal' %}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Withdrawal History</a>
+                                                                <a class="dropdown-item" href="{% url 'coins:transaction-history-details' 'transfer' %}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Transfer History</a>
+                                                                <a class="dropdown-item" href="{% url 'coins:buy_coin' obj.code %}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Buy</a>
+                                                            </div>
+                                                                    
+                            
+                                                            {% else %}
+                            
+                                                            <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="modal" data-target="#myModal">{{ obj.name.code }} Options
+                                                                <span class="caret"></span>
+                                                            </button>
+                                                            {% endif %}
+                                                            </div>
+                                                        </th>
+                                                </tr>{% endif %} 
+                                                    {% endfor %}
+                                                    {% for erc in erc_wallet %}
+                                                    {% if erc.display %}
+                                                <tr class="table-th " style="border: none">
+                                                    <th>
+                                                        <img src="{{ erc.image.url }}" class="wallets-img">
+                                                        <span>{{ erc.contract_symbol }}</span>
+                                                    </th>
+                                                    <th>
+                                                        <span>{{ erc.contract_symbol }} ETH: {% get_eth_balance erc.contract_symbol request.user %}</span>
+                                                    </th>
+                                                    <th id="bal_{{ erc.contract_symbol }}">
+                                                        <img id="loading-image_{{obj.contract_symbol}}" src="{% static 'images/load.gif' %}" style="display:none;height: 20px;" />
+                                                    </th>
+                                                    <th>
+                                                        <span id="val_{{erc.contract_symbol}}" class="rateVal"></span>
+                                                        <span style="display:none;" class="val_{{erc.contract_symbol}}" class="rateVal"></span>
+                                                    </th>
+                                                    <th style="width: 150px;">
+                                                        
+                                                            <button type="button" class="btn btn-success dropdown-toggle" style="width: 100%;" data-toggle="dropdown" aria-expanded="false">Options
+                                                                <span class="caret"></span>
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: #1f1f23f0;">
+                                                                <a class="dropdown-item" href="{% url 'coins:newaddr' erc.contract_symbol  %}"><i class="fab fa-get-pocket" style="padding-right: 11px";></i>Deposit / Receive</a>
+                                                                <a class="dropdown-item" href="{% url 'coins:coin-withdrawal' erc.contract_symbol %}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Send / Withdraw</a>                                                                          
+                                                                <a class="dropdown-item" href="#"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> View Addresses
+                                                                    <sup>3</sup></a></a>
+                                                                <a class="dropdown-item" href="#"><i class="fa fa-space-shuttle" aria-hidden="true" style="padding-right: 11px";></i>Diversify your Portfolio</a>
+                                                                <a class="dropdown-item" href="#"><i class="fas fa-lock" style="padding-right: 11px";></i>Lock in Vault</a>
+                                                                <div class="dropdown-divider"></div>
+                                                                <a class="dropdown-item" href="{% url 'coins:transaction-history-details' 'deposit' %}?&currency={{ erc.contract_symbol }}"><i class="fab fa-get-pocket" style="padding-right: 11px";></i>Deposit History</a>
+                                                                <a class="dropdown-item" href="{% url 'coins:transaction-history-details' 'withdrawal' %}?&currency={{ erc.contract_symbol }}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Withdrawal History</a>
+                                                                <a class="dropdown-item" href="{% url 'coins:transaction-history-details' 'transfer' %}"><i class="fas fa-paper-plane" style="padding-right: 11px";></i>Transfer History</a>
+                                                                
+                                                            </div>
+                                                            <!-- <ul class="dropdown-menu" role="menu">
+                                                                <li>
+                                                                <li>
+                                                                    <a href="{% url 'coins:newaddr' erc.contract_symbol  %}">
+                                                                        <span class="glyphicon glyphicon-import"></span> Deposit / Receive</a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="{% url 'coins:coin-withdrawal' erc.contract_symbol %}">
+                                                                    <i class="fa fa-paper-plane" aria-hidden="true"></i> Send / Withdraw</a>
+                                                                </li>
+                                                                <li>
+                                                                            <a href="">
+                                                                                <i class="fa fa-paper-plane-o" aria-hidden="true"></i> View Addresses
+                                                                                <sup>3</sup>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="">
+                                                                                <i class="fa fa-space-shuttle" aria-hidden="true"></i> Diversify your Portfolio</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="">
+                                                                                <span class="glyphicon glyphicon-lock"></span> Lock in Vault</a>
+                                                                        </li>
+                                                                        <li class="divider"></li>
+                                                                        <li>
+                                                                            <a href="{% url 'coins:transaction-history-details' 'deposit' %}?&currency={{ erc.contract_symbol }}">
+                                                                                <span class="glyphicon glyphicon-import"></span> Deposit History</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="{% url 'coins:transaction-history-details' 'withdrawal' %}?&currency={{ erc.contract_symbol }}">
+                                                                                <i class="fa fa-paper-plane" aria-hidden="true"></i> Withdrawal History</a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <a href="{% url 'coins:transaction-history-details' 'transfer' %}">
+                                                                                <i class="fa fa-paper-plane" aria-hidden="true"></i> Transfer History</a>
+                                                                        </li>
+                                                                    </ul> -->
+                                                                    
+                                                                    
+                                                               
+                                                            </th>
+                                                        </tr>{% endif %}{% endfor %}
+                                                    </tbody>
+                        
+                                                </table>
+                                                <!--Table-->
+                        
+                                            </div>
+                                        </div>
+                        
+                                    </div>
+                        
+                                </div>
+                
+            </div>
+        </div>
+    </section>
+
+
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content  exmr-modal white-font animated bounceInDown">
+
+            <img src="{% static 'images/logo1.png' %}" class="margin-center img-responsive exmr-modal-logo">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3 class="modal-title">
+                    <i class="fa fa-exclamation-circle"></i>Alpha Version Testnet</h3>
+            </div>
+            <div class="modal-body text-center">
+                We are in active development to bring you the best features.
+                <br>The Coin will be added to be winners in our Coin Listing Competition.
+                <br>More Coin support will be added in future.
+                <br>We thankyou for your understanding.
+                <br>
+                <br>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %} {% block script %}
+<script>
+    function modal_loading(currency) {
+        $("#coin_name").text(currency);
+        $("#coin_name1").text(currency);
+        $("#coin_name2").text(currency);
+        $('#qr-chart').addClass('blink');
+        $('#coin_addr_input').addClass('blink');
+        $("#coin_addr_input").text("Creating a new address, please wait.");
+        $("#qr-chart").attr("src", "https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=dummydata");
+        $("#coin-modal").modal("show")
+
+    }
+</script>
+<script src="{% static 'js/jquery-ui.min.js' %}"></script>
+<script src="{% static 'js/clipboard2.min.js' %}"></script>
+<script>
+    $('.btn1').tooltip({
+        trigger: 'click',
+        placement: 'bottom'
+    });
+
+    function setTooltip(btn, message) {
+        btn.tooltip('hide')
+            .attr('data-original-title', message)
+            .tooltip('show');
+    }
+
+    function hideTooltip(btn) {
+        setTimeout(function () {
+            btn.tooltip('hide');
+        }, 1000);
+    }
+
+    // Clipboard
+
+    var clipboard = new Clipboard('.btn1');
+
+    clipboard.on('success', function (e) {
+        var btn = $(e.trigger);
+        setTooltip(btn, 'Copied!');
+        hideTooltip(btn);
+    });
+
+    clipboard.on('error', function (e) {
+        var btn = $(e.trigger);
+        setTooltip('Failed!');
+        hideTooltip(btn);
+    });
+    $(document).ready(function () {
+        $('.table_2 > tbody  > tr').each(function () {
+            column = $(this).find('th')[2]
+            
+            
+            $.ajax({
+                type: "GET",
+                url: "{% url 'coins:get_balance' %}",
+                data: {
+                    'code': column.id.split('bal_')[1],
+                },
+                beforeSend: function () {
+                    $("#loading-image_" + column.id.split('bal_')[1]).show();
+                },
+                success: function (data) {
+                    $("#bal_" + data['code']).text(data['balance'])
+                    $("#val_" + data['code']).text(parseFloat(data['value']).toFixed(2))
+                    $(".val_" + data['code']).text(parseFloat(data['value']).toFixed(2))
+                    $("#loading-image_" + data['code']).hide();
+                    // alert(data['value']);
+                    // $(column).text(data);
+
+                }
+            })
+        });
+    });
+$("#dispcoin").change(function(){
+    $.ajax({
+              type: "GET",
+              url: "{% url 'coins:currency_convert' %}",
+              data: {
+                  'to': $("#dispcoin").val(),
+              },
+              success: function (data) {
+                  console.log(data);
+                  jQuery('.rateVal').each(function(i,E){
+                      id = E.id
+                      // console.log($("."+id))
+                      $(E).text(parseFloat($("."+id).text()*data["value"]).toFixed(2))
+                  })
+              }
+          });
+
+  });
+
+
+    
+</script> {% endblock %}

@@ -1,0 +1,408 @@
+{% load staticfiles %} {% load i18n %} {% get_available_languages as languages %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> {% block meta %} {% endblock %}
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
+    <!-- favicon -->
+    <title>GetCryptoPayments | {% block title %}{% endblock %}</title>
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/exmr.css' %}"> {% block style %}{% endblock style %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet"> {% block fonts %}
+    {% endblock %}
+    <!-- style -->
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xs-12 text-center my-2">
+                <img src="{% static 'images/logo.png' %}" class="img-responsive" style="margin:0 auto;">
+            </div>
+            <div class="col-xs-12 orange-shadow-box my-1 p-2">
+                <div class="col-xs-12 col-md-6 mt-1">
+                    Sold by
+                    <a class="merchant-link" href="{% url 'common:beta' %}" target="_blank">{{merchant_name}}</a>
+                </div>
+                <div class="col-xs-12 col-md-6 text-center text-md-right ">
+                    <a type="button" class="btn btn-lg btn-default mt-1" href="{% url 'common:beta' %}" target="_blank">
+                        <span class="glyphicon glyphicon-user" aria-hidden="true"></span> View Profile</a>
+                </div>
+            </div>
+
+
+            <form action="{% url 'mtools:donorbtnpay'  %}" method="POST" id="pay-form">
+                {% csrf_token %}
+                <input type="hidden" name="merchant_id" value="{{merchant_id}}" />
+                <input type="hidden" name="unique_id" value="{{unique_id}}" />
+                <input type="hidden" name="item_name" value="{{item_name}}" maxlength="128" id="id_item_name" required />
+                <!-- <input type="hidden" name="item_amount" value="{{item_amount}}" maxlength="128" id="id_item_amount" -->
+                    <!-- required /> -->
+                <input type="hidden" name="invoice_number" value="{{invoice_number}}" maxlength="128" id="id_invoice_number"
+                    required />
+                <input type="hidden" name="item_qty" value="{{item_qty}}" maxlength="128" id="id_item_qty" required />
+                <input type="hidden" name="item_number" value="{{item_number}}" maxlength="128" id="id_item_number"
+                    required />
+                <input type="hidden" name="tax_amount" value="{{tax_amount}}" maxlength="128" id="id_tax_amount"
+                    required />
+                <input type="hidden" name="shipping_cost" value="{{shipping_cost}}" maxlength="128" id="id_shipping_cost"
+                    required />
+                    <input type="hidden" name="shipping_cost_add" value="{{shipping_cost_add}}" maxlength="128" id="id_shipping_cost_add"
+                        required />
+                <!-- <div class="col-xs-12 px-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 py-1 text-center">
+                        Attention
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <h5 class="">If you had made any previos purchases for the same invoice, update unqiue
+                            Transaction-id here</h5>
+                    </div>
+                    <div class="col-xs-12 col-md-6 px-0">
+                        <div class="col-xs-8">
+                            <input type="text" class="form-control w100p" placeholder="Previous Transaction-ID if any"
+                                id="u_id">
+                        </div>
+                        <button class="btn btn-success col-xs-4" id="update_uid">Update</button>
+                    </div>
+
+                </div> -->
+
+                <div class="col-xs-12 col-md-6 pl-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <div class="col-xs-6">
+                            <h5 class="">ITEM #</h5>
+                        </div>
+                        <div class="col-xs-6">
+                            <h5 class="">ITEM</h5>
+                        </div>
+                        <div class="col-xs-12 bg-white px-0 text-center py-2">
+                            <div class="col-xs-6">
+                                <span class="">1</span>
+                            </div>
+                            <div class="col-xs-6">
+                                <span class="">{{item_name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-12 col-md-6 pr-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <div >
+                            <h5 >DONATION AMOUNT</h5>
+                        </div>
+                        
+                        
+                        <div class="col-xs-12 bg-white px-0 text-center py-2">
+                            <div class="row">
+                                <div class="col-xs-3 mt-4 "><label for="donation in USD">Donation in USD</label></div>
+                                <div class="col-xs-8 bg-white border-btm-line p-1">
+                                <span><input type="text" class="form-control input-group col-xs-8 mt-1 pl-0 " data-validation="number"
+                                    name="item_amount" id="donation in USD" placeholder="donation in USD" value="{{item_amount}}" ></span>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input type="checkbox" id="myCheck" onChange="myFunction()">Check the box to donate as a Anonymous Donor
+                    
+                </div>
+
+                <div class="col-xs-12 col-md-6 pl-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <h5>
+                            <span class="glyphicon glyphicon-user"></span> Buyer/Shipping Information
+                        </h5>
+                        <div class="col-12 px-0 bg-white">
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-left">
+                                <!-- <span>Already a member of getcryptopayments.org? Click here to log in and save time
+                                    filling out
+                                    this form...
+                                </span> -->
+                            </div>
+                            <div class="col-xs-12 bg-white border-btm-line p-1">
+                                <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="length custom"
+                                    data-sanitize="trim" data-validation-regexp="^([a-zA-Z. ]+)$"
+                                    data-validation-length="min4" name="first_name" placeholder="First Name">
+                                <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="length custom"
+                                    data-sanitize="trim" data-validation-regexp="^([a-zA-Z. ]+)$"
+                                    data-validation-length="min4" name="last_name" placeholder="Last Name">
+                                <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="email"
+                                    name="email_addr" placeholder="Email Address">
+                            </div>
+
+                            <div class="col-xs-12  orange-shadow-box " style="padding-left: -15px; padding-right:-15px;">
+                                <h4>Shipping Details</h4>
+                            </div>
+                            <div class="col-xs-12 bg-white border-btm-line p-1">
+                                <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="length custom"
+                                    data-sanitize="trim" data-validation-regexp="^([a-zA-Z0-9,. ]+)$"
+                                    data-validation-length="min4" name="addr_l1" placeholder="Address Line 1">
+                                <input type="text" class="form-control input-group col-xs-12 mt-1" data-validation="length custom"
+                                    data-sanitize="trim" data-validation-regexp="^([a-zA-Z0-9,. ]+)$"
+                                    data-validation-length="min4" name="addr_l2" placeholder="Address Line 2">
+                                <div class="col-xs-12 px-0 py-1">
+                                    <select id="country" name="country" class="form-control input-group col-xs-12 mt-1 "></select>
+                                    <select name="city" id="state" class="form-control input-group col-xs-12 mt-1"></select>
+
+                                </div>
+
+
+                                <!-- <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="country" name="country" placeholder="Country"> -->
+                                <input type="text" class="form-control input-group col-xs-12 mt-1 " ddata-validation="length custom"
+                                data-sanitize="trim" data-validation-regexp="^([a-zA-Z0-9,. ]+)$"
+                                data-validation-length="min4" name="city" placeholder="City">
+                                <!-- <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="length alphanumeric" data-validation-length="min4"
+                                    name="state" placeholder="State/Province"> -->
+                                <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="number"
+                                    name="zipcode" placeholder="Zipcode">
+                                <input type="text" class="form-control input-group col-xs-12 mt-1 " data-validation="alphanumeric"
+                                    data-validation-allowing="-_+ " name="phone" placeholder="Phone Number">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 pr-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <h5>
+                            <span class="glyphicon glyphicon-tags"></span>Totals
+                        </h5>
+                        <div class="col-12 px-0 bg-white">
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
+                                <div class="col-xs-6">
+                                    <span class="">Shipping</span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <span class="">{{shipping_cost}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
+                                <div class="col-xs-6">
+                                    <span class="">Tax</span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <span class="">{{tax_amount}}</span>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
+                                <div class="col-xs-6">
+                                    <span class="">Total Payable</span>
+                                </div>
+                                <div class="col-xs-6">
+                                    <span class="">{{payable}}</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="col-xs-12 col-md-6 pr-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <h5>
+                            <span class="glyphicon glyphicon-tags"></span>Additional Notes
+                        </h5>
+                        <div class="col-12 px-0 bg-white">
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
+                                <div class="col-xs-12">
+                                    <textarea class="col-xs-12 crypto-textarea" name="buyer_notes"></textarea>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xs-12 col-md-6 pr-md-0">
+                    <div class="col-xs-12 pr-md-0 text-center">
+                        <h3>Total Amount due: {{amt_remaining}}</h3>
+                        <h5>Attempted Till Now: {{attempted}}. Please check your Transaction attempts to confirm</h5>
+                    </div>
+                    <div class="col-xs-12 pr-md-0 text-center">
+                        <div class="col-xs-12 col-md-3 text-center">
+                            <input type="text" class="input-text-exmr col-xs-12" disabled name="coin_amt" id="coin_amt"
+                                onkeyup="setTimeout(calculate_amt_coin(),2000)">
+                            <span class="col-xs-12" id="coin_amt_span">...</span>
+                        </div>
+                        <span class="col-md-1 text-center pad20">X</span>
+                        <div class="col-xs-12 col-md-3 text-center">
+                            <input type="text" class="input-text-exmr col-xs-12" disabled name="coin_usd" id="coin_usd">
+                            <span class="col-xs-12" id="coin_usd_span">...</span>
+                        </div>
+                        <span class="col-md-1 text-center pad20">=</span>
+                        <div class="col-xs-12 col-md-3 text-center">
+                            <input type="text" class="input-text-exmr col-xs-12" name="payable_amt" id="payable_amt"
+                                disabled onkeyup="setTimeout(calculate_amt_payable(),2000)">
+                            <span class="col-xs-12" id="payable_amt_span">...</span>
+                        </div>
+                    </div>
+
+
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <h5>
+                            <span class="glyphicon glyphicon-check"></span>Choose Your Coin
+                        </h5>
+                        <div class="col-12 px-0 bg-white">
+                            <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
+                                {% for coins,vcoin in available_coins.items %}
+                                <label>
+                                    <input type="radio" name="selected_coin" value="{{vcoin.coin_code}}" id="coins_{{vcoin.coin_code}}"
+                                        onclick="change_coin('{{vcoin.coin_code}}')">
+                                    <div class="btn btnrad btnrad-sık">
+                                        <img src="{{vcoin.image}}" class="crypto-btn-image col-xs-3">
+                                        <span class="col-xs-9">{{vcoin.coin_name}}</span>
+
+                                    </div>
+
+                                </label>
+
+                                {% endfor %}
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 px-0">
+                        <input type="submit" class="btn btn-success crypto-payment-btn" id="btnCheckout" value="Complete Checkout">
+                    </div>
+                </div> 
+
+            </form>
+        </div>
+    </div>
+    <!-- <script> -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/notify.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+    <script src="{% static 'js/countries.js' %}"></script>
+    <script src="{% static 'js/jquery.form-validator.min.js' %}"></script>
+    <script>
+    $(document).ready(function() {
+            document.getElementById("coin_amt").value = 0
+            document.getElementById("payable_amt").value = {{payable}};
+
+    })
+    </script> 
+    <script>
+        function myFunction() {
+
+var elements = document.getElementsByClassName("form-control input-group col-xs-12 mt-1");
+var el = document.getElementById("myCheck");
+
+for (var i = 0; i < elements.length; i++) {
+  if (el.checked) {
+    elements[i].disabled = true;
+  } else {
+    elements[i].disabled = false;
+  }
+}
+}        
+    </script>
+    <!-- <script>
+        var coin_dict = {}
+        $.ajax({
+            dataType: "json",
+            url: "https://coincap.io/front",
+            success: function (data) {
+                for (obj in data) {
+                    coin_dict[data[obj].short] = data[obj].price;
+
+                    if (data[obj].short == 'BTC') {
+                        amt_payable = parseFloat('{{payable}}');
+                        document.getElementById("coin_usd").value = data[obj].price.toFixed(2);
+                        document.getElementById("coin_amt").value = (amt_payable / data[obj].price).toFixed(
+                            8);
+                        document.getElementById("payable_amt").value = amt_payable.toFixed(2);
+                        document.getElementById("coin_usd_span").innerHTML = "USD/BTC";
+                        document.getElementById("coin_amt_span").innerHTML = "BTC";
+                        document.getElementById("payable_amt_span").innerHTML = "USD";
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script>
+        function recalculate_amt() {
+            coin_amt_value = parseFloat(document.getElementById("coin_amt").value);
+            coin_usd_value = parseFloat(document.getElementById("coin_usd").value);
+            payable_amt_value = parseFloat(document.getElementById("payable_amt").value);
+            document.getElementById("coin_amt").value = (payable_amt_value / coin_usd_value).toFixed(8);
+        }
+    </script>
+    <script>
+        function change_coin(cur_coin) {
+            document.getElementById("coin_usd").value = coin_dict[cur_coin].toFixed(2);
+            if (document.getElementById("coin_usd").value) {
+                document.getElementById("coin_amt").disabled = false;
+                document.getElementById("payable_amt").disabled = false;
+                recalculate_amt();
+            }
+            document.getElementById("coin_usd_span").innerHTML = "USD/" + cur_coin;
+            document.getElementById("coin_amt_span").innerHTML = cur_coin;
+            document.getElementById("payable_amt_span").innerHTML = "USD";
+        };
+    </script>
+
+    <script>
+        function calculate_amt_payable() {
+            coin_usd_value = parseFloat(document.getElementById("coin_usd").value);
+            payable_amt_value = parseFloat(document.getElementById("payable_amt").value);
+            document.getElementById("coin_amt").value = (payable_amt_value / coin_usd_value).toFixed(8);
+        }
+
+        function calculate_amt_coin() {
+            coin_amt_value = parseFloat(document.getElementById("coin_amt").value);
+            coin_usd_value = parseFloat(document.getElementById("coin_usd").value);
+            document.getElementById("payable_amt").value = (coin_amt_value * coin_usd_value).toFixed(2);
+        }
+    </script>
+ -->
+
+
+    <!-- </script> -->
+
+    <script language="javascript">
+        populateCountries("country", "state"); // first parameter is id of country drop-down and second parameter is id of state drop-down
+        populateCountries("country2");
+    </script>
+
+    <script>
+        $('#update_uid').on('click', function () {
+            $.ajax({
+                type: 'post',
+                url: "{% url 'mtools:updatebtnmaker' %}",
+                data: {
+                    u_id: $('#u_id').val(),
+                    csrfmiddlewaretoken: '{{ csrf_token }}',
+                },
+                success: function (data) {
+
+                }
+            });
+
+        });
+    </script>
+</body>
+
+</html>

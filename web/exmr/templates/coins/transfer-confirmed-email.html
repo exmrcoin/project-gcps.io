@@ -1,0 +1,11 @@
+Hello {{ request.user.first_name }},
+
+We have received a request to withdraw {{ transaction.amount }} {{type}} from your account to {{transaction.transaction_to}}.
+
+To acknowledge the request and process the withdrawal, click this link: {{scheme}}://{{host}}{% url 'coins:sendconfirm' slug_val %}
+
+If you did not request this withdrawal you should change your CoinPayments.net password immediately and contact us so we can stop the withdrawal. You should also check your email password if you have email-based 2FA enabled.
+
+Thank you,
+Getcryptopayments.org
+Support is available at: https://www.getcryptopayments.org/help-support

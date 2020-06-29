@@ -22,11 +22,12 @@ DATABASES = {
 
 SESSION_EXPIRE_SECONDS = 6000
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'noreply@getcryptopayments.com'
-EMAIL_HOST_PASSWORD = 'Exmr@2019~!'
+EMAIL_HOST_USER = 'exmr.test@gmail.com'
+EMAIL_HOST_PASSWORD = 'Adminqwerty123'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEBUG = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 PAYPAL_MODE = "sandbox"
 PAYPAL_CLIENT_ID = "AblPqPuQrjYiRqrrwfrokV0qBZf2rxt7S76SzcIY3qAHkRga8Jo_yPebqg50y7MUu8NdEMpJGa-LesfL"

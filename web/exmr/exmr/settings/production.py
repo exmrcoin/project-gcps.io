@@ -39,7 +39,7 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 ADMINS = (
-   ('ME', 'mail2vipinmohan@gmail.com'),
-   ('ADMIN', 'vipin.mohan@techversantinc.com'),
+#    ('ME', 'mail2vipinmohan@gmail.com'),
+   ('ADMIN', 'anshid@techversantinfo.com'),
 )
 MANAGERS = ADMINS

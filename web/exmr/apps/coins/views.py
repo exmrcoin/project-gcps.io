@@ -45,6 +45,8 @@ from apps.coins.models import Coin, CRYPTO, TYPE_CHOICES, CoinConvertRequest, Tr
     PayByNamePurchase
 from apps.merchant_tools.models import MultiPayment
 
+from requests import Request, Session
+
 paypalrestsdk.configure({
     "mode": settings.PAYPAL_MODE,  # sandbox or live
     "client_id": settings.PAYPAL_CLIENT_ID,
@@ -81,10 +83,22 @@ class WalletsView(LoginRequiredMixin, TemplateView):
         #         create_wallet(self.request.user, currency)
         try:
             rates = cache.get('rates')
+            if not rates:
+                url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+                parameters = {'start':'1','limit':'5000','convert':'USD'}
+                headers = {'Accepts': 'application/json','X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',}
+                session = Session()
+                session.headers.update(headers)
+                response = session.get(url, params=parameters)
+                data = json.loads(response.text)['data']
+                rates = {rate['symbol']: rate['quote']['USD']['price'] for rate in data}
             # rates = ast.literal_eval(rates)
         except:
-            data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']: rate['price'] for rate in data}
+            try:
+                data = json.loads(requests.get("http://coincap.io/front").text)
+                rates = {rate['short']: rate['price'] for rate in data}
+            except Exception as e:
+                raise e
         self.request.session["rates"] = rates
         context["wallets"] = Coin.objects.all()
         context["erc_wallet"] = EthereumToken.objects.all()
@@ -454,8 +468,25 @@ class CoinSettings(LoginRequiredMixin, TemplateView):
         #     coin = Coin.objects.get(code=currency)
         #     if not Wallet.objects.filter(user=self.request.user, name=coin):
         #         create_wallet(self.request.user, currency)
-        data = json.loads(requests.get("http://coincap.io/front").text)
-        rates = {rate['short']: rate['price'] for rate in data}
+        try:
+            rates = cache.get('rates')
+            if not rates:
+                url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+                parameters = {'start':'1','limit':'5000','convert':'USD'}
+                headers = {'Accepts': 'application/json','X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',}
+                session = Session()
+                session.headers.update(headers)
+                response = session.get(url, params=parameters)
+                data = json.loads(response.text)['data']
+                rates = {rate['symbol']: rate['quote']['USD']['price'] for rate in data}
+        except:
+            try:
+                data = json.loads(requests.get("http://coincap.io/front").text)
+                rates = {rate['short']: rate['price'] for rate in data}
+            except Exception as e:
+                raise e
+        # data = json.loads(requests.get("http://coincap.io/front").text)
+        # rates = {rate['short']: rate['price'] for rate in data}
         self.request.session["rates"] = rates
         context["wallets"] = Coin.objects.all()
         context["erc_wallet"] = EthereumToken.objects.all()
@@ -532,8 +563,23 @@ class RippleView(TemplateView):
         #     coin = Coin.objects.get(code=currency)
         #     if not Wallet.objects.filter(user=self.request.user, name=coin):
         #         create_wallet(self.request.user, currency)
-        data = json.loads(requests.get("http://coincap.io/front").text)
-        rates = {rate['short']: rate['price'] for rate in data}
+        try:
+            rates = cache.get('rates')
+            if not rates:
+                url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+                parameters = {'start':'1','limit':'5000','convert':'USD'}
+                headers = {'Accepts': 'application/json','X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',}
+                session = Session()
+                session.headers.update(headers)
+                response = session.get(url, params=parameters)
+                data = json.loads(response.text)['data']
+                rates = {rate['symbol']: rate['quote']['USD']['price'] for rate in data}
+        except:
+            try:
+                data = json.loads(requests.get("http://coincap.io/front").text)
+                rates = {rate['short']: rate['price'] for rate in data}
+            except Exception as e:
+                raise e
         self.request.session["rates"] = rates
         context["ripple"] = Coin.objects.get(code='XRPTest')
         context["erc_wallet"] = EthereumToken.objects.all()
@@ -779,10 +825,24 @@ class BalanceView(View):
             user = User.objects.get(id=self.request.GET.get("user_id"))
         else:
             user = request.user
-        if not cache.get("rates"):
-            data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']: rate['price'] for rate in data}
-            self.request.session["rates"] = rates
+        try:
+            rates = cache.get('rates')
+            if not rates:
+                url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+                parameters = {'start':'1','limit':'5000','convert':'USD'}
+                headers = {'Accepts': 'application/json','X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',}
+                session = Session()
+                session.headers.update(headers)
+                response = session.get(url, params=parameters)
+                data = json.loads(response.text)['data']
+                rates = {rate['symbol']: rate['quote']['USD']['price'] for rate in data}
+        except:
+            try:
+                data = json.loads(requests.get("http://coincap.io/front").text)
+                rates = {rate['short']: rate['price'] for rate in data}
+            except Exception as e:
+                raise e
+        self.request.session["rates"] = rates
         if 'Test' in currency_code:
             new_currency_code = currency_code.strip("Test")
         else:
@@ -807,12 +867,24 @@ class AdminBalanceView(View):
     def get(self, request, *args, **kwargs):
         currency_code = self.request.GET.get('code')
         value = None
-        if not cache.get('rates'):
-            data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']: rate['price'] for rate in data}
-            self.request.session["rates"] = rates
-        else:
+        try:
             rates = cache.get('rates')
+            if not rates:
+                url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+                parameters = {'start':'1','limit':'5000','convert':'USD'}
+                headers = {'Accepts': 'application/json','X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',}
+                session = Session()
+                session.headers.update(headers)
+                response = session.get(url, params=parameters)
+                data = json.loads(response.text)['data']
+                rates = {rate['symbol']: rate['quote']['USD']['price'] for rate in data}
+        except:
+            try:
+                data = json.loads(requests.get("http://coincap.io/front").text)
+                rates = {rate['short']: rate['price'] for rate in data}
+            except Exception as e:
+                raise e
+        self.request.session["rates"] = rates
 
         if 'Test' in currency_code:
             new_currency_code = currency_code.strip("Test")
@@ -1203,12 +1275,22 @@ class PayByNamePaymentView(LoginRequiredMixin, TemplateView):
             return HttpResponseForbidden(render(request, '403.html'))
         try:
             rates = cache.get('rates')
-            if rates is None:
-                raise Exception
+            if not rates:
+                url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+                parameters = {'start':'1','limit':'5000','convert':'USD'}
+                headers = {'Accepts': 'application/json','X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',}
+                session = Session()
+                session.headers.update(headers)
+                response = session.get(url, params=parameters)
+                data = json.loads(response.text)['data']
+                rates = {rate['symbol']: rate['quote']['USD']['price'] for rate in data}
         except:
-            data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']: rate['price'] for rate in data}
-            rates = json.dumps(rates)
+            try:
+                data = json.loads(requests.get("http://coincap.io/front").text)
+                rates = {rate['short']: rate['price'] for rate in data}
+                rates = json.dumps(rates)
+            except Exception as e:
+                raise e
 
         rate_of_coin = rates[selected_coin]
         selected_coin_amount = float(package_price)/float(rate_of_coin)
@@ -1375,9 +1457,21 @@ class GetCurrentRate(View):
     def get(self, request, *args, **kwargs):
         try:
             rates = cache.get('rates')
+            if not rates:
+                url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+                parameters = {'start':'1','limit':'5000','convert':'USD'}
+                headers = {'Accepts': 'application/json','X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',}
+                session = Session()
+                session.headers.update(headers)
+                response = session.get(url, params=parameters)
+                data = json.loads(response.text)['data']
+                rates = {rate['symbol']: rate['quote']['USD']['price'] for rate in data}
         except:
-            data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']: rate['price'] for rate in data}
+            try:
+                data = json.loads(requests.get("http://coincap.io/front").text)
+                rates = {rate['short']: rate['price'] for rate in data}
+            except Exception as e:
+                raise e
 
         data = json.dumps(rates)
         print(data)

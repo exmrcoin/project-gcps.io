@@ -35,7 +35,8 @@ def check_market_rate():
     # cache.set('rates', rates, timeout=7200)
     cache.set('last_check',  datetime.now(), timeout=7200)
     coin_rate_list = coincap.get_coins_markets('usd')
-    rates = {(rate['symbol']).upper():rate['priceUsd'] for rate in coin_rate_list['data']}
+    # rates = {(rate['symbol']).upper():rate['priceUsd'] for rate in coin_rate_list['data']}
+    rates = {(rate['symbol']).upper():rate['quote']['USD']['price'] for rate in coin_rate_list['data']}
     cache.set('rates', rates, timeout=7200)
     
 

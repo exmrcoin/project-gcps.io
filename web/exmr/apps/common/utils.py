@@ -35,12 +35,12 @@ def send_mail(user, subject, message, from_email, recipient_list, fail_silently=
     """
     Send an email utility
     """
-    message = smart_text(gpg.sign(message))
-    try:
-        Profile.objects.get(user= user).pgp_gpg_public_key
-        message = smart_text(gpg.encrypt(message))
-    except:
-        pass
+    # message = smart_text(gpg.sign(message))
+    # try:
+    #     Profile.objects.get(user= user).pgp_gpg_public_key
+    #     message = smart_text(gpg.encrypt(message))
+    # except:
+    #     pass
     send_email_django(subject, message, from_email, recipient_list, fail_silently,\
               auth_user, auth_password, connection, html_message)
     return True

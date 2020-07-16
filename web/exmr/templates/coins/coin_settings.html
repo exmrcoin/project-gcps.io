@@ -1,0 +1,105 @@
+{% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
+<div></div>
+{% load transaction_status %} {% block dashboard_heading %}<h4 class="text-theme b-4 dashboard">COIN SETTINGS</h4>
+{% endblock %} {% block dashboard_wrapper_content %}
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            <div style="padding-bottom: 10px;">
+                <ul class="nav nav-pills">
+                    <li id="coin-settings-name" class="nav-item">
+                      <a class="nav-link active dashboard-nav" href="{% url 'coins:setting-setup' %}">Setup Wizard</a>
+                    </li>
+                    <li id="coin-settings-name" class="nav-item">
+                      <a class="nav-link dashboard-nav" href="{% url 'coins:coin-settings' %}">Std.coin</a>
+                    </li>
+                    <li id="coin-settings-name" class="nav-item">
+                      <a class="nav-link dashboard-nav" href="{% url 'coins:omini-coin' %}">Omini coin</a>
+                    </li>
+                    <li id="coin-settings-name" class="nav-item">
+                      <a class="nav-link dashboard-nav" href="{% url 'coins:ripple' %}" tabindex="-1" aria-disabled="true">Ripple</a>
+                    </li>
+                    <li id="coin-settings-name" class="nav-item">
+                        <a class="nav-link dashboard-nav" href="#" tabindex="-1" aria-disabled="true">Escrow</a>
+                    </li>
+                    <li id="coin-settings-name" class="nav-item">
+                        <a class="nav-link dashboard-nav" href="#" tabindex="-1" aria-disabled="true">Paypal/other</a>
+                    </li>
+                  </ul>
+            </div>
+            <div class="panel-body" >
+                <div class="accept-table-wrap">
+                    <table class="table table-border table-responsive-md text-white" >
+                        <thead>
+                            <tr style="border: none">
+                                <th>Enabled</th>
+                                <th>Coin</th>
+                                <th>Your payment Address
+                                    <br>(only needed for ASAP modes)
+                                </th>
+                                <th>Payout Mode </th>
+                                <th>Discount</th>
+                                <th>Maximum value per Transaction</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+            
+                <form name="RegForm"  method="post">  
+                    {%csrf_token%}
+                            {% for obj in wallets %}
+                            <tr style="border: none">
+                                <td>
+                                    <input type="checkbox" name="enabled" value="{{obj.code}}" style="margin-top: 10px;">
+                                </td>
+                                <td>
+                                    <p style="width: 98px;"></p>
+                                        <img src="{% static 'images/coins/' %}{{ obj.code}}.png" class="wallets-img" width="30px"><span>{{ obj.coin_name }}</span></p>
+                                </td>
+                                <td>
+                                    <input type="text" name="address_{{ obj.code}}" class="form-control form-control-sm" >
+                                </td>
+                                <td>
+                                    <select name="pay_type_{{ obj.code}}" class="form-control form-control-sm">
+                                        <option value="0">To Balance</option>
+                                        <option value="1">ASAP</option>
+                                        <option value="2">Nightly</option>
+                                        <option value="3">To Balance + Convert</option>
+                                        <option value="4">ASAP + Convert</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="number" name="discount_{{ obj.code}}" value="0" step=".01" class="form-control form-control-sm">
+                                </td>
+                                <td>
+                                    <div class="input-group">
+
+                                        <input type="number" class="form-control form-control-sm" name="value_{{ obj.code}}" value="0" step=".01">
+                                        <span class="input-group-addon p0 ">
+                                            <select class="form-control form-control-sm">
+                                                <option>USD</option>
+                                            </select>
+                                        </span>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                                
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col text-center">
+                <button type="submit" class="btn btn-success text-center" >Select</button>
+                </div>             
+                </form> 
+                </body>
+            </div>
+                
+        </div>
+    </div>
+    </section>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,13 @@
+Hello Merchant,
+
+We have successfully completed the multipayments for the Item: {{customer_detail.item_name}} made by customer: {{customer_detail.first_name}} 
+
+The details of the multipayment are listed below:
+
+{%for wallet in merchant_details%}
+{{ forloop.counter }} Code: {{wallet.code}}, Received: {{wallet.amount}}, Equivalent Amount: {{wallet.market_rate}}
+{%endfor%}
+
+Thank you,
+Getcryptopayments.org
+Support is available at: https://www.getcryptopayments.org/help-support

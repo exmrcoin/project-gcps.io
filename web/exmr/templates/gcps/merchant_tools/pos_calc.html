@@ -1,0 +1,143 @@
+{% extends 'gcps/testbase.html' %} {% load staticfiles widget_tweaks i18n %}{% load i18n %}
+ <!-- body -->
+ {% block content %}
+ 
+    <section class="section section-pad" style="padding-bottom: 1em">
+        <div class="container">
+            <div class="bx-ash mb-2">
+                <div class="grid-2-bx" style="display: inline">
+                    <ul class="row nav nav-pills nav-fill " >
+                        <li class="col-md-4 col-xs-6 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center" >
+                            <a href="{% url 'accounts:profile' %}" class="v-mid dashboard-nav" >
+                                
+                                <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-tachometer-alt fa-2x  mr-4"></i>{% trans '&nbsp;&nbsp;&nbsp;Home' %}</span>
+                            </a>
+                            <!-- <i class="fas fa-2x fa-wallet"></i>
+                            <a class="nav-link" href="{% url 'accounts:profile' %}"></a> -->
+                        </li>
+                        <li class="col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center">
+                                <a href="{% url 'coins:wallets' %}" class="v-mid dashboard-nav ">
+                                    
+                                    <span class="dashboard-span hidden-xs hidden-sm wallet-menu">
+                                        <i class="fas fa-2x fa-wallet mr-1"></i>{% trans 'Your Wallet' %}
+                                    </span>
+                                </a>
+                            <!-- <a class="nav-link" href="{% url 'coins:wallets' %}">{% trans 'Your Wallet' %}</a> -->
+                        </li>
+                        <li class=" col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center">
+                                <a href="{% url 'coins:coin-settings' %}" class="v-mid dashboard-nav">
+                                    
+                                    <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-coins  fa-2x mr-1"></i>{% trans 'Coin Settings' %}</span>
+                                </a>
+                            <!-- <a class="nav-link" href="{% url 'coins:coin-settings' %}">{% trans 'Coin Settings' %}</a> -->
+                        </li>
+                        <li class=" col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center">
+                            <a href="{% url 'coins:transaction-history' %}" class="v-mid dashboard-nav">
+                                    
+                                    <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-receipt  fa-2x mr-1"></i> {% trans 'Transactions' %}</span>
+                            </a>
+                            <!-- <a class="nav-link" href="{% url 'coins:transaction-history' %}">{% trans 'Transactions' %}</a> -->
+                        </li>
+                        <li class="col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center">
+                                <a href="{% url 'mtools:poscalc' %}" class="v-mid dashboard-nav">
+                                    
+                                    <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-shopping-cart  fa-2x mr-1"></i> {% trans 'Quick POS' %}</span>
+                                </a>
+                            <!-- <a class="nav-link" href="{% url 'mtools:poscalc' %}"> {% trans 'Quick POS' %}</a> -->
+                        </li>
+                        <li class="col-md-4 col-12 col-lg-2 col-sm-6 col-xl-2 nav-item justify-content-center">
+                                <a href="{% url 'coins:paybyname' %}" class="v-mid dashboard-nav ">
+                                    
+                                    <span class="dashboard-span hidden-xs hidden-sm wallet-menu"><i class="fas fa-user-tie  fa-2x mr-1"></i>{% trans 'PayByName' %}</span>
+                                </a>
+                            <!-- <a class="nav-link" href="{% url 'coins:paybyname' %}"> {% trans 'PayByName' %}</a> -->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>   
+ <section class="section section-pad" style="padding-top: 1em">
+    <div class="col-12 col-md-12 offset-md-3 col-lg-4 offset-lg-4 py-5">
+       <form id="coform" role="form"  action="{% url 'mtools:poscalcpaysel'%}" method="POST" class="container">
+          {% csrf_token %} 
+          <div class="container" >
+             <div class="calc-border row d-flex mb-1 calc-bg">
+                <!-- <h5 class="text-white col-md-8" style="margin-top: 31px;">Enter your order total:</h5> -->
+                <input id="amountf" name="amountf" value="0" size="14" placeholder="Enter your order total: " class="calc-input col-sm-8 rounded-tl"> 
+                <select class="btn btnpad calc-select rounded-tr col-md-4" value="" name="select_currency">
+                   <option selected>USD</option>
+                   {% for k,v in rates.items %}
+                   <option value="{{k}}">{{k}} - {{v|floatformat:4}}</option>
+                   {% endfor %}
+                </select>
+             </div>
+             <div class="row calc-main-border">
+                <div class="col-md-6 calc-padding"><button class="calc-border btn btnpad2 col-12 p-02 col-12" onClick="padClear(); return false;">CLEAR</button></div>
+                <div class="col-md-6 calc-padding"><button class="calc-border btn btnpad3 col-12 p-03 col-12" onClick="padBack(); return false;">
+                   <span class="fa fa-arrow-left"></span></button>
+                </div>
+                <div class="col-md-12 calc-padding d-flex">
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(1); return false;">1</button></div>
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(2); return false;">2</button></div>
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(3); return false;">3</button></div>
+                </div>
+                <div class="col-md-12 calc-padding d-flex">
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(4); return false;">4</button></div>
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(5); return false;">5</button></div>
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(6); return false;">6</button></div>
+                </div>
+                <div class="col-md-12 calc-padding d-flex">
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(7); return false;">7</button></div>
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(8); return false;">8</button></div>
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(9); return false;">9</button></div>
+                </div>
+                <div class="col-md-12 calc-padding d-flex">
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(0); padPress(0); return false;">00</button></div>
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPress(0); return false;">0</button></div>
+                   <div class="col-md-4 calc-padding"><button class="calc-border btn btn-primary btnpad col-12 p-0" onClick="padPeriod(); return false;">.</button></div>
+                </div>
+                <div class="col-md-6 calc-padding"><a href="{% url 'merchant-tools' %}"class="calc-border btn btnpad2 col-12 p-02 col-12 pad-calc"><span class="glyphicon glyphicon-arrow-left"></span>Back</a></div>
+                <div class="col-md-6 calc-padding"><button class="calc-border btn btnpad3 col-12 p-03 col-12">Continue </button></div>
+             </div>
+          </div>
+       </form>
+    </div>
+  </div>
+ </section>
+ {% endblock content %}
+ {% block script %}
+ <script type="text/javascript">
+    var padel = null;
+    function padSetup() {
+     if (padel == null) {
+         padel = document.getElementById('amountf');
+     }
+     return (padel != null) ? true:false;
+    }
+    function padClear() {
+     if (padSetup()) {
+         padel.value = '';
+     }
+    }
+    function padPeriod() {
+     if (padSetup()) {
+         if (padel.value.indexOf('.') == -1) {
+             padel.value = padel.value+'.';
+         }
+     }
+    }
+    function padBack() {
+     if (padSetup()) {
+         if (padel.value.length > 0) {
+             padel.value = padel.value.slice(0, -1);
+         }
+     }
+    }
+    function padPress(i) {
+     if (padSetup()) {
+         padel.value = padel.value+i.toString();
+     }
+    }
+ </script>
+ {% endblock script %}

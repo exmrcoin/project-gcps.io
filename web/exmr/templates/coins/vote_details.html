@@ -1,0 +1,305 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load transaction_status %}
+{% load i18n %} 
+<style type="text/css">
+.btn-is-disabled {
+  pointer-events: none; /* Disables the button completely. Better than just cursor: default; */
+  opacity: 0.7;
+}
+</style>
+<meta property="og:url"           content="https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}" />
+<meta property="og:type"          content="getcryptopayments" />
+<meta property="og:title"         content="GetCryptoPayments.org" />
+<meta property="og:description"   content="GetCryptoPayments" />
+<meta property="og:image"         content="{% static '/images/facebook_post.jpg' %}" />
+
+<script>
+  // This is called with the results from from FB.getLoginStatus().
+  function statusChangeCallback(response) {
+    // console.log('statusChangeCallback');
+    // console.log(response);
+    
+    if (response.status === 'connected') {
+      // Logged into your app and Facebook.
+    } else {
+      // The person is not logged into your app or we are unable to tell.
+      document.getElementById('status').innerHTML = 'Please log ' +
+        'into this app.';
+    }
+  }
+
+  // This function is called when someone finishes with the Login
+  // Button.  See the onlogin handler attached to it in the sample
+  // code below.
+  function checkLoginState() {
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+  }
+
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1762173497227077',
+      cookie     : true,  // enable cookies to allow the server to access 
+                          // the session
+      xfbml      : true,  // parse social plugins on this page
+      version    : 'v2.8' // use graph api version 2.8
+    });
+
+    
+
+    FB.getLoginStatus(function(response) {
+      statusChangeCallback(response);
+    });
+
+  };
+
+  // Load the SDK asynchronously
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+
+  // Here we run a very simple test of the Graph API after login is
+  // successful.  See statusChangeCallback() for when this call is made.
+  
+</script>
+
+
+<div id="fb-root"></div>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+<section class="section section-pad">
+    <div class="container">
+        <div class="row m0">
+            <div class="col-sm-8">
+                <div class="bx-ash text-white" >
+                    <h2> <img src="{% if coin.logo_url %}{{ coin.logo_url }}{% endif %}" style="margin-right: 15px; width: 20%;"><b>
+                      {% coin_code_to_name view.kwargs.currency %}  [{{ view.kwargs.currency }}] </b></h2>
+                    <h3>Help us get listed on GetCryptoPayments Gateway</h3>
+
+                    <p>{% trans 'We are participating in the GetCryptoPayments Fiat & Gateway "New Coin Listing Competition"' %}</p>
+
+                    <p>{% trans "If we win we get to list:" %} {% coin_code_to_name view.kwargs.currency %} [{{ view.kwargs.currency }}]{% trans " on GetCryptoPayments Gateway, the world's class integrated Crypto Payments Gateway" %}</p>
+
+                    <p>{% trans 'How To Help Us Win.' %}</p>
+
+                    <p>{% trans 'Option 1. Place this coin on top over 70,000 points scored.' %}</p>
+
+                    <p>{% trans 'Option 2. Get an instant listing scoring 100,000 points' %}</p>
+
+                    <p>{% trans 'Before Voting, Please Read The Mechanics ' %}<a href="https://medium.com/@eXMR/getcryptopayments-3d06c99bcc1a">Here</a>
+                    </p>
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+                <div class="bx-ash text-white" align="center" style="color: white; padding-bottom: 30px">
+                    <h3>{% trans 'TIME REMAINING' %}</h3>
+                 <div class="box2px">
+                     <p>{% trans 'Points' %} :<b>{{coin.vote_count}}</b></p>
+                      <p>{% trans 'Current place' %} :<b>{{position}}/{{total_coins}}</b></p>
+                 </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section class="l-p">
+    <div class="container">
+        <div class="col-sm-12" >
+        <div class="bx-ash text-white l-p-wrap " style="color: white">
+            
+            <h2 align="center"><b>{% trans 'Instant Listing Progress' %}</b></h2>
+            <p align="center">{% trans "Once we reach 100% we get an instant listing on GetCryptoPayments Gateway!"%}</p>
+
+            <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width:{% percentage coin.vote_count%}%; color: white">
+      {% percentage coin.vote_count%}%
+    </div>
+  </div>
+  <hr/>
+    <h2 align="center"><b>1- Social Shares</b></h2>
+    <p>Share Required:<b>1000</b> (1 share = 10 points)</p>
+    <p>Share Completed : <b>{{votes_share_completed}}</b></p>
+  
+  <div align="center">
+
+    
+      <!-- <a href="javascript:void(0)" class="btn-orange mt-1 social-a social-share{%if 'twitter' in votes_share %} btn-is-disabled{%endif%}" style="display: inline-block"  id="twitterShareBtn"><i class="fab fa-twitter"></i> Tweet</a> -->
+      <a href="javascript:void(0)" class="btn-orange mt-1 social-a social-share" style="display: inline-block"  id="twitterShareBtn"><i class="fab fa-twitter"></i> Tweet</a>
+      <div class="fb-share-button" style="display:none;" 
+      data-href="https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}" data-layout="button_count" id="id_share_facebook"></div>
+
+      <!-- <a href="#"  class="btn-orange mt-1 social-a social-share{%if 'facebook' in votes_share%} btn-is-disabled{%endif%}" style="display: inline-block" id="fbShareBtn"  data-layout="button_count"><i class="fab fa-facebook-square"></i> Share</a> -->
+      <a href="#"  class="btn-orange mt-1 social-a social-share" style="display: inline-block" id="fbShareBtn"  data-layout="button_count"><i class="fab fa-facebook-square"></i> Share</a>
+
+      <!-- <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&title=The+Coin+Listing+Competition&ro=false&summary=&source=&counter=horizontal" class="btn-orange mt-1 social-a social-share{%if 'linkedin' in votes_share%} btn-is-disabled{%endif%}" target="_blank" id="id_share_linkedin"><i class="fab fa-linkedin"></i> Post</a> -->
+      <a href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&title=The+Coin+Listing+Competition&ro=false&summary=&source=&counter=horizontal" class="btn-orange mt-1 social-a social-share" target="_blank" id="id_share_linkedin"><i class="fab fa-linkedin"></i> Post</a>
+      
+      <!-- <a href="https://telegram.me/share/url?url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&bodytext=Support+and+grow+your+favorite+Cryptocurrency+by+getting+it+listed+on+GetCryptoPayments+Exchange&tags=&text=The+Coin+Listing+Competition" style="display: inline-block" class="btn-orange mt-1 social-a social-share{%if 'telegram' in votes_share%} btn-is-disabled{%endif%}" id="id_share_telegram" target="_blank"><i class="fas fa-paper-plane"></i> Share</a> -->
+      <a href="https://telegram.me/share/url?url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}&bodytext=Support+and+grow+your+favorite+Cryptocurrency+by+getting+it+listed+on+GetCryptoPayments+Exchange&tags=&text=The+Coin+Listing+Competition" style="display: inline-block" class="btn-orange mt-1 social-a social-share" id="id_share_telegram" target="_blank"><i class="fas fa-paper-plane"></i> Share</a>
+      
+      <!-- <a href="https://www.reddit.com/login?redirect=https://www.reddit.com/submit?url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}" class="btn-orange mt-1 social-a social-share{%if 'instagram' in votes_share%} btn-is-disabled{%endif%}" style="display: inline-block" id="id_share_instagram" target="_blank"><i<i class="fab fa-reddit"></i></i> Share</a> -->
+      <a href="https://www.reddit.com/login?redirect=https://www.reddit.com/submit?url=https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}" class="btn-orange mt-1 social-a social-share" style="display: inline-block" id="id_share_instagram" target="_blank"><i<i class="fab fa-reddit"></i></i> Share</a>
+  </div>
+
+
+<hr/>
+   <h2 align="center"><b>2- Social Follows</b></h2>
+    <p>Follows Required:<b>1000</b> (1 follow = 10 points)</p>
+    <p>Follows Completed : <b>{{votes_follow_completed}}</b></p>
+  
+  <div align="center">
+      <a href="https://www.twitter.com/GCryptoPayments" style="display: inline-block" class="btn-orange mt-1 social-a social-follow" id="id_follow_twitter" target="_blank"><i class="fab fa-twitter"></i> Follow</a>
+      <a href="https://www.facebook.com/GetCryptoPayments" style="display: inline-block" class="btn-orange mt-1 social-a social-follow" id="id_follow_facebook" target="_blank"><i class="fab fa-facebook-square"></i> Follow</a>
+      <a href="https://www.reddit.com/r/exmr/" style="display: inline-block" class="btn-orange mt-1 social-a social-follow" id="id_follow_linkedin" target="_blank"><i class="fab fa-reddit"></i> Follow</a>
+      <a href="https://t.me/JoinEXMR" style="display: inline-block" class="btn-orange mt-1 social-a social-follow" target="_blank" id="id_follow_telegram"><i class="fas fa-paper-plane"></i> Follow</a>
+      <a href="https://www.instagram.com/GetCryptoPayments/" style="display: inline-block" class="btn-orange mt-1 social-a social-follow" target="_blank" id="id_follow_instagram"><i class="fab fa-instagram"></i> Follow</a>
+  </div>
+<hr>
+   <h2 align="center"><b>3- Buy EXMR on Exchange</b></h2>
+    <p>Points Required: <b>80,000</b> (Overlord I = 10,000 points)</p>
+    <p>Points Completed: <b>0</b></p>
+  
+ <div class="mt20" align="center">
+     <a href="https://exmrfoundation.org/exchange.html" class="btn btn-lg btn-orange"> BUY EXMR NOW</a>
+ </div>
+</div>
+ <div class="bx-ash text-white col-sm-6 mt-4 offset-sm-3">
+    <h4><b>More way to Support  your coin</b></h4>
+    <h5>Bonus Points<br><small>By Overlord secret code, Holders w/ether wallets with EXMR & High Leverage Task.</small></h5>
+    <a href="{% url 'coins:copromotion-form'%}">Submit high leverage Point here</a>
+     <h5>Referral Link</h5>
+     <input type="text" class="form-control" value="https://getcryptopayments.org{% url 'coins:vote-details' view.kwargs.currency %}" id="referalLink">
+     <button class="btn text-white" onclick="copyBtn()"> Copy </button>
+</div>
+</div>
+
+<div class="mb20 text-white" >
+    
+  <h3 align="center" >Disclaimer</h3>
+
+  <p>1. The points earned by each coin are checked each day for fake votes, spamming, and other similar activities. Since the competition receives a huge number of fake votes, please note that the points seen on the page are not the final and verified numbers.</p>
+  <p>2.Buying EXMR tokens is considered a term of involvement of the EXMR community and should not be considered as payment for listing.</p>
+</div>
+
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+{% block script %}
+<script type="text/javascript">
+$(".social-share").click(function(event){
+  source = event.target.id.split("_")[2]
+  if (source)
+    coinVote(source,'share')
+})
+$(".social-follow").click(function(event){
+  source = event.target.id.split("_")[2]
+  if (source)
+    coinVote(source,'follow')
+})
+function coinVote(source,type){
+    $.ajax({
+                type: "POST",
+                url: "{% url 'coins:vote-details' view.kwargs.currency %}",
+                data: {
+                    'source': source,
+                    'type':type,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function (data) {
+                    $("#id_"+type+"_"+source).addClass("btn-is-disabled");
+
+                }
+            })
+}
+
+function copyBtn(link) {
+  var copyText = document.getElementById("referalLink");
+  copyText.select();
+  document.execCommand("copy");
+}
+</script>
+
+
+<script>
+document.getElementById('fbShareBtn').onclick = function() {
+  FB.ui({
+    method: 'share',
+    mobile_iframe: true,
+    href: 'https://www.getcryptopayments.org/coins/vote-details/{{view.kwargs.currency}}',
+  }, function(response){
+    if (!response['error_code'])
+    {
+      source = 'facebook'
+      coinVote(source,'share')
+      $("#fbShareBtn").addClass('btn-is-disabled')
+    }
+  });
+}
+</script>
+
+<script type="text/javascript">
+
+
+document.getElementById('twitterShareBtn').addEventListener('click', function(e) {
+
+    e.preventDefault();
+    e.stopPropagation(); //this should do in case you don't want to unlink twitter widgets api
+
+    var width  = 575,
+        height = 400,
+        left   = (screen.width  - width)  / 2,
+        top    = (screen.height - height) / 2,
+        url    = "https://twitter.com/intent/tweet?text=%F0%9F%94%A5%F0%9F%94%A5+Help+Needed%21+The+community+needs+your+support+to+get+{% coin_code_to_name view.kwargs.currency %} official+listed+via+%40GCryptoPayments+Fiat & Payment gateway.+Support+{% coin_code_to_name view.kwargs.currency %}++%28{{view.kwargs.currency}}%29+and+vote+here%3A+https%3A%2F%2Fwww.getcryptopayments.com%2Fpublic-coin-votes%2F{{view.kwargs.currency}}+&redirect_uri=https://www.getcryptopayments.com/public-coin-votes/{{view.kwargs.currency}}&hashtags=Exchange,Cryptocurrency,ethereum,cryptoexchange,bitcoin&related=GCryptoPayments",
+        opts   = 'status=1' +
+                 ',width='  + width  +
+                 ',height=' + height +
+                 ',top='    + top    +
+                 ',left='   + left;
+
+    var win = window.open(url, 'twitter_share', opts);
+
+    var timer = setInterval(checkWin, 500);
+
+    function checkWin() {
+
+        if (win.closed) {
+            //just assume the user tweeted (he could just close the window without tweeting)
+            source = 'twitter'
+            coinVote(source,'share')
+            $("#twitterShareBtn").addClass('btn-is-disabled') 
+            clearInterval(timer);
+
+        }
+
+    }
+
+});
+
+
+</script>
+
+{% endblock %}

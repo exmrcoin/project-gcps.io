@@ -1,0 +1,16 @@
+{% extends 'gcps/testbase.html' %}
+
+{% block content %}
+    {% load i18n %}
+     {% for message in messages %}
+     <section class="section section-pad" style="padding-bottom: 1em">
+            <div class="container">
+                <div class="bx-ash mb-2">
+                    <div class="min-height-content" style="color: white"><h2>{{ message }}</h2>
+                    </div> 
+                </div>
+            </div>
+        </section>
+	    
+   {% endfor %}
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles widget_tweaks i18n %}
+{% block dashboard_heading %}
+<h4 class="text-theme b-4 dashboard">DASHBOARD</h4>
+
+    <!-- <div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">DASHBOARD
+        </div>
+    </div>
+    </div> -->
+{% endblock %}
+{% block dashboard_wrapper_content %}
+
+
+
+
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+        <div class="container">
+            <div class="bx-ash mb-2">
+                    <div class="accordion" id="accordionExample">
+    
+                            <div class="card-header" id="headingOne">
+                                    <h5 class="mb-0">
+                                      
+                                        <div data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne"><h4 class="text-theme"><img style="padding-bottom: 6px" src="{% static '/images/recevied.png' %} "><span class="pl-2" >{% trans 'Recent Transaction' %}</span></h4></div>
+                                      
+                                    </h5>
+                                  </div>
+                        
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                               <!--Table-->
+                               <table class="table table-border table-responsive-md text-white" style="table-layout: fixed; ">
+                                              
+                                  <!--Table head-->
+                                  <thead>
+                                  <tr class="table-top" style="border: none">
+                      
+                                      <th class="text-center">{% trans 'Time' %}</th>
+                                      <th class="text-center">{% trans 'Received / Sent Name' %}</th>
+                                      <th class="text-center">{% trans 'Coin' %}</th>
+                                      <th class="text-center">{% trans 'Amount' %}</th>
+                                  </tr>
+                                  </thead>
+                                  <tbody >
+                                      {% if transactions %}
+                                      {% for transaction in transactions %}
+                                      <tr style="border: none">
+                                          <td align="center">{{ transaction.date }}</td>
+                                          <td align="center" >{{transaction.transaction_to}}</td>
+                                          <td align="center">{{transaction.currency}}</td>
+                                          <td align="center">{{transaction.amount}}</td>
+                                      </tr>
+                                      {% endfor %}
+                                      {% else %}
+                                  <tr>
+                                      <td class="table-style" colspan="4">{% trans 'No Payment Found' %}</td>
+                      
+                                  </tr>
+                                      {% endif %}
+                                  </tbody>
+                                  <!--Table body-->
+                      
+                              </table>
+                              <!--Table-->
+                            </div>
+                      </div>
+                    
+            </div>                      
+        </div>
+    </section>
+    
+        
+{% endblock %}

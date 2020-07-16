@@ -1,0 +1,173 @@
+{% extends 'gcps/testbase.html' %} {% load static %}{% load transaction_status %}{% block style %}
+<link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.16/b-1.5.1/b-html5-1.5.1/b-print-1.5.1/r-2.2.1/sc-1.4.4/datatables.min.css" />
+{% endblock %} {% block content %}
+
+<section class="section section-pad">
+    <div class="col-12 text-center my-3 py-3">
+        <div id="canvas-holder" class="col-12 col-md-6 offset-md-3">
+            <canvas id="chart-area"></canvas>
+        </div>
+    </div>
+    <div class=" bx-ash col-12 p-md-5 pb-5 pt-5">
+        <table id="data_table" class="table table-border table-responsive-md" style="width:100%; ">
+            <thead>
+                <tr style="border: none">
+                    <th scope="col">#</th>
+                    <th scope="col">Coin Name</th>
+                    <th scope="col">Coin Code</th>
+                    <th scope="col">Balance</th>
+                    <th scope="col">USD</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for key,tempcoin in coins.items %}
+
+                <tr style="border: none">
+                    <th scope="row" style="border-top: none;">{{forloop.counter}}</th>
+                    <td><a href="{% url 'coins:admin_coin_wallet' coin=tempcoin.coin_code %}"><img src="{{tempcoin.image}}" class="img-fluid w60px">{{tempcoin.coin_name}}</a></td>
+                    <td>{{tempcoin.coin_code}}</td>
+                    <td id="bal_{{tempcoin.coin_code}}">
+                        <img id="loading-image_{{coin_code}}" src="{% static 'images/load.gif' %}"
+                            style="display:none;height: 20px;" />
+                    </td>
+                    <td id="val_{{tempcoin.coin_code}}">
+                        <img id="usd-loading-image_{{coin_code}}" src="{% static 'images/load.gif' %}"
+                            style="display:none;height: 20px;" />
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock content %}
+{% block script %}
+<script src="{% static 'js/chart.min.js' %}"></script>
+<script>
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    Chart.pluginService.register({
+        beforeDraw: function (chart) {
+            if (chart.config.options.elements.center) {
+                //Get ctx from string
+                var ctx = chart.chart.ctx;
+
+                //Get options from the center object in options
+                var centerConfig = chart.config.options.elements.center;
+                var fontStyle = centerConfig.fontStyle || 'Arial';
+                var txt = centerConfig.text;
+                var color = centerConfig.color || '#000';
+                var sidePadding = centerConfig.sidePadding || 20;
+                var sidePaddingCalculated = (sidePadding / 100) * (chart.innerRadius * 2)
+                //Start with a base font of 30px
+                ctx.font = "30px " + fontStyle;
+
+                //Get the width of the string and also the width of the element minus 10 to give it 5px side padding
+                var stringWidth = ctx.measureText(txt).width;
+                var elementWidth = (chart.innerRadius * 2) - sidePaddingCalculated;
+
+                // Find out how much the font can grow in width.
+                var widthRatio = elementWidth / stringWidth;
+                var newFontSize = Math.floor(30 * widthRatio);
+                var elementHeight = (chart.innerRadius * 2);
+
+                // Pick a new font size so it will not be larger than the height of label.
+                var fontSizeToUse = Math.min(newFontSize, elementHeight);
+
+                //Set font settings to draw it correctly.
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
+                var centerY = ((chart.chartArea.top + chart.chartArea.bottom) / 2);
+                ctx.font = fontSizeToUse + "px " + fontStyle;
+                ctx.fillStyle = color;
+
+                //Draw text in center
+                ctx.fillText(txt, centerX, centerY);
+            }
+        }
+    });
+
+
+    var config = {
+        type: 'doughnut',
+        data: {
+            labels: [],
+            datasets: [{
+                data: [],
+                backgroundColor: [],
+                borderColor: [],
+
+            }]
+        },
+        options: {
+            elements: {
+                center: {
+                    text: '',
+                    color: '#FF6384', // Default is #000000
+                    fontStyle: 'Arial', // Default is Arial
+                    sidePadding: 20 // Defualt is 20 (as a percentage)
+                }
+            }
+        }
+    };
+
+
+    var ctx = document.getElementById("chart-area").getContext("2d");
+    var myChart = new Chart(ctx, config);
+
+    function addData(chart = myChart, label, data, sum,color) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+            dataset.backgroundColor.push(color);
+            dataset.borderColor.push(color);
+        });
+        chart.options.elements.center.text = sum + " USD";
+        chart.update();
+    }
+</script>
+<script type="text/javascript">
+var temp_sum = 0;
+    $(document).ready(function () {
+        $('#data_table > tbody  > tr').each(function () {
+            column = $(this).find('td')[2]
+            $.ajax({
+                type: "GET",
+                url: "{% url 'coins:get_all_coin_balance' %}",
+                data: {
+                    'code': column.id.split('bal_')[1],
+                },
+                beforeSend: function () {
+                    $("#loading-image_" + column.id.split('bal_')[1]).show();
+                    $("#usd-loading-image_" + column.id.split('val_')[1]).show();
+                },
+                success: function (data) {
+                    $("#bal_" + data['code']).text(data['balance'])
+                    $("#val_" + data['code']).text(data['value'])
+                    $(".val_" + data['code']).text(data['value'])
+                    $("#loading-image_" + data['code']).hide();
+                    $("#usd-loading-image_" + data['code']).hide();
+                    temp_sum = temp_sum + parseFloat(data['value']);
+                    temp_sum = parseFloat(temp_sum.toFixed(2));
+                    addData(myChart, label = data['code'], data = data['value'], sum = temp_sum,color = getRandomColor());
+                    // $(column).text(data);
+
+                }
+            })
+        });
+    });
+</script>
+
+
+
+{% endblock script %}

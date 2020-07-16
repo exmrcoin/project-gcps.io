@@ -1,0 +1,427 @@
+{% extends 'gcps/base.html' %} {% load staticfiles widget_tweaks i18n %}{% load i18n %}
+        <!-- body -->
+        {% block style %}
+        .vert .carousel-item-next.carousel-item-left,
+        .vert .carousel-item-prev.carousel-item-right {
+            -webkit-transform: translate3d(0, 0, 0);
+                    transform: translate3d(0, 0, 0);
+        }
+        
+        .vert .carousel-item-next,
+        .vert .active.carousel-item-right {
+            -webkit-transform: translate3d(0, 100%, 0);
+                    transform: translate3d(0, 100% 0);
+        }
+        
+        .vert .carousel-item-prev,
+        .vert .active.carousel-item-left {
+        -webkit-transform: translate3d(0,-100%, 0);
+                transform: translate3d(0,-100%, 0);
+        }
+        
+        {% endblock style %}
+        {% block content %}
+        <div class="content-bx">
+                <!-- Section -->
+                <section class="section section-pad">
+                  <div class="container">
+                    <div class="row animatedParent animateOnce">
+                      <div class="col-sm-12 col-md-6 animated fadeInLeftShort">
+                        <div class="form-group">
+                          <img src="{% static 'gcps/images/logoclearwhite.png' %}" class="img-logo" />
+                        </div>
+                        <h1 class="text-white b-300">Welcome to</h1>
+                        <h1 class="text-white b-800 titl-bg"><i class="fa fa-address-book-o" aria-hidden="true"></i>GCPS</h1>
+                        <div class="form-group mt-3">
+                          <button class="btn btn-outline-default">Signup Now</button>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-md-6 animated fadeInRightShort">
+                        <div class="bx-ash mb-2 col-12" >
+                          <h6 class="text-white text-center mb-4">
+                            Choose Which <span class="text-theme">Assets to Trade</span>
+                          </h6>
+
+                          <a href="{% url 'coins:wallets' %}">
+                          <ul class="bx-list row">
+                            <li class="col-5">
+                              <div class="carousel vert slide" data-ride="carousel" data-interval="2700">
+                                <div class='carousel-inner text-center'>
+                                  {% for coin,coin_details in d1.items %}
+
+                                  {% if forloop.counter == 1 %}
+                                  <div class="carousel-item active text-center">
+                                      <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                  </div>
+                                  {% else %}
+                                  <div class="carousel-item text-center">
+                                      <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                  </div>
+                                  {% endif %}
+
+                                  {% endfor %}
+                                </div>
+                                <div class="text-white mt-2">Deposit</div>
+                              </div>
+                            </li>
+                            <li class="col-2  d-flex align-items-center justify-content-center">
+                              <img
+                                src="{% static 'assests/images/transfer.png' %}"
+                                class="icon-transfer"
+                              />
+                            </li>
+                            <li class="col-5">
+                                <div class="carousel vert slide" data-ride="carousel" data-interval="2000">
+                                  <div class='carousel-inner'>
+                                    {% for coin,coin_details in d2.items %}
+  
+                                    {% if forloop.counter == 1 %}
+                                    <div class="carousel-item active text-center">
+                                        <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                    </div>
+                                    {% else %}
+                                    <div class="carousel-item text-center">
+                                        <img class="d-block  icon-list mx-auto" src="{{coin_details.image}}" alt="First slide">
+                                    </div>
+                                    {% endif %}
+  
+                                    {% endfor %}
+                                  </div>
+                                  <div class="text-white mt-2">Receive</div>
+                                </div>
+                            </li>
+                          </ul>
+                          </a>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- Section END -->
+        
+                <!-- Section -->
+                <section class="section section-pad pt-2">
+                  <div class="container">
+                    <div class="row animatedParent animateOnce" data-sequence='500'>
+                      <div class="col-sm-12 col-md-6 animated fadeInUpShort" data-id='1'>
+                        <div class="bx-ash mb-2">
+                          <div class="grid-2-bx">
+                            <div><i class="text-theme icon-bi-wallet fa-4x"></i></div>
+                            <div>
+                              <h4 class="text-theme b-4">Receive Crypto Payments?</h4>
+                              <h6 class="b-3 text-white">
+                                Let GetCryptoPayments help with:
+                              </h6>
+                              <div class="form-group text-white">
+                                Accepting payments from over 100 different coins By our
+                                GetCryptoPayments Merchant Tools
+                              </div>
+                              <div class="form-group mt-3">
+                                <button class="btn btn-outline-default">
+                                  Find Out More <i class="icon-chevron-right fa-xs"></i>
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-12 col-md-6 animated fadeInUpShort" data-id='2'>
+                        <div class="bx-ash mb-2">
+                          <div class="grid-2-bx">
+                            <div>
+                              <i class="text-theme fas fa-fingerprint fa-4x"></i>
+                            </div>
+                            <div>
+                              <h4 class="text-theme b-4">$PayByName</h4>
+                              <h6 class="b-3 text-white mb-4">
+                                One unique $tag to receive payments from all coins.
+                              </h6>
+                              <div class="form-group text-white">
+                                Example Profile
+                              </div>
+                              <div class="form-group mt-3">
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white">$</span>
+                                  </div>
+                                  <input
+                                    type="text"
+                                    class="form-control bg-transparent text-white"
+                                    aria-label="Amount (to the nearest dollar)"
+                                  />
+                                  <div class="input-group-append">
+                                    <button class="btn btn-orange">Check Now</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+                <!-- Section END -->
+        
+                <!-- Section -->
+                <section class="section section-pad pt-2">
+                  <div class="container animatedParent animateOnce" data-sequence='80'>
+                    <h2 class="text-white text-center animated fadeInUpShort" data-id='1'>
+                      SHOPPING CART <span class="text-theme b-700">PLUGINS</span>
+                    </h2>
+                    <p class="text-center text-white h6 mt-3 center-aligner animated fadeInUpShort" data-id='2'>
+                      Offering plugins for all the popular webcarts used today. Register
+                      and install a plugin to set up GetCryptoPayments with your new or
+                      pre-existing checkout'
+                    </p>
+                    <div class="row mt-5 justify-content-center">
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='4'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/cart01.png'%}" class="img-fluid" />
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='5'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/cart02.png'%}" class="img-fluid" />
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='6'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/cart03.png' %}" class="img-fluid" />
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='7'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/cart04.png' %}" class="img-fluid" />
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='8'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/cart05.png' %}" class="img-fluid" />
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='9'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/cart06.png' %}" class="img-fluid" />
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-4 mb-4 animated fadeInUpShort" data-id='10'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/cart07.png' %}" class="img-fluid" />
+                        </div>
+                      </div>
+                      <!-- item END -->
+                    </div>
+                  </div>
+                </section>
+                <!-- Section END -->
+        
+                <!-- Section -->
+                <section class="section section-pad pt-2 pb-5">
+                  <div class="container animatedParent animateOnce" data-sequence="80">
+                    <h2 class="text-white text-center text-uppercase animated fadeInUpShort" data-id='1'>
+                      PAYMENT <span class="text-theme b-700">Features</span>
+                    </h2>
+                    <p class="text-center text-white h6 mt-3 center-aligner animated fadeInUpShort" data-id='2'>
+                      Here some ways GetCryptoPayments can help you process payments.
+                    </p>
+                    <div class="row mt-5 justify-content-center paybx">
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='3'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/03.png' %}" class="img-fluid img-icon" />
+                          <h6 class="text-theme text-center">BitGo™ Instant</h6>
+                          <p class="text-white text-center">
+                            GetCryptoPayments supports BitGo Instant making Bitcoin
+                            payments faster than ever before.
+                          </p>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='4'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/04.png' %}" class="img-fluid img-icon" />
+                          <h6 class="text-theme text-center">Secured with BitGo</h6>
+                          <p class="text-white text-center">
+                            Our hot wallet is secured by BitGo - meaning 100 of our
+                            funds are protected by multi-signature technology.
+                          </p>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='5'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/05.png' %}" class="img-fluid img-icon" />
+                          <h6 class="text-theme text-center">Vault</h6>
+                          <p class="text-white text-center">
+                            Protect your coins in the vault, requiring a time amount you
+                            specify before being able to spend them.
+                          </p>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='6'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/06.png' %}" class="img-fluid img-icon" />
+                          <h6 class="text-theme text-center">Mobile Apps</h6>
+                          <p class="text-white text-center">
+                            Access your account, accept payments in person, and convert
+                            coins anywhere with our mobile apps for Android and iOS.
+                          </p>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='7'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static  'assests/images/07.png' %}" class="img-fluid img-icon" />
+                          <h6 class="text-theme text-center">Fiat Settlements</h6>
+                          <p class="text-white text-center">
+                            United States and Euro merchants now have fiat settlements
+                            directly to their bank accounts.
+                          </p>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='8'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/08.png' %}" class="img-fluid img-icon" />
+                          <h6 class="text-theme text-center">Auto Coin Conversion</h6>
+                          <p class="text-white text-center">
+                            Auto convert for some of our coins, saving you the trouble
+                            of moving funds, wasting time and fees.
+                          </p>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='9'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/09.png' %}" class="img-fluid img-icon" />
+                          <h6 class="text-theme text-center">Point of Sale (POS)</h6>
+                          <p class="text-white text-center">
+                            Simple interface for in person transactions.
+                          </p>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                      <!-- item -->
+                      <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='10'>
+                        <div class="bx-ash bx-client">
+                          <img src="{% static 'assests/images/10.png' %}" class="img-fluid img-icon" />
+                          <h6 class="text-theme text-center">Multi-Coin Wallet</h6>
+                          <p class="text-white text-center">
+                            Optionally store your coins in our secure online wallet.
+                          </p>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                    </div>
+                  </div>
+                </section>
+                <!-- Section END -->
+        
+                <!-- Section -->
+                <section class="section section-pad pt-1 pb-5">
+                  <div class="container animatedParent animateOnce">
+                    <div class="row mt-5 justify-content-center">
+                      <!-- item -->
+                      <div class="col-md-6 col-sm-8 animated fadeInUpShort">
+                        <div class="bx-ash">
+                          <div
+                            id="carouselExampleIndicators"
+                            class="carousel slide carousel-fade"
+                            data-ride="carousel"
+                          >
+                            <ol class="carousel-indicators carousel-cs-dot">
+                              <li
+                                data-target="#carouselExampleIndicators"
+                                data-slide-to="0"
+                                class="active"
+                              ></li>
+                              <li
+                                data-target="#carouselExampleIndicators"
+                                data-slide-to="1"
+                              ></li>
+                              <li
+                                data-target="#carouselExampleIndicators"
+                                data-slide-to="2"
+                              ></li>
+                            </ol>
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <div class="text-white">
+                                  <h3 class="text-uppercase">Announcement</h3>
+                                  <p class="mb-5">
+                                    Recently listed Cloakcoin reached 70K points within
+                                    the competition. Congratulations to the Cloakcoin
+                                    developers team
+                                  </p>
+                                  <div class="text-theme text-right">
+                                    More about centre.io
+                                    <a href="#" class="circle-outline"
+                                      ><i class="icon-arrow-right"></i
+                                    ></a>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="carousel-item">
+                                <div class="text-white">
+                                  <h3 class="text-uppercase">Announcement</h3>
+                                  <p class="mb-5">
+                                    Recently listed Cloakcoin reached 70K points within
+                                    the competition. Congratulations to the Cloakcoin
+                                    developers team
+                                  </p>
+                                  <div class="text-theme text-right">
+                                    More about centre.io
+                                    <a href="#" class="circle-outline"
+                                      ><i class="icon-arrow-right"></i
+                                    ></a>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="carousel-item">
+                                <div class="text-white">
+                                  <h3 class="text-uppercase">Announcement</h3>
+                                  <p class="mb-5">
+                                    Recently listed Cloakcoin reached 70K points within
+                                    the competition. Congratulations to the Cloakcoin
+                                    developers team
+                                  </p>
+                                  <div class="text-theme text-right">
+                                    More about centre.io
+                                    <a href="#" class="circle-outline"
+                                      ><i class="icon-arrow-right"></i
+                                    ></a>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- item END -->
+                    </div>
+                  </div>
+                </section>
+                <!-- Section END -->
+        {% endblock content %}

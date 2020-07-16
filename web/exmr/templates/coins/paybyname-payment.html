@@ -1,0 +1,78 @@
+{% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
+<div></div>
+{% load transaction_status %} {% block dashboard_heading %}
+<h4 class="text-theme b-4 dashboard">PAY BY NAME</h4>
+{% endblock %} {% block dashboard_wrapper_content %}
+
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+        <div class="container">
+            <div class="bx-ash mb-2">
+                <div class="pad10" style="padding-bottom: 1rem;">
+                    <div class="img-dashboard">
+                        <img src="{% static '/images/recevied.png' %} ">
+                    </div>
+                    <h4 class="text-theme">{% trans 'Get Your Personalised PaymentID' %}</h4>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-lg-6 mb-2 text-white">
+                        <div class="container bx-ash-back" style="border: 1px solid #333; border-radius: 8px; padding: 45px; padding-top: 75px;min-height: 235px;">
+                            <div class="row">
+                                <div class="col-6 col-sm-6 col-lg-6 mb-3"><h5 class="text-theme">Item#</h5></div>
+                                <span class="col-6 col-sm-6 col-lg-6">PBN-{{object.id}}</span>
+                                <div class="col-6 col-sm-6 col-lg-6 mb-3"><h5 class="text-theme">Item</h5></div>
+                                <span class="col-6 col-sm-6 col-lg-6">$PayByName Tags - 1 Pack</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6 mb-2 text-white">
+                        <div class="container" style="border: 1px solid #333; border-radius: 8px; padding: 45px; min-height: 235px;">
+                            <div class="row">
+                                <div class="col-6 col-sm-8 col-lg-6 mb-3"><h5 class="text-theme">Price/Unit</h5></div>
+                                <span class="col-6 col-sm-4 col-lg-6">{{ object.price }} USD</span>
+                                <div class="col-6 col-sm-8 col-lg-6 mb-3"><h5 class="text-theme">Quantity</h5></div>
+                                <span class="col-6 col-sm-4 col-lg-4">1</span>
+                                <div class="col-6 col-sm-8 col-lg-6 mb-3"><h5 class="text-theme">Price</h5></div>
+                                <span class="col-6 col-sm-4 col-lg-6">{{ object.price }} USD</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6 mb-2 text-white">
+                        <div class="container" style="border: 1px solid #333; border-radius: 8px; padding: 45px; min-height: 235px;">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <h5 class="text-theme">Buyer/Shipping Information</h5>
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" placeholder="First Name" class="form-control col-12 px-2">
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" placeholder="Last Name" class="form-control col-12 px-2">
+                                </div>
+                                <div class="col-12 mt-2">
+                                    <input type="text" placeholder="E-mail" class="form-control col-12 px-2">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-6 col-lg-6 mb-2 text-white">
+                        <div class="container" style="padding: 45px; border: 1px solid #333; border-radius: 8px; min-height: 235px;">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <h5 class="text-theme">Total</h5>
+                                </div>
+                                <span class="col-6">Total:</span>
+                                <span class="col-6">{{ object.price }} USD</span>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+</section>
+
+
+
+
+{% endblock %}

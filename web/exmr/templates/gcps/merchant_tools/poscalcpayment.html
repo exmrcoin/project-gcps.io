@@ -1,0 +1,177 @@
+{% load staticfiles %} {% load i18n %} {% get_available_languages as languages %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> {% block meta %} {% endblock %}
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
+    <!-- favicon -->
+    <title>GetCryptoPayments | {% block title %}{% endblock %}</title>
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/exmr.css' %}"> {% block style %}{% endblock style %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet"> {% block fonts %} 
+    {% endblock %}
+    <!-- style -->
+
+
+</head>
+
+<body>
+    <div class="col-xs-12 orange-bg " style="min-height: 110vh;">
+        <div class="col-xs-10 col-md-8  pos-top-mid post-payment-display">
+            <div class="col-md-12 text-center">
+                <img src="https://chart.googleapis.com/chart?chs=100x100&cht=qr&chl={{crypto_address}}" class="w200px"></img>
+            </div>
+            <div class="col-md-12 text-center mt-1 border-btm-line mb-2">
+                Sold by
+                <a class="merchant-link" href="{% url 'common:beta' %}" target="_blank">{{merchant_name}}</a>
+                <br />Feedback:
+                <a class="merchant-link" href="{% url 'common:beta' %}" target="_blank">
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <span class="star-icons">(No Ratings)</span>
+                </a>
+            </div>
+            <div class="col-md-12 text-center mt-1">
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                    Amount: <span id="amt_coin">{{amount_to_be_paid}}</span> {{selected_coin}}
+                </div>
+                <div class="col-xs-12 col-sm-5 col-md-6 ">
+                    <div class="col-xs-12">
+                        Address:
+                    </div>
+                    <div class="col-xs-12 address-box">
+                        <span class="col-xs-10" id="pwd_span" style="word-wrap: break-word"> {{crypto_address}}</span>
+                        <a id="cp_btn{{forloop.counter}}"  data-toggle="tooltip" title="copy" onclick="copy_password(this.id);"><i class="far fa-copy" style="font-size: 30px; margin: 10px"></i></a>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-3 col-md-3">
+                    <!-- Time-left: 0.00000155 -->
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12 text-center mt-1">
+                <div class="col-xs-12 ">
+                    <span>Make sure to send enough to cover any coin transaction fees! </span>
+                </div>
+                <div class="col-md-12 ">
+                    <span style="word-break: break-word;">Transaction ID: {{unique_id}}</span>
+                </div>
+            </div>
+
+            <!-- -->
+
+            <div class="col-md-12">
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <span class="glyphicon glyphicon-file">
+                                    </span>What to do Next!
+                                </h4>
+                            </div>
+                        </a>
+                        <div id="collapseOne" class="panel-collapse collapse ">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12 text-justify">
+                                        <span class="">
+                                            1) Please send selected coin to address {{crypto_address}}. (Make sure to
+                                            send enough to cover any coin transaction fees!) You will need to initiate
+                                            the payment using your software or online wallet and copy/paste the address
+                                            and payment amount into it. We will email you when all funds have been
+                                            received. You have a total of 15 hours, for us to receive confirmed funds.
+                                            If you send funds that don't confirm by the timeout or don't send enough
+                                            coins you will receive an automatic email to claim your funds within 8
+                                            hours. If you don't receive the email contact us with the information below
+                                            and GetCryptoPayments.net will send you a refund:<br>
+                                            i) The transaction ID: {{unique_id}} <br>
+                                            ii) A payment address to send the funds to.<br>
+                                            iii) This verification code: {{unique_id}} (to verify that you are the
+                                            transaction sender.)
+                                            <br><br>
+                                            2) After sending payment, review the status of your transaction on this
+                                            page. Once the payment is confirmed several times in the block chain, the
+                                            payment will be completed and the merchant will be notified. The
+                                            confirmation process usually takes 10-45 minutes but varies based on the
+                                            coin's target block time and number of block confirms required. The status
+                                            page is available for the next 30 days.
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <span class="glyphicon glyphicon-th-list">
+                                    </span>META DATA
+                                </h4>
+                            </div>
+                        </a>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                <div class="row">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!---->
+
+
+        </div>
+    </div>
+    <!-- <script> -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+    <script src="{% static 'js/notify.js' %}"></script>
+    <script src="{% static 'js/common.js' %}"></script>
+    <!-- </script> -->
+
+{% block script %}
+<script type="text/javascript">
+function copy_password(btn_id) {
+var temp = $('#'+btn_id+'').prev('span');
+var textArea = document.createElement("textarea");
+var elOriginalText = $('#'+btn_id+'').attr('data-original-title');
+textArea.value = temp.text();
+document.body.appendChild(textArea);
+textArea.select();
+try {
+      var successful = document.execCommand('copy');
+      var msg = successful ? 'Copied!' : 'Whoops, not copied!';
+      $('#'+btn_id+'').attr('data-original-title', msg).tooltip('show');
+    //   el.attr('data-original-title', msg).tooltip('show');
+    } catch (err) {
+      console.log('Oops, unable to copy');
+    }
+textArea.remove();
+$('#'+btn_id+'').attr('data-original-title', elOriginalText);
+}
+</script>
+{% endblock %}
+
+</body>
+
+</html>

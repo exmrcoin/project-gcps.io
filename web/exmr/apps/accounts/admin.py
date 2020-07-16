@@ -1,7 +1,12 @@
 from django.contrib import admin
+from django.contrib.auth.models import User
+from django.core.mail import EmailMultiAlternatives
 from django.utils.translation import ugettext_lazy as _
 
-from apps.accounts.models import Profile, Address, Feedback
+from apps.accounts.models import Profile, Addresses, Feedback, ProfileActivation, NewsLetter, KYC,\
+                                 TwoFactorAccount, KYCTerms
+from apps.accounts.tasks import send_newsletter
+from exmr import settings
 
 
 class ProfileAdmin(admin.ModelAdmin):
@@ -12,7 +17,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (_('Basic Details'), {
-            'fields': ('user', 'gender', 'timezone', 'date_format', 'time_format', 'is_subscribed')
+            'fields': ('user', 'gender', 'timezone', 'date_format','time_format','is_subscribed','refered_by')
         }),
         (_('Public Info'), {
             'fields': ('public_name', 'public_email', 'public_url', 'use_gravatar'),
@@ -34,7 +39,7 @@ class AddressAdmin(admin.ModelAdmin):
     list_display = ['address_name', 'is_default']
 
 
-admin.site.register(Address, AddressAdmin)
+admin.site.register(Addresses, AddressAdmin)
 
 
 class FeedbackAdmin(admin.ModelAdmin):
@@ -47,3 +52,21 @@ class FeedbackAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Feedback, FeedbackAdmin)
+
+admin.site.register(ProfileActivation)
+
+
+
+send_newsletter.short_description = 'Send newsletters'
+
+class NewsletterAdmin(admin.ModelAdmin):
+    list_display = ['subject', 'content']
+    actions = [send_newsletter]
+
+admin.site.register(TwoFactorAccount)
+admin.site.register(NewsLetter, NewsletterAdmin)
+admin.site.register(KYC)
+admin.site.register(KYCTerms)
+
+
+

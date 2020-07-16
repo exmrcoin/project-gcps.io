@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block content %}
+    {% load i18n widget_tweaks %}
+    <section>
+       <div class="merchant-tools merchant-one coin-payment-head">
+            <div class="merchant-tools merchant-one">
+                <div class=" container merchant-box">{% trans 'Coin Conversion Requested' %}
+
+                </div>
+                <div class="container subline-p merchant-toolp">
+                    <p>{{ coin_request.convert_from.coin_name }} to {{ coin_request.convert_to.coin_name }}</p>
+                </div>
+
+            </div>
+        </div>
+       <div class="dashboard-bg">
+            <div class="container">
+                <div>
+                    <div class="col-md-8 col-md-offset-2 conversion-wrap" align="center">
+                        <h3>Send {{ coin_request.convert_from.coin_name }} to : 45345345345345345dfgstr34534tgerftgreg</h3>
+                        <img class="img-qrcode" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&amp;data=Example" alt="">
+                        <h3>Minimum deposit for the {{ coin_request.convert_from.coin_name }} transaction: {{ coin_request.convert_from.min_deposit }}{{ coin_request.convert_from.code }}</h3>
+                        <h3>Maximum deposit for the {{ coin_request.convert_from.coin_name }} transaction: {{ coin_request.convert_from.max_deposit }}{{ coin_request.convert_from.code }}</h3>
+                        <div class="foot-note">
+                            <p>You can continue using the above address and {{ coin_request.convert_to.coin_name }} will be sent to your address given in the previous screen. Initialize separate transactions each time for maximum privacy</p>
+                            <p>Any amount more than the maximum deposit will be refunded to the address in previous screen</p>
+                            <p>Conversion completion time will take from few minutes to hours depending on the coin selected and number of conversions</p>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

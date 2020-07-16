@@ -1,0 +1,145 @@
+{% load staticfiles %} {% load i18n %} {% get_available_languages as languages %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> {% block meta %} {% endblock %}
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
+    <link rel="icon" href="{% static 'images/favicon.ico'%}" type="image/x-icon">
+    <!-- favicon -->
+    <title>GetCryptoPayments | {% block title %}{% endblock %}</title>
+    <!-- style -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/exmr.css' %}"> {% block style %}{% endblock style %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/fontawesome-all.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet"> {% block fonts %} {% endblock %}
+    <!-- style -->
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-center my-2">
+                <img src="{% static 'images/logo.png' %}" class="img-responsive" style="margin:0 auto;">
+            </div>
+            <form action="{% url 'mtools:poscalcfinal' %}" id="form" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="unique_id" value="{{unique_id}}" />
+
+                <div class="col-xs-12 pr-md-0 text-center">
+                    <h2>Total Amount due: {{amount}} {{input_currency}}</h2>
+                    <h3><span id="usd_to_coin">Select a coin </span> <span id="span_selected_coin"></span></h3>
+                    <h5>Note: The rates may vary and will only be locked on completing checkout</h5>
+                </div>
+
+                <div class="col-xs-12 px-md-0">
+                    <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                        <div class="col-xs-12 px-0">
+                            <div class="col-xs-12  orange-shadow-box my-1 px-0 text-center">
+                                <h5>
+                                    <span class="glyphicon glyphicon-check"></span>Choose Your Coin
+                                </h5>
+                                <div class="col-12 px-0 bg-white">
+                                    <div class="col-xs-12 bg-white border-btm-line p-1 text-center">
+                                        <form>
+                                            {% for key,coins in available_coins.items %}
+                                            <label>
+                                                <input type="radio" name="selected_coin" value="{{coins.coin_code}}" id="coins_{{coins.coin_code}}" onclick="change_coin('{{coins.coin_code}}')">
+                                                <div class="btn btnrad btnrad-sık">
+                                                    <img src="{{coins.image}}" class="crypto-btn-image col-xs-3">
+                                                    <span class="col-xs-9">{{coins.coin_code}}</span>
+                                                </div>
+                                            </label>
+                                            {% endfor %}
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 px-0">
+                        <input type="submit" class="btn btn-success crypto-payment-btn" id="btnCheckout" value="Complete Checkout">
+
+                    </div>
+            </form>
+            </div>
+        </div>
+        <!-- <script> -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.js' %}"></script>
+        <script src="{% static 'js/notify.js' %}"></script>
+        <script src="{% static 'js/common.js' %}"></script>
+        <script>
+        $('#form').submit(
+            function(event){
+                if ($('input[type=radio]:checked').length === 0) { 
+                    event.preventDefault(); 
+                    alert('Please Select a Coin');
+                    }
+                }
+            )
+        </script>
+        <script>
+            var coin_dict = {{rates|safe}};
+            // console.log(coin_dict['BTC']);
+        </script>
+        <script>
+            var timeoutPeriod = 600;
+            function rate_update(timeoutPeriod){
+                setTimeout(Update,timeoutPeriod);
+            }
+            function Update() {
+            $.ajax({
+            url: "{% url 'coins:getcurrentrate' %}", 
+            type: "POST",
+            data:{
+                csrfmiddlewaretoken: '{{ csrf_token }}'
+            },
+            success: function (data) {
+
+                if(data){
+                    coin_dict = data;
+                    rate_update(60000);
+                }
+                else{
+                    rate_update(60);
+                }
+
+            }
+        });
+
+        }
+        </script>
+        <script>
+            function change_coin(cur_coin) {
+                input_amount = parseFloat("{{amount}}");
+                input_currency = "{{input_currency}}";
+                if(input_currency != "USD"){
+                eq_usd = input_amount * coin_dict["{{input_currency}}"];
+                eq_usd = eq_usd/coin_dict[cur_coin];
+                }
+                else{
+                    eq_usd = input_amount/coin_dict[cur_coin];
+                }
+
+                document.getElementById("usd_to_coin").innerHTML = eq_usd.toFixed(8);
+                document.getElementById("span_selected_coin").innerHTML = cur_coin;
+            };
+        </script>
+        <script>
+            $(document).ready(function() {
+                rate_update(60);
+            });
+        </script>
+
+
+        <!-- </script> -->
+</body>
+
+</html>

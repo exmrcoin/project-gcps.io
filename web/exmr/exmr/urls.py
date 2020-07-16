@@ -14,25 +14,51 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.conf.urls import url
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.conf.urls.static import static
 from django.urls import path, include
 from django.views.generic import TemplateView
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import PasswordResetDoneView, PasswordResetConfirmView, \
+    PasswordResetCompleteView
 
-
-
+from apps.coins.views import PublicCoinVote
+from django.conf.urls import handler404, handler500
+from apps.common.views import HomeView, ContactView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', TemplateView.as_view(template_name="common/index.html")),
-    path('login/', TemplateView.as_view(template_name='accounts/login.html'),
-         name='login'),
-    path('sign-up/', TemplateView.as_view(template_name='accounts/signup.html'),
-         name='signup'),
-    url('accounts/', include('apps.accounts.urls')),
+    path('rosetta/', include('rosetta.urls')),
+    path('s9tjjy6e8w6paimpmoxa4sfa651n6j.html/', TemplateView.as_view(template_name='s9tjjy6e8w6paimpmoxa4sfa651n6j.html'), name="facebook html"),
+    path("zohoverify/verifyforzoho.html", TemplateView.as_view(template_name="verifyforzoho.html"), name="zoho"),
+    path('', HomeView.as_view(), name='home'),
 
 ]
 
-urlpatterns += static( settings.STATIC_URL, document_root=settings.STATIC_ROOT )
-urlpatterns += static( settings.MEDIA_URL, document_root=settings.MEDIA_ROOT )
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += i18n_patterns(
+    path('password-reset-done', PasswordResetDoneView.as_view(template_name='accounts/forgot_password_done.html'),
+         name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset/done/', PasswordResetCompleteView.as_view(), name='password_reset_complete'),
+    path('', include('apps.accounts.urls')),
+    path('coins/', include('apps.coins.urls')),
+    path('store/', include('apps.store.urls')),
+    path('common/', include('apps.common.urls')),
+    path('merchant_tools/', include('apps.merchant_tools.urls'), name='merchant_tools'),
+    path('', HomeView.as_view(), name='home'),
+    path('login/', LoginView.as_view(template_name="accounts/login.html"), name='signin'),
+    path('sign-up/', TemplateView.as_view(template_name='accounts/signup.html'),
+         name='signup'),
+    path('merchant-tools/', TemplateView.as_view(template_name='common/merchant-tools.html'), name='merchant-tools'),
+    path('public-coin-votes/', PublicCoinVote.as_view(), name='public coin vote'),
+    path('forgot-password/', TemplateView.as_view(template_name='accounts/forgot-password.html'),
+         name='forgot-password'),
+    path('contact/', ContactView.as_view(), name='contact'),
+    path('select2/', include('django_select2.urls')),
+    path('ckeditor/',include('ckeditor_uploader.urls')),
+    path('tinymce/', include('tinymce.urls')),
+) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

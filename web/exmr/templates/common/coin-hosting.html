@@ -1,0 +1,78 @@
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% load i18n %} {% block content %}
+<section class="section section-pad">
+    <div class="bx-ash ">
+    <div class="dark-page-header text-white text-center">
+        <h1>Support</h1>
+        <h4>Need a little help?</h4>
+    </div>
+</div>
+
+    <div class="account-setting-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="panel panel-default text-white mt-5">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <strong>Coin Hosting Request</strong>
+                    </h3>
+                </div>
+                <div class="panel-body">Coin hosting on the GetCryptoPayments  platform is the ideal way to increase the number of users of your coin. Our hosted
+                    wallets allow users to store, send, and receive your coin and our custom APIs and plugins allow merchants
+                    to easily accept payment in your coin or token ERC20. With over 1,000,000 vendors across
+                    182 countries, it's only a matter of time before the adoption of your coin or token starts to grow.<br>
+                    </br>
+                    <br><center><img src="https://exmrfoundation.org/img/listing.png" width="80%" height="30%"></center>
+                    <br> Our Coin Hosting Packages Include:
+                    <br>
+                    <br>
+                    <ul>
+                        <li>Initial Setup</li>
+                        <li>Hosting*</li>
+                        <li>Maintenance &amp; Updates</li>
+                        <li>Marketing Package</li>
+                    </ul>
+
+                    When deciding if your coin or token is a good fit for our platform, we typically look for the following:
+                    <br>
+                    <br>
+
+                    <ul>
+                        <li>Open Source Code</li>
+                        <li>Be listed on CoinMarketCap</li>
+                        <li>Listed on Exchanges pair: BTC or ETH</li>
+                    </ul>
+                    <br>To get started simply fill out the form below then.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="account-setting-wrap">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-12 col-md-offset-3">
+                <form method="post" novalidate id="coinrequestform">
+                    {% csrf_token %} {% include 'base_form.html' with form=form %}
+                    <div class="text-center">
+                    <button type="submit" class="btn btn-outline-orange btn-lg ">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %} {% block script %}
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LfNl2cUAAAAAKoPIBFAyyN9tF9hgCKBIrX2n_bo', {action: 'coinrequest'})
+            .then(function (token) {
+                str = '<input type="hidden"  name="g-recaptcha-response" value="'+token+'">'
+                $("#coinrequestform").append(str);
+            });
+    });
+</script>
+
+{% endblock %}

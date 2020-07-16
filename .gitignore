@@ -1,2 +1,10 @@
-*.pyc/
+*.pyc
 .idea/
+media/
+node_modules/
+.vscode/
+.vs/
+.vscode/settings.json
+web/exmr/gnupg/random_seed
+web/exmr/celerybeat.pid
+web/exmr/celerybeat-schedule

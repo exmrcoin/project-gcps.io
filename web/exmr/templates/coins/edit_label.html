@@ -1,0 +1,26 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles widget_tweaks i18n %}
+
+
+{% block dashboard_wrapper_content %}
+
+    <section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em;">
+            <div class="container">
+                <div class=" bx-ash mb-2">
+                        <h4 class="text-theme b-4 dashboard" style="align-content: left;">Edit Address Label</h4>
+                        <div id="row wallet_div">
+                            
+                                    
+                                <form method="post" enctype="multipart/form-data">{% csrf_token %}
+                                    {% include 'exmr_form.html' %}
+                                    <input class="btn btn-success" style="margin: 10px 0px 24px 560px;" type="submit" value="Save">
+                                </form>
+                                  
+                            
+                                
+                        </div>
+                </div>
+            </div>
+        </section>
+
+{% endblock %}

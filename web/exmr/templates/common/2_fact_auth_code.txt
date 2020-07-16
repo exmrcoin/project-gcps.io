@@ -1,0 +1,14 @@
+Hello,
+
+This email contains your 2 Factor Authentication code to complete your login at Getcryptopayments.org.
+Username: {{ username }}
+Code: {{ otp }} 
+This code is case sensitive!
+
+If you did not make this login attempt you should change your GetCryptoPayments.org password immediately since whoever made this request has your correct password.
+
+Thank you,
+GetCryptoPayments.org
+Support is available at: https://www.getcryptopayments.org/common/help/
+
+Login request was made from IP: {{ip}}

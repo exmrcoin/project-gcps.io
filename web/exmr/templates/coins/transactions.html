@@ -1,0 +1,80 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% load i18n %}
+{% block dashboard_heading %}
+<h4 class="text-theme b-4 dashboard">TRANSACTION HISTORY</h4>
+{% endblock %}
+{% block dashboard_wrapper_content %}
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">
+            
+                    <div>
+                           
+                            <div>
+                                <div class="img-dashboard">
+                                    <img src="{% static '/images/recevied.png' %} ">
+                                </div>
+                                <h4 class="text-theme">{% trans 'Recent Transaction' %}</h4>
+                            </div>
+                            <div>
+                                <div>
+                                    <div class="card" style="background-color: transparent;">
+                                        <div class="card-body" style="word-wrap: normal">
+                    
+                                            <table class="table table-border table-responsive-md" style="table-layout: fixed">
+
+                                                <!--Table head-->
+                                                <thead>
+                                                <tr class="table-top">
+                    
+                                                    <th class="text-center">{% trans 'Time' %}</th>
+                                                    <th class="text-center">{% trans 'Address / TX ID' %}</th>
+                                                    <th class="text-center">{% trans 'Coin' %}</th>
+                                                    <th class="text-center">{% trans 'Status' %}</th>
+                                                    <th class="text-center">{% trans 'Amount' %}</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% if transactions %}
+                                                    {% for transaction in transactions %}
+                                                    <tr>
+                                                        <td align="center">{{ transaction.date }}</td>
+                                                        <td align="center" style="word-wrap: break-word"><p>Address: {{transaction.transaction_to}} {{transaction.transaction_from}}</p>
+                                                        <p>Tx Id: {{ transaction.tx_id}}{{ transaction.transaction_id}}</p>
+                                                        {% if transaction.system_tx_id %}<p>Withdrawal ID: {{transaction.system_tx_id}}</p>{% endif %}
+                                                        </td>
+                                                        <td align="center">{{transaction.currency}}</td>
+                                                        <td align="center">{% if transaction.approved == True %}Complete{% elif transaction.approved == False %}Cancelled{%else%}Complete{% endif %}</td>
+                                                        <td align="center">{{transaction.amount}}</td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                    {% else %}
+                                                <tr>
+                                                    <td class="table-style" colspan="4">{% trans 'No Payment Found' %}</td>
+                    
+                                                </tr>
+                                                    {% endif %}
+                                                   
+                                                </tbody>
+                                                <!--Table body-->
+                                                <a href="{% url 'coins:transaction-history' %}"><button class="btn btn-orange" style="margin-bottom: 10px;">Wallet History</button></a>
+                        
+                                                     
+                                            </table>
+                                            <!--Table-->
+                                            <!--Table-->
+                    
+                                        </div>
+                                    </div>
+                    
+                                </div>
+                    
+                            </div>
+            
+        </div>
+    </div>
+</section>
+
+{% endblock %}

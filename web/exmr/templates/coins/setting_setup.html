@@ -1,0 +1,214 @@
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} 
+{% block title %} Merchant Tools{% endblock %} {% block content %} 
+{% load i18n %}
+
+<section class="section section-pad" style="padding-bottom: 2rem">
+    <div class="container animatedParent animateOnce" data-sequence="80">
+      <h1 class="text-white text-center text-uppercase animated fadeInUpShort" style="padding-bottom: 50px;" data-id='1'>
+            {% trans 'Account' %} <span class="text-theme b-700">{% trans 'Setup Wizard' %}s</span>
+      </h1>  
+      <h3 class="text-white text-center text-uppercase animated fadeInUpShort" data-id='1'>
+            {% trans 'Payments' %} <span class="text-theme b-700">{% trans 'Methods' %}</span>
+      </h3>
+      <p class="text-center text-white h6 mt-3 center-aligner animated fadeInUpShort" data-id='2'>
+            {% trans 'Please select how many coins you want to accept' %}
+      </p>
+      <div class="row mt-5 justify-content-center paybx">
+        <!-- item -->
+        <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='3'>
+          <div class="bx-ash bx-client">
+                <div class="icon-merchant" style="box-shadow: none;">
+                    <span class="merchant-icon">1</span>
+                </div>
+            <h6 class="text-theme text-center">{% trans 'All 55+ Coins' %}</h6>
+            <div style="height: 68px;">
+                <p class="text-white text-center">
+                    {% trans 'Accept all supported coins' %}
+                </p>
+            </div>
+            <div class="col text-center"><button class="btn btn-normal" style="background-color: rgb(247, 147, 27);">Select</button></div>
+            
+          </div>
+        </div>
+        <!-- item END -->
+        <!-- item -->
+        <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='4'>
+          <div class="bx-ash bx-client">
+                <div class="icon-merchant-alt" style="box-shadow: none;">
+                    <span class="merchant-icon-alt">2</span>
+                </div>
+            <h6 class="text-theme text-center">{% trans 'Only Coins | Select' %}</h6>
+            <div style="height: 68px;">
+                <p class="text-white text-center">
+                    {% trans 'Recommended' %}
+                    <br>{% trans 'Enable only the coins you want to accept' %}
+                </p>
+            </div>
+            <div class="col text-center"><button class="btn btn-normal" style="background-color: rgb(247, 147, 27);">Select</button></div>
+          </div>
+        </div>
+        <!-- item END -->
+        <!-- item -->
+        <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='5'>
+          <div class="bx-ash bx-client">
+                <div class="icon-merchant" style="box-shadow: none;">
+                    <span class="merchant-icon">3</span>
+                </div>
+            <h6 class="text-theme text-center">{% trans 'Coins with Auto-convert' %}</h6>
+            <div style="height: 68px;">
+                <p class="text-white text-center">
+                    {% trans 'Coins with auto-convert such as Bitcoin, Litecoin, Ethereum, Dogecoin, and Dash.' %}
+            
+                </p>
+            </div>
+            <div class="col text-center"><button class="btn btn-normal" style="background-color: rgb(247, 147, 27);">Select</button></div>
+          </div>
+        </div>
+        <!-- item END -->
+        <!-- item -->
+        <div class="col-md-3 col-sm-6 mb-4 animated fadeInUpShort" data-id='6'>
+          <div class="bx-ash bx-client">
+                <div class="icon-merchant-alt" style="box-shadow: none;">
+                    <span class="merchant-icon-alt">4</span>
+                </div>
+            <h6 class="text-theme text-center">{% trans 'Fiat Settlement' %}</h6>
+            <div style="height: 68px;">
+                <p class="text-white text-center">
+                    {% trans 'Settle payments to fiat with one of our partners such as Coinbase.' %}
+                </p>
+            </div>
+            <div class="col text-center"><button class="btn btn-normal" style="background-color: rgb(247, 147, 27);">Select</button></div>
+          </div>
+        </div>
+        <!-- item END -->
+        
+      </div>
+    </div>
+  </section>
+
+
+<!-- <section>
+    <div class="dark-page-header text-center">
+        <h1 class="pad10 mt-2">
+            </h1>
+       
+               
+    </div>
+    <div class="container">
+        <div class="mt-5">
+            <div class="container">
+                <h1 class="pad10 mt-2 text-center">
+                    {% trans 'Payments Methods' %}</h1>
+                
+                <p class="text-center">{% trans 'Please select how many coins you want to accept' %}</p>
+                    
+                
+            </div>
+
+            <div class="col-sm-6 col-md-3 text-center merch-box-alt deposit-content-set">
+                <div class="icon-merchant">
+                    <span class="merchant-icon">1</span>
+                </div>
+                <h4 class=" shopping-headline">{% trans 'All 55+ Coins' %}</h4>
+                <ul>
+                    <li>{% trans 'Accept all supported coins' %}</li>
+                </ul>
+                <br><br><button class="btn btn-warning">Select</button>
+            </div>
+            <div class="col-sm-6 col-md-3 text-center merch-box-alt deposit-content-set">
+                <div class="icon-merchant-alt">
+                    <span class="merchant-icon-alt">2</span>
+                </div>
+                <h4 class=" shopping-headline">{% trans 'Only Coins | Select' %}</h4>
+                <ul>
+                    <li class="text-center">{% trans 'Recommended' %}</li>
+                    <li>{% trans 'Enable only the coins you want to accept' %}</li>
+                </ul>
+                <button class="btn btn-signup ">Select</button>
+            </div>
+            <div class="col-sm-6 col-md-3 text-center merch-box-alt deposit-content-set">
+                <div class="icon-merchant">
+                    <span class="merchant-icon">3</span>
+                </div>
+                <h4 class=" shopping-headline">{% trans 'Coins with Auto-convert' %}</h4>
+                <ul>
+                    <li class="text-center">{% trans 'Coins with auto-convert such as Bitcoin, Litecoin, Ethereum, Dogecoin, and Dash.' %}</li>
+                </ul>
+                <button class="btn btn-signup ">Select</button>
+            </div>
+            <div class="col-sm-6 col-md-3 text-center merch-box-alt deposit-content-set">
+                <div class="icon-merchant-alt">
+                    <span class="merchant-icon-alt">4</span>
+                </div>
+                <h4 class=" shopping-headline">{% trans 'Fiat Settlement' %}</h4>
+                <ul>
+                    <li class="text-center">{% trans 'Settle payments to fiat with one of our partners such as Coinbase.' %}</li>
+                </ul>
+                <br><button class="btn btn-signup">Select</button>
+            </div>
+            
+            
+            
+            
+        </div>
+    </div>
+</section> -->
+{% endblock %}
+
+
+
+
+</body>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.21.0/moment.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/datepicker.min.js"></script>
+<script>
+    (function ($) {
+
+        'use strict';
+
+        $(document).on('show.bs.tab', '.nav-tabs-responsive [data-toggle="tab"]', function (e) {
+            var $target = $(e.target);
+            var $tabs = $target.closest('.nav-tabs-responsive');
+            var $current = $target.closest('li');
+            var $parent = $current.closest('li.dropdown');
+            $current = $parent.length > 0 ? $parent : $current;
+            var $next = $current.next();
+            var $prev = $current.prev();
+            var updateDropdownMenu = function ($el, position) {
+                $el
+                    .find('.dropdown-menu')
+                    .removeClass('pull-xs-left pull-xs-center pull-xs-right')
+                    .addClass('pull-xs-' + position);
+            };
+
+            $tabs.find('>li').removeClass('next prev');
+            $prev.addClass('prev');
+            $next.addClass('next');
+
+            updateDropdownMenu($prev, 'left');
+            updateDropdownMenu($current, 'center');
+            updateDropdownMenu($next, 'right');
+        });
+
+    })(jQuery);
+    $('.datepicker').datepicker();
+    $('.timepicker').timepicker({
+        timeFormat: 'h:mm p',
+        interval: 60,
+        minTime: '10',
+        maxTime: '6:00pm',
+        defaultTime: '11',
+        startTime: '10:00',
+        dynamic: false,
+        dropdown: true,
+        scrollbar: true
+    });
+</script>
+
+</html>

@@ -1,0 +1,23 @@
+{% extends 'accounts/dashboard-base.html' %}
+{% load staticfiles %}
+{% block content %}
+{% load transaction_status %}
+{% load i18n widget_tweaks %}
+<section class="section section-pad" >
+        <div class="supwiz">
+            <div class="container">
+              
+                <div class="panel panel-default">
+                    <div class="panel-heading text-white">Success</div>
+                    <div class="panel-body">
+                    <h4 class="">Your withdrawal request has been created with ID</h4>
+                    <h4 class="text-white"> {{ transaction }}.</h4>
+                    <h4 class="text-white">
+                      An email has been sent to your email address on file to confirm this withdrawal request, you must click the link in the email or the withdrawal will not be processed.
+                    </h4>
+                    <a href="{% url 'coins:wallets' %}" class="text-white">Back to coin balances</a>
+                    </div>
+                </div>
+            </div>
+        </div></section>
+{% endblock %}

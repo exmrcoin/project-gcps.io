@@ -1,3 +1,7 @@
 *.pyc
 .idea/
 exmr/dev.py
+db.sqlite3
+heroku_deploy.sh
+/static
+.vscode/settings.json

@@ -1,0 +1,134 @@
+{% extends 'gcps/testbase.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+<section class="section section-pad" >
+<div class="bx-ash">
+    <div class="dark-page-header text-white">
+        <h1 class="pad10 mt-1">{% trans 'SUPPORTED COINS' %}</h1>
+        <h5 class="mt-2">
+            {% trans 'Instant get crypto payments checkout with easy to use cart plugin, advanced, invoice builder and API for custom integration' %}
+        </h5>
+    </div>
+</div>
+    <div class="dashboard-bg body-background mt">
+        <div class="container">
+            <div class="bx-ash-border mt-2 col-xs-12">
+                <ul class="custom-ul row mb-0">
+                    {% for coin_type in coin_types %}
+                    <li class="col-xs-12 col-sm-3 ">
+                        <label class="mt0">
+                            
+
+                            <input id="checkbox1" name="type" type="radio" onclick="window.location='{% url 'coins:supported_coins' coin_type.1 %}';" value={{ coin_type.0 }} class="mt0 floatl" {% ifequal selected_coin_type coin_type.0%}
+                                checked{% endifequal %}>{{ coin_type.1 }}
+                        </label>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="col-xs-12 account-setting-wrap2 coin-support-main-wrap">
+                <table class="table support-table">
+                    <thead>
+                        <tr>
+                            <th>{% trans 'COIN NAME' %}</th>
+                            <th>{% trans 'COD' %}</th>
+                            <th>{% trans 'FEE' %}
+                                <sub class="sub-number">1</sub>
+                            </th>
+                            <th>{% trans 'CONFIRMS' %}</th>
+                            <!-- <th>{% trans 'TO BTC' %}
+                                <sub class="sub-number">2</sub>
+                            </th> -->
+                            <th>{% trans 'EXPLORE' %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for coin in coins %}
+                        <tr>
+                            <td>
+                                {% if coin.coin.image %}
+                                <img class="coin-icon-support" src={{ coin.image.url }}> {% endif %}
+                                <span class="coin-name">{% if coin.coin_url %}
+                                    <a href="{{ coin.coin_url }}">{{ coin.coin_name }}</a>{% else %}{{ coin.coin_name }}{% endif %}</span>
+                            </td>
+                            <td>{{ coin.code }}</td>
+                            <td>{{ coin.fee_percentage }}%</td>
+                            <td>{{ coin.confirms }}</td>
+                            <!-- <td>{{ coin.to_btc }}</td> -->
+                            <td>
+                                {% if coin.can_convert %}
+                                <a href="{% url 'coins:wallets' %}" class="btn btn-default white-font orange-bg  btn-ex">
+                                    <!-- data-target="#myModal" -->
+                                    <img class="w20px" src={% static 'images/arrows.svg' %}>
+                                    <span>Start</span>
+                            </a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% if selected_coin_type is 1 %}
+                        {% for ripple in ripples %}
+                        <tr>
+                            <td>
+                                {% if ripple.coin.image %}
+                                <img class="coin-icon-support wallets-img" src={{ riiple.image.url }}> {% endif %}
+                                <span class="coin-name">{% if ripple.coin_url %}
+                                    <a href="{{ coin.coin_url }}">{{ ripple.coin_name }}</a>{% else %}{{ ripple.coin_name }}{% endif %}</span>
+                            </td>
+                            <td>{{ ripple.code }}</td>
+                            <td>{{ ripple.fee_percentage }}%</td>
+                            <td>{{ ripple.confirms }}</td>
+                            <!-- <td>{{ ripple.to_btc }}</td> -->
+                            <td>
+                                {% if ripple.can_convert %}
+                                <a href="{% url 'coins:wallets' %}" class="btn btn-default white-font orange-bg  btn-ex"                                    >
+                                    <!-- data-target="#myModal" -->
+                                    <img class="w20px" src={% static 'images/arrows.svg' %}>
+                                    <span>Start</span></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        {% elif selected_coin_type is 2 %}
+                        {% for token in tokens %}
+                        <tr>
+                            <td>
+                                {% if token.image %}
+                                <img class="coin-icon-support wallets-img" src={{ token.image.url }}> {% endif %}
+                                <span class="coin-name">{% if token.coin_url %}
+                                    <a href="{{ coin.coin_url }}">{{ token.coin_name }}</a>{% else %}{{ token.coin_name }}{% endif %}</span>
+                            </td>
+                            <td>{{ token.contract_symbol }}</td>
+                            <td>{% trans '0.05%' %}</td>
+                            <!-- <td>{% trans '1' %}</td> -->
+                            <td>{% trans '1.00000' %}</td>
+                            <td>
+                                
+                                <!-- <a href="{% url 'coins:wallets' %}" class="btn btn-default white-font orange-bg  btn-ex" data-coin-id="{{ token.contract_symbol }}" data-toggle="modal"
+                                    data-coin-id="" onclick="show_coin_selector('{{coin.code}}')"> -->
+
+                                    <!-- data-target="#myModal" -->
+                                    <a href="{% url 'coins:wallets' %}" class="btn btn-default white-font orange-bg  btn-ex">
+                                    <img class="w20px" src={% static 'images/arrows.svg' %}>
+                                    <span>Start</span>
+                            </a>
+                                
+                            </td>
+                            
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                  
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section>
+<!-- Modal -->
+{% endblock %} {% block extra_js %}
+{% endblock %}
+{% block script %}
+
+
+{% endblock %}

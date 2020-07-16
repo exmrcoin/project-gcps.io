@@ -1,0 +1,49 @@
+{% extends 'exmr.html' %} {% load staticfiles %} {% block content %} {% load i18n %}
+<section>
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <h1>Help</h1>
+        <h3>Frequently Asked Questions </h3>
+    </div>
+    <div class="container-fluid xs-padx1 mt-4 mb-4">
+        <div class="col-xs-12 xs-padx1">
+            <div class="col-xs-12 col-md-4 ">
+                <div class="help-sidebar">
+
+                    {% for topic in merc_sidebar_topic %}
+                    <h3 class="sidebar-label">{{topic}}</h3>
+                    {% for subtopic in merc_sidebar_sub_topic %}
+                    {% if subtopic.main_topic == topic %}
+                    <li>
+                        <a href="{% url 'mtools:helptopic' subtopic.slug %}" class="sidebar-link">
+                            <h4 class="sidebar-label">{{subtopic.sub_topic}}</h4>
+                        </a>
+                    </li>
+                    {% endif %}
+                    {% endfor %} {% endfor %}
+
+
+                </div>
+
+            </div>
+            <div class="col-xs-12 col-md-8 text-justify">
+                <h3>Frequently Asked Questions - BitCoin Payment Processor</h3>
+                <ul>
+                    {% for ques in faq %}
+                    <li>
+                        <a href="#question{{forloop.counter}}">{{ques.faq_question}}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% for faq_ans in faq %}
+                <div class="col-xs-12" id="question{{forloop.counter}}">
+                    <h3>{{faq_ans.faq_question}}</h3>
+                    <p>{{faq_ans.faq_answer}}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+{% block script %}
+<script src="{% static 'js/exmr.js' %}"></script> {% endblock %} {% endblock %}

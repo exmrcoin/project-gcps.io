@@ -1,0 +1,79 @@
+{% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
+<div></div>
+{% block dashboard_heading %}<h4 class="text-theme b-4 dashboard">WALLET</h4>
+{% endblock %}
+{% load transaction_status %} 
+
+    <!-- <div class="dashboard-bg">
+    <div class="merchant-tools merchant-one coin-payment-head">
+        <div class=" container merchant-box">DASHBOARD
+        </div>
+    </div>
+    </div> -->
+
+
+ {% block dashboard_wrapper_content %}
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+        <div class="container">
+            <div class="row bx-ash mb-2">           
+                <div class="col-12"><h4 class="text-theme"><img style="padding-bottom: 6px" src="{% static '/images/recevied.png' %} "><span class="pl-2" >{% trans 'Convert Coin' %}</span></h4></div>
+
+
+                <form method="POST" action="{% url 'coins:convert_select_confirm'%}" class="p-0 p-md-2 list d-flex flex-wrap col-12">
+                    {% csrf_token %}
+                <div id="coin_search_list" class="col-12 p-0 p-md-2 ">
+                        <input class="search coin-convert-search col-12" placeholder="Search by COIN CODE" />
+                        <div class="p-0 p-md-2   col-12">
+            
+                            <ul  class="list d-flex flex-wrap col-12 p-0 p-md-2 ">
+                                
+                                {% for coin in avbl_coins %}    
+                                <li class="col-6 col-sm-4 col-md-3 col-xl-2 p-0">                    
+                                    <div class="col-12 p-0 p-md-2  " style="color: white" >
+                                        <label class="col-12 selectable_div">
+                                            <input type="radio" name="coin_radio" value="{{coin}}"/>
+                                            <div class="col-xs-12 text-center available_coin">
+                                                {%for key,value in coin_images.items %} {% if key == coin %}
+                                                <img src="{{value.image}}" class="img-responsive w60px margin-center ">
+                                                <h4 class="coin-name">{{coin}}</h4>
+                                                <span class="coinname" coin-full="{{value.name}}">{{value.name}}</span>
+                                                {% endif %} {% endfor %}
+                                            </div>
+                                        </label>
+                                    </div>
+                                </li>
+                                {% endfor %}
+            
+            
+                                <input type="hidden" value="{{sel_coin}}" name="sel_coin" placeholder="Enter Amount">
+            
+                                </ul>
+            
+            
+            
+                        </div>
+                    </div>
+                    <div class="col-12 my-2 text-right">
+                            <input type="submit" class="btn btn-success"value="Continue"> 
+                    </div>
+                    </form>
+            
+                
+                
+            </div>
+        </div>
+
+</section>
+
+{% endblock %} {% block script %}
+<script src="{% static 'assests/js/list.min.js' %}"></script>
+<script>
+var options = {
+  valueNames: ['coin-name','coinname',
+    { attr: 'coin-full', name: 'coinfullname' }],
+};
+var userList = new List('coin_search_list', options);
+   </script>
+
+
+{% endblock %}

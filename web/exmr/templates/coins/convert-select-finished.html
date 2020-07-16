@@ -1,0 +1,89 @@
+{% extends 'accounts/dashboard-base.html' %} {% load staticfiles widget_tweaks i18n %}
+<div></div>
+{% load transaction_status %} {% block dashboard_heading %}<h4 class="text-theme b-4 dashboard">WALLET</h4>{% endblock %} {% block dashboard_wrapper_content %}
+
+<section class="section section-pad" style="padding-bottom: 1em; padding-top: 1em">
+    <div class="container">
+        <div class="bx-ash mb-2">          
+            <div>
+                <div class="img-dashboard">
+                    <img src="{% static '/images/recevied.png' %} ">
+                </div>
+                <h4 class="text-theme">{% trans 'Convert Coin' %}</h4>
+            </div>
+            <div class="text-white">
+                <div class="selectable_div p-sm-5">
+                    <h2>{{result}}</h2>
+                    {% if result1 %}
+                    <h3>{{result1}}</h3>
+                    <h3>{{result2}}</h3>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- <div class="dashboard-wrapper">
+    <div class="dasboard-head pad10">
+        <div class="img-dashboard">
+            <img src="{% static '/images/recevied.png' %} ">
+        </div>
+        <span class="font-h3">{% trans 'Convert Coin' %}</span>
+        <div class="bx-ash">
+            <div class="selectable_div p-sm-5">
+                <h2>{{result}}</h2>
+                {% if result1 %}
+                <h3>{{result1}}</h3>
+                <h3>{{result2}}</h3>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-table">
+        <div class="dasboard-head">
+            <div class="card bg-white p-2 p-md-5 text-center">
+                <div class="card-body selectable_div p-sm-5">
+                    <h2>{{result}}</h2>
+                    {% if result1 %}
+                    <h3>{{result1}}</h3>
+                    <h3>{{result2}}</h3>
+                    {% endif %}
+                </div>
+            </div>
+            <!--  -->
+
+
+
+            <!--  -->
+        </div>
+
+    </div>
+</div> -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content  exmr-modal white-font animated bounceInDown">
+
+            <img src="{% static 'images/logo1.png' %}" class="margin-center img-responsive exmr-modal-logo">
+            <div class="modal-header text-center">
+                <button type="button" class="close" data-dismiss="modal">×</button>
+                <h3 class="modal-title">
+                    <i class="fa fa-exclamation-circle"></i>Alpha Version Testnet</h3>
+            </div>
+            <div class="modal-body text-center">
+                We are in active development to bring you the best features.
+                <br>The Coin will be added to be winners in our Coin Listing Competition.
+                <br>More Coin support will be added in future.
+                <br>We thankyou for your understanding.
+                <br>
+                <br>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %} {% block script %}
+{% endblock %}

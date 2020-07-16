@@ -1,0 +1,13 @@
+Hi,
+
+
+You have requested for a coin submission. The details you submitted are as follows.
+    COIN SYMBOL : {{coin_symbol}}
+    COIN NAME : {{coin_name}}
+    COIN SOURCE : {{coin_source_url}}
+    COIN WEBSITE : {{coin_url}}
+
+If you find any discrepancy please leave us a mail and we will get back to you at the earliest.
+Your coin is submitted for review, if it is approved, we will notify you.
+
+Thank You

@@ -1,6 +1,6 @@
 from ckeditor.fields import RichTextField
 from django.conf import settings
-from apps.common.utils import send_mail,send_email
+# from apps.common.utils import send_mail,send_email, gpg
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Avg
@@ -13,7 +13,6 @@ from django.contrib.sites.models import Site
 from timezone_field import TimeZoneField
 from django_countries.fields import CountryField
 
-from apps.common.utils import send_mail, gpg
 
 
 MALE = 0
@@ -118,12 +117,12 @@ class Profile(models.Model):
     def neutral(self):
         return self.user.get_all_feedback.filter(rating=2.5).count()
 
-    def save(self, *args, **kwargs):
-        try:
-            gpg.import_keys(self.pgp_gpg_public_key)
-        except:
-            self.pgp_gpg_public_key = None
-        return super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     try:
+    #         gpg.import_keys(self.pgp_gpg_public_key)
+    #     except:
+    #         self.pgp_gpg_public_key = None
+    #     return super().save(*args, **kwargs)
 
 
 
@@ -164,8 +163,8 @@ class ProfileActivation(models.Model):
             'site': site,
         }
 
-        send_email(activation_email_subject, ctx_dict, self.user.email, email_template_txt=activation_email_body,
-                   email_template_html=activation_email_html)
+        # send_email(activation_email_subject, ctx_dict, self.user.email, email_template_txt=activation_email_body,
+        #            email_template_html=activation_email_html)
 
         # Temporary code to send email without template
 
@@ -281,13 +280,13 @@ class KYC(models.Model):
     def __str__(self):
         return self.user.username
 
-    def save(self):
-        if self.approved == True:
-            send_mail(self.user,"KYC Approval",\
-             "Your Kyc request has been successfully approved",\
-             settings.DEFAULT_FROM_EMAIL,
-             [self.user.email])
-        return super().save()
+    # def save(self):
+    #     if self.approved == True:
+    #         send_mail(self.user,"KYC Approval",\
+    #          "Your Kyc request has been successfully approved",\
+    #          settings.DEFAULT_FROM_EMAIL,
+    #          [self.user.email])
+    #     return super().save()
 
 class KYCTerms(models.Model):
     """

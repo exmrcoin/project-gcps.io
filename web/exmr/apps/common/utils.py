@@ -9,6 +9,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template import TemplateDoesNotExist
 from django.template.loader import render_to_string
 from django.http import JsonResponse
+from apps.accounts.models import Profile
 
 gpg = gnupg.GPG(gnupghome="gnupg")
 

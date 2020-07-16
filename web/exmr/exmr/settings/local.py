@@ -37,6 +37,8 @@ CACHES = {
         "BACKEND": "django_redis.cache.RedisCache",
         'LOCATION': 'localhost:6379',
         "OPTIONS": {
+            "DB": 1,
+	    "PASSWORD": "hr_redis", 
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         }
     }

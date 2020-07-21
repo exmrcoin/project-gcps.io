@@ -436,13 +436,16 @@ class PublicCoinVote(TemplateView):
         context['coins'] = NewCoin.objects.filter(
             approved=True).order_by('-vote_count')
         phase = Phases.objects.last()
-        time_start = str(phase.time_start.day) + " " + \
-            phase.time_start.strftime("%B")
-        time_stop = str(phase.time_start.day) + " " + \
-            phase.time_stop.strftime("%B")
-        if phase.extra_message:
-            context['extra_message'] = phase.extra_message
-        context["time_period"] = time_start + " - " + time_stop
+        if phase:
+            time_start = str(phase.time_start.day) + " " + \
+                phase.time_start.strftime("%B")
+            time_stop = str(phase.time_start.day) + " " + \
+                phase.time_stop.strftime("%B")
+            if phase.extra_message:
+                context['extra_message'] = phase.extra_message
+            context["time_period"] = time_start + " - " + time_stop
+        else:
+            context["time_period"] = "01 January - 31 December"
         return context
 
     def post(self, request, *args, **kwargs):

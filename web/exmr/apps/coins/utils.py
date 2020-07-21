@@ -34,7 +34,7 @@ from apps.apiapp import views as apiview
 
 from apps.merchant_tools.models import MerchantPaymentWallet
 
-w3 = Web3(HTTPProvider('http://35.185.10.253:8545'))
+w3 = Web3(HTTPProvider('http://52.14.59.225:3334'))
 timestamp_dif = 3000 #in seconds
 
 
@@ -107,7 +107,7 @@ def create_BTC_connection():
     create connetion to bitcoin fullnode
     """
     access = AuthServiceProxy(
-        "http://exmr:MKDNdksjfDNsjkN@35.185.10.253:8332")
+        "http://bitcoinexmr:test1111@3.128.85.207:8332")
     return access
 
 
@@ -115,7 +115,7 @@ def create_LTC_connection():
     """
     create connetion to litecoin fullnode
     """
-    access = AuthServiceProxy("http://litecoinrpc:12345678@47.88.59.35:2300")
+    access = AuthServiceProxy("http://litecoinrpc:12345678@3.23.224.20:9432")
     return access
 
 
@@ -341,7 +341,7 @@ class ETH():
         serialized_data = json.dumps(message)
         headers = {'Content-type': 'application/json'}
         response = requests.post(
-            "http://35.185.10.253:8545", headers=headers, data=serialized_data)
+            "http://52.14.59.225:3334", headers=headers, data=serialized_data)
         return response.json()
 
     def generate(self, unique_id, random=None):
@@ -500,7 +500,7 @@ class EthereumTokens():
         serialized_data = json.dumps(message)
         headers = {'Content-type': 'application/json'}
         response = requests.post(
-            "http://35.185.10.253:8545", headers=headers, data=serialized_data)
+            "http://52.14.59.225:3334", headers=headers, data=serialized_data)
         return response.json()
 
     

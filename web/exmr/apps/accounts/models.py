@@ -1,6 +1,6 @@
 from ckeditor.fields import RichTextField
 from django.conf import settings
-# from apps.common.utils import send_mail,send_email, gpg
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Avg
@@ -153,6 +153,8 @@ class ProfileActivation(models.Model):
         Send an activation email to the user associated with this
         ``ProfileActivation``.
         """
+        from apps.common.utils import send_mail,send_email, gpg
+
         activation_email_subject = _('Account Activation Link')
         activation_email_body = 'accounts/activation_email.txt'
         activation_email_html = 'accounts/activation_email.html'
@@ -162,9 +164,8 @@ class ProfileActivation(models.Model):
             'activation_key': self.activation_key,
             'site': site,
         }
-
-        # send_email(activation_email_subject, ctx_dict, self.user.email, email_template_txt=activation_email_body,
-        #            email_template_html=activation_email_html)
+        send_email(activation_email_subject, ctx_dict, self.user.email, email_template_txt=activation_email_body,
+                   email_template_html=activation_email_html)
 
         # Temporary code to send email without template
 

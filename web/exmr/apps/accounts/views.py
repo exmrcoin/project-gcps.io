@@ -78,6 +78,7 @@ class SignUpView(JSONResponseMixin, CreateView):
         :param profile:
         :return:
         """
+
         profile_activation, created = ProfileActivation.objects.get_or_create(
             user=profile.user)
         if created or profile_activation.expired:

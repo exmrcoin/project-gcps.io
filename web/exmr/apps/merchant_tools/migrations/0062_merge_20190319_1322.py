@@ -7,7 +7,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('merchant_tools', '0061_merge_20190201_0547'),
-        ('merchant_tools', '0061_multipayment_completed'),
     ]
 
     operations = [

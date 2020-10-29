@@ -46,16 +46,15 @@ We are motivating blockchain developers to integrate their Dapp's with EXMR FDN,
 
 # People can now start staking their EXMR FDN. <br> 
 here: https://dapp.exmr.io <br>
-New exchanges and Dapp's coming this 2020!!<br>
 
 # About our current project <br>
 We have the repository in private for security. <br>
-You can visit here https://GetCryptoPayments.com® <br>
+You can visit here https://gcps.io® <br>
 
 # About getcryptopayments.com
-➥A project based on Merchants tools: payment gateway, multi-coins wallet and point of sales, will make EXMR FDN increase its value.<br> 
+➥A project based on Merchants tools: payment gateway, multi-coins wallet and point of sales.<br> 
 ➥A large number of stores and online businesses, will be able to receive payments in our EXMR FDN and other cryptocurrencies.<br>
-➥GetCryptoPayments.com® by EXMR FDN. Will support more than 130 to 2000 Cryptocurrencies on your platform and will be added by our voting system or payment fee.<br>
+➥gcps.io® by EXMR FDN. Will support more than 130 to 2000 Cryptocurrencies on your platform and will be added by our voting system or payment fee.<br>
 ➥Offering integration plugins for all the popular webcarts used today: Prestashop; Oscommerce; Magento; woocommerce; WHMCS. etc
 
 # Developer Team for this project<br>
@@ -76,7 +75,7 @@ You can visit here https://GetCryptoPayments.com® <br>
 ✦ The function of add store profiles. <br>
 ✦ Merchant tools From 1 to 10 coins to receive online payments.<br>
 ✦ Swap between those 10-15 coins & more.<br>
-⌘ Exchange + API  and IEO and Staking services for all coins developers
+⌘ Full Version November 2020 <br>
 
 🍀 Features: <br>
 ✦ Swap between coins or tokens<br>
@@ -90,7 +89,4 @@ You can visit here https://GetCryptoPayments.com® <br>
 ✦ Vault Wallet<br> 
 ✦ Voting system<br>
 ✦ Point of Sales (POS)<br>
-✦ Airdrop Sevices<br>
-✦ ICO Sevices<br>
-✦ Exchange Api<br>
 & More..

@@ -137,6 +137,8 @@ SECURE_MAIL_KEY_FINGERPRINT = "327E143493B074B105BCBD11382A0EC096A"
 USE_GNUPG = True
 
 EMAIL_BACKEND = 'secure_mail.backends.EncryptingSmtpEmailBackend'
+# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = 'media/emails'
 
 DATABASES = {
     'default': {
@@ -298,8 +300,8 @@ except ImportError:
     pass
 
 ADMINS = (
-   ('ME', 'mail2vipinmohan@gmail.com'),
-   ('ADMIN', 'vipin.mohan@techversantinc.com'),
+#    ('ME', 'mail2vipinmohan@gmail.com'),
+   ('ADMIN', 'anshid@techversantinfo.com'),
 )
 LOGGING = {
     'version': 1,

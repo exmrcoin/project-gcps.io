@@ -1,5 +1,5 @@
 /*!
- * Bootstrap v3.3.7 (http://getbootstrap.com)
+ * Bootstrap v3.3.7 ( http://getbootstrap.com )
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under the MIT license
  */
@@ -752,7 +752,7 @@ if (typeof jQuery === 'undefined') {
  * Bootstrap: dropdown.js v3.3.7
  * http://getbootstrap.com/javascript/#dropdowns
  * ========================================================================
- * Copyright 2011-2016 Twitter, Inc.
+ * Copyright 2011-2016 Twitter , Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 

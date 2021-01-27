@@ -35,6 +35,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.crypto import get_random_string
 from django.utils import timezone
+from requests import Request, Session
 
 
 from apps.apiapp.coingecko import CoinGeckoAPI
@@ -587,11 +588,25 @@ class POSCalcView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
         try:
-            context['rates'] = cache.get('rates')
+            rates = cache.get('rates')
+            context['rates'] = rates
+            if not rates:
+                url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+                parameters = {'start':'1','limit':'5000','convert':'USD'}
+                headers = {'Accepts': 'application/json','X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',}
+                session = Session()
+                session.headers.update(headers)
+                response = session.get(url, params=parameters)
+                data = json.loads(response.text)['data']
+                rates = {rate['symbol']: rate['quote']['USD']['price'] for rate in data}
+                context['rates'] = json.dumps(rates)
         except:
-            data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']: rate['price'] for rate in data}
-            context['rates'] = json.dumps(rates)
+            try:
+                data = json.loads(requests.get("http://coincap.io/front").text)
+                rates = {rate['short']: rate['price'] for rate in data}
+                context['rates'] = json.dumps(rates)
+            except Exception as e:
+                raise e
         return context
 
 class POSCalcCoinSelect( TemplateView):
@@ -601,12 +616,25 @@ class POSCalcCoinSelect( TemplateView):
         input_currency = request.POST.get('select_currency')
         context = super().get_context_data(**kwargs)
         try:
-            cur_rate = cache.get('rates')
-            context['rates'] = cur_rate
+            rates = cache.get('rates')
+            context['rates'] = rates
+            if not rates:
+                url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+                parameters = {'start':'1','limit':'5000','convert':'USD'}
+                headers = {'Accepts': 'application/json','X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',}
+                session = Session()
+                session.headers.update(headers)
+                response = session.get(url, params=parameters)
+                data = json.loads(response.text)['data']
+                rates = {rate['symbol']: rate['quote']['USD']['price'] for rate in data}
+                context['rates'] = json.dumps(rates)
         except:
-            data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']: rate['price'] for rate in data}
-            context['rates'] = json.dumps(rates)
+            try:
+                data = json.loads(requests.get("http://coincap.io/front").text)
+                rates = {rate['short']: rate['price'] for rate in data}
+                context['rates'] = json.dumps(rates)
+            except Exception as e:
+                raise e
         if not input_currency == "USD":
             usd_equivalent = round((float(cur_rate[input_currency]) * float(input_amount)), 8)
         else:
@@ -644,10 +672,24 @@ class POSCALCPayView(TemplateView):
         selected_coin = request.POST.get('selected_coin')
         try:
             rates = cache.get('rates')
+            context['rates'] = rates
+            if not rates:
+                url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+                parameters = {'start':'1','limit':'5000','convert':'USD'}
+                headers = {'Accepts': 'application/json','X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',}
+                session = Session()
+                session.headers.update(headers)
+                response = session.get(url, params=parameters)
+                data = json.loads(response.text)['data']
+                rates = {rate['symbol']: rate['quote']['USD']['price'] for rate in data}
+                context['rates'] = json.dumps(rates)
         except:
-            data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']: rate['price'] for rate in data}
-            rates = json.dumps(rates)
+            try:
+                data = json.loads(requests.get("http://coincap.io/front").text)
+                rates = {rate['short']: rate['price'] for rate in data}
+                context['rates'] = json.dumps(rates)
+            except Exception as e:
+                raise e
 
         if input_coin == "USD":
             selected_coin_amount = float(input_amount)/float(rates[selected_coin])
@@ -1356,9 +1398,22 @@ class SimpleButtonMakerInvoice(TemplateView):
         try:
             rates = cache.get('rates')
             rates = ast.literal_eval(rates)
+            if not rates:
+                url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+                parameters = {'start':'1','limit':'5000','convert':'USD'}
+                headers = {'Accepts': 'application/json','X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',}
+                session = Session()
+                session.headers.update(headers)
+                response = session.get(url, params=parameters)
+                data = json.loads(response.text)['data']
+                rates = {rate['symbol']: rate['quote']['USD']['price'] for rate in data}
         except:
-            data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']: rate['price'] for rate in data}
+            try:
+                data = json.loads(requests.get("http://coincap.io/front").text)
+                rates = {rate['short']: rate['price'] for rate in data}
+            except Exception as e:
+                raise e
+
         context['rates'] = json.dumps(rates)
         if self.invoice_url:
             temp_obj = SimpleButtonInvoice.objects.get(
@@ -1509,11 +1564,24 @@ class SimpleButtonMakerInvoice(TemplateView):
         context['attempted'] = attempted
         # attempt payment
         try:
-            rates = redis_object.hgetall('rates')
+            rates = cache.get('rates')
             rates = ast.literal_eval(rates)
+            if not rates:
+                url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+                parameters = {'start':'1','limit':'5000','convert':'USD'}
+                headers = {'Accepts': 'application/json','X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',}
+                session = Session()
+                session.headers.update(headers)
+                response = session.get(url, params=parameters)
+                data = json.loads(response.text)['data']
+                rates = {rate['symbol']: rate['quote']['USD']['price'] for rate in data}
         except:
-            data = json.loads(requests.get("http://coincap.io/front").text)
-            rates = {rate['short']: rate['price'] for rate in data}
+            try:
+                data = json.loads(requests.get("http://coincap.io/front").text)
+                rates = {rate['short']: rate['price'] for rate in data}
+            except Exception as e:
+                raise e
+
         context['rates'] = json.dumps(rates)
 
         context['url'] = temp_obj.URL_link

@@ -3,6 +3,9 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+from requests import Request, Session
+from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
+
 __API_URL_BASE = 'https://api.coincap.io/v2/'
 
 class CoincapAPI:
@@ -66,13 +69,34 @@ class CoincapAPI:
     def get_coins_markets(self, vs_currency, **kwargs):
         """List all supported coins price, market cap, volume, and market related data (no pagination required)"""
 
-        # kwargs['vs_currency'] = vs_currency
-        kwargs['limit'] = 2000
+        # # kwargs['vs_currency'] = vs_currency
+        # kwargs['limit'] = 2000
 
-        api_url = '{0}assets'.format(self.api_base_url)
-        api_url = self.__api_url_params(api_url, kwargs)
-        # import pdb; pdb.set_trace()
-        return self.__request(api_url)
+        # api_url = '{0}assets'.format(self.api_base_url)
+        # api_url = self.__api_url_params(api_url, kwargs)
+        # # import pdb; pdb.set_trace()
+        # return self.__request(api_url)
+
+        url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest'
+        parameters = {
+        'start':'1',
+        'limit':'5000',
+        'convert':'USD'
+        }
+        headers = {
+        'Accepts': 'application/json',
+        'X-CMC_PRO_API_KEY': 'ca192ce1-68fa-4a18-8eaa-5f34ffaef044',
+        }
+
+        session = Session()
+        session.headers.update(headers)
+
+        try:
+            response = session.get(url, params=parameters)
+            data = json.loads(response.text)
+            return data
+        except (ConnectionError, Timeout, TooManyRedirects) as e:
+            print(e)
 
 
     def get_coin_by_id(self, id, **kwargs):
